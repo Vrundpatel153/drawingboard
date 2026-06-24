@@ -1,0 +1,187 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Prevent horizontal scrollbars on mobile */
+  background-color: rgb(245, 245, 245);
+}
+
+/* ==========================================
+   PERSISTENT WHATSAPP WIDGET & FOOTER CLEANUP
+   ========================================== */
+
+/* Completely hide all duplicate static/floating WhatsApp elements from Framer */
+.framer-rsw4x4-container,
+[data-framer-name="Small- WA"],
+[data-framer-name="Witth Icon"] {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+/* ==========================================
+   BUTTON DESIGN & CLIPPING FIXES (PC & MOBILE)
+   ========================================== */
+
+/* Fix primary CTAs (e.g. "Start a Project", "Learn More", "Contact") white circle overlap */
+[data-framer-name="Primary/Accent"], 
+[data-framer-name="Primary/White"],
+[data-framer-name="Primary/Black"],
+.framer-109vib0,
+[class*="framer-109vib0"] {
+  height: 54px !important;
+  min-height: 54px !important;
+  padding: 5px 6px 5px 20px !important; /* Left padding for text, right padding for circle space */
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+/* Fix double/triple text stacking on Framer buttons (Spacer vs Flip) */
+
+/* Completely hide the Spacer element since we are making Flip relative */
+[data-framer-name="Spacer"],
+.framer-16rky86,
+[class*="framer-16rky86"] {
+  display: none !important;
+}
+
+/* Make the text Flip container relative so it drives the button width naturally */
+[data-framer-name="Flip"],
+.framer-12824ue,
+[class*="framer-12824ue"] {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  height: auto !important;
+  width: auto !important;
+  overflow: visible !important;
+}
+
+/* Ensure the text children layout correctly */
+[data-framer-name="Flip"] > :first-child,
+.framer-12824ue > :first-child,
+[class*="framer-12824ue"] > :first-child {
+  display: inline-block !important;
+  height: auto !important;
+  line-height: normal !important;
+}
+
+/* Hide the duplicate hover text child */
+[data-framer-name="Flip"] > :nth-child(n+2),
+.framer-12824ue > :nth-child(n+2),
+[class*="framer-12824ue"] > :nth-child(n+2) {
+  display: none !important;
+}
+
+/* Ensure the button inner text wrapper fits correctly and remains centered */
+[data-framer-name="Text"] {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Ensure the white icon circle inside the pill CTAs is centered vertically */
+[data-framer-name="Icon"],
+.framer-r7kiwh,
+[class*="framer-r7kiwh"] {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  min-height: 42px !important;
+  border-radius: 50% !important;
+  align-self: center !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* ==========================================
+   LIST COMPONENT BULLET ICON FIXES
+   ========================================== */
+
+/* Inject white checkmark icon inside the empty Framer round list bullet points */
+.framer-346j18-container,
+[class*="framer-346j18-container"] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.framer-346j18-container::before,
+[class*="framer-346j18-container"]::before {
+  content: '✓' !important;
+  color: #ffffff !important;
+  font-family: sans-serif !important;
+  font-size: 11px !important;
+  font-weight: bold !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ==========================================
+   GLOBAL LAYOUT OVERFLOW & STICKY ANIMATIONS
+   ========================================== */
+
+/* Force layout parents to have visible overflow to allow position:sticky animations to work */
+#main, 
+.ssr-variant,
+.framer-deISe,
+.framer-1udromg,
+[class*="framer-deISe"],
+[class*="framer-1udromg"] {
+  height: auto !important;
+  min-height: 100% !important;
+  overflow: visible !important;
+}
+
+/* ==========================================
+   RESPONSIVE LAYOUT & WIDTH OVERFLOW FIXES
+   ========================================== */
+
+/* Fix layout clipping in sections with fixed pixel widths on smaller screens */
+@media (max-width: 809px) {
+  /* Prevent lists (like deliverables list items) from overflowing mobile screens */
+  .framer-130xmdv,
+  [class*="framer-130xmdv"] {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  [data-framer-name="List"],
+  [data-framer-name="Include"],
+  [data-framer-name="Container"] {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  [data-framer-name="Desktop"],
+  [data-framer-name="Tablet"],
+  [data-framer-name="Phone"] {
+    height: auto !important;
+    min-height: 100% !important;
+    overflow: visible !important;
+  }
+}
+
+/* Ensure dynamic project detail and blog pages fit their containers perfectly */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
