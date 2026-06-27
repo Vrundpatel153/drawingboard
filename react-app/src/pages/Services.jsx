@@ -686,13 +686,157 @@ export default function Services() {
 
     document.addEventListener('click', handleLinkClick);
 
+    // Card stacking scroll effect
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const cards = document.querySelectorAll('.framer-1fc14sw-container');
+          if (cards.length > 0) {
+            const stickyTop = 120; // sticky offset top matches CSS
+            for (let i = 0; i < cards.length; i++) {
+              const currentCard = cards[i];
+              const nextCard = cards[i + 1];
+              
+              // Find inner card element to apply scale and brightness
+              const innerCard = currentCard.querySelector('.framer-9rUKy');
+              if (!innerCard) continue;
+
+              if (nextCard) {
+                const nextRect = nextCard.getBoundingClientRect();
+                const dist = nextRect.top - stickyTop;
+                const cardHeight = currentCard.offsetHeight || 450;
+                
+                let p = 0;
+                if (dist <= 0) {
+                  p = 1;
+                } else if (dist < cardHeight) {
+                  p = 1 - (dist / cardHeight);
+                }
+
+                // Smoothly map scale from 1 -> 0.95 and brightness from 1 -> 0.65
+                const scale = 1 - 0.05 * p;
+                const brightness = 1 - 0.35 * p;
+                const translateY = -15 * p;
+
+                innerCard.style.transform = `scale(${scale}) translateY(${translateY}px)`;
+                innerCard.style.filter = `brightness(${brightness})`;
+                innerCard.style.transformOrigin = 'center top';
+                innerCard.style.transition = 'transform 0.1s ease-out, filter 0.1s ease-out';
+              } else {
+                innerCard.style.transform = 'none';
+                innerCard.style.filter = 'none';
+              }
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Call once initially to set correct state
+    setTimeout(handleScroll, 100);
+
     return () => {
       styleElements.forEach(el => el.remove());
       document.removeEventListener('click', handleLinkClick);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, [navigate]);
 
   return (
-    <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+    <>
+      {/* Fix: reduce excessive bottom gap between cards and footer,
+          and add dark-purple hover effect on service cards */}
+      <style>{`
+        /* Reduce the root wrapper's giant padding to bring footer closer */
+        .framer-deISe.framer-zcrc1 {
+          padding-bottom: 40px !important;
+          gap: 60px !important;
+        }
+        @media (min-width: 810px) and (max-width: 1199.98px) {
+          .framer-deISe.framer-zcrc1 {
+            padding-bottom: 40px !important;
+            gap: 40px !important;
+          }
+        }
+        @media (max-width: 809.98px) {
+          .framer-deISe.framer-zcrc1 {
+            padding-bottom: 30px !important;
+            gap: 30px !important;
+          }
+        }
+        /* Also tighten the bottom section's own padding */
+        .framer-6w0hu9,
+        .framer-deISe .framer-6w0hu9 {
+          padding-bottom: 40px !important;
+        }
+
+        /* Service card hover: dark purple background + white text */
+        .framer-9rUKy.framer-en75vv {
+          transition: background-color 0.25s ease, color 0.25s ease !important;
+          cursor: pointer;
+        }
+        .framer-9rUKy.framer-en75vv:hover {
+          background-color: rgb(29, 3, 86) !important;
+        }
+        /* Turn all text inside card white on hover */
+        .framer-9rUKy.framer-en75vv:hover h3,
+        .framer-9rUKy.framer-en75vv:hover h4,
+        .framer-9rUKy.framer-en75vv:hover p,
+        .framer-9rUKy.framer-en75vv:hover .framer-text,
+        .framer-9rUKy.framer-en75vv:hover [style*="color:rgb(29, 3, 86)"],
+        .framer-9rUKy.framer-en75vv:hover [style*="color: rgb(29, 3, 86)"],
+        .framer-9rUKy.framer-en75vv:hover [style*="color:rgb(41, 12, 102)"],
+        .framer-9rUKy.framer-en75vv:hover [style*="color: rgb(41, 12, 102)"] {
+          color: rgb(255, 255, 255) !important;
+          --framer-text-color: rgb(255, 255, 255) !important;
+          --extracted-a0htzi: rgb(255, 255, 255) !important;
+          --extracted-r6o4lv: rgb(255, 255, 255) !important;
+        }
+        /* Also make the inner details background transparent on hover */
+        .framer-9rUKy.framer-en75vv:hover .framer-mak5gt {
+          background-color: transparent !important;
+        }
+
+        /* Force parent container levels to have visible overflow to allow position:sticky to work */
+        .framer-C1TEG,
+        .framer-5otppn,
+        .framer-deISe,
+        .framer-zcrc1,
+        .framer-6w0hu9,
+        .framer-1tpyum7,
+        .framer-1udromg,
+        [class*="framer-C1TEG"],
+        [class*="framer-deISe"],
+        [class*="framer-6w0hu9"],
+        [class*="framer-1tpyum7"],
+        [class*="framer-1udromg"] {
+          overflow: visible !important;
+          height: auto !important;
+          min-height: 100% !important;
+        }
+
+        /* Ensure sticky positioning for card wrappers on desktop and tablet */
+        @media (min-width: 810px) {
+          .framer-1fc14sw-container {
+            position: sticky !important;
+            top: 120px !important;
+            height: 456px !important;
+            will-change: transform !important;
+          }
+
+          /* Ensure staggered z-index for clean stacking overlap */
+          .framer-1fc14sw-container:nth-of-type(1) { z-index: 10 !important; }
+          .framer-1fc14sw-container:nth-of-type(2) { z-index: 11 !important; }
+          .framer-1fc14sw-container:nth-of-type(3) { z-index: 12 !important; }
+          .framer-1fc14sw-container:nth-of-type(4) { z-index: 13 !important; }
+          .framer-1fc14sw-container:nth-of-type(5) { z-index: 14 !important; }
+        }
+      `}</style>
+      <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+    </>
   );
 }

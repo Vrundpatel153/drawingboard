@@ -210,13 +210,39 @@ html, body {
   content: '✓' !important;
   color: #ffffff !important;
   font-family: sans-serif !important;
-  font-size: 11px !important;
+  font-size: 13px !important;
   font-weight: bold !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 100% !important;
-  height: 100% !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  line-height: 1 !important;
+}
+.framer-mz2v1f,
+[class*="framer-346j18-container"] {
+  position: relative !important;
+}
+
+/* Fix pixelated SVG text (The Drawing Board logo) */
+svg foreignObject,
+svg foreignObject * {
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  transform: translateZ(0);
+}
+
+/* Fix cutoff text on legal disclaimer ("By submitting you agree to...") */
+.framer-qbdr3z {
+  overflow: visible !important;
+}
+
+/* Fallback for ugly monospace/missing fonts on buttons & UI elements */
+.framer-styles-preset-ogkf1d:not(.rich-text-wrapper),
+.framer-styles-preset-ogkf1d.rich-text-wrapper p,
+.framer-styles-preset-1pat0fh:not(.rich-text-wrapper),
+.framer-styles-preset-1pat0fh.rich-text-wrapper p {
+  font-family: 'Schibsted Grotesk', sans-serif !important;
+  letter-spacing: 0.5px !important;
 }
 
 /* ==========================================
@@ -228,12 +254,19 @@ html, body {
 .ssr-variant,
 .framer-deISe,
 .framer-1udromg,
+.framer-C1TEG,
+.framer-6w0hu9,
+.framer-1tpyum7,
 [class*="framer-deISe"],
-[class*="framer-1udromg"] {
+[class*="framer-1udromg"],
+[class*="framer-C1TEG"],
+[class*="framer-6w0hu9"],
+[class*="framer-1tpyum7"] {
   height: auto !important;
   min-height: 100% !important;
   overflow: visible !important;
 }
+
 
 /* ==========================================
    RESPONSIVE LAYOUT & WIDTH OVERFLOW FIXES

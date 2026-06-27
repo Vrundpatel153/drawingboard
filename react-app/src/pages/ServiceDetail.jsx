@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
+// Module-level cache: avoids re-fetching on back-navigation
+const pageCache = new Map();
+
 export default function ServiceDetail() {
   const { serviceId } = useParams();
   const navigate = useNavigate();
-  const [serviceData, setServiceData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [serviceData, setServiceData] = useState(() => pageCache.get(serviceId) || null);
+  const [loading, setLoading] = useState(!pageCache.has(serviceId));
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    // If already cached, skip fetch entirely
+    if (pageCache.has(serviceId)) {
+      setServiceData(pageCache.get(serviceId));
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     setError(false);
     
@@ -21,6 +31,7 @@ export default function ServiceDetail() {
         return res.json();
       })
       .then((data) => {
+        pageCache.set(serviceId, data);
         setServiceData(data);
         setLoading(false);
       })
@@ -33,6 +44,7 @@ export default function ServiceDetail() {
 
   useEffect(() => {
     if (!serviceData) return;
+
 
     // Set page title
     document.title = serviceData.title || 'Service Detail';
@@ -138,11 +150,17 @@ export default function ServiceDetail() {
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh',
-        backgroundColor: '#000000',
-        color: '#ffffff',
-        fontFamily: 'sans-serif'
+        backgroundColor: 'rgb(245, 245, 245)'
       }}>
-        Loading service...
+        <div style={{
+          width: '36px',
+          height: '36px',
+          border: '3px solid rgba(29, 3, 86, 0.15)',
+          borderTopColor: 'rgb(29, 3, 86)',
+          borderRadius: '50%',
+          animation: 'spin 0.8s linear infinite'
+        }} />
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
       </div>
     );
   }
@@ -176,6 +194,70 @@ export default function ServiceDetail() {
   }
 
   return (
-    <div dangerouslySetInnerHTML={{ __html: serviceData.htmlContent }} />
+    <>
+      {/* Fix: framer-DuWwj uses display:contents inline which ignores padding/box-model.
+          Override to display:flex with column direction so the padding:140px top pushes content below the fixed navbar. */}
+      <style>{`
+        [data-framer-root].framer-DuWwj,
+        .framer-DuWwj[data-framer-root] {
+          display: flex !important;
+          flex-flow: column !important;
+          align-items: center !important;
+          width: 100% !important;
+          padding-bottom: 60px !important;
+          gap: 60px !important;
+        }
+        @media (max-width: 1199px) {
+          [data-framer-root].framer-DuWwj,
+          .framer-DuWwj[data-framer-root] {
+            padding-bottom: 40px !important;
+            gap: 40px !important;
+          }
+        }
+
+        /* Card container logic for ServiceDetail pages */
+        a[href^="./"], a[href^="../service/"] {
+          cursor: pointer;
+        }
+        
+        /* Service card hover background */
+        a[href^="./"]:hover > div > div > div[style*="rgb(227, 227, 227)"],
+        a[href^="../service/"]:hover > div > div > div[style*="rgb(227, 227, 227)"],
+        a[href^="./"]:hover [style*="background-color:rgb(227, 227, 227)"],
+        a[href^="./"]:hover [style*="background-color: rgb(227, 227, 227)"],
+        a[href^="../service/"]:hover [style*="background-color:rgb(227, 227, 227)"],
+        a[href^="../service/"]:hover [style*="background-color: rgb(227, 227, 227)"] {
+          background-color: rgb(29, 3, 86) !important;
+          transition: background-color 0.25s ease !important;
+        }
+
+        /* Service card hover text color */
+        a[href^="./"]:hover h3,
+        a[href^="./"]:hover h4,
+        a[href^="./"]:hover h5,
+        a[href^="./"]:hover p,
+        a[href^="./"]:hover .framer-text,
+        a[href^="./"]:hover [style*="color:rgb(29, 3, 86)"],
+        a[href^="./"]:hover [style*="color: rgb(29, 3, 86)"],
+        a[href^="./"]:hover [style*="color:rgb(41, 12, 102)"],
+        a[href^="./"]:hover [style*="color: rgb(41, 12, 102)"],
+        a[href^="../service/"]:hover h3,
+        a[href^="../service/"]:hover h4,
+        a[href^="../service/"]:hover h5,
+        a[href^="../service/"]:hover p,
+        a[href^="../service/"]:hover .framer-text,
+        a[href^="../service/"]:hover [style*="color:rgb(29, 3, 86)"],
+        a[href^="../service/"]:hover [style*="color: rgb(29, 3, 86)"],
+        a[href^="../service/"]:hover [style*="color:rgb(41, 12, 102)"],
+        a[href^="../service/"]:hover [style*="color: rgb(41, 12, 102)"] {
+          color: rgb(255, 255, 255) !important;
+          --framer-text-color: rgb(255, 255, 255) !important;
+          --extracted-1lwpl3i: rgb(255, 255, 255) !important;
+          --extracted-r6o4lv: rgb(255, 255, 255) !important;
+          transition: color 0.25s ease !important;
+        }
+      `}</style>
+      <div dangerouslySetInnerHTML={{ __html: serviceData.htmlContent }} />
+    </>
   );
 }

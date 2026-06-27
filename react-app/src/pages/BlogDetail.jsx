@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
+// Module-level cache: avoids re-fetching on back-navigation
+const pageCache = new Map();
+
 export default function BlogDetail() {
   const { blogId } = useParams();
   const navigate = useNavigate();
-  const [blogData, setBlogData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [blogData, setBlogData] = useState(() => pageCache.get(blogId) || null);
+  const [loading, setLoading] = useState(!pageCache.has(blogId));
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    // If already cached, skip fetch entirely
+    if (pageCache.has(blogId)) {
+      setBlogData(pageCache.get(blogId));
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     setError(false);
     
@@ -21,6 +31,7 @@ export default function BlogDetail() {
         return res.json();
       })
       .then((data) => {
+        pageCache.set(blogId, data);
         setBlogData(data);
         setLoading(false);
       })
@@ -139,11 +150,17 @@ export default function BlogDetail() {
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh',
-        backgroundColor: '#000000',
-        color: '#ffffff',
-        fontFamily: 'sans-serif'
+        backgroundColor: 'rgb(245, 245, 245)'
       }}>
-        Loading post...
+        <div style={{
+          width: '36px',
+          height: '36px',
+          border: '3px solid rgba(29, 3, 86, 0.15)',
+          borderTopColor: 'rgb(29, 3, 86)',
+          borderRadius: '50%',
+          animation: 'spin 0.8s linear infinite'
+        }} />
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
       </div>
     );
   }

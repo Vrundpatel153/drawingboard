@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
+// Module-level cache: avoids re-fetching on back-navigation
+const pageCache = new Map();
+
 export default function LegalDetail() {
   const { legalId } = useParams();
   const navigate = useNavigate();
-  const [legalData, setLegalData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [legalData, setLegalData] = useState(() => pageCache.get(legalId) || null);
+  const [loading, setLoading] = useState(!pageCache.has(legalId));
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    // If already cached, skip fetch entirely
+    if (pageCache.has(legalId)) {
+      setLegalData(pageCache.get(legalId));
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     setError(false);
     
@@ -21,6 +31,7 @@ export default function LegalDetail() {
         return res.json();
       })
       .then((data) => {
+        pageCache.set(legalId, data);
         setLegalData(data);
         setLoading(false);
       })
@@ -113,11 +124,17 @@ export default function LegalDetail() {
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh',
-        backgroundColor: '#000000',
-        color: '#ffffff',
-        fontFamily: 'sans-serif'
+        backgroundColor: 'rgb(245, 245, 245)'
       }}>
-        Loading document...
+        <div style={{
+          width: '36px',
+          height: '36px',
+          border: '3px solid rgba(29, 3, 86, 0.15)',
+          borderTopColor: 'rgb(29, 3, 86)',
+          borderRadius: '50%',
+          animation: 'spin 0.8s linear infinite'
+        }} />
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
       </div>
     );
   }
