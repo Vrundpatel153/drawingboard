@@ -1,0 +1,60 @@
+# Dependency directories
+node_modules/
+react-app/node_modules/
+
+# Build outputs
+dist/
+react-app/dist/
+dist-ssr/
+react-app/dist-ssr/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Editor directories and files
+.vscode/
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.directory
+
+# Temp/Cache directories
+.parcel-cache/
+.eslintcache
+.cache/
+
+# Zipped archive files (not needed in git)
+*.zip
+
+# Useless/not used original Framer pages (reference folders)
+/home/
+/insights/
+/services/
+/services_temp/
+/studio/
+/work/
+
+# Useless reference HTML and utility/scratch scripts inside react-app
+react-app/framer_*.html
+react-app/compile_all_pages.js
+react-app/read_services_index.js
+react-app/read_services_scripts.js
+react-app/search_button_css.js
