@@ -213,13 +213,15 @@ export function createLinkClickHandler(navigate) {
     e.preventDefault();
     let target = href;
 
-    // Normalize path
-    if (target.startsWith('.')) {
-      target = target.substring(1);
+    // Use URL object to resolve relative paths against current location
+    try {
+      const url = new URL(target, window.location.origin + window.location.pathname);
+      target = url.pathname;
+    } catch(err) {
+      if (target.startsWith('.')) target = target.substring(1);
+      if (!target.startsWith('/')) target = '/' + target;
     }
-    if (!target.startsWith('/')) {
-      target = '/' + target;
-    }
+
     if (target === '/index.html') {
       target = '/';
     }
@@ -248,8 +250,9 @@ export function createLinkClickHandler(navigate) {
  * Also applies the CSS text replacement.
  */
 export function fixAnimationStates(css) {
-  // Replace opacity: 0 with opacity: 1 in CSS text
-  return css.replace(/\bopacity\s*:\s*0\b/g, 'opacity: 1');
+  // We no longer blindly replace opacity: 0. 
+  // Appear animations are handled via global CSS in index.css targeting [data-framer-appear-id].
+  return css;
 }
 
 /**

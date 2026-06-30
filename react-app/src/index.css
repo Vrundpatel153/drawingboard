@@ -2,7 +2,11 @@ html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow-x: hidden; /* Prevent horizontal scrollbars on mobile */
+  /* IMPORTANT: Use overflow-x: clip (NOT hidden) here.
+     overflow-x: hidden creates a new scroll container which breaks
+     position: sticky on all descendant elements.
+     overflow-x: clip prevents horizontal scroll without that side effect. */
+  overflow-x: clip;
   background-color: rgb(245, 245, 245);
 }
 
@@ -19,13 +23,10 @@ html, body {
    FRAMER ANIMATION STATE OVERRIDES
    ========================================== */
 
-/* Fix elements stuck at opacity:0 and translateY(18px) from Framer scroll animations */
-[style*="opacity: 0"],
-[style*="opacity:0"] {
+/* Fix elements stuck at opacity:0 and translateY(18px) from Framer scroll animations.
+   We explicitly target appear animation elements so we don't break hover animations that legitimately use opacity:0 */
+[data-framer-appear-id] {
   opacity: 1 !important;
-}
-
-[style*="translateY(18px)"] {
   transform: none !important;
 }
 
@@ -82,10 +83,12 @@ html, body {
 
 /* Fix double/triple text stacking on Framer buttons (Spacer vs Flip) */
 
-/* Completely hide the Spacer element since we are making Flip relative */
+/* Completely hide the Spacer element and duplicate hover text child but keep the icon safe */
 [data-framer-name="Spacer"],
 .framer-16rky86,
-[class*="framer-16rky86"] {
+[class*="framer-16rky86"],
+[data-framer-name="Main"]:has(> [data-framer-name="Flip"]) > [data-framer-component-type="RichTextContainer"]:not([data-framer-name="Flip"]),
+[data-framer-name="Main"]:has(> [data-framer-name="Flip"]) > .framer-text:not([data-framer-name="Flip"]) {
   display: none !important;
 }
 
@@ -186,27 +189,66 @@ html, body {
   min-height: 20px !important;
   max-width: 20px !important;
   max-height: 20px !important;
-  display: block !important;
-  margin: 0 !important;
   position: relative !important;
 }
 
 /* ==========================================
-   LIST COMPONENT BULLET ICON FIXES
+   UNIVERSAL COMPONENT FIXES (CLASS-AGNOSTIC)
    ========================================== */
 
-/* Inject white checkmark icon inside the empty Framer round list bullet points */
-.framer-346j18-container,
-[class*="framer-346j18-container"] {
+/* 1. BUTTON CLIPPING: Unclip all buttons and their parent sections globally */
+a[data-framer-name],
+div:has(> a[data-framer-name]),
+div:has(> div > a[data-framer-name]),
+div:has(> div > div > a[data-framer-name]) {
+  overflow: visible !important;
+  contain: none !important;
+}
+
+/* 2. BUTTON ICONS: Forcefully inject the missing arrow into all button Icon containers */
+a[data-framer-name] [data-framer-name="Icon"] {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 100% !important;
-  height: 100% !important;
+}
+a[data-framer-name] [data-framer-name="Icon"] > div {
+  display: none !important; /* Hide empty React placeholder */
+}
+a[data-framer-name] [data-framer-name="Icon"]::after {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 18px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d0356' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3Cpolyline points='12 5 19 12 12 19'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.framer-346j18-container::before,
-[class*="framer-346j18-container"]::before {
+/* 3. LIST TEXT ALIGNMENT: Vertically center text with checkmarks inside list items */
+div:has(> :first-child:not([data-framer-component-type])):has(> [data-framer-component-type="RichTextContainer"]) {
+  align-items: center !important;
+}
+
+/* 4. LIST HEIGHT CLIPPING: Unclip any container that holds text to prevent bottom slice */
+[data-framer-component-type="RichTextContainer"],
+div:has(> [data-framer-component-type="RichTextContainer"]),
+div:has(> div > [data-framer-component-type="RichTextContainer"]) {
+  height: max-content !important;
+  min-height: max-content !important;
+  max-height: none !important;
+  overflow: visible !important;
+  contain: none !important;
+}
+
+/* 5. LIST CHECKMARK: Inject checkmark icon inside empty bullet points */
+div:has(> :first-child:not([data-framer-component-type])):has(> [data-framer-component-type="RichTextContainer"]) > :first-child {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+div:has(> :first-child:not([data-framer-component-type])):has(> [data-framer-component-type="RichTextContainer"]) > :first-child::before {
   content: '✓' !important;
   color: #ffffff !important;
   font-family: sans-serif !important;
@@ -217,7 +259,9 @@ html, body {
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
   line-height: 1 !important;
+  margin-top: 2px !important;
 }
+
 .framer-mz2v1f,
 [class*="framer-346j18-container"] {
   position: relative !important;
@@ -231,18 +275,18 @@ svg foreignObject * {
   transform: translateZ(0);
 }
 
-/* Fix cutoff text on legal disclaimer ("By submitting you agree to...") */
-.framer-qbdr3z {
+/* Fix cutoff text globally (bottom of letters getting sliced) */
+.framer-qbdr3z,
+[data-framer-component-type="RichTextContainer"],
+.framer-text,
+:has(> [data-framer-component-type="RichTextContainer"]) {
   overflow: visible !important;
 }
 
-/* Fallback for ugly monospace/missing fonts on buttons & UI elements */
-.framer-styles-preset-ogkf1d:not(.rich-text-wrapper),
-.framer-styles-preset-ogkf1d.rich-text-wrapper p,
-.framer-styles-preset-1pat0fh:not(.rich-text-wrapper),
-.framer-styles-preset-1pat0fh.rich-text-wrapper p {
-  font-family: 'Schibsted Grotesk', sans-serif !important;
-  letter-spacing: 0.5px !important;
+[data-framer-component-type="RichTextContainer"] p,
+[data-framer-component-type="RichTextContainer"] span,
+.framer-text {
+  line-height: normal !important;
 }
 
 /* ==========================================
@@ -442,3 +486,16 @@ img, video {
 
 /* Pages with dark backgrounds need different content start adjustments */
 /* Handled per-page via the Framer SSR breakpoint classes */
+
+/* Fix navbar "Drawing Board" text clipping */
+.framer-1paje31 {
+  width: 320px !important;
+  overflow: visible !important;
+}
+svg.framer-1paje31 {
+  overflow: visible !important;
+}
+svg.framer-1paje31 foreignObject {
+  overflow: visible !important;
+  width: 100% !important;
+}
