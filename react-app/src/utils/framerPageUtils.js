@@ -169,8 +169,9 @@ export function initMarquee(styleElements) {
 export function fixNumberCounters() {
   // Map of counter label text to the value that should show
   const counterMap = {
-    'Brands Launched Across Industries': '25',
-    'Years of Combined Creative Experience': '10',
+    'Brands Launched Across Industries': 25,
+    'Years of Combined Creative Experience': 10,
+    'Client Satisfaction on Average': 5.7,
   };
 
   // Find all counter containers
@@ -187,8 +188,32 @@ export function fixNumberCounters() {
     const targetValue = counterMap[labelText];
     if (targetValue) {
       const valueDiv = counter.querySelector('div[style*="font-size"]');
-      if (valueDiv && (valueDiv.textContent.trim() === '0' || valueDiv.textContent.trim() === '')) {
-        valueDiv.textContent = targetValue;
+      const text = valueDiv ? valueDiv.textContent.trim() : null;
+      if (valueDiv && (text === '0' || text === '0.0' || text === '')) {
+        // Animate value from 0 to targetValue
+        let startTimestamp = null;
+        const duration = 2000; // 2 seconds
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          // Ease-out progress calculation
+          let progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+          
+          const currentVal = easeOutProgress * targetValue;
+          
+          if (targetValue % 1 !== 0) {
+            valueDiv.textContent = currentVal.toFixed(1);
+          } else {
+            valueDiv.textContent = Math.floor(currentVal);
+          }
+          
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          } else {
+            valueDiv.textContent = targetValue;
+          }
+        };
+        window.requestAnimationFrame(step);
       }
     }
   });
@@ -262,3 +287,77 @@ export function cleanupMobileMenu() {
   }
   document.body.style.overflow = '';
 }
+
+/**
+ * Clean up empty details, credits, and sections globally from Framer pages.
+ */
+export function cleanPageDOM(container) {
+  if (!container) return;
+
+  // 1. Hide empty details/credits items
+  const items = container.querySelectorAll('[data-framer-name="Item"]');
+  items.forEach((item) => {
+    const text = item.textContent.trim().replace(/\s+/g, ' ');
+    // Hide if key or val is empty. 
+    // Typical empty keys are just ":" or empty
+    // Typical empty values under "Services" are just "/" or empty
+    // Typical empty values under "Credits" are just ":" with nothing after
+    if (
+      text === ':' ||
+      text === 'Services : /' ||
+      text.endsWith(':') ||
+      text.endsWith(': /') ||
+      text.endsWith('Services :')
+    ) {
+      item.style.display = 'none';
+      item.setAttribute('data-hidden-by-cleaner', 'true');
+    }
+  });
+
+  // 2. Hide entire Details or Credits column if all its child items are hidden
+  const textContainers = container.querySelectorAll('[data-framer-component-type="RichTextContainer"]');
+  textContainers.forEach((tc) => {
+    const txt = tc.textContent.trim();
+    if (txt === 'Credits' || txt === 'Details') {
+      let parent = tc.parentElement;
+      while (parent && parent !== container) {
+        const itemsInParent = parent.querySelectorAll('[data-framer-name="Item"]');
+        if (itemsInParent.length > 0) {
+          const allHidden = Array.from(itemsInParent).every(
+            (item) => item.style.display === 'none'
+          );
+          if (allHidden) {
+            // Hide the wrapper parent containing the title + items
+            parent.style.display = 'none';
+          }
+          break;
+        }
+        parent = parent.parentElement;
+      }
+    }
+  });
+
+  // 3. Hide entire empty sections (Challenge, Solution, Outcome, Testimonial)
+  const sections = container.querySelectorAll('section, [data-framer-name="The Challenge"], [data-framer-name="Our Solution"], [data-framer-name="The Outcome"], [data-framer-name="Testimonial"]');
+  sections.forEach((section) => {
+    const name = section.getAttribute('data-framer-name');
+    if (!name) return;
+
+    if (['The Challenge', 'Our Solution', 'The Outcome', 'Testimonial'].includes(name)) {
+      const contentDiv = section.querySelector('[data-framer-name="Content"]');
+      if (contentDiv) {
+        const txt = contentDiv.textContent.trim();
+        const hasImgs = contentDiv.querySelectorAll('img').length > 0;
+        if (txt === '' && !hasImgs) {
+          section.style.display = 'none';
+        }
+      } else {
+        const text = section.textContent.trim();
+        if (text === name || text === '') {
+          section.style.display = 'none';
+        }
+      }
+    }
+  });
+}
+

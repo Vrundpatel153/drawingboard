@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import AdminWorkDetail from './AdminWorkDetail';
+import { cleanPageDOM } from '../utils/framerPageUtils';
 
 // Module-level cache: avoids re-fetching on back-navigation
 const pageCache = new Map();
@@ -10,8 +12,22 @@ export default function WorkDetail() {
   const [projectData, setProjectData] = useState(() => pageCache.get(projectId) || null);
   const [loading, setLoading] = useState(!pageCache.has(projectId));
   const [error, setError] = useState(false);
+  const [adminWork, setAdminWork] = useState(null);
 
   useEffect(() => {
+    // First, check localStorage for admin-created works
+    try {
+      const adminWorks = JSON.parse(localStorage.getItem('admin_works')) || [];
+      const found = adminWorks.find(w => w.slug === projectId);
+      if (found) {
+        setAdminWork(found);
+        setLoading(false);
+        return;
+      }
+    } catch (e) {
+      // ignore parse errors
+    }
+
     // If already cached, skip fetch entirely
     if (pageCache.has(projectId)) {
       setProjectData(pageCache.get(projectId));
@@ -96,6 +112,16 @@ export default function WorkDetail() {
       console.error("Marquee error:", e);
     }
 
+    // Clean up empty fields and sections from the Framer DOM
+    try {
+      const container = document.getElementById('project-detail-container');
+      if (container) {
+        cleanPageDOM(container);
+      }
+    } catch (e) {
+      console.error("DOM cleaning error:", e);
+    }
+
     // Intercept clicks to avoid reloads
     const handleLinkClick = (e) => {
       const anchor = e.target.closest('a');
@@ -142,6 +168,11 @@ export default function WorkDetail() {
     };
   }, [projectData, projectId, navigate]);
 
+  // If this is an admin-created work, render with AdminWorkDetail
+  if (adminWork) {
+    return <AdminWorkDetail work={adminWork} />;
+  }
+
   if (loading) {
     return (
       <div style={{
@@ -164,7 +195,7 @@ export default function WorkDetail() {
     );
   }
 
-  if (error || !projectData) {
+  if (error || (!projectData && !adminWork)) {
     return (
       <div style={{
         display: 'flex',
@@ -193,6 +224,6 @@ export default function WorkDetail() {
   }
 
   return (
-    <div dangerouslySetInnerHTML={{ __html: projectData.htmlContent }} />
+    <div id="project-detail-container" dangerouslySetInnerHTML={{ __html: projectData.htmlContent }} />
   );
 }

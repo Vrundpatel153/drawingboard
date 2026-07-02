@@ -11,6 +11,7 @@ import Contact from './pages/Contact';
 import WhatsAppButton from './components/WhatsAppButton';
 import BlogDetail from './pages/BlogDetail';
 import LegalDetail from './pages/LegalDetail';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -43,6 +44,9 @@ function App() {
 
         {/* Contact Route */}
         <Route path="/contact" element={<Contact />} />
+
+        {/* Admin Route */}
+        <Route path="/admin" element={<Admin />} />
 
         {/* Fallback to Home */}
         <Route path="*" element={<Navigate to="/" replace />} />
