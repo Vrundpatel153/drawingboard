@@ -737,8 +737,7 @@ a > div:first-child:has(+ [class*="framer-12824ue"]) {
 }
 
 /* Hide duplicated ticker items created by Framer to prevent double content */
-.framer-13602r8 li[aria-hidden="true"],
-[data-framer-name="Number"] li[aria-hidden="true"] {
+.framer-13602r8 li[aria-hidden="true"] {
   display: none !important;
 }
 

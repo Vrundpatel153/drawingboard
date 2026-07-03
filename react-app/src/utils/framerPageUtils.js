@@ -171,7 +171,8 @@ export function fixNumberCounters() {
   const counterMap = {
     'Brands Launched Across Industries': 25,
     'Years of Combined Creative Experience': 10,
-    'Client Satisfaction on Average': 5.7,
+    'Client Satisfaction on Average': 5.9,
+    'Projects Delivered with Precision': 152,
   };
 
   // Find all counter containers
