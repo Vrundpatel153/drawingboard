@@ -958,6 +958,8 @@ export default function Services() {
         .framer-deISe,
         .framer-i41gn8,
         .framer-9ohcpn,
+        .framer-1xqv3hd,
+        .framer-1rwyfdt,
         .framer-C1TEG,
         .framer-C1TEG.framer-5otppn,
         .framer-aElyh,

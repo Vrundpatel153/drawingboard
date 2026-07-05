@@ -500,6 +500,20 @@ a:has(> .framer-1paje31),
   width: 100% !important;
 }
 
+/* Reduce logo font size and width on tablet/mobile to prevent cut-off and fit menu */
+@media (max-width: 1199.98px) {
+  .framer-1paje31 p.framer-text {
+    font-size: 21px !important;
+  }
+  .framer-1paje31 {
+    width: 245px !important;
+  }
+  a:has(> .framer-1paje31),
+  .framer-17vgbtl {
+    width: 245px !important;
+  }
+}
+
 /* MOBILE UI FIX FOR SERVICES CARDS */
 @media (max-width: 809.98px) {
   .framer-1fc14sw-container > div {
