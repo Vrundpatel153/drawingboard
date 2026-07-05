@@ -1,3 +1,5 @@
+import gsap from 'gsap';
+
 /**
  * Shared Framer page utilities for all pages.
  * Handles: arrow icon injection, mobile menu, hover bindings, marquee, link interception, opacity fixes.
@@ -6,10 +8,71 @@
 // ─── Arrow SVG for CTA button icon circles ───
 const ARROW_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: rgb(29, 3, 86); display: block;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>`;
 
+const WHITE_ARROW_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: rgb(255, 255, 255); display: block;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>`;
+
 
 /**
- * Inject arrow icons into empty Framer button icon containers.
+ * Fix Framer's SSR hidden-* breakpoint classes by converting them to @media queries.
+ * 
+ * Framer SSR generates: .hidden-HASH { display:none!important }
+ * This is meant to be overridden by Framer's JS hydration, but since we don't hydrate,
+ * these rules permanently hide elements. We convert them to proper @media rules.
+ * 
+ * @param {string} css - CSS string to fix
+ * @param {Object} breakpointMap - Map of hash -> mediaQuery, e.g. { "vbuvjo": "(min-width: 1200px)" }
+ * @returns {string} Fixed CSS string
  */
+export function fixFramerSSRStyles(css, breakpointMap = {}) {
+  // Fix opacity:0 -> opacity:1 for scroll reveal elements
+  let fixedCss = css.replace(/\bopacity\s*:\s*0\b/g, 'opacity: 1');
+
+  if (Object.keys(breakpointMap).length > 0) {
+    // Convert .hidden-HASH { display:none!important } to @media breakpoint rules
+    fixedCss = fixedCss.replace(
+      /\.hidden-([a-z0-9]+)\s*\{[^}]*display\s*:\s*none\s*!important[^}]*\}/g,
+      (match, hash) => {
+        const mediaQuery = breakpointMap[hash];
+        if (mediaQuery) {
+          return `@media ${mediaQuery} { .hidden-${hash} { display: none !important; } }`;
+        }
+        return `/* removed unknown hidden-${hash} */`;
+      }
+    );
+  } else {
+    // Fallback: just remove all hidden-* display:none rules entirely
+    fixedCss = fixedCss.replace(
+      /\.hidden-[a-z0-9]+\s*\{[^}]*display\s*:\s*none\s*!important[^}]*\}/g,
+      '/* ssr-variant hidden rule removed */'
+    );
+  }
+
+  return fixedCss;
+}
+
+/**
+ * Extract Framer breakpoint map from a container element's data-framer-hydrate-v2 attribute.
+ * @param {Element} container - The container element to search within
+ * @returns {Object} Map of hash -> mediaQuery
+ */
+export function extractBreakpointMap(container) {
+  try {
+    const mainEl = container ? container.querySelector('[data-framer-hydrate-v2]') : null;
+    if (mainEl) {
+      const hydrationStr = mainEl.getAttribute('data-framer-hydrate-v2').replace(/&quot;/g, '"');
+      const hydrationData = JSON.parse(hydrationStr);
+      if (hydrationData.breakpoints) {
+        const map = {};
+        hydrationData.breakpoints.forEach(bp => {
+          map[bp.hash] = bp.mediaQuery;
+        });
+        return map;
+      }
+    }
+  } catch (e) { /* ignore */ }
+  return {};
+}
+
+
 export function injectArrowIcons() {
   // Primary/Accent + Primary/Black buttons have .framer-r7kiwh (Icon circle)
   // Inside them is .framer-1f53e8y-container which is empty
@@ -17,15 +80,45 @@ export function injectArrowIcons() {
     '.framer-1f53e8y-container, .framer-1hwa1qa-container'
   );
   iconContainers.forEach((container) => {
+    // Determine SVG color (contrast with circle bg)
+    let parent = container.parentElement;
+    let button = null;
+    while (parent) {
+      if (parent.hasAttribute('data-framer-name') && parent.getAttribute('data-framer-name') !== 'Icon') {
+        button = parent;
+        break;
+      }
+      parent = parent.parentElement;
+    }
+    const isPrimaryWhite = button && button.getAttribute('data-framer-name') === 'Primary/White';
+    const svgToInject = isPrimaryWhite ? WHITE_ARROW_SVG : ARROW_SVG;
+
     // Only inject if the container is effectively empty
     const inner = container.querySelector('div[style*="display:contents"], div[style*="display: contents"]');
+    if (inner && (inner.innerHTML.trim() === '' || inner.children.length === 0)) {
+      inner.innerHTML = svgToInject;
+      inner.style.display = 'flex';
+      inner.style.alignItems = 'center';
+      inner.style.justifyContent = 'center';
+    } else if (container.children.length === 0 && container.textContent.trim() === '') {
+      container.innerHTML = svgToInject;
+      container.style.display = 'flex';
+      container.style.alignItems = 'center';
+      container.style.justifyContent = 'center';
+    }
+  });
+
+  // Inject white arrows inside Core Values card circles
+  const valueIconContainers = document.querySelectorAll('.framer-xlva4v-container');
+  valueIconContainers.forEach((container) => {
+    const inner = container.querySelector('div[style*="display:contents"], div[style*="display: contents"]');
     if (inner && inner.innerHTML.trim() === '') {
-      inner.innerHTML = ARROW_SVG;
+      inner.innerHTML = WHITE_ARROW_SVG;
       inner.style.display = 'flex';
       inner.style.alignItems = 'center';
       inner.style.justifyContent = 'center';
     } else if (container.innerHTML.trim() === '' || container.textContent.trim() === '') {
-      container.innerHTML = ARROW_SVG;
+      container.innerHTML = WHITE_ARROW_SVG;
       container.style.display = 'flex';
       container.style.alignItems = 'center';
       container.style.justifyContent = 'center';
@@ -345,20 +438,117 @@ export function cleanPageDOM(container) {
     if (!name) return;
 
     if (['The Challenge', 'Our Solution', 'The Outcome', 'Testimonial'].includes(name)) {
-      const contentDiv = section.querySelector('[data-framer-name="Content"]');
-      if (contentDiv) {
-        const txt = contentDiv.textContent.trim();
-        const hasImgs = contentDiv.querySelectorAll('img').length > 0;
-        if (txt === '' && !hasImgs) {
-          section.style.display = 'none';
+      // Check for ANY images in the entire section (not just contentDiv)
+      const hasImgsInSection = section.querySelectorAll('img').length > 0;
+      const txt = section.textContent.trim();
+      
+      // Only hide if section is completely empty (no text beyond section name, no images)
+      if (!hasImgsInSection && (txt === '' || txt === name)) {
+        section.style.display = 'none';
+      }
+    }
+  });
+
+  // 4. Hide empty list items / checkmarks with no text (Framer CMS empty placeholders)
+  const listFills = container.querySelectorAll('[data-framer-name="Fill"]');
+  listFills.forEach((fill) => {
+    const textEl = fill.querySelector('[data-framer-component-type="RichTextContainer"]');
+    if (textEl && textEl.textContent.trim() === '') {
+      fill.style.setProperty('display', 'none', 'important');
+      // Also hide parent variant/wrapper container if present
+      let parent = fill.parentElement;
+      while (parent && parent !== container) {
+        if (parent.className.includes('-container') || parent.classList.contains('ssr-variant')) {
+          parent.style.setProperty('display', 'none', 'important');
         }
-      } else {
-        const text = section.textContent.trim();
-        if (text === name || text === '') {
-          section.style.display = 'none';
-        }
+        parent = parent.parentElement;
       }
     }
   });
 }
+
+/**
+ * Initialize horizontal marquee loop for testimonials using GSAP.
+ */
+export function initGSAPTestimonials() {
+  const testimonialsContainer = document.querySelector('[data-framer-name="Testimonials"]');
+  if (!testimonialsContainer) return;
+
+  const listSections = testimonialsContainer.querySelectorAll('section');
+  const cleanups = [];
+
+  listSections.forEach((section) => {
+    const ul = section.querySelector('ul');
+    if (!ul) return;
+
+    ul.style.display = 'flex';
+    ul.style.flexDirection = 'row';
+    ul.style.flexWrap = 'nowrap';
+    ul.style.gap = '20px';
+    ul.style.width = 'max-content';
+    ul.style.height = 'auto';
+    ul.style.transform = 'none';
+
+    section.style.overflow = 'hidden';
+    section.style.width = '100vw';
+    section.style.maxWidth = '100%';
+
+    const originalLis = Array.from(ul.children).filter(li => !li.classList.contains('gsap-clone'));
+    if (originalLis.length === 0) return;
+
+    // Clone original items 4 times to ensure they fully fill the horizontal viewport on large screens without gaps
+    for (let i = 0; i < 4; i++) {
+      originalLis.forEach((li) => {
+        const clone = li.cloneNode(true);
+        clone.classList.add('gsap-clone');
+        ul.appendChild(clone);
+      });
+    }
+
+    const allLis = ul.querySelectorAll('li');
+    allLis.forEach((li) => {
+      li.style.display = 'block';
+      li.style.flexShrink = '0';
+      li.style.width = 'auto';
+      li.style.height = 'auto';
+      li.removeAttribute('aria-hidden');
+    });
+
+    const calculateAndAnimate = () => {
+      let originalWidth = 0;
+      originalLis.forEach((li) => {
+        originalWidth += li.getBoundingClientRect().width + 20; // width + gap
+      });
+
+      if (originalWidth <= 20) return;
+
+      const animation = gsap.to(ul, {
+        x: -originalWidth,
+        duration: 35, // slow, premium scroll speed
+        ease: 'none',
+        repeat: -1
+      });
+
+      const onMouseEnter = () => animation.pause();
+      const onMouseLeave = () => animation.play();
+
+      section.addEventListener('mouseenter', onMouseEnter);
+      section.addEventListener('mouseleave', onMouseLeave);
+
+      cleanups.push(() => {
+        animation.kill();
+        section.removeEventListener('mouseenter', onMouseEnter);
+        section.removeEventListener('mouseleave', onMouseLeave);
+      });
+    };
+
+    const timer = setTimeout(calculateAndAnimate, 600);
+    cleanups.push(() => clearTimeout(timer));
+  });
+
+  return () => {
+    cleanups.forEach(fn => fn());
+  };
+}
+
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import AdminWorkDetail from './AdminWorkDetail';
-import { cleanPageDOM } from '../utils/framerPageUtils';
+import { cleanPageDOM, fixFramerSSRStyles, extractBreakpointMap } from '../utils/framerPageUtils';
 
 // Module-level cache: avoids re-fetching on back-navigation
 const pageCache = new Map();
@@ -64,13 +64,16 @@ export default function WorkDetail() {
     // Set page title
     document.title = projectData.title || 'Project Detail';
 
-    // Inject styles
+    // Inject styles with Framer SSR fixes
     const styleElements = [];
     if (projectData.styles) {
+      const container = document.getElementById('project-detail-container');
+      const breakpointMap = extractBreakpointMap(container);
+
       projectData.styles.forEach((css, index) => {
         const el = document.createElement('style');
         el.id = `page-style-project-${projectId}-${index}`;
-        el.textContent = css.replace(/\bopacity\s*:\s*0\b/g, 'opacity: 1');
+        el.textContent = fixFramerSSRStyles(css, breakpointMap);
         document.head.appendChild(el);
         styleElements.push(el);
       });

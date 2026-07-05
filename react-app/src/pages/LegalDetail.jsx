@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { fixFramerSSRStyles, extractBreakpointMap } from '../utils/framerPageUtils';
 
 // Module-level cache: avoids re-fetching on back-navigation
 const pageCache = new Map();
@@ -48,13 +49,14 @@ export default function LegalDetail() {
     // Set page title
     document.title = legalData.title || 'Legal Document';
 
-    // Inject styles
+    // Inject styles with Framer SSR fixes
     const styleElements = [];
     if (legalData.styles) {
+      const breakpointMap = extractBreakpointMap(document.body);
       legalData.styles.forEach((css, index) => {
         const el = document.createElement('style');
         el.id = `page-style-legal-${legalId}-${index}`;
-        el.textContent = css.replace(/\bopacity\s*:\s*0\b/g, 'opacity: 1');
+        el.textContent = fixFramerSSRStyles(css, breakpointMap);
         document.head.appendChild(el);
         styleElements.push(el);
       });

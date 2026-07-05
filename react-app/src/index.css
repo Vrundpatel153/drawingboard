@@ -487,12 +487,17 @@ img, video {
    GLOBAL FIXES
    ========================================== */
 /* Fix the "The Drawing Board" logo being cut off by SVG viewBox */
-.framer-1paje31,
-.framer-1paje31 foreignObject {
+.framer-1paje31 {
+  width: 300px !important;
   overflow: visible !important;
 }
+a:has(> .framer-1paje31),
+.framer-17vgbtl {
+  width: 300px !important;
+}
 .framer-1paje31 foreignObject {
-  width: 150% !important; /* Allow the text to span wider than the viewBox */
+  overflow: visible !important;
+  width: 100% !important;
 }
 
 /* MOBILE UI FIX FOR SERVICES CARDS */
@@ -1557,3 +1562,26 @@ a > div:first-child:has(+ [class*="framer-12824ue"]) {
   .awd-footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
 }
 
+/* Equal height grid cards alignment */
+.framer-uls1e4-container,
+.framer-nv2l4e-container {
+  place-self: stretch !important;
+  height: 100% !important;
+  display: flex !important;
+}
+
+.framer-MXCG0 {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 0 0 !important;
+}
+
+.framer-MXCG0 .framer-1sji37u {
+  flex: 1 0 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  align-self: stretch !important;
+  height: auto !important;
+}

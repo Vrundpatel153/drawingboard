@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { fixFramerSSRStyles, extractBreakpointMap, cleanPageDOM } from '../utils/framerPageUtils';
 
 // Module-level cache: avoids re-fetching on back-navigation
 const pageCache = new Map();
@@ -49,13 +50,14 @@ export default function ServiceDetail() {
     // Set page title
     document.title = serviceData.title || 'Service Detail';
 
-    // Inject styles
+    // Inject styles with Framer SSR fixes
     const styleElements = [];
     if (serviceData.styles) {
+      const breakpointMap = extractBreakpointMap(document.body);
       serviceData.styles.forEach((css, index) => {
         const el = document.createElement('style');
         el.id = `page-style-service-${serviceId}-${index}`;
-        el.textContent = css.replace(/\bopacity\s*:\s*0\b/g, 'opacity: 1');
+        el.textContent = fixFramerSSRStyles(css, breakpointMap);
         document.head.appendChild(el);
         styleElements.push(el);
       });
@@ -95,6 +97,16 @@ export default function ServiceDetail() {
       });
     } catch (e) {
       console.error("Marquee error:", e);
+    }
+
+    // Clean up empty fields and sections from the Framer DOM
+    try {
+      const container = document.getElementById('service-detail-container');
+      if (container) {
+        cleanPageDOM(container);
+      }
+    } catch (e) {
+      console.error("DOM cleaning error:", e);
     }
 
     // Intercept clicks to avoid reloads
@@ -257,7 +269,7 @@ export default function ServiceDetail() {
           transition: color 0.25s ease !important;
         }
       `}</style>
-      <div dangerouslySetInnerHTML={{ __html: serviceData.htmlContent }} />
+      <div id="service-detail-container" dangerouslySetInnerHTML={{ __html: serviceData.htmlContent }} />
     </>
   );
 }
