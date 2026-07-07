@@ -240,9 +240,23 @@ svg foreignObject * {
   transform: translateZ(0);
 }
 
-/* Fix cutoff text on legal disclaimer ("By submitting you agree to...") */
-.framer-qbdr3z {
+/* Fix cutoff text on legal disclaimer by resolving height resolution clipping at all container levels */
+.framer-zh87dl,
+.framer-sqk3jx,
+.framer-e4g7p2,
+.framer-1r6vzi6,
+.framer-qbdr3z,
+[data-framer-name="Legal"],
+[data-framer-name="Action"] {
   overflow: visible !important;
+  height: auto !important;
+  min-height: fit-content !important;
+}
+
+.framer-qbdr3z *,
+[data-framer-name="Legal"] * {
+  overflow: visible !important;
+  height: auto !important;
 }
 
 /* Fallback for ugly monospace/missing fonts on buttons & UI elements */
@@ -758,6 +772,64 @@ a > div:first-child:has(+ [class*="framer-12824ue"]) {
 /* Hide duplicated ticker items created by Framer to prevent double content */
 .framer-13602r8 li[aria-hidden="true"] {
   display: none !important;
+}
+
+@media (max-width: 809.98px) {
+  .framer-13602r8 ul {
+    gap: 20px 30px !important;
+    justify-content: center !important;
+    padding: 0 16px !important;
+    align-items: center !important;
+  }
+  .framer-13602r8 ul > li {
+    margin-bottom: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .framer-aJdFa .framer-1jlmml3 {
+    height: 26px !important;
+    width: auto !important;
+  }
+  .framer-aJdFa .framer-rgl4kp {
+    width: 90px !important;
+    height: auto !important;
+  }
+  .framer-aJdFa .framer-tpth22 {
+    height: 44px !important;
+    width: auto !important;
+  }
+  .framer-aJdFa .framer-8odw3v {
+    height: 36px !important;
+    width: auto !important;
+  }
+  .framer-aJdFa .framer-aycb8f {
+    height: 30px !important;
+    width: auto !important;
+  }
+  .framer-aJdFa .framer-gg4kfk {
+    height: 36px !important;
+    width: auto !important;
+  }
+  .framer-aJdFa .framer-md6zhb {
+    height: 36px !important;
+    width: auto !important;
+  }
+
+  /* Scale drawingboard overlay logo in homepage hero/insights section on mobile */
+  .framer-aJdFa .framer-1yxe2ph-container {
+    height: 94px !important;
+    width: 120px !important;
+  }
+  .framer-Vh4GR.framer-v-uuzfff.framer-1gb7cx0 {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .framer-Vh4GR.framer-v-uuzfff .framer-drcabq {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: visible !important;
+  }
 }
 
 
