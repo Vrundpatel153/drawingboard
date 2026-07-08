@@ -12,7 +12,7 @@ import WhatsAppButton from './components/WhatsAppButton';
 import BlogDetail from './pages/BlogDetail';
 import LegalDetail from './pages/LegalDetail';
 import Admin from './pages/Admin';
-import { injectArrowIcons } from './utils/framerPageUtils';
+import { injectArrowIcons, initMobileMenu } from './utils/framerPageUtils';
 import gsap from 'gsap';
 
 // A wrapper component to run DOM fixes globally on every route change
@@ -25,6 +25,7 @@ function PageFixWrapper({ children }) {
     // Run the DOM fixes immediately and after short delays (to handle dynamic dangerouslySetInnerHTML rendering)
     const runFixes = () => {
       injectArrowIcons();
+      initMobileMenu(navigate);
       // Also bind hover states globally
       try {
         const bindHover = (el) => {

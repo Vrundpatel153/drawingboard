@@ -745,68 +745,7 @@ export default function Services() {
 
 
 
-    // ─── Mobile hamburger + menu overlay ───
-    const hamburgerSvgs = document.querySelectorAll('.framer-1ixsc3w');
-    hamburgerSvgs.forEach((svg) => {
-      const useEl = svg.querySelector('use');
-      if (useEl && !document.getElementById((useEl.getAttribute('href') || '').replace('#', ''))) {
-        svg.innerHTML = `
-          <line x1="4" y1="7" x2="20" y2="7" stroke="rgb(29,3,86)" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="4" y1="12" x2="20" y2="12" stroke="rgb(29,3,86)" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="4" y1="17" x2="20" y2="17" stroke="rgb(29,3,86)" stroke-width="1.5" stroke-linecap="round"/>
-        `;
-      }
-    });
 
-    const menuToggle = document.querySelector('.framer-1xj56n7[data-highlight="true"]');
-    if (menuToggle) {
-      let overlay = document.getElementById('mobile-menu-overlay');
-      if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.id = 'mobile-menu-overlay';
-        overlay.innerHTML = `
-          <div class="mobile-menu-content">
-            <div class="mobile-menu-header">
-              <span class="mobile-menu-logo">The Drawing Board</span>
-              <button class="mobile-menu-close" aria-label="Close">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgb(29,3,86)" stroke-width="1.5" stroke-linecap="round">
-                  <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
-                </svg>
-              </button>
-            </div>
-            <nav class="mobile-menu-nav">
-              <a href="/" class="mobile-menu-link">Home</a>
-              <a href="/studio" class="mobile-menu-link">Studio</a>
-              <a href="/work" class="mobile-menu-link">Works</a>
-              <a href="/service" class="mobile-menu-link">Services</a>
-              <a href="/insights" class="mobile-menu-link">Insights</a>
-            </nav>
-            <a href="/contact" class="mobile-menu-cta"><span>Contact</span><span class="mobile-menu-cta-icon">${ARROW_SVG}</span></a>
-          </div>
-        `;
-        document.body.appendChild(overlay);
-        overlay.querySelector('.mobile-menu-close').addEventListener('click', () => {
-          overlay.classList.remove('open');
-          document.body.style.overflow = '';
-        });
-        overlay.querySelectorAll('a').forEach((link) => {
-          link.addEventListener('click', (e) => {
-            e.preventDefault();
-            overlay.classList.remove('open');
-            document.body.style.overflow = '';
-            navigate(link.getAttribute('href'));
-          });
-        });
-      }
-      menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const ov = document.getElementById('mobile-menu-overlay');
-        if (ov) {
-          ov.classList.toggle('open');
-          document.body.style.overflow = ov.classList.contains('open') ? 'hidden' : '';
-        }
-      });
-    }
 
     // ─── Hover classes ───
     document.querySelectorAll('[class*=" framer-v-"],[class^="framer-v-"]').forEach((el) => {

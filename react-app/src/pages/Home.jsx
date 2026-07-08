@@ -2,13 +2,11 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   injectArrowIcons,
-  initMobileMenu,
   bindHoverClasses,
   initMarquee,
   fixNumberCounters,
   createLinkClickHandler,
   fixAnimationStates,
-  cleanupMobileMenu,
   initGSAPTestimonials
 } from '../utils/framerPageUtils';
 
@@ -704,7 +702,6 @@ export default function Home() {
     initMarquee(styleElements);
     injectArrowIcons();
     fixNumberCounters();
-    initMobileMenu(navigate);
     const cleanupGSAP = initGSAPTestimonials();
 
     // Intercept clicks for SPA navigation
@@ -714,7 +711,6 @@ export default function Home() {
     return () => {
       styleElements.forEach(el => el.remove());
       document.removeEventListener('click', handleLinkClick);
-      cleanupMobileMenu();
       if (cleanupGSAP) cleanupGSAP();
     };
   }, [navigate]);
