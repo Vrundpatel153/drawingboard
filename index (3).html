@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Drawing Board — Brand, Web & Packaging Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,450;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EFEBE2;
+  --paper-line:#DAD3C2;
+  --ink:#1B1B17;
+  --ink-soft:#4A473F;
+  --pine:#24463B;
+  --pine-deep:#173029;
+  --marker:#B8412E;
+  --card:#F7F4EC;
+  --radius:2px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  background-image:
+    linear-gradient(var(--paper-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+  background-size:48px 48px;
+  background-attachment:fixed;
+}
+::selection{background:var(--pine);color:var(--paper);}
+h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;line-height:1.05;}
+.mono{font-family:'IBM Plex Mono',monospace;letter-spacing:0.03em;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+
+/* registration marks */
+.reg{position:fixed;width:18px;height:18px;pointer-events:none;z-index:40;opacity:0.55;}
+.reg::before,.reg::after{content:"";position:absolute;background:var(--ink);}
+.reg::before{width:100%;height:1px;top:50%;}
+.reg::after{width:1px;height:100%;left:50%;}
+.reg-tl{top:14px;left:14px;} .reg-tr{top:14px;right:14px;}
+.reg-bl{bottom:14px;left:14px;} .reg-br{bottom:14px;right:14px;}
+
+/* header */
+header{
+  position:sticky;top:0;z-index:30;
+  background:rgba(239,235,226,0.92);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--ink);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;max-width:1180px;margin:0 auto;}
+.logo-mark{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:18px;}
+.logo-mark .box{width:22px;height:22px;border:1.5px solid var(--ink);position:relative;flex-shrink:0;}
+.logo-mark .box::after{content:"";position:absolute;inset:4px;border:1px solid var(--ink);}
+.navlinks{display:flex;gap:36px;font-size:14px;}
+.navlinks a{position:relative;padding:2px 0;}
+.navlinks a.active{color:var(--pine);}
+.navlinks a.active::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:2px;background:var(--marker);}
+.nav-cta{font-size:13px;padding:10px 18px;border:1.5px solid var(--ink);border-radius:var(--radius);}
+.nav-cta:hover{background:var(--ink);color:var(--paper);}
+@media(max-width:860px){.navlinks{display:none;}}
+
+/* hero */
+.hero{padding:88px 0 64px;position:relative;}
+.sheet-label{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
+.sheet-label .tag{font-size:12px;padding:6px 10px;border:1px solid var(--ink);}
+.sheet-label .rule{flex:1;height:1px;background:var(--ink-soft);opacity:0.4;}
+.hero h1{font-size:clamp(38px,5.4vw,72px);max-width:920px;}
+.hero h1 em{font-style:normal;color:var(--pine);}
+.hero-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:56px;align-items:start;margin-top:34px;}
+@media(max-width:920px){.hero-grid{grid-template-columns:1fr;}}
+.hero-sub{font-size:18px;color:var(--ink-soft);max-width:520px;margin-bottom:30px;}
+.cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-bottom:20px;}
+.btn-primary{background:var(--pine);color:var(--paper);padding:15px 26px;font-size:14.5px;font-weight:600;border-radius:var(--radius);display:inline-flex;align-items:center;gap:8px;transition:background .15s;}
+.btn-primary:hover{background:var(--pine-deep);}
+.btn-link{font-size:14.5px;border-bottom:1px solid currentColor;padding-bottom:2px;color:var(--ink-soft);}
+.price-note{font-size:13px;color:var(--ink-soft);}
+.price-note b{color:var(--ink);}
+
+/* annotated visual card */
+.annot-card{
+  background:var(--card);
+  border:1px solid var(--ink);
+  padding:26px;
+  position:relative;
+}
+.annot-card .corner{position:absolute;top:-1px;right:-1px;width:26px;height:26px;background:var(--marker);clip-path:polygon(0 0,100% 0,100% 100%);}
+.annot-row{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px dashed var(--paper-line);padding:10px 0;font-size:13px;}
+.annot-row:last-child{border-bottom:none;}
+.annot-row span:first-child{color:var(--ink-soft);}
+.annot-title{font-size:12px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px;}
+
+.stat-strip{display:flex;gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin-top:56px;}
+.stat{flex:1;padding:22px 24px;border-right:1px solid var(--ink);}
+.stat:last-child{border-right:none;}
+.stat .num{font-family:'Fraunces',serif;font-size:34px;font-weight:600;color:var(--pine);}
+.stat .lbl{font-size:12.5px;color:var(--ink-soft);margin-top:4px;}
+@media(max-width:700px){.stat-strip{flex-wrap:wrap;} .stat{flex:1 1 50%;border-bottom:1px solid var(--ink);}}
+
+/* section shell */
+section{padding:80px 0;}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:44px;flex-wrap:wrap;}
+.eyebrow{font-size:12px;color:var(--marker);margin-bottom:10px;}
+.section-head h2{font-size:clamp(28px,3.4vw,42px);max-width:640px;}
+.section-head p{color:var(--ink-soft);max-width:380px;font-size:15px;}
+
+/* deliverables / services */
+.deliv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ink);border:1px solid var(--ink);}
+@media(max-width:900px){.deliv-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.deliv-grid{grid-template-columns:1fr;}}
+.deliv-col{background:var(--card);padding:26px 22px;display:flex;flex-direction:column;}
+.deliv-col h4{font-size:15px;margin-bottom:6px;}
+.deliv-col .sub{font-size:12px;color:var(--marker);margin-bottom:16px;}
+.deliv-col ul{list-style:none;font-size:13.5px;color:var(--ink-soft);flex:1;}
+.deliv-col li{padding:7px 0;border-top:1px dashed var(--paper-line);}
+.deliv-col li:first-child{border-top:none;}
+.deliv-col .go{font-size:12.5px;color:var(--pine);margin-top:16px;border-bottom:1px solid var(--pine);padding-bottom:2px;align-self:flex-start;}
+
+/* process */
+.process{display:flex;gap:0;overflow-x:auto;border-top:1px solid var(--ink);}
+.pstep{flex:1;min-width:190px;padding:24px 20px;border-right:1px solid var(--ink-soft);position:relative;}
+.pstep:last-child{border-right:none;}
+.pstep .n{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--marker);}
+.pstep h4{font-size:17px;margin:8px 0 6px;}
+.pstep p{font-size:13px;color:var(--ink-soft);}
+
+/* proof */
+.proof-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:20px;}
+@media(max-width:860px){.proof-grid{grid-template-columns:1fr;}}
+.proof-card{border:1px solid var(--ink);background:var(--card);overflow:hidden;}
+.proof-card .img{aspect-ratio:4/3;background:linear-gradient(135deg,#d8d2c1,#c3bda9);position:relative;}
+.proof-card .img::after{content:"IMG";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8b8571;}
+.proof-body{padding:18px 20px;}
+.proof-body .tag{font-size:11px;color:var(--marker);margin-bottom:6px;}
+.proof-body h4{font-size:18px;margin-bottom:6px;}
+.proof-body p{font-size:13px;color:var(--ink-soft);}
+.proof-card.big .img{aspect-ratio:16/10;}
+.proof-metric{display:inline-block;margin-top:12px;font-family:'IBM Plex Mono',monospace;font-size:13px;background:var(--pine);color:var(--paper);padding:5px 10px;}
+
+/* guarantee */
+.guarantee{background:var(--card);border:1px solid var(--ink);padding:44px;display:flex;gap:32px;align-items:center;}
+@media(max-width:700px){.guarantee{flex-direction:column;align-items:flex-start;}}
+.guarantee .badge{width:74px;height:74px;border:2px solid var(--pine);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Fraunces',serif;font-size:11px;text-align:center;color:var(--pine);line-height:1.2;padding:8px;}
+.guarantee h3{font-size:22px;margin-bottom:8px;}
+.guarantee p{font-size:14.5px;color:var(--ink-soft);max-width:640px;}
+
+/* testimonials */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:860px){.testi-grid{grid-template-columns:1fr;}}
+.testi-card{border:1px solid var(--ink);background:var(--card);padding:26px;display:flex;flex-direction:column;}
+.testi-stars{color:var(--marker);font-size:13px;margin-bottom:14px;letter-spacing:2px;}
+.testi-card p.body{font-size:14.5px;line-height:1.6;flex:1;margin-bottom:18px;}
+.testi-who{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--ink-soft);border-top:1px dashed var(--paper-line);padding-top:14px;}
+.testi-who .av{width:32px;height:32px;border-radius:50%;background:var(--pine);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:13px;font-weight:600;flex-shrink:0;}
+.testi-who b{color:var(--ink);}
+
+/* urgency badge */
+.urgency{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;background:var(--card);border:1px solid var(--ink);padding:7px 12px;margin-bottom:22px;}
+.urgency .dot{width:7px;height:7px;border-radius:50%;background:var(--marker);animation:pulse 1.6s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+/* logo strip */
+.logo-strip{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:0;}
+.logo-strip .wrap{display:flex;align-items:center;gap:0;padding:0;}
+.logo-strip .lbl2{font-size:11px;color:var(--ink-soft);padding:18px 24px 18px 0;white-space:nowrap;border-right:1px solid var(--paper-line);}
+.logo-row{display:flex;flex:1;overflow-x:auto;}
+.logo-row span{flex:1;text-align:center;padding:18px 20px;font-family:'Fraunces',serif;font-weight:600;font-size:16px;color:var(--ink-soft);border-right:1px solid var(--paper-line);white-space:nowrap;}
+.logo-row span:last-child{border-right:none;}
+
+/* final cta */
+.final{background:var(--pine);color:var(--paper);text-align:center;}
+.final h2{font-size:clamp(30px,4.5vw,48px);max-width:720px;margin:0 auto 18px;}
+.final p{color:#CFE0DA;max-width:520px;margin:0 auto 32px;font-size:16px;}
+.final .btn-primary{background:var(--paper);color:var(--pine);}
+.final .btn-primary:hover{background:#fff;}
+
+/* sticky mobile cta */
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:50;background:var(--ink);padding:14px 18px;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid #000;}
+.sticky-cta .txt{color:#fff;font-size:13px;}
+.sticky-cta .txt b{display:block;font-size:14.5px;}
+.sticky-cta a{background:var(--paper);color:var(--ink);padding:11px 18px;font-size:13px;font-weight:600;border-radius:var(--radius);white-space:nowrap;}
+@media(max-width:700px){.sticky-cta{display:flex;} body{padding-bottom:64px;}}
+
+footer{border-top:1px solid var(--ink);padding:50px 0 30px;font-size:13px;color:var(--ink-soft);}
+.foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;margin-bottom:30px;}
+.foot-grid a{display:block;padding:4px 0;}
+.foot-bottom{border-top:1px solid var(--paper-line);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+</style>
+</head>
+<body>
+
+<div class="reg reg-tl"></div><div class="reg reg-tr"></div><div class="reg reg-bl"></div><div class="reg reg-br"></div>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo-mark"><div class="box"></div>The Drawing Board</a>
+    <nav class="navlinks">
+      <a class="active" href="index.html">Studio</a>
+      <a href="work.html">Work</a>
+      <a href="branding-page-redesign.html">Services</a>
+      <a href="#">Insights</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav-cta" href="https://cal.com/dandelion-nrvrze">Book a 15-min call</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="sheet-label">
+        <span class="tag mono">SHEET NO. 01 — STUDIO</span>
+        <span class="rule"></span>
+        <span class="mono" style="font-size:12px;color:var(--ink-soft)">SCALE 1:1</span>
+      </div>
+      <div class="urgency"><span class="dot"></span>Booking 3 more brand & web projects for Q3 2026 — next slot opens August</div>
+      <h1>Brands, sites, and packaging built to make founders look established. <em>Not brand-new, built.</em></h1>
+
+      <div class="hero-grid">
+        <div>
+          <p class="hero-sub">The Drawing Board is a small studio for founders past the "just get a logo" stage. We work in four disciplines — branding, packaging, UI/UX, and web development — but always start from the same place: a position worth remembering, executed like it matters.</p>
+          <div class="cta-row">
+            <a class="btn-primary" href="https://cal.com/dandelion-nrvrze">Book a 15-min call →</a>
+            <a class="btn-link" href="work.html">or see recent work</a>
+          </div>
+          <p class="price-note">Projects start at <b>₹2,37,000.</b> One studio, one point of contact, start to finish.</p>
+        </div>
+
+        <div class="annot-card">
+          <div class="corner"></div>
+          <div class="annot-title mono">The Drawing Board — Studio</div>
+          <div class="annot-row"><span>Founded</span><span>2021</span></div>
+          <div class="annot-row"><span>Disciplines</span><span>Brand, Packaging, UI/UX, Web</span></div>
+          <div class="annot-row"><span>Team</span><span>6, direct access, no account managers</span></div>
+          <div class="annot-row"><span>Based</span><span>Remote-first, IST hours</span></div>
+        </div>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat"><div class="num">40+</div><div class="lbl mono">brands & sites launched</div></div>
+        <div class="stat"><div class="num">70%</div><div class="lbl mono">avg. lift in inbound inquiries</div></div>
+        <div class="stat"><div class="num">2–8</div><div class="lbl mono">week delivery window</div></div>
+        <div class="stat"><div class="num">4.9</div><div class="lbl mono">avg. client rating</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="logo-strip">
+    <div class="wrap">
+      <span class="lbl2 mono">TRUSTED BY FOUNDERS AT</span>
+      <div class="logo-row">
+        <span>Sonar</span><span>Lumen</span><span>Northbyte</span><span>AFTER8</span><span>Shiba's</span>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">WHAT WE DO</div>
+          <h2>Four disciplines, one consistent system.</h2>
+        </div>
+        <p>Hire us for one piece or all four — every discipline is built to plug into the others without a redesign.</p>
+      </div>
+      <div class="deliv-grid">
+        <div class="deliv-col">
+          <h4>Branding</h4>
+          <div class="sub mono">POSITION & IDENTITY</div>
+          <ul>
+            <li>Positioning & messaging</li>
+            <li>Logo suite & visual system</li>
+            <li>Brand guidelines</li>
+          </ul>
+          <a class="go" href="branding-page-redesign.html">See branding →</a>
+        </div>
+        <div class="deliv-col">
+          <h4>Packaging Design</h4>
+          <div class="sub mono">SHELF & UNBOXING</div>
+          <ul>
+            <li>SKU-ready packaging systems</li>
+            <li>Print-production files</li>
+            <li>Retail & e-commerce variants</li>
+          </ul>
+          <a class="go" href="work.html">See work →</a>
+        </div>
+        <div class="deliv-col">
+          <h4>UI/UX Design</h4>
+          <div class="sub mono">PRODUCT & APP</div>
+          <ul>
+            <li>Product design systems</li>
+            <li>Web & app interface design</li>
+            <li>Prototyping & handoff</li>
+          </ul>
+          <a class="go" href="work.html">See work →</a>
+        </div>
+        <div class="deliv-col">
+          <h4>Web Development</h4>
+          <div class="sub mono">BUILT & SHIPPED</div>
+          <ul>
+            <li>Marketing & product sites</li>
+            <li>CMS & performance builds</li>
+            <li>Launch & handoff support</li>
+          </ul>
+          <a class="go" href="contact.html">Start a project →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">HOW WE WORK</div>
+          <h2>Five stages, no guessing, every project.</h2>
+        </div>
+      </div>
+      <div class="process">
+        <div class="pstep"><div class="n">01</div><h4>Discover</h4><p>Interviews, market scan, competitor teardown.</p></div>
+        <div class="pstep"><div class="n">02</div><h4>Position</h4><p>Lock the one sentence you want to own.</p></div>
+        <div class="pstep"><div class="n">03</div><h4>Design</h4><p>Identity, screens, or packaging — three directions, one winner.</p></div>
+        <div class="pstep"><div class="n">04</div><h4>Build</h4><p>Guidelines, files, or shipped code — ready to hand off.</p></div>
+        <div class="pstep"><div class="n">05</div><h4>Launch</h4><p>Go live, then a two-week check-in on how it's landing.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">RECENT WORK</div>
+          <h2>A few projects, out in the world.</h2>
+        </div>
+        <p><a class="btn-link" href="work.html">View all work →</a></p>
+      </div>
+      <div class="proof-grid">
+        <div class="proof-card big">
+          <div class="img"></div>
+          <div class="proof-body">
+            <div class="tag mono">SAAS PLATFORM · BRANDING + WEB</div>
+            <h4>Sonar</h4>
+            <p>Full identity and site header system for a B2B analytics platform ahead of Series A.</p>
+            <span class="proof-metric">+70% inbound inquiries</span>
+          </div>
+        </div>
+        <div class="proof-card">
+          <div class="img"></div>
+          <div class="proof-body">
+            <div class="tag mono">FINE JEWELLERY · PACKAGING</div>
+            <h4>Lumen</h4>
+            <p>Identity and packaging system built for premium retail shelf presence.</p>
+          </div>
+        </div>
+        <div class="proof-card">
+          <div class="img"></div>
+          <div class="proof-body">
+            <div class="tag mono">HOSPITALITY · BRANDING</div>
+            <h4>Shiba's Bar & Kitchen</h4>
+            <p>Bar and restaurant identity spanning signage, menus, and stationery.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="guarantee">
+        <div class="badge">DIRECTION<br>GUARANTEE</div>
+        <div>
+          <h3>If the first direction misses, we go again — free.</h3>
+          <p>If you don't feel genuine pull toward at least one of the initial concept directions, we run a second round of strategy and concepts at no extra cost, on any project, in any discipline.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">WHAT CLIENTS SAY</div>
+          <h2>Founders, not just fans.</h2>
+        </div>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="body">"We'd worked with other agencies before, but the attention to detail and design thinking here was on another level."</p>
+          <div class="testi-who"><div class="av">LF</div><div><b>Lena F.</b><br>CEO, Northbyte</div></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="body">"The positioning work up front made the design phase almost effortless — by the time we saw logos, everyone already agreed on the direction."</p>
+          <div class="testi-who"><div class="av">S</div><div><b>Sonar team</b><br>SaaS Platform</div></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="body">"Our packaging finally looks like it belongs on the same shelf as brands three times our size."</p>
+          <div class="testi-who"><div class="av">L</div><div><b>Lumen</b><br>Fine Jewellery</div></div>
+        </div>
+      </div>
+      <p style="font-size:11px;color:var(--ink-soft);margin-top:16px;">Placeholder quotes for Sonar and Lumen — swap in verbatim client quotes before this goes live.</p>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <h2>Ready to look like the company you're becoming?</h2>
+      <p>Book a free 15-minute call. We'll tell you honestly which discipline you need first — or if it's nothing yet.</p>
+      <a class="btn-primary" href="https://cal.com/dandelion-nrvrze">Book a 15-min call →</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo-mark" style="margin-bottom:14px;"><div class="box"></div>The Drawing Board</div>
+        <p style="max-width:260px;">Bold ideas, beautifully executed. Brands, websites, and visual content that move businesses forward.</p>
+      </div>
+      <div>
+        <div class="mono" style="font-size:11px;margin-bottom:10px;color:var(--ink)">SERVICES</div>
+        <a href="branding-page-redesign.html">Branding</a><a href="work.html">Packaging Design</a><a href="work.html">UI/UX Design</a><a href="contact.html">Web Development</a>
+      </div>
+      <div>
+        <div class="mono" style="font-size:11px;margin-bottom:10px;color:var(--ink)">STUDIO</div>
+        <a href="index.html">About</a><a href="work.html">Work</a><a href="#">Insights</a><a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <div class="mono" style="font-size:11px;margin-bottom:10px;color:var(--ink)">CONNECT</div>
+        <a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Dribbble</a><a href="mailto:hello@drawingsboards.com">Email us</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© The Drawing Board 2026. All rights reserved.</span>
+      <span><a href="#">Terms of Service</a> &nbsp;·&nbsp; <a href="#">Privacy Policy</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <div class="txt">Projects from ₹2,37,000<b>Free 15-min call</b></div>
+  <a href="https://cal.com/dandelion-nrvrze">Book now →</a>
+</div>
+
+</body>
+</html>
