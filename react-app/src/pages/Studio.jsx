@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
+import ArrowIcon from '../components/ArrowIcon';
 
 export default function Studio() {
   return (
@@ -132,12 +133,13 @@ export default function Studio() {
         <div className="wrap">
           <h2>Want to partner with our studio?</h2>
           <p>Tell us about your brand vision, requirements, and target launch window.</p>
-          <Link to="/contact" className="btn-primary">Initiate Studio Project &rarr;</Link>
+          <Link to="/contact" className="btn-primary">Initiate Studio Project <ArrowIcon /></Link>
         </div>
       </section>
 
-      <StickyMobileCTA title="Studio Overview" subtitle="Senior-Led Execution" buttonText="Get Started →" />
+      <StickyMobileCTA title="Studio Overview" subtitle="Senior-Led Execution" buttonText="Get Started" />
       <Footer />
     </>
   );
 }
+

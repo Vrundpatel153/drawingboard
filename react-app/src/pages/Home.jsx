@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
+import ArrowIcon from '../components/ArrowIcon';
 import projectsData from '../data/projectsData.json';
 
 const clientLogos = [
@@ -39,8 +40,8 @@ export default function Home() {
                 Branding, websites, packaging, motion graphics and photography — crafted to connect, inspire, and grow your business. We turn your business into a brand that scales strategically, visually, and across every touchpoint.
               </p>
               <div className="cta-row">
-                <Link to="/contact" className="btn-primary">Let’s Collaborate &rarr;</Link>
-                <Link to="/work" className="btn-link">Explore Work</Link>
+                <Link to="/contact" className="btn-primary">Let’s Collaborate <ArrowIcon /></Link>
+                <Link to="/work" className="btn-link">Explore Work <ArrowIcon size={13} /></Link>
               </div>
               <p className="price-note">Projects start at <b>1,75,000/-</b> ($8,500) &bull; Turnaround <b>3&ndash;6 weeks</b></p>
             </div>
@@ -169,7 +170,7 @@ export default function Home() {
               <div className="eyebrow">LATEST BUILDS & CASE STUDIES</div>
               <h2>A look at the brands, websites, and visuals we’ve brought to life.</h2>
             </div>
-            <Link to="/work" className="btn-link">View All {projectsData.length} Projects &rarr;</Link>
+            <Link to="/work" className="btn-link">View All {projectsData.length} Projects <ArrowIcon size={13} /></Link>
           </div>
 
           <div className="proof-grid">
@@ -198,7 +199,7 @@ export default function Home() {
               <div className="eyebrow">PRACTICE AREAS</div>
               <h2>Comprehensive branding, web development & packaging design.</h2>
             </div>
-            <Link to="/services" className="btn-link">All Services & Scope &rarr;</Link>
+            <Link to="/services" className="btn-link">All Services & Scope <ArrowIcon size={13} /></Link>
           </div>
 
           <div className="deliv-grid">
@@ -211,7 +212,7 @@ export default function Home() {
                 <li>Logo systems & typography</li>
                 <li>Comprehensive brand guidelines</li>
               </ul>
-              <Link to="/services" className="go">Explore Branding &rarr;</Link>
+              <Link to="/services" className="go">Explore Branding <ArrowIcon size={12} /></Link>
             </div>
 
             <div className="deliv-col">
@@ -223,7 +224,7 @@ export default function Home() {
                 <li>Foil stamping & embossing specs</li>
                 <li>3D photorealistic renders</li>
               </ul>
-              <Link to="/services" className="go">Explore Packaging &rarr;</Link>
+              <Link to="/services" className="go">Explore Packaging <ArrowIcon size={12} /></Link>
             </div>
 
             <div className="deliv-col">
@@ -235,7 +236,7 @@ export default function Home() {
                 <li>Shopify & E-Commerce engines</li>
                 <li>Sub-second speed optimization</li>
               </ul>
-              <Link to="/services" className="go">Explore Web &rarr;</Link>
+              <Link to="/services" className="go">Explore Web <ArrowIcon size={12} /></Link>
             </div>
 
             <div className="deliv-col">
@@ -247,7 +248,7 @@ export default function Home() {
                 <li>Campaign & launch collateral</li>
                 <li>Social media asset kits</li>
               </ul>
-              <Link to="/services" className="go">Explore Visuals &rarr;</Link>
+              <Link to="/services" className="go">Explore Visuals <ArrowIcon size={12} /></Link>
             </div>
           </div>
         </div>
@@ -294,12 +295,13 @@ export default function Home() {
         <div className="wrap">
           <h2>Ready to turn your business into a real brand?</h2>
           <p>Schedule a discovery call or send your project inquiry to start your engagement.</p>
-          <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-primary">Book 15-Min Call on Cal.com &rarr;</a>
+          <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-primary">Book 15-Min Call on Cal.com <ArrowIcon /></a>
         </div>
       </section>
 
-      <StickyMobileCTA title="The Drawing Board" subtitle="Projects start at 1,75,000/-" buttonText="Let's Collaborate →" link="https://cal.com/dandelion-nrvrze" />
+      <StickyMobileCTA title="The Drawing Board" subtitle="Projects start at 1,75,000/-" buttonText="Let's Collaborate" link="https://cal.com/dandelion-nrvrze" />
       <Footer />
     </>
   );
 }
+

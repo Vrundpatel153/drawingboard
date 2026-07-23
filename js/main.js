@@ -3,13 +3,22 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', function () {
-  // 1. FAQ Accordion Toggle
+  // 1. FAQ Accordion Toggle (Bulletproof Display & Overflow Management)
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
     const question = item.querySelector('.faq-q');
     const answer = item.querySelector('.faq-a');
 
     if (question && answer) {
+      // Ensure initial collapsed state displays none
+      if (!item.classList.contains('open')) {
+        answer.style.display = 'none';
+        answer.style.overflow = 'hidden';
+      } else {
+        answer.style.display = 'block';
+        answer.style.overflow = 'hidden';
+      }
+
       question.addEventListener('click', () => {
         const isOpen = item.classList.contains('open');
 
@@ -17,12 +26,18 @@ document.addEventListener('DOMContentLoaded', function () {
         faqItems.forEach(otherItem => {
           otherItem.classList.remove('open');
           const otherAnswer = otherItem.querySelector('.faq-a');
-          if (otherAnswer) otherAnswer.style.maxHeight = null;
+          if (otherAnswer) {
+            otherAnswer.style.display = 'none';
+            otherAnswer.style.maxHeight = null;
+            otherAnswer.style.overflow = 'hidden';
+          }
         });
 
         // Toggle current FAQ
         if (!isOpen) {
           item.classList.add('open');
+          answer.style.display = 'block';
+          answer.style.overflow = 'hidden';
           answer.style.maxHeight = answer.scrollHeight + 'px';
         }
       });

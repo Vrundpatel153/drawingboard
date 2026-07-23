@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
+import ArrowIcon from '../components/ArrowIcon';
 import projectsData from '../data/projectsData.json';
 
 export default function Work() {
@@ -103,12 +104,13 @@ export default function Work() {
         <div className="wrap">
           <h2>Have a project that requires precision design?</h2>
           <p>Let's discuss how we can engineer your brand for market leadership.</p>
-          <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-primary">Start Your Case Study &rarr;</a>
+          <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-primary">Start Your Case Study <ArrowIcon /></a>
         </div>
       </section>
 
-      <StickyMobileCTA title="Work Archive" subtitle={`${projectsData.length} Selected Projects`} buttonText="Book Call →" link="https://cal.com/dandelion-nrvrze" />
+      <StickyMobileCTA title="Work Archive" subtitle={`${projectsData.length} Selected Projects`} buttonText="Book Call" link="https://cal.com/dandelion-nrvrze" />
       <Footer />
     </>
   );
 }
+

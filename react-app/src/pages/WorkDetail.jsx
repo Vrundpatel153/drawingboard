@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
+import ArrowIcon from '../components/ArrowIcon';
 import projectsData from '../data/projectsData.json';
 
 export default function WorkDetail() {
@@ -473,16 +474,17 @@ export default function WorkDetail() {
           <h2>Explore the next case study</h2>
           <p>Discover how we engineered strategy and design for {nextProject.title}.</p>
           <Link to={`/work/${nextProject.slug}`} className="btn-primary" style={{ marginRight: '14px' }}>
-            View {nextProject.title} &rarr;
+            View {nextProject.title} <ArrowIcon />
           </Link>
           <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ background: 'transparent', border: '1px solid #FFF', color: '#FFF' }}>
-            Book Discovery Call &rarr;
+            Book Discovery Call <ArrowIcon />
           </a>
         </div>
       </section>
 
-      <StickyMobileCTA title={project.title} subtitle={`${project.images ? project.images.length : 1} High-Res Assets`} buttonText="Next Project →" link={`/work/${nextProject.slug}`} />
+      <StickyMobileCTA title={project.title} subtitle={`${project.images ? project.images.length : 1} High-Res Assets`} buttonText="Next Project" link={`/work/${nextProject.slug}`} />
       <Footer />
     </>
   );
 }
+

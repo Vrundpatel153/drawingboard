@@ -1,9 +1,0 @@
-{
-  "name": "drawingboard-root",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "build": "npm run build --prefix react-app",
-    "dev": "npm run dev --prefix react-app"
-  }
-}

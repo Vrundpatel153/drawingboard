@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
+import ArrowIcon from '../components/ArrowIcon';
 import blogsData from '../data/blogsData.json';
 
 export default function Insights() {
@@ -43,7 +44,7 @@ export default function Insights() {
                   <p style={{ fontSize: '15px', color: 'var(--ink-soft)', lineHeight: 1.55, marginBottom: '24px' }}>
                     An architectural teardown exploring essential principles for building high-converting brand identities and digital experiences.
                   </p>
-                  <Link to={`/blog/${featuredBlog.slug}`} className="btn-primary" style={{ padding: '10px 18px', fontSize: '13px' }}>Read Full Essay &rarr;</Link>
+                  <Link to={`/blog/${featuredBlog.slug}`} className="btn-primary" style={{ padding: '10px 18px', fontSize: '13px' }}>Read Full Essay <ArrowIcon size={13} /></Link>
                 </div>
                 <div className="spotlight-img-box">
                   <img src={featuredBlog.coverImage} alt={featuredBlog.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
@@ -79,7 +80,7 @@ export default function Insights() {
                   <p style={{ fontSize: '13.5px', color: 'var(--ink-soft)', flex: 1 }}>
                     Insights, processes, and tactical design principles from our senior engineering team.
                   </p>
-                  <Link to={`/blog/${blog.slug}`} className="read-more" style={{ marginTop: '16px' }}>Read Article &rarr;</Link>
+                  <Link to={`/blog/${blog.slug}`} className="read-more" style={{ marginTop: '16px' }}>Read Article <ArrowIcon size={12} /></Link>
                 </div>
               </article>
             ))}
@@ -92,12 +93,13 @@ export default function Insights() {
         <div className="wrap">
           <h2>Subscribe to Studio Dispatches</h2>
           <p>Receive monthly articles on brand positioning, packaging specs, and web engineering. No spam, ever.</p>
-          <Link to="/contact" className="btn-primary">Join Studio Newsletter &rarr;</Link>
+          <Link to="/contact" className="btn-primary">Join Studio Newsletter <ArrowIcon /></Link>
         </div>
       </section>
 
-      <StickyMobileCTA title="Insights & Journal" subtitle="12 Studio Essays" buttonText="Subscribe →" />
+      <StickyMobileCTA title="Insights & Journal" subtitle="12 Studio Essays" buttonText="Subscribe" />
       <Footer />
     </>
   );
 }
+

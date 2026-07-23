@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
+import ArrowIcon from '../components/ArrowIcon';
 
 export default function ServiceDetail() {
   const { serviceId } = useParams();
@@ -35,14 +36,15 @@ export default function ServiceDetail() {
           </div>
 
           <div className="cta-row" style={{ marginTop: '40px' }}>
-            <Link to="/contact" className="btn-primary">Inquire About This Service &rarr;</Link>
-            <Link to="/services" className="btn-link">View All Services</Link>
+            <Link to="/contact" className="btn-primary">Inquire About This Service <ArrowIcon /></Link>
+            <Link to="/services" className="btn-link">View All Services <ArrowIcon size={13} /></Link>
           </div>
         </div>
       </section>
 
-      <StickyMobileCTA title="Service Details" subtitle="Fixed Sprint Specs" buttonText="Inquire →" />
+      <StickyMobileCTA title="Service Details" subtitle="Fixed Sprint Specs" buttonText="Inquire" />
       <Footer />
     </>
   );
 }
+

@@ -191,11 +191,11 @@ export default function Contact() {
           <div style={{ maxWidth: '860px' }}>
             {faqs.map((faq, idx) => (
               <div key={idx} className={`faq-item ${openFaq === idx ? 'open' : ''}`}>
-                <button className="faq-q" onClick={() => toggleFaq(idx)}>
+                <button type="button" className="faq-q" onClick={() => toggleFaq(idx)} aria-expanded={openFaq === idx}>
                   <span>{faq.q}</span>
                   <span className="plus" style={{ transform: openFaq === idx ? 'rotate(45deg)' : 'none' }}>+</span>
                 </button>
-                <div className="faq-a" style={{ maxHeight: openFaq === idx ? '300px' : '0' }}>
+                <div className="faq-a" style={{ display: openFaq === idx ? 'block' : 'none', overflow: 'hidden' }}>
                   <p>{faq.a}</p>
                 </div>
               </div>

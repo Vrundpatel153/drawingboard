@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
+import ArrowIcon from '../components/ArrowIcon';
 
 export default function Services() {
   return (
@@ -23,8 +24,8 @@ export default function Services() {
 
           <div className="hero-grid" style={{ marginTop: '40px' }}>
             <div className="cta-row">
-              <Link to="/contact" className="btn-primary">Request Proposal &rarr;</Link>
-              <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-link">Schedule Discovery Call</a>
+              <Link to="/contact" className="btn-primary">Request Proposal <ArrowIcon /></Link>
+              <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-link">Schedule Discovery Call <ArrowIcon size={13} /></a>
             </div>
 
             <div className="annot-card">
@@ -99,7 +100,7 @@ export default function Services() {
                 <li>Comprehensive Brand Book (PDF)</li>
                 <li>Social & Presentation Assets</li>
               </ul>
-              <Link to="/contact" className="go">Book Branding &rarr;</Link>
+              <Link to="/contact" className="go">Book Branding <ArrowIcon size={12} /></Link>
             </div>
 
             <div className="deliv-col">
@@ -113,7 +114,7 @@ export default function Services() {
                 <li>CMS & E-Commerce Integration</li>
                 <li>SEO & Speed Optimization</li>
               </ul>
-              <Link to="/contact" className="go">Book Web Build &rarr;</Link>
+              <Link to="/contact" className="go">Book Web Build <ArrowIcon size={12} /></Link>
             </div>
 
             <div className="deliv-col">
@@ -127,7 +128,7 @@ export default function Services() {
                 <li>Pre-Press File Handoff</li>
                 <li>Manufacturer Print Coordination</li>
               </ul>
-              <Link to="/contact" className="go">Book Packaging &rarr;</Link>
+              <Link to="/contact" className="go">Book Packaging <ArrowIcon size={12} /></Link>
             </div>
 
             <div className="deliv-col">
@@ -141,7 +142,7 @@ export default function Services() {
                 <li>Async Slack / Loom Support</li>
                 <li>Pause or Cancel Anytime</li>
               </ul>
-              <Link to="/contact" className="go">Start Sprint &rarr;</Link>
+              <Link to="/contact" className="go">Start Sprint <ArrowIcon size={12} /></Link>
             </div>
           </div>
         </div>
@@ -165,12 +166,13 @@ export default function Services() {
         <div className="wrap">
           <h2>Ready to transform your brand architecture?</h2>
           <p>Let's map out your project deliverables, timeline, and exact scope.</p>
-          <Link to="/contact" className="btn-primary">Inquire About Services &rarr;</Link>
+          <Link to="/contact" className="btn-primary">Inquire About Services <ArrowIcon /></Link>
         </div>
       </section>
 
-      <StickyMobileCTA title="Services & Pricing" subtitle="Q3 Engagements Open" buttonText="Inquire Now →" />
+      <StickyMobileCTA title="Services & Pricing" subtitle="Q3 Engagements Open" buttonText="Inquire Now" />
       <Footer />
     </>
   );
 }
+

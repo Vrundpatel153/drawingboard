@@ -1612,3 +1612,28 @@ footer {
   .btn-primary { width: 100%; }
   .btn-link { text-align: center; }
 }
+
+/* --------------------------------------------------------------------------
+   Modern Arrow Iconography & Hover Animation System
+   -------------------------------------------------------------------------- */
+.arrow-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 6px;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.btn-primary:hover .arrow-icon,
+.btn-link:hover .arrow-icon,
+.quick-link:hover .arrow-icon,
+.nav-cta:hover .arrow-icon,
+.sticky-cta:hover .arrow-icon,
+.go:hover .arrow-icon,
+.read-more:hover .arrow-icon,
+.form-submit:hover .arrow-icon,
+a:hover .arrow-icon,
+button:hover .arrow-icon {
+  transform: translateX(4px);
+}
+

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import ArrowIcon from './ArrowIcon';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -32,7 +33,7 @@ export default function Navbar() {
           </NavLink>
         </nav>
         <a className="nav-cta desktop-only-cta" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">
-          Book a 15-min call
+          Book a 15-min call <ArrowIcon size={13} />
         </a>
         <button
           className="mobile-menu-btn"
@@ -69,7 +70,7 @@ export default function Navbar() {
           rel="noopener noreferrer"
           onClick={() => setMobileOpen(false)}
         >
-          Book a 15-min call &rarr;
+          Book a 15-min call <ArrowIcon />
         </a>
       </div>
     </header>
