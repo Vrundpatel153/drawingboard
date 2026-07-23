@@ -1,19 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import blogsData from '../data/blogsData.json';
+import { usePageAnimations } from '../hooks/usePageAnimations';
+import gsap from 'gsap';
 
 export default function Insights() {
   const [filter, setFilter] = useState('all');
+  const pageRef = useRef(null);
+  const gridRef = useRef(null);
+
+  usePageAnimations(pageRef);
 
   const filteredBlogs = blogsData.filter(b => filter === 'all' || b.category === filter);
   const featuredBlog = blogsData[0];
 
+  const handleFilter = (val) => {
+    if (gridRef.current) {
+      gsap.fromTo(Array.from(gridRef.current.children),
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.4, stagger: 0.06, ease: 'power2.out' }
+      );
+    }
+    setFilter(val);
+  };
+
   return (
     <>
+      <div ref={pageRef}>
       <RegistrationMarks />
       <Navbar />
 
@@ -58,17 +75,17 @@ export default function Insights() {
       <section>
         <div className="wrap">
           <div className="filter-tabs">
-            <button className={`ftab ${filter === 'all' ? 'on' : ''}`} onClick={() => setFilter('all')}>[ ALL ({blogsData.length}) ]</button>
-            <button className={`ftab ${filter === 'branding' ? 'on' : ''}`} onClick={() => setFilter('branding')}>[ BRANDING ]</button>
-            <button className={`ftab ${filter === 'web' ? 'on' : ''}`} onClick={() => setFilter('web')}>[ DIGITAL & CODE ]</button>
-            <button className={`ftab ${filter === 'packaging' ? 'on' : ''}`} onClick={() => setFilter('packaging')}>[ PACKAGING ]</button>
+            <button className={`ftab ${filter === 'all' ? 'on' : ''}`} onClick={() => handleFilter('all')}>[ ALL ({blogsData.length}) ]</button>
+            <button className={`ftab ${filter === 'branding' ? 'on' : ''}`} onClick={() => handleFilter('branding')}>[ BRANDING ]</button>
+            <button className={`ftab ${filter === 'web' ? 'on' : ''}`} onClick={() => handleFilter('web')}>[ DIGITAL &amp; CODE ]</button>
+            <button className={`ftab ${filter === 'packaging' ? 'on' : ''}`} onClick={() => handleFilter('packaging')}>[ PACKAGING ]</button>
           </div>
 
-          <div className="article-grid">
+          <div className="article-grid" ref={gridRef}>
             {filteredBlogs.map((blog, idx) => (
               <article key={blog.slug || idx} className="article-card" style={{ padding: '0', overflow: 'hidden' }}>
-                <div style={{ height: '180px', borderBottom: '1px solid var(--ink)', overflow: 'hidden' }}>
-                  <img src={blog.coverImage} alt={blog.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+                <div style={{ height: '180px', borderBottom: '1px solid var(--ink)', overflow: 'hidden', transition: 'transform 0.4s' }}>
+                  <img src={blog.coverImage} alt={blog.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' }} loading="lazy" />
                 </div>
                 <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', flex: 1 }}>
                   <div className="meta">
@@ -96,8 +113,9 @@ export default function Insights() {
         </div>
       </section>
 
-      <StickyMobileCTA title="Insights & Journal" subtitle="12 Studio Essays" buttonText="Subscribe →" />
+      <StickyMobileCTA title="Insights & Journal" subtitle="Studio Essays" buttonText="Subscribe →" />
       <Footer />
+      </div>
     </>
   );
 }

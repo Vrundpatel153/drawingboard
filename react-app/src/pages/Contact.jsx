@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
+import { usePageAnimations } from '../hooks/usePageAnimations';
 
 const faqs = [
   {
@@ -31,6 +32,9 @@ const faqs = [
 export default function Contact() {
   const [openFaq, setOpenFaq] = useState(null);
   const [submitted, setSubmitted] = useState(false);
+  const pageRef = useRef(null);
+
+  usePageAnimations(pageRef);
 
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -43,6 +47,7 @@ export default function Contact() {
 
   return (
     <>
+      <div ref={pageRef}>
       <RegistrationMarks />
       <Navbar />
 
@@ -215,6 +220,7 @@ export default function Contact() {
 
       <StickyMobileCTA title="Contact Studio" subtitle="Q3 Slot Availability" buttonText="Book Call →" link="https://cal.com/dandelion-nrvrze" />
       <Footer />
+      </div>
     </>
   );
 }

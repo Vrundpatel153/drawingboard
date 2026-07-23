@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
+import { usePageAnimations } from '../hooks/usePageAnimations';
 
 export default function Services() {
+  const pageRef = useRef(null);
+  usePageAnimations(pageRef);
+
   return (
     <>
+      <div ref={pageRef}>
       <RegistrationMarks />
       <Navbar />
 
@@ -171,6 +176,7 @@ export default function Services() {
 
       <StickyMobileCTA title="Services & Pricing" subtitle="Q3 Engagements Open" buttonText="Inquire Now →" />
       <Footer />
+      </div>
     </>
   );
 }

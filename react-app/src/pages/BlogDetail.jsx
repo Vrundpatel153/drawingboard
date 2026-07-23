@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import blogsData from '../data/blogsData.json';
+import { usePageAnimations } from '../hooks/usePageAnimations';
 
 export default function BlogDetail() {
   const { blogId } = useParams();
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const pageRef = useRef(null);
+
+  usePageAnimations(pageRef);
 
   // Find blog or fallback to first blog
   const blog = blogsData.find(
@@ -17,8 +22,22 @@ export default function BlogDetail() {
   const currentIndex = blogsData.indexOf(blog);
   const nextBlog = blogsData[(currentIndex + 1) % blogsData.length];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        setScrollProgress((window.scrollY / totalHeight) * 100);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
+      <div ref={pageRef}>
+      <div className="reading-progress-bar" style={{ width: `${scrollProgress}%` }} />
       <RegistrationMarks />
       <Navbar />
 
@@ -81,6 +100,7 @@ export default function BlogDetail() {
 
       <StickyMobileCTA title={blog.title} subtitle="Studio Journal" buttonText="Next Essay →" link={`/blog/${nextBlog.slug}`} />
       <Footer />
+      </div>
     </>
   );
 }

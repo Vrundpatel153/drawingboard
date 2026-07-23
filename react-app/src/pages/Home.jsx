@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import projectsData from '../data/projectsData.json';
+import { usePageAnimations } from '../hooks/usePageAnimations';
 
 const clientLogos = [
   'https://framerusercontent.com/images/jvX90qghPHJL3qnqQdBnybbwoPI.svg',
@@ -18,9 +19,13 @@ const clientLogos = [
 
 export default function Home() {
   const featuredProjects = projectsData.slice(0, 6);
+  const pageRef = useRef(null);
+
+  usePageAnimations(pageRef);
 
   return (
     <>
+      <div ref={pageRef}>
       <RegistrationMarks />
       <Navbar />
 
@@ -300,6 +305,7 @@ export default function Home() {
 
       <StickyMobileCTA title="The Drawing Board" subtitle="Projects start at 1,75,000/-" buttonText="Let's Collaborate →" link="https://cal.com/dandelion-nrvrze" />
       <Footer />
+      </div>
     </>
   );
 }

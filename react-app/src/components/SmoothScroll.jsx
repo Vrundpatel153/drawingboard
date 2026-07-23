@@ -6,63 +6,46 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* ─────────────────────────────────────────────────────────────────────────
+   Lenis smooth scroll — re-initializes on each route change.
+   Scroll-to-top is delayed to sync with the page transition animation
+   (transition peak is ~600ms in, when the viewport is completely covered).
+───────────────────────────────────────────────────────────────────────── */
 export default function SmoothScroll({ children }) {
   const location = useLocation();
 
   useEffect(() => {
-    // Initialize Lenis smooth scroll
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
-      gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1.1,
+      wheelMultiplier: 0.95,
       touchMultiplier: 1.5,
       infinite: false,
     });
 
-    // Synchronize Lenis with GSAP ScrollTrigger
+    // Feed Lenis into GSAP ticker for ScrollTrigger sync
     lenis.on('scroll', ScrollTrigger.update);
-
-    const updateRaf = (time) => {
-      lenis.raf(time * 1000);
-    };
-
-    gsap.ticker.add(updateRaf);
+    const raf = (time) => lenis.raf(time * 1000);
+    gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
-    // Reset scroll on route change
-    lenis.scrollTo(0, { immediate: true });
+    // Delayed scroll-to-top to match the transition cover peak (~600ms)
+    // This prevents the old page content from jumping before it is covered
+    const scrollTimeout = setTimeout(() => {
+      window.scrollTo(0, 0);
+      lenis.scrollTo(0, { immediate: true });
+    }, 600);
 
-    // GSAP ScrollTrigger animations for reveal elements
-    const ctx = gsap.context(() => {
-      const animElements = document.querySelectorAll(
-        '.proof-card, .case-card, .article-card, .annot-card, .deliv-col, .pstep, .stat, .hero h1, .hero-lite h1'
-      );
-
-      animElements.forEach((el) => {
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: 24 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.75,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 90%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      });
-    });
+    // Refresh ScrollTrigger after content settles
+    // Delay matches transition exit phase (~1.2s total animation)
+    const refreshTimeout = setTimeout(() => ScrollTrigger.refresh(), 1200);
 
     return () => {
-      ctx.revert();
-      gsap.ticker.remove(updateRaf);
+      clearTimeout(scrollTimeout);
+      clearTimeout(refreshTimeout);
+      gsap.ticker.remove(raf);
       lenis.destroy();
     };
   }, [location.pathname]);

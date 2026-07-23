@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
+import { usePageAnimations } from '../hooks/usePageAnimations';
 
 export default function Studio() {
+  const pageRef = useRef(null);
+  usePageAnimations(pageRef);
+
   return (
     <>
+      <div ref={pageRef}>
       <RegistrationMarks />
       <Navbar />
 
@@ -138,6 +143,7 @@ export default function Studio() {
 
       <StickyMobileCTA title="Studio Overview" subtitle="Senior-Led Execution" buttonText="Get Started →" />
       <Footer />
+      </div>
     </>
   );
 }

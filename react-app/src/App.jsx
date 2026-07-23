@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Insights from './pages/Insights';
@@ -12,53 +12,63 @@ import BlogDetail from './pages/BlogDetail';
 import LegalDetail from './pages/LegalDetail';
 import Admin from './pages/Admin';
 import SmoothScroll from './components/SmoothScroll';
+import PageTransition from './components/PageTransition';
 import WhatsAppButton from './components/WhatsAppButton';
+import Preloader from './components/Preloader';
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
+
+  if (loading) {
+    return <Preloader onComplete={() => setLoading(false)} />;
+  }
+
   return (
     <Router>
       <SmoothScroll>
-        <div id="main">
-          <Routes>
-            <Route path="/" element={<Home />} />
+        <PageTransition>
+          <div id="main">
+            <Routes>
+              <Route path="/" element={<Home />} />
 
-            {/* Studio / About routes */}
-            <Route path="/studio" element={<Studio />} />
-            <Route path="/about" element={<Studio />} />
-            <Route path="/studio/*" element={<Studio />} />
+              {/* Studio / About routes */}
+              <Route path="/studio" element={<Studio />} />
+              <Route path="/about" element={<Studio />} />
+              <Route path="/studio/*" element={<Studio />} />
 
-            {/* Work routes */}
-            <Route path="/work" element={<Work />} />
-            <Route path="/works" element={<Work />} />
-            <Route path="/work/:projectId" element={<WorkDetail />} />
-            <Route path="/works/:projectId" element={<WorkDetail />} />
+              {/* Work routes */}
+              <Route path="/work" element={<Work />} />
+              <Route path="/works" element={<Work />} />
+              <Route path="/work/:projectId" element={<WorkDetail />} />
+              <Route path="/works/:projectId" element={<WorkDetail />} />
 
-            {/* Services routes */}
-            <Route path="/services" element={<Services />} />
-            <Route path="/service" element={<Services />} />
-            <Route path="/services/:serviceId" element={<ServiceDetail />} />
-            <Route path="/service/:serviceId" element={<ServiceDetail />} />
+              {/* Services routes */}
+              <Route path="/services" element={<Services />} />
+              <Route path="/service" element={<Services />} />
+              <Route path="/services/:serviceId" element={<ServiceDetail />} />
+              <Route path="/service/:serviceId" element={<ServiceDetail />} />
 
-            {/* Insights / Blog routes */}
-            <Route path="/insights" element={<Insights />} />
-            <Route path="/blog" element={<Insights />} />
-            <Route path="/insights/:blogId" element={<BlogDetail />} />
-            <Route path="/blog/:blogId" element={<BlogDetail />} />
+              {/* Insights / Blog routes */}
+              <Route path="/insights" element={<Insights />} />
+              <Route path="/blog" element={<Insights />} />
+              <Route path="/insights/:blogId" element={<BlogDetail />} />
+              <Route path="/blog/:blogId" element={<BlogDetail />} />
 
-            {/* Contact route */}
-            <Route path="/contact" element={<Contact />} />
+              {/* Contact route */}
+              <Route path="/contact" element={<Contact />} />
 
-            {/* Legal routes */}
-            <Route path="/legal/:legalId" element={<LegalDetail />} />
+              {/* Legal routes */}
+              <Route path="/legal/:legalId" element={<LegalDetail />} />
 
-            {/* Secret Admin Route */}
-            <Route path="/admin" element={<Admin />} />
+              {/* Secret Admin Route */}
+              <Route path="/admin" element={<Admin />} />
 
-            {/* Catch-all redirect to Home */}
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-          <WhatsAppButton />
-        </div>
+              {/* Catch-all redirect to Home */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+            <WhatsAppButton />
+          </div>
+        </PageTransition>
       </SmoothScroll>
     </Router>
   );

@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import projectsData from '../data/projectsData.json';
+import { usePageAnimations } from '../hooks/usePageAnimations';
 
 export default function WorkDetail() {
   const { projectId } = useParams();
+  const pageRef = useRef(null);
+
+  usePageAnimations(pageRef);
 
   // Normalize URL decoding and slug matching
   const cleanId = decodeURIComponent(projectId || '').toLowerCase();
@@ -26,6 +30,7 @@ export default function WorkDetail() {
 
   return (
     <>
+      <div ref={pageRef}>
       <RegistrationMarks />
       <Navbar />
 
@@ -394,28 +399,59 @@ export default function WorkDetail() {
           <div className="section-head">
             <div>
               <div className="eyebrow">DESIGN SYSTEM GALLERY</div>
-              <h2>{project.title} — Visual System & Renders</h2>
+              <h2>{isAfter8 ? 'Visual system & product showcase.' : `${project.title} — Visual System & Renders`}</h2>
             </div>
-            <p>Detailed breakdown of typographic pairings, color swatches, and high-resolution renders.</p>
+            <p>Detailed breakdown of typographic pairings, color swatches, and packaging renders.</p>
           </div>
 
           <div className="gallery">
             {project.images && project.images.length > 0 ? (
-              project.images.map((imgUrl, imgIdx) => (
-                <div key={imgIdx} className={`shot ${imgIdx === 0 ? 'wide' : ''}`}>
-                  <div className="img" style={{ background: 'none' }}>
-                    <img
-                      src={imgUrl}
-                      alt={`${project.title} figure ${imgIdx + 1}`}
-                      loading="lazy"
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    />
+              project.images.map((imgUrl, imgIdx) => {
+                const after8Captions = [
+                  "Complete AFTER8® Packaging Architecture & Bottle Silhouettes",
+                  "Rigid Box Debossing Detail & Foil Stamping",
+                  "Mobile E-Commerce Interface UI & Cart Flow",
+                  "Brand Identity Monogram & Embossed Mark System",
+                  "Tactile Unboxing Experience & FSC Paper Sleeve",
+                  "Editorial Color Architecture & Swatch Specs",
+                  "Product Variant Matte Glass Silhouettes",
+                  "Discretion & Minimalist Architectural Aesthetics",
+                  "Mobile E-Commerce Product Page & Subscription Flow",
+                  "Structural Packaging Dielines & Inner Trays",
+                  "Typographic Pairing: Fraunces Serif & Inter Sans",
+                  "Interactive 3D Bottle Rendering & Lighting Studio",
+                  "Soft-Touch Luxury Box & Magnetic Closure",
+                  "Digital Brand Style Guide & Spacing Guidelines",
+                  "Sustainable FSC-Certified Molded Inner Trays",
+                  "Editorial Feature & High-Fashion Lifestyle Context",
+                  "Tactile Bottle Label & Blind Deboss Detail",
+                  "Complete Product Suite & Unboxing Sequence",
+                  "Custom Shopify Checkout Engine & Subscription Manager",
+                  "Monogram Detail & Foil Debossing Close-up",
+                  "High-Contrast Serif Typography & Scale",
+                  "AFTER8® Brand System Master Asset Overview"
+                ];
+
+                const captionText = isAfter8 && imgIdx < after8Captions.length
+                  ? after8Captions[imgIdx]
+                  : `${project.title} — ${imgIdx === 0 ? 'Packaging Architecture & Bottle Silhouettes' : imgIdx === 1 ? 'Rigid Box Debossing Detail' : 'Mobile Interface UI Showcase'}`;
+
+                return (
+                  <div key={imgIdx} className={`shot ${imgIdx === 0 || imgIdx % 7 === 0 ? 'wide' : ''}`}>
+                    <div className="img" style={{ background: 'none' }}>
+                      <img
+                        src={imgUrl}
+                        alt={`${project.title} figure ${imgIdx + 1}`}
+                        loading="lazy"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      />
+                    </div>
+                    <div className="cap">
+                      Figure {String(imgIdx + 1).padStart(2, '0')}: {captionText}
+                    </div>
                   </div>
-                  <div className="cap">
-                    Figure {String(imgIdx + 1).padStart(2, '0')}: {project.title} — {imgIdx === 0 ? 'Packaging Architecture & Bottle Silhouettes' : imgIdx === 1 ? 'Rigid Box Debossing Detail' : 'Mobile Interface UI Showcase'}
-                  </div>
-                </div>
-              ))
+                );
+              })
             ) : (
               <div className="shot wide">
                 <div className="img" style={{ background: 'none' }}>
@@ -471,9 +507,13 @@ export default function WorkDetail() {
       <section className="final">
         <div className="wrap">
           <h2>Explore the next case study</h2>
-          <p>Discover how we engineered strategy and design for {nextProject.title}.</p>
+          <p>
+            {isAfter8
+              ? 'Discover how we engineered eco-luxe packaging and Shopify architecture for Lumen & Co.'
+              : `Discover how we engineered strategy and design for ${nextProject.title}.`}
+          </p>
           <Link to={`/work/${nextProject.slug}`} className="btn-primary" style={{ marginRight: '14px' }}>
-            View {nextProject.title} &rarr;
+            {isAfter8 ? 'View Lumen & Co. Case Study →' : `View ${nextProject.title} →`}
           </Link>
           <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ background: 'transparent', border: '1px solid #FFF', color: '#FFF' }}>
             Book Discovery Call &rarr;
@@ -481,8 +521,14 @@ export default function WorkDetail() {
         </div>
       </section>
 
-      <StickyMobileCTA title={project.title} subtitle={`${project.images ? project.images.length : 1} High-Res Assets`} buttonText="Next Project →" link={`/work/${nextProject.slug}`} />
+      <StickyMobileCTA
+        title={isAfter8 ? 'AFTER8® Case Study' : project.title}
+        subtitle={isAfter8 ? '+340% DTC Revenue' : `${project.images ? project.images.length : 1} High-Res Assets`}
+        buttonText="Next Project →"
+        link={`/work/${nextProject.slug}`}
+      />
       <Footer />
+      </div>
     </>
   );
 }
