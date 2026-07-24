@@ -1,0 +1,207 @@
+[
+  {
+    "id": "branding",
+    "slug": "branding",
+    "title": "Brand Identity & Strategy",
+    "headline": "We Craft Brands That Speak with Purpose and Scale with Confidence",
+    "eyebrow": "01 // BRAND IDENTITY",
+    "tagline": "STRATEGY & VISUAL SYSTEM",
+    "startingPrice": "$8,500",
+    "duration": "3-4 Weeks Sprint",
+    "heroImage": "https://framerusercontent.com/images/cYvKtkgBQZ9BOFI5j8LSipd9c8.jpeg?width=1069&height=1024",
+    "secondaryImage": "https://framerusercontent.com/images/TW8nh45W2f0jJxIXkfCtK2I9qo.webp?width=1876&height=1821",
+    "videoUrl": "/_assets/assets/GmWiQg0MZIvFU3cvgIL12lysLK0.mp4",
+    "description": "We go beyond logos. Our strategy-driven branding process fuses market positioning with refined typography and visual architecture to build an enduring identity system that grows with your business.",
+    "deliverables": [
+      "Market Positioning & Brand Narrative Strategy",
+      "Primary, Secondary & Monogram Logo Architecture",
+      "Editorial & Custom Typography Curation",
+      "Color System, Ratios & Accessibility Guidelines",
+      "Comprehensive Digital Brand Book & Style Guide",
+      "Social Media, Presentation & Investor Deck Templates"
+    ],
+    "process": [
+      { "step": "01", "name": "Discovery & Narrative", "desc": "Audit market positioning, competitive whitespace, and core audience touchpoints." },
+      { "step": "02", "name": "Visual Architecture", "desc": "Develop logo marks, typographic scale, and color hierarchy iterations." },
+      { "step": "03", "name": "System Handoff", "desc": "Deliver complete vector source files, brand guidelines PDF, and production assets." }
+    ],
+    "gallery": [
+      "https://framerusercontent.com/images/cYvKtkgBQZ9BOFI5j8LSipd9c8.jpeg?width=1069&height=1024",
+      "https://framerusercontent.com/images/TW8nh45W2f0jJxIXkfCtK2I9qo.webp?width=1876&height=1821",
+      "https://framerusercontent.com/images/DxZcVuSqP6CUtNP0xHCsgSd8SQ.jpg?width=4016&height=4016",
+      "https://framerusercontent.com/images/RQJI69utdAxFprNWe2HKz94CqO0.webp?width=2100&height=1183"
+    ],
+    "pricingModels": [
+      { "tier": "Essential Brand Sprint", "price": "$8,500", "desc": "Core identity, primary/secondary logos, color system, and brand book for early-stage launches." },
+      { "tier": "Master Identity System", "price": "$14,500", "desc": "Full strategy, custom typography, extensive collateral templates, and complete visual guidelines." }
+    ],
+    "faqs": [
+      { "q": "What deliverables are included in the final handoff?", "a": "You receive full vector AI, SVG, EPS, PNG, and PDF source files, along with an interactive web brand guide." },
+      { "q": "How long does a brand identity sprint take?", "a": "Most branding engagements complete within 3 to 4 weeks with structured weekly review milestones." }
+    ]
+  },
+  {
+    "id": "design",
+    "slug": "design",
+    "title": "UI/UX & Interactive Design",
+    "headline": "Design That Balances Clarity, Creativity, and Conversion",
+    "eyebrow": "02 // DIGITAL UI/UX",
+    "tagline": "UI/UX & DESIGN SYSTEMS",
+    "startingPrice": "$12,000",
+    "duration": "4-6 Weeks Sprint",
+    "heroImage": "https://framerusercontent.com/images/gTIfPf4an07uhbykxhoEyw0o0M.gif?width=640&height=480",
+    "secondaryImage": "https://framerusercontent.com/images/JUgN5ECm4HnK6pp1E3Igc5Vibc.jpeg?width=1024&height=1024",
+    "videoUrl": "/_assets/assets/GmWiQg0MZIvFU3cvgIL12lysLK0.mp4",
+    "description": "We craft design systems and digital interfaces that solve complex user flows, convey authority, and convert visitors into high-LTV customers across desktop and mobile screens.",
+    "deliverables": [
+      "Information Architecture & User Experience Mapping",
+      "High-Fidelity Figma Wireframes & Interactive Prototypes",
+      "Responsive Multi-Breakpoint Mobile & Desktop UI",
+      "Figma Design Systems & Shared Component Libraries",
+      "Micro-Animations, Hover States & Interaction Specs",
+      "Design-to-Code Handoff Documentation"
+    ],
+    "process": [
+      { "step": "01", "name": "UX Architecture", "desc": "Map out sitemap, page hierarchy, and high-conversion user user flows." },
+      { "step": "02", "name": "High-Fidelity UI", "desc": "Design bespoke interface layouts, dark/light modes, and interactive components." },
+      { "step": "03", "name": "Prototype & Handoff", "desc": "Deliver clickable Figma prototypes and developer specs." }
+    ],
+    "gallery": [
+      "https://framerusercontent.com/images/gTIfPf4an07uhbykxhoEyw0o0M.gif?width=640&height=480",
+      "https://framerusercontent.com/images/JUgN5ECm4HnK6pp1E3Igc5Vibc.jpeg?width=1024&height=1024",
+      "https://framerusercontent.com/images/K6cUNifhQFa6qEX3kqNwfqMkiY.jpg?width=6220&height=6220",
+      "https://framerusercontent.com/images/TW8nh45W2f0jJxIXkfCtK2I9qo.webp?width=1876&height=1821"
+    ],
+    "pricingModels": [
+      { "tier": "Marketing Site UI/UX", "price": "$12,000", "desc": "Bespoke multi-page design system, mobile layouts, and high-converting landing pages." },
+      { "tier": "Full Product UI/UX Suite", "price": "$22,000", "desc": "End-to-end web app design system, dashboard interfaces, and interactive prototype flows." }
+    ],
+    "faqs": [
+      { "q": "Do you design for both mobile and desktop?", "a": "Yes, all UI/UX designs are built mobile-first with fully responsive breakpoint layouts in Figma." },
+      { "q": "Can you work directly with our internal dev team?", "a": "Absolutely. We provide clean Figma component tokens and direct dev handoff sessions." }
+    ]
+  },
+  {
+    "id": "development",
+    "slug": "development",
+    "title": "High-Code Web & App Development",
+    "headline": "Custom Web & App Development That Performs Seamlessly",
+    "eyebrow": "03 // FRONTEND & HIGH-CODE",
+    "tagline": "WEB & APP DEVELOPMENT",
+    "startingPrice": "$15,000",
+    "duration": "4-8 Weeks Sprint",
+    "heroImage": "https://framerusercontent.com/images/uDdH4r3dDH0e0oPRnTJg7WFpE.webp?width=2404&height=1938",
+    "secondaryImage": "https://framerusercontent.com/images/wwljvqAiXbHPskZq2H2HFW16ug.png?width=3414&height=2092",
+    "videoUrl": "/_assets/assets/GmWiQg0MZIvFU3cvgIL12lysLK0.mp4",
+    "description": "From high-impact marketing sites to custom web applications, we engineer digital products that load fast, scale cleanly, and deliver sub-second performance without sacrificing design integrity.",
+    "deliverables": [
+      "Custom React / Next.js / Vite High-Code Frontend Builds",
+      "Framer & Webflow Development with Custom Code",
+      "Headless Shopify & E-Commerce Integration",
+      "CMS Architecture & Content Management Setup",
+      "Sub-Second Page Load Optimization & Technical SEO",
+      "Cross-Browser Testing & Deployment Pipeline Setup"
+    ],
+    "process": [
+      { "step": "01", "name": "Technical Architecture", "desc": "Select optimal tech stack, setup repositories, and configure component structure." },
+      { "step": "02", "name": "Engineering & Build", "desc": "Develop pixel-perfect responsive layouts with smooth motion and API integrations." },
+      { "step": "03", "name": "QA & Deployment", "desc": "Execute performance audits, cross-browser QA, and domain launch." }
+    ],
+    "gallery": [
+      "https://framerusercontent.com/images/uDdH4r3dDH0e0oPRnTJg7WFpE.webp?width=2404&height=1938",
+      "https://framerusercontent.com/images/wwljvqAiXbHPskZq2H2HFW16ug.png?width=3414&height=2092",
+      "https://framerusercontent.com/images/eGKHd2k1Xl1bURsuiHtL9zH6g.png?width=1888&height=919",
+      "https://framerusercontent.com/images/TW8nh45W2f0jJxIXkfCtK2I9qo.webp?width=1876&height=1821"
+    ],
+    "pricingModels": [
+      { "tier": "Marketing Site Build", "price": "$15,000", "desc": "Custom React/Framer site build with CMS integration, SEO optimization, and animations." },
+      { "tier": "E-Commerce / Web App", "price": "$28,000", "desc": "Headless Shopify or full React application with custom checkout and API integrations." }
+    ],
+    "faqs": [
+      { "q": "What web technologies do you use?", "a": "We specialize in React, Vite, Next.js, Framer, Webflow, and Headless Shopify builds." },
+      { "q": "Will I be able to update site content myself?", "a": "Yes! We set up intuitive CMS dashboards so your team can easily update copy, images, and blogs." }
+    ]
+  },
+  {
+    "id": "packaging-design",
+    "slug": "packaging-design",
+    "title": "Structural Packaging & Print",
+    "headline": "Unboxing Experiences Built for Tangible Authority",
+    "eyebrow": "04 // STRUCTURAL PACKAGING",
+    "tagline": "UNBOXING & PRINT SPECS",
+    "startingPrice": "$6,500",
+    "duration": "3-5 Weeks Sprint",
+    "heroImage": "https://framerusercontent.com/images/RQJI69utdAxFprNWe2HKz94CqO0.webp?width=2100&height=1183",
+    "secondaryImage": "https://framerusercontent.com/images/Ib87ABhofKAGBqiaHLBLqQsc.png?width=1290&height=1602",
+    "videoUrl": "/_assets/assets/GmWiQg0MZIvFU3cvgIL12lysLK0.mp4",
+    "description": "We engineer physical packaging systems that command retail shelves and elevate unboxing moments. From structural dielines to tactile foil debossing, we ensure your physical product matches your brand prestige.",
+    "deliverables": [
+      "Structural Box, Bottle & Sleeve Dielines",
+      "Label, Outer Box & Insert Artwork Production",
+      "3D Photorealistic Studio Product Renders",
+      "Material, Finish, Embossing & Foil Specifications",
+      "Pre-Press Handoff Vector Files for Printers",
+      "Manufacturer Print Coordination & Sample Reviews"
+    ],
+    "process": [
+      { "step": "01", "name": "Dielines & Structure", "desc": "Establish packaging geometry, inner tray specs, and unboxing sequence." },
+      { "step": "02", "name": "Artwork & 3D Renders", "desc": "Apply typography, artwork, and generate high-resolution 3D renders." },
+      { "step": "03", "name": "Pre-Press Handoff", "desc": "Deliver print-ready dielines and coordinate directly with your manufacturer." }
+    ],
+    "gallery": [
+      "https://framerusercontent.com/images/RQJI69utdAxFprNWe2HKz94CqO0.webp?width=2100&height=1183",
+      "https://framerusercontent.com/images/Ib87ABhofKAGBqiaHLBLqQsc.png?width=1290&height=1602",
+      "https://framerusercontent.com/images/JUgN5ECm4HnK6pp1E3Igc5Vibc.jpeg?width=1024&height=1024",
+      "https://framerusercontent.com/images/TW8nh45W2f0jJxIXkfCtK2I9qo.webp?width=1876&height=1821"
+    ],
+    "pricingModels": [
+      { "tier": "Single Product Line Packaging", "price": "$6,500", "desc": "Custom structural dieline, box artwork, label specs, and 3D renders for one SKU." },
+      { "tier": "Multi-SKU Brand Suite", "price": "$12,500", "desc": "Complete packaging family design across multiple SKUs with manufacturer print coordination." }
+    ],
+    "faqs": [
+      { "q": "Do you provide print-ready dielines?", "a": "Yes, we deliver CMYK pre-press vector PDFs with exact dieline layers and spot color calls." },
+      { "q": "Can you coordinate with our packaging supplier?", "a": "Direct printer handoff and sample review support are included in all packaging engagements." }
+    ]
+  },
+  {
+    "id": "photography",
+    "slug": "photography",
+    "title": "Brand & Product Photography",
+    "headline": "Photography That Captures Brand, Mood, and Meaning",
+    "eyebrow": "05 // VISUAL ART DIRECTION",
+    "tagline": "EDITORIAL & PRODUCT VISUALS",
+    "startingPrice": "$5,000",
+    "duration": "2-3 Weeks Sprint",
+    "heroImage": "https://framerusercontent.com/images/vCqCJUL5qfRIbcly8koz2pDBPQ.jpg?width=10000&height=6952",
+    "secondaryImage": "https://framerusercontent.com/images/DxZcVuSqP6CUtNP0xHCsgSd8SQ.jpg?width=4016&height=4016",
+    "videoUrl": "/_assets/assets/GmWiQg0MZIvFU3cvgIL12lysLK0.mp4",
+    "description": "Our photography services blend art direction with precision lighting to create scroll-stopping visual assets. Whether studio product stills or on-location editorial shoots, we deliver images that anchor your brand story.",
+    "deliverables": [
+      "Creative Direction, Moodboards & Shot List Planning",
+      "High-Resolution Studio Product Photography",
+      "On-Location Lifestyle & Editorial Brand Shoots",
+      "Advanced Color Grading & High-End Retouching",
+      "Optimized Asset Exports for Web, Print & Social Media",
+      "Full Commercial Usage Rights & Master Asset Handoff"
+    ],
+    "process": [
+      { "step": "01", "name": "Concept & Shot List", "desc": "Define moodboards, lighting setup, background props, and shot matrix." },
+      { "step": "02", "name": "Studio Production", "desc": "Execute high-resolution shoot with tethered live monitor viewing." },
+      { "step": "03", "name": "Retouching & Handoff", "desc": "Deliver master retouched files in high-res and web-optimized formats." }
+    ],
+    "gallery": [
+      "https://framerusercontent.com/images/vCqCJUL5qfRIbcly8koz2pDBPQ.jpg?width=10000&height=6952",
+      "https://framerusercontent.com/images/DxZcVuSqP6CUtNP0xHCsgSd8SQ.jpg?width=4016&height=4016",
+      "https://framerusercontent.com/images/JUgN5ECm4HnK6pp1E3Igc5Vibc.jpeg?width=1024&height=1024",
+      "https://framerusercontent.com/images/TW8nh45W2f0jJxIXkfCtK2I9qo.webp?width=1876&height=1821"
+    ],
+    "pricingModels": [
+      { "tier": "Studio Product Campaign", "price": "$5,000", "desc": "20 retouched studio product assets, macro detail shots, and e-commerce hero images." },
+      { "tier": "Full Brand Editorial Shoot", "price": "$9,500", "desc": "On-location lifestyle shoot, model direction, 50+ retouched assets, and social campaign suite." }
+    ],
+    "faqs": [
+      { "q": "Do I get full commercial rights to all photos?", "a": "Yes! Full global commercial usage rights are transferred upon project completion." },
+      { "q": "Can I send products to your studio for remote shoots?", "a": "Yes, many clients ship products to our NY studio where we manage the shoot end-to-end." }
+    ]
+  }
+]

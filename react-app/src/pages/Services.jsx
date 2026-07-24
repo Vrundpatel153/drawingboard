@@ -4,6 +4,8 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
+import ArrowIcon from '../components/ArrowIcon';
+import servicesData from '../data/servicesData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 
 export default function Services() {
@@ -13,169 +15,243 @@ export default function Services() {
   return (
     <>
       <div ref={pageRef}>
-      <RegistrationMarks />
-      <Navbar />
+        <RegistrationMarks />
+        <Navbar />
 
-      {/* Hero Section */}
-      <section className="hero-lite">
-        <div className="wrap">
-          <div className="sheet-label">
-            <span className="tag">SHEET 02 // SERVICES & SCOPE</span>
-            <div className="rule"></div>
-          </div>
-          <h1>Specialized design engineering for <em>ambitious brands</em>.</h1>
-          <p>We eliminate agency bloat and deliver high-impact branding, custom websites, and physical packaging systems under predictable fixed sprint pricing.</p>
-
-          <div className="hero-grid" style={{ marginTop: '40px' }}>
-            <div className="cta-row">
-              <Link to="/contact" className="btn-primary">Request Proposal &rarr;</Link>
-              <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-link">Schedule Discovery Call</a>
+        {/* Hero Section */}
+        <section className="hero-lite">
+          <div className="wrap">
+            <div className="sheet-label">
+              <span className="tag">SHEET 02 // SERVICES & SCOPE</span>
+              <div className="rule"></div>
             </div>
+            <h1>Specialized design engineering for <em>ambitious brands</em>.</h1>
+            <p>
+              We eliminate agency bloat and deliver high-impact branding, custom websites, physical packaging, photography, and high-code digital systems under predictable fixed pricing.
+            </p>
 
-            <div className="annot-card">
-              <div className="corner"></div>
-              <div className="annot-title">ENGAGEMENT SPECS</div>
-              <div className="annot-row">
-                <span>Brand Identity Package</span>
-                <span>From $8,500</span>
+            <div className="hero-grid" style={{ marginTop: '40px' }}>
+              <div className="cta-row">
+                <Link to="/contact" className="btn-primary">Request Proposal &rarr;</Link>
+                <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-link">
+                  Schedule Discovery Call
+                </a>
               </div>
-              <div className="annot-row">
-                <span>Web Design & Build</span>
-                <span>From $12,000</span>
-              </div>
-              <div className="annot-row">
-                <span>Packaging System</span>
-                <span>From $6,500</span>
-              </div>
-              <div className="annot-row">
-                <span>Retainer Sprints</span>
-                <span>$5,000 / Mo</span>
+
+              <div className="annot-card">
+                <div className="corner"></div>
+                <div className="annot-title">ENGAGEMENT SPECS</div>
+                {servicesData.map((s) => (
+                  <div className="annot-row" key={s.id}>
+                    <Link to={`/services/${s.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                      <span>{s.title}</span>
+                    </Link>
+                    <span>From {s.startingPrice}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Problem Block */}
-      <section className="problem">
-        <div className="wrap">
-          <div className="section-head">
-            <div>
-              <div className="eyebrow">THE CORE CHALLENGE</div>
-              <h2>Generic design costs more than premium positioning.</h2>
+        {/* Interactive Video & Motion Showcase */}
+        <section style={{ padding: '40px 0', background: 'var(--card)', borderTop: '1px solid var(--ink)', borderBottom: '1px solid var(--ink)' }}>
+          <div className="wrap">
+            <div className="section-head" style={{ marginBottom: '24px' }}>
+              <div>
+                <div className="eyebrow">DIGITAL MOTION & CRAFT</div>
+                <h2>High-performance engineering in action.</h2>
+              </div>
+              <p>Combining visual art direction with ultra-responsive frontend execution.</p>
             </div>
-            <p>Why conventional agencies fail modern founders.</p>
-          </div>
-
-          <div className="problem-grid">
-            <div className="problem-copy">
-              <p><strong>Most design agencies operate on bloated hourly models</strong> that incentivize drag, endless revisions, and vague deliverables. Brands end up with template design that blends into the noise.</p>
-              <p>At <strong>The Drawing Board</strong>, we operate as an elite engineering studio. We build distinct visual identities, bespoke digital systems, and tangible unboxing experiences that convert curiosity into market equity.</p>
-            </div>
-
-            <div className="insight-card">
-              <div className="lbl">// STUDIO PRINCIPLE</div>
-              <p>"Design is not cosmetic decoration. It is the visual architecture of authority, trust, and perceived market value."</p>
+            <div className="hero-visual has-img" style={{ height: '420px', borderRadius: '4px', overflow: 'hidden', border: '1px solid var(--ink)' }}>
+              <video
+                src="/_assets/assets/GmWiQg0MZIvFU3cvgIL12lysLK0.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Deliverables Breakdown */}
-      <section>
-        <div className="wrap">
-          <div className="section-head">
-            <div>
-              <div className="eyebrow">DELIVERABLE ARCHITECTURE</div>
-              <h2>Four specialized practice areas.</h2>
-            </div>
-            <p>Every service includes complete source vector handoffs, documentation, and production files.</p>
-          </div>
-
-          <div className="deliv-grid">
-            <div className="deliv-col">
-              <h4>01. Brand Identity</h4>
-              <div className="sub">// STRATEGY & VISUAL SYSTEM</div>
-              <ul>
-                <li>Market Positioning & Narrative</li>
-                <li>Primary, Secondary & Mark Logos</li>
-                <li>Custom Typography Curation</li>
-                <li>Color Architecture & Ratios</li>
-                <li>Comprehensive Brand Book (PDF)</li>
-                <li>Social & Presentation Assets</li>
-              </ul>
-              <Link to="/contact" className="go">Book Branding &rarr;</Link>
+        {/* Problem Block / Principle */}
+        <section className="problem">
+          <div className="wrap">
+            <div className="section-head">
+              <div>
+                <div className="eyebrow">THE CORE CHALLENGE</div>
+                <h2>Generic design costs more than premium positioning.</h2>
+              </div>
+              <p>Why conventional agencies fail modern founders.</p>
             </div>
 
-            <div className="deliv-col">
-              <h4>02. Web & Digital</h4>
-              <div className="sub">// UI/UX & HIGH-CODE BUILD</div>
-              <ul>
-                <li>Information Architecture</li>
-                <li>High-Fidelity Wireframes</li>
-                <li>Custom Responsive UI/UX</li>
-                <li>Framer / Webflow Development</li>
-                <li>CMS & E-Commerce Integration</li>
-                <li>SEO & Speed Optimization</li>
-              </ul>
-              <Link to="/contact" className="go">Book Web Build &rarr;</Link>
-            </div>
+            <div className="problem-grid">
+              <div className="problem-copy">
+                <p>
+                  <strong>Most design agencies operate on bloated hourly models</strong> that incentivize drag, endless revisions, and vague deliverables. Brands end up with template design that blends into the noise.
+                </p>
+                <p>
+                  At <strong>The Drawing Board</strong>, we operate as an elite engineering studio. We build distinct visual identities, bespoke digital systems, physical packaging, and tactile visual assets that convert curiosity into market equity.
+                </p>
+              </div>
 
-            <div className="deliv-col">
-              <h4>03. Packaging</h4>
-              <div className="sub">// UNBOXING & PRINT SPECS</div>
-              <ul>
-                <li>Structural Package Dielines</li>
-                <li>Label & Box Artwork</li>
-                <li>3D Photorealistic Renders</li>
-                <li>Material & Finish Specifications</li>
-                <li>Pre-Press File Handoff</li>
-                <li>Manufacturer Print Coordination</li>
-              </ul>
-              <Link to="/contact" className="go">Book Packaging &rarr;</Link>
-            </div>
-
-            <div className="deliv-col">
-              <h4>04. Monthly Sprints</h4>
-              <div className="sub">// CONTINUOUS EVOLUTION</div>
-              <ul>
-                <li>Dedicated Senior Designer Time</li>
-                <li>Campaign & Social Collateral</li>
-                <li>Landing Page Iterations</li>
-                <li>Conversion Rate Optimization</li>
-                <li>Async Slack / Loom Support</li>
-                <li>Pause or Cancel Anytime</li>
-              </ul>
-              <Link to="/contact" className="go">Start Sprint &rarr;</Link>
+              <div className="insight-card">
+                <div className="lbl">// STUDIO PRINCIPLE</div>
+                <p>"Design is not cosmetic decoration. It is the visual architecture of authority, trust, and perceived market value."</p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Guarantee Banner */}
-      <section style={{ background: 'var(--card)', borderTop: '1px solid var(--ink)', borderBottom: '1px solid var(--ink)' }}>
-        <div className="wrap">
-          <div className="guarantee">
-            <div className="badge">100%<br />PROMISE</div>
-            <div>
-              <h3>Transparent Fixed Pricing Guarantee</h3>
-              <p>No unexpected bills or scope creep. We provide a single fixed-price proposal detailing all deliverables, milestone schedules, and IP ownership transfers before work begins.</p>
+        {/* Detailed Services Catalog with Images, Videos, Deliverables & Subpage Redirects */}
+        <section>
+          <div className="wrap">
+            <div className="section-head">
+              <div>
+                <div className="eyebrow">PRACTICE AREAS & SUBPAGES</div>
+                <h2>Five specialized studio disciplines.</h2>
+              </div>
+              <p>Click any service to view its detailed subpage, pricing models, and complete deliverables breakdown.</p>
+            </div>
+
+            <div className="services-catalog-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '32px' }}>
+              {servicesData.map((s, idx) => (
+                <div
+                  key={s.id}
+                  className="deliv-col service-card-featured"
+                  style={{
+                    background: 'var(--card)',
+                    border: '1px solid var(--ink)',
+                    padding: '32px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justify: 'space-between',
+                    position: 'relative'
+                  }}
+                >
+                  <div>
+                    {/* Header Badges */}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                      <span className="mono" style={{ fontSize: '13px', fontWeight: 'bold', letterSpacing: '0.05em', color: 'var(--ink-soft)' }}>
+                        {s.eyebrow}
+                      </span>
+                      <span className="badge" style={{ fontSize: '11px', padding: '4px 8px', border: '1px solid var(--ink)' }}>
+                        From {s.startingPrice}
+                      </span>
+                    </div>
+
+                    {/* Image Preview */}
+                    <div className="img-wrap" style={{ height: '200px', marginBottom: '20px', overflow: 'hidden', border: '1px solid var(--ink-soft)', borderRadius: '2px' }}>
+                      <img src={s.heroImage} alt={s.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+
+                    <h4>{s.title}</h4>
+                    <div className="sub" style={{ margin: '8px 0 16px', color: 'var(--ink-soft)', fontSize: '13px' }}>
+                      // {s.tagline}
+                    </div>
+                    <p style={{ fontSize: '14px', lineHeight: 1.6, marginBottom: '20px', color: 'var(--ink)' }}>
+                      {s.description}
+                    </p>
+
+                    <h5 style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '10px' }}>Key Deliverables:</h5>
+                    <ul style={{ paddingLeft: '18px', fontSize: '13px', lineHeight: 1.7, color: 'var(--ink-soft)', marginBottom: '24px' }}>
+                      {s.deliverables.slice(0, 4).map((d, dIdx) => (
+                        <li key={dIdx}>{d}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Navigation Links */}
+                  <div className="cta-row" style={{ marginTop: 'auto', paddingTop: '16px', borderTop: '1px solid var(--ink-soft)', display: 'flex', gap: '12px' }}>
+                    <Link to={`/services/${s.slug}`} className="btn-primary" style={{ flex: 1, textAlign: 'center', fontSize: '13px', padding: '10px 14px' }}>
+                      View {s.title.split(' ')[0]} Subpage &rarr;
+                    </Link>
+                    <Link to="/contact" className="btn-link" style={{ fontSize: '13px', padding: '10px 14px' }}>
+                      Book &rarr;
+                    </Link>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Final Call to Action */}
-      <section className="final">
-        <div className="wrap">
-          <h2>Ready to transform your brand architecture?</h2>
-          <p>Let's map out your project deliverables, timeline, and exact scope.</p>
-          <Link to="/contact" className="btn-primary">Inquire About Services &rarr;</Link>
-        </div>
-      </section>
+        {/* Process Steps */}
+        <section style={{ background: 'var(--card)', borderTop: '1px solid var(--ink)', borderBottom: '1px solid var(--ink)' }}>
+          <div className="wrap">
+            <div className="section-head">
+              <div>
+                <div className="eyebrow">OUR METHODOLOGY</div>
+                <h2>How we build from kick-off to launch.</h2>
+              </div>
+              <p>Predictable 4-phase engineering sprint model.</p>
+            </div>
 
-      <StickyMobileCTA title="Services & Pricing" subtitle="Q3 Engagements Open" buttonText="Inquire Now →" />
-      <Footer />
+            <div className="deliv-grid">
+              <div className="deliv-col">
+                <h4>01. Discovery & Strategy</h4>
+                <div className="sub">// WEEK 1</div>
+                <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ink-soft)' }}>
+                  Deep-dive into brand positioning, competitive matrix, visual benchmarks, and technical requirements.
+                </p>
+              </div>
+
+              <div className="deliv-col">
+                <h4>02. Architectural Design</h4>
+                <div className="sub">// WEEKS 2-3</div>
+                <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ink-soft)' }}>
+                  Develop initial visual identities, packaging dielines, or high-fidelity Figma digital prototypes.
+                </p>
+              </div>
+
+              <div className="deliv-col">
+                <h4>03. Engineering & Build</h4>
+                <div className="sub">// WEEKS 3-5</div>
+                <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ink-soft)' }}>
+                  Refine assets, write production-ready code, generate 3D renders, or edit high-res photo suites.
+                </p>
+              </div>
+
+              <div className="deliv-col">
+                <h4>04. Launch & Handoff</h4>
+                <div className="sub">// WEEK 6+</div>
+                <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ink-soft)' }}>
+                  Deliver complete vector source files, launch digital platforms, or send print specs to printers.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Guarantee Banner */}
+        <section>
+          <div className="wrap">
+            <div className="guarantee">
+              <div className="badge">100%<br />PROMISE</div>
+              <div>
+                <h3>Transparent Fixed Pricing Guarantee</h3>
+                <p>
+                  No unexpected bills or scope creep. We provide a single fixed-price proposal detailing all deliverables, milestone schedules, and full IP ownership transfers before work begins.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA */}
+        <section className="final">
+          <div className="wrap">
+            <h2>Ready to transform your brand architecture?</h2>
+            <p>Let's map out your project deliverables, timeline, and exact scope.</p>
+            <Link to="/contact" className="btn-primary">Inquire About Services &rarr;</Link>
+          </div>
+        </section>
+
+        <StickyMobileCTA title="Services & Subpages" subtitle="5 Practice Areas Open" buttonText="Inquire Now →" />
+        <Footer />
       </div>
     </>
   );
