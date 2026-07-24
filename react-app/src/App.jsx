@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Insights from './pages/Insights';
@@ -12,14 +12,22 @@ import BlogDetail from './pages/BlogDetail';
 import LegalDetail from './pages/LegalDetail';
 import Admin from './pages/Admin';
 import SmoothScroll from './components/SmoothScroll';
+import PageTransition from './components/PageTransition';
 import WhatsAppButton from './components/WhatsAppButton';
+import Preloader from './components/Preloader';
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
+
+  if (loading) {
+    return <Preloader onComplete={() => setLoading(false)} />;
+  }
+
   return (
     <Router>
       <SmoothScroll>
-        <div id="main">
-          <div id="page-wrapper">
+        <PageTransition>
+          <div id="main">
             <Routes>
               <Route path="/" element={<Home />} />
 
@@ -58,11 +66,10 @@ export default function App() {
               {/* Catch-all redirect to Home */}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
+            <WhatsAppButton />
           </div>
-          <WhatsAppButton />
-        </div>
+        </PageTransition>
       </SmoothScroll>
     </Router>
   );
 }
-

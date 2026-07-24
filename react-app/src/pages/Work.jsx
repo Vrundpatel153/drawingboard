@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -6,9 +6,15 @@ import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import ArrowIcon from '../components/ArrowIcon';
 import projectsData from '../data/projectsData.json';
+import { usePageAnimations } from '../hooks/usePageAnimations';
+import gsap from 'gsap';
 
 export default function Work() {
   const [filter, setFilter] = useState('all');
+  const pageRef = useRef(null);
+  const gridRef = useRef(null);
+
+  usePageAnimations(pageRef);
 
   const filteredProjects = projectsData.filter(p => {
     if (filter === 'all') return true;
@@ -19,8 +25,19 @@ export default function Work() {
     return true;
   });
 
+  const handleFilter = (val) => {
+    if (gridRef.current) {
+      gsap.fromTo(Array.from(gridRef.current.children),
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.45, stagger: 0.06, ease: 'power2.out' }
+      );
+    }
+    setFilter(val);
+  };
+
   return (
     <>
+      <div ref={pageRef}>
       <RegistrationMarks />
       <Navbar />
 
@@ -61,14 +78,14 @@ export default function Work() {
         <div className="wrap">
           {/* Filter Tabs matching work.html reference */}
           <div className="filter-tabs">
-            <button className={`ftab ${filter === 'all' ? 'on' : ''}`} onClick={() => setFilter('all')}>[ ALL PROJECTS ]</button>
-            <button className={`ftab ${filter === 'branding' ? 'on' : ''}`} onClick={() => setFilter('branding')}>[ BRANDING ]</button>
-            <button className={`ftab ${filter === 'web' ? 'on' : ''}`} onClick={() => setFilter('web')}>[ WEB & DIGITAL ]</button>
-            <button className={`ftab ${filter === 'packaging' ? 'on' : ''}`} onClick={() => setFilter('packaging')}>[ PACKAGING ]</button>
+            <button className={`ftab ${filter === 'all' ? 'on' : ''}`} onClick={() => handleFilter('all')}>[ ALL PROJECTS ]</button>
+            <button className={`ftab ${filter === 'branding' ? 'on' : ''}`} onClick={() => handleFilter('branding')}>[ BRANDING ]</button>
+            <button className={`ftab ${filter === 'web' ? 'on' : ''}`} onClick={() => handleFilter('web')}>[ WEB & DIGITAL ]</button>
+            <button className={`ftab ${filter === 'packaging' ? 'on' : ''}`} onClick={() => handleFilter('packaging')}>[ PACKAGING ]</button>
           </div>
 
           {/* Case Grid */}
-          <div className="case-grid">
+          <div className="case-grid" ref={gridRef}>
             {filteredProjects.map((project, idx) => (
               <Link key={project.slug || idx} to={`/work/${project.slug}`} className="case-card">
                 <div className="img">
@@ -110,6 +127,7 @@ export default function Work() {
 
       <StickyMobileCTA title="Work Archive" subtitle={`${projectsData.length} Selected Projects`} buttonText="Book Call" link="https://cal.com/dandelion-nrvrze" />
       <Footer />
+      </div>
     </>
   );
 }
