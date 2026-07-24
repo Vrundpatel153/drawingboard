@@ -69,11 +69,10 @@ export default function Preloader({ onComplete }) {
         // X: horizontally centred over the 'i' glyph
         const landX = (charRect.left + charRect.right) / 2 - parentRect.left - ballSize / 2;
 
-        // Y: ball sits exactly on the glyph TOP area.
-        // Since charRect.top is at the font's ascender/cap-height level,
-        // subtracting a full ballSize makes it hover too high.
-        // We bring it down to sit naturally where the dot of 'i' belongs.
-        const landY = charRect.top - parentRect.top - ballSize * 0.1;
+        // Y: Position the top of the dot ball exactly where the dot of 'i' belongs.
+        // In the Fraunces font, the top of the 'i' dot sits at 18% of the font size
+        // below the line box top edge (charRect.top).
+        const landY = charRect.top - parentRect.top + fontSize * 0.18;
 
         // ── Starting position: same X, high above ───────────────────────
         const dropHeight = fontSize * 3.5;
