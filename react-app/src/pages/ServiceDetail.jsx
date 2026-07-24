@@ -219,8 +219,8 @@ export default function ServiceDetail() {
                     <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ink-soft)', marginBottom: '20px' }}>
                       {pm.desc}
                     </p>
-                    <Link to="/contact" className="btn-primary" style={{ width: '100%', textAlign: 'center' }}>
-                      Book This Model &rarr;
+                    <Link to="/contact" className="btn-primary" style={{ width: '100%', textAlign: 'center', justifyContent: 'center' }}>
+                      Book This Model <ArrowIcon size={14} />
                     </Link>
                   </div>
                 ))}
@@ -266,10 +266,10 @@ export default function ServiceDetail() {
 
             <div className="cta-row">
               <Link to={`/services/${nextService.slug}`} className="btn-primary" style={{ padding: '14px 24px' }}>
-                Explore {nextService.title} &rarr;
+                Explore {nextService.title} <ArrowIcon />
               </Link>
               <Link to="/services" className="btn-link">
-                View All 5 Services &rarr;
+                View All 5 Services <ArrowIcon size={13} />
               </Link>
             </div>
           </div>
@@ -280,7 +280,9 @@ export default function ServiceDetail() {
           <div className="wrap">
             <h2>Ready to initiate {service.title}?</h2>
             <p>Tell us about your project requirements and target launch window.</p>
-            <Link to="/contact" className="btn-primary">Request Proposal &rarr;</Link>
+            <Link to="/contact" className="btn-primary">
+              Request Proposal <ArrowIcon />
+            </Link>
           </div>
         </section>
 

@@ -55,7 +55,7 @@ export function usePageAnimations(containerRef) {
       });
 
       /* ── 3. Card grid children — stagger cascade ── */
-      ['.proof-grid', '.case-grid', '.article-grid', '.team-grid', '.values-grid'].forEach((sel) => {
+      ['.proof-grid', '.case-grid', '.article-grid', '.team-grid', '.values-grid', '.services-catalog-grid'].forEach((sel) => {
         el.querySelectorAll(sel).forEach((grid) => {
           gsap.fromTo(Array.from(grid.children),
             { opacity: 0, y: 38 },

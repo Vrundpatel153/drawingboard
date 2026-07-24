@@ -32,9 +32,11 @@ export default function Services() {
 
             <div className="hero-grid" style={{ marginTop: '40px' }}>
               <div className="cta-row">
-                <Link to="/contact" className="btn-primary">Request Proposal &rarr;</Link>
+                <Link to="/contact" className="btn-primary">
+                  Request Proposal <ArrowIcon />
+                </Link>
                 <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-link">
-                  Schedule Discovery Call
+                  Schedule Discovery Call <ArrowIcon size={13} />
                 </a>
               </div>
 
@@ -118,63 +120,93 @@ export default function Services() {
             </div>
 
             <div className="services-catalog-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '32px' }}>
-              {servicesData.map((s, idx) => (
-                <div
-                  key={s.id}
-                  className="deliv-col service-card-featured"
-                  style={{
-                    background: 'var(--card)',
-                    border: '1px solid var(--ink)',
-                    padding: '32px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justify: 'space-between',
-                    position: 'relative'
-                  }}
-                >
-                  <div>
-                    {/* Header Badges */}
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                      <span className="mono" style={{ fontSize: '13px', fontWeight: 'bold', letterSpacing: '0.05em', color: 'var(--ink-soft)' }}>
-                        {s.eyebrow}
-                      </span>
-                      <span className="badge" style={{ fontSize: '11px', padding: '4px 8px', border: '1px solid var(--ink)' }}>
-                        From {s.startingPrice}
-                      </span>
+              {servicesData.map((s) => {
+                const shortName =
+                  s.id === 'branding'
+                    ? 'Branding'
+                    : s.id === 'design'
+                    ? 'UI/UX'
+                    : s.id === 'development'
+                    ? 'Web & Dev'
+                    : s.id === 'packaging-design'
+                    ? 'Packaging'
+                    : 'Photography';
+
+                return (
+                  <div
+                    key={s.id}
+                    className="deliv-col service-card-featured"
+                    style={{
+                      background: 'var(--card)',
+                      border: '1px solid var(--ink)',
+                      padding: '32px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justify: 'space-between',
+                      position: 'relative'
+                    }}
+                  >
+                    <div>
+                      {/* Header Badges */}
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                        <span className="mono" style={{ fontSize: '13px', fontWeight: 'bold', letterSpacing: '0.05em', color: 'var(--ink-soft)' }}>
+                          {s.eyebrow}
+                        </span>
+                        <span className="badge" style={{ fontSize: '11px', padding: '4px 8px', border: '1px solid var(--ink)' }}>
+                          From {s.startingPrice}
+                        </span>
+                      </div>
+
+                      {/* Image Preview */}
+                      <div className="img-wrap" style={{ height: '200px', marginBottom: '20px', overflow: 'hidden', border: '1px solid var(--ink-soft)', borderRadius: '2px' }}>
+                        <img src={s.heroImage} alt={s.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      </div>
+
+                      <h4>{s.title}</h4>
+                      <div className="sub" style={{ margin: '8px 0 16px', color: 'var(--ink-soft)', fontSize: '13px' }}>
+                        // {s.tagline}
+                      </div>
+                      <p style={{ fontSize: '14px', lineHeight: 1.6, marginBottom: '20px', color: 'var(--ink)' }}>
+                        {s.description}
+                      </p>
+
+                      <h5 style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '10px' }}>Key Deliverables:</h5>
+                      <ul style={{ paddingLeft: '18px', fontSize: '13px', lineHeight: 1.7, color: 'var(--ink-soft)', marginBottom: '24px' }}>
+                        {s.deliverables.slice(0, 4).map((d, dIdx) => (
+                          <li key={dIdx}>{d}</li>
+                        ))}
+                      </ul>
                     </div>
 
-                    {/* Image Preview */}
-                    <div className="img-wrap" style={{ height: '200px', marginBottom: '20px', overflow: 'hidden', border: '1px solid var(--ink-soft)', borderRadius: '2px' }}>
-                      <img src={s.heroImage} alt={s.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    </div>
+                    {/* Navigation Buttons Row */}
+                    <div className="cta-row" style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid var(--ink-soft)', display: 'flex', gap: '12px', alignItems: 'center' }}>
+                      <Link
+                        to={`/services/${s.slug}`}
+                        className="btn-primary"
+                        style={{
+                          flex: 1,
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          justify: 'center',
+                          padding: '11px 16px',
+                          fontSize: '13.5px',
+                          fontWeight: 600,
+                          letterSpacing: '-0.01em',
+                          borderRadius: '4px'
+                        }}
+                      >
+                        <span>Explore {shortName} Scope</span>
+                        <ArrowIcon size={14} />
+                      </Link>
 
-                    <h4>{s.title}</h4>
-                    <div className="sub" style={{ margin: '8px 0 16px', color: 'var(--ink-soft)', fontSize: '13px' }}>
-                      // {s.tagline}
+                      <Link to="/contact" className="btn-secondary-card">
+                        <span>Book Call</span>
+                        <ArrowIcon size={12} />
+                      </Link>
                     </div>
-                    <p style={{ fontSize: '14px', lineHeight: 1.6, marginBottom: '20px', color: 'var(--ink)' }}>
-                      {s.description}
-                    </p>
-
-                    <h5 style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '10px' }}>Key Deliverables:</h5>
-                    <ul style={{ paddingLeft: '18px', fontSize: '13px', lineHeight: 1.7, color: 'var(--ink-soft)', marginBottom: '24px' }}>
-                      {s.deliverables.slice(0, 4).map((d, dIdx) => (
-                        <li key={dIdx}>{d}</li>
-                      ))}
-                    </ul>
                   </div>
-
-                  {/* Navigation Links */}
-                  <div className="cta-row" style={{ marginTop: 'auto', paddingTop: '16px', borderTop: '1px solid var(--ink-soft)', display: 'flex', gap: '12px' }}>
-                    <Link to={`/services/${s.slug}`} className="btn-primary" style={{ flex: 1, textAlign: 'center', fontSize: '13px', padding: '10px 14px' }}>
-                      View {s.title.split(' ')[0]} Subpage &rarr;
-                    </Link>
-                    <Link to="/contact" className="btn-link" style={{ fontSize: '13px', padding: '10px 14px' }}>
-                      Book &rarr;
-                    </Link>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -246,7 +278,9 @@ export default function Services() {
           <div className="wrap">
             <h2>Ready to transform your brand architecture?</h2>
             <p>Let's map out your project deliverables, timeline, and exact scope.</p>
-            <Link to="/contact" className="btn-primary">Inquire About Services &rarr;</Link>
+            <Link to="/contact" className="btn-primary">
+              Inquire About Services <ArrowIcon />
+            </Link>
           </div>
         </section>
 
