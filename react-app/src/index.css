@@ -192,11 +192,26 @@ header {
 .navlinks a {
   position: relative;
   padding: 2px 0;
-  transition: color 0.15s;
+  transition: color 0.2s ease;
+}
+
+.navlinks a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--marker);
+  transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .navlinks a:hover {
   color: var(--pine);
+}
+
+.navlinks a:hover::after {
+  width: 100%;
 }
 
 .navlinks a.active {
@@ -205,14 +220,9 @@ header {
 }
 
 .navlinks a.active::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
   width: 100%;
-  height: 2px;
-  background: var(--marker);
 }
+
 
 .nav-cta {
   font-size: 13px;
@@ -1636,4 +1646,277 @@ a:hover .arrow-icon,
 button:hover .arrow-icon {
   transform: translateX(4px);
 }
+
+/* --------------------------------------------------------------------------
+   Global Microinteractions & Hover Effects
+   -------------------------------------------------------------------------- */
+
+/* Page wrapper transition */
+#page-wrapper {
+  will-change: opacity, transform;
+}
+
+/* Card hover lift */
+.proof-card,
+.case-card,
+.article-card,
+.annot-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.proof-card:hover,
+.case-card:hover,
+.article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(27, 27, 23, 0.12);
+}
+
+/* Image zoom on card hover */
+.proof-card .img img,
+.case-card .img img,
+.spotlight-img-box img,
+.card-img-box img {
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.proof-card:hover .img img,
+.case-card:hover .img img,
+.spotlight-img-box:hover img,
+.card-img-box:hover img {
+  transform: scale(1.04);
+}
+
+/* Logo mark hover spin */
+.logo-mark .box {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.logo-mark:hover .box {
+  transform: rotate(45deg) scale(0.95);
+}
+
+/* btn-primary scale press */
+.btn-primary {
+  transition: background 0.2s, color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(27, 27, 23, 0.15);
+}
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* nav-cta microinteraction */
+.nav-cta {
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.nav-cta:hover {
+  transform: translateY(-1px);
+}
+
+/* go link arrow slide */
+.go {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s;
+}
+.go:hover {
+  gap: 10px;
+  color: var(--pine);
+}
+
+/* read-more link */
+.read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: gap 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s;
+}
+.read-more:hover {
+  gap: 10px;
+  color: var(--pine);
+}
+
+/* quick-link slide */
+.quick-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 14px;
+  background: var(--card);
+  transition: background 0.2s, color 0.2s, transform 0.2s, border-color 0.2s;
+  cursor: pointer;
+}
+.quick-link:hover {
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateX(4px);
+}
+.quick-link.pine {
+  background: var(--pine);
+  color: var(--paper);
+  border-color: var(--pine);
+}
+.quick-link.pine:hover {
+  background: var(--pine-deep);
+  border-color: var(--pine-deep);
+  transform: translateX(4px);
+}
+
+/* Input / select focus animation */
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--pine);
+  box-shadow: 0 0 0 3px rgba(36, 70, 59, 0.12);
+  background: #fff;
+}
+
+/* form-submit hover */
+.form-submit {
+  transition: background 0.2s, color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.form-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(27, 27, 23, 0.2);
+}
+.form-submit:active {
+  transform: scale(0.98);
+}
+
+/* Mobile drawer smooth slide */
+.mobile-drawer {
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  transform: translateY(-12px);
+  opacity: 0;
+  pointer-events: none;
+}
+.mobile-drawer.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Deliv-col hover */
+.deliv-col {
+  transition: background 0.2s, border-color 0.2s, transform 0.25s;
+}
+.deliv-col:hover {
+  background: var(--card);
+  transform: translateY(-3px);
+}
+
+/* Team card hover */
+.team-card {
+  transition: background 0.2s, box-shadow 0.25s, transform 0.25s;
+}
+.team-card:hover {
+  background: var(--card);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(27, 27, 23, 0.1);
+}
+
+/* Roster item hover */
+.roster-item {
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.roster-item:hover {
+  background: var(--pine);
+  color: var(--paper);
+  transform: scale(1.03);
+}
+
+/* FAQ button hover */
+.faq-q {
+  transition: background 0.2s, color 0.2s;
+}
+.faq-q:hover {
+  background: rgba(36, 70, 59, 0.05);
+  color: var(--pine);
+}
+
+/* Sticky CTA button hover */
+.sticky-cta a {
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.sticky-cta a:hover {
+  transform: scale(1.03);
+}
+
+/* Eyebrow appears immediately on page load — no layout shift */
+.eyebrow {
+  will-change: opacity, transform;
+}
+
+/* Keyframe: shimmer on hero badge */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Keyframe: soft pulse for status dots */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.9); }
+}
+
+/* Live status badge on info-card */
+.info-row .val[style*="pine"] {
+  position: relative;
+  padding-left: 14px;
+}
+.info-row .val[style*="pine"]::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--pine);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* Marquee continuous scroll */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  gap: 48px;
+  width: max-content;
+  animation: marquee-scroll 28s linear infinite;
+}
+
+.marquee-wrapper:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Accessibility focus ring */
+*:focus-visible {
+  outline: 2px solid var(--pine);
+  outline-offset: 3px;
+  border-radius: var(--radius);
+}
+
 

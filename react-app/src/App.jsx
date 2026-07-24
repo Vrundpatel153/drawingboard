@@ -19,47 +19,50 @@ export default function App() {
     <Router>
       <SmoothScroll>
         <div id="main">
-          <Routes>
-            <Route path="/" element={<Home />} />
+          <div id="page-wrapper">
+            <Routes>
+              <Route path="/" element={<Home />} />
 
-            {/* Studio / About routes */}
-            <Route path="/studio" element={<Studio />} />
-            <Route path="/about" element={<Studio />} />
-            <Route path="/studio/*" element={<Studio />} />
+              {/* Studio / About routes */}
+              <Route path="/studio" element={<Studio />} />
+              <Route path="/about" element={<Studio />} />
+              <Route path="/studio/*" element={<Studio />} />
 
-            {/* Work routes */}
-            <Route path="/work" element={<Work />} />
-            <Route path="/works" element={<Work />} />
-            <Route path="/work/:projectId" element={<WorkDetail />} />
-            <Route path="/works/:projectId" element={<WorkDetail />} />
+              {/* Work routes */}
+              <Route path="/work" element={<Work />} />
+              <Route path="/works" element={<Work />} />
+              <Route path="/work/:projectId" element={<WorkDetail />} />
+              <Route path="/works/:projectId" element={<WorkDetail />} />
 
-            {/* Services routes */}
-            <Route path="/services" element={<Services />} />
-            <Route path="/service" element={<Services />} />
-            <Route path="/services/:serviceId" element={<ServiceDetail />} />
-            <Route path="/service/:serviceId" element={<ServiceDetail />} />
+              {/* Services routes */}
+              <Route path="/services" element={<Services />} />
+              <Route path="/service" element={<Services />} />
+              <Route path="/services/:serviceId" element={<ServiceDetail />} />
+              <Route path="/service/:serviceId" element={<ServiceDetail />} />
 
-            {/* Insights / Blog routes */}
-            <Route path="/insights" element={<Insights />} />
-            <Route path="/blog" element={<Insights />} />
-            <Route path="/insights/:blogId" element={<BlogDetail />} />
-            <Route path="/blog/:blogId" element={<BlogDetail />} />
+              {/* Insights / Blog routes */}
+              <Route path="/insights" element={<Insights />} />
+              <Route path="/blog" element={<Insights />} />
+              <Route path="/insights/:blogId" element={<BlogDetail />} />
+              <Route path="/blog/:blogId" element={<BlogDetail />} />
 
-            {/* Contact route */}
-            <Route path="/contact" element={<Contact />} />
+              {/* Contact route */}
+              <Route path="/contact" element={<Contact />} />
 
-            {/* Legal routes */}
-            <Route path="/legal/:legalId" element={<LegalDetail />} />
+              {/* Legal routes */}
+              <Route path="/legal/:legalId" element={<LegalDetail />} />
 
-            {/* Secret Admin Route */}
-            <Route path="/admin" element={<Admin />} />
+              {/* Secret Admin Route */}
+              <Route path="/admin" element={<Admin />} />
 
-            {/* Catch-all redirect to Home */}
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+              {/* Catch-all redirect to Home */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </div>
           <WhatsAppButton />
         </div>
       </SmoothScroll>
     </Router>
   );
 }
+

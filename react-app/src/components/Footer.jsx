@@ -1,9 +1,51 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
+  const footerRef = useRef(null);
+
+  useEffect(() => {
+    if (!footerRef.current) return;
+    const ctx = gsap.context(() => {
+      const cols = footerRef.current.querySelectorAll('.foot-brand, .foot-col');
+      gsap.fromTo(cols,
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1, y: 0,
+          duration: 0.7, ease: 'power2.out',
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: 'top 92%',
+            toggleActions: 'play none none none',
+          }
+        }
+      );
+      const bottom = footerRef.current.querySelector('.foot-bottom');
+      if (bottom) {
+        gsap.fromTo(bottom,
+          { opacity: 0 },
+          {
+            opacity: 1, duration: 0.7, ease: 'power1.out', delay: 0.45,
+            scrollTrigger: {
+              trigger: footerRef.current,
+              start: 'top 92%',
+              toggleActions: 'play none none none',
+            }
+          }
+        );
+      }
+    }, footerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <footer>
+    <footer ref={footerRef}>
       <div className="wrap">
         <div className="foot-grid">
           <div className="foot-brand">
@@ -46,3 +88,4 @@ export default function Footer() {
     </footer>
   );
 }
+

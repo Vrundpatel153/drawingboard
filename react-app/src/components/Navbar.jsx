@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import ArrowIcon from './ArrowIcon';
+import gsap from 'gsap';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    if (!headerRef.current) return;
+    gsap.fromTo(
+      headerRef.current,
+      { y: -64, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.75, ease: 'power3.out', delay: 0.1 }
+    );
+  }, []);
 
   return (
-    <header>
+    <header ref={headerRef}>
       <div className="nav">
         <Link to="/" className="logo-mark">
           <div className="box"></div>
