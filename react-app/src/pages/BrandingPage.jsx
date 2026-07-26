@@ -512,13 +512,12 @@ export default function BrandingPage() {
           height: 30px;
           width: auto;
           object-fit: contain;
-          filter: grayscale(1) contrast(1.1) brightness(0.9);
-          opacity: 0.70;
-          transition: filter 0.3s, opacity 0.3s;
+          filter: brightness(0);
+          opacity: 1;
+          transition: transform 0.3s ease;
         }
         .bp-marquee-item img:hover {
-          filter: none;
-          opacity: 1;
+          transform: scale(1.05);
         }
         @keyframes bp-marquee-slide-ltr {
           0% { transform: translateX(-50%); }
@@ -798,6 +797,44 @@ export default function BrandingPage() {
           </div>
         </section>
 
+        {/* ── LOGOS SLIDER ROW ────────────────────────────────────────── */}
+        <section className="bp-logo-marquee-section">
+          <div className="bp-marquee-title">TRUSTED BY AMBITIOUS BRANDS GLOBAL</div>
+          
+          {/* Row 1 (LTR) */}
+          <div className="bp-marquee-row">
+            <div className="bp-marquee-track fast">
+              {row1Logos.concat(row1Logos).map((logoUrl, i) => (
+                <div key={i} className="bp-marquee-item">
+                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2 (RTL) */}
+          <div className="bp-marquee-row">
+            <div className="bp-marquee-track rtl">
+              {row2Logos.concat(row2Logos).map((logoUrl, i) => (
+                <div key={i} className="bp-marquee-item">
+                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 3 (LTR) */}
+          <div className="bp-marquee-row">
+            <div className="bp-marquee-track slow">
+              {row3Logos.concat(row3Logos).map((logoUrl, i) => (
+                <div key={i} className="bp-marquee-item">
+                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ── PROOF ────────────────────────────────────────────────────── */}
         <section style={{ paddingTop: 0 }}>
           <div className="wrap">
@@ -898,44 +935,6 @@ export default function BrandingPage() {
                   <div><b>Lumen</b><br />Fine Jewellery</div>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── LOGOS SLIDER ROW ────────────────────────────────────────── */}
-        <section className="bp-logo-marquee-section">
-          <div className="bp-marquee-title">TRUSTED BY AMBITIOUS BRANDS GLOBAL</div>
-          
-          {/* Row 1 (LTR) */}
-          <div className="bp-marquee-row">
-            <div className="bp-marquee-track fast">
-              {row1Logos.concat(row1Logos).map((logoUrl, i) => (
-                <div key={i} className="bp-marquee-item">
-                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Row 2 (RTL) */}
-          <div className="bp-marquee-row">
-            <div className="bp-marquee-track rtl">
-              {row2Logos.concat(row2Logos).map((logoUrl, i) => (
-                <div key={i} className="bp-marquee-item">
-                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Row 3 (LTR) */}
-          <div className="bp-marquee-row">
-            <div className="bp-marquee-track slow">
-              {row3Logos.concat(row3Logos).map((logoUrl, i) => (
-                <div key={i} className="bp-marquee-item">
-                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
-                </div>
-              ))}
             </div>
           </div>
         </section>
