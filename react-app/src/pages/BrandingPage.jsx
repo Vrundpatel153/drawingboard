@@ -15,6 +15,45 @@ export default function BrandingPage() {
     setOpenFaq(openFaq === idx ? null : idx);
   };
 
+  const row1Logos = [
+    '/logos/Clip-path-group.png',
+    '/logos/Group-1000001687.png',
+    '/logos/Group-1000001964.png',
+    '/logos/Group-1000001965.png',
+    '/logos/Group-1000001966.png',
+    '/logos/Group-1000002217.png',
+    '/logos/Group-1000002324.png',
+    '/logos/Group-1000003522.png',
+    '/logos/Group-1000003523.png',
+    '/logos/Group-1000004603.png'
+  ];
+
+  const row2Logos = [
+    '/logos/Group-13.png',
+    '/logos/Group-17-2.png',
+    '/logos/Group-18-4.png',
+    '/logos/Group-19-2.png',
+    '/logos/Group-2-6.png',
+    '/logos/Group-20-3.png',
+    '/logos/Group-24-2.png',
+    '/logos/Group-25-2.png',
+    '/logos/Group-26-2.png',
+    '/logos/Group-30-1.png'
+  ];
+
+  const row3Logos = [
+    '/logos/Group-4-6.png',
+    '/logos/Group-5-5.png',
+    '/logos/Group-5137-1.png',
+    '/logos/Group-5138-2.png',
+    '/logos/Group-5139-1.png',
+    '/logos/Group-5140-3.png',
+    '/logos/Group-5141-3.png',
+    '/logos/Group-5145.png',
+    '/logos/Group-5148.png',
+    '/logos/Group-6-9.png'
+  ];
+
   const faqs = [
     {
       q: "What's included in the logo suite?",
@@ -399,6 +438,114 @@ export default function BrandingPage() {
 
         /* wrap */
         .bp-wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+        /* Logo Marquee Section */
+        .bp-logo-marquee-section {
+          padding: 60px 0;
+          background: var(--card);
+          border-top: 1px solid var(--ink);
+          border-bottom: 1px solid var(--ink);
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          box-sizing: border-box;
+          width: 100%;
+        }
+        .bp-marquee-title {
+          text-align: center;
+          font-family: 'IBM Plex Mono', monospace;
+          font-size: 11px;
+          color: var(--ink-soft);
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          margin-bottom: 8px;
+        }
+        .bp-marquee-row {
+          width: 100%;
+          overflow: hidden;
+          display: flex;
+          position: relative;
+        }
+        /* Fade overlay effects */
+        .bp-marquee-row::before,
+        .bp-marquee-row::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 140px;
+          z-index: 2;
+          pointer-events: none;
+        }
+        .bp-marquee-row::before {
+          left: 0;
+          background: linear-gradient(90deg, var(--paper) 0%, transparent 100%);
+        }
+        .bp-marquee-row::after {
+          right: 0;
+          background: linear-gradient(-90deg, var(--paper) 0%, transparent 100%);
+        }
+        .bp-marquee-track {
+          display: flex;
+          align-items: center;
+          gap: 70px;
+          width: max-content;
+          animation: bp-marquee-slide-ltr 35s linear infinite;
+        }
+        .bp-marquee-track.rtl {
+          animation-name: bp-marquee-slide-rtl;
+        }
+        .bp-marquee-track.fast {
+          animation-duration: 28s;
+        }
+        .bp-marquee-track.slow {
+          animation-duration: 42s;
+        }
+        .bp-marquee-item {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+        .bp-marquee-item img {
+          height: 30px;
+          width: auto;
+          object-fit: contain;
+          filter: grayscale(1) contrast(1.1) brightness(0.9);
+          opacity: 0.70;
+          transition: filter 0.3s, opacity 0.3s;
+        }
+        .bp-marquee-item img:hover {
+          filter: none;
+          opacity: 1;
+        }
+        @keyframes bp-marquee-slide-ltr {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+        @keyframes bp-marquee-slide-rtl {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        
+        /* Mobile layout styling - resize and compact */
+        @media (max-width: 768px) {
+          .bp-logo-marquee-section {
+            padding: 40px 0;
+            gap: 12px;
+          }
+          .bp-marquee-track {
+            gap: 40px;
+          }
+          .bp-marquee-item img {
+            height: 20px; /* Resize and compact for smaller screens */
+          }
+          .bp-marquee-row::before,
+          .bp-marquee-row::after {
+            width: 60px;
+          }
+        }
       `}</style>
 
       <RegistrationMarks />
@@ -751,6 +898,44 @@ export default function BrandingPage() {
                   <div><b>Lumen</b><br />Fine Jewellery</div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── LOGOS SLIDER ROW ────────────────────────────────────────── */}
+        <section className="bp-logo-marquee-section">
+          <div className="bp-marquee-title">TRUSTED BY AMBITIOUS BRANDS GLOBAL</div>
+          
+          {/* Row 1 (LTR) */}
+          <div className="bp-marquee-row">
+            <div className="bp-marquee-track fast">
+              {row1Logos.concat(row1Logos).map((logoUrl, i) => (
+                <div key={i} className="bp-marquee-item">
+                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2 (RTL) */}
+          <div className="bp-marquee-row">
+            <div className="bp-marquee-track rtl">
+              {row2Logos.concat(row2Logos).map((logoUrl, i) => (
+                <div key={i} className="bp-marquee-item">
+                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 3 (LTR) */}
+          <div className="bp-marquee-row">
+            <div className="bp-marquee-track slow">
+              {row3Logos.concat(row3Logos).map((logoUrl, i) => (
+                <div key={i} className="bp-marquee-item">
+                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
+                </div>
+              ))}
             </div>
           </div>
         </section>
