@@ -936,10 +936,10 @@ export default function BrandingPage() {
                   </div>
                 </div>
 
-                {/* Video Card 2 (Landscape) */}
-                <div className="bp-sp-card bp-sp-video-card wide">
+                {/* Video Card 2 (Vertical) */}
+                <div className="bp-sp-card bp-sp-video-card vert">
                   <div className="bp-sp-video-frame">
-                    <span className="bp-sp-video-label" style={{ pointerEvents: 'none' }}>VIDEO 16:9</span>
+                    <span className="bp-sp-video-label" style={{ pointerEvents: 'none' }}>VIDEO 9:16</span>
                     <iframe
                       src="https://player.cloudinary.com/embed/?cloud_name=vkrgr9y0&public_id=VID-20260727-WA0000_anm7wf"
                       width="100%"
@@ -980,10 +980,10 @@ export default function BrandingPage() {
                   </div>
                 </div>
 
-                {/* Video Card 4 (Landscape) */}
-                <div className="bp-sp-card bp-sp-video-card wide">
+                {/* Video Card 4 (Vertical) */}
+                <div className="bp-sp-card bp-sp-video-card vert">
                   <div className="bp-sp-video-frame">
-                    <span className="bp-sp-video-label" style={{ pointerEvents: 'none' }}>VIDEO 16:9</span>
+                    <span className="bp-sp-video-label" style={{ pointerEvents: 'none' }}>VIDEO 9:16</span>
                     <iframe
                       src="https://player.cloudinary.com/embed/?cloud_name=vkrgr9y0&public_id=VID-20260727-WA0002_xy7yox"
                       width="100%"
