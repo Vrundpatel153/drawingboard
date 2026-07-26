@@ -9,6 +9,7 @@ import WorkDetail from './pages/WorkDetail';
 import ServiceDetail from './pages/ServiceDetail';
 import BrandingPage from './pages/BrandingPage';
 import PackagingPage from './pages/PackagingPage';
+import DevelopmentPage from './pages/DevelopmentPage';
 import Contact from './pages/Contact';
 import BlogDetail from './pages/BlogDetail';
 import LegalDetail from './pages/LegalDetail';
@@ -53,6 +54,11 @@ export default function App() {
               {/* Dedicated Packaging page — pixel-perfect HTML design */}
               <Route path="/services/packaging-design" element={<PackagingPage />} />
               <Route path="/service/packaging-design" element={<PackagingPage />} />
+              {/* Dedicated Development page — pixel-perfect HTML design */}
+              <Route path="/services/development" element={<DevelopmentPage />} />
+              <Route path="/service/development" element={<DevelopmentPage />} />
+              <Route path="/services/web-development" element={<DevelopmentPage />} />
+              <Route path="/service/web-development" element={<DevelopmentPage />} />
               <Route path="/services/:serviceId" element={<ServiceDetail />} />
               <Route path="/service/:serviceId" element={<ServiceDetail />} />
 
