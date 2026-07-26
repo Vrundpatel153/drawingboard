@@ -856,12 +856,15 @@ export default function DevelopmentPage() {
                 </div>
                 <div className="feat-case">
                   <div className="fimg">
-                    <img src="https://framerusercontent.com/images/uDdH4r3dDH0e0oPRnTJg7WFpE.png?width=1685&height=1360" alt="Sonar SaaS platform website" />
+                    <img src="https://framerusercontent.com/images/uDdH4r3dDH0e0oPRnTJg7WFpE.webp?width=1685&height=1360" alt="Sonar SaaS platform website" />
                   </div>
                   <div className="fbody">
                     <div className="tag mono">FEATURED — SONAR, SAAS PLATFORM</div>
                     <h4 style={{ fontSize: '16px' }}>Clean, responsive site</h4>
                     <p>Drove 70% more client inquiries after launch.</p>
+                    <a className="btn-secondary" href="https://wa.me/919428859768" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', fontSize: '12.5px', padding: '8px 16px', marginTop: '12px', textDecoration: 'none' }}>
+                      Inquire about similar builds
+                    </a>
                   </div>
                 </div>
               </div>
@@ -972,8 +975,10 @@ export default function DevelopmentPage() {
                   <li>Launch support</li>
                   <li>15 days free support</li>
                 </ul>
+                <div className="examples" style={{ marginTop: 'auto', marginBottom: '14px' }}>
+                  Examples: <a href="https://shaktimat.ca/" target="_blank" rel="noopener noreferrer">Shaktimat</a><a href="https://suta.in/" target="_blank" rel="noopener noreferrer">Suta</a><a href="https://www.arata.in/" target="_blank" rel="noopener noreferrer">Arata</a>
+                </div>
                 <a className="tier-cta" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Get started</a>
-                <div className="examples">Examples: <a href="https://shaktimat.ca/" target="_blank" rel="noopener noreferrer">Shaktimat</a><a href="https://suta.in/" target="_blank" rel="noopener noreferrer">Suta</a><a href="https://www.arata.in/" target="_blank" rel="noopener noreferrer">Arata</a></div>
               </div>
 
               <div className="tier rec">
