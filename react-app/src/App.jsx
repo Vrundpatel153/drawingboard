@@ -7,6 +7,8 @@ import Studio from './pages/Studio';
 import Work from './pages/Work';
 import WorkDetail from './pages/WorkDetail';
 import ServiceDetail from './pages/ServiceDetail';
+import BrandingPage from './pages/BrandingPage';
+import PackagingPage from './pages/PackagingPage';
 import Contact from './pages/Contact';
 import BlogDetail from './pages/BlogDetail';
 import LegalDetail from './pages/LegalDetail';
@@ -45,6 +47,12 @@ export default function App() {
               {/* Services routes */}
               <Route path="/services" element={<Services />} />
               <Route path="/service" element={<Services />} />
+              {/* Dedicated Branding page — pixel-perfect HTML design */}
+              <Route path="/services/branding" element={<BrandingPage />} />
+              <Route path="/service/branding" element={<BrandingPage />} />
+              {/* Dedicated Packaging page — pixel-perfect HTML design */}
+              <Route path="/services/packaging-design" element={<PackagingPage />} />
+              <Route path="/service/packaging-design" element={<PackagingPage />} />
               <Route path="/services/:serviceId" element={<ServiceDetail />} />
               <Route path="/service/:serviceId" element={<ServiceDetail />} />
 

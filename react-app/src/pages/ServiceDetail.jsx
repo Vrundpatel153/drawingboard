@@ -19,9 +19,10 @@ export default function ServiceDetail() {
   const service = servicesData.find((s) => {
     if (s.slug === cleanId || s.id === cleanId) return true;
     if (cleanId.includes('brand') && s.slug === 'branding') return true;
-    if ((cleanId.includes('ui') || cleanId.includes('ux') || cleanId.includes('design')) && s.slug === 'design') return true;
-    if ((cleanId.includes('dev') || cleanId.includes('code') || cleanId.includes('web')) && s.slug === 'development') return true;
+    // Check packaging BEFORE design — 'packaging-design' contains 'design' so order matters
     if ((cleanId.includes('pack') || cleanId.includes('box')) && s.slug === 'packaging-design') return true;
+    if ((cleanId.includes('ui') || cleanId.includes('ux') || (cleanId.includes('design') && !cleanId.includes('pack'))) && s.slug === 'design') return true;
+    if ((cleanId.includes('dev') || cleanId.includes('code') || cleanId.includes('web')) && s.slug === 'development') return true;
     if ((cleanId.includes('photo') || cleanId.includes('shoot')) && s.slug === 'photography') return true;
     return false;
   }) || servicesData[0];

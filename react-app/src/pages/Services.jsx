@@ -179,28 +179,39 @@ export default function Services() {
                     </div>
 
                     {/* Navigation Buttons Row */}
-                    <div className="cta-row" style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid var(--ink-soft)', display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <div style={{
+                      marginTop: 'auto',
+                      paddingTop: '20px',
+                      borderTop: '1px solid var(--ink-soft)',
+                      display: 'flex',
+                      flexWrap: 'nowrap',
+                      gap: '10px',
+                      alignItems: 'center'
+                    }}>
                       <Link
                         to={`/services/${s.slug}`}
                         className="btn-primary"
                         style={{
-                          flex: 1,
                           display: 'inline-flex',
                           alignItems: 'center',
-                          justify: 'center',
-                          padding: '11px 16px',
-                          fontSize: '13.5px',
+                          gap: '6px',
+                          padding: '10px 14px',
+                          fontSize: '13px',
                           fontWeight: 600,
-                          letterSpacing: '-0.01em',
-                          borderRadius: '4px'
+                          whiteSpace: 'nowrap',
+                          flexShrink: 0
                         }}
                       >
-                        <span>Explore {shortName} Scope</span>
-                        <ArrowIcon size={14} />
+                        Explore {shortName}
+                        <ArrowIcon size={13} />
                       </Link>
 
-                      <Link to="/contact" className="btn-secondary-card">
-                        <span>Book Call</span>
+                      <Link
+                        to="/contact"
+                        className="btn-secondary-card"
+                        style={{ whiteSpace: 'nowrap', flexShrink: 0 }}
+                      >
+                        Book Call
                         <ArrowIcon size={12} />
                       </Link>
                     </div>
