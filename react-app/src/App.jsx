@@ -54,6 +54,8 @@ export default function App() {
               {/* Dedicated Packaging page — pixel-perfect HTML design */}
               <Route path="/services/packaging-design" element={<PackagingPage />} />
               <Route path="/service/packaging-design" element={<PackagingPage />} />
+              <Route path="/services/packaging" element={<PackagingPage />} />
+              <Route path="/service/packaging" element={<PackagingPage />} />
               {/* Dedicated Development page — pixel-perfect HTML design */}
               <Route path="/services/development" element={<DevelopmentPage />} />
               <Route path="/service/development" element={<DevelopmentPage />} />
