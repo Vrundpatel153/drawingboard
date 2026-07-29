@@ -12,6 +12,14 @@ import { WHATSAPP_URL } from '../utils/siteConfig';
 export default function BrandingPage() {
   const [openFaq, setOpenFaq] = useState(null);
   const [formData, setFormData] = useState({ email: '', company: '' });
+  const [growthCurrency, setGrowthCurrency] = useState('INR');
+
+  const growthPrices = {
+    INR: '₹4,75,000/-',
+    USD: '$4,960/-',
+    GBP: '£3,715/-',
+  };
+
 
   const toggleFaq = (idx) => {
     setOpenFaq(openFaq === idx ? null : idx);
@@ -379,7 +387,12 @@ export default function BrandingPage() {
         .bp-tier { border: 1px solid var(--ink); background: var(--card); display: flex; flex-direction: column; position: relative; }
         .bp-tier.bp-feat { border: 2px solid var(--pine); }
         .bp-tier .bp-flag { position: absolute; top: -1px; right: -1px; background: var(--pine); color: var(--paper); font-size: 11px; padding: 5px 10px; font-family: 'IBM Plex Mono', monospace; }
+        .bp-currency-toggle { display: inline-flex; align-items: center; gap: 3px; background: rgba(27, 27, 23, 0.06); padding: 3px; border-radius: 4px; border: 1px solid var(--paper-line); }
+        .bp-curr-btn { background: transparent; border: none; color: var(--ink-soft); font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; font-weight: 600; padding: 4px 8px; border-radius: 2px; cursor: pointer; transition: all 0.15s ease; line-height: 1; }
+        .bp-curr-btn:hover { color: var(--ink); background: rgba(0, 0, 0, 0.05); }
+        .bp-curr-btn.active { background: var(--pine); color: var(--paper); }
         .bp-tier-head { padding: 26px 24px 20px; border-bottom: 1px dashed var(--paper-line); }
+
         .bp-tier-head .name { font-size: 12px; color: var(--marker); margin-bottom: 8px; }
         .bp-tier-head h3 { font-size: 24px; margin-bottom: 8px; }
         .bp-tier-head .desc { font-size: 13.5px; color: var(--ink-soft); }
@@ -1329,14 +1342,43 @@ export default function BrandingPage() {
               <div className="bp-tier bp-feat">
                 <div className="bp-flag mono">MOST BOOKED</div>
                 <div className="bp-tier-head">
-                  <div className="name mono">GROWTH</div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', marginBottom: '8px' }}>
+                    <div className="name mono" style={{ margin: 0 }}>GROWTH</div>
+                    <div className="bp-currency-toggle mono" style={{ marginTop: '12px' }}>
+                      <button
+                        type="button"
+                        className={`bp-curr-btn ${growthCurrency === 'INR' ? 'active' : ''}`}
+                        onClick={() => setGrowthCurrency('INR')}
+                        title="Indian Rupee (₹)"
+                      >
+                        ₹ INR
+                      </button>
+                      <button
+                        type="button"
+                        className={`bp-curr-btn ${growthCurrency === 'USD' ? 'active' : ''}`}
+                        onClick={() => setGrowthCurrency('USD')}
+                        title="US Dollar ($)"
+                      >
+                        $ USD
+                      </button>
+                      <button
+                        type="button"
+                        className={`bp-curr-btn ${growthCurrency === 'GBP' ? 'active' : ''}`}
+                        onClick={() => setGrowthCurrency('GBP')}
+                        title="British Pound (£)"
+                      >
+                        £ GBP
+                      </button>
+                    </div>
+                  </div>
                   <h3>Full Brand System</h3>
                   <p className="desc">For funded or scaling brands that need to look the part everywhere.</p>
                 </div>
                 <div className="bp-tier-price">
-                  <span className="amt">₹4,25,000</span>
+                  <span className="amt">{growthPrices[growthCurrency]}</span>
                   <div className="per">per project</div>
                 </div>
+
                 <ul className="bp-tier-list">
                   <li>Everything in Foundation</li>
                   <li>Messaging pillars &amp; voice guide</li>
