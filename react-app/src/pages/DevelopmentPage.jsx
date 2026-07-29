@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
+import MoreServicesSection from '../components/MoreServicesSection';
 import { WHATSAPP_URL } from '../utils/siteConfig';
+
 
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -92,6 +94,40 @@ export default function DevelopmentPage() {
           margin: 0 auto;
           padding: 0 32px;
         }
+        @media (max-width: 768px) {
+          .dev-page .wrap {
+            padding: 0 16px;
+          }
+        }
+        .dev-page .dev-price-addons-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px 32px;
+        }
+        .dev-page .addon-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 12px;
+          font-size: 13.5px;
+          padding: 9px 0;
+          border-top: 1px dashed var(--paper-line);
+        }
+        .dev-page .addon-row .lbl {
+          color: var(--ink-soft);
+        }
+        .dev-page .addon-row .val {
+          font-weight: 600;
+          white-space: nowrap;
+          flex-shrink: 0;
+        }
+        @media (max-width: 700px) {
+          .dev-page .dev-price-addons-grid {
+            grid-template-columns: 1fr;
+            gap: 0;
+          }
+        }
+
         .dev-page .crumb {
           padding: 22px 0 0;
           font-size: 12.5px;
@@ -1042,14 +1078,15 @@ export default function DevelopmentPage() {
             <div style={{ marginTop: '26px', border: '1px solid var(--ink)', background: 'var(--card)', padding: '26px 28px' }}>
               <div style={{ fontFamily: "'Fraunces', serif", fontSize: '17px', fontWeight: 600, marginBottom: '6px' }}>What changes the price — and what never does</div>
               <p style={{ fontSize: '13.5px', color: 'var(--ink-soft)', maxWidth: '640px', marginBottom: '18px' }}>Every price above is fixed for the scope listed. Nothing is added without your sign-off — if your project needs more than the base scope, here's exactly what that costs:</p>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px 32px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13.5px', padding: '9px 0', borderTop: '1px dashed var(--paper-line)' }}><span style={{ color: 'var(--ink-soft)' }}>Shopify catalog beyond 50 SKUs</span><span style={{ fontWeight: 600 }}>+₹10,000</span></div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13.5px', padding: '9px 0', borderTop: '1px dashed var(--paper-line)' }}><span style={{ color: 'var(--ink-soft)' }}>Migration from an existing platform</span><span style={{ fontWeight: 600 }}>+₹15,000</span></div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13.5px', padding: '9px 0', borderTop: '1px dashed var(--paper-line)' }}><span style={{ color: 'var(--ink-soft)' }}>Custom pages beyond 10 (Custom Build)</span><span style={{ fontWeight: 600 }}>+₹8,000 / page</span></div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13.5px', padding: '9px 0', borderTop: '1px dashed var(--paper-line)' }}><span style={{ color: 'var(--ink-soft)' }}>Multi-currency / international checkout</span><span style={{ fontWeight: 600 }}>+₹10,000</span></div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13.5px', padding: '9px 0', borderTop: '1px dashed var(--paper-line)' }}><span style={{ color: 'var(--ink-soft)' }}>Custom app or API integration</span><span style={{ fontWeight: 600 }}>+₹12,000</span></div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13.5px', padding: '9px 0', borderTop: '1px dashed var(--paper-line)' }}><span style={{ color: 'var(--ink-soft)' }}>Membership / gated login system</span><span style={{ fontWeight: 600 }}>+₹18,000</span></div>
+              <div className="dev-price-addons-grid">
+                <div className="addon-row"><span className="lbl">Shopify catalog beyond 50 SKUs</span><span className="val">+₹10,000</span></div>
+                <div className="addon-row"><span className="lbl">Migration from an existing platform</span><span className="val">+₹15,000</span></div>
+                <div className="addon-row"><span className="lbl">Custom pages beyond 10 (Custom Build)</span><span className="val">+₹8,000 / page</span></div>
+                <div className="addon-row"><span className="lbl">Multi-currency / international checkout</span><span className="val">+₹10,000</span></div>
+                <div className="addon-row"><span className="lbl">Custom app or API integration</span><span className="val">+₹12,000</span></div>
+                <div className="addon-row"><span className="lbl">Membership / gated login system</span><span className="val">+₹18,000</span></div>
               </div>
+
               <p style={{ fontSize: '12.5px', color: 'var(--ink-soft)', marginTop: '16px' }}>You'll see all applicable add-ons in your quote before work begins — never after. If none apply, you pay exactly the fixed price above.</p>
             </div>
 
@@ -1139,33 +1176,8 @@ export default function DevelopmentPage() {
           </div>
         </section>
 
-        <section style={{ paddingTop: 0 }}>
-          <div className="wrap">
-            <div className="section-head">
-              <div>
-                <div className="eyebrow mono">MORE SERVICES</div>
-                <h2>Full-service, if you need it.</h2>
-              </div>
-            </div>
-            <div className="more-grid">
-              <div className="more-card">
-                <h4>Branding</h4>
-                <p>Bold, strategic visual identities that speak with purpose and scale with confidence.</p>
-                <Link className="go" to="/services/branding">See branding →</Link>
-              </div>
-              <div className="more-card">
-                <h4>Packaging Design</h4>
-                <p>Shelf-ready packaging systems built for retail and e-commerce scale.</p>
-                <Link className="go" to="/services/packaging-design">See packaging →</Link>
-              </div>
-              <div className="more-card">
-                <h4>UI/UX Design</h4>
-                <p>Intuitive interface layouts, interactive prototypes, and design systems.</p>
-                <Link className="go" to="/services">See services →</Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        <MoreServicesSection current="development" />
+
 
         <section className="final">
           <div className="wrap">

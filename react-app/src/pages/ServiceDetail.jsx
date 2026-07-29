@@ -4,7 +4,9 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
+import MoreServicesSection from '../components/MoreServicesSection';
 import ArrowIcon from '../components/ArrowIcon';
+
 import servicesData from '../data/servicesData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 
@@ -276,8 +278,11 @@ export default function ServiceDetail() {
           </div>
         </section>
 
+        <MoreServicesSection current={service.id} />
+
         {/* Final CTA */}
         <section className="final">
+
           <div className="wrap">
             <h2>Ready to initiate {service.title}?</h2>
             <p>Tell us about your project requirements and target launch window.</p>

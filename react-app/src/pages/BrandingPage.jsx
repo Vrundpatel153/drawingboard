@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
+import MoreServicesSection from '../components/MoreServicesSection';
 import { WHATSAPP_URL } from '../utils/siteConfig';
+
 
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -1495,8 +1497,11 @@ export default function BrandingPage() {
           </div>
         </section>
 
+        <MoreServicesSection current="branding" />
+
         {/* ── FINAL CTA ────────────────────────────────────────────────── */}
         <section className="bp-final">
+
           <div className="wrap">
             <h2>Ready to look like the company you're becoming?</h2>
             <p>Book a free 15-minute call. We'll tell you honestly whether you need a foundation, a full system, or nothing at all yet.</p>

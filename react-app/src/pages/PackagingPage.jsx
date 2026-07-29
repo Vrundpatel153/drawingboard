@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
+import MoreServicesSection from '../components/MoreServicesSection';
 import { WHATSAPP_URL } from '../utils/siteConfig';
+
 
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -1096,8 +1098,11 @@ export default function PackagingPage() {
             </div>
           </section>
 
+          <MoreServicesSection current="packaging" />
+
           {/* ============ SECTION 20 — FINAL CTA ============ */}
           <section className="final">
+
             <div className="wrap">
               <h2>Your product is ready. Now make the packaging feel ready too.</h2>
               <p>Book a free 15-minute call to discuss your product, current packaging, launch stage and the scope required. We will tell you honestly whether you need a master redesign, a SKU system, a smaller adaptation or more preparation before design begins.</p>

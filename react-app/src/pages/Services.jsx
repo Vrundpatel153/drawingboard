@@ -4,7 +4,9 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
+import MoreServicesSection from '../components/MoreServicesSection';
 import ArrowIcon from '../components/ArrowIcon';
+
 import servicesData from '../data/servicesData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 
@@ -284,8 +286,11 @@ export default function Services() {
           </div>
         </section>
 
+        <MoreServicesSection current="uiux" />
+
         {/* Final CTA */}
         <section className="final">
+
           <div className="wrap">
             <h2>Ready to transform your brand architecture?</h2>
             <p>Let's map out your project deliverables, timeline, and exact scope.</p>
