@@ -45,9 +45,10 @@ export default function Home() {
                 Branding, websites, packaging, motion graphics and photography — crafted to connect, inspire, and grow your business. We turn your business into a brand that scales strategically, visually, and across every touchpoint.
               </p>
               <div className="cta-row">
-                <Link to="/contact" className="btn-primary">Let’s Collaborate <ArrowIcon /></Link>
+                <a href="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" target="_blank" rel="noopener noreferrer" className="btn-primary">WhatsApp Us <ArrowIcon /></a>
                 <Link to="/work" className="btn-link">Explore Work <ArrowIcon size={13} /></Link>
               </div>
+
               <p className="price-note">Projects start at <b>1,75,000/-</b> ($8,500) &bull; Turnaround <b>3&ndash;6 weeks</b></p>
             </div>
 
@@ -304,10 +305,9 @@ export default function Home() {
         </div>
       </section>
 
-      <StickyMobileCTA title="The Drawing Board" subtitle="Projects start at 1,75,000/-" buttonText="Let's Collaborate" link="https://cal.com/dandelion-nrvrze" />
+      <StickyMobileCTA title="The Drawing Board" subtitle="Projects start at 1,75,000/-" buttonText="WhatsApp Us" link="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" />
       <Footer />
       </div>
     </>
   );
 }
-

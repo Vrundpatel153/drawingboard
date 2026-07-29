@@ -125,10 +125,11 @@ export default function Work() {
         </div>
       </section>
 
-      <StickyMobileCTA title="Work Archive" subtitle={`${projectsData.length} Selected Projects`} buttonText="Book Call" link="https://cal.com/dandelion-nrvrze" />
+      <StickyMobileCTA title="Work Archive" subtitle={`${projectsData.length} Selected Projects`} buttonText="WhatsApp Us" link="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" />
       <Footer />
       </div>
     </>
   );
+
 }
 

@@ -141,9 +141,10 @@ export default function Studio() {
         </div>
       </section>
 
-      <StickyMobileCTA title="Studio Overview" subtitle="Senior-Led Execution" buttonText="Get Started →" />
+      <StickyMobileCTA title="Studio Overview" subtitle="Senior-Led Execution" buttonText="WhatsApp Us" link="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" />
       <Footer />
       </div>
     </>
   );
+
 }
