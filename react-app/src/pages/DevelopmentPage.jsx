@@ -911,8 +911,9 @@ export default function DevelopmentPage() {
                 <p className="hero-sub">From marketing websites to custom dashboards, we build digital products that load fast, look sharp, and adapt to your growth. Whether it's Shopify, Webflow, or fully custom code, our dev team delivers performance without compromising design.</p>
                 <div className="cta-row">
                   <a className="btn-primary" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min call →</a>
-                  <a className="btn-secondary" href="https://wa.me/919428859768" target="_blank" rel="noopener noreferrer">WhatsApp us</a>
+                  <a className="btn-link" href="https://wa.me/919428859768" target="_blank" rel="noopener noreferrer">or message us on WhatsApp</a>
                 </div>
+
                 <p className="price-note">Shopify builds, fixed at <b>₹96,000.</b> Custom builds, fixed at <b>₹1,45,000.</b> One price, agreed before work starts — no surprises at delivery.</p>
               </div>
 
@@ -933,9 +934,10 @@ export default function DevelopmentPage() {
                     <div className="tag mono">FEATURED — SONAR, SAAS PLATFORM</div>
                     <h4 style={{ fontSize: '16px' }}>Clean, responsive site</h4>
                     <p>Drove 70% more client inquiries after launch.</p>
-                    <a className="btn-secondary" href="https://wa.me/919428859768" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', fontSize: '12.5px', padding: '8px 16px', marginTop: '12px', textDecoration: 'none' }}>
-                      Inquire about similar builds
+                    <a className="btn-link" href="https://wa.me/919428859768" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', fontSize: '13px', marginTop: '12px' }}>
+                      or message us on WhatsApp
                     </a>
+
                   </div>
                 </div>
               </div>
