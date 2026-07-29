@@ -96,9 +96,15 @@ export default function DevelopmentPage() {
         }
         @media (max-width: 768px) {
           .dev-page .wrap {
-            padding: 0 16px;
+            padding: 0 24px !important;
           }
         }
+        @media (max-width: 480px) {
+          .dev-page .wrap {
+            padding: 0 20px !important;
+          }
+        }
+
         .dev-page .dev-price-addons-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);

@@ -116,7 +116,11 @@ export default function PackagingPage() {
     <>
       <style>{`
         /* ── Scoped Packaging Page Styles ───────────────────────────── */
+        .pp-page .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+        @media (max-width: 768px) { .pp-page .wrap { padding: 0 24px !important; } }
+        @media (max-width: 480px) { .pp-page .wrap { padding: 0 20px !important; } }
         .pp-page .crumb { padding: 22px 0 0; font-size: 12.5px; color: var(--ink-soft); }
+
         .pp-page .crumb a { color: var(--ink-soft); border-bottom: 1px dashed var(--ink-soft); text-decoration: none; }
         .pp-page .crumb a:hover { color: var(--pine); border-color: var(--pine); }
         .pp-page .crumb span.sep { margin: 0 8px; opacity: 0.5; }
