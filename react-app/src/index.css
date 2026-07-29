@@ -431,13 +431,14 @@ header {
    Hero Sections
    -------------------------------------------------------------------------- */
 .hero {
-  padding: 88px 0 64px;
+  padding: 28px 0 56px;
   position: relative;
 }
 
 .hero-lite {
-  padding: 72px 0 48px;
+  padding: 24px 0 40px;
 }
+
 
 .sheet-label {
   display: flex;
@@ -1740,9 +1741,10 @@ footer {
   .wrap { padding: 0 24px !important; }
   section { padding: 48px 0; }
 
-  .hero { padding: 36px 0 28px; }
-  .hero-lite { padding: 32px 0 24px; }
-  .case-hero { padding: 36px 0 28px; }
+  .hero { padding: 18px 0 28px; }
+  .hero-lite { padding: 16px 0 24px; }
+  .case-hero { padding: 18px 0 28px; }
+
   .final { padding: 48px 0; }
   h1 { word-break: break-word; }
   .hero h1, .hero-lite h1, .case-hero h1 {

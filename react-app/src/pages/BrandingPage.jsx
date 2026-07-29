@@ -119,8 +119,12 @@ export default function BrandingPage() {
         /* ── Branding Page Scoped Styles ─────────────────────────────── */
 
         /* hero */
-        .bp-hero { padding: 88px 0 64px; position: relative; }
+        .bp-hero { padding: 28px 0 64px; position: relative; }
+        @media (max-width: 768px) {
+          .bp-hero { padding: 18px 0 40px; }
+        }
         .bp-sheet-label { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+
         .bp-sheet-label .tag { font-size: 12px; padding: 6px 10px; border: 1px solid var(--ink); }
         .bp-sheet-label .rule { flex: 1; height: 1px; background: var(--ink-soft); opacity: 0.4; }
         .bp-hero h1 { font-size: clamp(38px, 5.4vw, 72px); max-width: 920px; }

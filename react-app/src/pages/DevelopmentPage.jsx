@@ -156,8 +156,14 @@ export default function DevelopmentPage() {
         }
         
         .dev-page .hero {
-          padding: 26px 0 56px;
+          padding: 20px 0 56px;
         }
+        @media (max-width: 768px) {
+          .dev-page .hero {
+            padding: 14px 0 40px;
+          }
+        }
+
         .dev-page .sheet-label {
           display: flex;
           align-items: center;

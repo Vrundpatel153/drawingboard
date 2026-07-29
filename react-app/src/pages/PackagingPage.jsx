@@ -126,7 +126,11 @@ export default function PackagingPage() {
         .pp-page .crumb span.sep { margin: 0 8px; opacity: 0.5; }
         .pp-page .crumb span.cur { color: var(--ink); }
 
-        .pp-page .hero { padding: 56px 0 64px; position: relative; }
+        .pp-page .hero { padding: 24px 0 64px; position: relative; }
+        @media (max-width: 768px) {
+          .pp-page .hero { padding: 16px 0 40px; }
+        }
+
         .pp-page .sheet-label { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
         .pp-page .sheet-label .tag { font-size: 12px; padding: 6px 10px; border: 1px solid var(--ink); }
         .pp-page .sheet-label .rule { flex: 1; height: 1px; background: var(--ink-soft); opacity: 0.4; }
