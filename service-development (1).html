@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web & App Development | The Drawing Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,450;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EFEBE2;
+  --paper-line:#DAD3C2;
+  --ink:#1B1B17;
+  --ink-soft:#4A473F;
+  --pine:#24463B;
+  --pine-deep:#173029;
+  --marker:#B8412E;
+  --card:#F7F4EC;
+  --radius:2px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  background-image:
+    linear-gradient(var(--paper-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+  background-size:48px 48px;
+  background-attachment:fixed;
+}
+::selection{background:var(--pine);color:var(--paper);}
+h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;line-height:1.05;}
+.mono{font-family:'IBM Plex Mono',monospace;letter-spacing:0.03em;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+
+.reg{position:fixed;width:18px;height:18px;pointer-events:none;z-index:40;opacity:0.55;}
+.reg::before,.reg::after{content:"";position:absolute;background:var(--ink);}
+.reg::before{width:100%;height:1px;top:50%;}
+.reg::after{width:1px;height:100%;left:50%;}
+.reg-tl{top:14px;left:14px;} .reg-tr{top:14px;right:14px;}
+.reg-bl{bottom:14px;left:14px;} .reg-br{bottom:14px;right:14px;}
+
+header{
+  position:sticky;top:0;z-index:30;
+  background:rgba(239,235,226,0.92);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--ink);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;max-width:1180px;margin:0 auto;}
+.logo-mark{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:18px;}
+.logo-mark .box{width:22px;height:22px;border:1.5px solid var(--ink);position:relative;flex-shrink:0;}
+.logo-mark .box::after{content:"";position:absolute;inset:4px;border:1px solid var(--ink);}
+.navlinks{display:flex;gap:36px;font-size:14px;}
+.navlinks a{position:relative;padding:2px 0;}
+.navlinks a.active{color:var(--pine);}
+.navlinks a.active::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:2px;background:var(--marker);}
+.nav-cta{font-size:13px;padding:10px 18px;border:1.5px solid var(--ink);border-radius:var(--radius);}
+.nav-cta:hover{background:var(--ink);color:var(--paper);}
+@media(max-width:860px){.navlinks{display:none;}}
+
+.crumb{padding:22px 0 0;font-size:12.5px;color:var(--ink-soft);}
+.crumb a{color:var(--ink-soft);border-bottom:1px dashed var(--ink-soft);}
+.crumb a:hover{color:var(--pine);border-color:var(--pine);}
+.crumb span.sep{margin:0 8px;opacity:0.5;}
+.crumb span.cur{color:var(--ink);}
+
+/* hero */
+.hero{padding:26px 0 56px;}
+.sheet-label{display:flex;align-items:center;gap:14px;margin-bottom:26px;}
+.sheet-label .tag{font-size:12px;padding:6px 10px;border:1px solid var(--ink);}
+.sheet-label .rule{flex:1;height:1px;background:var(--ink-soft);opacity:0.4;}
+.hero h1{font-size:clamp(34px,5vw,68px);max-width:900px;}
+.hero h1 em{font-style:normal;color:var(--pine);}
+.hero-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:48px;align-items:start;margin-top:30px;}
+@media(max-width:920px){.hero-grid{grid-template-columns:1fr;}}
+.hero-sub{font-size:17.5px;color:var(--ink-soft);max-width:520px;margin-bottom:26px;}
+.cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:18px;}
+.btn-primary{background:var(--pine);color:var(--paper);padding:15px 26px;font-size:14.5px;font-weight:600;border-radius:var(--radius);display:inline-flex;align-items:center;gap:8px;transition:background .15s;white-space:nowrap;}
+.btn-primary:hover{background:var(--pine-deep);}
+.btn-secondary{border:1.5px solid var(--ink);padding:13.5px 22px;font-size:14.5px;font-weight:600;border-radius:var(--radius);}
+.btn-secondary:hover{background:var(--ink);color:var(--paper);}
+.price-note{font-size:13.5px;color:var(--ink-soft);}
+.price-note b{color:var(--ink);}
+
+.annot-card{background:var(--card);border:1px solid var(--ink);padding:24px;position:relative;}
+.annot-card .corner{position:absolute;top:-1px;right:-1px;width:26px;height:26px;background:var(--marker);clip-path:polygon(0 0,100% 0,100% 100%);}
+.annot-row{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px dashed var(--paper-line);padding:10px 0;font-size:13px;}
+.annot-row:last-child{border-bottom:none;}
+.annot-row span:first-child{color:var(--ink-soft);}
+.annot-title{font-size:12px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px;}
+
+.feat-case{margin-top:20px;border:1px solid var(--ink);}
+.feat-case .fimg{aspect-ratio:16/9;overflow:hidden;}
+.feat-case .fimg img{width:100%;height:100%;object-fit:cover;}
+.feat-case .fbody{padding:16px 20px;background:var(--card);}
+.feat-case .tag{font-size:11px;color:var(--marker);margin-bottom:4px;}
+.feat-case p{font-size:13px;color:var(--ink-soft);margin-top:4px;}
+
+.stat-strip{display:flex;flex-wrap:wrap;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin-top:50px;}
+.stat{flex:1;min-width:140px;padding:22px 24px;border-right:1px solid var(--ink);}
+.stat:last-child{border-right:none;}
+.stat .num{font-family:'Fraunces',serif;font-size:32px;font-weight:600;color:var(--pine);}
+.stat .lbl{font-size:12px;color:var(--ink-soft);margin-top:4px;}
+@media(max-width:700px){.stat-strip{flex-wrap:wrap;} .stat{flex:1 1 50%;border-bottom:1px solid var(--ink);}}
+
+section{padding:76px 0;}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px;flex-wrap:wrap;}
+.eyebrow{font-size:12px;color:var(--marker);margin-bottom:10px;}
+.section-head h2{font-size:clamp(28px,3.4vw,42px);max-width:640px;}
+.section-head p{color:var(--ink-soft);max-width:400px;font-size:15px;}
+.section-head p.lede{max-width:600px;font-size:15.5px;margin-top:12px;}
+
+/* deliverables */
+.deliv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink);border:1px solid var(--ink);}
+@media(max-width:900px){.deliv-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.deliv-grid{grid-template-columns:1fr;}}
+.deliv-col{background:var(--card);padding:22px 20px;}
+.deliv-col h4{font-size:14.5px;margin-bottom:4px;}
+.deliv-col p{font-size:12.5px;color:var(--ink-soft);}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+@media(max-width:860px){.split{grid-template-columns:1fr;}}
+.split img{border:1px solid var(--ink);width:100%;}
+
+/* compare table shopify vs custom */
+.compare-wrap{overflow-x:auto;border:1px solid var(--ink);margin-top:8px;}
+table.compare{width:100%;border-collapse:collapse;min-width:640px;background:var(--card);}
+table.compare th,table.compare td{padding:16px 20px;text-align:left;font-size:13.5px;border-bottom:1px solid var(--paper-line);}
+table.compare th{font-family:'Fraunces',serif;font-size:16px;font-weight:600;border-bottom:1px solid var(--ink);background:var(--paper);}
+table.compare th.hl{color:var(--pine);}
+table.compare td.hl{background:rgba(36,70,59,0.06);font-weight:600;color:var(--pine);}
+table.compare tr:last-child td{border-bottom:none;}
+table.compare td:first-child{color:var(--ink-soft);font-weight:600;}
+.honesty-note{border-left:3px solid var(--marker);padding:14px 0 14px 22px;margin-top:26px;font-size:15px;color:var(--ink-soft);max-width:720px;}
+.honesty-note strong{color:var(--ink);}
+
+/* pricing tiers */
+.tier-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+@media(max-width:1000px){.tier-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:620px){.tier-grid{grid-template-columns:1fr;}}
+.tier{border:1px solid var(--ink);background:var(--card);padding:26px 22px;display:flex;flex-direction:column;position:relative;}
+.tier.rec{background:var(--pine);color:var(--paper);border-color:var(--pine);}
+.tier .flag{position:absolute;top:-1px;left:-1px;background:var(--marker);color:#fff;font-size:10.5px;padding:5px 10px;font-family:'IBM Plex Mono',monospace;}
+.tier .use{font-size:12px;color:var(--ink-soft);margin-bottom:10px;min-height:32px;}
+.tier.rec .use{color:#CFE0DA;}
+.tier h4{font-size:17px;margin-bottom:10px;}
+.tier .price{font-family:'Fraunces',serif;font-size:26px;font-weight:600;margin-bottom:2px;}
+.tier .price-sub{font-size:11px;color:var(--ink-soft);margin-bottom:18px;}
+.tier.rec .price-sub{color:#CFE0DA;}
+.tier ul{list-style:none;font-size:13px;color:var(--ink-soft);flex:1;margin-bottom:18px;}
+.tier.rec ul{color:#E3EEE8;}
+.tier li{padding:7px 0;border-top:1px dashed var(--paper-line);}
+.tier.rec li{border-top:1px dashed rgba(255,255,255,0.2);}
+.tier li:first-child{border-top:none;}
+.tier .tier-cta{text-align:center;padding:12px;font-size:13.5px;font-weight:600;border:1.5px solid var(--ink);border-radius:var(--radius);}
+.tier .tier-cta:hover{background:var(--ink);color:var(--paper);}
+.tier.rec .tier-cta{border-color:var(--paper);background:var(--paper);color:var(--pine);}
+.tier.rec .tier-cta:hover{background:#fff;}
+.tier .examples{font-size:11px;color:var(--ink-soft);margin-top:14px;}
+.tier.rec .examples{color:#CFE0DA;}
+.tier .examples a{border-bottom:1px dashed currentColor;margin-right:8px;}
+
+/* testimonial */
+.testi{border:1px solid var(--ink);background:var(--card);padding:30px;display:flex;gap:22px;align-items:center;margin-top:36px;}
+@media(max-width:600px){.testi{flex-direction:column;align-items:flex-start;}}
+.testi .stars{color:var(--marker);font-size:14px;margin-bottom:10px;}
+.testi p.body{font-family:'Fraunces',serif;font-size:19px;font-weight:450;line-height:1.4;max-width:640px;}
+.testi .who{font-size:13px;color:var(--ink-soft);margin-top:12px;}
+.testi .who b{color:var(--ink);}
+
+/* faq */
+.faq-item{border-bottom:1px solid var(--ink-soft);opacity:0.9;}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:20px 4px;font-family:'Fraunces',serif;font-size:18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--ink);}
+.faq-q .plus{font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--marker);transition:transform .2s;flex-shrink:0;margin-left:16px;}
+.faq-item.open .plus{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.faq-a p{padding:0 4px 20px;font-size:14.5px;color:var(--ink-soft);max-width:700px;}
+
+/* work filter grid */
+.filter-tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;}
+.ftab{font-size:12.5px;padding:9px 16px;border:1px solid var(--ink);background:var(--card);cursor:pointer;font-family:'IBM Plex Mono',monospace;letter-spacing:0.02em;transition:background .15s,color .15s;}
+.ftab:hover{background:var(--paper-line);}
+.ftab.on{background:var(--pine);color:var(--paper);border-color:var(--pine);}
+.case-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+@media(max-width:1000px){.case-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:760px){.case-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.case-grid{grid-template-columns:1fr;}}
+.case-card{display:block;border:1px solid var(--ink);background:var(--card);overflow:hidden;transition:border-color .15s;}
+.case-card.hide{display:none;}
+.case-card:hover{border-color:var(--pine);}
+.case-card .img{aspect-ratio:4/3;overflow:hidden;background:#d8d2c1;}
+.case-card .img img{width:100%;height:100%;object-fit:cover;}
+.case-body{padding:13px 15px;}
+.case-body .tag{font-size:10px;color:var(--marker);margin-bottom:4px;}
+.case-body h4{font-size:14.5px;}
+.verify-note{border:1.5px dashed var(--ink-soft);padding:18px 22px;font-size:13px;color:var(--ink-soft);margin-top:28px;background:rgba(255,255,255,0.3);}
+.verify-note b{color:var(--ink);}
+
+/* more services */
+.more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:760px){.more-grid{grid-template-columns:1fr;}}
+.more-card{border:1px solid var(--ink);background:var(--card);padding:24px;}
+.more-card h4{font-size:17px;margin-bottom:8px;}
+.more-card p{font-size:13.5px;color:var(--ink-soft);margin-bottom:14px;}
+.more-card .go{font-size:12.5px;color:var(--pine);border-bottom:1px solid var(--pine);padding-bottom:2px;}
+
+.final{background:var(--pine);color:var(--paper);text-align:center;}
+.final h2{font-size:clamp(30px,4.5vw,48px);max-width:720px;margin:0 auto 18px;}
+.final p{color:#CFE0DA;max-width:520px;margin:0 auto 32px;font-size:16px;}
+.final .btn-primary{background:var(--paper);color:var(--pine);}
+.final .btn-primary:hover{background:#fff;}
+
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:50;background:var(--ink);padding:14px 18px;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid #000;}
+.sticky-cta .txt{color:#fff;font-size:13px;}
+.sticky-cta .txt b{display:block;font-size:14.5px;}
+.sticky-cta a{background:var(--paper);color:var(--ink);padding:11px 18px;font-size:13px;font-weight:600;border-radius:var(--radius);white-space:nowrap;}
+@media(max-width:700px){.sticky-cta{display:flex;} body{padding-bottom:64px;}}
+
+footer{border-top:1px solid var(--ink);padding:50px 0 30px;font-size:13px;color:var(--ink-soft);}
+.foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;margin-bottom:30px;}
+.foot-grid a{display:block;padding:4px 0;}
+.foot-bottom{border-top:1px solid var(--paper-line);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+</style>
+</head>
+<body>
+
+<div class="reg reg-tl"></div><div class="reg reg-tr"></div><div class="reg reg-bl"></div><div class="reg reg-br"></div>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo-mark"><div class="box"></div>The Drawing Board</a>
+    <nav class="navlinks">
+      <a href="index.html">Studio</a>
+      <a href="work.html">Work</a>
+      <a class="active" href="branding-page-redesign.html">Services</a>
+      <a href="#">Insights</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav-cta" href="https://cal.com/dandelion-nrvrze">Book a 15-min call</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap crumb">
+    <a href="branding-page-redesign.html">Services</a><span class="sep">/</span><span class="cur">Web & App Development</span>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="sheet-label">
+        <span class="tag mono">SHEET NO. 08 — WEB &amp; APP DEVELOPMENT</span>
+        <span class="rule"></span>
+        <span class="mono" style="font-size:12px;color:var(--ink-soft)">SCALE 1:1</span>
+      </div>
+      <h1>Custom web &amp; app development <em>that performs, seamlessly.</em></h1>
+
+      <div class="hero-grid">
+        <div>
+          <p class="hero-sub">From marketing websites to custom dashboards, we build digital products that load fast, look sharp, and adapt to your growth. Whether it's Shopify, Webflow, or fully custom code, our dev team delivers performance without compromising design.</p>
+          <div class="cta-row">
+            <a class="btn-primary" href="https://cal.com/dandelion-nrvrze">Book a 15-min call →</a>
+            <a class="btn-secondary" href="https://wa.me/919428859768">WhatsApp us</a>
+          </div>
+          <p class="price-note">Shopify builds, fixed at <b>₹96,000.</b> Custom builds, fixed at <b>₹1,45,000.</b> One price, agreed before work starts — no surprises at delivery.</p>
+        </div>
+
+        <div>
+          <div class="annot-card">
+            <div class="corner"></div>
+            <div class="annot-title mono">Web & App Development</div>
+            <div class="annot-row"><span>Platforms</span><span>Shopify, Webflow, Custom code</span></div>
+            <div class="annot-row"><span>Timeline</span><span>3–10 weeks by scope</span></div>
+            <div class="annot-row"><span>Support</span><span>15 days – 2 months, included</span></div>
+            <div class="annot-row"><span>Handoff</span><span>Full tutorial on updating the site</span></div>
+          </div>
+          <div class="feat-case">
+            <div class="fimg"><img src="https://framerusercontent.com/images/uDdH4r3dDH0e0oPRnTJg7WFpE.png?width=1685&height=1360" alt="Sonar SaaS platform website"></div>
+            <div class="fbody">
+              <div class="tag mono">FEATURED — SONAR, SAAS PLATFORM</div>
+              <h4 style="font-size:16px;">Clean, responsive site</h4>
+              <p>Drove 70% more client inquiries after launch.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat"><div class="num">20+</div><div class="lbl mono">websites &amp; apps shipped</div></div>
+        <div class="stat"><div class="num">3</div><div class="lbl mono">platforms — Shopify, Webflow, custom code</div></div>
+        <div class="stat"><div class="num">3–10</div><div class="lbl mono">week delivery window</div></div>
+        <div class="stat"><div class="num">70%</div><div class="lbl mono">avg. lift in inbound inquiries</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <div class="eyebrow mono">WHAT WE BUILD</div>
+          <h2 style="font-size:clamp(26px,3vw,36px);margin-bottom:16px;">Web &amp; app development built to scale with your brand.</h2>
+          <p style="color:var(--ink-soft);font-size:15.5px;">From marketing websites to custom dashboards, we build digital products that load fast, look sharp, and adapt to your growth — no-code, low-code, or fully custom, delivered without compromising design.</p>
+        </div>
+        <img src="https://framerusercontent.com/images/TW8nh45W2f0jJxIXkfCtK2I9qo.webp?width=1876&height=1821" alt="Heydoh e-commerce site">
+      </div>
+
+      <div class="deliv-grid" style="margin-top:44px;">
+        <div class="deliv-col"><h4>UX Moodboards</h4><p>Visual direction agreed before a single screen is built.</p></div>
+        <div class="deliv-col"><h4>Wireframes, UI &amp; UX</h4><p>Structure and flow mapped for every key page.</p></div>
+        <div class="deliv-col"><h4>Content Writing</h4><p>On-brand copy for every page, not filler text.</p></div>
+        <div class="deliv-col"><h4>Custom Design</h4><p>Every screen designed for your brand, not a template.</p></div>
+        <div class="deliv-col"><h4>Dynamic, Responsive Animation</h4><p>Motion that adapts cleanly across every screen size.</p></div>
+        <div class="deliv-col"><h4>Home + Unlimited Pages</h4><p>Every page you need during the build, no per-page fees.</p></div>
+        <div class="deliv-col"><h4>Shopify / Webflow / Custom Code</h4><p>Built on the platform that actually fits your scope.</p></div>
+        <div class="deliv-col"><h4>Tutorial on Updating Site</h4><p>A walkthrough so your team can self-serve after launch.</p></div>
+        <div class="deliv-col"><h4>Payment Gateway Integration</h4><p>Razorpay, Stripe, PayPal, or your gateway of choice.</p></div>
+        <div class="deliv-col"><h4>Complete End-to-End Development</h4><p>Strategy through launch — one team, one point of contact.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">SHOPIFY OR CUSTOM?</div>
+          <h2>Most agencies push what they only know how to build. We'll tell you which one you actually need.</h2>
+        </div>
+        <p>Our competitors in this space build almost exclusively on Shopify. We build both — so the platform recommendation you get is based on your brand, not our limitations.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <table class="compare">
+          <tr><th>&nbsp;</th><th>Shopify / E-commerce Build</th><th class="hl">Custom Website Build</th></tr>
+          <tr><td>Best for</td><td>DTC brands selling products, need speed to launch</td><td class="hl">Brands needing something a template can't do</td></tr>
+          <tr><td>Timeline</td><td>3–5 weeks</td><td class="hl">6–10 weeks</td></tr>
+          <tr><td>Flexibility</td><td>High, within Shopify's ecosystem &amp; apps</td><td class="hl">Unlimited — built exactly to your spec</td></tr>
+          <tr><td>Ongoing platform cost</td><td>Shopify subscription + paid apps</td><td class="hl">Hosting only — no platform fees</td></tr>
+          <tr><td>Fixed price</td><td>₹96,000</td><td class="hl">₹1,45,000</td></tr>
+        </table>
+      </div>
+      <div class="honesty-note">
+        <strong>Our honest take:</strong> if you're selling a straightforward product catalog and want to launch fast, Shopify is usually the right call — we'll say so even though the custom build is the bigger project for us. If your brand needs a specific interaction, a system Shopify can't do natively, or zero recurring platform fees at scale, custom is worth the extra investment.
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">PRICING OPTIONS</div>
+          <h2>Flexible development plans that fit your launch and growth timeline.</h2>
+        </div>
+      </div>
+
+      <div class="tier-grid">
+        <div class="tier">
+          <div class="use">Individuals &amp; small businesses</div>
+          <h4>Starter Site</h4>
+          <div class="price">₹85,000</div>
+          <div class="price-sub mono">PER PROJECT</div>
+          <ul>
+            <li>1–5 page website</li>
+            <li>Mobile responsive design</li>
+            <li>Basic UI/UX design</li>
+            <li>Contact form integration</li>
+            <li>Fast loading speed</li>
+            <li>Basic SEO setup</li>
+            <li>15 days free support</li>
+          </ul>
+          <a class="tier-cta" href="https://cal.com/dandelion-nrvrze">Get started</a>
+        </div>
+
+        <div class="tier">
+          <div class="use">DTC brands launching or migrating to Shopify</div>
+          <h4>Shopify / E-commerce Build</h4>
+          <div class="price">₹96,000</div>
+          <div class="price-sub mono">FIXED PRICE · UP TO 50 SKUs</div>
+          <ul>
+            <li>Built in Shopify, WooCommerce, or equivalent</li>
+            <li>Dynamic product listing</li>
+            <li>Unlimited pages</li>
+            <li>Payment gateway integration</li>
+            <li>Launch support</li>
+            <li>15 days free support</li>
+          </ul>
+          <a class="tier-cta" href="https://cal.com/dandelion-nrvrze">Get started</a>
+          <div class="examples">Examples: <a href="https://shaktimat.ca/">Shaktimat</a><a href="https://suta.in/">Suta</a><a href="https://www.arata.in/">Arata</a></div>
+        </div>
+
+        <div class="tier rec">
+          <div class="flag">RECOMMENDED FOR GROWING BRANDS</div>
+          <div class="use">Brands &amp; companies who've outgrown templates</div>
+          <h4>Custom Website Build</h4>
+          <div class="price">₹1,45,000</div>
+          <div class="price-sub mono">FIXED PRICE · UP TO 10 PAGES</div>
+          <ul>
+            <li>10-page website</li>
+            <li>Advanced animations &amp; interactions</li>
+            <li>Advanced SEO optimization</li>
+            <li>Third-party integrations (CRM, APIs)</li>
+            <li>AI integration where useful</li>
+            <li>2 months free support</li>
+          </ul>
+          <a class="tier-cta" href="https://cal.com/dandelion-nrvrze">Get started</a>
+        </div>
+
+        <div class="tier">
+          <div class="use">Cross-platform app development</div>
+          <h4>App Development</h4>
+          <div class="price">₹2,85,000</div>
+          <div class="price-sub mono">PER PROJECT</div>
+          <ul>
+            <li>Single codebase for iOS &amp; Android</li>
+            <li>UX moodboard</li>
+            <li>Custom wireframe &amp; UI/UX design</li>
+            <li>Advanced dynamic animation</li>
+            <li>Payment gateways</li>
+            <li>Speed optimization</li>
+            <li>Special &amp; custom API integrations</li>
+          </ul>
+          <a class="tier-cta" href="https://cal.com/dandelion-nrvrze">Get started</a>
+        </div>
+      </div>
+
+      <div style="margin-top:26px;border:1px solid var(--ink);background:var(--card);padding:26px 28px;">
+        <div style="font-family:'Fraunces',serif;font-size:17px;font-weight:600;margin-bottom:6px;">What changes the price — and what never does</div>
+        <p style="font-size:13.5px;color:var(--ink-soft);max-width:640px;margin-bottom:18px;">Every price above is fixed for the scope listed. Nothing is added without your sign-off — if your project needs more than the base scope, here's exactly what that costs:</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 32px;">
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;padding:9px 0;border-top:1px dashed var(--paper-line);"><span style="color:var(--ink-soft)">Shopify catalog beyond 50 SKUs</span><span style="font-weight:600">+₹10,000</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;padding:9px 0;border-top:1px dashed var(--paper-line);"><span style="color:var(--ink-soft)">Migration from an existing platform</span><span style="font-weight:600">+₹15,000</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;padding:9px 0;border-top:1px dashed var(--paper-line);"><span style="color:var(--ink-soft)">Custom pages beyond 10 (Custom Build)</span><span style="font-weight:600">+₹8,000 / page</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;padding:9px 0;border-top:1px dashed var(--paper-line);"><span style="color:var(--ink-soft)">Multi-currency / international checkout</span><span style="font-weight:600">+₹10,000</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;padding:9px 0;border-top:1px dashed var(--paper-line);"><span style="color:var(--ink-soft)">Custom app or API integration</span><span style="font-weight:600">+₹12,000</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;padding:9px 0;border-top:1px dashed var(--paper-line);"><span style="color:var(--ink-soft)">Membership / gated login system</span><span style="font-weight:600">+₹18,000</span></div>
+        </div>
+        <p style="font-size:12.5px;color:var(--ink-soft);margin-top:16px;">You'll see all applicable add-ons in your quote before work begins — never after. If none apply, you pay exactly the fixed price above.</p>
+      </div>
+
+      <div class="testi">
+        <div>
+          <div class="stars">★★★★★</div>
+          <p class="body">"We've worked with other agencies before, but the attention to detail and design thinking here was on another level."</p>
+          <div class="who"><b>Amir D.</b> — Operations Lead at Arteko</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">FAQ</div>
+          <h2>Frequently asked questions.</h2>
+        </div>
+      </div>
+      <div id="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">What is UI/UX?<span class="plus">+</span></button>
+          <div class="faq-a"><p>UI (User Interface) is how your product looks — layout, colour, typography, buttons. UX (User Experience) is how it feels to use — navigation, flow, load speed, whether a visitor finds what they came for in seconds. We design both together, since a beautiful interface that's confusing to use converts worse than a plain one that isn't.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What is the timeline for an ecommerce website?<span class="plus">+</span></button>
+          <div class="faq-a"><p>A Shopify build typically takes 3–5 weeks from kickoff to launch, depending on catalog size and integrations. Fully custom builds run 6–10 weeks. You'll get an exact timeline on the call once we know your scope.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What is custom design?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Custom design means every screen is designed specifically for your brand — not adapted from a theme. Layout, interactions, and components are built around your positioning, not a template's defaults.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What is dynamic and responsive?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Responsive means your site adapts correctly to any screen size — phone, tablet, desktop. Dynamic means content and layout can change based on data or user behaviour — product filters, personalised recommendations, animated transitions — rather than one static page.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How many pages will be designed?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Our Shopify and Custom builds include unlimited pages during the engagement — home, product/collection, about, contact, and any custom landing pages you need. Larger structural additions after launch are quoted separately.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What is CRO, and do you design CRO-optimised websites?<span class="plus">+</span></button>
+          <div class="faq-a"><p>CRO (Conversion Rate Optimization) means designing pages specifically to turn visitors into buyers or leads — clear hierarchy, frictionless checkout, trust signals in the right place, fast load times. Every site we build follows CRO fundamentals by default; for higher-traffic stores we can run structured A/B testing post-launch as a separate engagement.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What are your payment terms?<span class="plus">+</span></button>
+          <div class="faq-a"><p>50% to begin work, 50% on final delivery before the site goes live. For the App Development tier, payments split across three milestones — kickoff, mid-build review, and launch.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">OUR WORK</div>
+          <h2>Work we've built so far.</h2>
+        </div>
+      </div>
+
+      <div class="filter-tabs" id="filter-tabs">
+        <button class="ftab on" data-cat="all">All</button>
+        <button class="ftab" data-cat="native">Native Code</button>
+        <button class="ftab" data-cat="nocode">No Code</button>
+        <button class="ftab" data-cat="ecommerce">E-commerce</button>
+      </div>
+
+      <div class="case-grid" id="case-grid">
+        <a class="case-card" data-cat="ecommerce" href="https://heydoh.co/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/TW8nh45W2f0jJxIXkfCtK2I9qo.webp?width=1876&height=1821" alt="Heydoh"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>Heydoh Soy Sauce</h4></div>
+        </a>
+        <a class="case-card" data-cat="ecommerce" href="https://eu.dockers.com/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/wwljvqAiXbHPskZq2H2HFW16ug.png?width=3414&height=2092" alt="Dockers"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>Dockers — Shopify Migration</h4></div>
+        </a>
+        <a class="case-card" data-cat="ecommerce" href="https://www.jumpinggoatliquor.com/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/eGKHd2k1Xl1bURsuiHtL9zH6g.png?width=1888&height=919" alt="Jumping Goat Liquor"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>Jumping Goat Liquor</h4></div>
+        </a>
+        <a class="case-card" data-cat="ecommerce" href="https://cocolab.com/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/RavNTGjDTPqSEMREtfyXj01cY.png?width=1889&height=918" alt="Cocolab"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>Cocolab</h4></div>
+        </a>
+        <a class="case-card" data-cat="ecommerce" href="https://nothingfitsbut.com/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/zv7NiL9CBlTkrXSJTwve6Mv6qM.png?width=1891&height=909" alt="Nothing Fits But"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>Nothing Fits But</h4></div>
+        </a>
+        <a class="case-card" data-cat="ecommerce" href="https://eyeondesign.pl/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/ijj6fkRjp1O3Mp4IrpgojY7yxFQ.png?width=1881&height=908" alt="Eye on Design"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>Eye on Design</h4></div>
+        </a>
+        <a class="case-card" data-cat="ecommerce" href="https://camillebrinch.com/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/ucduo19dulaHKebxzb9S6G6KEKI.png?width=1878&height=913" alt="Camillebrinch"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>Camillebrinch</h4></div>
+        </a>
+        <a class="case-card" data-cat="ecommerce" href="https://www.silkandwillow.com/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/awsgdlBGitGj1gIX9hUlSDspTk.png?width=1895&height=913" alt="Silk and Willow"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>Silk and Willow</h4></div>
+        </a>
+        <a class="case-card" data-cat="ecommerce" href="https://bruvi.com/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/q24RBOXyuxkTVhwL9ED2h520.png?width=1896&height=912" alt="Bruvi"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>Bruvi</h4></div>
+        </a>
+        <a class="case-card" data-cat="ecommerce" href="https://thedealdepartment.nz/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/m5BV46AM2GF69Q4LrYe7EyScHFg.png?width=1887&height=913" alt="The Deal Department"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>The Deal Department</h4></div>
+        </a>
+        <a class="case-card" data-cat="ecommerce" href="https://marstonmoor.co.nz/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/OmlzVJQtnCAhnmFG8RDgQnElSGM.png?width=1890&height=918" alt="Marstonmoor"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>Marstonmoor</h4></div>
+        </a>
+        <a class="case-card" data-cat="ecommerce" href="https://musicradiocreative.com/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/Rk5BGoMsH6b2qOHJlT6ctjDzsE.png?width=1895&height=914" alt="Music Radio Creative"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>Music Radio Creative</h4></div>
+        </a>
+        <a class="case-card" data-cat="ecommerce" href="https://gojushots.com/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/fNEFSng1yYgatD7qwHHUaX20ujM.png?width=1904&height=916" alt="Goju Shots"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>Goju Shots</h4></div>
+        </a>
+        <a class="case-card" data-cat="ecommerce" href="https://commafootball.com/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/Z2DLzSMyLAGZ55XhkPQ0trRP9S0.png?width=1896&height=923" alt="Commafootball"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>Commafootball</h4></div>
+        </a>
+        <a class="case-card" data-cat="native" href="https://shaktimat.ca/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/lzCMGdCVl4l1qY3JFkJc2NDPtg.png?width=1914&height=908" alt="Shaktimat"></div>
+          <div class="case-body"><div class="tag mono">NATIVE CODE</div><h4>Shaktimat</h4></div>
+        </a>
+        <a class="case-card" data-cat="ecommerce" href="https://mejuri.com/world/en/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/QG53iYrspe8Dj6EfSYdN7CPbujs.png?width=1188&height=728" alt="Mejuri"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>Mejuri</h4></div>
+        </a>
+        <a class="case-card" data-cat="ecommerce" href="https://doublestandard.nyc/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/9IlxJ5r43604P3SNziHlW8Z1W5U.png?width=1892&height=917" alt="Double Standard"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>Double Standard</h4></div>
+        </a>
+        <a class="case-card" data-cat="ecommerce" href="https://yowy.com.au/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/T9KFx1ujfIf7GMlF8nOqthYCd8Q.png?width=1891&height=916" alt="yowy"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>yowy</h4></div>
+        </a>
+        <a class="case-card" data-cat="ecommerce" href="https://www.coastalcowboys.com.au/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/i0cw87sMetqrsTVcOT6FH6pdAn4.png?width=1898&height=915" alt="Coastal Cowboys"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>Coastal Cowboys</h4></div>
+        </a>
+        <a class="case-card" data-cat="ecommerce" href="https://alshalofficial.com/" target="_blank" rel="noopener">
+          <div class="img"><img src="https://framerusercontent.com/images/vC6hFSd3652b1Yh8rSiDz7w03M.png?width=1903&height=919" alt="Alshal Official"></div>
+          <div class="case-body"><div class="tag mono">E-COMMERCE</div><h4>Alshal Official</h4></div>
+        </a>
+      </div>
+
+      <div class="verify-note">
+        <b>Before this goes live:</b> confirm every logo above reflects work TDB actually delivered. Large, well-known names (Dockers, Mejuri, Bruvi, Silk &amp; Willow, Music Radio Creative, Yowy, Double Standard, Coastal Cowboys) are the kind a high-ticket prospect will look up first — remove any that were reference/inspiration examples rather than client work, since one mismatch undermines the whole page's credibility faster than any single case study builds it.
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">MORE SERVICES</div>
+          <h2>Full-service, if you need it.</h2>
+        </div>
+      </div>
+      <div class="more-grid">
+        <div class="more-card">
+          <h4>Branding</h4>
+          <p>Bold, strategic identities that define and differentiate your brand.</p>
+          <a class="go" href="branding-page-redesign.html">See branding →</a>
+        </div>
+        <div class="more-card">
+          <h4>Packaging Design</h4>
+          <p>Shelf-ready systems built for retail and e-commerce alike.</p>
+          <a class="go" href="work.html">See work →</a>
+        </div>
+        <div class="more-card">
+          <h4>UI/UX Design</h4>
+          <p>Intuitive, modern design that captures attention and enhances experience.</p>
+          <a class="go" href="work.html">See work →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <h2>Not sure if you need Shopify or a custom build?</h2>
+      <p>Book a free 15-minute call. We'll tell you honestly which one fits your brand and budget — no platform bias.</p>
+      <a class="btn-primary" href="https://cal.com/dandelion-nrvrze">Book a 15-min call →</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo-mark" style="margin-bottom:14px;"><div class="box"></div>The Drawing Board</div>
+        <p style="max-width:260px;">Bold ideas, beautifully executed. Brands, websites, and visual content that move businesses forward.</p>
+      </div>
+      <div>
+        <div class="mono" style="font-size:11px;margin-bottom:10px;color:var(--ink)">SERVICES</div>
+        <a href="branding-page-redesign.html">Branding</a><a href="work.html">Packaging Design</a><a href="work.html">UI/UX Design</a><a href="service-development.html">Web Development</a>
+      </div>
+      <div>
+        <div class="mono" style="font-size:11px;margin-bottom:10px;color:var(--ink)">STUDIO</div>
+        <a href="index.html">About</a><a href="work.html">Work</a><a href="#">Insights</a><a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <div class="mono" style="font-size:11px;margin-bottom:10px;color:var(--ink)">CONNECT</div>
+        <a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Dribbble</a><a href="mailto:hello@drawingsboards.com">Email us</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© The Drawing Board 2026. All rights reserved.</span>
+      <span><a href="#">Terms of Service</a> &nbsp;·&nbsp; <a href="#">Privacy Policy</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <div class="txt">Shopify, fixed at ₹96,000<b>Free 15-min call</b></div>
+  <a href="https://cal.com/dandelion-nrvrze">Book now →</a>
+</div>
+
+<script>
+document.querySelectorAll('.faq-item').forEach(item=>{
+  const q = item.querySelector('.faq-q');
+  const a = item.querySelector('.faq-a');
+  q.addEventListener('click',()=>{
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(o=>{
+      if(o!==item){o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight=null;}
+    });
+    if(isOpen){ item.classList.remove('open'); a.style.maxHeight=null; }
+    else { item.classList.add('open'); a.style.maxHeight = a.scrollHeight+'px'; }
+  });
+});
+
+const tabs = document.querySelectorAll('.ftab');
+const cards = document.querySelectorAll('.case-card');
+tabs.forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    tabs.forEach(t=>t.classList.remove('on'));
+    tab.classList.add('on');
+    const cat = tab.dataset.cat;
+    cards.forEach(card=>{
+      if(cat==='all' || card.dataset.cat===cat){ card.classList.remove('hide'); }
+      else{ card.classList.add('hide'); }
+    });
+  });
+});
+</script>
+
+</body>
+</html>

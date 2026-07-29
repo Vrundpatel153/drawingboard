@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategy-First Packaging Design | The Drawing Board</title>
+<meta name="description" content="The Drawing Board designs strategy-first packaging systems for consumer brands — category research, shelf differentiation, SKU architecture and print-ready production. Engagements start at ₹1,75,000.">
+<meta property="og:title" content="Strategy-First Packaging Design | The Drawing Board">
+<meta property="og:description" content="Packaging built on category research and shelf strategy, not just visual styling. One master direction, systemised across SKUs, delivered print-ready.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,450;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS — matched exactly to branding-page-redesign.html ============ */
+:root{
+  --paper:#EFEBE2;
+  --paper-line:#DAD3C2;
+  --ink:#1B1B17;
+  --ink-soft:#4A473F;
+  --pine:#24463B;
+  --pine-deep:#173029;
+  --marker:#B8412E;
+  --card:#F7F4EC;
+  --radius:2px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  background-image:
+    linear-gradient(var(--paper-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+  background-size:48px 48px;
+  background-attachment:fixed;
+}
+::selection{background:var(--pine);color:var(--paper);}
+h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;line-height:1.05;}
+.mono{font-family:'IBM Plex Mono',monospace;letter-spacing:0.03em;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+a:focus-visible, button:focus-visible, input:focus-visible{outline:2px solid var(--pine);outline-offset:2px;}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;scroll-behavior:auto !important;}
+}
+
+/* registration marks */
+.reg{position:fixed;width:18px;height:18px;pointer-events:none;z-index:40;opacity:0.55;}
+.reg::before,.reg::after{content:"";position:absolute;background:var(--ink);}
+.reg::before{width:100%;height:1px;top:50%;}
+.reg::after{width:1px;height:100%;left:50%;}
+.reg-tl{top:14px;left:14px;} .reg-tr{top:14px;right:14px;}
+.reg-bl{bottom:14px;left:14px;} .reg-br{bottom:14px;right:14px;}
+@media(max-width:480px){.reg{display:none;}}
+
+/* header */
+header{
+  position:sticky;top:0;z-index:30;
+  background:rgba(239,235,226,0.92);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--ink);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;max-width:1180px;margin:0 auto;}
+.logo-mark{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:18px;}
+.logo-mark .box{width:22px;height:22px;border:1.5px solid var(--ink);position:relative;flex-shrink:0;}
+.logo-mark .box::after{content:"";position:absolute;inset:4px;border:1px solid var(--ink);}
+.navlinks{display:flex;gap:36px;font-size:14px;}
+.navlinks a{position:relative;padding:2px 0;}
+.navlinks a.active{color:var(--pine);}
+.navlinks a.active::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:2px;background:var(--marker);}
+.nav-cta{font-size:13px;padding:10px 18px;border:1.5px solid var(--ink);border-radius:var(--radius);}
+.nav-cta:hover{background:var(--ink);color:var(--paper);}
+@media(max-width:860px){.navlinks{display:none;}}
+
+.crumb{padding:22px 0 0;font-size:12.5px;color:var(--ink-soft);}
+.crumb a{color:var(--ink-soft);border-bottom:1px dashed var(--ink-soft);}
+.crumb a:hover{color:var(--pine);border-color:var(--pine);}
+.crumb span.sep{margin:0 8px;opacity:0.5;}
+.crumb span.cur{color:var(--ink);}
+
+/* hero */
+.hero{padding:56px 0 64px;position:relative;}
+.sheet-label{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
+.sheet-label .tag{font-size:12px;padding:6px 10px;border:1px solid var(--ink);}
+.sheet-label .rule{flex:1;height:1px;background:var(--ink-soft);opacity:0.4;}
+.hero h1{font-size:clamp(34px,5vw,64px);max-width:920px;}
+.hero h1 em{font-style:normal;color:var(--pine);}
+.hero-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:56px;align-items:start;margin-top:34px;}
+@media(max-width:920px){.hero-grid{grid-template-columns:1fr;}}
+.hero-sub{font-size:18px;color:var(--ink-soft);max-width:520px;margin-bottom:30px;}
+.cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-bottom:20px;}
+.btn-primary{background:var(--pine);color:var(--paper);padding:15px 26px;font-size:14.5px;font-weight:600;border-radius:var(--radius);display:inline-flex;align-items:center;gap:8px;transition:background .15s;border:none;cursor:pointer;}
+.btn-primary:hover{background:var(--pine-deep);}
+.btn-link{font-size:14.5px;border-bottom:1px solid currentColor;padding-bottom:2px;color:var(--ink-soft);}
+.price-note{font-size:13px;color:var(--ink-soft);}
+.price-note b{color:var(--ink);}
+
+.annot-card{background:var(--card);border:1px solid var(--ink);padding:26px;position:relative;}
+.annot-card .corner{position:absolute;top:-1px;right:-1px;width:26px;height:26px;background:var(--marker);clip-path:polygon(0 0,100% 0,100% 100%);}
+.annot-row{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px dashed var(--paper-line);padding:10px 0;font-size:13px;gap:14px;}
+.annot-row:last-child{border-bottom:none;}
+.annot-row span:first-child{color:var(--ink-soft);}
+.annot-title{font-size:12px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px;}
+
+.stat-strip{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin-top:56px;}
+.stat{flex:1;min-width:140px;padding:22px 24px;border-right:1px solid var(--ink);}
+.stat:last-child{border-right:none;}
+.stat .num{font-family:'Fraunces',serif;font-size:32px;font-weight:600;color:var(--pine);}
+.stat .lbl{font-size:12.5px;color:var(--ink-soft);margin-top:4px;}
+@media(max-width:700px){.stat-strip{flex-wrap:wrap;} .stat{flex:1 1 50%;border-bottom:1px solid var(--ink);}}
+
+/* urgency badge */
+.urgency{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;background:var(--card);border:1px solid var(--ink);padding:7px 12px;margin-bottom:22px;}
+.urgency .dot{width:7px;height:7px;border-radius:50%;background:var(--marker);animation:pulse 1.6s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+/* logo strip */
+.logo-strip{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:0;}
+.logo-strip .wrap{display:flex;align-items:center;gap:0;padding:0;}
+.logo-strip .lbl2{font-size:11px;color:var(--ink-soft);padding:18px 24px 18px 0;white-space:nowrap;border-right:1px solid var(--paper-line);}
+.logo-row{display:flex;flex:1;overflow-x:auto;}
+.logo-row span{flex:1;text-align:center;padding:18px 20px;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:13px;letter-spacing:0.03em;color:var(--ink-soft);border-right:1px solid var(--paper-line);white-space:nowrap;}
+.logo-row span:last-child{border-right:none;}
+
+/* section shell */
+section{padding:80px 0;}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:44px;flex-wrap:wrap;}
+.eyebrow{font-size:12px;color:var(--marker);margin-bottom:10px;}
+.section-head h2{font-size:clamp(26px,3.4vw,42px);max-width:660px;}
+.section-head p{color:var(--ink-soft);max-width:380px;font-size:15px;}
+
+/* problem */
+.problem{background:var(--ink);color:var(--paper);}
+.problem .section-head p, .problem .eyebrow{color:#C9C3B4;}
+.problem-copy{font-size:19px;line-height:1.65;max-width:760px;color:#E7E3D8;}
+.problem-copy strong{color:#fff;}
+.problem-copy p+p{margin-top:14px;}
+.problem-close{font-family:'Fraunces',serif;font-size:22px;font-weight:450;color:#fff;margin-top:22px;max-width:640px;}
+
+/* qualifier */
+.qual-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ink);border:1px solid var(--ink);}
+@media(max-width:760px){.qual-grid{grid-template-columns:1fr;}}
+.qual-col{background:var(--card);padding:30px 28px;}
+.qual-col.no{background:#EFEBE2;}
+.qual-col h4{font-size:16px;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.qual-col h4 .mark{width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
+.qual-col.yes h4 .mark{background:var(--pine);color:var(--paper);}
+.qual-col.no h4 .mark{background:transparent;border:1.5px solid var(--ink-soft);color:var(--ink-soft);}
+.qual-col ul{list-style:none;font-size:14px;color:var(--ink-soft);}
+.qual-col li{padding:8px 0;border-top:1px dashed var(--paper-line);}
+.qual-col li:first-child{border-top:none;}
+.qual-note{font-size:13px;color:var(--ink-soft);margin-top:20px;border-left:3px solid var(--marker);padding:6px 0 6px 18px;max-width:680px;}
+
+/* strategy question grid */
+.strategy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink);border:1px solid var(--ink);}
+@media(max-width:900px){.strategy-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.strategy-grid{grid-template-columns:1fr;}}
+.strategy-card{background:var(--card);padding:24px 22px;}
+.strategy-card .n{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--marker);margin-bottom:8px;}
+.strategy-card h4{font-size:16.5px;margin-bottom:8px;}
+.strategy-card p{font-size:13px;color:var(--ink-soft);}
+.strategy-close{font-family:'Fraunces',serif;font-size:20px;font-weight:450;margin-top:26px;max-width:680px;}
+
+/* deliverables */
+.deliv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ink);border:1px solid var(--ink);}
+@media(max-width:900px){.deliv-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.deliv-grid{grid-template-columns:1fr;}}
+.deliv-col{background:var(--card);padding:24px 22px;}
+.deliv-col h4{font-size:15px;margin-bottom:6px;}
+.deliv-col .sub{font-size:12px;color:var(--marker);margin-bottom:16px;}
+.deliv-col ul{list-style:none;font-size:13.5px;color:var(--ink-soft);}
+.deliv-col li{padding:6px 0;border-top:1px dashed var(--paper-line);}
+.deliv-col li:first-child{border-top:none;}
+.deliv-note{font-size:13px;color:var(--ink-soft);margin-top:16px;max-width:720px;}
+.deliv-note strong{color:var(--ink);}
+.deliv-note.warn{border-left:3px solid var(--marker);padding:4px 0 4px 16px;margin-top:10px;}
+
+/* add-ons */
+.addon-box{border:1px solid var(--ink);background:var(--card);padding:34px;}
+.addon-list{display:grid;grid-template-columns:repeat(3,1fr);gap:6px 24px;list-style:none;font-size:14px;color:var(--ink-soft);margin-top:22px;}
+@media(max-width:760px){.addon-list{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.addon-list{grid-template-columns:1fr;}}
+.addon-list li{padding:9px 0;border-top:1px dashed var(--paper-line);display:flex;gap:8px;}
+.addon-list li::before{content:"+";color:var(--pine);font-weight:700;flex-shrink:0;}
+.addon-note{font-size:13px;color:var(--ink-soft);margin-top:22px;}
+
+/* process */
+.process{display:flex;gap:0;overflow-x:auto;border-top:1px solid var(--ink);}
+.pstep{flex:1;min-width:190px;padding:24px 20px;border-right:1px solid var(--ink-soft);position:relative;}
+.pstep:last-child{border-right:none;}
+.pstep .n{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--marker);}
+.pstep h4{font-size:16.5px;margin:8px 0 6px;}
+.pstep p{font-size:13px;color:var(--ink-soft);}
+.process-note{font-size:13.5px;color:var(--ink-soft);margin-top:20px;}
+.process-note ul{list-style:none;margin-top:10px;display:flex;flex-wrap:wrap;gap:8px 22px;}
+.process-note li{display:flex;gap:6px;}
+.process-note li::before{content:"—";color:var(--pine);}
+
+/* client provides checklist */
+.provide-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 40px;list-style:none;font-size:14px;color:var(--ink-soft);}
+@media(max-width:700px){.provide-grid{grid-template-columns:1fr;}}
+.provide-grid li{padding:10px 0;border-top:1px dashed var(--paper-line);display:flex;gap:10px;}
+.provide-grid li::before{content:"✓";color:var(--pine);font-weight:700;flex-shrink:0;}
+.provide-note{font-size:13px;color:var(--ink-soft);margin-top:22px;border-left:3px solid var(--marker);padding:6px 0 6px 18px;max-width:700px;}
+
+/* comparison table */
+.compare-wrap{overflow-x:auto;border:1px solid var(--ink);}
+table.compare{width:100%;border-collapse:collapse;min-width:640px;background:var(--card);}
+table.compare th,table.compare td{padding:16px 18px;text-align:left;font-size:13.5px;border-bottom:1px solid var(--paper-line);}
+table.compare th{font-family:'Fraunces',serif;font-size:15px;font-weight:600;background:var(--card);border-bottom:1px solid var(--ink);}
+table.compare th.hl{color:var(--pine);}
+table.compare td.hl{background:#E4EDE9;font-weight:600;}
+table.compare tr:last-child td{border-bottom:none;}
+table.compare td:first-child{color:var(--ink-soft);}
+.ic-yes{color:var(--pine);font-weight:700;}
+.ic-no{color:#B0A995;}
+.compare-note{font-size:12.5px;color:var(--ink-soft);margin-top:14px;}
+
+/* proof / case studies */
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:860px){.proof-grid{grid-template-columns:1fr;}}
+.proof-card{border:1px solid var(--ink);background:var(--card);overflow:hidden;display:block;}
+.proof-card .img{aspect-ratio:4/3;background:linear-gradient(135deg,#d8d2c1,#c3bda9);position:relative;}
+.proof-card .img::after{content:"IMAGE PLACEHOLDER";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.05em;color:#8b8571;text-align:center;padding:0 20px;}
+.proof-body{padding:18px 20px;}
+.proof-body .tag{font-size:11px;color:var(--marker);margin-bottom:6px;}
+.proof-body h4{font-size:18px;margin-bottom:6px;}
+.proof-body p{font-size:13px;color:var(--ink-soft);}
+
+/* before / after diagnostic */
+.diag-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ink);border:1px solid var(--ink);}
+@media(max-width:760px){.diag-grid{grid-template-columns:1fr;}}
+.diag-col{background:var(--card);padding:30px 28px;}
+.diag-col.after{background:var(--pine);color:var(--paper);}
+.diag-col h4{font-size:16px;margin-bottom:16px;}
+.diag-col.after h4{color:#fff;}
+.diag-col ul{list-style:none;font-size:14px;color:var(--ink-soft);}
+.diag-col.after ul{color:#CFE0DA;}
+.diag-col li{padding:8px 0;border-top:1px dashed var(--paper-line);display:flex;gap:10px;}
+.diag-col.after li{border-top:1px dashed rgba(255,255,255,0.2);}
+.diag-col li:first-child{border-top:none;}
+.diag-col.before li::before{content:"–";color:#B0A995;font-weight:700;}
+.diag-col.after li::before{content:"✓";color:#9FCBB6;font-weight:700;}
+
+/* proof cards (quote / whatsapp / expert) */
+.evidence-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:900px){.evidence-grid{grid-template-columns:1fr;}}
+.ev-card{border:1px solid var(--ink);background:var(--card);padding:26px;display:flex;flex-direction:column;}
+.ev-card .ev-label{font-size:11px;color:var(--marker);margin-bottom:14px;letter-spacing:0.04em;}
+.ev-card p.body{font-size:14.5px;line-height:1.6;flex:1;font-style:italic;color:var(--ink-soft);}
+.ev-who{font-size:12.5px;color:var(--ink-soft);border-top:1px dashed var(--paper-line);padding-top:14px;margin-top:16px;}
+.ev-who b{color:var(--ink);display:block;}
+.wa-card{background:#fff;border:1px solid var(--paper-line);padding:14px;margin-bottom:14px;}
+.wa-bubble{background:var(--card);border:1px solid var(--paper-line);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--ink-soft);margin-bottom:8px;max-width:88%;}
+.wa-bubble:last-child{margin-bottom:0;}
+.evidence-close{font-size:13.5px;color:var(--ink-soft);margin-top:24px;max-width:680px;}
+
+/* pricing — single featured card + scope notes */
+.pricing-wrap{display:grid;grid-template-columns:1.3fr 0.9fr;gap:24px;align-items:start;}
+@media(max-width:900px){.pricing-wrap{grid-template-columns:1fr;}}
+.feat-card{border:2px solid var(--pine);background:var(--card);position:relative;}
+.feat-card .flag{position:absolute;top:-1px;right:-1px;background:var(--pine);color:var(--paper);font-size:11px;padding:5px 10px;font-family:'IBM Plex Mono',monospace;}
+.feat-head{padding:30px 30px 22px;border-bottom:1px dashed var(--paper-line);}
+.feat-head .name{font-size:12px;color:var(--marker);margin-bottom:8px;}
+.feat-head h3{font-size:26px;margin-bottom:8px;}
+.feat-head .desc{font-size:14px;color:var(--ink-soft);}
+.feat-price{padding:22px 30px;border-bottom:1px dashed var(--paper-line);}
+.feat-price .amt{font-family:'Fraunces',serif;font-size:38px;font-weight:600;}
+.feat-price .per{font-size:12.5px;color:var(--ink-soft);margin-top:4px;}
+.feat-list{padding:22px 30px;list-style:none;font-size:13.5px;columns:2;column-gap:24px;}
+@media(max-width:560px){.feat-list{columns:1;}}
+.feat-list li{padding:7px 0;display:flex;gap:10px;break-inside:avoid;}
+.feat-list li::before{content:"—";color:var(--pine);flex-shrink:0;}
+.feat-foot{padding:24px 30px 30px;}
+.feat-timeline{font-size:13px;color:var(--ink-soft);margin-bottom:6px;}
+.feat-payment{font-size:12.5px;color:var(--ink-soft);margin-bottom:20px;}
+.feat-cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
+
+.scope-card{border:1px solid var(--ink);background:var(--card);padding:26px;}
+.scope-card h4{font-size:15px;margin-bottom:14px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.03em;}
+.scope-card ul{list-style:none;font-size:13px;color:var(--ink-soft);}
+.scope-card li{padding:8px 0;border-top:1px dashed var(--paper-line);}
+.scope-card li:first-child{border-top:none;}
+
+/* value quote */
+.quote-strip{margin-top:0;border-left:3px solid var(--marker);padding:8px 0 8px 24px;}
+.quote-strip h2{font-size:clamp(24px,3vw,34px);margin-bottom:16px;max-width:680px;}
+.quote-strip p{font-size:16px;color:var(--ink-soft);max-width:700px;line-height:1.7;}
+.quote-strip p+p{margin-top:12px;}
+.quote-strip .close{font-family:'Fraunces',serif;font-size:19px;font-weight:450;color:var(--ink);margin-top:16px;}
+
+/* guarantee / alignment checkpoint */
+.guarantee{background:var(--card);border:1px solid var(--ink);padding:44px;display:flex;gap:32px;align-items:center;}
+@media(max-width:700px){.guarantee{flex-direction:column;align-items:flex-start;}}
+.guarantee .badge{width:78px;height:78px;border:2px solid var(--pine);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Fraunces',serif;font-size:10.5px;text-align:center;color:var(--pine);line-height:1.25;padding:8px;}
+.guarantee h3{font-size:22px;margin-bottom:8px;}
+.guarantee p{font-size:14.5px;color:var(--ink-soft);max-width:660px;}
+.guarantee p+p{margin-top:8px;}
+
+/* faq */
+.faq-item{border-bottom:1px solid var(--ink-soft);opacity:0.9;}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:20px 4px;font-family:'Fraunces',serif;font-size:17.5px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--ink);gap:16px;}
+.faq-q .plus{font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--marker);transition:transform .2s;flex-shrink:0;}
+.faq-item.open .plus{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.faq-a p{padding:0 4px 20px;font-size:14.5px;color:var(--ink-soft);max-width:700px;}
+
+/* lead magnet */
+.lead-magnet{background:var(--ink);color:var(--paper);}
+.lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+@media(max-width:860px){.lead-grid{grid-template-columns:1fr;}}
+.lead-magnet .eyebrow{color:#C9C3B4;}
+.lead-magnet h2{color:#fff;font-size:clamp(26px,3.4vw,38px);margin-bottom:14px;}
+.lead-magnet p.desc{color:#C9C3B4;font-size:15px;margin-bottom:0;max-width:460px;}
+.lead-points{list-style:none;margin-top:20px;font-size:13.5px;color:#E7E3D8;}
+.lead-points li{padding:6px 0;display:flex;gap:10px;}
+.lead-points li::before{content:"✓";color:#7FB89F;font-weight:700;}
+.lead-form{background:var(--card);color:var(--ink);border:1px solid var(--ink-soft);padding:30px;}
+.lead-form .tag{font-size:11px;color:var(--marker);margin-bottom:6px;}
+.lead-form h4{font-size:19px;margin-bottom:18px;}
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:12px;color:var(--ink-soft);margin-bottom:6px;}
+.field input{width:100%;padding:12px 14px;border:1px solid var(--ink-soft);background:#fff;font-family:'Inter',sans-serif;font-size:14px;border-radius:var(--radius);}
+.field input:focus{outline:none;border-color:var(--pine);}
+.lead-submit{width:100%;background:var(--pine);color:var(--paper);border:none;padding:14px;font-size:14px;font-weight:600;cursor:pointer;margin-top:6px;border-radius:var(--radius);}
+.lead-submit:hover{background:var(--pine-deep);}
+.lead-fine{font-size:11px;color:var(--ink-soft);margin-top:10px;text-align:center;}
+
+/* final cta */
+.final{background:var(--pine);color:var(--paper);text-align:center;}
+.final h2{font-size:clamp(28px,4.5vw,46px);max-width:720px;margin:0 auto 18px;}
+.final p{color:#CFE0DA;max-width:520px;margin:0 auto 32px;font-size:16px;}
+.final .btn-primary{background:var(--paper);color:var(--pine);}
+.final .btn-primary:hover{background:#fff;}
+
+/* sticky mobile cta */
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:50;background:var(--ink);padding:14px 18px;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid #000;}
+.sticky-cta .txt{color:#fff;font-size:13px;}
+.sticky-cta .txt b{display:block;font-size:14.5px;}
+.sticky-cta a{background:var(--paper);color:var(--ink);padding:11px 18px;font-size:13px;font-weight:600;border-radius:var(--radius);white-space:nowrap;}
+@media(max-width:700px){.sticky-cta{display:flex;} body{padding-bottom:64px;}}
+
+footer{border-top:1px solid var(--ink);padding:50px 0 30px;font-size:13px;color:var(--ink-soft);}
+.foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;margin-bottom:30px;}
+.foot-grid a{display:block;padding:4px 0;}
+.foot-bottom{border-top:1px solid var(--paper-line);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+</style>
+</head>
+<body>
+
+<div class="reg reg-tl" aria-hidden="true"></div><div class="reg reg-tr" aria-hidden="true"></div><div class="reg reg-bl" aria-hidden="true"></div><div class="reg reg-br" aria-hidden="true"></div>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo-mark"><div class="box"></div>The Drawing Board</a>
+    <nav class="navlinks" aria-label="Primary">
+      <a href="index.html">Studio</a>
+      <a href="work.html">Work</a>
+      <a class="active" href="branding-page-redesign.html">Services</a>
+      <a href="#">Insights</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav-cta" href="#pricing">Book a 15-min call</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap crumb">
+    <a href="branding-page-redesign.html">Services</a><span class="sep">/</span><span class="cur">Packaging Design</span>
+  </div>
+
+  <!-- ============ SECTION 2 — HERO ============ -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="sheet-label">
+        <span class="tag mono">SHEET NO. 03 — PACKAGING</span>
+        <span class="rule"></span>
+        <span class="mono" style="font-size:12px;color:var(--ink-soft)">SCALE 1:1</span>
+      </div>
+      <!-- Editable: update or remove this availability line each cycle -->
+      <div class="urgency"><span class="dot" aria-hidden="true"></span>Accepting 2 packaging projects for the next production cycle</div>
+
+      <h1>Packaging designed to earn the second look — and make the first choice <em>easier.</em></h1>
+
+      <div class="hero-grid">
+        <div>
+          <p class="hero-sub">Your customer may discover the product through an ad, but the packaging often closes the decision. We combine positioning, category research, visual storytelling and production thinking to build packaging that feels distinctive, credible and ready to scale.</p>
+          <div class="cta-row">
+            <a class="btn-primary" href="#pricing">Book a 15-min call →</a>
+            <a class="btn-link" href="https://wa.me/919428859768">or message us on WhatsApp</a>
+          </div>
+          <p class="price-note">Packaging engagements start at <b>₹1,75,000.</b> Built for serious launches, redesigns and growing product ranges.</p>
+        </div>
+
+        <div class="annot-card">
+          <div class="corner"></div>
+          <div class="annot-title mono">Master Packaging — Project Specification</div>
+          <div class="annot-row"><span>Engagement</span><span>Strategy + packaging system</span></div>
+          <div class="annot-row"><span>Base scope</span><span>1 master design + SKU adaptations</span></div>
+          <div class="annot-row"><span>Delivery</span><span>Approximately 3–5 weeks</span></div>
+          <div class="annot-row"><span>Handoff</span><span>Print-ready + editable source files</span></div>
+          <div class="annot-row"><span>Starting investment</span><span style="color:var(--pine);font-weight:600">₹1,75,000</span></div>
+        </div>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat"><div class="num">01</div><div class="lbl mono">master packaging direction</div></div>
+        <div class="stat"><div class="num">03–05</div><div class="lbl mono">week typical timeline</div></div>
+        <div class="stat"><div class="num">100%</div><div class="lbl mono">editable source-file handover</div></div>
+        <div class="stat"><div class="num">01:01</div><div class="lbl mono">direct studio communication</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 3 — PRODUCT CATEGORY STRIP ============ -->
+  <div class="logo-strip">
+    <div class="wrap">
+      <span class="lbl2 mono">DESIGNED FOR</span>
+      <div class="logo-row">
+        <span>Food &amp; Beverage</span><span>Beauty</span><span>Wellness</span><span>Snacks</span><span>Home &amp; Lifestyle</span><span>Premium FMCG</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 4 — THE PACKAGING PROBLEM ============ -->
+  <section class="problem">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">THE REAL PROBLEM</div>
+          <h2>Most packaging does not fail because it looks bad. It fails because it says nothing distinctive.</h2>
+        </div>
+      </div>
+      <p class="problem-copy">A shopper often sees several visually acceptable products together. Attractive design alone is no longer enough. If the packaging does not quickly communicate what the product is, who it is for, why it is different and why it deserves its price, <strong>it becomes interchangeable.</strong></p>
+      <p class="problem-close">Good packaging decorates the product. Strategic packaging gives the customer a reason to choose it.</p>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 5 — WHO THIS IS FOR ============ -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">IS THIS THE RIGHT FIT?</div>
+          <h2>Built for brands with a real product and a serious next move.</h2>
+        </div>
+        <p>Knowing this upfront saves you a call and saves us both time.</p>
+      </div>
+      <div class="qual-grid">
+        <div class="qual-col yes">
+          <h4><span class="mark">✓</span>Book the call if</h4>
+          <ul>
+            <li>You're launching within the next 1–4 months.</li>
+            <li>Your current packaging undersells the quality of the product.</li>
+            <li>Your product is struggling to stand apart from similar competitors.</li>
+            <li>You need one master design that can scale across multiple SKUs.</li>
+            <li>You're preparing for retail, marketplaces, exports or investor presentations.</li>
+            <li>You need files that a printer or manufacturer can actually use.</li>
+            <li>You want strategic feedback, not someone who only follows instructions.</li>
+            <li>You can provide final product information, claims and regulatory content.</li>
+          </ul>
+        </div>
+        <div class="qual-col no">
+          <h4><span class="mark">✕</span>This may not be the right fit yet if</h4>
+          <ul>
+            <li>The product formula or product name is still undecided.</li>
+            <li>You require several unpaid concepts before beginning.</li>
+            <li>You only need a quick label placed on an existing template.</li>
+            <li>Your main decision is based on finding the lowest quotation.</li>
+            <li>You need the completed packaging within a few days.</li>
+            <li>You are not authorised to approve the project.</li>
+            <li>You expect the designer to verify legal or regulatory claims on your behalf.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="qual-note">We can organise content and hierarchy, but final legal, nutritional and regulatory approvals remain the client's responsibility.</p>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 6 — STRATEGY BEFORE DESIGN ============ -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">BEFORE WE OPEN THE DESIGN SOFTWARE</div>
+          <h2>We decide what the packaging must communicate before deciding what it should look like.</h2>
+        </div>
+      </div>
+      <div class="strategy-grid">
+        <div class="strategy-card">
+          <div class="n mono">01</div>
+          <h4>Who notices it?</h4>
+          <p>The person standing at the shelf or scrolling past a thumbnail, in the seconds before they decide to look closer.</p>
+        </div>
+        <div class="strategy-card">
+          <div class="n mono">02</div>
+          <h4>What must they understand immediately?</h4>
+          <p>What the product is, who it's for, and why it's different — before they pick it up.</p>
+        </div>
+        <div class="strategy-card">
+          <div class="n mono">03</div>
+          <h4>Which competitor conventions should we use?</h4>
+          <p>The visual cues shoppers already rely on to recognise the category at a glance.</p>
+        </div>
+        <div class="strategy-card">
+          <div class="n mono">04</div>
+          <h4>Which conventions should we deliberately break?</h4>
+          <p>The expected moves we skip on purpose, so the pack doesn't disappear into the shelf.</p>
+        </div>
+        <div class="strategy-card">
+          <div class="n mono">05</div>
+          <h4>What justifies the price?</h4>
+          <p>The visual and material cues that make the asking price feel earned, not assumed.</p>
+        </div>
+        <div class="strategy-card">
+          <div class="n mono">06</div>
+          <h4>How will the system expand across SKUs?</h4>
+          <p>The rules that let a tenth flavour or size still look like it belongs with the first.</p>
+        </div>
+      </div>
+      <p class="strategy-close">A beautiful pack without a clear buying idea is decoration. We build the buying idea first.</p>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 7 — WHAT IS INCLUDED ============ -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">PACKAGING SCOPE</div>
+          <h2>From category thinking to production-ready handoff.</h2>
+        </div>
+      </div>
+      <div class="deliv-grid">
+        <div class="deliv-col">
+          <h4>Packaging Strategy</h4>
+          <div class="sub mono">WHY IT SHOULD WIN</div>
+          <ul>
+            <li>Founder discovery session</li>
+            <li>Product and audience understanding</li>
+            <li>Category and competitor audit</li>
+            <li>Shelf and digital thumbnail review</li>
+            <li>Positioning and packaging opportunity</li>
+            <li>Visual territory definition</li>
+            <li>Product hierarchy planning</li>
+            <li>Claims and communication hierarchy</li>
+          </ul>
+        </div>
+        <div class="deliv-col">
+          <h4>Master Packaging Design</h4>
+          <div class="sub mono">THE CORE SYSTEM</div>
+          <ul>
+            <li>One strategic master packaging direction</li>
+            <li>Front, back and side-panel design</li>
+            <li>Logo and identity application</li>
+            <li>Typography and colour system</li>
+            <li>Product naming hierarchy</li>
+            <li>Claims, benefits and information hierarchy</li>
+            <li>Custom graphic language</li>
+            <li>Custom illustration direction where required</li>
+            <li>Photography or image-art direction where required</li>
+            <li>Packaging mockups for presentation</li>
+          </ul>
+        </div>
+        <div class="deliv-col">
+          <h4>SKU &amp; Format System</h4>
+          <div class="sub mono">HOW IT SCALES</div>
+          <ul>
+            <li>Variant colour logic</li>
+            <li>Flavour or ingredient differentiation</li>
+            <li>Size and format hierarchy</li>
+            <li>SKU naming system</li>
+            <li>Up to 5 standard SKU adaptations</li>
+            <li>Consistency rules across the range</li>
+            <li>Future SKU expansion guidance</li>
+          </ul>
+        </div>
+        <div class="deliv-col">
+          <h4>Production Handoff</h4>
+          <div class="sub mono">READY FOR THE PRINTER</div>
+          <ul>
+            <li>Artwork applied to client-supplied dielines</li>
+            <li>CMYK print-ready PDF</li>
+            <li>Editable Adobe source files</li>
+            <li>Linked asset package</li>
+            <li>Colour references</li>
+            <li>Finish and material recommendations</li>
+            <li>Printer handoff notes</li>
+            <li>Pre-production artwork review</li>
+            <li>3D mockups for presentation</li>
+          </ul>
+        </div>
+      </div>
+      <p class="deliv-note"><strong>Scope note:</strong> the base ₹1,75,000 scope includes one master packaging design and up to five straightforward SKU adaptations using the approved structure. New formats, structural changes, additional sizes or major copy changes are quoted separately.</p>
+      <p class="deliv-note warn">The client or manufacturer must provide final, technically verified dielines. Structural engineering, prototype manufacturing, printing, legal review and regulatory certification are not included unless separately quoted.</p>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 8 — OPTIONAL ADD-ONS ============ -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">AVAILABLE WHEN NEEDED</div>
+          <h2>Build beyond the pack without bloating the base scope.</h2>
+        </div>
+      </div>
+      <div class="addon-box">
+        <p style="font-size:14.5px;color:var(--ink-soft);">The base engagement stays focused on one master direction and its SKU system. Anything beyond that is scoped separately, once we understand what you actually need:</p>
+        <ul class="addon-list">
+          <li>Additional SKUs</li>
+          <li>New packaging formats</li>
+          <li>Naming</li>
+          <li>Brand strategy</li>
+          <li>Brand identity</li>
+          <li>Custom illustration</li>
+          <li>Product photography direction</li>
+          <li>Marketplace image sets</li>
+          <li>E-commerce product pages</li>
+          <li>Launch campaign assets</li>
+          <li>Social launch kit</li>
+          <li>Retail display or point-of-sale material</li>
+          <li>Shipping box and unboxing system</li>
+          <li>Gifting packaging</li>
+          <li>Print coordination</li>
+          <li>Vendor communication support</li>
+          <li>Prototype review</li>
+        </ul>
+        <p class="addon-note">Add-ons are scoped only after the master packaging requirements are understood.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 9 — PROCESS ============ -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">HOW WE WORK</div>
+          <h2>One master direction, built through six deliberate stages.</h2>
+        </div>
+      </div>
+      <div class="process">
+        <div class="pstep"><div class="n">01</div><h4>Discover</h4><p>Understand the product, founder, consumer, price point, launch plan and production constraints.</p></div>
+        <div class="pstep"><div class="n">02</div><h4>Deconstruct</h4><p>Audit competitor packaging, shelf patterns, visual codes, claims, formats and missed opportunities.</p></div>
+        <div class="pstep"><div class="n">03</div><h4>Position</h4><p>Define the central packaging idea, key message, hierarchy and strategic visual territory.</p></div>
+        <div class="pstep"><div class="n">04</div><h4>Design</h4><p>Create and present the master packaging direction in realistic shelf and digital contexts.</p></div>
+        <div class="pstep"><div class="n">05</div><h4>Systemise</h4><p>Extend the approved direction across flavours, variants, sizes and required formats.</p></div>
+        <div class="pstep"><div class="n">06</div><h4>Prepare</h4><p>Create production-ready artwork, organise source files and support the printer handoff.</p></div>
+      </div>
+      <div class="process-note">
+        <div>Typical timeline: approximately 3–5 weeks. This depends on:</div>
+        <ul>
+          <li>Feedback speed</li>
+          <li>Availability of final copy</li>
+          <li>Approved claims</li>
+          <li>Final dielines</li>
+          <li>Number of formats</li>
+          <li>Number of adaptations</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 10 — WHAT THE CLIENT MUST PROVIDE ============ -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">WHAT WE NEED FROM YOU</div>
+          <h2>Clear inputs create a stronger pack and a faster launch.</h2>
+        </div>
+      </div>
+      <ul class="provide-grid">
+        <li>Final brand name</li>
+        <li>Final product name</li>
+        <li>Approved logo files</li>
+        <li>Product dimensions</li>
+        <li>Manufacturer-approved dielines</li>
+        <li>Final ingredient information</li>
+        <li>Nutritional information where applicable</li>
+        <li>Legal and regulatory text</li>
+        <li>Barcodes and certification marks</li>
+        <li>Final claims and benefits</li>
+        <li>Net quantity</li>
+        <li>Manufacturer and marketer details</li>
+        <li>Product photographs or ingredient assets where required</li>
+        <li>Existing brand guidelines</li>
+        <li>Competitor references</li>
+        <li>Decision-maker availability</li>
+      </ul>
+      <p class="provide-note">We can help organise and prioritise the information, but we cannot legally validate claims, compliance statements or ingredient declarations.</p>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 11 — FREELANCER VS AGENCY VS TDB ============ -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">HOW WE ARE DIFFERENT</div>
+          <h2>Senior thinking without the layers, delays or guesswork.</h2>
+        </div>
+      </div>
+      <div class="compare-wrap">
+        <table class="compare">
+          <tr>
+            <th>&nbsp;</th>
+            <th>Freelancer</th>
+            <th>Large agency</th>
+            <th class="hl">The Drawing Board</th>
+          </tr>
+          <tr>
+            <td>Strategy before design</td>
+            <td>Sometimes</td>
+            <td><span class="ic-yes">Yes</span></td>
+            <td class="hl">Included</td>
+          </tr>
+          <tr>
+            <td>Direct access to the designer</td>
+            <td>Usually</td>
+            <td><span class="ic-no">Limited</span></td>
+            <td class="hl"><span class="ic-yes">Direct</span></td>
+          </tr>
+          <tr>
+            <td>Category and competitor audit</td>
+            <td>Often limited</td>
+            <td><span class="ic-yes">Included</span></td>
+            <td class="hl"><span class="ic-yes">Included</span></td>
+          </tr>
+          <tr>
+            <td>Master packaging system</td>
+            <td>Varies</td>
+            <td><span class="ic-yes">Included</span></td>
+            <td class="hl"><span class="ic-yes">Included</span></td>
+          </tr>
+          <tr>
+            <td>SKU scalability</td>
+            <td>Sometimes</td>
+            <td><span class="ic-yes">Included</span></td>
+            <td class="hl">Planned from the start</td>
+          </tr>
+          <tr>
+            <td>Print-ready files</td>
+            <td>Varies</td>
+            <td><span class="ic-yes">Included</span></td>
+            <td class="hl"><span class="ic-yes">Included</span></td>
+          </tr>
+          <tr>
+            <td>Typical turnaround</td>
+            <td>1–3 weeks</td>
+            <td>8–16 weeks</td>
+            <td class="hl">Approximately 3–5 weeks</td>
+          </tr>
+          <tr>
+            <td>Communication</td>
+            <td>Informal</td>
+            <td>Account-manager led</td>
+            <td class="hl">Structured founder-to-studio</td>
+          </tr>
+          <tr>
+            <td>Typical investment</td>
+            <td>₹20,000–₹80,000</td>
+            <td>₹8,00,000+</td>
+            <td class="hl">Starts at ₹1,75,000</td>
+          </tr>
+        </table>
+      </div>
+      <p class="compare-note">These ranges are general market-positioning comparisons, not claims about every freelancer or agency.</p>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 12 — CASE STUDIES ============ -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">SELECTED PACKAGING WORK</div>
+          <h2>Systems designed to live beyond a single mockup.</h2>
+        </div>
+        <p><a class="btn-link" href="work.html">View all packaging work →</a></p>
+      </div>
+      <div class="proof-grid">
+        <a class="proof-card" href="work.html">
+          <!-- REPLACE WITH APPROVED CARDAMOM CASE STUDY IMAGE -->
+          <div class="img"></div>
+          <div class="proof-body">
+            <div class="tag mono">TEA &amp; COFFEE</div>
+            <h4>Cardamom</h4>
+            <p>A calm, premium packaging system designed to distinguish tea, coffee and matcha while retaining one recognisable house language.</p>
+          </div>
+        </a>
+        <a class="proof-card" href="work.html">
+          <!-- REPLACE WITH APPROVED LUMEN CASE STUDY IMAGE -->
+          <div class="img"></div>
+          <div class="proof-body">
+            <div class="tag mono">FINE JEWELLERY</div>
+            <h4>Lumen</h4>
+            <p>A refined gifting and retail packaging system built around tactility, restraint and premium unboxing.</p>
+          </div>
+        </a>
+        <a class="proof-card" href="work-after8.html">
+          <!-- REPLACE WITH APPROVED AFTER8 CASE STUDY IMAGE -->
+          <div class="img"></div>
+          <div class="proof-body">
+            <div class="tag mono">PERSONAL WELLNESS</div>
+            <h4>AFTER8</h4>
+            <p>A direct, modern packaging identity designed for digital thumbnails, retail clarity and easy variant expansion.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 13 — BEFORE / AFTER DIAGNOSTIC ============ -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">WHAT CHANGES</div>
+          <h2>Not just a nicer pack. A clearer commercial system.</h2>
+        </div>
+      </div>
+      <div class="diag-grid">
+        <div class="diag-col before">
+          <h4>Before</h4>
+          <ul>
+            <li>Generic category cues</li>
+            <li>Weak product hierarchy</li>
+            <li>Too many competing claims</li>
+            <li>Inconsistent SKUs</li>
+            <li>Poor digital thumbnail recognition</li>
+            <li>Packaging that looks cheaper than the product</li>
+            <li>Printer files scattered across vendors</li>
+            <li>Every new variant starts from zero</li>
+          </ul>
+        </div>
+        <div class="diag-col after">
+          <h4>After</h4>
+          <ul>
+            <li>A distinctive category position</li>
+            <li>Clear front-of-pack communication</li>
+            <li>Prioritised information</li>
+            <li>Recognisable SKU architecture</li>
+            <li>Strong shelf and thumbnail presence</li>
+            <li>Visual value aligned with pricing</li>
+            <li>Organised production-ready files</li>
+            <li>A repeatable system for future launches</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 14 — PROOF & TESTIMONIAL DISPLAY ============ -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">EVIDENCE, NOT ADJECTIVES</div>
+          <h2>Proof, once it exists — shown honestly.</h2>
+        </div>
+      </div>
+      <div class="evidence-grid">
+
+        <div class="ev-card">
+          <div class="ev-label mono">VERIFIED CLIENT QUOTE</div>
+          <p class="body">"Replace this with a verbatim, client-approved quote describing the strategy, process, communication or final packaging outcome."</p>
+          <div class="ev-who"><b>[CLIENT NAME]</b>[ROLE, COMPANY]</div>
+          <!-- Replace with a genuine quote and obtain client permission before publishing. -->
+        </div>
+
+        <div class="ev-card">
+          <div class="ev-label mono">APPROVED CLIENT FEEDBACK</div>
+          <div class="wa-card">
+            <div class="wa-bubble">"Replace this message with an actual client response."</div>
+            <div class="wa-bubble">"Blur or remove personal information before publishing."</div>
+          </div>
+          <!-- Do not publish fabricated conversations. Use only genuine client feedback with permission. -->
+        </div>
+
+        <div class="ev-card">
+          <div class="ev-label mono">INDEPENDENT PORTFOLIO REVIEW</div>
+          <p class="body">"Replace this with an honest review from a designer, strategist, retail professional, printer or industry expert who has reviewed the published work."</p>
+          <div class="ev-who"><b>[NAME]</b>[EXPERTISE]</div>
+        </div>
+
+      </div>
+      <p class="evidence-close">Evidence matters. Every review, message and result shown here should be verifiable and published with permission.</p>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 15 — ENGAGEMENT AND PRICING ============ -->
+  <section id="pricing" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">PACKAGING ENGAGEMENT</div>
+          <h2>A clear scope for building one packaging system properly.</h2>
+        </div>
+      </div>
+
+      <div class="pricing-wrap">
+        <div class="feat-card">
+          <div class="flag mono">STRATEGY-FIRST</div>
+          <div class="feat-head">
+            <div class="name mono">PACKAGING SYSTEM</div>
+            <h3>Strategy-First Packaging System</h3>
+            <p class="desc">Starting investment for one master packaging direction.</p>
+          </div>
+          <div class="feat-price">
+            <span class="amt">₹1,75,000</span>
+            <div class="per">per project</div>
+          </div>
+          <ul class="feat-list">
+            <li>Discovery and product understanding</li>
+            <li>Category and competitor audit</li>
+            <li>Packaging opportunity and positioning</li>
+            <li>One master packaging design direction</li>
+            <li>Complete front, back and side-panel design</li>
+            <li>Typography, colour and graphic language</li>
+            <li>Claims and information hierarchy</li>
+            <li>Up to five straightforward SKU adaptations</li>
+            <li>Presentation mockups</li>
+            <li>Print-ready artwork on approved dielines</li>
+            <li>Editable source files</li>
+            <li>Pre-production artwork review</li>
+            <li>Printer handoff support</li>
+          </ul>
+          <div class="feat-foot">
+            <div class="feat-timeline"><strong>Timeline:</strong> approximately 3–5 weeks</div>
+            <div class="feat-payment"><strong>Payment:</strong> 50% advance · 25% after master direction approval · 25% before final file handover</div>
+            <div class="feat-cta-row">
+              <a class="btn-primary" href="https://cal.com/dandelion-nrvrze">Book a 15-min packaging call →</a>
+              <a class="btn-link" href="https://wa.me/919428859768">or message us on WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="scope-card">
+          <h4 class="mono">Scope Notes</h4>
+          <ul>
+            <li>Additional SKUs are quoted separately.</li>
+            <li>New structures and formats are quoted separately.</li>
+            <li>Brand identity is not included unless added.</li>
+            <li>Packaging printing and manufacturing are not included.</li>
+            <li>Dieline engineering is not included by default.</li>
+            <li>Regulatory and legal verification are not included.</li>
+            <li>Stock imagery, font licences, photography and paid assets may carry separate third-party costs.</li>
+            <li>[+ GST, if applicable — confirm current rate before quoting]</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 16 — VALUE EXPLANATION ============ -->
+  <section style="padding-top:0;">
+    <div class="wrap" style="max-width:860px;">
+      <div class="quote-strip">
+        <h2>Why does strategic packaging start at ₹1,75,000?</h2>
+        <p>The engagement is not priced as one front label or a set of decorative graphics. It covers the research, decision-making, hierarchy, core design system, SKU logic, production artwork and source-file handoff required to build packaging that can survive launch, print, retail and future expansion.</p>
+        <p class="close">You are not paying for the number of hours spent moving elements. You are investing in the decisions your brand should not have to remake for every new product.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 17 — RISK-REDUCTION PROMISE ============ -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="guarantee">
+        <div class="badge">ALIGNMENT<br>CHECKPOINT</div>
+        <div>
+          <h3>We confirm the strategic direction before developing the complete packaging system.</h3>
+          <p>The project begins with research, references, hierarchy and a defined visual territory. The master direction is reviewed before the full SKU system and production artwork are developed. This prevents late-stage surprises and keeps major decisions visible throughout the engagement.</p>
+          <p>The included revision structure is stated in the project proposal before work begins.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 18 — FAQ ============ -->
+  <section>
+    <div class="wrap" style="max-width:820px;">
+      <div class="section-head" style="display:block;">
+        <div class="eyebrow mono">FAQ</div>
+        <h2>Questions founders actually ask.</h2>
+      </div>
+
+      <div id="faq-list">
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-1" id="faq-q-1">What is included in the ₹1,75,000 packaging engagement?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-1" role="region" aria-labelledby="faq-q-1"><p>One master packaging direction covering front, back and side-panel design, typography and colour system, claims hierarchy, up to five straightforward SKU adaptations, presentation mockups, print-ready artwork on approved dielines, editable source files, and printer handoff support.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-2" id="faq-q-2">How many SKUs are included?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-2" role="region" aria-labelledby="faq-q-2"><p>Up to five straightforward SKU adaptations of the approved master direction — typically flavour, variant or size changes within the same structure.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-3" id="faq-q-3">What counts as a straightforward SKU adaptation?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-3" role="region" aria-labelledby="faq-q-3"><p>A colour, name, or claims change within the same pack structure and dieline. It does not include a new pack shape, size, or material.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-4" id="faq-q-4">What is considered a new packaging format?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-4" role="region" aria-labelledby="faq-q-4"><p>Any change to the physical structure — a new box shape, pouch size, cap type, or material — rather than a variant of the existing one. New formats are quoted separately once we know the structure.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-5" id="faq-q-5">Can you work with my existing logo and brand identity?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-5" role="region" aria-labelledby="faq-q-5"><p>Yes. Most packaging engagements start from an existing identity — we extend it into packaging-specific applications rather than starting over.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-6" id="faq-q-6">Can you also redesign my complete brand identity?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-6" role="region" aria-labelledby="faq-q-6"><p>Yes, as a separate engagement. See our <a class="btn-link" href="branding-page-redesign.html">Branding service</a> if your logo, positioning, or visual system needs to be rebuilt first.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-7" id="faq-q-7">Do you create packaging dielines?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-7" role="region" aria-labelledby="faq-q-7"><p>No. Dielines are structural engineering and should come from your manufacturer or a structural packaging engineer. We design the artwork onto the dieline you provide.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-8" id="faq-q-8">Do you arrange printing or manufacturing?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-8" role="region" aria-labelledby="faq-q-8"><p>No, but we prepare fully print-ready files and support your printer or manufacturer through handoff and pre-production review.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-9" id="faq-q-9">Do you check food, cosmetic or legal compliance?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-9" role="region" aria-labelledby="faq-q-9"><p>No. We organise claims, ingredient lists, and regulatory text into a clear hierarchy, but final legal, nutritional, and regulatory approval remains your responsibility.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-10" id="faq-q-10">What files will I receive?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-10" role="region" aria-labelledby="faq-q-10"><p>CMYK print-ready PDFs, editable Adobe source files, a linked asset package, colour references, and printer handoff notes.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-11" id="faq-q-11">Can you work with my printer or manufacturer?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-11" role="region" aria-labelledby="faq-q-11"><p>Yes. We prepare files to their specifications and stay available during pre-production review and any print-run questions.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-12" id="faq-q-12">How many packaging concepts do you present?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-12" role="region" aria-labelledby="faq-q-12"><p>One master direction, developed after strategy and positioning are agreed — not several unrelated options. This keeps the process focused and avoids paying for directions that were never going to be chosen.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-13" id="faq-q-13">How are revisions handled?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-13" role="region" aria-labelledby="faq-q-13"><p>Revision rounds and boundaries are documented in your project proposal before work begins, so there's no ambiguity mid-project.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-14" id="faq-q-14">What are your payment terms?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-14" role="region" aria-labelledby="faq-q-14"><p>50% advance to begin, 25% after approval of the master packaging direction, and 25% before final print-ready file handover.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-15" id="faq-q-15">How long does the project take?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-15" role="region" aria-labelledby="faq-q-15"><p>Approximately 3–5 weeks, depending on the number of SKUs, feedback speed, dieline readiness, and production complexity.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-16" id="faq-q-16">Can you design only one product?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-16" role="region" aria-labelledby="faq-q-16"><p>Yes — the base scope is built around one product and its direct variants; a fuller multi-product range can be scoped once we understand your line.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-17" id="faq-q-17">Can the system expand to future products?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-17" role="region" aria-labelledby="faq-q-17"><p>Yes, that's part of what "master direction" means — the structure and logic are built so future SKUs and products can extend it without starting from zero.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-18" id="faq-q-18">What happens after the discovery call?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-18" role="region" aria-labelledby="faq-q-18"><p>If it's a fit, we send a scoped proposal within 48 hours covering price, timeline, and what we need from you to start.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-19" id="faq-q-19">Do you work with international brands?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-19" role="region" aria-labelledby="faq-q-19"><p>Yes. We work remotely with brands anywhere — your manufacturer supplies the production specifications relevant to your country and packaging line.</p></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a-20" id="faq-q-20">Will you keep the project confidential?<span class="plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-a" id="faq-a-20" role="region" aria-labelledby="faq-q-20"><p>Yes. Product details, formulas, and unreleased packaging stay confidential; we're happy to sign an NDA before discovery if you need one.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 19 — PACKAGING READINESS CHECKLIST ============ -->
+  <section class="lead-magnet">
+    <div class="wrap">
+      <div class="lead-grid">
+        <div>
+          <div class="eyebrow mono">NOT READY FOR A CALL YET?</div>
+          <h2>Get the Packaging Launch Readiness Checklist.</h2>
+          <p class="desc">A practical checklist for founders preparing product copy, claims, dielines, barcodes, SKU information, print specifications and design inputs before beginning packaging.</p>
+          <ul class="lead-points">
+            <li>Know what to prepare before hiring a packaging studio</li>
+            <li>Avoid delays caused by missing production information</li>
+            <li>Separate design decisions from legal and manufacturing decisions</li>
+            <li>Create a cleaner brief for your printer and designer</li>
+          </ul>
+        </div>
+        <!-- Form is not connected to a live email/CRM endpoint. Wire up the `action` attribute and a real handler before publishing. -->
+        <form class="lead-form" aria-label="Get the packaging readiness checklist">
+          <div class="tag mono">FREE DOWNLOAD</div>
+          <h4>Send me the checklist</h4>
+          <div class="field"><label for="pk-email">Work email</label><input id="pk-email" type="email" placeholder="you@company.com" required></div>
+          <div class="field"><label for="pk-brand">Brand name</label><input id="pk-brand" type="text" placeholder="Your brand"></div>
+          <div class="field"><label for="pk-category">Product category</label><input id="pk-category" type="text" placeholder="e.g. skincare, snacks, beverages"></div>
+          <button class="lead-submit" type="submit">Send me the checklist →</button>
+          <p class="lead-fine">No spam. Use this form only when connected to an actual email or CRM workflow.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 20 — FINAL CTA ============ -->
+  <section class="final">
+    <div class="wrap">
+      <h2>Your product is ready. Now make the packaging feel ready too.</h2>
+      <p>Book a free 15-minute call to discuss your product, current packaging, launch stage and the scope required. We will tell you honestly whether you need a master redesign, a SKU system, a smaller adaptation or more preparation before design begins.</p>
+      <a class="btn-primary" href="https://cal.com/dandelion-nrvrze">Book a 15-min packaging call →</a>
+      <p style="margin-top:16px;"><a class="btn-link" style="color:#CFE0DA" href="https://wa.me/919428859768">Message us on WhatsApp</a></p>
+    </div>
+  </section>
+</main>
+
+<!-- ============ SECTION 21 — FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo-mark" style="margin-bottom:14px;"><div class="box"></div>The Drawing Board</div>
+        <p style="max-width:260px;">Bold ideas, beautifully executed. Brands, websites, and visual content that move businesses forward.</p>
+      </div>
+      <div>
+        <div class="mono" style="font-size:11px;margin-bottom:10px;color:var(--ink)">SERVICES</div>
+        <a href="branding-page-redesign.html">Branding</a><a href="packaging-design.html">Packaging Design</a><a href="work.html">UI/UX Design</a><a href="service-development.html">Web Development</a>
+      </div>
+      <div>
+        <div class="mono" style="font-size:11px;margin-bottom:10px;color:var(--ink)">STUDIO</div>
+        <a href="index.html">About</a><a href="work.html">Work</a><a href="#">Insights</a><a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <div class="mono" style="font-size:11px;margin-bottom:10px;color:var(--ink)">CONNECT</div>
+        <a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Dribbble</a><a href="mailto:hello@drawingsboards.com">Email us</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© The Drawing Board 2026. All rights reserved.</span>
+      <span><a href="#">Terms of Service</a> &nbsp;·&nbsp; <a href="#">Privacy Policy</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <div class="txt">Packaging from ₹1,75,000<b>Free 15-min call</b></div>
+  <a href="https://cal.com/dandelion-nrvrze">Book now →</a>
+</div>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var q = item.querySelector('.faq-q');
+    var a = item.querySelector('.faq-a');
+    q.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o){
+        if(o !== item){
+          o.classList.remove('open');
+          o.querySelector('.faq-a').style.maxHeight = null;
+          o.querySelector('.faq-q').setAttribute('aria-expanded','false');
+        }
+      });
+      if(isOpen){
+        item.classList.remove('open');
+        a.style.maxHeight = null;
+        q.setAttribute('aria-expanded','false');
+      } else {
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+        q.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+
+  // Lead form is a placeholder — prevent a real submit until wired to a live endpoint.
+  var leadForm = document.querySelector('.lead-form');
+  if(leadForm){
+    leadForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var btn = leadForm.querySelector('.lead-submit');
+      btn.textContent = 'Connect this form to send the checklist';
+    });
+  }
+</script>
+
+</body>
+</html>

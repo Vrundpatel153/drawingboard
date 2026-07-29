@@ -18,6 +18,15 @@ import SmoothScroll from './components/SmoothScroll';
 import PageTransition from './components/PageTransition';
 import WhatsAppButton from './components/WhatsAppButton';
 import Preloader from './components/Preloader';
+import useAnalytics from './hooks/useAnalytics';
+import useSEO from './hooks/useSEO';
+
+/* ── RouterAnalytics must live inside <Router> to access location context ── */
+function RouterAnalytics() {
+  useAnalytics(); // GA4 + GTM tracking on every route change
+  useSEO();       // Default SEO for routes that don't call useSEO themselves
+  return null;
+}
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -28,6 +37,7 @@ export default function App() {
 
   return (
     <Router>
+      <RouterAnalytics />
       <SmoothScroll>
         <PageTransition>
           <div id="main">
@@ -48,15 +58,15 @@ export default function App() {
               {/* Services routes */}
               <Route path="/services" element={<Services />} />
               <Route path="/service" element={<Services />} />
-              {/* Dedicated Branding page — pixel-perfect HTML design */}
+              {/* Dedicated Branding page */}
               <Route path="/services/branding" element={<BrandingPage />} />
               <Route path="/service/branding" element={<BrandingPage />} />
-              {/* Dedicated Packaging page — pixel-perfect HTML design */}
+              {/* Dedicated Packaging page */}
               <Route path="/services/packaging-design" element={<PackagingPage />} />
               <Route path="/service/packaging-design" element={<PackagingPage />} />
               <Route path="/services/packaging" element={<PackagingPage />} />
               <Route path="/service/packaging" element={<PackagingPage />} />
-              {/* Dedicated Development page — pixel-perfect HTML design */}
+              {/* Dedicated Development page */}
               <Route path="/services/development" element={<DevelopmentPage />} />
               <Route path="/service/development" element={<DevelopmentPage />} />
               <Route path="/services/web-development" element={<DevelopmentPage />} />

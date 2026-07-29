@@ -86,4 +86,7 @@ RewriteRule . /index.html [L]
 `;
 fs.writeFileSync(path.join(distDir, '.htaccess'), htaccessContent);
 
+console.log('=== Step 5: Generating sitemap.xml ===');
+execSync('node generate-sitemap.js', { stdio: 'inherit' });
+
 console.log('=== Build completed successfully! ===');
