@@ -231,7 +231,7 @@ export default function AdminWorkDetail({ work }) {
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">Linkedin</a>
               <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer">Dribbble</a>
-              <a href="mailto:hello@catchup.com">Email Us</a>
+              <a href="mailto:dandelionpa7@gmail.com">Email Us</a>
             </div>
           </div>
           <div className="awd-footer-bottom">

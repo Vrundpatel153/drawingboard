@@ -2,8 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { MAILTO_URL } from '../utils/siteConfig';
 
 gsap.registerPlugin(ScrollTrigger);
+
 
 export default function Footer() {
   const footerRef = useRef(null);
@@ -75,8 +77,9 @@ export default function Footer() {
             <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">
               Book a Call
             </a>
-            <a href="mailto:hello@thedrawingboard.design">Email Studio</a>
+            <a href={MAILTO_URL}>Email Studio</a>
             <a href="#">Twitter / X</a>
+
             <a href="#">LinkedIn</a>
           </div>
         </div>

@@ -47,6 +47,15 @@ export const TWITTER_HANDLE =
 export const INSTAGRAM_HANDLE =
   import.meta.env.VITE_INSTAGRAM_HANDLE || 'thedrawingboard.studio';
 
+export const CONTACT_EMAIL = 'dandelionpa7@gmail.com';
+
+export const MAILTO_URL = `mailto:${CONTACT_EMAIL}?subject=Project%20Inquiry%20%7C%20The%20Drawing%20Board&body=Hi%20The%20Drawing%20Board%20Team%2C%0A%0AI%20would%20like%20to%20discuss%20a%20new%20project.`;
+
+export const WHATSAPP_NUMBER = '919428859768';
+
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!`;
+
+
 /**
  * Per-page SEO data.
  * Keys are the exact route paths.

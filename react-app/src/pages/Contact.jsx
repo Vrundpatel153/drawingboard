@@ -5,6 +5,8 @@ import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import { usePageAnimations } from '../hooks/usePageAnimations';
+import { CONTACT_EMAIL, MAILTO_URL, WHATSAPP_URL } from '../utils/siteConfig';
+
 
 const faqs = [
   {
@@ -151,7 +153,11 @@ export default function Contact() {
                 </div>
                 <div className="info-row">
                   <span>Direct Email</span>
-                  <span className="val">hello@thedrawingboard.design</span>
+                  <span className="val">{CONTACT_EMAIL}</span>
+                </div>
+                <div className="info-row">
+                  <span>WhatsApp Direct</span>
+                  <span className="val">+91 94288 59768</span>
                 </div>
                 <div className="info-row">
                   <span>Studio Location</span>
@@ -168,8 +174,12 @@ export default function Contact() {
                   <span>Book 15-Min Discovery Call</span>
                   <span>&rarr;</span>
                 </a>
-                <a href="mailto:hello@thedrawingboard.design" className="quick-link">
-                  <span>Email Direct Inquiry</span>
+                <a href={MAILTO_URL} className="quick-link">
+                  <span>Email Direct ({CONTACT_EMAIL})</span>
+                  <span>&rarr;</span>
+                </a>
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="quick-link">
+                  <span>Chat on WhatsApp (+91 94288 59768)</span>
                   <span>&rarr;</span>
                 </a>
                 <Link to="/work" className="quick-link">
@@ -177,6 +187,7 @@ export default function Contact() {
                   <span>&rarr;</span>
                 </Link>
               </div>
+
             </div>
           </div>
         </div>
