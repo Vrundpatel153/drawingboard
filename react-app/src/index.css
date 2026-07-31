@@ -24,7 +24,40 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: var(--pine) transparent;
 }
+
+/* ==========================================================================
+   Custom Editorial Scrollbar System (Hidden Track, Smooth Theme Thumb)
+   ========================================================================== */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--pine);
+  border-radius: 9999px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pine-deep);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--ink);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 
 /* Lenis smooth scroll recommended CSS */
 html.lenis, html.lenis body {
