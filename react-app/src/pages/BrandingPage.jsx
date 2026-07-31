@@ -400,18 +400,17 @@ export default function BrandingPage() {
         .bp-curr-btn { background: transparent; border: none; color: var(--ink-soft); font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; font-weight: 600; padding: 4px 8px; border-radius: 2px; cursor: pointer; transition: all 0.15s ease; line-height: 1; }
         .bp-curr-btn:hover { color: var(--ink); background: rgba(0, 0, 0, 0.05); }
         .bp-curr-btn.active { background: var(--pine); color: var(--paper); }
-        .bp-tier-head { padding: 26px 24px 20px; border-bottom: 1px dashed var(--paper-line); }
-
-        .bp-tier-head .name { font-size: 12px; color: var(--marker); margin-bottom: 8px; }
-        .bp-tier-head h3 { font-size: 24px; margin-bottom: 8px; }
-        .bp-tier-head .desc { font-size: 13.5px; color: var(--ink-soft); }
-        .bp-tier-price { padding: 20px 24px; border-bottom: 1px dashed var(--paper-line); }
-        .bp-tier-price .amt { font-family: 'Fraunces', serif; font-size: 32px; font-weight: 600; }
-        .bp-tier-price .per { font-size: 12px; color: var(--ink-soft); }
-        .bp-tier-list { padding: 20px 24px; flex: 1; list-style: none; font-size: 13.5px; }
+        .bp-tier-head { padding: 26px 24px 20px; border-bottom: 1px dashed var(--paper-line); min-height: 142px; box-sizing: border-box; }
+        .bp-tier-price { padding: 20px 24px; border-bottom: 1px dashed var(--paper-line); min-height: 108px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; }
+        @media (max-width: 940px) {
+          .bp-tier-head { min-height: auto; }
+          .bp-tier-price { min-height: auto; }
+        }
+        .bp-tier-list { padding: 0; flex: 1; list-style: none; font-size: 13.5px; }
         .bp-tier-list li { padding: 8px 0; display: flex; gap: 10px; }
         .bp-tier-list li::before { content: "—"; color: var(--pine); flex-shrink: 0; }
         .bp-tier-foot { padding: 22px 24px 26px; margin-top: auto; }
+
 
         .bp-tier-btn { display: block; text-align: center; padding: 13px; border: 1.5px solid var(--ink); font-size: 13.5px; font-weight: 600; text-decoration: none; color: var(--ink); transition: opacity .15s; }
         .bp-tier.bp-feat .bp-tier-btn { background: var(--pine); color: var(--paper); border-color: var(--pine); }
@@ -1449,20 +1448,24 @@ export default function BrandingPage() {
                 </div>
 
                 <div style={{ padding: '20px 24px', flex: 1, overflow: 'hidden' }}>
-                  <div style={{ display: 'flex', transform: `translateX(-${growthSlide * 100}%)`, transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)' }}>
-                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, padding: 0, margin: 0 }}>
-                      <li>Brand discovery &amp; positioning</li>
-                      <li>Logo — 3 directions, 1 refined</li>
-                      <li>Color &amp; typography system</li>
-                      <li>Compact brand guideline (PDF)</li>
-                    </ul>
-                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, padding: 0, margin: 0 }}>
-                      <li>Everything in Foundation</li>
-                      <li>Messaging pillars &amp; voice guide</li>
-                      <li>Full guideline (PDF + web-based)</li>
-                      <li>Stationery suite (cards, deck, letterhead)</li>
-                      <li>Website header &amp; banner kit</li>
-                    </ul>
+                  <div style={{ display: 'flex', transform: `translateX(-${growthSlide * 100}%)`, transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)', width: '100%' }}>
+                    <div style={{ width: '100%', flex: '0 0 100%', boxSizing: 'border-box', overflow: 'hidden' }}>
+                      <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
+                        <li>Brand discovery &amp; positioning</li>
+                        <li>Logo — 3 directions, 1 refined</li>
+                        <li>Color &amp; typography system</li>
+                        <li>Compact brand guideline (PDF)</li>
+                      </ul>
+                    </div>
+                    <div style={{ width: '100%', flex: '0 0 100%', boxSizing: 'border-box', overflow: 'hidden' }}>
+                      <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
+                        <li>Everything in Foundation</li>
+                        <li>Messaging pillars &amp; voice guide</li>
+                        <li>Full guideline (PDF + web-based)</li>
+                        <li>Stationery suite (cards, deck, letterhead)</li>
+                        <li>Website header &amp; banner kit</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
 
@@ -1534,28 +1537,35 @@ export default function BrandingPage() {
                 </div>
 
                 <div style={{ padding: '20px 24px', flex: 1, overflow: 'hidden' }}>
-                  <div style={{ display: 'flex', transform: `translateX(-${scaleSlide * 100}%)`, transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)' }}>
-                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, padding: 0, margin: 0 }}>
-                      <li>Brand discovery &amp; positioning</li>
-                      <li>Logo — 3 directions, 1 refined</li>
-                      <li>Color &amp; typography system</li>
-                      <li>Compact brand guideline (PDF)</li>
-                    </ul>
-                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, padding: 0, margin: 0 }}>
-                      <li>Everything in Foundation</li>
-                      <li>Messaging pillars &amp; voice guide</li>
-                      <li>Full guideline (PDF + web-based)</li>
-                      <li>Stationery suite (cards, deck, letterhead)</li>
-                      <li>Website header &amp; banner kit</li>
-                    </ul>
-                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, padding: 0, margin: 0 }}>
-                      <li>Everything in Full Brand System</li>
-                      <li>Packaging design, up to 6 SKUs</li>
-                      <li>Social &amp; digital launch assets</li>
-                      <li>Launch-day asset checklist</li>
-                    </ul>
+                  <div style={{ display: 'flex', transform: `translateX(-${scaleSlide * 100}%)`, transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)', width: '100%' }}>
+                    <div style={{ width: '100%', flex: '0 0 100%', boxSizing: 'border-box', overflow: 'hidden' }}>
+                      <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
+                        <li>Brand discovery &amp; positioning</li>
+                        <li>Logo — 3 directions, 1 refined</li>
+                        <li>Color &amp; typography system</li>
+                        <li>Compact brand guideline (PDF)</li>
+                      </ul>
+                    </div>
+                    <div style={{ width: '100%', flex: '0 0 100%', boxSizing: 'border-box', overflow: 'hidden' }}>
+                      <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
+                        <li>Everything in Foundation</li>
+                        <li>Messaging pillars &amp; voice guide</li>
+                        <li>Full guideline (PDF + web-based)</li>
+                        <li>Stationery suite (cards, deck, letterhead)</li>
+                        <li>Website header &amp; banner kit</li>
+                      </ul>
+                    </div>
+                    <div style={{ width: '100%', flex: '0 0 100%', boxSizing: 'border-box', overflow: 'hidden' }}>
+                      <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
+                        <li>Everything in Full Brand System</li>
+                        <li>Packaging design, up to 6 SKUs</li>
+                        <li>Social &amp; digital launch assets</li>
+                        <li>Launch-day asset checklist</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
+
 
                 <div className="bp-tier-foot">
                   <a className="bp-tier-btn" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min call</a>
