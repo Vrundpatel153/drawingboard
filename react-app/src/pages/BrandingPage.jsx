@@ -15,12 +15,15 @@ export default function BrandingPage() {
   const [openFaq, setOpenFaq] = useState(null);
   const [formData, setFormData] = useState({ email: '', company: '' });
   const [growthCurrency, setGrowthCurrency] = useState('INR');
+  const [growthSlide, setGrowthSlide] = useState(0);
+  const [scaleSlide, setScaleSlide] = useState(0);
 
   const growthPrices = {
     INR: '₹4,75,000/-',
     USD: '$4,960/-',
     GBP: '£3,715/-',
   };
+
 
 
   const toggleFaq = (idx) => {
@@ -1387,13 +1390,78 @@ export default function BrandingPage() {
                   <div className="per">per project</div>
                 </div>
 
-                <ul className="bp-tier-list">
-                  <li>Everything in Foundation</li>
-                  <li>Messaging pillars &amp; voice guide</li>
-                  <li>Full guideline (PDF + web-based)</li>
-                  <li>Stationery suite (cards, deck, letterhead)</li>
-                  <li>Website header &amp; banner kit</li>
-                </ul>
+                {/* Deliverables Inner Side Slider Header */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '14px 0 10px', paddingBottom: '6px', borderBottom: '1px dashed var(--paper-line)' }}>
+                  <span className="mono" style={{ fontSize: '11px', fontWeight: 600, color: 'var(--ink-soft)' }}>
+                    DELIVERABLES ({growthSlide + 1}/2)
+                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <button
+                      type="button"
+                      onClick={() => setGrowthSlide(0)}
+                      style={{
+                        width: '8px',
+                        height: '8px',
+                        borderRadius: '50%',
+                        border: 'none',
+                        background: growthSlide === 0 ? 'var(--pine)' : 'var(--paper-line)',
+                        cursor: 'pointer',
+                        padding: 0
+                      }}
+                      title="Slide 1: Core Foundation"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setGrowthSlide(1)}
+                      style={{
+                        width: '8px',
+                        height: '8px',
+                        borderRadius: '50%',
+                        border: 'none',
+                        background: growthSlide === 1 ? 'var(--pine)' : 'var(--paper-line)',
+                        cursor: 'pointer',
+                        padding: 0
+                      }}
+                      title="Slide 2: Full System"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setGrowthSlide((prev) => (prev > 0 ? prev - 1 : 1))}
+                      style={{ background: 'none', border: '1px solid var(--ink)', borderRadius: '2px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '11px', marginLeft: '4px', lineHeight: 1 }}
+                      title="Previous slide"
+                    >
+                      ‹
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setGrowthSlide((prev) => (prev < 1 ? prev + 1 : 0))}
+                      style={{ background: 'none', border: '1px solid var(--ink)', borderRadius: '2px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '11px', lineHeight: 1 }}
+                      title="Next slide"
+                    >
+                      ›
+                    </button>
+                  </div>
+                </div>
+
+                {/* Inner Side Slider Track */}
+                <div style={{ overflow: 'hidden', width: '100%' }}>
+                  <div style={{ display: 'flex', transform: `translateX(-${growthSlide * 100}%)`, transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)' }}>
+                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, margin: 0 }}>
+                      <li>Brand discovery &amp; positioning</li>
+                      <li>Logo — 3 directions, 1 refined</li>
+                      <li>Color &amp; typography system</li>
+                      <li>Compact brand guideline (PDF)</li>
+                    </ul>
+                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, margin: 0 }}>
+                      <li>Everything in Foundation</li>
+                      <li>Messaging pillars &amp; voice guide</li>
+                      <li>Full guideline (PDF + web-based)</li>
+                      <li>Stationery suite (cards, deck, letterhead)</li>
+                      <li>Website header &amp; banner kit</li>
+                    </ul>
+                  </div>
+                </div>
+
                 <div className="bp-tier-foot">
                   <a className="bp-tier-btn" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min call</a>
                   <div className="bp-tier-time">3–4 week delivery</div>
@@ -1411,17 +1479,105 @@ export default function BrandingPage() {
                   <span className="amt">₹6,50,000</span>
                   <div className="per">per project, up to 6 SKUs</div>
                 </div>
-                <ul className="bp-tier-list">
-                  <li>Everything in Full Brand System</li>
-                  <li>Packaging design, up to 6 SKUs</li>
-                  <li>Social &amp; digital launch assets</li>
-                  <li>Launch-day asset checklist</li>
-                </ul>
+
+                {/* Deliverables Inner Side Slider Header */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '14px 0 10px', paddingBottom: '6px', borderBottom: '1px dashed var(--paper-line)' }}>
+                  <span className="mono" style={{ fontSize: '11px', fontWeight: 600, color: 'var(--ink-soft)' }}>
+                    DELIVERABLES ({scaleSlide + 1}/3)
+                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <button
+                      type="button"
+                      onClick={() => setScaleSlide(0)}
+                      style={{
+                        width: '8px',
+                        height: '8px',
+                        borderRadius: '50%',
+                        border: 'none',
+                        background: scaleSlide === 0 ? 'var(--pine)' : 'var(--paper-line)',
+                        cursor: 'pointer',
+                        padding: 0
+                      }}
+                      title="Slide 1: Foundation"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setScaleSlide(1)}
+                      style={{
+                        width: '8px',
+                        height: '8px',
+                        borderRadius: '50%',
+                        border: 'none',
+                        background: scaleSlide === 1 ? 'var(--pine)' : 'var(--paper-line)',
+                        cursor: 'pointer',
+                        padding: 0
+                      }}
+                      title="Slide 2: Full System"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setScaleSlide(2)}
+                      style={{
+                        width: '8px',
+                        height: '8px',
+                        borderRadius: '50%',
+                        border: 'none',
+                        background: scaleSlide === 2 ? 'var(--pine)' : 'var(--paper-line)',
+                        cursor: 'pointer',
+                        padding: 0
+                      }}
+                      title="Slide 3: Packaging & Launch"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setScaleSlide((prev) => (prev > 0 ? prev - 1 : 2))}
+                      style={{ background: 'none', border: '1px solid var(--ink)', borderRadius: '2px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '11px', marginLeft: '4px', lineHeight: 1 }}
+                      title="Previous slide"
+                    >
+                      ‹
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setScaleSlide((prev) => (prev < 2 ? prev + 1 : 0))}
+                      style={{ background: 'none', border: '1px solid var(--ink)', borderRadius: '2px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '11px', lineHeight: 1 }}
+                      title="Next slide"
+                    >
+                      ›
+                    </button>
+                  </div>
+                </div>
+
+                {/* Inner Side Slider Track */}
+                <div style={{ overflow: 'hidden', width: '100%' }}>
+                  <div style={{ display: 'flex', transform: `translateX(-${scaleSlide * 100}%)`, transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)' }}>
+                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, margin: 0 }}>
+                      <li>Brand discovery &amp; positioning</li>
+                      <li>Logo — 3 directions, 1 refined</li>
+                      <li>Color &amp; typography system</li>
+                      <li>Compact brand guideline (PDF)</li>
+                    </ul>
+                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, margin: 0 }}>
+                      <li>Everything in Foundation</li>
+                      <li>Messaging pillars &amp; voice guide</li>
+                      <li>Full guideline (PDF + web-based)</li>
+                      <li>Stationery suite (cards, deck, letterhead)</li>
+                      <li>Website header &amp; banner kit</li>
+                    </ul>
+                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, margin: 0 }}>
+                      <li>Everything in Full Brand System</li>
+                      <li>Packaging design, up to 6 SKUs</li>
+                      <li>Social &amp; digital launch assets</li>
+                      <li>Launch-day asset checklist</li>
+                    </ul>
+                  </div>
+                </div>
+
                 <div className="bp-tier-foot">
                   <a className="bp-tier-btn" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min call</a>
                   <div className="bp-tier-time">4–6 week delivery</div>
                 </div>
               </div>
+
             </div>
 
             <p style={{ fontSize: '13px', color: 'var(--ink-soft)', marginTop: '30px' }}>
