@@ -1134,7 +1134,7 @@ export default function BrandingPage() {
               </div>
             </div>
 
-            {/* ── ROW 2: VIDEO TESTIMONIALS (EMPTY FRAMES) ───────────────── */}
+            {/* ── ROW 2: VIDEO TESTIMONIALS ────────────────────────────────── */}
             <div className="bp-sp-row">
               <div className="bp-sp-row-head">
                 <div className="bp-sp-row-title">02 // Client Video Testimonials</div>
@@ -1145,7 +1145,6 @@ export default function BrandingPage() {
                 {/* Video Card 1 (Vertical) */}
                 <div className="bp-sp-card bp-sp-video-card vert">
                   <div className="bp-sp-video-frame">
-                    <span className="bp-sp-video-label" style={{ pointerEvents: 'none' }}>VIDEO 9:16</span>
                     <iframe
                       src="https://player.cloudinary.com/embed/?cloud_name=vkrgr9y0&public_id=VID-20260727-WA0001_d7jsfz"
                       width="100%"
@@ -1167,7 +1166,6 @@ export default function BrandingPage() {
                 {/* Video Card 2 (Vertical) */}
                 <div className="bp-sp-card bp-sp-video-card vert">
                   <div className="bp-sp-video-frame">
-                    <span className="bp-sp-video-label" style={{ pointerEvents: 'none' }}>VIDEO 9:16</span>
                     <iframe
                       src="https://player.cloudinary.com/embed/?cloud_name=vkrgr9y0&public_id=VID-20260727-WA0000_anm7wf"
                       width="100%"
@@ -1189,7 +1187,6 @@ export default function BrandingPage() {
                 {/* Video Card 3 (Vertical) */}
                 <div className="bp-sp-card bp-sp-video-card vert">
                   <div className="bp-sp-video-frame">
-                    <span className="bp-sp-video-label" style={{ pointerEvents: 'none' }}>VIDEO 9:16</span>
                     <iframe
                       src="https://player.cloudinary.com/embed/?cloud_name=vkrgr9y0&public_id=VID-20260727-WA0003_kca11r"
                       width="100%"
@@ -1211,7 +1208,6 @@ export default function BrandingPage() {
                 {/* Video Card 4 (Vertical) */}
                 <div className="bp-sp-card bp-sp-video-card vert">
                   <div className="bp-sp-video-frame">
-                    <span className="bp-sp-video-label" style={{ pointerEvents: 'none' }}>VIDEO 9:16</span>
                     <iframe
                       src="https://player.cloudinary.com/embed/?cloud_name=vkrgr9y0&public_id=VID-20260727-WA0002_xy7yox"
                       width="100%"
@@ -1231,6 +1227,7 @@ export default function BrandingPage() {
                 </div>
               </div>
             </div>
+
 
             {/* ── ROW 3: TEXT BASED TESTIMONIALS & QUOTES ─────────────────── */}
             <div className="bp-sp-row">
