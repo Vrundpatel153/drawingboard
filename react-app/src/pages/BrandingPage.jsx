@@ -1335,9 +1335,12 @@ export default function BrandingPage() {
                   <p className="desc">For founders who need a credible identity to start selling with.</p>
                 </div>
                 <div className="bp-tier-price">
-                  <span className="amt">₹2,37,000</span>
-                  <div className="per">per project</div>
+                  <div>
+                    <span className="amt">₹2,37,000</span>
+                    <div className="per">per project</div>
+                  </div>
                 </div>
+
 
                 {/* Unified Deliverables Bar */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 24px', background: 'rgba(27,27,23,0.03)', borderBottom: '1px dashed var(--paper-line)' }}>
@@ -1485,9 +1488,12 @@ export default function BrandingPage() {
                   <p className="desc">For product brands going to retail or e-commerce shelf.</p>
                 </div>
                 <div className="bp-tier-price">
-                  <span className="amt">₹6,50,000</span>
-                  <div className="per">per project, up to 6 SKUs</div>
+                  <div>
+                    <span className="amt">₹6,50,000</span>
+                    <div className="per">per project, up to 6 SKUs</div>
+                  </div>
                 </div>
+
 
                 {/* Unified Deliverables Bar */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 24px', background: 'rgba(27,27,23,0.03)', borderBottom: '1px dashed var(--paper-line)' }}>
