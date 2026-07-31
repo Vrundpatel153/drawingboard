@@ -401,11 +401,12 @@ export default function BrandingPage() {
         .bp-curr-btn:hover { color: var(--ink); background: rgba(0, 0, 0, 0.05); }
         .bp-curr-btn.active { background: var(--pine); color: var(--paper); }
         .bp-tier-head { padding: 26px 24px 20px; border-bottom: 1px dashed var(--paper-line); min-height: 142px; box-sizing: border-box; }
-        .bp-tier-price { padding: 20px 24px; border-bottom: 1px dashed var(--paper-line); min-height: 108px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; }
+        .bp-tier-price { padding: 20px 24px; border-bottom: 1px dashed var(--paper-line); min-height: 94px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: flex-start; }
         @media (max-width: 940px) {
           .bp-tier-head { min-height: auto; }
           .bp-tier-price { min-height: auto; }
         }
+
         .bp-tier-list { padding: 0; flex: 1; list-style: none; font-size: 13.5px; }
         .bp-tier-list li { padding: 8px 0; display: flex; gap: 10px; }
         .bp-tier-list li::before { content: "—"; color: var(--pine); flex-shrink: 0; }
@@ -1372,11 +1373,12 @@ export default function BrandingPage() {
                   <p className="desc">For funded or scaling brands that need to look the part everywhere.</p>
                 </div>
 
-                <div className="bp-tier-price" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '12px', flexWrap: 'wrap' }}>
+                <div className="bp-tier-price" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <div>
                     <span className="amt">{growthPrices[growthCurrency]}</span>
                     <div className="per">per project</div>
                   </div>
+
                   {/* Currency Toggle inside price block */}
                   <div className="bp-currency-toggle mono" style={{ margin: 0 }}>
                     <button
