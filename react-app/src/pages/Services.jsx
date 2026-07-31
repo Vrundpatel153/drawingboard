@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -12,7 +12,31 @@ import { usePageAnimations } from '../hooks/usePageAnimations';
 
 export default function Services() {
   const pageRef = useRef(null);
+  const carouselRef = useRef(null);
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
+
   usePageAnimations(pageRef);
+
+  const scrollCarousel = (direction) => {
+    if (!carouselRef.current) return;
+    const container = carouselRef.current;
+    const firstChild = container.firstElementChild;
+    const cardWidth = firstChild ? firstChild.getBoundingClientRect().width + 24 : 360;
+    container.scrollBy({
+      left: direction === 'next' ? cardWidth : -cardWidth,
+      behavior: 'smooth'
+    });
+  };
+
+  const handleCarouselScroll = () => {
+    if (!carouselRef.current) return;
+    const container = carouselRef.current;
+    const firstChild = container.firstElementChild;
+    const cardWidth = firstChild ? firstChild.getBoundingClientRect().width + 24 : 360;
+    const index = Math.round(container.scrollLeft / cardWidth);
+    setActiveCardIndex(Math.min(Math.max(0, index), servicesData.length - 1));
+  };
+
 
   return (
     <>
@@ -110,18 +134,89 @@ export default function Services() {
           </div>
         </section>
 
-        {/* Detailed Services Catalog with Images, Videos, Deliverables & Subpage Redirects */}
+        {/* Detailed Services Catalog Carousel — Smooth Horizontal Scroll */}
         <section>
           <div className="wrap">
-            <div className="section-head">
+            <div className="section-head" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', gap: '20px', marginBottom: '28px' }}>
               <div>
                 <div className="eyebrow">PRACTICE AREAS & SUBPAGES</div>
                 <h2>Five specialized studio disciplines.</h2>
+                <p style={{ marginTop: '8px' }}>Click any service to view its detailed subpage, pricing models, and complete deliverables breakdown.</p>
               </div>
-              <p>Click any service to view its detailed subpage, pricing models, and complete deliverables breakdown.</p>
+
+              {/* Controls Header */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexShrink: 0 }}>
+                <div className="mono" style={{ fontSize: '13px', fontWeight: 'bold', color: 'var(--ink-soft)', letterSpacing: '0.08em' }}>
+                  [ 0{activeCardIndex + 1} / 0{servicesData.length} ]
+                </div>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  <button
+                    onClick={() => scrollCarousel('prev')}
+                    disabled={activeCardIndex === 0}
+                    aria-label="Previous Service"
+                    style={{
+                      width: '40px',
+                      height: '40px',
+                      borderRadius: '4px',
+                      border: '1px solid var(--ink)',
+                      background: activeCardIndex === 0 ? 'rgba(27,27,23,0.05)' : 'var(--card)',
+                      color: activeCardIndex === 0 ? 'var(--ink-soft)' : 'var(--ink)',
+                      opacity: activeCardIndex === 0 ? 0.4 : 1,
+                      cursor: activeCardIndex === 0 ? 'default' : 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      transition: 'all 0.2s ease',
+                      fontSize: '16px'
+                    }}
+                  >
+                    ←
+                  </button>
+                  <button
+                    onClick={() => scrollCarousel('next')}
+                    disabled={activeCardIndex === servicesData.length - 1}
+                    aria-label="Next Service"
+                    style={{
+                      width: '40px',
+                      height: '40px',
+                      borderRadius: '4px',
+                      border: '1px solid var(--ink)',
+                      background: activeCardIndex === servicesData.length - 1 ? 'rgba(27,27,23,0.05)' : 'var(--pine)',
+                      color: activeCardIndex === servicesData.length - 1 ? 'var(--ink-soft)' : 'var(--paper)',
+                      opacity: activeCardIndex === servicesData.length - 1 ? 0.4 : 1,
+                      cursor: activeCardIndex === servicesData.length - 1 ? 'default' : 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      transition: 'all 0.2s ease',
+                      fontSize: '16px'
+                    }}
+                  >
+                    →
+                  </button>
+                </div>
+              </div>
             </div>
 
-            <div className="services-catalog-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '32px' }}>
+            {/* Smooth Horizontal Carousel Track */}
+            <div
+              ref={carouselRef}
+              onScroll={handleCarouselScroll}
+              className="services-catalog-carousel"
+              style={{
+                display: 'flex',
+                gap: '24px',
+                overflowX: 'auto',
+                scrollSnapType: 'x mandatory',
+                scrollBehavior: 'smooth',
+                WebkitOverflowScrolling: 'touch',
+                padding: '8px 4px 20px 4px',
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+                willChange: 'transform',
+                contain: 'layout style paint'
+              }}
+            >
               {servicesData.map((s) => {
                 const shortName =
                   s.id === 'branding'
@@ -139,19 +234,25 @@ export default function Services() {
                     key={s.id}
                     className="deliv-col service-card-featured"
                     style={{
+                      flex: '0 0 clamp(300px, 82vw, 380px)',
+                      scrollSnapAlign: 'start',
                       background: 'var(--card)',
                       border: '1px solid var(--ink)',
-                      padding: '32px',
+                      padding: '28px',
                       display: 'flex',
                       flexDirection: 'column',
-                      justify: 'space-between',
-                      position: 'relative'
+                      justifyContent: 'space-between',
+                      position: 'relative',
+                      borderRadius: '4px',
+                      willChange: 'transform',
+                      transform: 'translateZ(0)',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                     }}
                   >
                     <div>
                       {/* Header Badges */}
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                        <span className="mono" style={{ fontSize: '13px', fontWeight: 'bold', letterSpacing: '0.05em', color: 'var(--ink-soft)' }}>
+                        <span className="mono" style={{ fontSize: '12.5px', fontWeight: 'bold', letterSpacing: '0.05em', color: 'var(--ink-soft)' }}>
                           {s.eyebrow}
                         </span>
                         <span className="badge" style={{ fontSize: '11px', padding: '4px 8px', border: '1px solid var(--ink)' }}>
@@ -160,20 +261,26 @@ export default function Services() {
                       </div>
 
                       {/* Image Preview */}
-                      <div className="img-wrap" style={{ height: '200px', marginBottom: '20px', overflow: 'hidden', border: '1px solid var(--ink-soft)', borderRadius: '2px' }}>
-                        <img src={s.heroImage} alt={s.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <div className="img-wrap" style={{ height: '180px', marginBottom: '18px', overflow: 'hidden', border: '1px solid var(--ink-soft)', borderRadius: '2px' }}>
+                        <img
+                          src={s.heroImage}
+                          alt={s.title}
+                          loading="eager"
+                          decoding="async"
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
                       </div>
 
-                      <h4>{s.title}</h4>
-                      <div className="sub" style={{ margin: '8px 0 16px', color: 'var(--ink-soft)', fontSize: '13px' }}>
+                      <h4 style={{ fontSize: '20px', margin: '4px 0 6px' }}>{s.title}</h4>
+                      <div className="sub" style={{ margin: '0 0 14px', color: 'var(--ink-soft)', fontSize: '12.5px' }}>
                         // {s.tagline}
                       </div>
-                      <p style={{ fontSize: '14px', lineHeight: 1.6, marginBottom: '20px', color: 'var(--ink)' }}>
+                      <p style={{ fontSize: '13.5px', lineHeight: 1.55, marginBottom: '18px', color: 'var(--ink)' }}>
                         {s.description}
                       </p>
 
-                      <h5 style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '10px' }}>Key Deliverables:</h5>
-                      <ul style={{ paddingLeft: '18px', fontSize: '13px', lineHeight: 1.7, color: 'var(--ink-soft)', marginBottom: '24px' }}>
+                      <h5 style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>Key Deliverables:</h5>
+                      <ul style={{ paddingLeft: '16px', fontSize: '12.5px', lineHeight: 1.65, color: 'var(--ink-soft)', marginBottom: '20px' }}>
                         {s.deliverables.slice(0, 4).map((d, dIdx) => (
                           <li key={dIdx}>{d}</li>
                         ))}
@@ -183,7 +290,7 @@ export default function Services() {
                     {/* Navigation Buttons Row */}
                     <div style={{
                       marginTop: 'auto',
-                      paddingTop: '20px',
+                      paddingTop: '16px',
                       borderTop: '1px solid var(--ink-soft)',
                       display: 'flex',
                       flexWrap: 'nowrap',
@@ -197,21 +304,21 @@ export default function Services() {
                           display: 'inline-flex',
                           alignItems: 'center',
                           gap: '6px',
-                          padding: '10px 14px',
-                          fontSize: '13px',
+                          padding: '9px 13px',
+                          fontSize: '12.5px',
                           fontWeight: 600,
                           whiteSpace: 'nowrap',
                           flexShrink: 0
                         }}
                       >
                         Explore {shortName}
-                        <ArrowIcon size={13} />
+                        <ArrowIcon size={12} />
                       </Link>
 
                       <Link
                         to="/contact"
                         className="btn-secondary-card"
-                        style={{ whiteSpace: 'nowrap', flexShrink: 0 }}
+                        style={{ whiteSpace: 'nowrap', flexShrink: 0, padding: '9px 12px', fontSize: '12.5px' }}
                       >
                         Book Call
                         <ArrowIcon size={12} />
@@ -221,8 +328,35 @@ export default function Services() {
                 );
               })}
             </div>
+
+            {/* Pagination Dots */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '16px' }}>
+              {servicesData.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    if (!carouselRef.current) return;
+                    const container = carouselRef.current;
+                    const firstChild = container.firstElementChild;
+                    const cardWidth = firstChild ? firstChild.getBoundingClientRect().width + 24 : 360;
+                    container.scrollTo({ left: idx * cardWidth, behavior: 'smooth' });
+                  }}
+                  aria-label={`Go to service ${idx + 1}`}
+                  style={{
+                    width: activeCardIndex === idx ? '24px' : '8px',
+                    height: '8px',
+                    borderRadius: '4px',
+                    border: 'none',
+                    background: activeCardIndex === idx ? 'var(--pine)' : 'var(--paper-line)',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+                  }}
+                />
+              ))}
+            </div>
           </div>
         </section>
+
 
         {/* Process Steps */}
         <section style={{ background: 'var(--card)', borderTop: '1px solid var(--ink)', borderBottom: '1px solid var(--ink)' }}>

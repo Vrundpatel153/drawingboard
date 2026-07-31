@@ -55,7 +55,7 @@ export function usePageAnimations(containerRef) {
       });
 
       /* ── 3. Card grid children — stagger cascade ── */
-      ['.proof-grid', '.case-grid', '.article-grid', '.team-grid', '.values-grid', '.services-catalog-grid'].forEach((sel) => {
+      ['.proof-grid', '.case-grid', '.article-grid', '.team-grid', '.values-grid'].forEach((sel) => {
         el.querySelectorAll(sel).forEach((grid) => {
           gsap.fromTo(Array.from(grid.children),
             { opacity: 0, y: 38 },
@@ -66,6 +66,18 @@ export function usePageAnimations(containerRef) {
           );
         });
       });
+
+      /* ── 3b. Services catalog carousel container fade-in ── */
+      el.querySelectorAll('.services-catalog-carousel').forEach((sc) => {
+        gsap.fromTo(sc,
+          { opacity: 0, y: 24 },
+          {
+            opacity: 1, y: 0, duration: 0.7, ease: 'power2.out',
+            scrollTrigger: { trigger: sc, start: 'top 88%', toggleActions: 'play none none none' }
+          }
+        );
+      });
+
 
       /* ── 4. Deliverables grid ── */
       el.querySelectorAll('.deliv-grid').forEach((grid) => {

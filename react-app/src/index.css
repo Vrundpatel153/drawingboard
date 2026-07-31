@@ -1778,6 +1778,8 @@ footer {
     scrollbar-width: none;
   }
   .filter-tabs::-webkit-scrollbar { display: none; }
+  .services-catalog-carousel::-webkit-scrollbar { display: none; }
+
   .ftab { white-space: nowrap; flex-shrink: 0; font-size: 11px; padding: 6px 10px; }
   .process { flex-direction: column; border: 1px solid var(--ink); }
   .pstep { border-right: none; border-bottom: 1px solid var(--ink); padding: 14px 16px; }
