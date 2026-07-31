@@ -1447,9 +1447,9 @@ export default function BrandingPage() {
                   </div>
                 </div>
 
-                <div style={{ padding: '20px 24px', flex: 1, overflow: 'hidden' }}>
+                <div style={{ flex: 1, overflow: 'hidden', width: '100%' }}>
                   <div style={{ display: 'flex', transform: `translateX(-${growthSlide * 100}%)`, transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)', width: '100%' }}>
-                    <div style={{ width: '100%', flex: '0 0 100%', boxSizing: 'border-box', overflow: 'hidden' }}>
+                    <div style={{ width: '100%', flex: '0 0 100%', boxSizing: 'border-box', padding: '20px 24px' }}>
                       <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
                         <li>Brand discovery &amp; positioning</li>
                         <li>Logo — 3 directions, 1 refined</li>
@@ -1457,7 +1457,7 @@ export default function BrandingPage() {
                         <li>Compact brand guideline (PDF)</li>
                       </ul>
                     </div>
-                    <div style={{ width: '100%', flex: '0 0 100%', boxSizing: 'border-box', overflow: 'hidden' }}>
+                    <div style={{ width: '100%', flex: '0 0 100%', boxSizing: 'border-box', padding: '20px 24px' }}>
                       <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
                         <li>Everything in Foundation</li>
                         <li>Messaging pillars &amp; voice guide</li>
@@ -1536,9 +1536,9 @@ export default function BrandingPage() {
                   </div>
                 </div>
 
-                <div style={{ padding: '20px 24px', flex: 1, overflow: 'hidden' }}>
+                <div style={{ flex: 1, overflow: 'hidden', width: '100%' }}>
                   <div style={{ display: 'flex', transform: `translateX(-${scaleSlide * 100}%)`, transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)', width: '100%' }}>
-                    <div style={{ width: '100%', flex: '0 0 100%', boxSizing: 'border-box', overflow: 'hidden' }}>
+                    <div style={{ width: '100%', flex: '0 0 100%', boxSizing: 'border-box', padding: '20px 24px' }}>
                       <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
                         <li>Brand discovery &amp; positioning</li>
                         <li>Logo — 3 directions, 1 refined</li>
@@ -1546,7 +1546,8 @@ export default function BrandingPage() {
                         <li>Compact brand guideline (PDF)</li>
                       </ul>
                     </div>
-                    <div style={{ width: '100%', flex: '0 0 100%', boxSizing: 'border-box', overflow: 'hidden' }}>
+                    <div style={{ width: '100%', flex: '0 0 100%', boxSizing: 'border-box', padding: '20px 24px' }}>
+
                       <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
                         <li>Everything in Foundation</li>
                         <li>Messaging pillars &amp; voice guide</li>
@@ -1555,7 +1556,8 @@ export default function BrandingPage() {
                         <li>Website header &amp; banner kit</li>
                       </ul>
                     </div>
-                    <div style={{ width: '100%', flex: '0 0 100%', boxSizing: 'border-box', overflow: 'hidden' }}>
+                    <div style={{ width: '100%', flex: '0 0 100%', boxSizing: 'border-box', padding: '20px 24px' }}>
+
                       <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
                         <li>Everything in Full Brand System</li>
                         <li>Packaging design, up to 6 SKUs</li>
