@@ -411,7 +411,8 @@ export default function BrandingPage() {
         .bp-tier-list { padding: 20px 24px; flex: 1; list-style: none; font-size: 13.5px; }
         .bp-tier-list li { padding: 8px 0; display: flex; gap: 10px; }
         .bp-tier-list li::before { content: "—"; color: var(--pine); flex-shrink: 0; }
-        .bp-tier-foot { padding: 22px 24px 26px; }
+        .bp-tier-foot { padding: 22px 24px 26px; margin-top: auto; }
+
         .bp-tier-btn { display: block; text-align: center; padding: 13px; border: 1.5px solid var(--ink); font-size: 13.5px; font-weight: 600; text-decoration: none; color: var(--ink); transition: opacity .15s; }
         .bp-tier.bp-feat .bp-tier-btn { background: var(--pine); color: var(--paper); border-color: var(--pine); }
         .bp-tier-btn:hover { opacity: 0.85; }
@@ -1315,7 +1316,6 @@ export default function BrandingPage() {
 
         {/* ── PRICING ──────────────────────────────────────────────────── */}
         <section id="pricing">
-
           <div className="wrap">
             <div className="bp-section-head">
               <div>
@@ -1326,108 +1326,113 @@ export default function BrandingPage() {
             </div>
 
             <div className="bp-tiers">
-              {/* Foundation */}
+              {/* Foundation — Card 1 */}
               <div className="bp-tier">
                 <div className="bp-tier-head">
                   <div className="name mono">FOUNDATION</div>
                   <h3>Identity Foundation</h3>
+
                   <p className="desc">For founders who need a credible identity to start selling with.</p>
                 </div>
                 <div className="bp-tier-price">
                   <span className="amt">₹2,37,000</span>
                   <div className="per">per project</div>
                 </div>
-                <ul className="bp-tier-list">
-                  <li>Brand discovery &amp; positioning</li>
-                  <li>Logo — 3 directions, 1 refined</li>
-                  <li>Color &amp; typography system</li>
-                  <li>Compact brand guideline (PDF)</li>
-                </ul>
+
+                {/* Unified Deliverables Bar */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 24px', background: 'rgba(27,27,23,0.03)', borderBottom: '1px dashed var(--paper-line)' }}>
+                  <span className="mono" style={{ fontSize: '11px', fontWeight: 'bold', color: 'var(--ink-soft)', letterSpacing: '0.05em' }}>
+                    DELIVERABLES (1/1)
+                  </span>
+                  <span className="mono" style={{ fontSize: '10.5px', color: 'var(--pine)', fontWeight: 600, letterSpacing: '0.04em' }}>
+                    CORE SCOPE
+                  </span>
+                </div>
+
+                <div style={{ padding: '20px 24px', flex: 1 }}>
+                  <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
+                    <li>Brand discovery &amp; positioning</li>
+                    <li>Logo — 3 directions, 1 refined</li>
+                    <li>Color &amp; typography system</li>
+                    <li>Compact brand guideline (PDF)</li>
+                  </ul>
+                </div>
+
                 <div className="bp-tier-foot">
                   <a className="bp-tier-btn" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min call</a>
                   <div className="bp-tier-time">2–3 week delivery</div>
                 </div>
               </div>
 
-              {/* Growth — Featured */}
+              {/* Growth — Featured Card 2 */}
               <div className="bp-tier bp-feat">
                 <div className="bp-flag mono">MOST BOOKED</div>
                 <div className="bp-tier-head">
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', marginBottom: '8px' }}>
-                    <div className="name mono" style={{ margin: 0 }}>GROWTH</div>
-                    <div className="bp-currency-toggle mono" style={{ marginTop: '12px' }}>
-                      <button
-                        type="button"
-                        className={`bp-curr-btn ${growthCurrency === 'INR' ? 'active' : ''}`}
-                        onClick={() => setGrowthCurrency('INR')}
-                        title="Indian Rupee (₹)"
-                      >
-                        ₹ INR
-                      </button>
-                      <button
-                        type="button"
-                        className={`bp-curr-btn ${growthCurrency === 'USD' ? 'active' : ''}`}
-                        onClick={() => setGrowthCurrency('USD')}
-                        title="US Dollar ($)"
-                      >
-                        $ USD
-                      </button>
-                      <button
-                        type="button"
-                        className={`bp-curr-btn ${growthCurrency === 'GBP' ? 'active' : ''}`}
-                        onClick={() => setGrowthCurrency('GBP')}
-                        title="British Pound (£)"
-                      >
-                        £ GBP
-                      </button>
-                    </div>
-                  </div>
+                  <div className="name mono">GROWTH</div>
                   <h3>Full Brand System</h3>
                   <p className="desc">For funded or scaling brands that need to look the part everywhere.</p>
                 </div>
-                <div className="bp-tier-price">
-                  <span className="amt">{growthPrices[growthCurrency]}</span>
-                  <div className="per">per project</div>
+
+                <div className="bp-tier-price" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '12px', flexWrap: 'wrap' }}>
+                  <div>
+                    <span className="amt">{growthPrices[growthCurrency]}</span>
+                    <div className="per">per project</div>
+                  </div>
+                  {/* Currency Toggle inside price block */}
+                  <div className="bp-currency-toggle mono" style={{ margin: 0 }}>
+                    <button
+                      type="button"
+                      className={`bp-curr-btn ${growthCurrency === 'INR' ? 'active' : ''}`}
+                      onClick={() => setGrowthCurrency('INR')}
+                      title="Indian Rupee (₹)"
+                    >
+                      ₹ INR
+                    </button>
+                    <button
+                      type="button"
+                      className={`bp-curr-btn ${growthCurrency === 'USD' ? 'active' : ''}`}
+                      onClick={() => setGrowthCurrency('USD')}
+                      title="US Dollar ($)"
+                    >
+                      $ USD
+                    </button>
+                    <button
+                      type="button"
+                      className={`bp-curr-btn ${growthCurrency === 'GBP' ? 'active' : ''}`}
+                      onClick={() => setGrowthCurrency('GBP')}
+                      title="British Pound (£)"
+                    >
+                      £ GBP
+                    </button>
+                  </div>
                 </div>
 
-                {/* Deliverables Inner Side Slider Header */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '14px 0 10px', paddingBottom: '6px', borderBottom: '1px dashed var(--paper-line)' }}>
-                  <span className="mono" style={{ fontSize: '11px', fontWeight: 600, color: 'var(--ink-soft)' }}>
+                {/* Unified Deliverables Bar */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 24px', background: 'rgba(27,27,23,0.03)', borderBottom: '1px dashed var(--paper-line)' }}>
+                  <span className="mono" style={{ fontSize: '11px', fontWeight: 'bold', color: 'var(--ink-soft)', letterSpacing: '0.05em' }}>
                     DELIVERABLES ({growthSlide + 1}/2)
                   </span>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                     <button
                       type="button"
                       onClick={() => setGrowthSlide(0)}
-                      style={{
-                        width: '8px',
-                        height: '8px',
-                        borderRadius: '50%',
-                        border: 'none',
-                        background: growthSlide === 0 ? 'var(--pine)' : 'var(--paper-line)',
-                        cursor: 'pointer',
-                        padding: 0
-                      }}
-                      title="Slide 1: Core Foundation"
-                    />
+                      className={`bp-curr-btn mono ${growthSlide === 0 ? 'active' : ''}`}
+                      style={{ fontSize: '10px', padding: '3px 7px' }}
+                    >
+                      1
+                    </button>
                     <button
                       type="button"
                       onClick={() => setGrowthSlide(1)}
-                      style={{
-                        width: '8px',
-                        height: '8px',
-                        borderRadius: '50%',
-                        border: 'none',
-                        background: growthSlide === 1 ? 'var(--pine)' : 'var(--paper-line)',
-                        cursor: 'pointer',
-                        padding: 0
-                      }}
-                      title="Slide 2: Full System"
-                    />
+                      className={`bp-curr-btn mono ${growthSlide === 1 ? 'active' : ''}`}
+                      style={{ fontSize: '10px', padding: '3px 7px' }}
+                    >
+                      2
+                    </button>
                     <button
                       type="button"
                       onClick={() => setGrowthSlide((prev) => (prev > 0 ? prev - 1 : 1))}
-                      style={{ background: 'none', border: '1px solid var(--ink)', borderRadius: '2px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '11px', marginLeft: '4px', lineHeight: 1 }}
+                      style={{ background: 'var(--card)', border: '1px solid var(--ink)', borderRadius: '2px', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '12px', marginLeft: '4px', lineHeight: 1 }}
                       title="Previous slide"
                     >
                       ‹
@@ -1435,7 +1440,7 @@ export default function BrandingPage() {
                     <button
                       type="button"
                       onClick={() => setGrowthSlide((prev) => (prev < 1 ? prev + 1 : 0))}
-                      style={{ background: 'none', border: '1px solid var(--ink)', borderRadius: '2px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '11px', lineHeight: 1 }}
+                      style={{ background: 'var(--card)', border: '1px solid var(--ink)', borderRadius: '2px', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '12px', lineHeight: 1 }}
                       title="Next slide"
                     >
                       ›
@@ -1443,16 +1448,15 @@ export default function BrandingPage() {
                   </div>
                 </div>
 
-                {/* Inner Side Slider Track */}
-                <div style={{ overflow: 'hidden', width: '100%' }}>
+                <div style={{ padding: '20px 24px', flex: 1, overflow: 'hidden' }}>
                   <div style={{ display: 'flex', transform: `translateX(-${growthSlide * 100}%)`, transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)' }}>
-                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, margin: 0 }}>
+                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, padding: 0, margin: 0 }}>
                       <li>Brand discovery &amp; positioning</li>
                       <li>Logo — 3 directions, 1 refined</li>
                       <li>Color &amp; typography system</li>
                       <li>Compact brand guideline (PDF)</li>
                     </ul>
-                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, margin: 0 }}>
+                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, padding: 0, margin: 0 }}>
                       <li>Everything in Foundation</li>
                       <li>Messaging pillars &amp; voice guide</li>
                       <li>Full guideline (PDF + web-based)</li>
@@ -1468,7 +1472,7 @@ export default function BrandingPage() {
                 </div>
               </div>
 
-              {/* Scale */}
+              {/* Scale — Card 3 */}
               <div className="bp-tier">
                 <div className="bp-tier-head">
                   <div className="name mono">SCALE</div>
@@ -1480,58 +1484,40 @@ export default function BrandingPage() {
                   <div className="per">per project, up to 6 SKUs</div>
                 </div>
 
-                {/* Deliverables Inner Side Slider Header */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '14px 0 10px', paddingBottom: '6px', borderBottom: '1px dashed var(--paper-line)' }}>
-                  <span className="mono" style={{ fontSize: '11px', fontWeight: 600, color: 'var(--ink-soft)' }}>
+                {/* Unified Deliverables Bar */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 24px', background: 'rgba(27,27,23,0.03)', borderBottom: '1px dashed var(--paper-line)' }}>
+                  <span className="mono" style={{ fontSize: '11px', fontWeight: 'bold', color: 'var(--ink-soft)', letterSpacing: '0.05em' }}>
                     DELIVERABLES ({scaleSlide + 1}/3)
                   </span>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                     <button
                       type="button"
                       onClick={() => setScaleSlide(0)}
-                      style={{
-                        width: '8px',
-                        height: '8px',
-                        borderRadius: '50%',
-                        border: 'none',
-                        background: scaleSlide === 0 ? 'var(--pine)' : 'var(--paper-line)',
-                        cursor: 'pointer',
-                        padding: 0
-                      }}
-                      title="Slide 1: Foundation"
-                    />
+                      className={`bp-curr-btn mono ${scaleSlide === 0 ? 'active' : ''}`}
+                      style={{ fontSize: '10px', padding: '3px 7px' }}
+                    >
+                      1
+                    </button>
                     <button
                       type="button"
                       onClick={() => setScaleSlide(1)}
-                      style={{
-                        width: '8px',
-                        height: '8px',
-                        borderRadius: '50%',
-                        border: 'none',
-                        background: scaleSlide === 1 ? 'var(--pine)' : 'var(--paper-line)',
-                        cursor: 'pointer',
-                        padding: 0
-                      }}
-                      title="Slide 2: Full System"
-                    />
+                      className={`bp-curr-btn mono ${scaleSlide === 1 ? 'active' : ''}`}
+                      style={{ fontSize: '10px', padding: '3px 7px' }}
+                    >
+                      2
+                    </button>
                     <button
                       type="button"
                       onClick={() => setScaleSlide(2)}
-                      style={{
-                        width: '8px',
-                        height: '8px',
-                        borderRadius: '50%',
-                        border: 'none',
-                        background: scaleSlide === 2 ? 'var(--pine)' : 'var(--paper-line)',
-                        cursor: 'pointer',
-                        padding: 0
-                      }}
-                      title="Slide 3: Packaging & Launch"
-                    />
+                      className={`bp-curr-btn mono ${scaleSlide === 2 ? 'active' : ''}`}
+                      style={{ fontSize: '10px', padding: '3px 7px' }}
+                    >
+                      3
+                    </button>
                     <button
                       type="button"
                       onClick={() => setScaleSlide((prev) => (prev > 0 ? prev - 1 : 2))}
-                      style={{ background: 'none', border: '1px solid var(--ink)', borderRadius: '2px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '11px', marginLeft: '4px', lineHeight: 1 }}
+                      style={{ background: 'var(--card)', border: '1px solid var(--ink)', borderRadius: '2px', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '12px', marginLeft: '4px', lineHeight: 1 }}
                       title="Previous slide"
                     >
                       ‹
@@ -1539,7 +1525,7 @@ export default function BrandingPage() {
                     <button
                       type="button"
                       onClick={() => setScaleSlide((prev) => (prev < 2 ? prev + 1 : 0))}
-                      style={{ background: 'none', border: '1px solid var(--ink)', borderRadius: '2px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '11px', lineHeight: 1 }}
+                      style={{ background: 'var(--card)', border: '1px solid var(--ink)', borderRadius: '2px', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '12px', lineHeight: 1 }}
                       title="Next slide"
                     >
                       ›
@@ -1547,23 +1533,22 @@ export default function BrandingPage() {
                   </div>
                 </div>
 
-                {/* Inner Side Slider Track */}
-                <div style={{ overflow: 'hidden', width: '100%' }}>
+                <div style={{ padding: '20px 24px', flex: 1, overflow: 'hidden' }}>
                   <div style={{ display: 'flex', transform: `translateX(-${scaleSlide * 100}%)`, transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)' }}>
-                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, margin: 0 }}>
+                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, padding: 0, margin: 0 }}>
                       <li>Brand discovery &amp; positioning</li>
                       <li>Logo — 3 directions, 1 refined</li>
                       <li>Color &amp; typography system</li>
                       <li>Compact brand guideline (PDF)</li>
                     </ul>
-                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, margin: 0 }}>
+                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, padding: 0, margin: 0 }}>
                       <li>Everything in Foundation</li>
                       <li>Messaging pillars &amp; voice guide</li>
                       <li>Full guideline (PDF + web-based)</li>
                       <li>Stationery suite (cards, deck, letterhead)</li>
                       <li>Website header &amp; banner kit</li>
                     </ul>
-                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, margin: 0 }}>
+                    <ul className="bp-tier-list" style={{ minWidth: '100%', flexShrink: 0, padding: 0, margin: 0 }}>
                       <li>Everything in Full Brand System</li>
                       <li>Packaging design, up to 6 SKUs</li>
                       <li>Social &amp; digital launch assets</li>
@@ -1577,12 +1562,13 @@ export default function BrandingPage() {
                   <div className="bp-tier-time">4–6 week delivery</div>
                 </div>
               </div>
-
             </div>
 
             <p style={{ fontSize: '13px', color: 'var(--ink-soft)', marginTop: '30px' }}>
+
               All tiers: 50% to start, 50% on delivery. No long-term retainer required — you own every file at handoff.
             </p>
+
           </div>
         </section>
 
