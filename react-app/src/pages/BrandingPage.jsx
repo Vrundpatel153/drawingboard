@@ -508,16 +508,16 @@ export default function BrandingPage() {
         .bp-curr-btn:hover { color: var(--ink); background: rgba(0, 0, 0, 0.05); }
         .bp-curr-btn.active { background: var(--pine); color: var(--paper); }
         .bp-tier-head { padding: 26px 24px 20px; border-bottom: 1px dashed var(--paper-line); min-height: 142px; box-sizing: border-box; }
-        .bp-tier-price { padding: 20px 24px; border-bottom: 1px dashed var(--paper-line); min-height: 94px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
-        .bp-tier-price .amt { font-family: 'Fraunces', serif; font-size: 38px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; line-height: 1.1; display: block; }
-        .bp-tier-price .per { font-size: 12px; color: var(--ink-soft); margin-top: 4px; display: block; }
+        .bp-tier-price { padding: 22px 24px; border-bottom: 1px dashed var(--paper-line); min-height: 104px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+        .bp-tier-price .amt { font-family: 'Fraunces', serif; font-size: 48px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; line-height: 1.05; display: block; }
+        .bp-tier-price .per { font-size: 12px; color: var(--ink-soft); margin-top: 6px; display: block; }
         .bp-deliv-bar { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; background: rgba(27,27,23,0.03); border-bottom: 1px dashed var(--paper-line); box-sizing: border-box; }
         .bp-tier-slide { width: 100%; flex: 0 0 100%; box-sizing: border-box; padding: 20px 24px; }
         
         @media (max-width: 940px) {
           .bp-tier-head { min-height: auto; padding: 22px 18px 16px; }
           .bp-tier-price { min-height: auto; padding: 18px; flex-wrap: wrap; }
-          .bp-tier-price .amt { font-size: 32px; }
+          .bp-tier-price .amt { font-size: 40px; }
           .bp-deliv-bar { padding: 10px 16px; flex-wrap: wrap; gap: 8px; }
           .bp-tier-slide { padding: 16px 18px; }
           .bp-tier-foot { padding: 18px; }
@@ -526,7 +526,7 @@ export default function BrandingPage() {
           .bp-tier-head { padding: 18px 14px 14px; }
           .bp-tier-head h3 { font-size: 20px; }
           .bp-tier-price { padding: 14px; }
-          .bp-tier-price .amt { font-size: 28px; }
+          .bp-tier-price .amt { font-size: 34px; }
           .bp-deliv-bar { padding: 10px 12px; }
           .bp-tier-slide { padding: 14px 12px; }
           .bp-tier-foot { padding: 14px; }
@@ -734,7 +734,7 @@ export default function BrandingPage() {
                   <a className="bp-btn-primary" href="#pricing">Book a 15-min call →</a>
                   <a className="bp-btn-link" href="https://wa.me/919428859768">or message us on WhatsApp</a>
                 </div>
-                <p className="bp-price-note">Projects start at <b>₹2,37,000.</b> Built for founders serious about long-term growth.</p>
+                <p className="bp-price-note">Projects start at <b>₹4,75,000/-.</b> Built for founders serious about long-term growth.</p>
               </div>
 
               <div className="bp-annot-card">
@@ -944,7 +944,7 @@ export default function BrandingPage() {
                     <td>Typical investment</td>
                     <td>₹15,000 – ₹60,000</td>
                     <td>₹15,00,000+</td>
-                    <td className="hl">₹2,37,000 – ₹6,50,000</td>
+                    <td className="hl">₹4,75,000/- – ₹6,50,000/-</td>
                   </tr>
                 </tbody>
               </table>
@@ -1056,44 +1056,6 @@ export default function BrandingPage() {
           </div>
         </section>
 
-        {/* ── TESTIMONIALS ─────────────────────────────────────────────── */}
-        <section style={{ paddingTop: 0 }}>
-          <div className="wrap">
-            <div className="bp-section-head">
-              <div>
-                <div className="bp-eyebrow mono">WHAT CLIENTS SAY</div>
-                <h2>Founders, not just fans.</h2>
-              </div>
-            </div>
-            <div className="bp-testi-grid">
-              <div className="bp-testi-card">
-                <div className="bp-testi-stars">★★★★★</div>
-                <p className="bp-body">"We'd worked with other agencies before, but the attention to detail and design thinking here was on another level."</p>
-                <div className="bp-testi-who">
-                  <div className="bp-av">LF</div>
-                  <div><b>Lena F.</b><br />CEO, Northbyte</div>
-                </div>
-              </div>
-              <div className="bp-testi-card">
-                <div className="bp-testi-stars">★★★★★</div>
-                <p className="bp-body">"The positioning work up front made the design phase almost effortless — by the time we saw logos, everyone already agreed on the direction."</p>
-                <div className="bp-testi-who">
-                  <div className="bp-av">S</div>
-                  <div><b>Sonar team</b><br />SaaS Platform</div>
-                </div>
-              </div>
-              <div className="bp-testi-card">
-                <div className="bp-testi-stars">★★★★★</div>
-                <p className="bp-body">"Our packaging finally looks like it belongs on the same shelf as brands three times our size."</p>
-                <div className="bp-testi-who">
-                  <div className="bp-av">L</div>
-                  <div><b>Lumen</b><br />Fine Jewellery</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* ── SOCIAL PROOF ─────────────────────────────────────────────── */}
         <section className="bp-sp-section">
           <div className="wrap">
@@ -1104,14 +1066,12 @@ export default function BrandingPage() {
                 <div className="bp-eyebrow mono">SOCIAL PROOF</div>
                 <h2>Real founders. Real results. <em>In their own words.</em></h2>
               </div>
-              <div className="bp-sp-head-sub">3 Format Categories · Slide to explore →</div>
             </div>
 
             {/* ── ROW 1: WHATSAPP SCREENSHOTS AUTO INFINITE LOOP ─────────── */}
             <div className="bp-sp-row">
               <div className="bp-sp-row-head">
                 <div className="bp-sp-row-title">01 // WhatsApp &amp; Client Screenshots</div>
-                <div className="bp-sp-scroll-hint"><span>Hover to pause · Continuous loop</span><span>→</span></div>
               </div>
 
               <div className="bp-sp-wa-marquee-wrap">
@@ -1140,7 +1100,6 @@ export default function BrandingPage() {
             <div className="bp-sp-row">
               <div className="bp-sp-row-head">
                 <div className="bp-sp-row-title">02 // Client Video Testimonials</div>
-                <div className="bp-sp-scroll-hint"><span>Scroll horizontally</span><span>→</span></div>
               </div>
 
               <div className="bp-sp-slider">
@@ -1234,8 +1193,7 @@ export default function BrandingPage() {
             {/* ── ROW 3: TEXT BASED TESTIMONIALS & QUOTES ─────────────────── */}
             <div className="bp-sp-row">
               <div className="bp-sp-row-head">
-                <div className="bp-sp-row-title">03 // Text Reviews & Founder Quotes</div>
-                <div className="bp-sp-scroll-hint"><span>Scroll horizontally</span><span>→</span></div>
+                <div className="bp-sp-row-title">03 // Founder Quotes</div>
               </div>
 
               <div className="bp-sp-slider">
@@ -1683,7 +1641,7 @@ export default function BrandingPage() {
       {/* ── STICKY MOBILE CTA ────────────────────────────────────────── */}
       <div className="bp-sticky-cta">
         <div className="bp-txt">
-          Projects from ₹2,37,000
+          Projects from ₹4,75,000/-
           <b>Free 15-min call</b>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
