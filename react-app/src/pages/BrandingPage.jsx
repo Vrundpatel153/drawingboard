@@ -731,12 +731,13 @@ export default function BrandingPage() {
           }
         }
 
-        /* ── Full Width End-to-End PC Layout Experiment ─────────────────── */
+        /* ── Full Width End-to-End PC Layout ─────────────────── */
         @media (min-width: 1024px) {
           .bp-full-page .wrap {
-            max-width: 100% !important;
-            padding-left: 64px !important;
-            padding-right: 64px !important;
+            max-width: 1600px !important;
+            margin: 0 auto !important;
+            padding-left: 120px !important;
+            padding-right: 120px !important;
           }
           .bp-full-page .bp-tiers {
             grid-template-columns: repeat(2, 1fr) !important;
