@@ -534,7 +534,10 @@ export default function BrandingPage() {
         .bp-curr-btn { background: transparent; border: none; color: var(--ink-soft); font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; font-weight: 600; padding: 4px 8px; border-radius: 2px; cursor: pointer; transition: all 0.15s ease; line-height: 1; }
         .bp-curr-btn:hover { color: var(--ink); background: rgba(0, 0, 0, 0.05); }
         .bp-curr-btn.active { background: var(--pine); color: var(--paper); }
-        .bp-tier-head { padding: 26px 24px 20px; border-bottom: 1px dashed var(--paper-line); min-height: 200px; box-sizing: border-box; display: flex; flex-direction: column; }
+        .bp-tier-head { padding: 26px 24px 20px; border-bottom: 1px dashed var(--paper-line); min-height: 220px; box-sizing: border-box; display: flex; flex-direction: column; }
+        .bp-slot-badge { display: inline-flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: var(--pine); background: rgba(36, 70, 59, 0.08); border: 1px solid rgba(36, 70, 59, 0.2); padding: 5px 12px; border-radius: 20px; margin-top: 10px; align-self: flex-start; letter-spacing: 0.04em; }
+        .bp-slot-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--marker); box-shadow: 0 0 6px rgba(184, 65, 46, 0.6); animation: bp-slot-blink 1.8s infinite ease-in-out; }
+        @keyframes bp-slot-blink { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.25; transform: scale(0.85); } }
         .bp-tier-price { padding: 22px 24px; border-bottom: 1px dashed var(--paper-line); min-height: 122px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
         .bp-tier-price .amt { font-family: 'Fraunces', serif; font-size: 54px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; line-height: 1.05; display: block; }
         .bp-tier-price .per { font-size: 12px; color: var(--ink-soft); margin-top: 6px; display: block; }
@@ -1281,9 +1284,8 @@ export default function BrandingPage() {
               {/* Growth — Featured Card 1 */}
 
               <div className="bp-tier bp-feat">
-                <div className="bp-flag mono">5 SLOTS AVAILABLE</div>
                 <div className="bp-tier-head">
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', paddingRight: '120px', flexWrap: 'wrap', gap: '8px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
                     <div className="name mono" style={{ margin: 0 }}>GROWTH</div>
                     {/* Currency Toggle inside header */}
                     <div className="bp-currency-toggle mono" style={{ margin: 0 }}>
@@ -1315,7 +1317,11 @@ export default function BrandingPage() {
                   </div>
                   <h3>Full Brand System</h3>
                   <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--pine)', marginBottom: '4px' }}>Brand Identity + Packaging</div>
-                  <p className="desc">For funded or scaling brands that need to look the part everywhere. <span style={{ display: 'block', color: 'var(--pine)', fontWeight: 600, marginTop: '4px' }}>5 Slots Available</span></p>
+                  <p className="desc" style={{ margin: 0 }}>For funded or scaling brands that need to look the part everywhere.</p>
+                  <div className="bp-slot-badge mono">
+                    <span className="bp-slot-dot"></span>
+                    <span>5 SLOTS AVAILABLE</span>
+                  </div>
                 </div>
 
                 <div className="bp-tier-price">
@@ -1396,9 +1402,8 @@ export default function BrandingPage() {
 
               {/* Scale — Card 2 */}
               <div className="bp-tier">
-                <div className="bp-flag mono" style={{ background: 'var(--pine)' }}>3 SLOTS AVAILABLE</div>
                 <div className="bp-tier-head">
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', paddingRight: '120px', flexWrap: 'wrap', gap: '8px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
                     <div className="name mono" style={{ margin: 0 }}>SCALE</div>
                     {/* Currency Toggle inside header */}
                     <div className="bp-currency-toggle mono" style={{ margin: 0 }}>
@@ -1430,7 +1435,11 @@ export default function BrandingPage() {
                   </div>
                   <h3>Brand + Packaging</h3>
                   <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--pine)', marginBottom: '4px' }}>Brand Identity + Packaging + Website/App</div>
-                  <p className="desc">For product brands going to retail or e-commerce shelf. <span style={{ display: 'block', color: 'var(--pine)', fontWeight: 600, marginTop: '4px' }}>3 Slots Available</span></p>
+                  <p className="desc" style={{ margin: 0 }}>For product brands going to retail or e-commerce shelf.</p>
+                  <div className="bp-slot-badge mono">
+                    <span className="bp-slot-dot"></span>
+                    <span>3 SLOTS AVAILABLE</span>
+                  </div>
                 </div>
                 <div className="bp-tier-price">
                   <div>
