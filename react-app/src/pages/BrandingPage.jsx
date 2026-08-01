@@ -535,26 +535,26 @@ export default function BrandingPage() {
         .bp-curr-btn { background: transparent; border: none; color: var(--ink-soft); font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; font-weight: 600; padding: 4px 8px; border-radius: 2px; cursor: pointer; transition: all 0.15s ease; line-height: 1; }
         .bp-curr-btn:hover { color: var(--ink); background: rgba(0, 0, 0, 0.05); }
         .bp-curr-btn.active { background: var(--pine); color: var(--paper); }
-        .bp-tier-head { padding: 26px 24px 20px; border-bottom: 1px dashed var(--paper-line); min-height: 142px; box-sizing: border-box; }
-        .bp-tier-price { padding: 22px 24px; border-bottom: 1px dashed var(--paper-line); min-height: 104px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
-        .bp-tier-price .amt { font-family: 'Fraunces', serif; font-size: 48px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; line-height: 1.05; display: block; }
+        .bp-tier-head { padding: 26px 24px 20px; border-bottom: 1px dashed var(--paper-line); min-height: 180px; box-sizing: border-box; display: flex; flex-direction: column; }
+        .bp-tier-price { padding: 22px 24px; border-bottom: 1px dashed var(--paper-line); min-height: 122px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+        .bp-tier-price .amt { font-family: 'Fraunces', serif; font-size: 54px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; line-height: 1.05; display: block; }
         .bp-tier-price .per { font-size: 12px; color: var(--ink-soft); margin-top: 6px; display: block; }
         .bp-deliv-bar { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; background: rgba(27,27,23,0.03); border-bottom: 1px dashed var(--paper-line); box-sizing: border-box; }
-        .bp-tier-slide { width: 100%; flex: 0 0 100%; box-sizing: border-box; padding: 20px 24px; }
+        .bp-tier-slide { width: 100%; flex: 0 0 100%; box-sizing: border-box; padding: 20px 24px; min-height: 220px; }
         
         @media (max-width: 940px) {
           .bp-tier-head { min-height: auto; padding: 22px 18px 16px; }
           .bp-tier-price { min-height: auto; padding: 18px; flex-wrap: wrap; }
-          .bp-tier-price .amt { font-size: 40px; }
+          .bp-tier-price .amt { font-size: 44px; }
           .bp-deliv-bar { padding: 10px 16px; flex-wrap: wrap; gap: 8px; }
-          .bp-tier-slide { padding: 16px 18px; }
+          .bp-tier-slide { padding: 16px 18px; min-height: auto; }
           .bp-tier-foot { padding: 18px; }
         }
         @media (max-width: 480px) {
           .bp-tier-head { padding: 18px 14px 14px; }
           .bp-tier-head h3 { font-size: 20px; }
           .bp-tier-price { padding: 14px; }
-          .bp-tier-price .amt { font-size: 34px; }
+          .bp-tier-price .amt { font-size: 36px; }
           .bp-deliv-bar { padding: 10px 12px; }
           .bp-tier-slide { padding: 14px 12px; }
           .bp-tier-foot { padding: 14px; }
