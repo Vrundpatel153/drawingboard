@@ -29,11 +29,19 @@ function RouterAnalytics() {
 }
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => {
+    return !sessionStorage.getItem('hasSeenPreloader');
+  });
+
+  const handlePreloaderComplete = () => {
+    sessionStorage.setItem('hasSeenPreloader', 'true');
+    setLoading(false);
+  };
 
   if (loading) {
-    return <Preloader onComplete={() => setLoading(false)} />;
+    return <Preloader onComplete={handlePreloaderComplete} />;
   }
+
 
   return (
     <Router>
