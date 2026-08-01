@@ -231,9 +231,8 @@ export default function BrandingPage() {
         .bp-logo-row span:last-child { border-right: none; }
 
         /* problem section */
-        .bp-problem-section { background: var(--pine); color: var(--paper); padding: 80px 0; }
-        .bp-problem-section .bp-section-head p { color: rgba(239,235,226,0.8); }
-        .bp-problem-section .bp-eyebrow { color: #A8D5BA; }
+        .bp-problem-section { background: var(--ink); color: var(--paper); padding: 80px 0; }
+        .bp-problem-section .bp-section-head p, .bp-problem-section .bp-eyebrow { color: #C9C3B4; }
         .bp-problem-copy { font-size: 19px; line-height: 1.65; max-width: 760px; color: #E7E3D8; }
         .bp-problem-copy strong { color: #fff; }
 
@@ -314,19 +313,19 @@ export default function BrandingPage() {
         .bp-testi-who b { color: var(--ink); }
 
         /* ── SOCIAL PROOF SECTION ────────────────────────────────────── */
-        .bp-sp-section { background: var(--pine); padding: 80px 0; overflow: hidden; }
-        .bp-sp-head { margin-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 28px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; }
-        .bp-sp-section .bp-eyebrow { color: #A8D5BA; }
+        .bp-sp-section { background: var(--ink); padding: 80px 0; overflow: hidden; }
+        .bp-sp-head { margin-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.10); padding-bottom: 28px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; }
+        .bp-sp-section .bp-eyebrow { color: #C9C3B4; }
         .bp-sp-section h2 { color: #fff; font-size: clamp(24px, 3vw, 38px); max-width: 580px; margin: 0; }
-        .bp-sp-section h2 em { font-style: normal; color: #A8D5BA; }
-        .bp-sp-head-sub { font-size: 13px; color: rgba(239,235,226,0.7); font-family: 'IBM Plex Mono', monospace; text-align: right; }
+        .bp-sp-section h2 em { font-style: normal; color: #7FB89F; }
+        .bp-sp-head-sub { font-size: 13px; color: #8B8571; font-family: 'IBM Plex Mono', monospace; text-align: right; }
 
         /* ── SLIDER ROW WRAPPER ──────────────────────────────────────── */
         .bp-sp-row { margin-bottom: 48px; }
         .bp-sp-row:last-child { margin-bottom: 0; }
         .bp-sp-row-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-        .bp-sp-row-title { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A8D5BA; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
-        .bp-sp-row-title::before { content: ''; width: 6px; height: 6px; background: #A8D5BA; border-radius: 50%; display: inline-block; }
+        .bp-sp-row-title { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #7FB89F; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+        .bp-sp-row-title::before { content: ''; width: 6px; height: 6px; background: #7FB89F; border-radius: 50%; display: inline-block; }
         .bp-sp-scroll-hint { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8B8571; display: flex; align-items: center; gap: 6px; }
 
         /* ── HORIZONTAL SCROLL CONTAINER ─────────────────────────────── */
@@ -535,7 +534,7 @@ export default function BrandingPage() {
         .bp-curr-btn { background: transparent; border: none; color: var(--ink-soft); font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; font-weight: 600; padding: 4px 8px; border-radius: 2px; cursor: pointer; transition: all 0.15s ease; line-height: 1; }
         .bp-curr-btn:hover { color: var(--ink); background: rgba(0, 0, 0, 0.05); }
         .bp-curr-btn.active { background: var(--pine); color: var(--paper); }
-        .bp-tier-head { padding: 26px 24px 20px; border-bottom: 1px dashed var(--paper-line); min-height: 180px; box-sizing: border-box; display: flex; flex-direction: column; }
+        .bp-tier-head { padding: 26px 24px 20px; border-bottom: 1px dashed var(--paper-line); min-height: 200px; box-sizing: border-box; display: flex; flex-direction: column; }
         .bp-tier-price { padding: 22px 24px; border-bottom: 1px dashed var(--paper-line); min-height: 122px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
         .bp-tier-price .amt { font-family: 'Fraunces', serif; font-size: 54px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; line-height: 1.05; display: block; }
         .bp-tier-price .per { font-size: 12px; color: var(--ink-soft); margin-top: 6px; display: block; }
@@ -1315,6 +1314,7 @@ export default function BrandingPage() {
                     </div>
                   </div>
                   <h3>Full Brand System</h3>
+                  <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--pine)', marginBottom: '4px' }}>Brand Identity + Packaging</div>
                   <p className="desc">For funded or scaling brands that need to look the part everywhere. <span style={{ display: 'block', color: 'var(--pine)', fontWeight: 600, marginTop: '4px' }}>5 Slots Available</span></p>
                 </div>
 
@@ -1429,6 +1429,7 @@ export default function BrandingPage() {
                     </div>
                   </div>
                   <h3>Brand + Packaging</h3>
+                  <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--pine)', marginBottom: '4px' }}>Brand Identity + Packaging + Website/App</div>
                   <p className="desc">For product brands going to retail or e-commerce shelf. <span style={{ display: 'block', color: 'var(--pine)', fontWeight: 600, marginTop: '4px' }}>3 Slots Available</span></p>
                 </div>
                 <div className="bp-tier-price">
