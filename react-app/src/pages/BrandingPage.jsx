@@ -497,8 +497,9 @@ export default function BrandingPage() {
         .bp-sp-stat-item .bp-sp-stat-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #8B8571; letter-spacing: 0.04em; }
 
         /* pricing tiers */
-        .bp-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+        .bp-tiers { display: grid; grid-template-columns: repeat(2, minmax(0, 540px)); justify-content: center; gap: 32px; align-items: stretch; }
         @media (max-width: 940px) { .bp-tiers { grid-template-columns: 1fr; gap: 24px; } }
+
         .bp-tier { border: 1px solid var(--ink); background: var(--card); display: flex; flex-direction: column; position: relative; width: 100%; box-sizing: border-box; overflow: hidden; }
         .bp-tier.bp-feat { border: 2px solid var(--pine); }
         .bp-tier .bp-flag { position: absolute; top: -1px; right: -1px; background: var(--pine); color: var(--paper); font-size: 11px; padding: 5px 10px; font-family: 'IBM Plex Mono', monospace; z-index: 2; }
@@ -1341,76 +1342,8 @@ export default function BrandingPage() {
             </div>
 
             <div className="bp-tiers">
-              {/* Foundation — Card 1 */}
-              <div className="bp-tier">
-                <div className="bp-tier-head">
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
-                    <div className="name mono" style={{ margin: 0 }}>FOUNDATION</div>
-                    {/* Currency Toggle inside header */}
-                    <div className="bp-currency-toggle mono" style={{ margin: 0 }}>
-                      <button
-                        type="button"
-                        className={`bp-curr-btn ${currency === 'INR' ? 'active' : ''}`}
-                        onClick={() => setCurrency('INR')}
-                        title="Indian Rupee (₹)"
-                      >
-                        ₹ INR
-                      </button>
-                      <button
-                        type="button"
-                        className={`bp-curr-btn ${currency === 'USD' ? 'active' : ''}`}
-                        onClick={() => setCurrency('USD')}
-                        title="US Dollar ($)"
-                      >
-                        $ USD
-                      </button>
-                      <button
-                        type="button"
-                        className={`bp-curr-btn ${currency === 'GBP' ? 'active' : ''}`}
-                        onClick={() => setCurrency('GBP')}
-                        title="British Pound (£)"
-                      >
-                        £ GBP
-                      </button>
-                    </div>
-                  </div>
-                  <h3>Identity Foundation</h3>
-                  <p className="desc">For founders who need a credible identity to start selling with.</p>
-                </div>
-                <div className="bp-tier-price">
-                  <div>
-                    <span className="amt">{foundationPrices[currency]}</span>
-                    <div className="per">per project</div>
-                  </div>
-                </div>
+              {/* Growth — Featured Card 1 */}
 
-
-                {/* Unified Deliverables Bar */}
-                <div className="bp-deliv-bar">
-                  <span className="mono" style={{ fontSize: '11px', fontWeight: 'bold', color: 'var(--ink-soft)', letterSpacing: '0.05em' }}>
-                    DELIVERABLES (1/1)
-                  </span>
-                  <span className="mono" style={{ fontSize: '10.5px', color: 'var(--pine)', fontWeight: 600, letterSpacing: '0.04em' }}>
-                    CORE SCOPE
-                  </span>
-                </div>
-
-                <div className="bp-tier-slide" style={{ flex: 1 }}>
-                  <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
-                    <li>Brand discovery &amp; positioning</li>
-                    <li>Logo — 3 directions, 1 refined</li>
-                    <li>Color &amp; typography system</li>
-                    <li>Compact brand guideline (PDF)</li>
-                  </ul>
-                </div>
-
-                <div className="bp-tier-foot">
-                  <a className="bp-tier-btn" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min call</a>
-                  <div className="bp-tier-time">2–3 week delivery</div>
-                </div>
-              </div>
-
-              {/* Growth — Featured Card 2 */}
               <div className="bp-tier bp-feat">
                 <div className="bp-flag mono">MOST BOOKED</div>
                 <div className="bp-tier-head">
