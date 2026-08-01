@@ -13,9 +13,11 @@ import { WHATSAPP_URL } from '../utils/siteConfig';
    ───────────────────────────────────────────────────────────────────────────── */
 export default function BrandingPage() {
   const [openFaq, setOpenFaq] = useState(null);
+  const [formData, setFormData] = useState({ email: '', company: '' });
   const [currency, setCurrency] = useState('INR');
   const [growthSlide, setGrowthSlide] = useState(0);
   const [scaleSlide, setScaleSlide] = useState(0);
+
 
   const foundationPrices = {
     INR: '₹2,37,000/-',
