@@ -13,16 +13,28 @@ import { WHATSAPP_URL } from '../utils/siteConfig';
    ───────────────────────────────────────────────────────────────────────────── */
 export default function BrandingPage() {
   const [openFaq, setOpenFaq] = useState(null);
-  const [formData, setFormData] = useState({ email: '', company: '' });
-  const [growthCurrency, setGrowthCurrency] = useState('INR');
+  const [currency, setCurrency] = useState('INR');
   const [growthSlide, setGrowthSlide] = useState(0);
   const [scaleSlide, setScaleSlide] = useState(0);
+
+  const foundationPrices = {
+    INR: '₹2,37,000/-',
+    USD: '$2,475/-',
+    GBP: '£1,850/-',
+  };
 
   const growthPrices = {
     INR: '₹4,75,000/-',
     USD: '$4,960/-',
     GBP: '£3,715/-',
   };
+
+  const scalePrices = {
+    INR: '₹6,50,000/-',
+    USD: '$6,780/-',
+    GBP: '£5,080/-',
+  };
+
 
   const whatsappScreenshots = [
     '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.10 PM (1).jpeg',
@@ -1330,14 +1342,42 @@ export default function BrandingPage() {
               {/* Foundation — Card 1 */}
               <div className="bp-tier">
                 <div className="bp-tier-head">
-                  <div className="name mono">FOUNDATION</div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
+                    <div className="name mono" style={{ margin: 0 }}>FOUNDATION</div>
+                    {/* Currency Toggle inside header */}
+                    <div className="bp-currency-toggle mono" style={{ margin: 0 }}>
+                      <button
+                        type="button"
+                        className={`bp-curr-btn ${currency === 'INR' ? 'active' : ''}`}
+                        onClick={() => setCurrency('INR')}
+                        title="Indian Rupee (₹)"
+                      >
+                        ₹ INR
+                      </button>
+                      <button
+                        type="button"
+                        className={`bp-curr-btn ${currency === 'USD' ? 'active' : ''}`}
+                        onClick={() => setCurrency('USD')}
+                        title="US Dollar ($)"
+                      >
+                        $ USD
+                      </button>
+                      <button
+                        type="button"
+                        className={`bp-curr-btn ${currency === 'GBP' ? 'active' : ''}`}
+                        onClick={() => setCurrency('GBP')}
+                        title="British Pound (£)"
+                      >
+                        £ GBP
+                      </button>
+                    </div>
+                  </div>
                   <h3>Identity Foundation</h3>
-
                   <p className="desc">For founders who need a credible identity to start selling with.</p>
                 </div>
                 <div className="bp-tier-price">
                   <div>
-                    <span className="amt">₹2,37,000</span>
+                    <span className="amt">{foundationPrices[currency]}</span>
                     <div className="per">per project</div>
                   </div>
                 </div>
@@ -1374,28 +1414,28 @@ export default function BrandingPage() {
                 <div className="bp-tier-head">
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', paddingRight: '90px', flexWrap: 'wrap', gap: '8px' }}>
                     <div className="name mono" style={{ margin: 0 }}>GROWTH</div>
-                    {/* Currency Toggle inside header above line */}
+                    {/* Currency Toggle inside header */}
                     <div className="bp-currency-toggle mono" style={{ margin: 0 }}>
                       <button
                         type="button"
-                        className={`bp-curr-btn ${growthCurrency === 'INR' ? 'active' : ''}`}
-                        onClick={() => setGrowthCurrency('INR')}
+                        className={`bp-curr-btn ${currency === 'INR' ? 'active' : ''}`}
+                        onClick={() => setCurrency('INR')}
                         title="Indian Rupee (₹)"
                       >
                         ₹ INR
                       </button>
                       <button
                         type="button"
-                        className={`bp-curr-btn ${growthCurrency === 'USD' ? 'active' : ''}`}
-                        onClick={() => setGrowthCurrency('USD')}
+                        className={`bp-curr-btn ${currency === 'USD' ? 'active' : ''}`}
+                        onClick={() => setCurrency('USD')}
                         title="US Dollar ($)"
                       >
                         $ USD
                       </button>
                       <button
                         type="button"
-                        className={`bp-curr-btn ${growthCurrency === 'GBP' ? 'active' : ''}`}
-                        onClick={() => setGrowthCurrency('GBP')}
+                        className={`bp-curr-btn ${currency === 'GBP' ? 'active' : ''}`}
+                        onClick={() => setCurrency('GBP')}
                         title="British Pound (£)"
                       >
                         £ GBP
@@ -1408,7 +1448,7 @@ export default function BrandingPage() {
 
                 <div className="bp-tier-price">
                   <div>
-                    <span className="amt">{growthPrices[growthCurrency]}</span>
+                    <span className="amt">{growthPrices[currency]}</span>
                     <div className="per">per project</div>
                   </div>
                 </div>
@@ -1486,16 +1526,46 @@ export default function BrandingPage() {
               {/* Scale — Card 3 */}
               <div className="bp-tier">
                 <div className="bp-tier-head">
-                  <div className="name mono">SCALE</div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
+                    <div className="name mono" style={{ margin: 0 }}>SCALE</div>
+                    {/* Currency Toggle inside header */}
+                    <div className="bp-currency-toggle mono" style={{ margin: 0 }}>
+                      <button
+                        type="button"
+                        className={`bp-curr-btn ${currency === 'INR' ? 'active' : ''}`}
+                        onClick={() => setCurrency('INR')}
+                        title="Indian Rupee (₹)"
+                      >
+                        ₹ INR
+                      </button>
+                      <button
+                        type="button"
+                        className={`bp-curr-btn ${currency === 'USD' ? 'active' : ''}`}
+                        onClick={() => setCurrency('USD')}
+                        title="US Dollar ($)"
+                      >
+                        $ USD
+                      </button>
+                      <button
+                        type="button"
+                        className={`bp-curr-btn ${currency === 'GBP' ? 'active' : ''}`}
+                        onClick={() => setCurrency('GBP')}
+                        title="British Pound (£)"
+                      >
+                        £ GBP
+                      </button>
+                    </div>
+                  </div>
                   <h3>Brand + Packaging</h3>
                   <p className="desc">For product brands going to retail or e-commerce shelf.</p>
                 </div>
                 <div className="bp-tier-price">
                   <div>
-                    <span className="amt">₹6,50,000</span>
+                    <span className="amt">{scalePrices[currency]}</span>
                     <div className="per">per project, up to 6 SKUs</div>
                   </div>
                 </div>
+
 
 
                 {/* Unified Deliverables Bar */}
