@@ -1282,9 +1282,9 @@ export default function BrandingPage() {
               {/* Growth — Featured Card 1 */}
 
               <div className="bp-tier bp-feat">
-                <div className="bp-flag mono">MOST BOOKED</div>
+                <div className="bp-flag mono">5 SLOTS AVAILABLE</div>
                 <div className="bp-tier-head">
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', paddingRight: '90px', flexWrap: 'wrap', gap: '8px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', paddingRight: '120px', flexWrap: 'wrap', gap: '8px' }}>
                     <div className="name mono" style={{ margin: 0 }}>GROWTH</div>
                     {/* Currency Toggle inside header */}
                     <div className="bp-currency-toggle mono" style={{ margin: 0 }}>
@@ -1315,7 +1315,7 @@ export default function BrandingPage() {
                     </div>
                   </div>
                   <h3>Full Brand System</h3>
-                  <p className="desc">For funded or scaling brands that need to look the part everywhere.</p>
+                  <p className="desc">For funded or scaling brands that need to look the part everywhere. <span style={{ display: 'block', color: 'var(--pine)', fontWeight: 600, marginTop: '4px' }}>5 Slots Available</span></p>
                 </div>
 
                 <div className="bp-tier-price">
@@ -1394,10 +1394,11 @@ export default function BrandingPage() {
                 </div>
               </div>
 
-              {/* Scale — Card 3 */}
+              {/* Scale — Card 2 */}
               <div className="bp-tier">
+                <div className="bp-flag mono" style={{ background: 'var(--pine)' }}>3 SLOTS AVAILABLE</div>
                 <div className="bp-tier-head">
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', paddingRight: '120px', flexWrap: 'wrap', gap: '8px' }}>
                     <div className="name mono" style={{ margin: 0 }}>SCALE</div>
                     {/* Currency Toggle inside header */}
                     <div className="bp-currency-toggle mono" style={{ margin: 0 }}>
@@ -1428,7 +1429,7 @@ export default function BrandingPage() {
                     </div>
                   </div>
                   <h3>Brand + Packaging</h3>
-                  <p className="desc">For product brands going to retail or e-commerce shelf.</p>
+                  <p className="desc">For product brands going to retail or e-commerce shelf. <span style={{ display: 'block', color: 'var(--pine)', fontWeight: 600, marginTop: '4px' }}>3 Slots Available</span></p>
                 </div>
                 <div className="bp-tier-price">
                   <div>
