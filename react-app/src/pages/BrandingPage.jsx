@@ -402,12 +402,15 @@ export default function BrandingPage() {
         .bp-curr-btn.active { background: var(--pine); color: var(--paper); }
         .bp-tier-head { padding: 26px 24px 20px; border-bottom: 1px dashed var(--paper-line); min-height: 142px; box-sizing: border-box; }
         .bp-tier-price { padding: 20px 24px; border-bottom: 1px dashed var(--paper-line); min-height: 94px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+        .bp-tier-price .amt { font-family: 'Fraunces', serif; font-size: 38px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; line-height: 1.1; display: block; }
+        .bp-tier-price .per { font-size: 12px; color: var(--ink-soft); margin-top: 4px; display: block; }
         .bp-deliv-bar { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; background: rgba(27,27,23,0.03); border-bottom: 1px dashed var(--paper-line); box-sizing: border-box; }
         .bp-tier-slide { width: 100%; flex: 0 0 100%; box-sizing: border-box; padding: 20px 24px; }
         
         @media (max-width: 940px) {
           .bp-tier-head { min-height: auto; padding: 22px 18px 16px; }
           .bp-tier-price { min-height: auto; padding: 18px; flex-wrap: wrap; }
+          .bp-tier-price .amt { font-size: 32px; }
           .bp-deliv-bar { padding: 10px 16px; flex-wrap: wrap; gap: 8px; }
           .bp-tier-slide { padding: 16px 18px; }
           .bp-tier-foot { padding: 18px; }
@@ -416,12 +419,13 @@ export default function BrandingPage() {
           .bp-tier-head { padding: 18px 14px 14px; }
           .bp-tier-head h3 { font-size: 20px; }
           .bp-tier-price { padding: 14px; }
-          .bp-tier-price .amt { font-size: 26px; }
+          .bp-tier-price .amt { font-size: 28px; }
           .bp-deliv-bar { padding: 10px 12px; }
           .bp-tier-slide { padding: 14px 12px; }
           .bp-tier-foot { padding: 14px; }
           .bp-curr-btn { padding: 3px 6px; font-size: 10px; }
         }
+
 
         .bp-tier-list { padding: 0; flex: 1; list-style: none; font-size: 13.5px; }
         .bp-tier-list li { padding: 8px 0; display: flex; gap: 10px; }
