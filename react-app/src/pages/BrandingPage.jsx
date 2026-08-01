@@ -1389,45 +1389,47 @@ export default function BrandingPage() {
               <div className="bp-tier bp-feat">
                 <div className="bp-flag mono">MOST BOOKED</div>
                 <div className="bp-tier-head">
-                  <div className="name mono">GROWTH</div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', paddingRight: '90px', flexWrap: 'wrap', gap: '8px' }}>
+                    <div className="name mono" style={{ margin: 0 }}>GROWTH</div>
+                    {/* Currency Toggle inside header above line */}
+                    <div className="bp-currency-toggle mono" style={{ margin: 0 }}>
+                      <button
+                        type="button"
+                        className={`bp-curr-btn ${growthCurrency === 'INR' ? 'active' : ''}`}
+                        onClick={() => setGrowthCurrency('INR')}
+                        title="Indian Rupee (₹)"
+                      >
+                        ₹ INR
+                      </button>
+                      <button
+                        type="button"
+                        className={`bp-curr-btn ${growthCurrency === 'USD' ? 'active' : ''}`}
+                        onClick={() => setGrowthCurrency('USD')}
+                        title="US Dollar ($)"
+                      >
+                        $ USD
+                      </button>
+                      <button
+                        type="button"
+                        className={`bp-curr-btn ${growthCurrency === 'GBP' ? 'active' : ''}`}
+                        onClick={() => setGrowthCurrency('GBP')}
+                        title="British Pound (£)"
+                      >
+                        £ GBP
+                      </button>
+                    </div>
+                  </div>
                   <h3>Full Brand System</h3>
                   <p className="desc">For funded or scaling brands that need to look the part everywhere.</p>
                 </div>
 
-                <div className="bp-tier-price" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                <div className="bp-tier-price">
                   <div>
                     <span className="amt">{growthPrices[growthCurrency]}</span>
                     <div className="per">per project</div>
                   </div>
-
-                  {/* Currency Toggle inside price block */}
-                  <div className="bp-currency-toggle mono" style={{ margin: 0 }}>
-                    <button
-                      type="button"
-                      className={`bp-curr-btn ${growthCurrency === 'INR' ? 'active' : ''}`}
-                      onClick={() => setGrowthCurrency('INR')}
-                      title="Indian Rupee (₹)"
-                    >
-                      ₹ INR
-                    </button>
-                    <button
-                      type="button"
-                      className={`bp-curr-btn ${growthCurrency === 'USD' ? 'active' : ''}`}
-                      onClick={() => setGrowthCurrency('USD')}
-                      title="US Dollar ($)"
-                    >
-                      $ USD
-                    </button>
-                    <button
-                      type="button"
-                      className={`bp-curr-btn ${growthCurrency === 'GBP' ? 'active' : ''}`}
-                      onClick={() => setGrowthCurrency('GBP')}
-                      title="British Pound (£)"
-                    >
-                      £ GBP
-                    </button>
-                  </div>
                 </div>
+
 
                 {/* Unified Deliverables Bar */}
                 <div className="bp-deliv-bar">
