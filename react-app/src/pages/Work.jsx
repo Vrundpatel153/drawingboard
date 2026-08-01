@@ -115,7 +115,7 @@ export default function Work() {
                 <button className={`ftab ${filter === 'packaging' ? 'on' : ''}`} onClick={() => handleFilter('packaging')}>[ PACKAGING ]</button>
               </div>
 
-              {/* Counter Badge & Arrow Control Buttons */}
+              {/* Counter Badge & Top Control Buttons */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                 <span className="mono" style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ink-soft)', letterSpacing: '0.04em' }}>
                   [ {String(activeIdx + 1).padStart(2, '0')} / {String(filteredProjects.length).padStart(2, '0')} ]
@@ -124,22 +124,7 @@ export default function Work() {
                   <button
                     type="button"
                     onClick={() => scrollCarousel('prev')}
-                    style={{
-                      background: 'var(--card)',
-                      border: '1.5px solid var(--ink)',
-                      borderRadius: '2px',
-                      width: '40px',
-                      height: '40px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justify: 'center',
-                      cursor: 'pointer',
-                      fontSize: '16px',
-                      color: 'var(--ink)',
-                      transition: 'all 0.15s ease'
-                    }}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--pine)'; e.currentTarget.style.color = '#fff'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--card)'; e.currentTarget.style.color = 'var(--ink)'; }}
+                    className="work-top-nav-btn"
                     title="Previous case study"
                   >
                     ←
@@ -147,22 +132,7 @@ export default function Work() {
                   <button
                     type="button"
                     onClick={() => scrollCarousel('next')}
-                    style={{
-                      background: 'var(--card)',
-                      border: '1.5px solid var(--ink)',
-                      borderRadius: '2px',
-                      width: '40px',
-                      height: '40px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justify: 'center',
-                      cursor: 'pointer',
-                      fontSize: '16px',
-                      color: 'var(--ink)',
-                      transition: 'all 0.15s ease'
-                    }}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--pine)'; e.currentTarget.style.color = '#fff'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--card)'; e.currentTarget.style.color = 'var(--ink)'; }}
+                    className="work-top-nav-btn"
                     title="Next case study"
                   >
                     →
@@ -171,62 +141,87 @@ export default function Work() {
               </div>
             </div>
 
-            {/* Smooth Horizontal Carousel Track */}
-            <div
-              ref={carouselRef}
-              onScroll={handleScroll}
-              className="work-carousel-track"
-              style={{
-                display: 'flex',
-                gap: '24px',
-                overflowX: 'auto',
-                scrollSnapType: 'x mandatory',
-                scrollBehavior: 'smooth',
-                paddingBottom: '16px',
-                WebkitOverflowScrolling: 'touch',
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none'
-              }}
-            >
-              {filteredProjects.map((project, idx) => (
-                <Link
-                  key={project.slug || idx}
-                  to={`/work/${project.slug}`}
-                  className="case-card work-carousel-card"
-                  style={{
-                    flex: '0 0 380px',
-                    scrollSnapAlign: 'start',
-                    textDecoration: 'none',
-                    borderRadius: '2px',
-                    transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease'
-                  }}
-                >
-                  <div className="img" style={{ aspectRatio: '4/3', overflow: 'hidden', background: 'linear-gradient(135deg, #d8d2c1, #c3bda9)', position: 'relative' }}>
-                    <img
-                      src={project.coverImage}
-                      alt={project.title}
-                      loading="lazy"
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.45s ease' }}
-                    />
-                  </div>
-                  <div className="case-body" style={{ padding: '24px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                    <div>
-                      <div className="tag mono" style={{ fontSize: '11px', color: 'var(--pine)', fontWeight: 600, letterSpacing: '0.04em', marginBottom: '8px' }}>
-                        {project.tag}
-                      </div>
-                      <h4 style={{ fontSize: '20px', fontFamily: "'Fraunces', serif", marginBottom: '8px', color: 'var(--ink)' }}>
-                        {project.title}
-                      </h4>
-                      <p style={{ fontSize: '13.5px', color: 'var(--ink-soft)', lineHeight: 1.5, marginBottom: '16px' }}>
-                        {project.description || 'Strategic brand identity, packaging design, and digital build.'}
-                      </p>
+            {/* Relative Carousel Wrapper with Floating Side Arrows */}
+            <div style={{ position: 'relative', width: '100%' }}>
+              {/* Left Side Floating Arrow Button */}
+              <button
+                type="button"
+                onClick={() => scrollCarousel('prev')}
+                className="work-nav-arrow work-nav-prev"
+                title="Previous case study"
+                aria-label="Previous case study"
+              >
+                ‹
+              </button>
+
+              {/* Right Side Floating Arrow Button */}
+              <button
+                type="button"
+                onClick={() => scrollCarousel('next')}
+                className="work-nav-arrow work-nav-next"
+                title="Next case study"
+                aria-label="Next case study"
+              >
+                ›
+              </button>
+
+              {/* Smooth Horizontal Carousel Track */}
+              <div
+                ref={carouselRef}
+                onScroll={handleScroll}
+                className="work-carousel-track"
+                style={{
+                  display: 'flex',
+                  gap: '24px',
+                  overflowX: 'auto',
+                  scrollSnapType: 'x mandatory',
+                  scrollBehavior: 'smooth',
+                  paddingBottom: '16px',
+                  WebkitOverflowScrolling: 'touch',
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none'
+                }}
+              >
+                {filteredProjects.map((project, idx) => (
+                  <Link
+                    key={project.slug || idx}
+                    to={`/work/${project.slug}`}
+                    className="case-card work-carousel-card"
+                    style={{
+                      flex: '0 0 380px',
+                      scrollSnapAlign: 'start',
+                      textDecoration: 'none',
+                      borderRadius: '2px',
+                      transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease'
+                    }}
+                  >
+                    <div className="img" style={{ aspectRatio: '4/3', overflow: 'hidden', background: 'linear-gradient(135deg, #d8d2c1, #c3bda9)', position: 'relative' }}>
+                      <img
+                        src={project.coverImage}
+                        alt={project.title}
+                        loading="lazy"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.45s ease' }}
+                      />
                     </div>
-                    <span className="case-metric mono" style={{ fontSize: '11px', fontWeight: 600, color: 'var(--marker)', letterSpacing: '0.04em' }}>
-                      {project.imageCount > 0 ? `${project.imageCount} REAL ASSETS` : 'VIEW CASE STUDY →'}
-                    </span>
-                  </div>
-                </Link>
-              ))}
+                    <div className="case-body" style={{ padding: '24px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                      <div>
+                        <div className="tag mono" style={{ fontSize: '11px', color: 'var(--pine)', fontWeight: 600, letterSpacing: '0.04em', marginBottom: '8px' }}>
+                          {project.tag}
+                        </div>
+                        <h4 style={{ fontSize: '20px', fontFamily: "'Fraunces', serif", marginBottom: '8px', color: 'var(--ink)' }}>
+                          {project.title}
+                        </h4>
+                        <p style={{ fontSize: '13.5px', color: 'var(--ink-soft)', lineHeight: 1.5, marginBottom: '16px' }}>
+                          {project.description || 'Strategic brand identity, packaging design, and digital build.'}
+                        </p>
+                      </div>
+                      <span className="case-metric mono" style={{ fontSize: '11px', fontWeight: 600, color: 'var(--marker)', letterSpacing: '0.04em' }}>
+                        {project.imageCount > 0 ? `${project.imageCount} REAL ASSETS` : 'VIEW CASE STUDY →'}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </section>
