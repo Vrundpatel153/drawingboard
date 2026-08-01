@@ -24,6 +24,18 @@ export default function BrandingPage() {
     GBP: '£3,715/-',
   };
 
+  const whatsappScreenshots = [
+    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.10 PM (1).jpeg',
+    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.10 PM.jpeg',
+    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.11 PM.jpeg',
+    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.12 PM (1).jpeg',
+    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.12 PM.jpeg',
+    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.13 PM (1).jpeg',
+    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.13 PM (2).jpeg',
+    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.13 PM.jpeg'
+  ];
+
+
 
 
   const toggleFaq = (idx) => {
@@ -299,15 +311,95 @@ export default function BrandingPage() {
           flex-shrink: 0;
         }
 
-        /* ── ROW 1: WHATSAPP / SCREENSHOT CARDS ──────────────────────── */
-        .bp-sp-wa-card {
-          width: clamp(280px, 75vw, 340px);
-          border: 1px solid rgba(255,255,255,0.10);
-          background: #0e0e0b;
+        /* ── ROW 1: WHATSAPP MARQUEE INFINITE LOOP ── */
+        @keyframes bp-wa-marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
+        .bp-sp-wa-marquee-wrap {
+          width: 100%;
           overflow: hidden;
+          position: relative;
+          padding: 12px 0 24px;
+          mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+          -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+        }
+
+        .bp-sp-wa-marquee-track {
+          display: flex;
+          gap: 20px;
+          width: max-content;
+          animation: bp-wa-marquee 32s linear infinite;
+          will-change: transform;
+        }
+
+        .bp-sp-wa-marquee-wrap:hover .bp-sp-wa-marquee-track {
+          animation-play-state: paused;
+        }
+
+        .bp-sp-wa-img-card {
+          width: 230px;
+          height: 440px;
+          background: var(--card);
+          border: 1.5px solid var(--ink);
+          border-radius: 6px;
+          overflow: hidden;
+          flex-shrink: 0;
           display: flex;
           flex-direction: column;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+          position: relative;
         }
+
+        .bp-sp-wa-img-card:hover {
+          transform: translateY(-4px) scale(1.02);
+          box-shadow: 0 14px 36px rgba(0,0,0,0.16);
+          border-color: var(--pine);
+        }
+
+        .bp-sp-wa-img-header {
+          padding: 8px 12px;
+          background: rgba(27,27,23,0.05);
+          border-bottom: 1px dashed var(--paper-line);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-family: 'IBM Plex Mono', monospace;
+          font-size: 10px;
+          font-weight: 600;
+          color: var(--pine);
+          letter-spacing: 0.04em;
+        }
+
+        .bp-sp-wa-img-body {
+          flex: 1;
+          width: 100%;
+          overflow: hidden;
+          background: #0d1418;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .bp-sp-wa-img-body img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        @media (max-width: 768px) {
+          .bp-sp-wa-img-card {
+            width: 185px;
+            height: 360px;
+          }
+          .bp-sp-wa-marquee-track {
+            animation-duration: 22s;
+          }
+        }
+
         .bp-sp-wa-bar { background: #1E2B22; padding: 6px 12px; display: flex; align-items: center; justify-content: space-between; }
         .bp-sp-wa-bar span { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; color: #5a7a65; letter-spacing: 0.06em; }
         .bp-sp-wa-header { background: #2A3D33; padding: 10px 14px; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
@@ -1000,143 +1092,34 @@ export default function BrandingPage() {
               <div className="bp-sp-head-sub">3 Format Categories · Slide to explore →</div>
             </div>
 
-            {/* ── ROW 1: WHATSAPP / CHAT MESSAGES ─────────────────────────── */}
+            {/* ── ROW 1: WHATSAPP SCREENSHOTS AUTO INFINITE LOOP ─────────── */}
             <div className="bp-sp-row">
               <div className="bp-sp-row-head">
-                <div className="bp-sp-row-title">01 // WhatsApp & Client Messages</div>
-                <div className="bp-sp-scroll-hint"><span>Scroll horizontally</span><span>→</span></div>
+                <div className="bp-sp-row-title">01 // WhatsApp &amp; Client Screenshots</div>
+                <div className="bp-sp-scroll-hint"><span>Hover to pause · Continuous loop</span><span>→</span></div>
               </div>
 
-              <div className="bp-sp-slider">
-                {/* WA Card 1 */}
-                <div className="bp-sp-card bp-sp-wa-card">
-                  <div className="bp-sp-wa-bar">
-                    <span>WHATSAPP</span>
-                    <span>3 DAYS AFTER HANDOFF</span>
-                  </div>
-                  <div className="bp-sp-wa-header">
-                    <div className="bp-sp-wa-hav">P</div>
-                    <div>
-                      <div className="bp-sp-wa-hname">Priya S.</div>
-                      <div className="bp-sp-wa-hstatus">online</div>
+              <div className="bp-sp-wa-marquee-wrap">
+                <div className="bp-sp-wa-marquee-track">
+                  {[...whatsappScreenshots, ...whatsappScreenshots].map((imgSrc, idx) => (
+                    <div key={idx} className="bp-sp-wa-img-card">
+                      <div className="bp-sp-wa-img-header">
+                        <span>WHATSAPP</span>
+                        <span>VERIFIED · {(idx % 8) + 1}/8</span>
+                      </div>
+                      <div className="bp-sp-wa-img-body">
+                        <img
+                          src={imgSrc}
+                          alt={`WhatsApp Client Review ${(idx % 8) + 1}`}
+                          loading="lazy"
+                        />
+                      </div>
                     </div>
-                    <div className="bp-sp-wa-hdots">···</div>
-                  </div>
-                  <div className="bp-sp-wa-body">
-                    <div className="bp-sp-wa-msg">
-                      Just wanted to say — the brand book arrived and the team is absolutely obsessed. The typography alone is better than anything we've seen from studios 3× your price.
-                      <div className="bp-sp-wa-time">10:42 AM</div>
-                    </div>
-                    <div className="bp-sp-wa-msg bp-sent">
-                      So glad to hear it! Let us know when you're ready for the website phase 🙌
-                      <div className="bp-sp-wa-time">10:44 AM ✓✓</div>
-                    </div>
-                    <div className="bp-sp-wa-msg">
-                      100%. Sending you a referral next week — my co-founder needs a rebrand 😂
-                      <div className="bp-sp-wa-time">10:46 AM</div>
-                    </div>
-                  </div>
-                  <div className="bp-sp-wa-foot">
-                    <span>SCREENSHOT · VERIFIED</span>
-                    <span className="bp-sp-wa-dot"></span>
-                  </div>
-                </div>
-
-                {/* WA Card 2 */}
-                <div className="bp-sp-card bp-sp-wa-card">
-                  <div className="bp-sp-wa-bar">
-                    <span>WHATSAPP</span>
-                    <span>DURING FUNDRAISE</span>
-                  </div>
-                  <div className="bp-sp-wa-header">
-                    <div className="bp-sp-wa-hav">R</div>
-                    <div>
-                      <div className="bp-sp-wa-hname">Rohit V.</div>
-                      <div className="bp-sp-wa-hstatus">last seen today</div>
-                    </div>
-                    <div className="bp-sp-wa-hdots">···</div>
-                  </div>
-                  <div className="bp-sp-wa-body">
-                    <div className="bp-sp-wa-msg">
-                      We got our first VC meeting because the pitch deck looked so sharp. The investor asked who did our branding before even asking about the product 😭
-                      <div className="bp-sp-wa-time">2:17 PM</div>
-                    </div>
-                    <div className="bp-sp-wa-msg bp-sent">
-                      That's the whole point! Good luck with the round 🤞
-                      <div className="bp-sp-wa-time">2:19 PM ✓✓</div>
-                    </div>
-                    <div className="bp-sp-wa-msg">
-                      Will def come back for the website once we close. Tell no one 😂
-                      <div className="bp-sp-wa-time">2:20 PM</div>
-                    </div>
-                  </div>
-                  <div className="bp-sp-wa-foot">
-                    <span>SCREENSHOT · VERIFIED</span>
-                    <span className="bp-sp-wa-dot"></span>
-                  </div>
-                </div>
-
-                {/* WA Card 3 */}
-                <div className="bp-sp-card bp-sp-wa-card">
-                  <div className="bp-sp-wa-bar">
-                    <span>WHATSAPP</span>
-                    <span>PACKAGING LAUNCH</span>
-                  </div>
-                  <div className="bp-sp-wa-header">
-                    <div className="bp-sp-wa-hav">A</div>
-                    <div>
-                      <div className="bp-sp-wa-hname">Ananya M.</div>
-                      <div className="bp-sp-wa-hstatus">online</div>
-                    </div>
-                    <div className="bp-sp-wa-hdots">···</div>
-                  </div>
-                  <div className="bp-sp-wa-body">
-                    <div className="bp-sp-wa-msg">
-                      The printed boxes just landed at our warehouse! Foil stamping looks 10x better than the 3D renders. Printer said your dieline files were 100% perfect.
-                      <div className="bp-sp-wa-time">4:05 PM</div>
-                    </div>
-                    <div className="bp-sp-wa-msg bp-sent">
-                      Awesome news Ananya! Send us a photo when you assemble the display units 📦✨
-                      <div className="bp-sp-wa-time">4:11 PM ✓✓</div>
-                    </div>
-                  </div>
-                  <div className="bp-sp-wa-foot">
-                    <span>SCREENSHOT · VERIFIED</span>
-                    <span className="bp-sp-wa-dot"></span>
-                  </div>
-                </div>
-
-                {/* WA Card 4 */}
-                <div className="bp-sp-card bp-sp-wa-card">
-                  <div className="bp-sp-wa-bar">
-                    <span>WHATSAPP</span>
-                    <span>SERIES A POST-LAUNCH</span>
-                  </div>
-                  <div className="bp-sp-wa-header">
-                    <div className="bp-sp-wa-hav">D</div>
-                    <div>
-                      <div className="bp-sp-wa-hname">Devang K.</div>
-                      <div className="bp-sp-wa-hstatus">last seen 5m ago</div>
-                    </div>
-                    <div className="bp-sp-wa-hdots">···</div>
-                  </div>
-                  <div className="bp-sp-wa-body">
-                    <div className="bp-sp-wa-msg">
-                      Inbound leads are up +70% since the rebrand launch. Everyone assumes we're a Series B company now 🔥
-                      <div className="bp-sp-wa-time">11:30 AM</div>
-                    </div>
-                    <div className="bp-sp-wa-msg bp-sent">
-                      Love to see it! That positioning sprint paid off big time 🚀
-                      <div className="bp-sp-wa-time">11:34 AM ✓✓</div>
-                    </div>
-                  </div>
-                  <div className="bp-sp-wa-foot">
-                    <span>SCREENSHOT · VERIFIED</span>
-                    <span className="bp-sp-wa-dot"></span>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
+
 
             {/* ── ROW 2: VIDEO TESTIMONIALS ────────────────────────────────── */}
             <div className="bp-sp-row">
