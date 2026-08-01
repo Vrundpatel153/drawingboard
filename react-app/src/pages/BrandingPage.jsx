@@ -1507,7 +1507,6 @@ export default function BrandingPage() {
                     </div>
                     <div className="bp-tier-slide">
                       <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
-                        <li>Everything in Foundation</li>
                         <li>Messaging pillars &amp; voice guide</li>
                         <li>Full guideline (PDF + web-based)</li>
                         <li>Stationery suite (cards, deck, letterhead)</li>
@@ -1629,7 +1628,6 @@ export default function BrandingPage() {
                     </div>
                     <div className="bp-tier-slide">
                       <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
-                        <li>Everything in Foundation</li>
                         <li>Messaging pillars &amp; voice guide</li>
                         <li>Full guideline (PDF + web-based)</li>
                         <li>Stationery suite (cards, deck, letterhead)</li>
@@ -1638,7 +1636,6 @@ export default function BrandingPage() {
                     </div>
                     <div className="bp-tier-slide">
                       <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
-                        <li>Everything in Full Brand System</li>
                         <li>Packaging design, up to 6 SKUs</li>
                         <li>Social &amp; digital launch assets</li>
                         <li>Launch-day asset checklist</li>
