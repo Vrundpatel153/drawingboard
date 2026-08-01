@@ -730,12 +730,35 @@ export default function BrandingPage() {
             width: 60px;
           }
         }
+
+        /* ── Full Width End-to-End PC Layout Experiment ─────────────────── */
+        @media (min-width: 1024px) {
+          .bp-full-page .wrap {
+            max-width: 100% !important;
+            padding-left: 64px !important;
+            padding-right: 64px !important;
+          }
+          .bp-full-page .bp-tiers {
+            grid-template-columns: repeat(2, 1fr) !important;
+            max-width: 100% !important;
+            gap: 40px !important;
+          }
+          .bp-full-page .bp-hero h1 {
+            max-width: 1200px !important;
+          }
+          .bp-full-page .bp-section-head h2 {
+            max-width: 1000px !important;
+          }
+          .bp-full-page .bp-problem-copy {
+            max-width: 100% !important;
+          }
+        }
       `}</style>
 
       <RegistrationMarks />
       <Navbar />
 
-      <main>
+      <main className="bp-full-page">
         {/* ── HERO ─────────────────────────────────────────────────────── */}
         <section className="bp-hero">
           <div className="wrap">
