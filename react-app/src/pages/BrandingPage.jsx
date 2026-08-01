@@ -49,6 +49,33 @@ export default function BrandingPage() {
     '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.13 PM.jpeg'
   ];
 
+  const founderQuotes = [
+    {
+      text: "The positioning work they did upfront changed everything. By the time we saw the first logo directions, everyone on our team already agreed — because the strategy made the right answer obvious.",
+      name: "Arjun Mehta",
+      role: "Co-founder, Sonar Platform",
+      av: "A"
+    },
+    {
+      text: "We'd worked with traditional agencies before, but the speed, clarity, and attention to typographic detail here was on an entirely different level. Worth every rupee.",
+      name: "Sarah Jenkins",
+      role: "Design Director, Apex Digital",
+      av: "S"
+    },
+    {
+      text: "Our packaging finally looks like it belongs on the exact same retail shelf as global brands three times our size. Our retail distributors commented on it immediately.",
+      name: "Rohan Gupta",
+      role: "Founder, Good Protein",
+      av: "R"
+    },
+    {
+      text: "They delivered a full design system with Figma component tokens, guidelines PDF, and print assets. Zero friction during developer handoff.",
+      name: "Elena Rostova",
+      role: "Brand Lead, Northbyte",
+      av: "E"
+    }
+  ];
+
 
 
 
@@ -1069,30 +1096,28 @@ export default function BrandingPage() {
               </div>
             </div>
 
-            {/* ── ROW 1: WHATSAPP SCREENSHOTS AUTO INFINITE LOOP ─────────── */}
+            {/* ── ROW 1: WHATSAPP SCREENSHOTS HORIZONTAL SLIDER ─────────── */}
             <div className="bp-sp-row">
               <div className="bp-sp-row-head">
                 <div className="bp-sp-row-title">01 // WhatsApp &amp; Client Screenshots</div>
               </div>
 
-              <div className="bp-sp-wa-marquee-wrap">
-                <div className="bp-sp-wa-marquee-track">
-                  {[...whatsappScreenshots, ...whatsappScreenshots].map((imgSrc, idx) => (
-                    <div key={idx} className="bp-sp-wa-img-card">
-                      <div className="bp-sp-wa-img-header">
-                        <span>WHATSAPP</span>
-                        <span>VERIFIED · {(idx % 8) + 1}/8</span>
-                      </div>
-                      <div className="bp-sp-wa-img-body">
-                        <img
-                          src={imgSrc}
-                          alt={`WhatsApp Client Review ${(idx % 8) + 1}`}
-                          loading="lazy"
-                        />
-                      </div>
+              <div className="bp-sp-slider">
+                {whatsappScreenshots.map((imgSrc, idx) => (
+                  <div key={idx} className="bp-sp-wa-img-card bp-sp-card">
+                    <div className="bp-sp-wa-img-header">
+                      <span>WHATSAPP</span>
+                      <span>VERIFIED · {idx + 1}/8</span>
                     </div>
-                  ))}
-                </div>
+                    <div className="bp-sp-wa-img-body">
+                      <img
+                        src={imgSrc}
+                        alt={`WhatsApp Client Review ${idx + 1}`}
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -1191,75 +1216,28 @@ export default function BrandingPage() {
             </div>
 
 
-            {/* ── ROW 3: TEXT BASED TESTIMONIALS & QUOTES ─────────────────── */}
+            {/* ── ROW 3: FOUNDER QUOTES AUTO INFINITE MARQUEE ─────────────────── */}
             <div className="bp-sp-row">
               <div className="bp-sp-row-head">
                 <div className="bp-sp-row-title">03 // Founder Quotes</div>
               </div>
 
-              <div className="bp-sp-slider">
-                {/* Quote 1 */}
-                <div className="bp-sp-card bp-sp-quote-card">
-                  <div className="bp-sp-stars">★★★★★</div>
-                  <span className="bp-sp-qs">"</span>
-                  <blockquote>
-                    The positioning work they did upfront changed everything. By the time we saw the first logo directions, everyone on our team already agreed — because the strategy made the right answer obvious.
-                  </blockquote>
-                  <div className="bp-sp-quote-who">
-                    <div className="bp-sp-quote-av">A</div>
-                    <div>
-                      <div className="bp-sp-qname">Arjun Mehta</div>
-                      <div className="bp-sp-qrole">Co-founder, Sonar Platform</div>
+              <div className="bp-sp-wa-marquee-wrap">
+                <div className="bp-sp-wa-marquee-track" style={{ animationDuration: '40s' }}>
+                  {[...founderQuotes, ...founderQuotes].map((q, idx) => (
+                    <div key={idx} className="bp-sp-card bp-sp-quote-card" style={{ flexShrink: 0 }}>
+                      <div className="bp-sp-stars">★★★★★</div>
+                      <span className="bp-sp-qs">"</span>
+                      <blockquote>{q.text}</blockquote>
+                      <div className="bp-sp-quote-who">
+                        <div className="bp-sp-quote-av">{q.av}</div>
+                        <div>
+                          <div className="bp-sp-qname">{q.name}</div>
+                          <div className="bp-sp-qrole">{q.role}</div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-
-                {/* Quote 2 */}
-                <div className="bp-sp-card bp-sp-quote-card">
-                  <div className="bp-sp-stars">★★★★★</div>
-                  <span className="bp-sp-qs">"</span>
-                  <blockquote>
-                    We'd worked with traditional agencies before, but the speed, clarity, and attention to typographic detail here was on an entirely different level. Worth every rupee.
-                  </blockquote>
-                  <div className="bp-sp-quote-who">
-                    <div className="bp-sp-quote-av">S</div>
-                    <div>
-                      <div className="bp-sp-qname">Sarah Jenkins</div>
-                      <div className="bp-sp-qrole">Design Director, Apex Digital</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Quote 3 */}
-                <div className="bp-sp-card bp-sp-quote-card">
-                  <div className="bp-sp-stars">★★★★★</div>
-                  <span className="bp-sp-qs">"</span>
-                  <blockquote>
-                    Our packaging finally looks like it belongs on the exact same retail shelf as global brands three times our size. Our retail distributors commented on it immediately.
-                  </blockquote>
-                  <div className="bp-sp-quote-who">
-                    <div className="bp-sp-quote-av">R</div>
-                    <div>
-                      <div className="bp-sp-qname">Rohan Gupta</div>
-                      <div className="bp-sp-qrole">Founder, Good Protein</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Quote 4 */}
-                <div className="bp-sp-card bp-sp-quote-card">
-                  <div className="bp-sp-stars">★★★★★</div>
-                  <span className="bp-sp-qs">"</span>
-                  <blockquote>
-                    They delivered a full design system with Figma component tokens, guidelines PDF, and print assets. Zero friction during developer handoff.
-                  </blockquote>
-                  <div className="bp-sp-quote-who">
-                    <div className="bp-sp-quote-av">E</div>
-                    <div>
-                      <div className="bp-sp-qname">Elena Rostova</div>
-                      <div className="bp-sp-qrole">Brand Lead, Northbyte</div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
