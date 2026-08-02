@@ -7,8 +7,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 /* ─────────────────────────────────────────────────────────────────────────
-   Lenis smooth scroll — optimized for 60fps/120Hz performance.
-   Disables touch hijacking on mobile/touch devices to use native GPU touch inertia.
+   Lenis smooth scroll — optimized for 60fps/120Hz hardware performance.
+   Provides buttery smooth inertia scrolling on desktop PC layout.
 ───────────────────────────────────────────────────────────────────────── */
 export default function SmoothScroll({ children }) {
   const location = useLocation();
@@ -18,11 +18,11 @@ export default function SmoothScroll({ children }) {
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.innerWidth <= 768;
 
     const lenis = new Lenis({
-      duration: isTouch ? 0 : 0.9,
+      duration: isTouch ? 0 : 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       smoothWheel: !isTouch,
-      wheelMultiplier: 0.9,
+      wheelMultiplier: 1.0,
       syncTouch: false,
       smoothTouch: false,
       touchMultiplier: 0,
@@ -30,21 +30,24 @@ export default function SmoothScroll({ children }) {
     });
 
     lenis.on('scroll', ScrollTrigger.update);
-    const raf = (time) => lenis.raf(time * 1000);
-    gsap.ticker.add(raf);
-    gsap.ticker.lagSmoothing(500, 33);
 
-    const scrollTimeout = setTimeout(() => {
-      window.scrollTo(0, 0);
-      lenis.scrollTo(0, { immediate: true });
-    }, 600);
+    let reqId;
+    function update(time) {
+      lenis.raf(time);
+      reqId = requestAnimationFrame(update);
+    }
+    reqId = requestAnimationFrame(update);
 
-    const refreshTimeout = setTimeout(() => ScrollTrigger.refresh(), 1000);
+    window.scrollTo(0, 0);
+    lenis.scrollTo(0, { immediate: true });
+
+    const refreshTimeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 200);
 
     return () => {
-      clearTimeout(scrollTimeout);
       clearTimeout(refreshTimeout);
-      gsap.ticker.remove(raf);
+      cancelAnimationFrame(reqId);
       lenis.destroy();
     };
   }, [location.pathname]);
