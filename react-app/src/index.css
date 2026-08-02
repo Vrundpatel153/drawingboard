@@ -130,6 +130,53 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 32px;
 }
 
+/* --------------------------------------------------------------------------
+   Wide End-to-End PC Layout System (Widescreen PC Displays >= 1024px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .wrap,
+  .bp-wrap,
+  .pp-page .wrap,
+  .dev-page .wrap,
+  .bp-full-page .wrap,
+  header .nav {
+    max-width: 100% !important;
+    padding-left: 64px !important;
+    padding-right: 64px !important;
+  }
+
+  /* Responsive max-widths for crisp reading & balanced UI on wide PC screens */
+  .hero h1,
+  .hero-lite h1,
+  .bp-hero h1,
+  .pp-page .hero h1,
+  .dev-page .hero h1 {
+    max-width: 1200px !important;
+  }
+
+  .section-head h2,
+  .bp-section-head h2,
+  .pp-page .section-head h2,
+  .dev-page .section-head h2 {
+    max-width: 1000px !important;
+  }
+
+  .problem-copy,
+  .bp-problem-copy,
+  .pp-page .problem-copy {
+    max-width: 1000px !important;
+  }
+
+  /* Widescreen Pricing Grids */
+  .bp-tiers,
+  .pp-page .tiers,
+  .dev-page .tiers {
+    grid-template-columns: repeat(2, 1fr) !important;
+    max-width: 100% !important;
+    gap: 36px !important;
+  }
+}
+
 a {
   color: inherit;
   text-decoration: none;

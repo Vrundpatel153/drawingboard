@@ -733,7 +733,8 @@ export default function BrandingPage() {
 
         /* ── Full Width End-to-End PC Layout Experiment ─────────────────── */
         @media (min-width: 1024px) {
-          .bp-full-page .wrap {
+          .bp-full-page .wrap,
+          .bp-wrap {
             max-width: 100% !important;
             padding-left: 64px !important;
             padding-right: 64px !important;

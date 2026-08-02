@@ -117,6 +117,7 @@ export default function PackagingPage() {
       <style>{`
         /* ── Scoped Packaging Page Styles ───────────────────────────── */
         .pp-page .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+        @media (min-width: 1024px) { .pp-page .wrap { max-width: 100% !important; padding-left: 64px !important; padding-right: 64px !important; } }
         @media (max-width: 768px) { .pp-page .wrap { padding: 0 24px !important; } }
         @media (max-width: 480px) { .pp-page .wrap { padding: 0 20px !important; } }
         .pp-page .crumb { padding: 22px 0 0; font-size: 12.5px; color: var(--ink-soft); }

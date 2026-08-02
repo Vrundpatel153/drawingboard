@@ -94,6 +94,13 @@ export default function DevelopmentPage() {
           margin: 0 auto;
           padding: 0 32px;
         }
+        @media (min-width: 1024px) {
+          .dev-page .wrap {
+            max-width: 100% !important;
+            padding-left: 64px !important;
+            padding-right: 64px !important;
+          }
+        }
         @media (max-width: 768px) {
           .dev-page .wrap {
             padding: 0 24px !important;
