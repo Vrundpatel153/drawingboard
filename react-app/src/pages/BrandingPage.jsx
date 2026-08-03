@@ -376,46 +376,35 @@ export default function BrandingPage() {
         .bp-sp-badge { margin-top: 36px; border: 1px solid rgba(255,255,255,0.12); padding: 18px 24px; background: rgba(255,255,255,0.03); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
         .bp-sp-badge-left { display: flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #7FB89F; }
         .bp-sp-dot { width: 7px; height: 7px; border-radius: 50%; background: #7FB89F; animation: bp-pulse 1.6s infinite; }
-        .bp-sp-badge-stats { display: flex; gap: 32px; }
         .bp-sp-stat-item { text-align: right; }
         .bp-sp-stat-num { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: #fff; display: block; line-height: 1; }
         .bp-sp-stat-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #8B8571; }
 
-        /* Locked Pricing Styles */
-        .bp-tiers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        /* Unified Pricing Cards Styles */
+        .bp-tiers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; align-items: stretch; }
         @media (max-width: 900px) { .bp-tiers { grid-template-columns: 1fr; } }
-        .bp-tier { background: var(--card); border: 1px solid var(--ink); display: flex; flex-direction: column; overflow: hidden; }
-        .bp-tier.bp-feat { border-color: var(--pine); border-width: 2px; }
-        .bp-tier-head { background: var(--paper); border-bottom: 1px solid var(--ink); padding: 24px 28px; }
-        .bp-tier.bp-feat .bp-tier-head { background: var(--pine); color: var(--paper); border-color: var(--pine); }
-        .bp-tier.bp-feat .bp-tier-head h3 { color: var(--paper); }
-        .bp-tier.bp-feat .bp-tier-head .desc { color: rgba(255,255,255,0.75); }
+        .bp-tier { background: var(--card); border: 1.5px solid var(--ink); display: flex; flex-direction: column; overflow: hidden; height: 100%; border-radius: 2px; }
+        .bp-tier-head { background: var(--paper); border-bottom: 1.5px solid var(--ink); padding: 26px 28px; min-height: 184px; display: flex; flex-direction: column; justify-content: space-between; }
         .bp-tier-head .name { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); margin-bottom: 4px; }
-        .bp-tier.bp-feat .bp-tier-head .name { color: rgba(255,255,255,0.75); }
-        .bp-tier-head h3 { font-size: 21px; margin-bottom: 4px; }
-        .bp-tier-head .desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.4; }
-        .bp-slot-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--pine); background: rgba(36,70,59,0.1); padding: 3px 8px; border-radius: 2px; margin-top: 8px; }
-        .bp-tier.bp-feat .bp-slot-badge { color: #7FB89F; background: rgba(255,255,255,0.15); }
-        .bp-slot-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
-        .bp-tier-price { padding: 20px 28px; border-bottom: 1px solid var(--ink); }
-        .bp-tier-price .amt { font-family: 'Fraunces', serif; font-size: 34px; font-weight: 600; color: var(--ink); }
-        .bp-tier.bp-feat .bp-tier-price .amt { color: var(--pine); }
-        .bp-tier-price .per { font-size: 12.5px; color: var(--ink-soft); }
+        .bp-tier-head h3 { font-size: 22px; color: var(--ink); margin-bottom: 4px; }
+        .bp-tier-head .desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.45; }
+        .bp-slot-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--pine); background: rgba(36,70,59,0.08); border: 1px solid rgba(36,70,59,0.2); padding: 4px 10px; border-radius: 100px; width: fit-content; }
+        .bp-slot-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pine); animation: bp-pulse 1.6s infinite; }
+        .bp-tier-price { padding: 20px 28px; border-bottom: 1.5px solid var(--ink); background: var(--card); min-height: 88px; display: flex; align-items: center; }
+        .bp-tier-price .amt { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 600; color: var(--pine); }
+        .bp-tier-price .per { font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; }
         .bp-currency-toggle { display: flex; gap: 4px; }
-        .bp-curr-btn { background: transparent; border: 1px solid var(--paper-line); padding: 2px 6px; font-size: 10px; cursor: pointer; color: var(--ink-soft); border-radius: 2px; }
-        .bp-curr-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-        .bp-tier.bp-feat .bp-curr-btn { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); }
-        .bp-tier.bp-feat .bp-curr-btn.active { background: #fff; color: var(--pine); border-color: #fff; }
-        .bp-deliv-bar { display: flex; justify-content: space-between; align-items: center; padding: 12px 28px; background: rgba(27,27,23,0.03); border-bottom: 1px solid var(--paper-line); }
-        .bp-tier-slide { width: 100%; flex-shrink: 0; padding: 20px 28px; }
+        .bp-curr-btn { background: transparent; border: 1px solid var(--ink); padding: 3px 8px; font-size: 10.5px; cursor: pointer; color: var(--ink); border-radius: 2px; font-family: 'IBM Plex Mono', monospace; transition: all 0.15s; }
+        .bp-curr-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); font-weight: 600; }
+        .bp-deliv-bar { display: flex; justify-content: space-between; align-items: center; padding: 12px 28px; background: rgba(27,27,23,0.04); border-bottom: 1px dashed var(--paper-line); }
+        .bp-tier-slide { width: 100%; flex-shrink: 0; padding: 20px 28px; min-height: 240px; display: flex; flex-direction: column; justify-content: flex-start; }
         .bp-tier-list { list-style: none; }
-        .bp-tier-list li { padding: 9px 0; border-bottom: 1px dashed var(--paper-line); font-size: 13.5px; color: var(--ink-soft); }
+        .bp-tier-list li { padding: 10px 0; border-bottom: 1px dashed var(--paper-line); font-size: 13.5px; color: var(--ink-soft); line-height: 1.45; }
         .bp-tier-list li:last-child { border-bottom: none; }
-        .bp-tier-foot { padding: 22px 28px; border-top: 1px solid var(--ink); background: var(--paper); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-        .bp-tier.bp-feat .bp-tier-foot { background: rgba(36,70,59,0.05); }
-        .bp-tier-btn { background: var(--pine); color: var(--paper); padding: 12px 20px; font-size: 13.5px; font-weight: 600; border-radius: var(--radius); text-decoration: none; transition: background 0.15s; }
+        .bp-tier-foot { padding: 22px 28px; border-top: 1.5px solid var(--ink); background: var(--paper); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: auto; }
+        .bp-tier-btn { background: var(--pine); color: var(--paper); padding: 13px 22px; font-size: 14px; font-weight: 600; border-radius: var(--radius); text-decoration: none; transition: background 0.15s; display: inline-flex; align-items: center; }
         .bp-tier-btn:hover { background: var(--pine-deep); }
-        .bp-tier-time { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-soft); }
+        .bp-tier-time { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--ink-soft); }
 
         /* Locked Logos Marquee Styles */
         .bp-logo-marquee-section { background: var(--ink); color: var(--paper); padding: 48px 0; overflow: hidden; }
@@ -1040,7 +1029,7 @@ export default function BrandingPage() {
           </div>
         </section>
 
-        {/* ── 12. LOCKED PRICING SECTION (NO CHANGE) ───────────────────── */}
+        {/* ── 12. HARMONIZED PRICING SECTION ───────────────────────────── */}
         <section id="pricing">
           <div className="wrap">
             <div className="bp-section-head">
@@ -1053,9 +1042,9 @@ export default function BrandingPage() {
 
             <div className="bp-tiers">
               {/* Growth — Card 1 */}
-              <div className="bp-tier bp-feat">
+              <div className="bp-tier">
                 <div className="bp-tier-head">
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px', flexWrap: 'wrap', gap: '8px' }}>
                     <div className="name mono" style={{ margin: 0 }}>GROWTH (BRAND-TO-SHELF)</div>
                     <div className="bp-currency-toggle mono" style={{ margin: 0 }}>
                       <button
@@ -1085,9 +1074,9 @@ export default function BrandingPage() {
                     </div>
                   </div>
                   <h3>Full Brand System</h3>
-                  <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--pine)', marginBottom: '4px' }}>Brand Identity + Packaging</div>
+                  <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--pine)', marginBottom: '6px' }}>Brand Identity + Packaging</div>
                   <p className="desc" style={{ margin: 0 }}>For funded or scaling brands that need to look the part everywhere.</p>
-                  <div className="bp-slot-badge mono">
+                  <div className="bp-slot-badge mono" style={{ marginTop: '12px' }}>
                     <span className="bp-slot-dot"></span>
                     <span>5 SLOTS AVAILABLE</span>
                   </div>
@@ -1102,7 +1091,7 @@ export default function BrandingPage() {
 
                 <div className="bp-deliv-bar">
                   <span className="mono" style={{ fontSize: '11px', fontWeight: 'bold', color: 'var(--ink-soft)', letterSpacing: '0.05em' }}>
-                    DELIVERABLES ({growthSlide + 1}/2)
+                    DELIVERABLES ({growthSlide + 1}/3)
                   </span>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                     <button
@@ -1123,7 +1112,15 @@ export default function BrandingPage() {
                     </button>
                     <button
                       type="button"
-                      onClick={() => setGrowthSlide((prev) => (prev > 0 ? prev - 1 : 1))}
+                      onClick={() => setGrowthSlide(2)}
+                      className={`bp-curr-btn mono ${growthSlide === 2 ? 'active' : ''}`}
+                      style={{ fontSize: '10px', padding: '3px 7px' }}
+                    >
+                      3
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setGrowthSlide((prev) => (prev > 0 ? prev - 1 : 2))}
                       style={{ background: 'var(--card)', border: '1px solid var(--ink)', borderRadius: '2px', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '12px', marginLeft: '4px', lineHeight: 1 }}
                       title="Previous slide"
                     >
@@ -1131,8 +1128,8 @@ export default function BrandingPage() {
                     </button>
                     <button
                       type="button"
-                      onClick={() => setGrowthSlide((prev) => (prev < 1 ? prev + 1 : 0))}
-                      style={{ background: 'var(--card)', border: '1px solid var(--ink)', borderRadius: '2px', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '12px', lineHeight: 1 }}
+                      onClick={() => setGrowthSlide((prev) => (prev < 2 ? prev + 1 : 0))}
+                      style={{ background: 'var(--card)', border: '1px solid var(--ink)', borderRadius: '2px', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '12px', marginLeft: '4px', lineHeight: 1 }}
                       title="Next slide"
                     >
                       ›
@@ -1144,18 +1141,29 @@ export default function BrandingPage() {
                   <div style={{ display: 'flex', transform: `translateX(-${growthSlide * 100}%)`, transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)', width: '100%' }}>
                     <div className="bp-tier-slide">
                       <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
-                        <li>Brand discovery &amp; positioning</li>
-                        <li>Logo — 3 directions, 1 refined</li>
-                        <li>Color &amp; typography system</li>
-                        <li>Compact brand guideline (PDF)</li>
+                        <li>Founder discovery and business understanding</li>
+                        <li>Category, competitor and audience research</li>
+                        <li>Positioning and central brand idea</li>
+                        <li>Messaging direction</li>
+                        <li>Complete visual identity system</li>
                       </ul>
                     </div>
                     <div className="bp-tier-slide">
                       <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
-                        <li>Messaging pillars &amp; voice guide</li>
-                        <li>Full guideline (PDF + web-based)</li>
-                        <li>Stationery suite (cards, deck, letterhead)</li>
-                        <li>Website header &amp; banner kit</li>
+                        <li>Typography, colour and visual language</li>
+                        <li>Brand guidelines</li>
+                        <li>One master packaging direction</li>
+                        <li>Front, back and side-panel hierarchy</li>
+                        <li>SKU architecture and variant logic</li>
+                      </ul>
+                    </div>
+                    <div className="bp-tier-slide">
+                      <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
+                        <li>Up to five straightforward SKU adaptations</li>
+                        <li>Packaging presentation mockups</li>
+                        <li>Print-ready artwork on approved dielines</li>
+                        <li>Editable brand and packaging source files</li>
+                        <li>Final handover</li>
                       </ul>
                     </div>
                   </div>
@@ -1170,7 +1178,7 @@ export default function BrandingPage() {
               {/* Scale — Card 2 */}
               <div className="bp-tier">
                 <div className="bp-tier-head">
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px', flexWrap: 'wrap', gap: '8px' }}>
                     <div className="name mono" style={{ margin: 0 }}>SCALE (BRAND-TO-MARKET)</div>
                     <div className="bp-currency-toggle mono" style={{ margin: 0 }}>
                       <button
@@ -1200,9 +1208,9 @@ export default function BrandingPage() {
                     </div>
                   </div>
                   <h3>Brand + Packaging + Web</h3>
-                  <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--pine)', marginBottom: '4px' }}>Brand Identity + Packaging + Website</div>
+                  <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--pine)', marginBottom: '6px' }}>Brand Identity + Packaging + Website</div>
                   <p className="desc" style={{ margin: 0 }}>For product brands going to retail or e-commerce shelf.</p>
-                  <div className="bp-slot-badge mono">
+                  <div className="bp-slot-badge mono" style={{ marginTop: '12px' }}>
                     <span className="bp-slot-dot"></span>
                     <span>3 SLOTS AVAILABLE</span>
                   </div>
@@ -1266,25 +1274,26 @@ export default function BrandingPage() {
                   <div style={{ display: 'flex', transform: `translateX(-${scaleSlide * 100}%)`, transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)', width: '100%' }}>
                     <div className="bp-tier-slide">
                       <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
-                        <li>Brand discovery &amp; positioning</li>
-                        <li>Logo — 3 directions, 1 refined</li>
-                        <li>Color &amp; typography system</li>
-                        <li>Compact brand guideline (PDF)</li>
+                        <li>Everything in Brand-to-Shelf</li>
+                        <li>Website strategy</li>
+                        <li>Sitemap and customer journey</li>
+                        <li>Content hierarchy</li>
+                        <li>Responsive UI/UX design</li>
                       </ul>
                     </div>
                     <div className="bp-tier-slide">
                       <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
-                        <li>Messaging pillars &amp; voice guide</li>
-                        <li>Full guideline (PDF + web-based)</li>
-                        <li>Stationery suite (cards, deck, letterhead)</li>
-                        <li>Website header &amp; banner kit</li>
+                        <li>Core page-template system</li>
+                        <li>Website development</li>
+                        <li>Enquiry or e-commerce flow</li>
+                        <li>Responsive testing</li>
+                        <li>Basic launch support</li>
                       </ul>
                     </div>
                     <div className="bp-tier-slide">
                       <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
-                        <li>Packaging design, up to 6 SKUs</li>
-                        <li>Social &amp; digital launch assets</li>
-                        <li>Website strategy &amp; React/Framer build</li>
+                        <li>Website handover</li>
+                        <li>30-day technical defect-support window</li>
                       </ul>
                     </div>
                   </div>
