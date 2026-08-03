@@ -6,24 +6,16 @@ import RegistrationMarks from '../components/RegistrationMarks';
 import MoreServicesSection from '../components/MoreServicesSection';
 import { WHATSAPP_URL } from '../utils/siteConfig';
 
-
-
 /* ─────────────────────────────────────────────────────────────────────────────
-   BrandingPage — pixel-perfect port of branding-page-redesign (1).html
+   BrandingPage — Redesign integrated with locked Testimonials, Pricing & Logos
    ───────────────────────────────────────────────────────────────────────────── */
 export default function BrandingPage() {
   const [openFaq, setOpenFaq] = useState(null);
-  const [formData, setFormData] = useState({ email: '', company: '' });
   const [currency, setCurrency] = useState('INR');
   const [growthSlide, setGrowthSlide] = useState(0);
   const [scaleSlide, setScaleSlide] = useState(0);
-
-
-  const foundationPrices = {
-    INR: '₹2,37,000/-',
-    USD: '$2,475/-',
-    GBP: '£1,850/-',
-  };
+  const [leadFormData, setLeadFormData] = useState({ email: '', brand: '', web: '', stage: '' });
+  const [leadSubmitted, setLeadSubmitted] = useState(false);
 
   const growthPrices = {
     INR: '₹4,75,000/-',
@@ -36,7 +28,6 @@ export default function BrandingPage() {
     USD: '$6,780/-',
     GBP: '£5,080/-',
   };
-
 
   const whatsappScreenshots = [
     '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.10 PM (1).jpeg',
@@ -75,13 +66,6 @@ export default function BrandingPage() {
       av: "E"
     }
   ];
-
-
-
-
-  const toggleFaq = (idx) => {
-    setOpenFaq(openFaq === idx ? null : idx);
-  };
 
   const row1Logos = [
     '/logos/Clip-path-group.png',
@@ -123,1006 +107,776 @@ export default function BrandingPage() {
   ];
 
   const faqs = [
-    {
-      q: "What's included in the logo suite?",
-      a: "A primary logo for main use, a secondary (or lockup) version for tight spaces, and a standalone icon or favicon mark — so your logo works on a website, a business card, and an app icon without redrawing it each time.",
-    },
-    {
-      q: "What does the color and typography system cover?",
-      a: "A primary and secondary palette with exact codes for print and screen, plus a display and body typeface pairing with defined weights and sizing — so anyone on your team can build a slide, a post, or a page that still looks on-brand.",
-    },
-    {
-      q: "What's a brand guideline, and do I actually need one?",
-      a: "It's the reference document that shows logo usage, color codes, type rules, and tone of voice in one place. You need it the moment more than one person — a designer, a printer, a freelancer — touches your brand.",
-    },
-    {
-      q: "How many packaging SKUs are included?",
-      a: "The Scale tier includes up to 6 SKUs (individual product variants or sizes). Additional SKUs beyond that are quoted per unit once we know your product range.",
-    },
-    {
-      q: "Do you help with brand voice and messaging?",
-      a: "Yes, from the Growth tier up. We define your core message, tone of voice, and key phrases so your website copy, ads, and sales deck all sound like the same company.",
-    },
-    {
-      q: "What are your payment terms?",
-      a: "50% to begin work, 50% on final delivery. For the Scale tier, we can split into three milestone payments — ask on the call.",
-    },
-    {
-      q: "How many revision rounds do I get?",
-      a: "Foundation includes 3 initial logo directions plus one refinement round. Growth and Scale include revisions through to final sign-off, within the agreed timeline.",
-    },
-    {
-      q: "What if I don't like any of the directions?",
-      a: "Covered by our Direction Guarantee — we run a second strategy and concept round at no extra cost. This is rare once positioning is locked, but it has never cost a client extra.",
-    },
-    {
-      q: "Do I own the files once the project ends?",
-      a: "Yes, fully. You receive source files (AI, Figma, or equivalent), fonts with license terms, and export-ready assets. Nothing is held back or licensed to us.",
-    },
-    {
-      q: "Can I see work in my industry before booking?",
-      a: "Yes — mention your industry on the call and we'll walk through the closest relevant case study, including what worked and what we'd change next time.",
-    },
-    {
-      q: "What happens after I book the call?",
-      a: "15 minutes to understand your business and stage. If it's a fit, we send a scoped proposal within 48 hours — no obligation, no hard sell.",
-    },
+    { q: 'What is included in the ₹4,75,000 engagement?', a: 'The Brand-to-Shelf engagement includes strategy, positioning, messaging direction, a complete identity system, brand guidelines, one master packaging direction, front and back information hierarchy, up to five straightforward SKU adaptations, presentation mockups, print-ready artwork on approved dielines and editable source files.' },
+    { q: 'What is included in the ₹6,50,000 engagement?', a: 'Brand-to-Market includes everything in Brand-to-Shelf plus website strategy, sitemap, customer journey, content hierarchy, responsive UI/UX design, an agreed page-template system, website development, testing, launch support and handover.' },
+    { q: 'Can we begin with branding and packaging and add the website later?', a: 'Yes. Brand-to-Shelf can be completed first, with the website scoped as a second phase. This works especially well when product information, photography or website content will not be ready during the branding stage.' },
+    { q: 'How many packaging SKUs are included?', a: 'Brand-to-Shelf includes one master packaging direction and up to five straightforward SKU adaptations using the approved structure. Additional SKUs, sizes, structures or formats are quoted separately.' },
+    { q: 'What counts as a straightforward SKU adaptation?', a: 'A straightforward adaptation keeps the approved packaging structure while changing controlled elements such as flavour, ingredient, product name, colour, quantity or approved content.' },
+    { q: 'Is website development included in ₹6,50,000?', a: 'Yes, within the platform, page-template system, product count and functionality defined in the proposal. Advanced applications, unusual integrations, large catalogues or custom backend requirements may require separate scope.' },
+    { q: 'Which website platform will you use?', a: 'The platform is selected according to your business model. Depending on the project, this may include Shopify, Framer or another agreed platform. The recommendation is confirmed after reviewing your requirements.' },
+    { q: 'Do you write the website or packaging copy?', a: 'Messaging direction, content hierarchy and key brand language are included. Full website copywriting, large product-description libraries, legal copy and regulated packaging content are separate unless explicitly included.' },
+    { q: 'Do you create packaging dielines?', a: 'The standard engagement applies approved artwork to client- or manufacturer-supplied dielines. Structural engineering and technical dieline creation are not included by default.' },
+    { q: 'Do you manage printing or manufacturing?', a: 'Printing and manufacturing are not included in the design fee. The studio provides artwork, finish recommendations, printer notes and handoff support.' },
+    { q: 'Do you verify legal or regulatory packaging compliance?', a: 'No. We organise approved information into a clear hierarchy, but final legal, nutrition, ingredient, certification and regulatory accuracy remains the client\'s responsibility.' },
+    { q: 'How many creative directions will we see?', a: 'After strategy alignment, we present one or two carefully considered creative territories rather than a large collection of unrelated options. One direction is selected and developed into the complete system.' },
+    { q: 'How are revisions handled?', a: 'The proposal defines revision rounds at the strategy, creative direction, identity, packaging and website checkpoints. Feedback must be consolidated by nominated decision-makers.' },
+    { q: 'Do we own the final files?', a: 'After final payment, you receive the agreed editable source files and export-ready assets. Nothing is held back or licensed to us.' },
+    { q: 'What are the payment terms?', a: 'The standard structure is 50% to begin, 25% after approval of the identity and master packaging direction, and 25% before final launch and complete file handover.' },
+    { q: 'How long does the project take?', a: 'Brand-to-Shelf typically takes approximately 6–8 weeks. Brand-to-Market typically takes approximately 8–12 weeks.' },
+    { q: 'Can you work with an existing identity?', a: 'Yes. If the existing identity is strong enough to support the required packaging or website system, we can assess a focused scope.' },
+    { q: 'Do you work with international clients?', a: 'Yes. Discovery, presentations, approvals and handover can be completed remotely.' },
+    { q: 'What happens after the introductory call?', a: 'We review your business stage, product range, current brand, launch requirements and timeline. If the project is a fit, you receive a tailored proposal defining scope, deliverables, investment and exclusions.' }
   ];
+
+  const toggleFaq = (idx) => {
+    setOpenFaq(openFaq === idx ? null : idx);
+  };
+
+  const handleLeadSubmit = (e) => {
+    e.preventDefault();
+    setLeadSubmitted(true);
+  };
 
   return (
     <>
+      <RegistrationMarks />
+      <Navbar />
+
       <style>{`
-        /* ── Branding Page Scoped Styles ─────────────────────────────── */
-
-        /* hero */
-        .bp-hero { padding: 28px 0 64px; position: relative; }
-        @media (max-width: 768px) {
-          .bp-hero { padding: 18px 0 40px; }
-        }
+        /* ── Scoped Redesign Styles ────────────────────────────────────────── */
+        .bp-hero { padding: 28px 0 56px; position: relative; }
+        @media (max-width: 768px) { .bp-hero { padding: 18px 0 40px; } }
+        
         .bp-sheet-label { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
-
-        .bp-sheet-label .tag { font-size: 12px; padding: 6px 10px; border: 1px solid var(--ink); }
+        .bp-sheet-label .tag { font-size: 12px; padding: 6px 10px; border: 1px solid var(--ink); background: var(--card); font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; }
         .bp-sheet-label .rule { flex: 1; height: 1px; background: var(--ink-soft); opacity: 0.4; }
-        .bp-hero h1 { font-size: clamp(38px, 5.4vw, 72px); max-width: 920px; }
+        .bp-sheet-right { font-size: 12px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.05em; font-family: 'IBM Plex Mono', monospace; }
+
+        .bp-avail { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--pine); font-family: 'IBM Plex Mono', monospace; margin-bottom: 20px; background: rgba(36,70,59,0.08); border: 1px solid rgba(36,70,59,0.2); padding: 7px 14px; border-radius: 100px; line-height: 1.4; }
+        
+        .bp-hero h1 { font-size: clamp(34px, 5vw, 66px); max-width: 880px; margin-bottom: 0; }
         .bp-hero h1 em { font-style: normal; color: var(--pine); }
         .bp-hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: start; margin-top: 34px; }
         @media (max-width: 920px) { .bp-hero-grid { grid-template-columns: 1fr; } }
-        .bp-hero-sub { font-size: 18px; color: var(--ink-soft); max-width: 520px; margin-bottom: 30px; }
-        .bp-cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-bottom: 20px; }
+        .bp-hero-sub { font-size: 17.5px; color: var(--ink-soft); max-width: 540px; margin-bottom: 14px; line-height: 1.6; }
+        
+        .bp-cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin: 24px 0 14px; }
         .bp-btn-primary { background: var(--pine); color: var(--paper); padding: 15px 26px; font-size: 14.5px; font-weight: 600; border-radius: var(--radius); display: inline-flex; align-items: center; gap: 8px; transition: background .15s; text-decoration: none; }
         .bp-btn-primary:hover { background: var(--pine-deep); }
         .bp-btn-link { font-size: 14.5px; border-bottom: 1px solid currentColor; padding-bottom: 2px; color: var(--ink-soft); text-decoration: none; }
+        .bp-btn-link:hover { color: var(--ink); }
+        
         .bp-price-note { font-size: 13px; color: var(--ink-soft); }
         .bp-price-note b { color: var(--ink); }
 
-        /* annotated card */
         .bp-annot-card { background: var(--card); border: 1px solid var(--ink); padding: 26px; position: relative; }
         .bp-annot-card .corner { position: absolute; top: -1px; right: -1px; width: 26px; height: 26px; background: var(--marker); clip-path: polygon(0 0, 100% 0, 100% 100%); }
-        .bp-annot-row { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px dashed var(--paper-line); padding: 10px 0; font-size: 13px; }
+        .bp-annot-title { font-size: 12px; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 14px; font-family: 'IBM Plex Mono', monospace; }
+        .bp-annot-row { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px dashed var(--paper-line); padding: 10px 0; font-size: 13.5px; gap: 12px; }
         .bp-annot-row:last-child { border-bottom: none; }
         .bp-annot-row span:first-child { color: var(--ink-soft); }
-        .bp-annot-title { font-size: 12px; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 14px; }
+        .bp-annot-row span:last-child { font-weight: 500; text-align: right; }
 
-        /* stat strip */
-        .bp-stat-strip { display: flex; gap: 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); margin-top: 56px; }
+        .bp-stat-strip { display: flex; gap: 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); margin-top: 48px; }
         .bp-stat { flex: 1; padding: 22px 24px; border-right: 1px solid var(--ink); }
         .bp-stat:last-child { border-right: none; }
-        .bp-stat .num { font-family: 'Fraunces', serif; font-size: 34px; font-weight: 600; color: var(--pine); }
-        .bp-stat .lbl { font-size: 12.5px; color: var(--ink-soft); margin-top: 4px; }
+        .bp-stat .num { font-family: 'Fraunces', serif; font-size: 34px; font-weight: 600; color: var(--pine); line-height: 1; }
+        .bp-stat .lbl { font-size: 12.5px; color: var(--ink-soft); margin-top: 6px; }
         @media (max-width: 700px) { .bp-stat-strip { flex-wrap: wrap; } .bp-stat { flex: 1 1 50%; border-bottom: 1px solid var(--ink); } }
 
-        /* urgency badge */
-        .bp-urgency { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; background: var(--card); border: 1px solid var(--ink); padding: 7px 12px; margin-bottom: 22px; }
-        .bp-urgency .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--marker); animation: bp-pulse 1.6s infinite; }
-        @keyframes bp-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        /* Category Strip */
+        .category-strip { padding: 22px 0; background: var(--card); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+        .category-strip .lbl2 { font-size: 11px; color: var(--ink-soft); margin-bottom: 14px; display: block; letter-spacing: 0.06em; }
+        .category-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-soft); }
+        .category-row span { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; padding: 6px 12px; border: 1px solid var(--paper-line); background: var(--paper); }
 
-        /* section head */
-        .bp-section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 44px; flex-wrap: wrap; }
-        .bp-eyebrow { font-size: 12px; color: var(--marker); margin-bottom: 10px; }
-        .bp-section-head h2 { font-size: clamp(28px, 3.4vw, 42px); max-width: 640px; }
-        .bp-section-head p { color: var(--ink-soft); max-width: 380px; font-size: 15px; }
-
-        /* logo strip */
-        .bp-logo-strip { border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 0; }
-        .bp-logo-strip .bp-wrap { display: flex; align-items: center; gap: 0; padding: 0 32px; max-width: 1180px; margin: 0 auto; }
-        .bp-logo-strip .lbl2 { font-size: 11px; color: var(--ink-soft); padding: 18px 24px 18px 0; white-space: nowrap; border-right: 1px solid var(--paper-line); }
-        .bp-logo-row { display: flex; flex: 1; overflow-x: auto; }
-        .bp-logo-row span { flex: 1; text-align: center; padding: 18px 20px; font-family: 'Fraunces', serif; font-weight: 600; font-size: 16px; color: var(--ink-soft); border-right: 1px solid var(--paper-line); white-space: nowrap; }
-        .bp-logo-row span:last-child { border-right: none; }
-
-        /* problem section */
+        /* Problem Section */
         .bp-problem-section { background: var(--ink); color: var(--paper); padding: 80px 0; }
+        .bp-problem-section .bp-section-head h2 { color: var(--paper); }
         .bp-problem-section .bp-section-head p, .bp-problem-section .bp-eyebrow { color: #C9C3B4; }
-        .bp-problem-copy { font-size: 19px; line-height: 1.65; max-width: 760px; color: #E7E3D8; }
-        .bp-problem-copy strong { color: #fff; }
+        .bp-problem-copy { font-size: 18px; line-height: 1.65; color: #E7E3D8; max-width: 800px; }
+        .bp-problem-copy p { margin-bottom: 16px; }
+        .bp-problem-copy strong { color: #FFF; }
 
-        /* deliverables grid */
+        /* Qualification Grid */
+        .bp-qual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        @media (max-width: 760px) { .bp-qual-grid { grid-template-columns: 1fr; } }
+        .bp-qual-col { border: 1px solid var(--ink); background: var(--card); padding: 28px; }
+        .bp-qual-col h4 { font-size: 18px; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+        .bp-qual-col .mark { font-size: 18px; flex-shrink: 0; }
+        .bp-qual-col.bp-yes .mark { color: var(--pine); }
+        .bp-qual-col.bp-no .mark { color: var(--marker); }
+        .bp-qual-col ul { list-style: none; }
+        .bp-qual-col li { padding: 10px 0; border-top: 1px dashed var(--paper-line); font-size: 14px; color: var(--ink-soft); line-height: 1.45; }
+        .bp-qual-col li:first-child { border-top: none; }
+
+        /* Connected System Sequence */
+        .system-sequence { display: flex; align-items: stretch; gap: 0; flex-wrap: wrap; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); background: var(--card); }
+        .seq-stage { flex: 1; min-width: 170px; padding: 26px 20px; border-right: 1px dashed var(--paper-line); position: relative; }
+        .seq-stage:last-child { border-right: none; }
+        .seq-stage .step-n { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--marker); margin-bottom: 8px; }
+        .seq-stage h4 { font-size: 16px; margin-bottom: 6px; }
+        .seq-stage p { font-size: 12.5px; color: var(--ink-soft); line-height: 1.4; }
+        @media (min-width: 768px) {
+          .seq-stage:not(:last-child)::after { content: '→'; position: absolute; right: -12px; top: 26px; color: var(--marker); font-family: 'IBM Plex Mono', monospace; z-index: 2; }
+        }
+        .bp-seq-caption { margin-top: 20px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; }
+        .bp-seq-caption strong { color: var(--ink); }
+
+        /* Case Grid */
+        .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        @media (max-width: 900px) { .case-grid { grid-template-columns: 1fr; } }
+        .case-card { border: 1px solid var(--ink); background: var(--card); overflow: hidden; transition: transform 0.2s; display: flex; flex-direction: column; }
+        .case-card:hover { transform: translateY(-2px); }
+        .case-card .img { aspect-ratio: 4/3; background: linear-gradient(135deg, #d8d2c1, #c3bda9); position: relative; overflow: hidden; width: 100%; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(27,27,23,0.4); text-align: center; padding: 12px; }
+        .case-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+        .case-body .tag { font-size: 11px; color: var(--marker); margin-bottom: 6px; font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; }
+        .case-body h4 { font-size: 19px; margin-bottom: 6px; }
+        .case-body p { font-size: 13.5px; color: var(--ink-soft); line-height: 1.45; }
+        .case-body .sys-list { list-style: none; font-size: 12.5px; color: var(--ink-soft); margin: 14px 0; padding: 12px 0; border-top: 1px dashed var(--paper-line); border-bottom: 1px dashed var(--paper-line); }
+        .case-body .sys-list li { padding: 4px 0; }
+        .case-body .demo { font-size: 12px; color: var(--ink-soft); margin-top: auto; padding-top: 12px; }
+        .case-body .demo b { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--marker); text-transform: uppercase; margin-bottom: 4px; }
+        .bp-cases-foot { display: flex; justify-content: center; margin-top: 40px; }
+
+        /* Think Grid */
+        .think-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        @media (max-width: 900px) { .think-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 560px) { .think-grid { grid-template-columns: 1fr; } }
+        .think-card { border: 1px solid var(--ink); background: var(--card); }
+        .think-card .img { aspect-ratio: 3/2; background: linear-gradient(135deg, #d8d2c1, #c3bda9); display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(27,27,23,0.4); text-align: center; padding: 12px; }
+        .think-body { padding: 18px 20px; }
+        .think-body .n { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--marker); margin-bottom: 6px; }
+        .think-body h4 { font-size: 16px; margin-bottom: 6px; }
+        .think-body p { font-size: 13px; color: var(--ink-soft); line-height: 1.45; }
+
+        /* Deliverables Grid */
         .bp-deliv-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--ink); border: 1px solid var(--ink); }
         @media (max-width: 900px) { .bp-deliv-grid { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 560px) { .bp-deliv-grid { grid-template-columns: 1fr; } }
-        .bp-deliv-col { background: var(--card); padding: 26px 22px; }
-        .bp-deliv-col h4 { font-size: 15px; margin-bottom: 6px; }
-        .bp-deliv-col .sub { font-size: 12px; color: var(--marker); margin-bottom: 16px; }
-        .bp-deliv-col ul { list-style: none; font-size: 13.5px; color: var(--ink-soft); }
-        .bp-deliv-col li { padding: 7px 0; border-top: 1px dashed var(--paper-line); }
+        .bp-deliv-col { background: var(--card); padding: 26px 22px; display: flex; flex-direction: column; }
+        .bp-deliv-col h4 { font-size: 16px; margin-bottom: 4px; }
+        .bp-deliv-col .sub { font-size: 12px; color: var(--marker); margin-bottom: 16px; font-family: 'IBM Plex Mono', monospace; }
+        .bp-deliv-col ul { list-style: none; font-size: 13.5px; color: var(--ink-soft); flex: 1; }
+        .bp-deliv-col li { padding: 8px 0; border-top: 1px dashed var(--paper-line); }
         .bp-deliv-col li:first-child { border-top: none; }
+        .bp-deliv-col .note { font-size: 12px; color: var(--ink-soft); margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--paper-line); line-height: 1.5; }
 
-        /* process steps */
-        .bp-process { display: flex; gap: 0; overflow-x: auto; border-top: 1px solid var(--ink); }
-        .bp-pstep { flex: 1; min-width: 190px; padding: 24px 20px; border-right: 1px solid var(--ink-soft); position: relative; }
+        /* Process Steps */
+        .bp-process { display: flex; gap: 0; overflow-x: auto; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); background: var(--paper); }
+        .bp-pstep { flex: 1; min-width: 190px; padding: 24px 20px; border-right: 1px solid var(--ink); }
         .bp-pstep:last-child { border-right: none; }
-        .bp-pstep .n { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--marker); }
+        .bp-pstep .n { font-family: 'IBM Plex Mono', monospace; font-size: 22px; color: var(--pine); font-weight: 600; }
         .bp-pstep h4 { font-size: 17px; margin: 8px 0 6px; }
-        .bp-pstep p { font-size: 13px; color: var(--ink-soft); }
+        .bp-pstep p { font-size: 13px; color: var(--ink-soft); line-height: 1.45; }
+        .bp-pstep .chk { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--marker); margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--paper-line); }
 
-        /* qualifier grid */
-        .bp-qual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--ink); border: 1px solid var(--ink); }
-        @media (max-width: 760px) { .bp-qual-grid { grid-template-columns: 1fr; } }
-        .bp-qual-col { background: var(--card); padding: 30px 28px; }
-        .bp-qual-col.bp-no { background: #EFEBE2; }
-        .bp-qual-col h4 { font-size: 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-        .bp-qual-col h4 .mark { width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
-        .bp-qual-col.bp-yes h4 .mark { background: var(--pine); color: var(--paper); }
-        .bp-qual-col.bp-no h4 .mark { background: transparent; border: 1.5px solid var(--ink-soft); color: var(--ink-soft); }
-        .bp-qual-col ul { list-style: none; font-size: 14px; color: var(--ink-soft); }
-        .bp-qual-col li { padding: 8px 0; border-top: 1px dashed var(--paper-line); }
-        .bp-qual-col li:first-child { border-top: none; }
+        /* Comparison Table */
+        .compare-wrap { overflow-x: auto; }
+        .compare-table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 640px; }
+        .compare-table th, .compare-table td { padding: 14px 18px; border: 1px solid var(--ink); text-align: left; vertical-align: top; }
+        .compare-table th { background: var(--card); font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 500; }
+        .compare-table th.hl, .compare-table td.hl { background: var(--pine); color: var(--paper); }
+        .compare-table tr:nth-child(even) td:not(.hl) { background: rgba(239,235,226,0.5); }
 
-        /* comparison table */
-        .bp-compare-wrap { overflow-x: auto; border: 1px solid var(--ink); }
-        table.bp-compare { width: 100%; border-collapse: collapse; min-width: 640px; background: var(--card); }
-        table.bp-compare th, table.bp-compare td { padding: 16px 18px; text-align: left; font-size: 13.5px; border-bottom: 1px solid var(--paper-line); }
-        table.bp-compare th { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; background: var(--card); border-bottom: 1px solid var(--ink); }
-        table.bp-compare th.hl { color: var(--pine); }
-        table.bp-compare td.hl { background: #E4EDE9; font-weight: 600; }
-        table.bp-compare tr:last-child td { border-bottom: none; }
-        table.bp-compare td:first-child { color: var(--ink-soft); }
-        .bp-ic-yes { color: var(--pine); font-weight: 700; }
-        .bp-ic-no { color: #B0A995; }
+        /* Guarantee / Alignment */
+        .bp-guarantee { background: var(--card); border: 1px solid var(--ink); padding: 40px; display: flex; gap: 30px; align-items: flex-start; }
+        @media (max-width: 700px) { .bp-guarantee { flex-direction: column; } }
+        .bp-guarantee .bp-badge { width: 76px; height: 76px; border: 2px solid var(--pine); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Fraunces', serif; font-size: 10.5px; text-align: center; color: var(--pine); line-height: 1.2; padding: 8px; font-weight: 600; text-transform: uppercase; }
+        .bp-guarantee h3 { font-size: 21px; margin-bottom: 8px; }
+        .bp-guarantee p { font-size: 14.5px; color: var(--ink-soft); max-width: 680px; line-height: 1.55; }
 
-        /* proof grid */
-        .bp-proof-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 20px; }
-        @media (max-width: 860px) { .bp-proof-grid { grid-template-columns: 1fr; } }
-        .bp-proof-card { border: 1px solid var(--ink); background: var(--card); overflow: hidden; transition: box-shadow .2s; }
-        .bp-proof-card:hover { box-shadow: 0 4px 20px rgba(27,27,23,0.12); }
-        .bp-proof-img { background: linear-gradient(135deg, #d8d2c1, #c3bda9); position: relative; aspect-ratio: 4/3; overflow: hidden; }
-        .bp-proof-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
-        .bp-proof-card:hover .bp-proof-img img { transform: scale(1.04); }
-        .bp-proof-body { padding: 18px 20px; }
-        .bp-proof-body .tag { font-size: 11px; color: var(--marker); margin-bottom: 6px; }
-        .bp-proof-body h4 { font-size: 18px; margin-bottom: 6px; }
-        .bp-proof-body p { font-size: 13px; color: var(--ink-soft); }
-        .bp-proof-card.big .bp-proof-img { aspect-ratio: 16/10; }
-        .bp-proof-metric { display: inline-block; margin-top: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; background: var(--pine); color: var(--paper); padding: 5px 10px; }
+        /* Scope Boundaries */
+        .scope-wrap { border: 1px solid var(--ink); background: var(--card); }
+        .scope-grid { display: grid; grid-template-columns: 1fr 1fr; }
+        @media (max-width: 760px) { .scope-grid { grid-template-columns: 1fr; } .scope-col:first-child { border-right: none !important; border-bottom: 1px solid var(--ink); } }
+        .scope-col { padding: 30px 32px; }
+        .scope-col:first-child { border-right: 1px solid var(--ink); }
+        .scope-col h4 { font-size: 15px; margin-bottom: 16px; font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: 0.03em; }
+        .scope-col.in h4 { color: var(--pine); }
+        .scope-col.out h4 { color: var(--marker); }
+        .scope-col ul { list-style: none; font-size: 13.5px; color: var(--ink-soft); }
+        .scope-col li { padding: 7px 0; border-top: 1px dashed var(--paper-line); line-height: 1.4; }
+        .scope-col li:first-child { border-top: none; }
+        .scope-note { padding: 22px 32px; border-top: 1px solid var(--ink); font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
 
-        /* guarantee */
-        .bp-guarantee { background: var(--card); border: 1px solid var(--ink); padding: 44px; display: flex; gap: 32px; align-items: center; }
-        @media (max-width: 700px) { .bp-guarantee { flex-direction: column; align-items: flex-start; } }
-        .bp-guarantee .bp-badge { width: 74px; height: 74px; border: 2px solid var(--pine); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Fraunces', serif; font-size: 11px; text-align: center; color: var(--pine); line-height: 1.2; padding: 8px; }
-        .bp-guarantee h3 { font-size: 22px; margin-bottom: 8px; }
-        .bp-guarantee p { font-size: 14.5px; color: var(--ink-soft); max-width: 640px; }
+        /* Checklist */
+        .checklist { columns: 2; column-gap: 32px; list-style: none; font-size: 14px; color: var(--ink-soft); }
+        .checklist li { break-inside: avoid; padding: 10px 0 10px 26px; border-top: 1px dashed var(--paper-line); position: relative; }
+        .checklist li:first-child, .checklist li:nth-child(2) { border-top: none; }
+        .checklist li::before { content: '—'; position: absolute; left: 0; color: var(--marker); }
+        @media (max-width: 640px) { .checklist { columns: 1; } .checklist li:nth-child(2) { border-top: 1px dashed var(--paper-line); } }
 
-        /* testimonials */
-        .bp-testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        @media (max-width: 860px) { .bp-testi-grid { grid-template-columns: 1fr; } }
-        .bp-testi-card { border: 1px solid var(--ink); background: var(--card); padding: 26px; display: flex; flex-direction: column; }
-        .bp-testi-stars { color: var(--marker); font-size: 13px; margin-bottom: 14px; letter-spacing: 2px; }
-        .bp-testi-card .bp-body { font-size: 14.5px; line-height: 1.6; flex: 1; margin-bottom: 18px; }
-        .bp-testi-who { display: flex; align-items: center; gap: 10px; font-size: 12.5px; color: var(--ink-soft); border-top: 1px dashed var(--paper-line); padding-top: 14px; }
-        .bp-testi-who .bp-av { width: 32px; height: 32px; border-radius: 50%; background: var(--pine); color: var(--paper); display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 13px; font-weight: 600; flex-shrink: 0; }
-        .bp-testi-who b { color: var(--ink); }
+        /* FAQ Accordion */
+        .bp-faq-item { border: 1px solid var(--ink); background: var(--card); margin-bottom: 12px; }
+        .bp-faq-q { width: 100%; padding: 18px 24px; background: transparent; border: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; text-align: left; font-family: 'Fraunces', serif; font-size: 17px; font-weight: 600; color: var(--ink); cursor: pointer; }
+        .bp-faq-a { padding: 0 24px 18px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+        .bp-plus { font-size: 18px; color: var(--ink-soft); transition: transform 0.25s ease; }
+        .bp-faq-item.open .bp-plus { transform: rotate(45deg); }
 
-        /* ── SOCIAL PROOF SECTION ────────────────────────────────────── */
+        /* Lead Magnet */
+        .lead-magnet { background: var(--ink); color: var(--paper); padding: 80px 0; }
+        .lead-magnet .bp-eyebrow { color: #C9C3B4; }
+        .lead-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+        @media (max-width: 860px) { .lead-grid { grid-template-columns: 1fr; } }
+        .lead-grid h2 { color: var(--paper); font-size: clamp(24px,3vw,34px); margin-bottom: 12px; }
+        .lead-grid > div:first-child p { color: #C9C3B4; font-size: 15px; line-height: 1.6; margin-bottom: 20px; }
+        .lead-benefits { list-style: none; font-size: 13.5px; color: #E7E3D8; }
+        .lead-benefits li { padding: 8px 0 8px 20px; border-top: 1px dashed rgba(255,255,255,0.15); position: relative; }
+        .lead-benefits li:first-child { border-top: none; }
+        .lead-benefits li::before { content: '—'; position: absolute; left: 0; color: #8EC4B3; }
+        .lead-form { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); padding: 28px; }
+        .lead-form .field { margin-bottom: 16px; }
+        .lead-form label { display: block; font-size: 12.5px; color: #C9C3B4; margin-bottom: 6px; font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: 0.03em; }
+        .lead-form input, .lead-form select { width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.25); color: var(--paper); font-size: 14px; border-radius: var(--radius); font-family: 'Inter', sans-serif; }
+        .lead-form input::placeholder { color: rgba(255,255,255,0.4); }
+        .lead-form select option { background: var(--ink); color: var(--paper); }
+
+        .btn-outline-light { display: inline-flex; align-items: center; gap: 8px; padding: 15px 26px; border: 1.5px solid rgba(255,255,255,0.3); color: var(--paper); font-size: 14.5px; font-weight: 600; border-radius: var(--radius); transition: background 0.15s, border-color 0.15s; text-decoration: none; }
+        .btn-outline-light:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); }
+
+        /* Locked Social Proof Styles */
         .bp-sp-section { background: var(--ink); padding: 80px 0; overflow: hidden; }
         .bp-sp-head { margin-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.10); padding-bottom: 28px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; }
         .bp-sp-section .bp-eyebrow { color: #C9C3B4; }
         .bp-sp-section h2 { color: #fff; font-size: clamp(24px, 3vw, 38px); max-width: 580px; margin: 0; }
         .bp-sp-section h2 em { font-style: normal; color: #7FB89F; }
-        .bp-sp-head-sub { font-size: 13px; color: #8B8571; font-family: 'IBM Plex Mono', monospace; text-align: right; }
-
-        /* ── SLIDER ROW WRAPPER ──────────────────────────────────────── */
         .bp-sp-row { margin-bottom: 48px; }
         .bp-sp-row:last-child { margin-bottom: 0; }
         .bp-sp-row-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
         .bp-sp-row-title { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #7FB89F; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
         .bp-sp-row-title::before { content: ''; width: 6px; height: 6px; background: #7FB89F; border-radius: 50%; display: inline-block; }
-        .bp-sp-scroll-hint { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8B8571; display: flex; align-items: center; gap: 6px; }
-
-        /* ── HORIZONTAL SCROLL CONTAINER ─────────────────────────────── */
-        .bp-sp-slider {
-          display: flex;
-          gap: 16px;
-          overflow-x: auto;
-          overflow-y: hidden;
-          scroll-snap-type: x mandatory;
-          scroll-behavior: smooth;
-          padding-bottom: 16px;
-          margin-bottom: -16px;
-          -webkit-overflow-scrolling: touch;
-          scrollbar-width: thin;
-          scrollbar-color: rgba(127,184,159,0.3) rgba(255,255,255,0.05);
-        }
+        .bp-sp-slider { display: flex; gap: 16px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-bottom: 16px; margin-bottom: -16px; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: rgba(127,184,159,0.3) rgba(255,255,255,0.05); }
         .bp-sp-slider::-webkit-scrollbar { height: 4px; }
         .bp-sp-slider::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 2px; }
         .bp-sp-slider::-webkit-scrollbar-thumb { background: rgba(127,184,159,0.3); border-radius: 2px; }
-        .bp-sp-slider::-webkit-scrollbar-thumb:hover { background: rgba(127,184,159,0.6); }
+        .bp-sp-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); flex-shrink: 0; scroll-snap-align: start; }
+        .bp-sp-wa-img-card { width: 280px; padding: 14px; }
+        .bp-sp-wa-img-header { display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: #7FB89F; margin-bottom: 10px; }
+        .bp-sp-wa-img-body { width: 100%; border-radius: 2px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); aspect-ratio: 3/4; background: rgba(0,0,0,0.3); }
+        .bp-sp-wa-img-body img { width: 100%; height: 100%; object-fit: cover; }
+        .bp-sp-video-card.vert { width: 260px; padding: 14px; }
+        .bp-sp-video-frame { position: relative; width: 100%; aspect-ratio: 9/16; border-radius: 2px; overflow: hidden; background: #000; margin-bottom: 12px; }
+        .bp-sp-video-foot { display: flex; align-items: center; gap: 10px; }
+        .bp-sp-vav { width: 32px; height: 32px; border-radius: 50%; background: var(--pine); color: var(--paper); display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 13px; font-weight: 600; flex-shrink: 0; }
+        .bp-sp-vname { font-size: 13.5px; font-weight: 600; color: #fff; }
+        .bp-sp-vrole { font-size: 11.5px; color: #8B8571; }
+        .bp-sp-wa-marquee-wrap { overflow: hidden; width: 100%; }
+        .bp-sp-wa-marquee-track { display: flex; gap: 16px; width: max-content; animation: bp-sp-marquee 40s linear infinite; }
+        .bp-sp-wa-marquee-track:hover { animation-play-state: paused; }
+        @keyframes bp-sp-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .bp-sp-quote-card { width: 340px; padding: 24px; }
+        .bp-sp-stars { color: #E5A93C; font-size: 13px; margin-bottom: 8px; }
+        .bp-sp-qs { font-family: 'Fraunces', serif; font-size: 32px; color: #7FB89F; line-height: 1; display: block; margin-bottom: -10px; }
+        .bp-sp-quote-card blockquote { font-size: 13.5px; color: #D5D0C3; line-height: 1.55; margin-bottom: 16px; font-style: normal; }
+        .bp-sp-quote-who { display: flex; align-items: center; gap: 10px; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 12px; }
+        .bp-sp-quote-av { width: 28px; height: 28px; border-radius: 50%; background: var(--pine); color: var(--paper); display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 12px; font-weight: 600; }
+        .bp-sp-qname { font-size: 13px; font-weight: 600; color: #fff; }
+        .bp-sp-qrole { font-size: 11px; color: #8B8571; }
+        .bp-sp-badge { margin-top: 36px; border: 1px solid rgba(255,255,255,0.12); padding: 18px 24px; background: rgba(255,255,255,0.03); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .bp-sp-badge-left { display: flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #7FB89F; }
+        .bp-sp-dot { width: 7px; height: 7px; border-radius: 50%; background: #7FB89F; animation: bp-pulse 1.6s infinite; }
+        .bp-sp-badge-stats { display: flex; gap: 32px; }
+        .bp-sp-stat-item { text-align: right; }
+        .bp-sp-stat-num { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: #fff; display: block; line-height: 1; }
+        .bp-sp-stat-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #8B8571; }
 
-        .bp-sp-card {
-          scroll-snap-align: start;
-          flex-shrink: 0;
-        }
+        /* Locked Pricing Styles */
+        .bp-tiers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        @media (max-width: 900px) { .bp-tiers { grid-template-columns: 1fr; } }
+        .bp-tier { background: var(--card); border: 1px solid var(--ink); display: flex; flex-direction: column; overflow: hidden; }
+        .bp-tier.bp-feat { border-color: var(--pine); border-width: 2px; }
+        .bp-tier-head { background: var(--paper); border-bottom: 1px solid var(--ink); padding: 24px 28px; }
+        .bp-tier.bp-feat .bp-tier-head { background: var(--pine); color: var(--paper); border-color: var(--pine); }
+        .bp-tier.bp-feat .bp-tier-head h3 { color: var(--paper); }
+        .bp-tier.bp-feat .bp-tier-head .desc { color: rgba(255,255,255,0.75); }
+        .bp-tier-head .name { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); margin-bottom: 4px; }
+        .bp-tier.bp-feat .bp-tier-head .name { color: rgba(255,255,255,0.75); }
+        .bp-tier-head h3 { font-size: 21px; margin-bottom: 4px; }
+        .bp-tier-head .desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.4; }
+        .bp-slot-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--pine); background: rgba(36,70,59,0.1); padding: 3px 8px; border-radius: 2px; margin-top: 8px; }
+        .bp-tier.bp-feat .bp-slot-badge { color: #7FB89F; background: rgba(255,255,255,0.15); }
+        .bp-slot-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+        .bp-tier-price { padding: 20px 28px; border-bottom: 1px solid var(--ink); }
+        .bp-tier-price .amt { font-family: 'Fraunces', serif; font-size: 34px; font-weight: 600; color: var(--ink); }
+        .bp-tier.bp-feat .bp-tier-price .amt { color: var(--pine); }
+        .bp-tier-price .per { font-size: 12.5px; color: var(--ink-soft); }
+        .bp-currency-toggle { display: flex; gap: 4px; }
+        .bp-curr-btn { background: transparent; border: 1px solid var(--paper-line); padding: 2px 6px; font-size: 10px; cursor: pointer; color: var(--ink-soft); border-radius: 2px; }
+        .bp-curr-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+        .bp-tier.bp-feat .bp-curr-btn { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); }
+        .bp-tier.bp-feat .bp-curr-btn.active { background: #fff; color: var(--pine); border-color: #fff; }
+        .bp-deliv-bar { display: flex; justify-content: space-between; align-items: center; padding: 12px 28px; background: rgba(27,27,23,0.03); border-bottom: 1px solid var(--paper-line); }
+        .bp-tier-slide { width: 100%; flex-shrink: 0; padding: 20px 28px; }
+        .bp-tier-list { list-style: none; }
+        .bp-tier-list li { padding: 9px 0; border-bottom: 1px dashed var(--paper-line); font-size: 13.5px; color: var(--ink-soft); }
+        .bp-tier-list li:last-child { border-bottom: none; }
+        .bp-tier-foot { padding: 22px 28px; border-top: 1px solid var(--ink); background: var(--paper); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+        .bp-tier.bp-feat .bp-tier-foot { background: rgba(36,70,59,0.05); }
+        .bp-tier-btn { background: var(--pine); color: var(--paper); padding: 12px 20px; font-size: 13.5px; font-weight: 600; border-radius: var(--radius); text-decoration: none; transition: background 0.15s; }
+        .bp-tier-btn:hover { background: var(--pine-deep); }
+        .bp-tier-time { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-soft); }
 
-        /* ── ROW 1: WHATSAPP MARQUEE INFINITE LOOP ── */
-        @keyframes bp-wa-marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
+        /* Locked Logos Marquee Styles */
+        .bp-logo-marquee-section { background: var(--ink); color: var(--paper); padding: 48px 0; overflow: hidden; }
+        .bp-marquee-title { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(255,255,255,0.4); text-align: center; margin-bottom: 28px; }
+        .bp-marquee-row { overflow: hidden; margin-bottom: 12px; }
+        .bp-marquee-track { display: flex; gap: 40px; align-items: center; white-space: nowrap; animation: bp-scrollMarquee 22s linear infinite; }
+        .bp-marquee-track.rtl { animation-direction: reverse; }
+        .bp-marquee-track.slow { animation-duration: 30s; }
+        .bp-marquee-track.fast { animation-duration: 16s; }
+        .bp-marquee-item { flex-shrink: 0; display: flex; align-items: center; height: 32px; }
+        .bp-marquee-item img { height: 28px; width: auto; opacity: 0.75; filter: grayscale(100%) brightness(180%); transition: opacity 0.2s, filter 0.2s; }
+        .bp-marquee-item img:hover { opacity: 1; filter: grayscale(0%) brightness(100%); }
+        @keyframes bp-scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        .bp-sp-wa-marquee-wrap {
-          width: 100%;
-          overflow: hidden;
-          position: relative;
-          padding: 12px 0 24px;
-          mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
-          -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
-        }
-
-        .bp-sp-wa-marquee-track {
-          display: flex;
-          gap: 20px;
-          width: max-content;
-          animation: bp-wa-marquee 32s linear infinite;
-          will-change: transform;
-        }
-
-        .bp-sp-wa-marquee-wrap:hover .bp-sp-wa-marquee-track {
-          animation-play-state: paused;
-        }
-
-        .bp-sp-wa-img-card {
-          width: 230px;
-          height: 440px;
-          background: var(--card);
-          border: 1.5px solid var(--ink);
-          border-radius: 6px;
-          overflow: hidden;
-          flex-shrink: 0;
-          display: flex;
-          flex-direction: column;
-          box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
-          position: relative;
-        }
-
-        .bp-sp-wa-img-card:hover {
-          transform: translateY(-4px) scale(1.02);
-          box-shadow: 0 14px 36px rgba(0,0,0,0.16);
-          border-color: var(--pine);
-        }
-
-        .bp-sp-wa-img-header {
-          padding: 8px 12px;
-          background: rgba(27,27,23,0.05);
-          border-bottom: 1px dashed var(--paper-line);
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          font-family: 'IBM Plex Mono', monospace;
-          font-size: 10px;
-          font-weight: 600;
-          color: var(--pine);
-          letter-spacing: 0.04em;
-        }
-
-        .bp-sp-wa-img-body {
-          flex: 1;
-          width: 100%;
-          overflow: hidden;
-          background: #0d1418;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .bp-sp-wa-img-body img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
-
-        @media (max-width: 768px) {
-          .bp-sp-wa-img-card {
-            width: 185px;
-            height: 360px;
-          }
-          .bp-sp-wa-marquee-track {
-            animation-duration: 22s;
-          }
-        }
-
-        .bp-sp-wa-bar { background: #1E2B22; padding: 6px 12px; display: flex; align-items: center; justify-content: space-between; }
-        .bp-sp-wa-bar span { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; color: #5a7a65; letter-spacing: 0.06em; }
-        .bp-sp-wa-header { background: #2A3D33; padding: 10px 14px; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-        .bp-sp-wa-hav { width: 32px; height: 32px; border-radius: 50%; background: #3D5948; border: 1.5px solid #4A6B55; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #7FB89F; font-family: 'Fraunces', serif; flex-shrink: 0; }
-        .bp-sp-wa-hname { font-size: 12.5px; color: #E0DDD5; font-weight: 600; }
-        .bp-sp-wa-hstatus { font-size: 10px; color: #7FB89F; }
-        .bp-sp-wa-hdots { margin-left: auto; color: #5a7a65; font-size: 16px; line-height: 1; letter-spacing: 1px; }
-        .bp-sp-wa-body { padding: 14px 12px; display: flex; flex-direction: column; gap: 8px; background: #12150F; flex: 1; min-height: 180px; }
-        .bp-sp-wa-msg { max-width: 88%; border-radius: 0 8px 8px 8px; background: #1E2B1A; border: 1px solid rgba(255,255,255,0.06); padding: 9px 12px; font-size: 12.5px; color: #D8D3C6; line-height: 1.5; position: relative; }
-        .bp-sp-wa-msg.bp-sent { align-self: flex-end; border-radius: 8px 0 8px 8px; background: #1A2E1E; border-color: rgba(127,184,159,0.15); }
-        .bp-sp-wa-time { font-size: 9.5px; color: #5a7a65; text-align: right; margin-top: 4px; font-family: 'IBM Plex Mono', monospace; }
-        .bp-sp-wa-foot { background: #1E2B22; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-        .bp-sp-wa-foot span { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #3D5948; letter-spacing: 0.07em; }
-        .bp-sp-wa-foot .bp-sp-wa-dot { width: 6px; height: 6px; border-radius: 50%; background: #3D5948; }
-
-        /* ── ROW 2: VIDEO TESTIMONIAL CARDS (EMPTY FRAMES) ───────────── */
-        .bp-sp-video-card {
-          border: 1px solid rgba(255,255,255,0.10);
-          background: #111109;
-          cursor: pointer;
-          display: flex;
-          flex-direction: column;
-        }
-        .bp-sp-video-card.vert { width: clamp(220px, 60vw, 260px); }
-        .bp-sp-video-card.wide { width: clamp(300px, 78vw, 400px); }
-
-        .bp-sp-video-frame { position: relative; background: #1a1a16; overflow: hidden; }
-        .bp-sp-video-card.vert .bp-sp-video-frame { aspect-ratio: 9/14; }
-        .bp-sp-video-card.wide .bp-sp-video-frame { aspect-ratio: 16/9; }
-
-        /* crosshair empty-frame markers */
-        .bp-sp-frame-inner { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
-        .bp-sp-frame-inner::before,
-        .bp-sp-frame-inner::after { content: ''; position: absolute; background: rgba(255,255,255,0.06); }
-        .bp-sp-frame-inner::before { width: 100%; height: 1px; top: 50%; }
-        .bp-sp-frame-inner::after  { width: 1px; height: 100%; left: 50%; }
-        /* corner ticks on the frame */
-        .bp-sp-video-frame::before,
-        .bp-sp-video-frame::after { content: ''; position: absolute; width: 16px; height: 16px; z-index: 2; }
-        .bp-sp-video-frame::before { top: 8px; left: 8px; border-top: 1.5px solid rgba(255,255,255,0.25); border-left: 1.5px solid rgba(255,255,255,0.25); }
-        .bp-sp-video-frame::after  { bottom: 8px; right: 8px; border-bottom: 1.5px solid rgba(255,255,255,0.25); border-right: 1.5px solid rgba(255,255,255,0.25); }
-
-        .bp-sp-play-btn { width: 50px; height: 50px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; transition: border-color .2s, transform .2s; position: relative; z-index: 3; }
-        .bp-sp-video-card:hover .bp-sp-play-btn { border-color: rgba(255,255,255,0.6); transform: scale(1.08); }
-        .bp-sp-play-btn svg { width: 18px; height: 18px; fill: rgba(255,255,255,0.55); margin-left: 3px; }
-        .bp-sp-video-card:hover .bp-sp-play-btn svg { fill: #fff; }
-        .bp-sp-video-type { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; position: relative; z-index: 3; }
-        .bp-sp-video-label { position: absolute; top: 10px; left: 10px; z-index: 4; background: var(--marker); color: var(--paper); font-family: 'IBM Plex Mono', monospace; font-size: 9px; padding: 3px 7px; letter-spacing: 0.06em; }
-
-        .bp-sp-video-foot { padding: 12px 14px; display: flex; align-items: center; gap: 10px; border-top: 1px solid rgba(255,255,255,0.07); background: #111109; }
-        .bp-sp-vav { width: 30px; height: 30px; border-radius: 50%; background: #2a3f35; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 11.5px; font-weight: 600; color: #7FB89F; flex-shrink: 0; }
-        .bp-sp-vname { font-size: 12.5px; color: #D8D3C6; font-weight: 600; line-height: 1.2; }
-        .bp-sp-vrole  { font-size: 10.5px; color: #6B6556; }
-
-        /* ── ROW 3: TEXT QUOTE CARDS ─────────────────────────────────── */
-        .bp-sp-quote-card {
-          width: clamp(300px, 78vw, 380px);
-          border: 1px solid rgba(255,255,255,0.10);
-          background: var(--card);
-          padding: 26px 24px;
-          display: flex;
-          flex-direction: column;
-          box-sizing: border-box;
-        }
-        .bp-sp-stars { color: var(--marker); font-size: 11.5px; letter-spacing: 3px; margin-bottom: 14px; }
-        .bp-sp-qs { font-size: 42px; font-family: 'Fraunces', serif; color: var(--pine); line-height: 0.6; margin-bottom: 10px; display: block; opacity: 0.7; }
-        .bp-sp-quote-card blockquote { font-family: 'Fraunces', serif; font-size: clamp(14.5px, 1.4vw, 17px); font-weight: 450; color: var(--ink); line-height: 1.65; flex: 1; margin: 0 0 20px; }
-        .bp-sp-quote-who { display: flex; align-items: center; gap: 10px; padding-top: 14px; border-top: 1px dashed rgba(27,27,23,0.2); margin-top: auto; }
-        .bp-sp-quote-av { width: 32px; height: 32px; border-radius: 50%; background: var(--pine); color: var(--paper); font-family: 'Fraunces', serif; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .bp-sp-qname { font-size: 12.5px; color: var(--ink); font-weight: 600; }
-        .bp-sp-qrole { font-size: 11.5px; color: var(--ink-soft); }
-
-        /* ── PROOF BADGE STRIP ───────────────────────────────────────── */
-        .bp-sp-badge { margin-top: 36px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-        .bp-sp-badge-left { display: flex; align-items: center; gap: 8px; }
-        .bp-sp-dot { width: 7px; height: 7px; border-radius: 50%; background: #7FB89F; flex-shrink: 0; animation: bp-pulse 2s infinite; }
-        .bp-sp-badge-left span { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8B8571; letter-spacing: 0.04em; }
-        .bp-sp-badge-stats { display: flex; gap: 24px; flex-wrap: wrap; }
-        .bp-sp-stat-item { text-align: center; }
-        .bp-sp-stat-item .bp-sp-stat-num { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: #fff; display: block; }
-        .bp-sp-stat-item .bp-sp-stat-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #8B8571; letter-spacing: 0.04em; }
-
-        /* pricing tiers */
-        .bp-tiers { display: grid; grid-template-columns: repeat(2, minmax(0, 540px)); justify-content: center; gap: 32px; align-items: stretch; }
-        @media (max-width: 940px) { .bp-tiers { grid-template-columns: 1fr; gap: 24px; } }
-
-        .bp-tier { border: 1px solid var(--ink); background: var(--card); display: flex; flex-direction: column; position: relative; width: 100%; box-sizing: border-box; overflow: hidden; }
-        .bp-tier.bp-feat { border: 2px solid var(--pine); }
-        .bp-tier .bp-flag { position: absolute; top: -1px; right: -1px; background: var(--pine); color: var(--paper); font-size: 11px; padding: 5px 10px; font-family: 'IBM Plex Mono', monospace; z-index: 2; }
-        .bp-currency-toggle { display: inline-flex; align-items: center; gap: 3px; background: rgba(27, 27, 23, 0.06); padding: 3px; border-radius: 4px; border: 1px solid var(--paper-line); }
-        .bp-curr-btn { background: transparent; border: none; color: var(--ink-soft); font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; font-weight: 600; padding: 4px 8px; border-radius: 2px; cursor: pointer; transition: all 0.15s ease; line-height: 1; }
-        .bp-curr-btn:hover { color: var(--ink); background: rgba(0, 0, 0, 0.05); }
-        .bp-curr-btn.active { background: var(--pine); color: var(--paper); }
-        .bp-tier-head { padding: 26px 24px 20px; border-bottom: 1px dashed var(--paper-line); min-height: 220px; box-sizing: border-box; display: flex; flex-direction: column; }
-        .bp-slot-badge { display: inline-flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: var(--pine); background: rgba(36, 70, 59, 0.08); border: 1px solid rgba(36, 70, 59, 0.2); padding: 5px 12px; border-radius: 20px; margin-top: 10px; align-self: flex-start; letter-spacing: 0.04em; }
-        .bp-slot-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--marker); box-shadow: 0 0 6px rgba(184, 65, 46, 0.6); animation: bp-slot-blink 1.8s infinite ease-in-out; }
-        @keyframes bp-slot-blink { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.25; transform: scale(0.85); } }
-        .bp-tier-price { padding: 22px 24px; border-bottom: 1px dashed var(--paper-line); min-height: 122px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
-        .bp-tier-price .amt { font-family: 'Fraunces', serif; font-size: 54px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; line-height: 1.05; display: block; }
-        .bp-tier-price .per { font-size: 12px; color: var(--ink-soft); margin-top: 6px; display: block; }
-        .bp-deliv-bar { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; background: rgba(27,27,23,0.03); border-bottom: 1px dashed var(--paper-line); box-sizing: border-box; }
-        .bp-tier-slide { width: 100%; flex: 0 0 100%; box-sizing: border-box; padding: 20px 24px; min-height: 220px; }
-        
-        @media (max-width: 940px) {
-          .bp-tier-head { min-height: auto; padding: 22px 18px 16px; }
-          .bp-tier-price { min-height: auto; padding: 18px; flex-wrap: wrap; }
-          .bp-tier-price .amt { font-size: 44px; }
-          .bp-deliv-bar { padding: 10px 16px; flex-wrap: wrap; gap: 8px; }
-          .bp-tier-slide { padding: 16px 18px; min-height: auto; }
-          .bp-tier-foot { padding: 18px; }
-        }
-        @media (max-width: 480px) {
-          .bp-tier-head { padding: 18px 14px 14px; }
-          .bp-tier-head h3 { font-size: 20px; }
-          .bp-tier-price { padding: 14px; }
-          .bp-tier-price .amt { font-size: 36px; }
-          .bp-deliv-bar { padding: 10px 12px; }
-          .bp-tier-slide { padding: 14px 12px; }
-          .bp-tier-foot { padding: 14px; }
-          .bp-curr-btn { padding: 3px 6px; font-size: 10px; }
-        }
-
-
-        .bp-tier-list { padding: 0; flex: 1; list-style: none; font-size: 13.5px; }
-        .bp-tier-list li { padding: 8px 0; display: flex; gap: 10px; }
-        .bp-tier-list li::before { content: "—"; color: var(--pine); flex-shrink: 0; }
-        .bp-tier-foot { padding: 22px 24px 26px; margin-top: auto; }
-
-
-
-        .bp-tier-btn { display: block; text-align: center; padding: 13px; border: 1.5px solid var(--ink); font-size: 13.5px; font-weight: 600; text-decoration: none; color: var(--ink); transition: opacity .15s; }
-        .bp-tier.bp-feat .bp-tier-btn { background: var(--pine); color: var(--paper); border-color: var(--pine); }
-        .bp-tier-btn:hover { opacity: 0.85; }
-        .bp-tier-time { font-size: 12px; color: var(--ink-soft); text-align: center; margin-top: 10px; }
-
-        /* faq */
-        .bp-faq-item { border-bottom: 1px solid var(--ink-soft); opacity: 0.9; }
-        .bp-faq-q { width: 100%; text-align: left; background: none; border: none; padding: 20px 4px; font-family: 'Fraunces', serif; font-size: 18px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: var(--ink); }
-        .bp-faq-q .bp-plus { font-family: 'IBM Plex Mono', monospace; font-size: 18px; color: var(--marker); transition: transform .2s; }
-        .bp-faq-item.open .bp-plus { transform: rotate(45deg); }
-        .bp-faq-a { overflow: hidden; transition: max-height .25s ease; }
-        .bp-faq-a p { padding: 0 4px 20px; font-size: 14.5px; color: var(--ink-soft); max-width: 680px; }
-
-        /* lead magnet */
-        .bp-lead-magnet { background: var(--ink); color: var(--paper); padding: 80px 0; }
-        .bp-lead-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        @media (max-width: 860px) { .bp-lead-grid { grid-template-columns: 1fr; } }
-        .bp-lead-magnet .bp-eyebrow { color: #C9C3B4; }
-        .bp-lead-magnet h2 { color: #fff; font-size: clamp(26px, 3.4vw, 38px); margin-bottom: 14px; }
-        .bp-lead-magnet p.bp-desc { color: #C9C3B4; font-size: 15px; margin-bottom: 0; max-width: 460px; }
-        .bp-lead-points { list-style: none; margin-top: 20px; font-size: 13.5px; color: #E7E3D8; }
-        .bp-lead-points li { padding: 6px 0; display: flex; gap: 10px; }
-        .bp-lead-points li::before { content: "✓"; color: #7FB89F; font-weight: 700; }
-        .bp-lead-form { background: var(--card); color: var(--ink); border: 1px solid var(--ink-soft); padding: 30px; }
-        .bp-lead-form .bp-tag { font-size: 11px; color: var(--marker); margin-bottom: 6px; }
-        .bp-lead-form h4 { font-size: 19px; margin-bottom: 18px; }
-        .bp-field { margin-bottom: 14px; }
-        .bp-field label { display: block; font-size: 12px; color: var(--ink-soft); margin-bottom: 6px; }
-        .bp-field input { width: 100%; padding: 12px 14px; border: 1px solid var(--ink-soft); background: #fff; font-family: 'Inter', sans-serif; font-size: 14px; border-radius: var(--radius); }
-        .bp-field input:focus { outline: none; border-color: var(--pine); }
-        .bp-lead-submit { width: 100%; background: var(--pine); color: var(--paper); border: none; padding: 14px; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 6px; border-radius: var(--radius); transition: background .15s; }
-        .bp-lead-submit:hover { background: var(--pine-deep); }
-        .bp-lead-fine { font-size: 11px; color: var(--ink-soft); margin-top: 10px; text-align: center; }
-
-        /* final CTA */
-        .bp-final { background: var(--pine); color: var(--paper); text-align: center; padding: 80px 0; }
-        .bp-final h2 { font-size: clamp(30px, 4.5vw, 48px); max-width: 720px; margin: 0 auto 18px; }
-        .bp-final p { color: #CFE0DA; max-width: 520px; margin: 0 auto 32px; font-size: 16px; }
-        .bp-final .bp-btn-primary { background: var(--paper); color: var(--pine); }
-        .bp-final .bp-btn-primary:hover { background: #fff; }
-
-        /* sticky mobile CTA */
-        .bp-sticky-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; background: var(--ink); padding: 14px 18px; align-items: center; justify-content: space-between; gap: 14px; border-top: 1px solid #000; }
-        .bp-sticky-cta .bp-txt { color: #fff; font-size: 13px; }
-        .bp-sticky-cta .bp-txt b { display: block; font-size: 14.5px; }
-        .bp-sticky-cta a { background: var(--paper); color: var(--ink); padding: 11px 18px; font-size: 13px; font-weight: 600; border-radius: var(--radius); white-space: nowrap; text-decoration: none; }
-        .bp-sticky-cta a.wa-btn { background: #25D366 !important; color: #ffffff !important; padding: 0 !important; width: 38px !important; height: 38px !important; min-width: 38px !important; display: inline-flex !important; alignItems: center !important; justifyContent: center !important; border-radius: 4px !important; }
-        @media (max-width: 700px) { .bp-sticky-cta { display: flex; } }
-
-
-        /* wrap */
-        .bp-wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
-
-        /* Logo Marquee Section */
-        .bp-logo-marquee-section {
-          padding: 60px 0;
-          background: var(--card);
-          border-top: 1px solid var(--ink);
-          border-bottom: 1px solid var(--ink);
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-          box-sizing: border-box;
-          width: 100%;
-        }
-        .bp-marquee-title {
-          text-align: center;
-          font-family: 'IBM Plex Mono', monospace;
-          font-size: 11px;
-          color: var(--ink-soft);
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          margin-bottom: 8px;
-        }
-        .bp-marquee-row {
-          width: 100%;
-          overflow: hidden;
-          display: flex;
-          position: relative;
-        }
-        /* Fade overlay effects */
-        .bp-marquee-row::before,
-        .bp-marquee-row::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          width: 140px;
-          z-index: 2;
-          pointer-events: none;
-        }
-        .bp-marquee-row::before {
-          left: 0;
-          background: linear-gradient(90deg, var(--paper) 0%, transparent 100%);
-        }
-        .bp-marquee-row::after {
-          right: 0;
-          background: linear-gradient(-90deg, var(--paper) 0%, transparent 100%);
-        }
-        .bp-marquee-track {
-          display: flex;
-          align-items: center;
-          gap: 70px;
-          width: max-content;
-          animation: bp-marquee-slide-ltr 35s linear infinite;
-        }
-        .bp-marquee-track.rtl {
-          animation-name: bp-marquee-slide-rtl;
-        }
-        .bp-marquee-track.fast {
-          animation-duration: 28s;
-        }
-        .bp-marquee-track.slow {
-          animation-duration: 42s;
-        }
-        .bp-marquee-item {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-        }
-        .bp-marquee-item img {
-          height: 30px;
-          width: auto;
-          object-fit: contain;
-          filter: brightness(0);
-          opacity: 1;
-          transition: transform 0.3s ease;
-        }
-        .bp-marquee-item img:hover {
-          transform: scale(1.05);
-        }
-        @keyframes bp-marquee-slide-ltr {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
-        }
-        @keyframes bp-marquee-slide-rtl {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        
-        /* Mobile layout styling - resize and compact */
-        @media (max-width: 768px) {
-          .bp-logo-marquee-section {
-            padding: 40px 0;
-            gap: 12px;
-          }
-          .bp-marquee-track {
-            gap: 40px;
-          }
-          .bp-marquee-item img {
-            height: 20px; /* Resize and compact for smaller screens */
-          }
-          .bp-marquee-row::before,
-          .bp-marquee-row::after {
-            width: 60px;
-          }
-        }
-
-        /* ── Full Width End-to-End PC Layout Experiment ─────────────────── */
-        @media (min-width: 1024px) {
-          .bp-full-page .wrap,
-          .bp-wrap {
-            max-width: 100% !important;
-            padding-left: 64px !important;
-            padding-right: 64px !important;
-          }
-          .bp-full-page .bp-tiers {
-            grid-template-columns: repeat(2, 1fr) !important;
-            max-width: 100% !important;
-            gap: 40px !important;
-          }
-          .bp-full-page .bp-hero h1 {
-            max-width: 1200px !important;
-          }
-          .bp-full-page .bp-section-head h2 {
-            max-width: 1000px !important;
-          }
-          .bp-full-page .bp-problem-copy {
-            max-width: 100% !important;
-          }
-        }
+        /* Sticky Mobile CTA */
+        .bp-sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: var(--paper); border-top: 1px solid var(--ink); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        @media (min-width: 768px) { .bp-sticky-cta { display: none; } }
+        .bp-sticky-cta .bp-txt { font-size: 12px; color: var(--ink-soft); font-family: 'IBM Plex Mono', monospace; }
+        .bp-sticky-cta .bp-txt b { display: block; font-size: 14px; color: var(--ink); font-family: 'Inter', sans-serif; }
       `}</style>
 
-      <RegistrationMarks />
-      <Navbar />
-
       <main className="bp-full-page">
-        {/* ── HERO ─────────────────────────────────────────────────────── */}
+        {/* ── 1. NEW HERO (Redesign from branding (1).html) ─────────────────── */}
         <section className="bp-hero">
           <div className="wrap">
             <div className="bp-sheet-label">
-              <span className="tag mono">SHEET NO. 02 — BRANDING</span>
+              <span className="tag mono">SHEET NO. 02 — BRAND SYSTEMS</span>
               <span className="rule"></span>
-              <span className="mono" style={{ fontSize: '12px', color: 'var(--ink-soft)' }}>SCALE 1:1</span>
+              <span className="bp-sheet-right mono">POSITION / IDENTITY / PACKAGING / DIGITAL</span>
             </div>
 
-            <div className="bp-urgency">
-              <span className="dot"></span>
-              Booking 3 more brand projects for Q3 2026 — next slot opens August
+            <div className="bp-avail">
+              <span aria-hidden="true">●</span>
+              We work with a limited number of founder-led brands at a time so strategy and senior creative direction stay closely involved.
             </div>
 
-            <h1>
-              Branding for founders who need to look built, not just brand-new.{' '}
-              <em>Position, identity, proof.</em>
-            </h1>
+            <h1>Build the brand people choose <em>before they compare.</em></h1>
 
             <div className="bp-hero-grid">
               <div>
                 <p className="bp-hero-sub">
-                  We design strategy-first identity systems for founders past the "just get a logo" stage — a clear market position, a visual system your team can actually run with, and the credibility to charge what you're worth.
+                  The Drawing Board creates strategy-led identities, packaging and digital experiences for ambitious consumer brands preparing to launch, reposition or scale.
+                </p>
+                <p className="bp-hero-sub">
+                  From how your brand is understood to how it looks on the shelf and performs online, we build one connected system designed to earn attention, communicate value and support growth.
                 </p>
                 <div className="bp-cta-row">
-                  <a className="bp-btn-primary" href="#pricing">Book a 15-min call →</a>
-                  <a className="bp-btn-link" href="https://wa.me/919428859768">or message us on WhatsApp</a>
+                  <a className="bp-btn-primary" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Discuss Your Project →</a>
+                  <a className="bp-btn-link" href="#case-studies">View Selected Work</a>
                 </div>
-                <p className="bp-price-note">Projects start at <b>₹4,75,000/-.</b> Built for founders serious about long-term growth.</p>
+                <p style={{ marginBottom: '14px' }}>
+                  <a className="bp-btn-link" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Prefer WhatsApp? Message the studio.</a>
+                </p>
+                <p className="bp-price-note">Brand and packaging engagements begin at <b>₹4,75,000</b>.</p>
               </div>
 
               <div className="bp-annot-card">
-                <div className="corner"></div>
-                <div className="bp-annot-title mono">Sonar — SaaS Platform</div>
-                <div className="bp-annot-row"><span>Scope</span><span>Full identity + guidelines</span></div>
-                <div className="bp-annot-row"><span>Delivery</span><span>3 weeks</span></div>
-                <div className="bp-annot-row"><span>Result</span><span style={{ color: 'var(--pine)', fontWeight: 600 }}>+70% inquiries</span></div>
-                <div className="bp-annot-row"><span>Client since</span><span>2024</span></div>
+                <div className="corner" aria-hidden="true"></div>
+                <div className="bp-annot-title mono">Project System — Engagement Overview</div>
+                <div className="bp-annot-row"><span>Core thinking</span><span>Positioning before design</span></div>
+                <div className="bp-annot-row"><span>Brand system</span><span>Identity + packaging</span></div>
+                <div className="bp-annot-row"><span>Extended system</span><span>Identity + packaging + website</span></div>
+                <div className="bp-annot-row"><span>Collaboration</span><span>Direct founder-to-studio</span></div>
+                <div className="bp-annot-row"><span>Starting investment</span><span>₹4,75,000</span></div>
+                <div className="bp-annot-row"><span>Typical engagement</span><span>6–12 weeks</span></div>
               </div>
             </div>
 
             <div className="bp-stat-strip">
-              <div className="bp-stat"><div className="num">40+</div><div className="lbl mono">brands launched</div></div>
-              <div className="bp-stat"><div className="num">70%</div><div className="lbl mono">avg. lift in inbound inquiries</div></div>
-              <div className="bp-stat"><div className="num">2–6</div><div className="lbl mono">week delivery window</div></div>
-              <div className="bp-stat"><div className="num">4.9</div><div className="lbl mono">avg. client rating</div></div>
+              <div className="bp-stat"><div className="num">01</div><div className="lbl mono">Connected brand idea</div></div>
+              <div className="bp-stat"><div className="num">04</div><div className="lbl mono">Core system layers</div></div>
+              <div className="bp-stat"><div class="num">100%</div><div className="lbl mono">Editable file handover</div></div>
+              <div className="bp-stat"><div className="num">01:01</div><div className="lbl mono">Direct studio communication</div></div>
             </div>
           </div>
         </section>
 
-        {/* ── LOGO STRIP ───────────────────────────────────────────────── */}
-        <div className="bp-logo-strip">
-          <div className="bp-wrap">
-            <span className="lbl2 mono">TRUSTED BY FOUNDERS AT</span>
-            <div className="bp-logo-row">
-              <span>Sonar</span><span>Lumen</span><span>Northbyte</span><span>AFTER8</span><span>Shiba's</span>
+        {/* ── 2. NEW CATEGORY STRIP ────────────────────────────────────── */}
+        <div className="category-strip">
+          <div className="wrap">
+            <span className="lbl2 mono">BUILT FOR AMBITIOUS CONSUMER BRANDS</span>
+            <div className="category-row">
+              <span>Food &amp; Beverage</span>
+              <span>Beauty &amp; Wellness</span>
+              <span>Fashion &amp; Lifestyle</span>
+              <span>Hospitality</span>
+              <span>Jewellery &amp; Gifting</span>
+              <span>Premium FMCG</span>
+              <span>D2C &amp; E-commerce</span>
             </div>
           </div>
         </div>
 
-        {/* ── THE PROBLEM ──────────────────────────────────────────────── */}
+        {/* ── 3. NEW GROWTH PROBLEM SECTION ───────────────────────────── */}
         <section className="bp-problem-section">
           <div className="wrap">
             <div className="bp-section-head">
               <div>
-                <div className="bp-eyebrow mono">THE PROBLEM</div>
-                <h2>A weak brand is a tax on every sale you try to make.</h2>
+                <div className="bp-eyebrow mono">WHEN THE EARLY BRAND STOPS WORKING</div>
+                <h2>Growth exposes the gaps your first identity could hide.</h2>
               </div>
-              <p>Customers decide whether to trust you in the seconds before they've read a word of your pitch.</p>
             </div>
-            <p className="bp-problem-copy">
-              Before a prospect reads your pricing, your case studies, or your product — they've already formed an opinion from your logo, your site, your deck.{' '}
-              <strong>If that first impression looks improvised, every claim you make afterward has to work twice as hard.</strong>{' '}
-              Strategy-first branding fixes the impression before it costs you the meeting.
-            </p>
+            <div className="bp-problem-copy">
+              <p>What worked for the first launch often stops working when the product range expands, the price increases or the business enters a more competitive market.</p>
+              <p>The identity begins to feel inconsistent. Packaging variants lose cohesion. The website tells a different story. Every new campaign requires another visual decision.</p>
+              <p>We replace that collection of disconnected assets with one clear system — built around what the brand should own, how customers should recognise it and how it should grow across products, packaging and digital touchpoints.</p>
+              <p><strong>A stronger brand does not add decoration. It removes doubt.</strong></p>
+            </div>
           </div>
         </section>
 
-        {/* ── IS THIS YOU? ─────────────────────────────────────────────── */}
+        {/* ── 4. NEW QUALIFICATION SECTION ────────────────────────────── */}
         <section>
           <div className="wrap">
             <div className="bp-section-head">
               <div>
-                <div className="bp-eyebrow mono">IS THIS YOU?</div>
-                <h2>Built for a specific kind of founder — not everyone.</h2>
+                <div className="bp-eyebrow mono">IS THIS THE RIGHT STAGE?</div>
+                <h2>Built for businesses with a real product and a serious next move.</h2>
               </div>
-              <p>Knowing this upfront saves you a call and saves us both time.</p>
+              <p>A focused engagement works best when the business, product and decision-makers are ready to move together.</p>
             </div>
             <div className="bp-qual-grid">
               <div className="bp-qual-col bp-yes">
-                <h4><span className="mark">✓</span>Book the call if</h4>
+                <h4><span className="mark" aria-hidden="true">✓</span>A strong fit when</h4>
                 <ul>
-                  <li>You're raising, launching, or pitching in the next 1–3 months</li>
-                  <li>You've outgrown a logo made on Canva or Fiverr</li>
-                  <li>You need one system your whole team can use consistently</li>
-                  <li>You want a partner who pushes back, not just executes</li>
+                  <li>You have a validated product or a well-defined launch plan.</li>
+                  <li>Your current identity no longer reflects the quality or scale of the business.</li>
+                  <li>You need brand, packaging and digital touchpoints to work as one system.</li>
+                  <li>You are preparing to launch, reposition, enter retail or expand into more SKUs.</li>
+                  <li>You value research, clear reasoning and structured collaboration.</li>
+                  <li>You are prepared to invest in a foundation intended to serve the business for years.</li>
+                  <li>The core decision-makers can participate in major approvals.</li>
                 </ul>
               </div>
               <div className="bp-qual-col bp-no">
-                <h4><span className="mark">✕</span>Not a fit yet if</h4>
+                <h4><span className="mark" aria-hidden="true">✕</span>Probably too early when</h4>
                 <ul>
-                  <li>You're pre-revenue and still validating the idea</li>
-                  <li>You need something live this week — we don't rush strategy</li>
-                  <li>You want the cheapest logo you can find, not a system</li>
-                  <li>You're not the final decision-maker on brand direction</li>
+                  <li>Your product, audience or business model is changing every week.</li>
+                  <li>You need only a temporary logo or quick label adaptation.</li>
+                  <li>Your main selection criterion is the lowest quotation.</li>
+                  <li>You need the entire engagement completed within a few days.</li>
+                  <li>Final product information, claims or packaging requirements are unavailable.</li>
+                  <li>No one involved has authority to approve strategy and creative direction.</li>
                 </ul>
               </div>
+            </div>
+            <div style={{ textAlign: 'center', marginTop: '36px' }}>
+              <a className="bp-btn-link" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">This sounds like our stage → Discuss the project</a>
             </div>
           </div>
         </section>
 
-        {/* ── WHAT'S INCLUDED ──────────────────────────────────────────── */}
-        <section style={{ paddingTop: 0 }}>
+        {/* ── 5. NEW CONNECTED SYSTEM PHILOSOPHY ─────────────────────── */}
+        <section>
           <div className="wrap">
             <div className="bp-section-head">
               <div>
-                <div className="bp-eyebrow mono">WHAT'S INCLUDED</div>
-                <h2>Everything in one system, nothing duplicated.</h2>
+                <div className="bp-eyebrow mono">ONE IDEA, EVERY TOUCHPOINT</div>
+                <h2>Identity, packaging and website should not feel like three different companies.</h2>
               </div>
-              <p>Grouped by what each piece is actually for — strategy, identity, documentation, and launch.</p>
+              <p>We begin by deciding what the brand should stand for, what it should own in the market and why customers should choose it.</p>
             </div>
-            <div className="bp-deliv-grid">
-              <div className="bp-deliv-col">
-                <h4>Strategy</h4>
-                <div className="sub mono">WHY</div>
-                <ul>
-                  <li>Brand discovery &amp; research</li>
-                  <li>Positioning &amp; competitive read</li>
-                  <li>Messaging pillars &amp; voice</li>
-                </ul>
+            <p style={{ maxWidth: '760px', fontSize: '15.5px', color: 'var(--ink-soft)', lineHeight: 1.65, marginBottom: '40px' }}>
+              That central idea then guides the identity, packaging hierarchy, product range and digital journey. The result is not a collection of attractive assets. It is one recognisable system designed to build familiarity wherever the customer meets the brand.
+            </p>
+
+            <div className="system-sequence">
+              <div className="seq-stage"><div className="step-n mono">01</div><h4>Positioning</h4><p>The reason to choose you</p></div>
+              <div className="seq-stage"><div className="step-n mono">02</div><h4>Identity</h4><p>The recognisable visual language</p></div>
+              <div className="seq-stage"><div className="step-n mono">03</div><h4>Packaging</h4><p>The shelf and product system</p></div>
+              <div className="seq-stage"><div className="step-n mono">04</div><h4>Digital</h4><p>The path from interest to action</p></div>
+              <div className="seq-stage"><div className="step-n mono">05</div><h4>Launch</h4><p>The tools needed to enter the market coherently</p></div>
+            </div>
+            <p className="bp-seq-caption"><strong>When each piece reinforces the same idea,</strong> the brand becomes easier to recognise, trust and grow.</p>
+          </div>
+        </section>
+
+        {/* ── 6. NEW SELECTED BRAND SYSTEMS (CASE STUDIES) ─────────────── */}
+        <section id="case-studies">
+          <div className="wrap">
+            <div className="bp-section-head">
+              <div>
+                <div className="bp-eyebrow mono">SELECTED BRAND SYSTEMS</div>
+                <h2>Work designed to live beyond a single mockup.</h2>
               </div>
-              <div className="bp-deliv-col">
-                <h4>Identity System</h4>
-                <div className="sub mono">HOW IT LOOKS</div>
-                <ul>
-                  <li>Logo suite — primary, secondary, icon</li>
-                  <li>Unlimited concepts until it's right*</li>
-                  <li>Color system &amp; typography pairing</li>
-                  <li>Visual language &amp; graphic elements</li>
-                </ul>
-              </div>
-              <div className="bp-deliv-col">
-                <h4>Guidelines &amp; Files</h4>
-                <div className="sub mono">HOW TO USE IT</div>
-                <ul>
-                  <li>Brand guideline (PDF + web)</li>
-                  <li>Source files, all formats</li>
-                  <li>Stationery — cards, letterhead, deck</li>
-                </ul>
-              </div>
-              <div className="bp-deliv-col">
-                <h4>Launch Kit</h4>
-                <div className="sub mono">OPTIONAL</div>
-                <ul>
-                  <li>Website header &amp; banner kit</li>
-                  <li>Social launch assets</li>
-                  <li>Packaging design (by SKU)</li>
-                </ul>
+              <p>Each project reveals the business problem, strategic decision and system created — not only the final logo.</p>
+            </div>
+
+            <div className="case-grid">
+              <article className="case-card">
+                <div className="img" style={{ background: 'none' }}>
+                  <img
+                    src="https://framerusercontent.com/images/GI9hs6gABp4QhAbVBk1Ej9TVE0.png"
+                    alt="AFTER8® Brand System"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </div>
+                <div className="case-body">
+                  <div className="tag mono">Personal Wellness</div>
+                  <h4>AFTER8®</h4>
+                  <p><strong>Challenge:</strong> Enter a sensitive and visually crowded category without feeling clinical, crude or generic.</p>
+                  <p style={{ marginTop: '8px' }}><strong>Direction:</strong> A confident after-hours identity balancing discretion, modernity and clear product recognition.</p>
+                  <ul className="sys-list">
+                    <li>Positioning direction</li>
+                    <li>Visual identity</li>
+                    <li>Packaging architecture</li>
+                    <li>Variant logic</li>
+                    <li>Digital launch direction</li>
+                  </ul>
+                  <div className="demo"><b>What This Project Demonstrates</b>How one central brand idea can remain recognisable across identity, product packaging and digital communication.</div>
+                </div>
+              </article>
+
+              <article className="case-card">
+                <div className="img" style={{ background: 'none' }}>
+                  <img
+                    src="https://framerusercontent.com/images/Gj0gd8TaOnBqjox9iFb1KV8EbY.jpeg"
+                    alt="LUMIEN Packaging System"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </div>
+                <div className="case-body">
+                  <div className="tag mono">Fine Jewellery</div>
+                  <h4>LUMIEN</h4>
+                  <p><strong>Challenge:</strong> Build a modern jewellery brand that feels aspirational and refined without relying on predictable luxury codes.</p>
+                  <p style={{ marginTop: '8px' }}><strong>Direction:</strong> Restraint, proportion and tactile detail used to create a distinctive identity and gifting experience.</p>
+                  <ul className="sys-list">
+                    <li>Brand story</li>
+                    <li>Identity</li>
+                    <li>Packaging</li>
+                    <li>Retail details</li>
+                    <li>Digital art direction</li>
+                  </ul>
+                  <div className="demo"><b>What This Project Demonstrates</b>How a restrained visual system can communicate value through consistency, tactility and thoughtful detail.</div>
+                </div>
+              </article>
+
+              <article className="case-card">
+                <div className="img" style={{ background: 'none' }}>
+                  <img
+                    src="https://framerusercontent.com/images/hm5rbPr45EhYVKWHrF6fMu8xGA.png"
+                    alt="CARDAMOM Brand System"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </div>
+                <div className="case-body">
+                  <div className="tag mono">Tea &amp; Coffee</div>
+                  <h4>CARDAMOM</h4>
+                  <p><strong>Challenge:</strong> Create one recognisable house language across tea, coffee, matcha and future product formats.</p>
+                  <p style={{ marginTop: '8px' }}><strong>Direction:</strong> A calm, ingredient-led system with clear product differentiation and consistent brand recognition.</p>
+                  <ul className="sys-list">
+                    <li>Identity application</li>
+                    <li>Packaging hierarchy</li>
+                    <li>SKU logic</li>
+                    <li>Product-format adaptation</li>
+                    <li>Retail and digital presentation</li>
+                  </ul>
+                  <div className="demo"><b>What This Project Demonstrates</b>How a master packaging language can expand across categories without making every product look identical.</div>
+                </div>
+              </article>
+            </div>
+
+            <div className="bp-cases-foot">
+              <Link className="bp-btn-link" to="/work">See the strategy behind the work →</Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 7. NEW SHOW THE THINKING SECTION ───────────────────────── */}
+        <section style={{ background: 'var(--card)' }}>
+          <div className="wrap">
+            <div className="bp-section-head">
+              <div>
+                <div className="bp-eyebrow mono">BEFORE THE FINAL MOCKUPS</div>
+                <h2>The value is in the decisions that make the design feel inevitable.</h2>
               </div>
             </div>
-            <p style={{ fontSize: '12px', color: 'var(--ink-soft)', marginTop: '10px' }}>
-              *Foundation tier includes 3 concept directions; Full System and above include revisions until sign-off.
+            <div className="think-grid">
+              <div className="think-card">
+                <div className="img">Category Audit Board</div>
+                <div className="think-body"><div className="n mono">01</div><h4>Category audit</h4><p>What competitors repeat and where the brand can create distance.</p></div>
+              </div>
+              <div className="think-card">
+                <div className="img">Audience Context Strategy</div>
+                <div className="think-body"><div class="n mono">02</div><h4>Audience understanding</h4><p>What the customer needs to recognise, believe and remember.</p></div>
+              </div>
+              <div className="think-card">
+                <div className="img">Positioning Matrix</div>
+                <div className="think-body"><div className="n mono">03</div><h4>Positioning territory</h4><p>The idea the brand should own in the market.</p></div>
+              </div>
+              <div className="think-card">
+                <div className="img">Hierarchy Blueprint</div>
+                <div className="think-body"><div className="n mono">04</div><h4>Information hierarchy</h4><p>What customers must understand first, second and third.</p></div>
+              </div>
+              <div className="think-card">
+                <div className="img">Typography & Symbol Lab</div>
+                <div className="think-body"><div className="n mono">05</div><h4>Creative exploration</h4><p>Typography, symbols, imagery, colour and composition tested against the strategy.</p></div>
+              </div>
+              <div className="think-card">
+                <div className="img">System Architecture Plan</div>
+                <div className="think-body"><div className="n mono">06</div><h4>System planning</h4><p>How identity, SKUs, formats and digital components remain consistent as the brand grows.</p></div>
+              </div>
+            </div>
+            <p style={{ marginTop: '32px', fontSize: '14.5px', color: 'var(--ink-soft)', maxWidth: '600px' }}>
+              <strong style={{ color: 'var(--ink)' }}>A polished result matters.</strong> A repeatable reason behind every decision matters more.
             </p>
           </div>
         </section>
 
-        {/* ── HOW WE WORK ──────────────────────────────────────────────── */}
-        <section style={{ paddingTop: 0 }}>
+        {/* ── 8. NEW SCOPE AND DELIVERABLES (WHAT WE BUILD) ────────────── */}
+        <section>
           <div className="wrap">
             <div className="bp-section-head">
               <div>
-                <div className="bp-eyebrow mono">HOW WE WORK</div>
-                <h2>Five weeks, five stages, no guessing.</h2>
+                <div className="bp-eyebrow mono">WHAT WE BUILD</div>
+                <h2>One strategic foundation, translated across the places customers meet the brand.</h2>
               </div>
+              <p>The exact scope depends on the engagement, but every project begins with positioning and ends with a usable system.</p>
             </div>
-            <div className="bp-process">
-              <div className="bp-pstep"><div className="n">01</div><h4>Discover</h4><p>Interviews, market scan, competitor teardown.</p></div>
-              <div className="bp-pstep"><div className="n">02</div><h4>Position</h4><p>Lock the one sentence you want to own.</p></div>
-              <div className="bp-pstep"><div className="n">03</div><h4>Design</h4><p>Logo, color, type — three directions, one winner.</p></div>
-              <div className="bp-pstep"><div className="n">04</div><h4>Systemise</h4><p>Guidelines, files, stationery, ready to hand off.</p></div>
-              <div className="bp-pstep"><div className="n">05</div><h4>Launch</h4><p>Website header, social kit, go live.</p></div>
+            <div className="bp-deliv-grid">
+              <div className="bp-deliv-col">
+                <h4>Strategic Foundation</h4>
+                <div className="sub mono">WHAT THE BRAND SHOULD OWN</div>
+                <ul>
+                  <li>Founder discovery</li>
+                  <li>Business and product understanding</li>
+                  <li>Audience and buying-context review</li>
+                  <li>Category and competitor audit</li>
+                  <li>Positioning opportunity</li>
+                  <li>Core brand idea</li>
+                  <li>Brand personality</li>
+                  <li>Messaging direction</li>
+                  <li>Creative brief and success criteria</li>
+                </ul>
+              </div>
+              <div className="bp-deliv-col">
+                <h4>Identity System</h4>
+                <div className="sub mono">HOW THE BRAND IS RECOGNISED</div>
+                <ul>
+                  <li>Primary and secondary logo system</li>
+                  <li>Supporting mark or icon where relevant</li>
+                  <li>Typography system</li>
+                  <li>Colour system</li>
+                  <li>Visual language</li>
+                  <li>Layout principles</li>
+                  <li>Imagery or illustration direction</li>
+                  <li>Practical identity applications</li>
+                  <li>Brand guidelines</li>
+                  <li>Editable master files</li>
+                </ul>
+              </div>
+              <div className="bp-deliv-col">
+                <h4>Packaging System</h4>
+                <div className="sub mono">HOW THE PRODUCT IS CHOSEN</div>
+                <ul>
+                  <li>Master packaging direction</li>
+                  <li>Front, back and side hierarchy</li>
+                  <li>Product and claims communication</li>
+                  <li>SKU naming and variant logic</li>
+                  <li>Colour and product differentiation</li>
+                  <li>Packaging mockups</li>
+                  <li>Artwork on client-supplied approved dielines</li>
+                  <li>Up to five straightforward SKU adaptations</li>
+                  <li>Print-ready artwork</li>
+                  <li>Editable source files</li>
+                </ul>
+                <div className="note">The ₹4,75,000 engagement includes one master packaging direction and up to five straightforward SKU adaptations using the approved structure. New formats, structural changes, new sizes, additional SKUs or substantial copy changes are quoted separately.</div>
+              </div>
+              <div className="bp-deliv-col">
+                <h4>Digital Experience</h4>
+                <div className="sub mono">HOW INTEREST BECOMES ACTION</div>
+                <ul>
+                  <li>Website strategy</li>
+                  <li>Sitemap and content hierarchy</li>
+                  <li>Customer journey</li>
+                  <li>Responsive UI/UX design</li>
+                  <li>Core page-template system</li>
+                  <li>Website development</li>
+                  <li>Enquiry or e-commerce flow</li>
+                  <li>Responsive testing</li>
+                  <li>Basic launch support</li>
+                  <li>Website handover</li>
+                </ul>
+                <div className="note">Digital experience is included only in the ₹6,50,000 Brand-to-Market engagement. Exact platform, page templates, product count, e-commerce requirements, integrations and content responsibilities are confirmed in the proposal.</div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* ── HOW WE COMPARE ───────────────────────────────────────────── */}
-        <section style={{ paddingTop: 0 }}>
+        {/* ── 9. NEW HOW WE WORK / PROCESS ────────────────────────────── */}
+        <section style={{ background: 'var(--card)' }}>
           <div className="wrap">
             <div className="bp-section-head">
               <div>
-                <div className="bp-eyebrow mono">HOW WE COMPARE</div>
-                <h2>Where a freelancer or a big agency falls short.</h2>
+                <div className="bp-eyebrow mono">HOW WE WORK</div>
+                <h2>Major decisions are aligned before the next layer is built.</h2>
               </div>
-              <p>Not a knock on either — just a different job than what most founders need at this stage.</p>
             </div>
-            <div className="bp-compare-wrap">
-              <table className="bp-compare">
+            <div className="bp-process">
+              <div className="bp-pstep"><div className="n mono">01</div><h4>Discover</h4><p>Understand the business, product, customer, category, launch plan and growth goals.</p><div className="chk mono">✓ Discovery inputs approved</div></div>
+              <div className="bp-pstep"><div className="n mono">02</div><h4>Position</h4><p>Define the opportunity, central brand idea, audience relevance and messaging direction.</p><div className="chk mono">✓ Strategy alignment approved</div></div>
+              <div className="bp-pstep"><div className="n mono">03</div><h4>Direct</h4><p>Translate the strategy into one or two carefully considered creative territories.</p><div className="chk mono">✓ Creative territory selected</div></div>
+              <div className="bp-pstep"><div className="n mono">04</div><h4>Build</h4><p>Develop the selected identity and master packaging system.</p><div className="chk mono">✓ Core system approved</div></div>
+              <div className="bp-pstep"><div className="n mono">05</div><h4>Extend</h4><p>Adapt the approved system across SKUs, website templates and launch applications.</p><div className="chk mono">✓ Applications approved</div></div>
+              <div className="bp-pstep"><div className="n mono">06</div><h4>Prepare</h4><p>Organise production-ready artwork, source files, guidelines, testing and handover.</p><div className="chk mono">✓ Final balance and handover</div></div>
+            </div>
+            <p className="process-scroll-note">Scroll to see all six stages →</p>
+            <p style={{ marginTop: '28px', fontSize: '14px', color: 'var(--ink-soft)', maxWidth: '640px', lineHeight: 1.6 }}>
+              <strong style={{ color: 'var(--ink)' }}>Typical timeline:</strong> Brand-to-Shelf runs approximately 6–8 weeks; Brand-to-Market runs approximately 8–12 weeks. Timelines depend on feedback speed, decision-maker availability, final copy, approved claims, approved dielines, SKU complexity, website content readiness and integration requirements.
+            </p>
+          </div>
+        </section>
+
+        {/* ── 10. NEW STUDIO MODEL & COMPARISON ───────────────────────── */}
+        <section>
+          <div className="wrap">
+            <div className="bp-section-head">
+              <div>
+                <div className="bp-eyebrow mono">THE STUDIO MODEL</div>
+                <h2>Small enough to stay close. Structured enough to build the whole system.</h2>
+              </div>
+            </div>
+            <p style={{ maxWidth: '720px', fontSize: '15.5px', color: 'var(--ink-soft)', lineHeight: 1.65, marginBottom: '36px' }}>
+              The Drawing Board combines direct access and focused creative attention with a structured approach to strategy, identity, packaging and digital execution. Fewer handoffs mean fewer reinterpretations of the brand. The people making the strategic and creative decisions remain closely involved from discovery through delivery.
+            </p>
+            <div className="bp-deliv-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', marginBottom: '40px' }}>
+              <div className="bp-deliv-col"><ul><li>Direct access to the working team</li><li>Strategy and design developed together</li></ul></div>
+              <div className="bp-deliv-col"><ul><li>Identity, packaging and digital under one system</li><li>Defined checkpoints and approval stages</li></ul></div>
+              <div className="bp-deliv-col"><ul><li>Senior attention without unnecessary agency layers</li><li>Files and guidelines prepared for implementation</li></ul></div>
+            </div>
+
+            <div className="compare-wrap">
+              <table className="compare-table">
+                <thead>
+                  <tr><th scope="col">Comparison</th><th scope="col">Independent Specialist</th><th scope="col">Large Agency</th><th scope="col" className="hl">The Drawing Board</th></tr>
+                </thead>
                 <tbody>
-                  <tr>
-                    <th>&nbsp;</th>
-                    <th>Freelancer</th>
-                    <th>Big agency</th>
-                    <th className="hl">The Drawing Board</th>
-                  </tr>
-                  <tr>
-                    <td>Strategy before design</td>
-                    <td><span className="bp-ic-no">Rarely</span></td>
-                    <td><span className="bp-ic-yes">Yes</span></td>
-                    <td className="hl"><span className="bp-ic-yes">Yes</span></td>
-                  </tr>
-                  <tr>
-                    <td>Typical turnaround</td>
-                    <td>1–2 weeks</td>
-                    <td>8–12 weeks</td>
-                    <td className="hl">2–6 weeks</td>
-                  </tr>
-                  <tr>
-                    <td>Direct access to your designer</td>
-                    <td><span className="bp-ic-yes">Yes</span></td>
-                    <td><span className="bp-ic-no">Rarely</span></td>
-                    <td className="hl"><span className="bp-ic-yes">Yes</span></td>
-                  </tr>
-                  <tr>
-                    <td>You own all source files</td>
-                    <td>Sometimes</td>
-                    <td><span className="bp-ic-yes">Yes</span></td>
-                    <td className="hl"><span className="bp-ic-yes">Yes</span></td>
-                  </tr>
-                  <tr>
-                    <td>Built for founders, not enterprises</td>
-                    <td><span className="bp-ic-yes">Yes</span></td>
-                    <td><span className="bp-ic-no">No</span></td>
-                    <td className="hl"><span className="bp-ic-yes">Yes</span></td>
-                  </tr>
-                  <tr>
-                    <td>Typical investment</td>
-                    <td>₹15,000 – ₹60,000</td>
-                    <td>₹15,00,000+</td>
-                    <td className="hl">₹4,75,000/- – ₹6,50,000/-</td>
-                  </tr>
+                  <tr><th scope="row">Strategic foundation</th><td>Depends on specialisation</td><td>Usually extensive</td><td className="hl">Included</td></tr>
+                  <tr><th scope="row">Direct creative access</th><td>Usually direct</td><td>Often account-led</td><td className="hl">Direct and structured</td></tr>
+                  <tr><th scope="row">Multi-touchpoint system</th><td>May require additional partners</td><td>Fully supported</td><td className="hl">Identity, pack and web connected</td></tr>
+                  <tr><th scope="row">Approval structure</th><td>Varies</td><td>Multi-layered</td><td className="hl">Defined project checkpoints</td></tr>
+                  <tr><th scope="row">Pace</th><td>Fast but variable</td><td>Longer internal layers</td><td className="hl">Focused project team</td></tr>
+                  <tr><th scope="row">Operating model</th><td>Individual-led</td><td>Department-led</td><td className="hl">Senior boutique studio</td></tr>
                 </tbody>
               </table>
             </div>
           </div>
         </section>
 
-        {/* ── LOGOS SLIDER ROW ────────────────────────────────────────── */}
-        <section className="bp-logo-marquee-section">
-          <div className="bp-marquee-title">TRUSTED BY AMBITIOUS BRANDS GLOBAL</div>
-          
-          {/* Row 1 (LTR) */}
-          <div className="bp-marquee-row">
-            <div className="bp-marquee-track fast">
-              {row1Logos.concat(row1Logos).map((logoUrl, i) => (
-                <div key={i} className="bp-marquee-item">
-                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Row 2 (RTL) */}
-          <div className="bp-marquee-row">
-            <div className="bp-marquee-track rtl">
-              {row2Logos.concat(row2Logos).map((logoUrl, i) => (
-                <div key={i} className="bp-marquee-item">
-                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Row 3 (LTR) */}
-          <div className="bp-marquee-row">
-            <div className="bp-marquee-track slow">
-              {row3Logos.concat(row3Logos).map((logoUrl, i) => (
-                <div key={i} className="bp-marquee-item">
-                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── PROOF ────────────────────────────────────────────────────── */}
-        <section style={{ paddingTop: 0 }}>
-          <div className="wrap">
-            <div className="bp-section-head">
-              <div>
-                <div className="bp-eyebrow mono">PROOF</div>
-                <h2>Recent work, real outcomes.</h2>
-              </div>
-              <p><Link className="bp-btn-link" to="/work">View all work →</Link></p>
-            </div>
-            <div className="bp-proof-grid">
-              <Link to="/work/after8r---reimagining-intimacy-for-a-new-generation." className="bp-proof-card big" style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
-                <div className="bp-proof-img" style={{ background: 'none' }}>
-                  <img
-                    src="https://framerusercontent.com/images/GI9hs6gABp4QhAbVBk1Ej9TVE0.png"
-                    alt="After8® — Branding"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                  />
-                </div>
-                <div className="bp-proof-body">
-                  <div className="tag mono">BRANDING & PACKAGING</div>
-                  <h4>After8®</h4>
-                  <p>Strategic brand identity and packaging design for a new-generation intimacy brand — full system from naming to shelf.</p>
-                  <span className="bp-proof-metric">Full identity system</span>
-                </div>
-              </Link>
-              <Link to="/work/lumen-fine-jewellery" className="bp-proof-card" style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
-                <div className="bp-proof-img" style={{ background: 'none' }}>
-                  <img
-                    src="https://framerusercontent.com/images/Gj0gd8TaOnBqjox9iFb1KV8EbY.jpeg"
-                    alt="Lumen Fine Jewellery"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                  />
-                </div>
-                <div className="bp-proof-body">
-                  <div className="tag mono">FINE JEWELLERY</div>
-                  <h4>Lumen</h4>
-                  <p>Identity and packaging system built for premium retail shelf presence.</p>
-                </div>
-              </Link>
-              <Link to="/work/shiba-s-bar-kitchen-and-bar" className="bp-proof-card" style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
-                <div className="bp-proof-img" style={{ background: 'none' }}>
-                  <img
-                    src="https://framerusercontent.com/images/hm5rbPr45EhYVKWHrF6fMu8xGA.png"
-                    alt="Shiba's Bar & Kitchen"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                  />
-                </div>
-                <div className="bp-proof-body">
-                  <div className="tag mono">HOSPITALITY</div>
-                  <h4>Shiba's Bar &amp; Kitchen</h4>
-                  <p>Bar and restaurant identity spanning signage, menus, and stationery.</p>
-                </div>
-              </Link>
-            </div>
-
-            <div className="bp-guarantee" style={{ marginTop: '36px' }}>
-              <div className="bp-badge">DIRECTION<br />GUARANTEE</div>
-              <div>
-                <h3>If the first direction misses, we go again — free.</h3>
-                <p>If you don't feel genuine pull toward at least one of the initial concept directions, we run a second round of strategy and concepts at no extra cost. We only get paid when you're confident to launch, not just when time runs out.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── SOCIAL PROOF ─────────────────────────────────────────────── */}
+        {/* ── 11. LOCKED TESTIMONIAL / SOCIAL PROOF SECTION (NO CHANGE) ── */}
         <section className="bp-sp-section">
           <div className="wrap">
-
-            {/* Main Section Header */}
             <div className="bp-sp-head">
               <div>
                 <div className="bp-eyebrow mono">SOCIAL PROOF</div>
                 <h2>Real founders. Real results. <em>In their own words.</em></h2>
               </div>
+              <div className="bp-sp-head-sub">VERIFIED FEEDBACK &amp; CASE EVIDENCE</div>
             </div>
 
-            {/* ── ROW 1: WHATSAPP SCREENSHOTS HORIZONTAL SLIDER ─────────── */}
+            {/* ROW 1: WHATSAPP SCREENSHOTS HORIZONTAL SLIDER */}
             <div className="bp-sp-row">
               <div className="bp-sp-row-head">
                 <div className="bp-sp-row-title">01 // WhatsApp &amp; Client Screenshots</div>
@@ -1147,15 +901,13 @@ export default function BrandingPage() {
               </div>
             </div>
 
-
-            {/* ── ROW 2: VIDEO TESTIMONIALS ────────────────────────────────── */}
+            {/* ROW 2: VIDEO TESTIMONIALS */}
             <div className="bp-sp-row">
               <div className="bp-sp-row-head">
                 <div className="bp-sp-row-title">02 // Client Video Testimonials</div>
               </div>
 
               <div className="bp-sp-slider">
-                {/* Video Card 1 (Vertical) */}
                 <div className="bp-sp-card bp-sp-video-card vert">
                   <div className="bp-sp-video-frame">
                     <iframe
@@ -1176,7 +928,6 @@ export default function BrandingPage() {
                   </div>
                 </div>
 
-                {/* Video Card 2 (Vertical) */}
                 <div className="bp-sp-card bp-sp-video-card vert">
                   <div className="bp-sp-video-frame">
                     <iframe
@@ -1192,12 +943,11 @@ export default function BrandingPage() {
                     <div className="bp-sp-vav">SK</div>
                     <div>
                       <div className="bp-sp-vname">Shiba Krishnan</div>
-                      <div className="bp-sp-vrole">Owner, Shiba's Bar & Kitchen</div>
+                      <div className="bp-sp-vrole">Owner, Shiba's Bar &amp; Kitchen</div>
                     </div>
                   </div>
                 </div>
 
-                {/* Video Card 3 (Vertical) */}
                 <div className="bp-sp-card bp-sp-video-card vert">
                   <div className="bp-sp-video-frame">
                     <iframe
@@ -1218,7 +968,6 @@ export default function BrandingPage() {
                   </div>
                 </div>
 
-                {/* Video Card 4 (Vertical) */}
                 <div className="bp-sp-card bp-sp-video-card vert">
                   <div className="bp-sp-video-frame">
                     <iframe
@@ -1241,8 +990,7 @@ export default function BrandingPage() {
               </div>
             </div>
 
-
-            {/* ── ROW 3: FOUNDER QUOTES AUTO INFINITE MARQUEE ─────────────────── */}
+            {/* ROW 3: FOUNDER QUOTES AUTO INFINITE MARQUEE */}
             <div className="bp-sp-row">
               <div className="bp-sp-row-head">
                 <div className="bp-sp-row-title">03 // Founder Quotes</div>
@@ -1289,11 +1037,10 @@ export default function BrandingPage() {
                 </div>
               </div>
             </div>
-
           </div>
         </section>
 
-        {/* ── PRICING ──────────────────────────────────────────────────── */}
+        {/* ── 12. LOCKED PRICING SECTION (NO CHANGE) ───────────────────── */}
         <section id="pricing">
           <div className="wrap">
             <div className="bp-section-head">
@@ -1305,13 +1052,11 @@ export default function BrandingPage() {
             </div>
 
             <div className="bp-tiers">
-              {/* Growth — Featured Card 1 */}
-
+              {/* Growth — Card 1 */}
               <div className="bp-tier bp-feat">
                 <div className="bp-tier-head">
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
-                    <div className="name mono" style={{ margin: 0 }}>GROWTH</div>
-                    {/* Currency Toggle inside header */}
+                    <div className="name mono" style={{ margin: 0 }}>GROWTH (BRAND-TO-SHELF)</div>
                     <div className="bp-currency-toggle mono" style={{ margin: 0 }}>
                       <button
                         type="button"
@@ -1355,8 +1100,6 @@ export default function BrandingPage() {
                   </div>
                 </div>
 
-
-                {/* Unified Deliverables Bar */}
                 <div className="bp-deliv-bar">
                   <span className="mono" style={{ fontSize: '11px', fontWeight: 'bold', color: 'var(--ink-soft)', letterSpacing: '0.05em' }}>
                     DELIVERABLES ({growthSlide + 1}/2)
@@ -1420,7 +1163,7 @@ export default function BrandingPage() {
 
                 <div className="bp-tier-foot">
                   <a className="bp-tier-btn" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min call</a>
-                  <div className="bp-tier-time">3–4 week delivery</div>
+                  <div className="bp-tier-time">6–8 week delivery</div>
                 </div>
               </div>
 
@@ -1428,8 +1171,7 @@ export default function BrandingPage() {
               <div className="bp-tier">
                 <div className="bp-tier-head">
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
-                    <div className="name mono" style={{ margin: 0 }}>SCALE</div>
-                    {/* Currency Toggle inside header */}
+                    <div className="name mono" style={{ margin: 0 }}>SCALE (BRAND-TO-MARKET)</div>
                     <div className="bp-currency-toggle mono" style={{ margin: 0 }}>
                       <button
                         type="button"
@@ -1457,8 +1199,8 @@ export default function BrandingPage() {
                       </button>
                     </div>
                   </div>
-                  <h3>Brand + Packaging</h3>
-                  <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--pine)', marginBottom: '4px' }}>Brand Identity + Packaging + Website/App</div>
+                  <h3>Brand + Packaging + Web</h3>
+                  <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--pine)', marginBottom: '4px' }}>Brand Identity + Packaging + Website</div>
                   <p className="desc" style={{ margin: 0 }}>For product brands going to retail or e-commerce shelf.</p>
                   <div className="bp-slot-badge mono">
                     <span className="bp-slot-dot"></span>
@@ -1472,9 +1214,6 @@ export default function BrandingPage() {
                   </div>
                 </div>
 
-
-
-                {/* Unified Deliverables Bar */}
                 <div className="bp-deliv-bar">
                   <span className="mono" style={{ fontSize: '11px', fontWeight: 'bold', color: 'var(--ink-soft)', letterSpacing: '0.05em' }}>
                     DELIVERABLES ({scaleSlide + 1}/3)
@@ -1515,7 +1254,7 @@ export default function BrandingPage() {
                     <button
                       type="button"
                       onClick={() => setScaleSlide((prev) => (prev < 2 ? prev + 1 : 0))}
-                      style={{ background: 'var(--card)', border: '1px solid var(--ink)', borderRadius: '2px', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '12px', lineHeight: 1 }}
+                      style={{ background: 'var(--card)', border: '1px solid var(--ink)', borderRadius: '2px', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '12px', marginLeft: '4px', lineHeight: 1 }}
                       title="Next slide"
                     >
                       ›
@@ -1545,109 +1284,315 @@ export default function BrandingPage() {
                       <ul className="bp-tier-list" style={{ padding: 0, margin: 0 }}>
                         <li>Packaging design, up to 6 SKUs</li>
                         <li>Social &amp; digital launch assets</li>
-                        <li>Launch-day asset checklist</li>
+                        <li>Website strategy &amp; React/Framer build</li>
                       </ul>
                     </div>
                   </div>
                 </div>
 
-
-
                 <div className="bp-tier-foot">
                   <a className="bp-tier-btn" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min call</a>
-                  <div className="bp-tier-time">4–6 week delivery</div>
+                  <div className="bp-tier-time">8–12 week delivery</div>
                 </div>
               </div>
             </div>
 
-            <p style={{ fontSize: '13px', color: 'var(--ink-soft)', marginTop: '30px' }}>
-
-              All tiers: 50% to start, 50% on delivery. No long-term retainer required — you own every file at handoff.
-            </p>
-
+            <div className="payment-terms" style={{ marginTop: '24px' }}>
+              <h4 className="mono" style={{ textTransform: 'uppercase', fontSize: '12.5px', color: 'var(--ink-soft)' }}>Payment Structure</h4>
+              <ol style={{ paddingLeft: '18px', fontSize: '13.5px', color: 'var(--ink-soft)', lineHeight: 1.7 }}>
+                <li>50% to begin</li>
+                <li>25% after approval of the identity and master packaging direction</li>
+                <li>25% before final website launch and complete file handover</li>
+              </ol>
+              <p className="fine" style={{ fontSize: '12px', color: 'var(--ink-soft)', marginTop: '12px', paddingTop: '12px', borderTop: '1px dashed var(--paper-line)' }}>
+                For Brand-to-Shelf, the final payment is due before complete print-ready and editable-file handover.
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* ── FAQ ──────────────────────────────────────────────────────── */}
+        {/* ── 13. NEW VALUE EXPLANATION SECTION ───────────────────────── */}
+        <section style={{ background: 'var(--card)' }}>
+          <div className="wrap">
+            <div className="bp-section-head">
+              <div>
+                <div className="bp-eyebrow mono">WHY THE ENGAGEMENT IS STRUCTURED THIS WAY</div>
+                <h2>This is not three disconnected design services bundled together.</h2>
+              </div>
+            </div>
+            <div className="bp-problem-copy" style={{ color: 'var(--ink-soft)', fontSize: '16px', lineHeight: 1.7 }}>
+              <p>The engagement begins by deciding what the brand should own, how it should be recognised and why customers should choose it. That central idea then guides the identity, packaging architecture and digital experience.</p>
+              <p>This prevents the business from paying different specialists to reinterpret the brand at every stage — and gives your internal team, printers, developers and future partners one coherent system to work from.</p>
+              <p>The investment reflects the research, strategic decisions, creative development, production preparation and implementation required to make that system usable beyond a single launch.</p>
+              <p style={{ color: 'var(--ink)', fontWeight: 500 }}>You are investing in the decisions the business should not need to remake every time it adds a product, campaign or customer touchpoint.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 14. NEW ALIGNMENT CHECKPOINT SECTION ───────────────────── */}
         <section>
-          <div className="wrap" style={{ maxWidth: '820px' }}>
+          <div className="wrap">
+            <div className="bp-guarantee">
+              <div className="bp-badge mono">Alignment<br/>Checkpoint</div>
+              <div>
+                <h3>We align the strategic and creative direction before building the complete system.</h3>
+                <p>The project begins with research, positioning and clearly defined creative territories. A selected direction is approved before the complete identity, packaging range and digital experience are developed.</p>
+                <p style={{ marginTop: '8px' }}>This keeps major decisions visible, reduces late-stage surprises and ensures each new layer is built on an agreed foundation.</p>
+                <p style={{ marginTop: '8px' }}>Included revisions, decision-makers, feedback windows and scope boundaries are documented in the project proposal before work begins.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 15. NEW SCOPE BOUNDARIES SECTION ───────────────────────── */}
+        <section style={{ background: 'var(--card)' }}>
+          <div className="wrap">
+            <div className="bp-section-head">
+              <div>
+                <div className="bp-eyebrow mono">SCOPE CLARITY</div>
+                <h2>Clear boundaries protect the quality, timeline and launch.</h2>
+              </div>
+            </div>
+            <div className="scope-wrap">
+              <div className="scope-grid">
+                <div className="scope-col in">
+                  <h4>Included when stated in the engagement</h4>
+                  <ul>
+                    <li>Strategy and agreed research</li>
+                    <li>Identity system</li>
+                    <li>Master packaging design</li>
+                    <li>Agreed SKU adaptations</li>
+                    <li>Print-ready artwork on approved dielines</li>
+                    <li>Website strategy and agreed page templates for Brand-to-Market</li>
+                    <li>Development on the platform agreed in the proposal</li>
+                    <li>Editable source-file handover</li>
+                    <li>Agreed revision rounds</li>
+                    <li>Handover support</li>
+                  </ul>
+                </div>
+                <div className="scope-col out">
+                  <h4>Quoted or supplied separately</h4>
+                  <ul>
+                    <li>Additional SKUs</li>
+                    <li>New packaging structures or formats</li>
+                    <li>Structural packaging engineering</li>
+                    <li>Dieline creation or technical verification</li>
+                    <li>Printing and manufacturing</li>
+                    <li>Legal or regulatory certification</li>
+                    <li>Product photography</li>
+                    <li>Custom illustration beyond the agreed scope</li>
+                    <li>Paid fonts, imagery or licences</li>
+                    <li>Website copywriting</li>
+                    <li>Large product catalogues</li>
+                    <li>Advanced e-commerce functionality</li>
+                    <li>Third-party subscriptions</li>
+                    <li>Hosting and domains</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="scope-note">
+                The client or manufacturer must provide final, technically verified packaging dielines and legally approved product information. The Drawing Board can organise content hierarchy but does not certify claims, ingredients, nutrition, regulatory statements or legal compliance.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 16. NEW CLIENT INPUTS CHECKLIST ────────────────────────── */}
+        <section>
+          <div className="wrap">
+            <div className="bp-section-head">
+              <div>
+                <div className="bp-eyebrow mono">WHAT WE NEED FROM YOU</div>
+                <h2>Clear inputs create stronger work and a smoother launch.</h2>
+              </div>
+            </div>
+            <ul className="checklist">
+              <li>Final business and product information</li>
+              <li>Access to core decision-makers</li>
+              <li>Existing research and customer insight</li>
+              <li>Approved product names</li>
+              <li>Approved product claims</li>
+              <li>Final packaging copy</li>
+              <li>Ingredient and nutrition information where relevant</li>
+              <li>Manufacturer-approved dielines</li>
+              <li>Barcodes and certification marks</li>
+              <li>Website content and product information</li>
+              <li>Required integrations</li>
+              <li>Feedback within the agreed review window</li>
+            </ul>
+          </div>
+        </section>
+
+        {/* ── 17. NEW EXPANDED FAQ SECTION ───────────────────────────── */}
+        <section style={{ background: 'var(--card)' }}>
+          <div className="wrap" style={{ maxWidth: '920px' }}>
             <div className="bp-section-head" style={{ display: 'block' }}>
-              <div className="bp-eyebrow mono">FAQ</div>
-              <h2>Questions founders actually ask.</h2>
+              <div className="bp-eyebrow mono">QUESTIONS</div>
+              <h2>Frequently asked questions.</h2>
             </div>
 
             <div>
               {faqs.map((faq, idx) => (
                 <div key={idx} className={`bp-faq-item${openFaq === idx ? ' open' : ''}`}>
                   <button className="bp-faq-q" onClick={() => toggleFaq(idx)}>
-                    {faq.q}
+                    <span>{faq.q}</span>
                     <span className="bp-plus">+</span>
                   </button>
-                  <div
-                    className="bp-faq-a"
-                    style={{ maxHeight: openFaq === idx ? '300px' : '0' }}
-                  >
-                    <p>{faq.a}</p>
-                  </div>
+                  {openFaq === idx && (
+                    <div className="bp-faq-a">
+                      <p>{faq.a}</p>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ── LEAD MAGNET ──────────────────────────────────────────────── */}
-        <section className="bp-lead-magnet">
+        {/* ── 18. NEW LEAD MAGNET SECTION ─────────────────────────────── */}
+        <section className="lead-magnet">
           <div className="wrap">
-            <div className="bp-lead-grid">
+            <div className="bp-section-head">
               <div>
-                <div className="bp-eyebrow mono">NOT READY FOR A CALL YET?</div>
-                <h2>Get the 12-point Brand Audit Checklist.</h2>
-                <p className="bp-desc">
-                  The same checklist we use on discovery calls to spot where a brand is quietly losing trust — logo, messaging, and site, in one PDF.
-                </p>
-                <ul className="bp-lead-points">
-                  <li>Self-score your current brand in 10 minutes</li>
-                  <li>Spot the 3 most common credibility gaps we see in founder-led brands</li>
-                  <li>No call required — sent straight to your inbox</li>
+                <div className="eyebrow mono">NOT READY TO DISCUSS A PROJECT?</div>
+                <h2>Use the Founder’s Brand Readiness Audit.</h2>
+              </div>
+            </div>
+            <div className="lead-grid">
+              <div>
+                <p>A practical review for founders preparing to reposition, redesign packaging or build a stronger digital experience.</p>
+                <ul className="lead-benefits">
+                  <li>Assess whether your positioning is clear enough to guide design</li>
+                  <li>Identify gaps between identity, packaging and website</li>
+                  <li>Review SKU consistency and product hierarchy</li>
+                  <li>Understand which inputs should be ready before hiring a studio</li>
+                  <li>Separate design needs from legal, manufacturing and operational requirements</li>
                 </ul>
               </div>
-              <div className="bp-lead-form">
-                <div className="bp-tag mono">FREE DOWNLOAD</div>
-                <h4>Send me the checklist</h4>
-                <div className="bp-field">
-                  <label>Work email</label>
-                  <input
-                    type="email"
-                    placeholder="you@company.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  />
+              
+              <form className="lead-form" onSubmit={handleLeadSubmit}>
+                {leadSubmitted ? (
+                  <div style={{ color: '#8EC4B3', fontSize: '15px', fontFamily: 'IBM Plex Mono, monospace', padding: '20px 0' }}>
+                    ✓ Thank you! Audit checklist requested. Connect your email workflow to receive it automatically.
+                  </div>
+                ) : (
+                  <>
+                    <div className="field">
+                      <label htmlFor="leadEmail">Work email</label>
+                      <input
+                        type="email"
+                        id="leadEmail"
+                        placeholder="you@company.com"
+                        value={leadFormData.email}
+                        onChange={(e) => setLeadFormData({ ...leadFormData, email: e.target.value })}
+                        required
+                      />
+                    </div>
+                    <div className="field">
+                      <label htmlFor="leadBrand">Brand name</label>
+                      <input
+                        type="text"
+                        id="leadBrand"
+                        placeholder="Your brand name"
+                        value={leadFormData.brand}
+                        onChange={(e) => setLeadFormData({ ...leadFormData, brand: e.target.value })}
+                        required
+                      />
+                    </div>
+                    <div className="field">
+                      <label htmlFor="leadWeb">Website or Instagram</label>
+                      <input
+                        type="text"
+                        id="leadWeb"
+                        placeholder="URL or @handle"
+                        value={leadFormData.web}
+                        onChange={(e) => setLeadFormData({ ...leadFormData, web: e.target.value })}
+                      />
+                    </div>
+                    <div className="field">
+                      <label htmlFor="leadStage">Current stage</label>
+                      <select
+                        id="leadStage"
+                        value={leadFormData.stage}
+                        onChange={(e) => setLeadFormData({ ...leadFormData, stage: e.target.value })}
+                        required
+                      >
+                        <option value="">Select one</option>
+                        <option value="launch">Preparing to launch</option>
+                        <option value="reposition">Repositioning an existing brand</option>
+                        <option value="expand">Expanding products or SKUs</option>
+                        <option value="website">Rebuilding the website</option>
+                        <option value="exploring">Exploring options</option>
+                      </select>
+                    </div>
+                    <button type="submit" className="bp-btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+                      Send the audit →
+                    </button>
+                  </>
+                )}
+              </form>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 19. LOCKED LOGOS MARQUEE SECTION (NO CHANGE) ─────────────── */}
+        <section className="bp-logo-marquee-section">
+          <div className="bp-marquee-title">TRUSTED BY AMBITIOUS BRANDS GLOBAL</div>
+          
+          {/* Row 1 (LTR) */}
+          <div className="bp-marquee-row">
+            <div className="bp-marquee-track fast">
+              {row1Logos.concat(row1Logos).map((logoUrl, i) => (
+                <div key={i} className="bp-marquee-item">
+                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
                 </div>
-                <div className="bp-field">
-                  <label>Company name</label>
-                  <input
-                    type="text"
-                    placeholder="Your company"
-                    value={formData.company}
-                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  />
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2 (RTL) */}
+          <div className="bp-marquee-row">
+            <div className="bp-marquee-track rtl">
+              {row2Logos.concat(row2Logos).map((logoUrl, i) => (
+                <div key={i} className="bp-marquee-item">
+                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
                 </div>
-                <button className="bp-lead-submit">Send me the checklist →</button>
-                <p className="bp-lead-fine">No spam. One follow-up email, then it's your call whether you want to talk further.</p>
-              </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 3 (LTR) */}
+          <div className="bp-marquee-row">
+            <div className="bp-marquee-track slow">
+              {row3Logos.concat(row3Logos).map((logoUrl, i) => (
+                <div key={i} className="bp-marquee-item">
+                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         <MoreServicesSection current="branding" />
 
-        {/* ── FINAL CTA ────────────────────────────────────────────────── */}
-        <section className="bp-final">
-
+        {/* ── 20. NEW FINAL CTA ────────────────────────────────────────── */}
+        <section style={{ background: 'var(--ink)', color: 'var(--paper)', padding: '80px 0' }}>
           <div className="wrap">
-            <h2>Ready to look like the company you're becoming?</h2>
-            <p>Book a free 15-minute call. We'll tell you honestly whether you need a foundation, a full system, or nothing at all yet.</p>
-            <a className="bp-btn-primary" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min call →</a>
+            <h2 style={{ fontSize: 'clamp(26px, 3.4vw, 44px)', marginBottom: '14px', color: 'var(--paper)', maxWidth: '720px' }}>
+              Your next stage should not inherit the limitations of your first brand.
+            </h2>
+            <p style={{ color: '#C9C3B4', fontSize: '16px', marginBottom: '28px', maxWidth: '560px', lineHeight: 1.6 }}>
+              Tell us what you are launching, changing or preparing to scale. We will review the requirement and recommend whether you need the Brand-to-Shelf system, the complete Brand-to-Market engagement or a different scope altogether.
+            </p>
+            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '16px' }}>
+              <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="bp-btn-primary">
+                Discuss Your Project →
+              </a>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-outline-light">
+                Message The Drawing Board on WhatsApp
+              </a>
+            </div>
+            <p style={{ color: '#C9C3B4', fontSize: '13px' }}>Engagements begin at ₹4,75,000.</p>
           </div>
         </section>
       </main>
@@ -1687,11 +1632,9 @@ export default function BrandingPage() {
               />
             </svg>
           </a>
-
-          <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book now →</a>
+          <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'var(--pine)', fontWeight: 600, fontSize: '13px' }}>Book now →</a>
         </div>
       </div>
-
 
       <Footer />
     </>

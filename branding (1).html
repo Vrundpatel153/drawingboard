@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+  DEVELOPER — REPLACE BEFORE LAUNCH
+  ----------------------------------
+  - All case-study images (AFTER8®, LUMIEN, CARDAMOM) — currently placeholder panels
+  - Final case-study project URLs (currently linking to work.html)
+  - Genuine, client-approved testimonial quote + name/role
+  - Genuine client feedback message (Format B)
+  - Genuine independent reviewer commentary + name/expertise
+  - Real Instagram / LinkedIn URLs in the footer
+  - Canonical URL (currently a placeholder)
+  - Open Graph image (currently a placeholder path)
+  - Founder's Brand Readiness Audit form — connect to a real CRM/email workflow, add a valid form action
+  - Confirm final website platform language once decided per engagement
+  - Confirm final tax / GST language with the studio's accountant
+  - Add real Privacy Policy and Terms URLs (currently '#')
+  - Add real favicon file (currently no favicon linked)
+-->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Brand Identity, Packaging &amp; Website Design — The Drawing Board</title>
+<meta name="description" content="The Drawing Board builds strategy-led brand identities, packaging systems and digital experiences for ambitious consumer brands preparing to launch, reposition or scale." />
+<link rel="canonical" href="https://www.thedrawingboard.studio/branding.html" /><!-- Replace with final canonical URL -->
+<meta name="theme-color" content="#24463B" />
+<!-- Favicon: add real favicon file before launch -->
+<!-- <link rel="icon" href="/favicon.ico" /> -->
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Brand Identity, Packaging & Website Design — The Drawing Board" />
+<meta property="og:description" content="Strategy-led brand identities, packaging systems and digital experiences for ambitious consumer brands preparing to launch, reposition or scale." />
+<meta property="og:image" content="https://www.thedrawingboard.studio/og-image.jpg" /><!-- Replace with real OG image -->
+<meta property="og:url" content="https://www.thedrawingboard.studio/branding.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Brand Identity, Packaging & Website Design — The Drawing Board" />
+<meta name="twitter:description" content="Strategy-led brand identities, packaging systems and digital experiences for ambitious consumer brands preparing to launch, reposition or scale." />
+<meta name="twitter:image" content="https://www.thedrawingboard.studio/og-image.jpg" /><!-- Replace with real OG image -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* ===== shared.css (inlined for a fully self-contained file) ===== */
+/* ==========================================================================
+   The Drawing Board — Shared Static HTML Design System
+   ========================================================================== */
+:root {
+  --paper: #EFEBE2;
+  --paper-line: #DAD3C2;
+  --ink: #1B1B17;
+  --ink-soft: #4A473F;
+  --pine: #24463B;
+  --pine-deep: #173029;
+  --marker: #B8412E;
+  --card: #F7F4EC;
+  --radius: 2px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scrollbar-width: thin; scrollbar-color: var(--pine) transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--pine); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--pine-deep); }
+
+body {
+  background-color: var(--paper);
+  background-image: linear-gradient(var(--paper-line) 1px, transparent 1px), linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: top left;
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--pine); color: var(--paper); }
+
+h1, h2, h3, h4, h5, h6 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; letter-spacing: -0.01em; line-height: 1.1; word-wrap: break-word; }
+.mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.03em; }
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* Accessible focus states */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--marker);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+/* Fallback for browsers without :focus-visible support */
+a:focus, button:focus, input:focus, select:focus, textarea:focus { outline: 2px solid transparent; }
+
+/* Skip link */
+.skip-link { position: absolute; left: -9999px; top: 0; z-index: 1000; background: var(--ink); color: var(--paper); padding: 12px 20px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; }
+.skip-link:focus { left: 12px; top: 12px; }
+
+/* Wrap */
+.wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+/* Registration Marks — decorative only */
+.reg { position: fixed; width: 18px; height: 18px; pointer-events: none; z-index: 40; opacity: 0.55; }
+.reg::before, .reg::after { content: ""; position: absolute; background: var(--ink); }
+.reg::before { width: 100%; height: 1px; top: 50%; }
+.reg::after { width: 1px; height: 100%; left: 50%; }
+.reg-tl { top: 12px; left: 12px; }
+.reg-tr { top: 12px; right: 12px; }
+.reg-bl { bottom: 12px; left: 12px; }
+.reg-br { bottom: 12px; right: 12px; }
+@media (max-width: 640px) { .reg { display: none; } }
+
+/* Header & Nav */
+header { position: sticky; top: 0; z-index: 500; width: 100%; background: rgba(239,235,226,0.96); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(27,27,23,0.12); }
+.nav { display: flex; align-items: center; gap: 0; padding: 18px 32px; max-width: 1200px; margin: 0 auto; }
+.logo-mark { display: flex; align-items: center; gap: 10px; font-family: 'Fraunces', serif; font-weight: 600; font-size: 17px; color: var(--ink); white-space: nowrap; flex-shrink: 0; margin-right: auto; }
+.logo-box { width: 22px; height: 22px; border: 1.5px solid var(--ink); position: relative; flex-shrink: 0; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+.logo-box::after { content: ''; position: absolute; inset: 4px; border: 1px solid var(--ink); }
+.logo-mark:hover .logo-box { transform: rotate(90deg); }
+.navlinks { display: flex; align-items: center; gap: 32px; font-size: 14px; margin-right: 28px; }
+.navlinks a { position: relative; padding: 2px 0; color: var(--ink); font-weight: 400; transition: color 0.15s; white-space: nowrap; }
+.navlinks a::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 1.5px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform 0.22s cubic-bezier(0.4,0,0.2,1); }
+.navlinks a:hover { color: var(--pine); }
+.navlinks a.active { color: var(--pine); font-weight: 600; }
+.navlinks a:hover::after, .navlinks a.active::after { transform: scaleX(1); background: var(--marker); }
+.nav-cta { font-size: 12.5px; padding: 9px 16px; border: 1.5px solid var(--ink); border-radius: var(--radius); font-weight: 500; white-space: nowrap; flex-shrink: 0; transition: background 0.18s, color 0.18s; color: var(--ink); }
+.nav-cta:hover { background: var(--ink); color: var(--paper); }
+
+/* Mobile nav toggle + panel (new) */
+.nav-toggle { display: none; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1.5px solid var(--ink); background: transparent; border-radius: var(--radius); flex-shrink: 0; cursor: pointer; }
+.nav-toggle .bar { display: block; width: 18px; height: 1.5px; background: var(--ink); position: relative; }
+.nav-toggle .bar::before, .nav-toggle .bar::after { content: ''; position: absolute; left: 0; width: 18px; height: 1.5px; background: var(--ink); transition: transform 0.2s ease; }
+.nav-toggle .bar::before { top: -6px; }
+.nav-toggle .bar::after { top: 6px; }
+.nav-toggle[aria-expanded="true"] .bar { background: transparent; }
+.nav-toggle[aria-expanded="true"] .bar::before { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .bar::after { transform: translateY(-6px) rotate(-45deg); }
+.mobile-menu { display: none; flex-direction: column; gap: 2px; background: var(--paper); border-top: 1px solid rgba(27,27,23,0.12); border-bottom: 1px solid rgba(27,27,23,0.12); padding: 8px 20px 18px; }
+.mobile-menu.is-open { display: flex; }
+.mobile-menu a { padding: 13px 4px; font-size: 15.5px; color: var(--ink); border-bottom: 1px dashed var(--paper-line); }
+.mobile-menu a:last-of-type { border-bottom: none; }
+.mobile-menu .nav-cta { display: inline-flex; justify-content: center; margin-top: 12px; }
+
+/* Sheet Label */
+.sheet-label { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+.sheet-label .tag { font-size: 12px; padding: 6px 10px; border: 1px solid var(--ink); font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: 0.04em; background: var(--card); }
+.sheet-label .rule { flex: 1; height: 1px; background: var(--ink-soft); opacity: 0.4; }
+
+/* CTA Buttons */
+.btn-primary { background: var(--pine); color: var(--paper); padding: 15px 26px; font-size: 14.5px; font-weight: 600; border-radius: var(--radius); display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.15s; cursor: pointer; border: none; }
+.btn-primary:hover { background: var(--pine-deep); }
+.btn-link { font-size: 14.5px; border-bottom: 1px solid currentColor; padding-bottom: 2px; color: var(--ink-soft); transition: color 0.15s; }
+.btn-link:hover { color: var(--ink); }
+.btn-outline-light { display: inline-flex; align-items: center; gap: 8px; padding: 15px 26px; border: 1.5px solid rgba(255,255,255,0.3); color: var(--paper); font-size: 14.5px; font-weight: 600; border-radius: var(--radius); transition: background 0.15s, border-color 0.15s; }
+.btn-outline-light:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); }
+
+/* Annotated Card */
+.annot-card { background: var(--card); border: 1px solid var(--ink); padding: 26px; position: relative; }
+.annot-card .corner { position: absolute; top: -1px; right: -1px; width: 26px; height: 26px; background: var(--marker); clip-path: polygon(0 0, 100% 0, 100% 100%); }
+.annot-title { font-size: 12px; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 14px; letter-spacing: 0.04em; font-family: 'IBM Plex Mono', monospace; }
+.annot-row { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px dashed var(--paper-line); padding: 10px 0; font-size: 13.5px; gap: 12px; }
+.annot-row:last-child { border-bottom: none; }
+.annot-row span:first-child { color: var(--ink-soft); }
+.annot-row span:last-child { font-weight: 500; text-align: right; }
+
+/* Stat Strip */
+.stat-strip { display: flex; gap: 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); margin-top: 56px; background: var(--paper); }
+.stat { flex: 1; padding: 22px 24px; border-right: 1px solid var(--ink); }
+.stat:last-child { border-right: none; }
+.stat .num { font-family: 'Fraunces', serif; font-size: 34px; font-weight: 600; color: var(--pine); line-height: 1; }
+.stat .lbl { font-size: 12.5px; color: var(--ink-soft); margin-top: 6px; }
+
+/* Section */
+section { padding: 80px 0; }
+.section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 44px; flex-wrap: wrap; }
+.eyebrow { font-size: 12px; color: var(--marker); margin-bottom: 10px; font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: 0.04em; }
+.section-head h2 { font-size: clamp(28px, 3.4vw, 42px); max-width: 640px; }
+.section-head p { color: var(--ink-soft); max-width: 400px; font-size: 15px; line-height: 1.55; }
+
+/* Category / logo strip */
+.category-strip { padding: 22px 0; background: var(--card); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.category-strip .lbl2 { font-size: 11px; color: var(--ink-soft); margin-bottom: 14px; display: block; letter-spacing: 0.06em; }
+.category-row { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-soft); }
+.category-row span { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; padding: 6px 12px; border: 1px solid var(--paper-line); background: var(--paper); }
+
+/* Deliverables Grid */
+.deliv-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--ink); border: 1px solid var(--ink); }
+.deliv-col { background: var(--card); padding: 26px 22px; display: flex; flex-direction: column; }
+.deliv-col h4 { font-size: 16px; margin-bottom: 4px; }
+.deliv-col .sub { font-size: 12px; color: var(--marker); margin-bottom: 16px; font-family: 'IBM Plex Mono', monospace; }
+.deliv-col ul { list-style: none; font-size: 13.5px; color: var(--ink-soft); flex: 1; }
+.deliv-col li { padding: 8px 0; border-top: 1px dashed var(--paper-line); }
+.deliv-col li:first-child { border-top: none; }
+.deliv-col .note { font-size: 12px; color: var(--ink-soft); margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--paper-line); line-height: 1.5; }
+
+/* Process Steps */
+.process { display: flex; gap: 0; overflow-x: auto; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); background: var(--paper); }
+.pstep { flex: 1; min-width: 190px; padding: 24px 20px; border-right: 1px solid var(--ink); }
+.pstep:last-child { border-right: none; }
+.pstep .n { font-family: 'IBM Plex Mono', monospace; font-size: 22px; color: var(--pine); font-weight: 600; }
+.pstep h4 { font-size: 17px; margin: 8px 0 6px; }
+.pstep p { font-size: 13px; color: var(--ink-soft); line-height: 1.45; }
+.pstep .chk { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--marker); margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--paper-line); }
+.process-scroll-note { display: none; font-size: 12px; color: var(--ink-soft); margin-top: 10px; font-family: 'IBM Plex Mono', monospace; }
+@media (max-width: 900px) { .process-scroll-note { display: block; } }
+
+/* Proof / Case Grid */
+.proof-grid, .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.proof-card, .case-card { border: 1px solid var(--ink); background: var(--card); overflow: hidden; transition: transform 0.2s; display: flex; flex-direction: column; }
+.proof-card:hover, .case-card:hover { transform: translateY(-2px); }
+.proof-card .img, .case-card .img { aspect-ratio: 4/3; background: linear-gradient(135deg, #d8d2c1, #c3bda9); position: relative; overflow: hidden; width: 100%; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(27,27,23,0.35); text-align: center; padding: 12px; }
+.proof-body, .case-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+.proof-body .tag, .case-body .tag { font-size: 11px; color: var(--marker); margin-bottom: 6px; font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; }
+.proof-body h4, .case-body h4 { font-size: 19px; margin-bottom: 6px; }
+.proof-body p, .case-body p { font-size: 13.5px; color: var(--ink-soft); line-height: 1.45; }
+.case-body .sys-list { list-style: none; font-size: 12.5px; color: var(--ink-soft); margin: 14px 0; padding: 12px 0; border-top: 1px dashed var(--paper-line); border-bottom: 1px dashed var(--paper-line); }
+.case-body .sys-list li { padding: 4px 0; }
+.case-body .demo { font-size: 12px; color: var(--ink-soft); margin-top: auto; padding-top: 12px; }
+.case-body .demo b { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--marker); text-transform: uppercase; margin-bottom: 4px; }
+.proof-metric, .case-metric { display: inline-block; margin-top: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; background: var(--pine); color: var(--paper); padding: 5px 10px; align-self: flex-start; }
+
+/* Problem Block */
+.problem { background: var(--ink); color: var(--paper); }
+.problem .section-head p, .problem .eyebrow { color: #C9C3B4; }
+.problem .section-head h2 { color: var(--paper); }
+.problem-copy { font-size: 18px; line-height: 1.65; color: #E7E3D8; }
+.problem-copy strong { color: #FFF; }
+.problem-copy p + p { margin-top: 16px; }
+
+/* Qualification grid */
+.qual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.qual-col { border: 1px solid var(--ink); background: var(--card); padding: 28px; }
+.qual-col h4 { font-size: 18px; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+.qual-col .mark { font-size: 18px; flex-shrink: 0; }
+.qual-yes .mark { color: var(--pine); }
+.qual-no .mark { color: var(--marker); }
+.qual-col ul { list-style: none; }
+.qual-col li { padding: 10px 0; border-top: 1px dashed var(--paper-line); font-size: 14px; color: var(--ink-soft); line-height: 1.45; }
+.qual-col li:first-child { border-top: none; }
+
+/* Connected system sequence */
+.system-sequence { display: flex; align-items: stretch; gap: 0; flex-wrap: wrap; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); background: var(--card); }
+.seq-stage { flex: 1; min-width: 170px; padding: 26px 20px; border-right: 1px dashed var(--paper-line); position: relative; }
+.seq-stage:last-child { border-right: none; }
+.seq-stage .step-n { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--marker); margin-bottom: 8px; }
+.seq-stage h4 { font-size: 16px; margin-bottom: 6px; }
+.seq-stage p { font-size: 12.5px; color: var(--ink-soft); line-height: 1.4; }
+.seq-stage .arrow { display: none; }
+@media (min-width: 768px) {
+  .seq-stage:not(:last-child)::after { content: '→'; position: absolute; right: -12px; top: 26px; color: var(--marker); font-family: 'IBM Plex Mono', monospace; z-index: 2; }
+}
+
+/* Thinking modules */
+.think-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.think-card { border: 1px solid var(--ink); background: var(--card); }
+.think-card .img { aspect-ratio: 3/2; background: linear-gradient(135deg, #d8d2c1, #c3bda9); display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(27,27,23,0.35); text-align: center; padding: 12px; }
+.think-body { padding: 18px 20px; }
+.think-body .n { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--marker); margin-bottom: 6px; }
+.think-body h4 { font-size: 16px; margin-bottom: 6px; }
+.think-body p { font-size: 13px; color: var(--ink-soft); line-height: 1.45; }
+
+/* Comparison table (used on this page; scoped to .compare-wrap so it will not affect other pages) */
+.compare-wrap { overflow-x: auto; }
+.compare-table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 640px; }
+.compare-table th, .compare-table td { padding: 14px 18px; border: 1px solid var(--ink); text-align: left; vertical-align: top; }
+.compare-table th { background: var(--card); font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 500; }
+.compare-table th.hl, .compare-table td.hl { background: var(--pine); color: var(--paper); }
+.compare-table tr:nth-child(even) td:not(.hl) { background: rgba(239,235,226,0.5); }
+
+/* Alignment / risk-reduction block */
+.guarantee { background: var(--card); border: 1px solid var(--ink); padding: 40px; display: flex; gap: 30px; align-items: flex-start; }
+.guarantee .badge { width: 76px; height: 76px; border: 2px solid var(--pine); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Fraunces', serif; font-size: 10.5px; text-align: center; color: var(--pine); line-height: 1.2; padding: 8px; font-weight: 600; text-transform: uppercase; }
+.guarantee h3 { font-size: 21px; margin-bottom: 8px; }
+.guarantee p { font-size: 14.5px; color: var(--ink-soft); max-width: 680px; line-height: 1.55; }
+.guarantee p + p { margin-top: 10px; }
+
+/* Pricing tiers */
+.tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.tier { background: var(--card); border: 1px solid var(--ink); display: flex; flex-direction: column; overflow: hidden; }
+.tier-feat { border-color: var(--pine); border-width: 2px; }
+.tier-head { background: var(--paper); border-bottom: 1px solid var(--ink); padding: 24px 28px; }
+.tier-feat .tier-head { background: var(--pine); color: var(--paper); border-color: var(--pine); }
+.tier-feat .tier-head h3 { color: var(--paper); }
+.tier-feat .tier-head .desc { color: rgba(255,255,255,0.75); }
+.tier-head .name { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); margin-bottom: 4px; }
+.tier-feat .tier-head .name { color: rgba(255,255,255,0.75); }
+.tier-head h3 { font-size: 21px; margin-bottom: 4px; }
+.tier-head .desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.4; }
+.tier-price { padding: 20px 28px; border-bottom: 1px solid var(--ink); }
+.tier-price .amt { font-family: 'Fraunces', serif; font-size: 34px; font-weight: 600; color: var(--ink); }
+.tier-feat .tier-price .amt { color: var(--pine); }
+.tier-price .per { font-size: 12.5px; color: var(--ink-soft); }
+.tier-list { list-style: none; padding: 20px 28px; flex: 1; }
+.tier-list li { padding: 9px 0; border-bottom: 1px dashed var(--paper-line); font-size: 13.5px; color: var(--ink-soft); }
+.tier-list li:last-child { border-bottom: none; }
+.tier-foot { padding: 22px 28px; border-top: 1px solid var(--ink); background: var(--paper); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.tier-feat .tier-foot { background: rgba(36,70,59,0.05); }
+.tier-time { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-soft); }
+.payment-terms { border: 1px solid var(--ink); background: var(--card); padding: 26px 28px; margin-top: 24px; }
+.payment-terms h4 { font-size: 15px; margin-bottom: 12px; }
+.payment-terms ol { padding-left: 18px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.7; }
+.payment-terms .fine { font-size: 12px; color: var(--ink-soft); margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--paper-line); line-height: 1.5; }
+
+/* Scope boundaries */
+.scope-wrap { border: 1px solid var(--ink); background: var(--card); }
+.scope-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.scope-col { padding: 30px 32px; }
+.scope-col:first-child { border-right: 1px solid var(--ink); }
+.scope-col h4 { font-size: 15px; margin-bottom: 16px; font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: 0.03em; }
+.scope-col.in h4 { color: var(--pine); }
+.scope-col.out h4 { color: var(--marker); }
+.scope-col ul { list-style: none; font-size: 13.5px; color: var(--ink-soft); }
+.scope-col li { padding: 7px 0; border-top: 1px dashed var(--paper-line); line-height: 1.4; }
+.scope-col li:first-child { border-top: none; }
+.scope-note { padding: 22px 32px; border-top: 1px solid var(--ink); font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+
+/* Client inputs checklist */
+.checklist { columns: 2; column-gap: 32px; list-style: none; font-size: 14px; color: var(--ink-soft); }
+.checklist li { break-inside: avoid; padding: 10px 0 10px 26px; border-top: 1px dashed var(--paper-line); position: relative; }
+.checklist li:first-child, .checklist li:nth-child(2) { border-top: none; }
+.checklist li::before { content: '—'; position: absolute; left: 0; color: var(--marker); }
+@media (max-width: 640px) { .checklist { columns: 1; } .checklist li:nth-child(2) { border-top: 1px dashed var(--paper-line); } }
+
+/* FAQ */
+.faq-item { border: 1px solid var(--ink); background: var(--card); margin-bottom: 14px; overflow: hidden; }
+.faq-item:last-child { margin-bottom: 0; }
+.faq-q { width: 100%; padding: 20px 24px; background: transparent; border: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; text-align: left; font-family: 'Fraunces', serif; font-size: 17px; font-weight: 600; color: var(--ink); cursor: pointer; }
+.faq-a { padding: 0 24px 20px; font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; }
+.faq-a[hidden] { display: none; }
+.faq-icon { font-size: 18px; flex-shrink: 0; transition: transform 0.25s ease; color: var(--ink-soft); }
+.faq-q[aria-expanded="true"] .faq-icon { transform: rotate(45deg); }
+
+/* Lead magnet */
+.lead-magnet { background: var(--ink); color: var(--paper); }
+.lead-magnet .eyebrow { color: #C9C3B4; }
+.lead-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.lead-grid h2 { color: var(--paper); font-size: clamp(24px,3vw,34px); margin-bottom: 12px; }
+.lead-grid > div:first-child p { color: #C9C3B4; font-size: 15px; line-height: 1.6; margin-bottom: 20px; }
+.lead-benefits { list-style: none; font-size: 13.5px; color: #E7E3D8; }
+.lead-benefits li { padding: 8px 0 8px 20px; border-top: 1px dashed rgba(255,255,255,0.15); position: relative; }
+.lead-benefits li:first-child { border-top: none; }
+.lead-benefits li::before { content: '—'; position: absolute; left: 0; color: #8EC4B3; }
+.lead-form { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); padding: 28px; }
+.lead-form .field { margin-bottom: 16px; }
+.lead-form label { display: block; font-size: 12.5px; color: #C9C3B4; margin-bottom: 6px; font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: 0.03em; }
+.lead-form input, .lead-form select { width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.25); color: var(--paper); font-size: 14px; border-radius: var(--radius); font-family: 'Inter', sans-serif; }
+.lead-form input::placeholder { color: rgba(255,255,255,0.4); }
+.lead-form .error-msg { font-size: 12px; color: #E88; margin-top: 4px; display: none; }
+.lead-form button { width: 100%; margin-top: 4px; }
+
+/* Sticky Mobile CTA */
+.sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: var(--paper); border-top: 1px solid var(--ink); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.sticky-cta .lines { display: flex; flex-direction: column; }
+.sticky-cta .top { font-size: 12px; color: var(--ink-soft); font-family: 'IBM Plex Mono', monospace; }
+.sticky-cta .bottom { font-size: 14px; font-weight: 600; color: var(--ink); }
+@media (min-width: 768px) { .sticky-cta { display: none; } }
+
+/* Crumb */
+.crumb { padding: 22px 0 0; font-size: 12.5px; color: var(--ink-soft); }
+.crumb a { color: var(--ink-soft); border-bottom: 1px dashed var(--ink-soft); }
+.crumb a:hover { color: var(--pine); }
+.crumb span.sep { margin: 0 8px; opacity: 0.5; }
+.crumb span.cur { color: var(--ink); }
+
+/* Responsive */
+@media (max-width: 1024px) { .deliv-grid { grid-template-columns: 1fr 1fr; } .think-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 900px) {
+  .qual-grid { grid-template-columns: 1fr; }
+  .tiers { grid-template-columns: 1fr; }
+  .scope-grid { grid-template-columns: 1fr; }
+  .scope-col:first-child { border-right: none; border-bottom: 1px solid var(--ink); }
+  .lead-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .nav { padding: 14px 20px; }
+  .navlinks, .nav-cta { display: none; }
+  .nav-toggle { display: inline-flex; }
+  .wrap { padding: 0 20px; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .stat-strip { flex-wrap: wrap; }
+  .stat { flex: 1 1 50%; border-bottom: 1px solid var(--ink); }
+  .proof-grid, .case-grid { grid-template-columns: 1fr; }
+  .deliv-grid { grid-template-columns: 1fr; }
+  .think-grid { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  body { padding-bottom: 78px; }
+  .guarantee { flex-direction: column; }
+}
+@media (min-width: 1024px) {
+  .wrap { max-width: 100% !important; padding-left: 64px !important; padding-right: 64px !important; }
+  header .nav { max-width: 100% !important; padding-left: 64px !important; padding-right: 64px !important; }
+}
+
+/* ===== Page-specific styles (branding.html) ===== */
+
+  /* ── Branding Page — bp-* styles (page-specific only; shared components live in shared.css) ── */
+  .bp-hero { padding: 28px 0 56px; }
+  .bp-avail { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--pine); font-family: 'IBM Plex Mono', monospace; margin-bottom: 20px; background: rgba(36,70,59,0.08); border: 1px solid rgba(36,70,59,0.2); padding: 7px 14px; border-radius: 100px; line-height: 1.4; }
+  .bp-hero h1 { font-size: clamp(34px, 5vw, 66px); max-width: 880px; margin-bottom: 0; }
+  .bp-hero h1 em { font-style: normal; color: var(--pine); }
+  .bp-hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: start; margin-top: 34px; }
+  .bp-hero-sub { font-size: 17.5px; color: var(--ink-soft); max-width: 540px; margin-bottom: 12px; line-height: 1.6; }
+  .bp-cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin: 24px 0 14px; }
+  .bp-price-note { font-size: 13px; color: var(--ink-soft); }
+  .bp-price-note b { color: var(--ink); }
+  .bp-sheet-right { font-size: 12px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* Philosophy sequence caption row */
+  .bp-seq-caption { margin-top: 20px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; }
+  .bp-seq-caption strong { color: var(--ink); }
+
+  /* Case study CTA row */
+  .bp-cases-foot { display: flex; justify-content: center; margin-top: 40px; }
+
+  @media (max-width: 900px) {
+    .bp-hero-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="reg reg-tl" aria-hidden="true"></div>
+<div class="reg reg-tr" aria-hidden="true"></div>
+<div class="reg reg-bl" aria-hidden="true"></div>
+<div class="reg reg-br" aria-hidden="true"></div>
+
+<header>
+  <div class="nav">
+    <a href="home.html" class="logo-mark">
+      <div class="logo-box"></div>
+      The Drawing Board
+    </a>
+    <nav class="navlinks" aria-label="Primary">
+      <a href="work.html">Work</a>
+      <a href="branding.html" class="active" aria-current="page">Services</a>
+      <a href="#">Studio</a>
+      <a href="#">Insights</a>
+      <a href="#">Contact</a>
+    </nav>
+    <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" class="nav-cta">Discuss Your Project</a>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <span class="bar"></span>
+    </button>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+    <a href="work.html">Work</a>
+    <a href="branding.html" aria-current="page">Services</a>
+    <a href="#">Studio</a>
+    <a href="#">Insights</a>
+    <a href="#">Contact</a>
+    <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" class="nav-cta">Discuss Your Project</a>
+  </nav>
+</header>
+
+<main id="main-content">
+
+  <!-- HERO -->
+  <section class="bp-hero">
+    <div class="wrap">
+      <div class="sheet-label">
+        <span class="tag mono">SHEET NO. 02 — BRAND SYSTEMS</span>
+        <span class="rule"></span>
+        <span class="bp-sheet-right mono">POSITION / IDENTITY / PACKAGING / DIGITAL</span>
+      </div>
+
+      <div class="bp-avail">
+        <span aria-hidden="true">●</span>
+        We work with a limited number of founder-led brands at a time so strategy and senior creative direction stay closely involved.
+      </div>
+
+      <h1>Build the brand people choose <em>before they compare.</em></h1>
+
+      <div class="bp-hero-grid">
+        <div>
+          <p class="bp-hero-sub">
+            The Drawing Board creates strategy-led identities, packaging and digital experiences for ambitious consumer brands preparing to launch, reposition or scale.
+          </p>
+          <p class="bp-hero-sub">
+            From how your brand is understood to how it looks on the shelf and performs online, we build one connected system designed to earn attention, communicate value and support growth.
+          </p>
+          <div class="bp-cta-row">
+            <a class="btn-primary" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Discuss Your Project →</a>
+            <a class="btn-link" href="#case-studies">View Selected Work</a>
+          </div>
+          <p style="margin-bottom:14px"><a class="btn-link" href="https://wa.me/919428859768" target="_blank" rel="noopener noreferrer">Prefer WhatsApp? Message the studio.</a></p>
+          <p class="bp-price-note">Brand and packaging engagements begin at <b>₹4,75,000</b>.</p>
+        </div>
+
+        <div class="annot-card">
+          <div class="corner" aria-hidden="true"></div>
+          <div class="annot-title mono">Project System — Engagement Overview</div>
+          <div class="annot-row"><span>Core thinking</span><span>Positioning before design</span></div>
+          <div class="annot-row"><span>Brand system</span><span>Identity + packaging</span></div>
+          <div class="annot-row"><span>Extended system</span><span>Identity + packaging + website</span></div>
+          <div class="annot-row"><span>Collaboration</span><span>Direct founder-to-studio</span></div>
+          <div class="annot-row"><span>Starting investment</span><span>₹4,75,000</span></div>
+          <div class="annot-row"><span>Typical engagement</span><span>6–12 weeks</span></div>
+        </div>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat"><div class="num">01</div><div class="lbl mono">Connected brand idea</div></div>
+        <div class="stat"><div class="num">04</div><div class="lbl mono">Core system layers</div></div>
+        <div class="stat"><div class="num">100%</div><div class="lbl mono">Editable file handover</div></div>
+        <div class="stat"><div class="num">01:01</div><div class="lbl mono">Direct studio communication</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY STRIP -->
+  <div class="category-strip">
+    <div class="wrap">
+      <span class="lbl2 mono">BUILT FOR AMBITIOUS CONSUMER BRANDS</span>
+      <div class="category-row">
+        <span>Food &amp; Beverage</span><span>Beauty &amp; Wellness</span><span>Fashion &amp; Lifestyle</span><span>Hospitality</span><span>Jewellery &amp; Gifting</span><span>Premium FMCG</span><span>D2C &amp; E-commerce</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROWTH PROBLEM -->
+  <section class="problem">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">WHEN THE EARLY BRAND STOPS WORKING</div>
+          <h2>Growth exposes the gaps your first identity could hide.</h2>
+        </div>
+      </div>
+      <div class="problem-copy">
+        <p>What worked for the first launch often stops working when the product range expands, the price increases or the business enters a more competitive market.</p>
+        <p>The identity begins to feel inconsistent. Packaging variants lose cohesion. The website tells a different story. Every new campaign requires another visual decision.</p>
+        <p>We replace that collection of disconnected assets with one clear system — built around what the brand should own, how customers should recognise it and how it should grow across products, packaging and digital touchpoints.</p>
+        <p><strong>A stronger brand does not add decoration. It removes doubt.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUALIFICATION -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">IS THIS THE RIGHT STAGE?</div>
+          <h2>Built for businesses with a real product and a serious next move.</h2>
+        </div>
+        <p>A focused engagement works best when the business, product and decision-makers are ready to move together.</p>
+      </div>
+      <div class="qual-grid">
+        <div class="qual-col qual-yes">
+          <h4><span class="mark" aria-hidden="true">✓</span>A strong fit when</h4>
+          <ul>
+            <li>You have a validated product or a well-defined launch plan.</li>
+            <li>Your current identity no longer reflects the quality or scale of the business.</li>
+            <li>You need brand, packaging and digital touchpoints to work as one system.</li>
+            <li>You are preparing to launch, reposition, enter retail or expand into more SKUs.</li>
+            <li>You value research, clear reasoning and structured collaboration.</li>
+            <li>You are prepared to invest in a foundation intended to serve the business for years.</li>
+            <li>The core decision-makers can participate in major approvals.</li>
+          </ul>
+        </div>
+        <div class="qual-col qual-no">
+          <h4><span class="mark" aria-hidden="true">✕</span>Probably too early when</h4>
+          <ul>
+            <li>Your product, audience or business model is changing every week.</li>
+            <li>You need only a temporary logo or quick label adaptation.</li>
+            <li>Your main selection criterion is the lowest quotation.</li>
+            <li>You need the entire engagement completed within a few days.</li>
+            <li>Final product information, claims or packaging requirements are unavailable.</li>
+            <li>No one involved has authority to approve strategy and creative direction.</li>
+          </ul>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:36px">
+        <a class="btn-link" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">This sounds like our stage → Discuss the project</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONNECTED SYSTEM PHILOSOPHY -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">ONE IDEA, EVERY TOUCHPOINT</div>
+          <h2>Identity, packaging and website should not feel like three different companies.</h2>
+        </div>
+        <p>We begin by deciding what the brand should stand for, what it should own in the market and why customers should choose it.</p>
+      </div>
+      <p style="max-width:760px;font-size:15.5px;color:var(--ink-soft);line-height:1.65;margin-bottom:40px">
+        That central idea then guides the identity, packaging hierarchy, product range and digital journey. The result is not a collection of attractive assets. It is one recognisable system designed to build familiarity wherever the customer meets the brand.
+      </p>
+
+      <div class="system-sequence">
+        <div class="seq-stage"><div class="step-n mono">01</div><h4>Positioning</h4><p>The reason to choose you</p></div>
+        <div class="seq-stage"><div class="step-n mono">02</div><h4>Identity</h4><p>The recognisable visual language</p></div>
+        <div class="seq-stage"><div class="step-n mono">03</div><h4>Packaging</h4><p>The shelf and product system</p></div>
+        <div class="seq-stage"><div class="step-n mono">04</div><h4>Digital</h4><p>The path from interest to action</p></div>
+        <div class="seq-stage"><div class="step-n mono">05</div><h4>Launch</h4><p>The tools needed to enter the market coherently</p></div>
+      </div>
+      <p class="bp-seq-caption"><strong>When each piece reinforces the same idea,</strong> the brand becomes easier to recognise, trust and grow.</p>
+    </div>
+  </section>
+
+  <!-- SELECTED CASE STUDIES -->
+  <section id="case-studies">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">SELECTED BRAND SYSTEMS</div>
+          <h2>Work designed to live beyond a single mockup.</h2>
+        </div>
+        <p>Each project reveals the business problem, strategic decision and system created — not only the final logo.</p>
+      </div>
+
+      <div class="case-grid">
+        <article class="case-card">
+          <div class="img">
+            <!-- Replace with approved AFTER8 identity image. -->
+            AFTER8® — identity image placeholder
+          </div>
+          <div class="case-body">
+            <div class="tag mono">Personal Wellness</div>
+            <h4>AFTER8®</h4>
+            <p><strong>Challenge:</strong> Enter a sensitive and visually crowded category without feeling clinical, crude or generic.</p>
+            <p style="margin-top:8px"><strong>Direction:</strong> A confident after-hours identity balancing discretion, modernity and clear product recognition.</p>
+            <ul class="sys-list">
+              <li>Positioning direction</li>
+              <li>Visual identity</li>
+              <li>Packaging architecture</li>
+              <li>Variant logic</li>
+              <li>Digital launch direction</li>
+            </ul>
+            <div class="demo"><b>What This Project Demonstrates</b>How one central brand idea can remain recognisable across identity, product packaging and digital communication.</div>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="img">
+            <!-- Replace with approved LUMIEN packaging image. -->
+            LUMIEN — packaging image placeholder
+          </div>
+          <div class="case-body">
+            <div class="tag mono">Fine Jewellery</div>
+            <h4>LUMIEN</h4>
+            <p><strong>Challenge:</strong> Build a modern jewellery brand that feels aspirational and refined without relying on predictable luxury codes.</p>
+            <p style="margin-top:8px"><strong>Direction:</strong> Restraint, proportion and tactile detail used to create a distinctive identity and gifting experience.</p>
+            <ul class="sys-list">
+              <li>Brand story</li>
+              <li>Identity</li>
+              <li>Packaging</li>
+              <li>Retail details</li>
+              <li>Digital art direction</li>
+            </ul>
+            <div class="demo"><b>What This Project Demonstrates</b>How a restrained visual system can communicate value through consistency, tactility and thoughtful detail.</div>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="img">
+            <!-- Replace with approved CARDAMOM digital image. -->
+            CARDAMOM — digital image placeholder
+          </div>
+          <div class="case-body">
+            <div class="tag mono">Tea &amp; Coffee</div>
+            <h4>CARDAMOM</h4>
+            <p><strong>Challenge:</strong> Create one recognisable house language across tea, coffee, matcha and future product formats.</p>
+            <p style="margin-top:8px"><strong>Direction:</strong> A calm, ingredient-led system with clear product differentiation and consistent brand recognition.</p>
+            <ul class="sys-list">
+              <li>Identity application</li>
+              <li>Packaging hierarchy</li>
+              <li>SKU logic</li>
+              <li>Product-format adaptation</li>
+              <li>Retail and digital presentation</li>
+            </ul>
+            <div class="demo"><b>What This Project Demonstrates</b>How a master packaging language can expand across categories without making every product look identical.</div>
+          </div>
+        </article>
+      </div>
+
+      <div class="bp-cases-foot">
+        <a class="btn-link" href="work.html">See the strategy behind the work →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOW THE THINKING -->
+  <section style="background:var(--card)">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">BEFORE THE FINAL MOCKUPS</div>
+          <h2>The value is in the decisions that make the design feel inevitable.</h2>
+        </div>
+      </div>
+      <div class="think-grid">
+        <div class="think-card">
+          <div class="img"><!-- Insert genuine research board or competitor audit. -->Research board placeholder</div>
+          <div class="think-body"><div class="n mono">01</div><h4>Category audit</h4><p>What competitors repeat and where the brand can create distance.</p></div>
+        </div>
+        <div class="think-card">
+          <div class="img"><!-- Insert genuine positioning or strategy excerpt. -->Strategy excerpt placeholder</div>
+          <div class="think-body"><div class="n mono">02</div><h4>Audience understanding</h4><p>What the customer needs to recognise, believe and remember.</p></div>
+        </div>
+        <div class="think-card">
+          <div class="img"><!-- Insert genuine positioning or strategy excerpt. -->Positioning territory placeholder</div>
+          <div class="think-body"><div class="n mono">03</div><h4>Positioning territory</h4><p>The idea the brand should own in the market.</p></div>
+        </div>
+        <div class="think-card">
+          <div class="img"><!-- Insert genuine sketch or typography exploration. -->Hierarchy sketch placeholder</div>
+          <div class="think-body"><div class="n mono">04</div><h4>Information hierarchy</h4><p>What customers must understand first, second and third.</p></div>
+        </div>
+        <div class="think-card">
+          <div class="img"><!-- Insert genuine sketch or typography exploration. -->Typography exploration placeholder</div>
+          <div class="think-body"><div class="n mono">05</div><h4>Creative exploration</h4><p>Typography, symbols, imagery, colour and composition tested against the strategy.</p></div>
+        </div>
+        <div class="think-card">
+          <div class="img"><!-- Insert genuine packaging architecture work. -->Packaging architecture placeholder</div>
+          <div class="think-body"><div class="n mono">06</div><h4>System planning</h4><p>How identity, SKUs, formats and digital components remain consistent as the brand grows.</p></div>
+        </div>
+      </div>
+      <p style="margin-top:32px;font-size:14.5px;color:var(--ink-soft);max-width:600px"><strong style="color:var(--ink)">A polished result matters.</strong> A repeatable reason behind every decision matters more.</p>
+    </div>
+  </section>
+
+  <!-- SCOPE AND DELIVERABLES -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">WHAT WE BUILD</div>
+          <h2>One strategic foundation, translated across the places customers meet the brand.</h2>
+        </div>
+        <p>The exact scope depends on the engagement, but every project begins with positioning and ends with a usable system.</p>
+      </div>
+      <div class="deliv-grid">
+        <div class="deliv-col">
+          <h4>Strategic Foundation</h4>
+          <div class="sub mono">WHAT THE BRAND SHOULD OWN</div>
+          <ul>
+            <li>Founder discovery</li>
+            <li>Business and product understanding</li>
+            <li>Audience and buying-context review</li>
+            <li>Category and competitor audit</li>
+            <li>Positioning opportunity</li>
+            <li>Core brand idea</li>
+            <li>Brand personality</li>
+            <li>Messaging direction</li>
+            <li>Creative brief and success criteria</li>
+          </ul>
+        </div>
+        <div class="deliv-col">
+          <h4>Identity System</h4>
+          <div class="sub mono">HOW THE BRAND IS RECOGNISED</div>
+          <ul>
+            <li>Primary and secondary logo system</li>
+            <li>Supporting mark or icon where relevant</li>
+            <li>Typography system</li>
+            <li>Colour system</li>
+            <li>Visual language</li>
+            <li>Layout principles</li>
+            <li>Imagery or illustration direction</li>
+            <li>Practical identity applications</li>
+            <li>Brand guidelines</li>
+            <li>Editable master files</li>
+          </ul>
+        </div>
+        <div class="deliv-col">
+          <h4>Packaging System</h4>
+          <div class="sub mono">HOW THE PRODUCT IS CHOSEN</div>
+          <ul>
+            <li>Master packaging direction</li>
+            <li>Front, back and side hierarchy</li>
+            <li>Product and claims communication</li>
+            <li>SKU naming and variant logic</li>
+            <li>Colour and product differentiation</li>
+            <li>Packaging mockups</li>
+            <li>Artwork on client-supplied approved dielines</li>
+            <li>Up to five straightforward SKU adaptations</li>
+            <li>Print-ready artwork</li>
+            <li>Editable source files</li>
+          </ul>
+          <div class="note">The ₹4,75,000 engagement includes one master packaging direction and up to five straightforward SKU adaptations using the approved structure. New formats, structural changes, new sizes, additional SKUs or substantial copy changes are quoted separately.</div>
+        </div>
+        <div class="deliv-col">
+          <h4>Digital Experience</h4>
+          <div class="sub mono">HOW INTEREST BECOMES ACTION</div>
+          <ul>
+            <li>Website strategy</li>
+            <li>Sitemap and content hierarchy</li>
+            <li>Customer journey</li>
+            <li>Responsive UI/UX design</li>
+            <li>Core page-template system</li>
+            <li>Website development</li>
+            <li>Enquiry or e-commerce flow</li>
+            <li>Responsive testing</li>
+            <li>Basic launch support</li>
+            <li>Website handover</li>
+          </ul>
+          <div class="note">Digital experience is included only in the ₹6,50,000 Brand-to-Market engagement. Exact platform, page templates, product count, e-commerce requirements, integrations and content responsibilities are confirmed in the proposal.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS AND CHECKPOINTS -->
+  <section style="background:var(--card)">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">HOW WE WORK</div>
+          <h2>Major decisions are aligned before the next layer is built.</h2>
+        </div>
+      </div>
+      <div class="process">
+        <div class="pstep"><div class="n mono">01</div><h4>Discover</h4><p>Understand the business, product, customer, category, launch plan and growth goals.</p><div class="chk mono">✓ Discovery inputs approved</div></div>
+        <div class="pstep"><div class="n mono">02</div><h4>Position</h4><p>Define the opportunity, central brand idea, audience relevance and messaging direction.</p><div class="chk mono">✓ Strategy alignment approved</div></div>
+        <div class="pstep"><div class="n mono">03</div><h4>Direct</h4><p>Translate the strategy into one or two carefully considered creative territories.</p><div class="chk mono">✓ Creative territory selected</div></div>
+        <div class="pstep"><div class="n mono">04</div><h4>Build</h4><p>Develop the selected identity and master packaging system.</p><div class="chk mono">✓ Core system approved</div></div>
+        <div class="pstep"><div class="n mono">05</div><h4>Extend</h4><p>Adapt the approved system across SKUs, website templates and launch applications.</p><div class="chk mono">✓ Applications approved</div></div>
+        <div class="pstep"><div class="n mono">06</div><h4>Prepare</h4><p>Organise production-ready artwork, source files, guidelines, testing and handover.</p><div class="chk mono">✓ Final balance and handover</div></div>
+      </div>
+      <p class="process-scroll-note">Scroll to see all six stages →</p>
+      <p style="margin-top:28px;font-size:14px;color:var(--ink-soft);max-width:640px;line-height:1.6">
+        <strong style="color:var(--ink)">Typical timeline:</strong> Brand-to-Shelf runs approximately 6–8 weeks; Brand-to-Market runs approximately 8–12 weeks. Timelines depend on feedback speed, decision-maker availability, final copy, approved claims, approved dielines, SKU complexity, website content readiness and integration requirements.
+      </p>
+    </div>
+  </section>
+
+  <!-- WHY THE DRAWING BOARD -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">THE STUDIO MODEL</div>
+          <h2>Small enough to stay close. Structured enough to build the whole system.</h2>
+        </div>
+      </div>
+      <p style="max-width:720px;font-size:15.5px;color:var(--ink-soft);line-height:1.65;margin-bottom:36px">
+        The Drawing Board combines direct access and focused creative attention with a structured approach to strategy, identity, packaging and digital execution. Fewer handoffs mean fewer reinterpretations of the brand. The people making the strategic and creative decisions remain closely involved from discovery through delivery.
+      </p>
+      <div class="deliv-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:40px">
+        <div class="deliv-col"><ul><li>Direct access to the working team</li><li>Strategy and design developed together</li></ul></div>
+        <div class="deliv-col"><ul><li>Identity, packaging and digital under one system</li><li>Defined checkpoints and approval stages</li></ul></div>
+        <div class="deliv-col"><ul><li>Senior attention without unnecessary agency layers</li><li>Files and guidelines prepared for implementation</li></ul></div>
+      </div>
+
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr><th scope="col">Comparison</th><th scope="col">Independent Specialist</th><th scope="col">Large Agency</th><th scope="col" class="hl">The Drawing Board</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Strategic foundation</th><td>Depends on specialisation</td><td>Usually extensive</td><td class="hl">Included</td></tr>
+            <tr><th scope="row">Direct creative access</th><td>Usually direct</td><td>Often account-led</td><td class="hl">Direct and structured</td></tr>
+            <tr><th scope="row">Multi-touchpoint system</th><td>May require additional partners</td><td>Fully supported</td><td class="hl">Identity, pack and web connected</td></tr>
+            <tr><th scope="row">Approval structure</th><td>Varies</td><td>Multi-layered</td><td class="hl">Defined project checkpoints</td></tr>
+            <tr><th scope="row">Pace</th><td>Fast but variable</td><td>Longer internal layers</td><td class="hl">Focused project team</td></tr>
+            <tr><th scope="row">Operating model</th><td>Individual-led</td><td>Department-led</td><td class="hl">Senior boutique studio</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF AND TESTIMONIALS -->
+  <section style="background:var(--card)">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">CLIENT EVIDENCE</div>
+          <h2>Proof should be specific, genuine and verifiable.</h2>
+        </div>
+        <p>Used only for feedback, approvals and outcomes connected to a real client or published project.</p>
+      </div>
+
+      <div class="proof-grid">
+        <!-- Replace with a genuine quote and obtain client permission before publishing. -->
+        <div class="proof-card">
+          <div class="proof-body">
+            <div class="tag mono">Client-Approved Testimonial</div>
+            <h4>[Client name]</h4>
+            <p>&ldquo;Replace this with a verbatim quote describing the business problem, the strategic or creative process and the result of working together.&rdquo;</p>
+            <p style="margin-top:14px;font-size:12.5px">[Role, Company]</p>
+          </div>
+        </div>
+
+        <!-- Publish only genuine feedback with permission. Do not fabricate conversations. -->
+        <div class="proof-card">
+          <div class="proof-body">
+            <div class="tag mono">Approved Project Feedback</div>
+            <h4>Project feedback</h4>
+            <p>&ldquo;Replace this with an actual client response.&rdquo;</p>
+            <p style="margin-top:8px">&ldquo;Remove or blur private information before publishing.&rdquo;</p>
+          </div>
+        </div>
+
+        <!-- Clearly label expert commentary. Do not present the reviewer as a paying client. -->
+        <div class="proof-card">
+          <div class="proof-body">
+            <div class="tag mono">Independent Portfolio Review</div>
+            <h4>[Reviewer name]</h4>
+            <p>&ldquo;Replace this with an honest review from a strategist, designer, printer, retail professional or industry expert who has reviewed the published work.&rdquo;</p>
+            <p style="margin-top:14px;font-size:12.5px">[Expertise]</p>
+          </div>
+        </div>
+      </div>
+      <p style="margin-top:28px;font-size:13px;color:var(--ink-soft);max-width:640px">Every testimonial, message and outcome displayed here should be traceable to genuine evidence and published with permission.</p>
+    </div>
+  </section>
+
+  <!-- ENGAGEMENT AND PRICING -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">ENGAGEMENT OPTIONS</div>
+          <h2>Choose the system your next stage requires.</h2>
+        </div>
+        <p>Both engagements begin with strategy and create a complete identity and packaging foundation. The difference is whether we also design and build the digital journey through which customers discover, understand and buy from the brand.</p>
+      </div>
+
+      <div class="tiers">
+        <div class="tier">
+          <div class="tier-head">
+            <div class="name mono">Brand-to-Shelf</div>
+            <h3>Brand Identity + Packaging</h3>
+            <div class="desc">For product businesses preparing to launch, reposition or expand into a stronger, more coherent range.</div>
+          </div>
+          <div class="tier-price"><div class="amt">₹4,75,000</div></div>
+          <ul class="tier-list">
+            <li>Founder discovery and business understanding</li>
+            <li>Category, competitor and audience research</li>
+            <li>Positioning and central brand idea</li>
+            <li>Messaging direction</li>
+            <li>Complete visual identity system</li>
+            <li>Typography, colour and visual language</li>
+            <li>Brand guidelines</li>
+            <li>One master packaging direction</li>
+            <li>Front, back and side-panel hierarchy</li>
+            <li>SKU architecture and variant logic</li>
+            <li>Up to five straightforward SKU adaptations</li>
+            <li>Packaging presentation mockups</li>
+            <li>Print-ready artwork on approved dielines</li>
+            <li>Editable brand and packaging source files</li>
+            <li>Final handover</li>
+          </ul>
+          <div class="tier-foot">
+            <span class="tier-time mono">Approx. 6–8 weeks</span>
+            <a class="btn-primary" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Discuss Brand-to-Shelf →</a>
+          </div>
+        </div>
+
+        <div class="tier tier-feat">
+          <div class="tier-head">
+            <div class="name mono">Brand-to-Market</div>
+            <h3>Brand Identity + Packaging + Website</h3>
+            <div class="desc">For brands that need one connected experience from positioning and packaging to digital discovery and conversion.</div>
+          </div>
+          <div class="tier-price"><div class="amt">₹6,50,000</div></div>
+          <ul class="tier-list">
+            <li>Everything in Brand-to-Shelf</li>
+            <li>Website strategy</li>
+            <li>Sitemap and customer journey</li>
+            <li>Content hierarchy</li>
+            <li>Responsive UI/UX design</li>
+            <li>Core page-template system</li>
+            <li>Website development</li>
+            <li>Enquiry or e-commerce flow</li>
+            <li>Responsive testing</li>
+            <li>Basic launch support</li>
+            <li>Website handover</li>
+            <li>30-day technical defect-support window</li>
+          </ul>
+          <div class="tier-foot">
+            <span class="tier-time mono">Approx. 8–12 weeks</span>
+            <a class="btn-primary" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Discuss Brand-to-Market →</a>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin-top:20px;font-size:13px;color:var(--ink-soft);max-width:760px">Not included by default: brand photography, unlimited product photography, unlimited pages or product uploads, app design or development, pitch decks, social media management, 3D renders, advanced custom integrations, print production, packaging structural engineering, legal or regulatory verification, full-site copywriting, paid stock imagery, paid fonts, hosting, domain registration or third-party subscriptions. These can be scoped as add-ons or confirmed in the proposal.</p>
+
+      <div class="payment-terms">
+        <h4 class="mono" style="text-transform:uppercase;font-size:12.5px;color:var(--ink-soft)">Payment Structure</h4>
+        <ol>
+          <li>50% to begin</li>
+          <li>25% after approval of the identity and master packaging direction</li>
+          <li>25% before final website launch and complete file handover</li>
+        </ol>
+        <p class="fine">For Brand-to-Shelf, the final payment is due before complete print-ready and editable-file handover. Applicable taxes and third-party costs should be confirmed in the formal proposal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE EXPLANATION -->
+  <section style="background:var(--card)">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">WHY THE ENGAGEMENT IS STRUCTURED THIS WAY</div>
+          <h2>This is not three disconnected design services bundled together.</h2>
+        </div>
+      </div>
+      <div class="problem-copy" style="color:var(--ink-soft);font-size:16px;line-height:1.7">
+        <p>The engagement begins by deciding what the brand should own, how it should be recognised and why customers should choose it. That central idea then guides the identity, packaging architecture and digital experience.</p>
+        <p>This prevents the business from paying different specialists to reinterpret the brand at every stage — and gives your internal team, printers, developers and future partners one coherent system to work from.</p>
+        <p>The investment reflects the research, strategic decisions, creative development, production preparation and implementation required to make that system usable beyond a single launch.</p>
+        <p style="color:var(--ink);font-weight:500">You are investing in the decisions the business should not need to remake every time it adds a product, campaign or customer touchpoint.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALIGNMENT AND RISK REDUCTION -->
+  <section>
+    <div class="wrap">
+      <div class="guarantee">
+        <div class="badge mono">Alignment<br/>Checkpoint</div>
+        <div>
+          <h3>We align the strategic and creative direction before building the complete system.</h3>
+          <p>The project begins with research, positioning and clearly defined creative territories. A selected direction is approved before the complete identity, packaging range and digital experience are developed.</p>
+          <p>This keeps major decisions visible, reduces late-stage surprises and ensures each new layer is built on an agreed foundation.</p>
+          <p>Included revisions, decision-makers, feedback windows and scope boundaries are documented in the project proposal before work begins.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCOPE BOUNDARIES -->
+  <section style="background:var(--card)">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">SCOPE CLARITY</div>
+          <h2>Clear boundaries protect the quality, timeline and launch.</h2>
+        </div>
+      </div>
+      <div class="scope-wrap">
+        <div class="scope-grid">
+          <div class="scope-col in">
+            <h4>Included when stated in the engagement</h4>
+            <ul>
+              <li>Strategy and agreed research</li>
+              <li>Identity system</li>
+              <li>Master packaging design</li>
+              <li>Agreed SKU adaptations</li>
+              <li>Print-ready artwork on approved dielines</li>
+              <li>Website strategy and agreed page templates for Brand-to-Market</li>
+              <li>Development on the platform agreed in the proposal</li>
+              <li>Editable source-file handover</li>
+              <li>Agreed revision rounds</li>
+              <li>Handover support</li>
+            </ul>
+          </div>
+          <div class="scope-col out">
+            <h4>Quoted or supplied separately</h4>
+            <ul>
+              <li>Additional SKUs</li>
+              <li>New packaging structures or formats</li>
+              <li>Structural packaging engineering</li>
+              <li>Dieline creation or technical verification</li>
+              <li>Printing and manufacturing</li>
+              <li>Legal or regulatory certification</li>
+              <li>Product photography</li>
+              <li>Custom illustration beyond the agreed scope</li>
+              <li>Paid fonts, imagery or licences</li>
+              <li>Website copywriting</li>
+              <li>Large product catalogues</li>
+              <li>Advanced e-commerce functionality</li>
+              <li>Custom apps</li>
+              <li>Third-party subscriptions</li>
+              <li>Hosting and domains</li>
+              <li>Ongoing maintenance</li>
+              <li>Additional launch campaigns</li>
+            </ul>
+          </div>
+        </div>
+        <div class="scope-note">The client or manufacturer must provide final, technically verified packaging dielines and legally approved product information. The Drawing Board can organise content hierarchy but does not certify claims, ingredients, nutrition, regulatory statements or legal compliance.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENT INPUTS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">WHAT WE NEED FROM YOU</div>
+          <h2>Clear inputs create stronger work and a smoother launch.</h2>
+        </div>
+      </div>
+      <ul class="checklist">
+        <li>Final business and product information</li>
+        <li>Access to core decision-makers</li>
+        <li>Existing research and customer insight</li>
+        <li>Approved product names</li>
+        <li>Approved product claims</li>
+        <li>Final packaging copy</li>
+        <li>Ingredient and nutrition information where relevant</li>
+        <li>Manufacturer-approved dielines</li>
+        <li>Barcodes and certification marks</li>
+        <li>Website content and product information</li>
+        <li>Required integrations</li>
+        <li>Feedback within the agreed review window</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="background:var(--card)">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">QUESTIONS</div>
+          <h2>Frequently asked questions.</h2>
+        </div>
+      </div>
+      <div id="faqList">
+        <!-- FAQ items generated with JS-independent markup: each button toggles aria-expanded and the sibling panel's hidden attribute -->
+      </div>
+      <noscript>
+        <p style="font-size:13px;color:var(--ink-soft);margin-top:16px">JavaScript is disabled — all answers below remain visible.</p>
+      </noscript>
+    </div>
+  </section>
+
+  <!-- LOW-INTENT LEAD MAGNET -->
+  <section class="lead-magnet">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono">NOT READY TO DISCUSS A PROJECT?</div>
+          <h2>Use the Founder&rsquo;s Brand Readiness Audit.</h2>
+        </div>
+      </div>
+      <div class="lead-grid">
+        <div>
+          <p>A practical review for founders preparing to reposition, redesign packaging or build a stronger digital experience.</p>
+          <ul class="lead-benefits">
+            <li>Assess whether your positioning is clear enough to guide design</li>
+            <li>Identify gaps between identity, packaging and website</li>
+            <li>Review SKU consistency and product hierarchy</li>
+            <li>Understand which inputs should be ready before hiring a studio</li>
+            <li>Separate design needs from legal, manufacturing and operational requirements</li>
+          </ul>
+        </div>
+        <!-- Connect this form to a real CRM or email workflow before publishing. -->
+        <form class="lead-form" aria-label="Founder's Brand Readiness Audit request" onsubmit="return false;">
+          <div class="field">
+            <label for="leadEmail">Work email</label>
+            <input type="email" id="leadEmail" name="email" placeholder="you@company.com" required />
+            <div class="error-msg" id="leadEmailError">Please enter a valid work email.</div>
+          </div>
+          <div class="field">
+            <label for="leadBrand">Brand name</label>
+            <input type="text" id="leadBrand" name="brand" placeholder="Your brand name" required />
+          </div>
+          <div class="field">
+            <label for="leadWeb">Website or Instagram</label>
+            <input type="text" id="leadWeb" name="web" placeholder="URL or @handle" />
+          </div>
+          <div class="field">
+            <label for="leadStage">Current stage</label>
+            <select id="leadStage" name="stage" required>
+              <option value="">Select one</option>
+              <option value="launch">Preparing to launch</option>
+              <option value="reposition">Repositioning an existing brand</option>
+              <option value="expand">Expanding products or SKUs</option>
+              <option value="website">Rebuilding the website</option>
+              <option value="exploring">Exploring options</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary">Send the audit →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section style="background:var(--ink);color:var(--paper)">
+    <div class="wrap">
+      <h2 style="font-size:clamp(26px,3.4vw,44px);margin-bottom:14px;color:var(--paper);max-width:720px">Your next stage should not inherit the limitations of your first brand.</h2>
+      <p style="color:#C9C3B4;font-size:16px;margin-bottom:28px;max-width:560px;line-height:1.6">Tell us what you are launching, changing or preparing to scale. We will review the requirement and recommend whether you need the Brand-to-Shelf system, the complete Brand-to-Market engagement or a different scope altogether.</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px">
+        <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" class="btn-primary">Discuss Your Project →</a>
+        <a href="https://wa.me/919428859768" target="_blank" rel="noopener noreferrer" class="btn-outline-light">Message The Drawing Board on WhatsApp</a>
+      </div>
+      <p style="color:#C9C3B4;font-size:13px">Engagements begin at ₹4,75,000.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer style="background:var(--ink);color:var(--paper);padding:60px 0 32px;border-top:1px solid rgba(255,255,255,0.08)">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px" class="values-grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:17px;margin-bottom:16px">
+          <div style="width:22px;height:22px;border:1.5px solid var(--paper);position:relative" aria-hidden="true"><div style="position:absolute;inset:4px;border:1px solid var(--paper)"></div></div>
+          The Drawing Board
+        </div>
+        <p style="font-size:13.5px;color:#C9C3B4;line-height:1.6;max-width:280px">The Drawing Board is an independent strategy-led studio building brand identities, packaging systems and digital experiences for ambitious consumer businesses.</p>
+      </div>
+      <div>
+        <h5 style="font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:#C9C3B4;margin-bottom:18px;font-family:'IBM Plex Mono',monospace">Navigation</h5>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:14px">
+          <a href="work.html" style="color:var(--paper)">Work</a>
+          <a href="branding.html" style="color:var(--paper)">Branding</a>
+          <a href="#"><!-- Route to packaging-design page --><span style="color:var(--paper)">Packaging Design</span></a>
+          <a href="#"><!-- Route to website-design page --><span style="color:var(--paper)">Website Design</span></a>
+          <a href="#"><!-- Route to studio page --><span style="color:var(--paper)">Studio</span></a>
+          <a href="#"><!-- Route to insights page --><span style="color:var(--paper)">Insights</span></a>
+          <a href="#"><!-- Route to contact page --><span style="color:var(--paper)">Contact</span></a>
+        </div>
+      </div>
+      <div>
+        <h5 style="font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:#C9C3B4;margin-bottom:18px;font-family:'IBM Plex Mono',monospace">Selected Work</h5>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:14px">
+          <a href="work.html" style="color:var(--paper)">AFTER8®</a>
+          <a href="work.html" style="color:var(--paper)">LUMIEN</a>
+          <a href="work.html" style="color:var(--paper)">CARDAMOM</a>
+        </div>
+      </div>
+      <div>
+        <h5 style="font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:#C9C3B4;margin-bottom:18px;font-family:'IBM Plex Mono',monospace">Connect</h5>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:14px">
+          <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" style="color:var(--paper)">Book a Call</a>
+          <a href="https://wa.me/919428859768" target="_blank" rel="noopener noreferrer" style="color:var(--paper)">WhatsApp</a>
+          <a href="#" style="color:var(--paper)"><!-- Add real Instagram URL -->Instagram</a>
+          <a href="#" style="color:var(--paper)"><!-- Add real LinkedIn URL -->LinkedIn</a>
+          <a href="mailto:studio@thedrawingboard.studio" style="color:var(--paper)"><!-- Confirm real studio email -->Email</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.12);padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#C9C3B4;font-family:'IBM Plex Mono',monospace;flex-wrap:wrap;gap:10px">
+      <span>© <span id="footerYear">2026</span> The Drawing Board Studio. All rights reserved.</span>
+      <span>Strategy / Identity / Packaging / Digital</span>
+    </div>
+    <div style="margin-top:10px;font-size:11.5px;color:#8B876F">
+      <a href="#" style="color:#8B876F;border-bottom:1px dashed #8B876F"><!-- Add real privacy policy URL -->Privacy Policy</a>
+      &nbsp;·&nbsp;
+      <a href="#" style="color:#8B876F;border-bottom:1px dashed #8B876F"><!-- Add real terms URL -->Terms</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile sticky CTA -->
+<div class="sticky-cta">
+  <div class="lines">
+    <span class="top mono">Projects from ₹4,75,000</span>
+    <span class="bottom">Discuss your project</span>
+  </div>
+  <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" class="btn-primary">Start →</a>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* Mobile navigation menu */
+  var navToggle = document.getElementById('navToggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if (navToggle && mobileMenu) {
+    navToggle.addEventListener('click', function () {
+      var isOpen = mobileMenu.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileMenu.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Open menu');
+      });
+    });
+  }
+
+  /* FAQ accordion — content defined here so it works with a single source of truth */
+  var faqData = [
+    { q: 'What is included in the ₹4,75,000 engagement?', a: 'The Brand-to-Shelf engagement includes strategy, positioning, messaging direction, a complete identity system, brand guidelines, one master packaging direction, front and back information hierarchy, up to five straightforward SKU adaptations, presentation mockups, print-ready artwork on approved dielines and editable source files. The final proposal confirms the exact formats and deliverables.' },
+    { q: 'What is included in the ₹6,50,000 engagement?', a: 'Brand-to-Market includes everything in Brand-to-Shelf plus website strategy, sitemap, customer journey, content hierarchy, responsive UI/UX design, an agreed page-template system, website development, testing, launch support and handover. Platform, page count, product count, e-commerce requirements and integrations are confirmed before the project begins.' },
+    { q: 'Can we begin with branding and packaging and add the website later?', a: 'Yes. Brand-to-Shelf can be completed first, with the website scoped as a second phase. This works especially well when product information, photography or website content will not be ready during the branding stage.' },
+    { q: 'How many packaging SKUs are included?', a: 'Brand-to-Shelf includes one master packaging direction and up to five straightforward SKU adaptations using the approved structure. Additional SKUs, sizes, structures or formats are quoted separately.' },
+    { q: 'What counts as a straightforward SKU adaptation?', a: 'A straightforward adaptation keeps the approved packaging structure while changing controlled elements such as flavour, ingredient, product name, colour, quantity or approved content. A new container, new dieline, significantly different information structure or new category is treated as a separate format.' },
+    { q: 'Is website development included in ₹6,50,000?', a: 'Yes, within the platform, page-template system, product count and functionality defined in the proposal. Advanced applications, unusual integrations, large catalogues, complex membership systems or custom backend requirements may require separate development scope.' },
+    { q: 'Is an app included?', a: 'No. The ₹6,50,000 engagement covers a website, not a standalone mobile application. App strategy, UX, UI and development require a separate scope.' },
+    { q: 'Which website platform will you use?', a: 'The platform is selected according to the business model and requirements. Depending on the project, this may include Shopify, Framer or another agreed platform. The recommendation is confirmed after reviewing products, integrations, content and internal management needs.' },
+    { q: 'Do you write the website or packaging copy?', a: 'Messaging direction, content hierarchy and key brand language are included. Full website copywriting, large product-description libraries, legal copy and regulated packaging content are separate unless explicitly included in the proposal.' },
+    { q: 'Do you create packaging dielines?', a: 'The standard engagement applies approved artwork to client- or manufacturer-supplied dielines. Structural engineering and technical dieline creation are not included by default. Final dielines should be verified by the manufacturer or a qualified packaging engineer.' },
+    { q: 'Do you manage printing or manufacturing?', a: 'Printing and manufacturing are not included in the design fee. The studio can provide artwork, finish recommendations, printer notes and limited handoff support. Vendor sourcing, physical proofs, production supervision and extended print coordination can be quoted separately.' },
+    { q: 'Do you verify legal or regulatory packaging compliance?', a: 'No. We organise approved information into a clear hierarchy, but final legal, nutrition, ingredient, certification and regulatory accuracy remains the client&rsquo;s responsibility. Relevant claims should be approved by the appropriate legal, regulatory or manufacturing specialists.' },
+    { q: 'How many creative directions will we see?', a: 'After strategy alignment, we present one or two carefully considered creative territories rather than a large collection of unrelated options. One direction is selected and developed into the complete system.' },
+    { q: 'How are revisions handled?', a: 'The proposal defines revision rounds at the strategy, creative direction, identity, packaging and website checkpoints. Feedback must be consolidated by the nominated decision-makers. New requirements or changes to an approved stage may require additional scope.' },
+    { q: 'Do we own the final files?', a: 'After final payment, you receive the agreed editable source files and export-ready assets. Third-party fonts, stock images, software, plugins or licensed assets remain subject to their original licence terms.' },
+    { q: 'What are the payment terms?', a: 'The standard structure is 50% to begin, 25% after approval of the identity and master packaging direction, and 25% before final launch and complete file handover. The formal proposal and agreement confirm milestone details.' },
+    { q: 'How long does the project take?', a: 'Brand-to-Shelf typically takes approximately 6–8 weeks. Brand-to-Market typically takes approximately 8–12 weeks. Timing depends on feedback speed, final content, approved claims and dielines, SKU complexity, website functionality and decision-maker availability.' },
+    { q: 'Can you work with an existing identity?', a: 'Yes. If the existing identity is strong enough to support the required packaging or website system, we can assess a focused scope. If major gaps prevent consistency or differentiation, we will explain what needs to be strengthened before proceeding.' },
+    { q: 'Do you work with international clients?', a: 'Yes. Discovery, presentations, approvals and handover can be completed remotely. International clients must ensure their manufacturers provide correct specifications and that local legal and regulatory requirements are independently verified.' },
+    { q: 'What happens after the introductory call?', a: 'We review your business stage, product range, current brand, launch requirements and timeline. If the project is a fit, you receive a tailored proposal defining scope, deliverables, responsibilities, milestones, investment and exclusions.' }
+  ];
+
+  var faqList = document.getElementById('faqList');
+  if (faqList) {
+    faqData.forEach(function (item, i) {
+      var qId = 'faq-q-' + i;
+      var aId = 'faq-a-' + i;
+      var wrap = document.createElement('div');
+      wrap.className = 'faq-item';
+      wrap.innerHTML =
+        '<button type="button" class="faq-q" id="' + qId + '" aria-expanded="false" aria-controls="' + aId + '">' +
+        '<span>' + item.q + '</span><span class="faq-icon" aria-hidden="true">+</span>' +
+        '</button>' +
+        '<div class="faq-a" id="' + aId + '" role="region" aria-labelledby="' + qId + '" hidden>' + item.a + '</div>';
+      faqList.appendChild(wrap);
+    });
+
+    faqList.addEventListener('click', function (e) {
+      var btn = e.target.closest('.faq-q');
+      if (!btn) return;
+      var panel = document.getElementById(btn.getAttribute('aria-controls'));
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      /* Collapse siblings on small screens for a single-open accordion */
+      if (window.innerWidth < 768) {
+        faqList.querySelectorAll('.faq-q').forEach(function (other) {
+          if (other !== btn) {
+            other.setAttribute('aria-expanded', 'false');
+            var otherPanel = document.getElementById(other.getAttribute('aria-controls'));
+            if (otherPanel) otherPanel.hidden = true;
+          }
+        });
+      }
+
+      btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      if (panel) panel.hidden = isOpen;
+    });
+  }
+
+  /* Footer year */
+  var yearEl = document.getElementById('footerYear');
+  if (yearEl) { yearEl.textContent = String(new Date().getFullYear()); }
+
+  /* Lead magnet form — front-end validation only; connect action before launch */
+  var leadForm = document.querySelector('.lead-form');
+  if (leadForm) {
+    leadForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var emailInput = document.getElementById('leadEmail');
+      var emailError = document.getElementById('leadEmailError');
+      var emailValid = emailInput && emailInput.checkValidity();
+      if (emailError) { emailError.style.display = emailValid ? 'none' : 'block'; }
+    });
+  }
+})();
+</script>
+</body>
+</html>
