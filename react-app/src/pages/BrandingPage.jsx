@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -16,6 +16,53 @@ export default function BrandingPage() {
   const [scaleSlide, setScaleSlide] = useState(0);
   const [leadFormData, setLeadFormData] = useState({ email: '', brand: '', web: '', stage: '' });
   const [leadSubmitted, setLeadSubmitted] = useState(false);
+
+  // Think Section Interactive Media State
+  const [categorySlide, setCategorySlide] = useState(0);
+  const [heatmapSlide, setHeatmapSlide] = useState(0);
+  const [isCategoryHovered, setIsCategoryHovered] = useState(false);
+  const [isHeatmapHovered, setIsHeatmapHovered] = useState(false);
+  const [lightboxImage, setLightboxImage] = useState(null);
+
+  const categoryAuditImages = [
+    '/images/think/category_audit.jpeg',
+    '/images/think/category_audit1.jpeg',
+    '/images/think/category_audit2.jpeg',
+    '/images/think/category_audit3.jpeg'
+  ];
+
+  const heatmapImages = [
+    '/images/think/heatmap.jpeg',
+    '/images/think/heatmap1.jpeg',
+    '/images/think/heatmap2.jpeg',
+    '/images/think/heatmap3.jpeg'
+  ];
+
+  // Auto slide timers for Category Audit and Heatmap sliders
+  useEffect(() => {
+    if (isCategoryHovered) return;
+    const interval = setInterval(() => {
+      setCategorySlide((prev) => (prev + 1) % categoryAuditImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [isCategoryHovered, categoryAuditImages.length]);
+
+  useEffect(() => {
+    if (isHeatmapHovered) return;
+    const interval = setInterval(() => {
+      setHeatmapSlide((prev) => (prev + 1) % heatmapImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [isHeatmapHovered, heatmapImages.length]);
+
+  // Close lightbox on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setLightboxImage(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const growthPrices = {
     INR: '₹4,75,000/-',
@@ -160,13 +207,15 @@ export default function BrandingPage() {
         @media (max-width: 920px) { .bp-hero-grid { grid-template-columns: 1fr; } }
         .bp-hero-sub { font-size: 17.5px; color: var(--ink-soft); max-width: 540px; margin-bottom: 14px; line-height: 1.6; }
         
-        .bp-cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin: 24px 0 14px; }
-        .bp-btn-primary { background: var(--pine); color: var(--paper); padding: 15px 26px; font-size: 14.5px; font-weight: 600; border-radius: var(--radius); display: inline-flex; align-items: center; gap: 8px; transition: background .15s; text-decoration: none; }
-        .bp-btn-primary:hover { background: var(--pine-deep); }
+        .bp-cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin: 24px 0 14px; }
+        .bp-btn-primary { background: var(--pine); color: var(--paper); padding: 14px 24px; font-size: 14px; font-weight: 600; border-radius: var(--radius); display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.15s; text-decoration: none; min-height: 48px; border: 1.5px solid var(--pine); box-sizing: border-box; text-align: center; }
+        .bp-btn-primary:hover { background: var(--pine-deep); border-color: var(--pine-deep); }
+        .btn-outline-light { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border: 1.5px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.04); color: var(--paper); font-size: 14px; font-weight: 600; border-radius: var(--radius); transition: all 0.15s; text-decoration: none; min-height: 48px; box-sizing: border-box; text-align: center; }
+        .btn-outline-light:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.6); }
         .bp-btn-link { font-size: 14.5px; border-bottom: 1px solid currentColor; padding-bottom: 2px; color: var(--ink-soft); text-decoration: none; }
         .bp-btn-link:hover { color: var(--ink); }
         
-        .bp-price-note { font-size: 13px; color: var(--ink-soft); }
+        .bp-price-note { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
         .bp-price-note b { color: var(--ink); }
 
         .bp-annot-card { background: var(--card); border: 1px solid var(--ink); padding: 26px; position: relative; }
@@ -239,13 +288,32 @@ export default function BrandingPage() {
         .case-body .demo b { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--marker); text-transform: uppercase; margin-bottom: 4px; }
         .bp-cases-foot { display: flex; justify-content: center; margin-top: 40px; }
 
-        /* Think Grid */
-        .think-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        @media (max-width: 900px) { .think-grid { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 560px) { .think-grid { grid-template-columns: 1fr; } }
-        .think-card { border: 1px solid var(--ink); background: var(--card); }
-        .think-card .img { aspect-ratio: 3/2; background: linear-gradient(135deg, #d8d2c1, #c3bda9); display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(27,27,23,0.4); text-align: center; padding: 12px; }
-        .think-body { padding: 18px 20px; }
+        /* Think Grid & Interactive Media Cards */
+        .think-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .think-card { border: 1.5px solid var(--ink); background: var(--card); overflow: hidden; display: flex; flex-direction: column; border-radius: 2px; }
+        .think-card-media { position: relative; width: 100%; aspect-ratio: 16/10; overflow: hidden; background: #1B1B17; cursor: pointer; user-select: none; }
+        .think-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.35s ease, opacity 0.2s ease; display: block; }
+        .think-card-media:hover img { transform: scale(1.03); }
+        .think-slider-track { display: flex; height: 100%; width: 100%; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .think-slide-item { flex-shrink: 0; width: 100%; height: 100%; position: relative; }
+        
+        /* Slider Overlay Controls */
+        .think-controls-bar { position: absolute; top: 8px; right: 8px; display: flex; align-items: center; gap: 4px; z-index: 10; background: rgba(27,27,23,0.8); backdrop-filter: blur(4px); padding: 3px 6px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.18); }
+        .think-counter { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #ffffff; padding: 0 4px; font-weight: 600; letter-spacing: 0.05em; }
+        .think-nav-btn { background: rgba(255,255,255,0.18); border: none; color: #ffffff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; cursor: pointer; transition: background 0.15s; line-height: 1; }
+        .think-nav-btn:hover { background: var(--pine); }
+        
+        .think-zoom-badge { position: absolute; bottom: 8px; right: 8px; z-index: 10; background: rgba(27,27,23,0.8); backdrop-filter: blur(4px); color: #ffffff; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; padding: 4px 9px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.18); display: flex; align-items: center; gap: 4px; opacity: 0.85; transition: opacity 0.2s, background 0.2s; pointer-events: none; }
+        .think-card-media:hover .think-zoom-badge { opacity: 1; background: var(--pine); border-color: var(--pine); }
+        
+        /* Lightbox Modal Overlay */
+        .think-lightbox-overlay { position: fixed; inset: 0; z-index: 99999; background: rgba(15,15,12,0.92); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; animation: bp-fadeIn 0.2s ease-out; }
+        .think-lightbox-container { position: relative; max-width: 92vw; max-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: default; }
+        .think-lightbox-container img { max-width: 92vw; max-height: 85vh; object-fit: contain; border-radius: 4px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.15); }
+        .think-lightbox-close { position: absolute; top: -16px; right: -16px; background: var(--pine); color: #ffffff; border: 1px solid rgba(255,255,255,0.3); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; transition: transform 0.15s, background 0.15s; z-index: 100000; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+        .think-lightbox-close:hover { transform: scale(1.1); background: var(--marker); }
+
+        .think-body { padding: 18px 20px; flex: 1; display: flex; flex-direction: column; justify-content: flex-start; }
         .think-body .n { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--marker); margin-bottom: 6px; }
         .think-body h4 { font-size: 16px; margin-bottom: 6px; }
         .think-body p { font-size: 13px; color: var(--ink-soft); line-height: 1.45; }
@@ -380,9 +448,21 @@ export default function BrandingPage() {
         .bp-sp-stat-num { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: #fff; display: block; line-height: 1; }
         .bp-sp-stat-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #8B8571; }
 
+        /* Mobile Container & Viewport Containment */
+        html, body, #root, main, .bp-full-page, section {
+          max-width: 100vw;
+          overflow-x: hidden;
+        }
+        .wrap {
+          width: 100%;
+          max-width: 1180px;
+          margin: 0 auto;
+          padding: 0 32px;
+          box-sizing: border-box;
+        }
+
         /* Unified Pricing Cards Styles */
         .bp-tiers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; align-items: stretch; }
-        @media (max-width: 900px) { .bp-tiers { grid-template-columns: 1fr; } }
         .bp-tier { background: var(--card); border: 1.5px solid var(--ink); display: flex; flex-direction: column; overflow: hidden; height: 100%; border-radius: 2px; }
         .bp-tier-head { background: var(--paper); border-bottom: 1.5px solid var(--ink); padding: 26px 28px; min-height: 184px; display: flex; flex-direction: column; justify-content: space-between; }
         .bp-tier-head .name { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); margin-bottom: 4px; }
@@ -407,9 +487,9 @@ export default function BrandingPage() {
         .bp-tier-time { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--ink-soft); }
 
         /* Locked Logos Marquee Styles */
-        .bp-logo-marquee-section { background: var(--ink); color: var(--paper); padding: 48px 0; overflow: hidden; }
+        .bp-logo-marquee-section { background: var(--ink); color: var(--paper); padding: 48px 0; overflow: hidden; width: 100%; }
         .bp-marquee-title { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(255,255,255,0.4); text-align: center; margin-bottom: 28px; }
-        .bp-marquee-row { overflow: hidden; margin-bottom: 12px; }
+        .bp-marquee-row { overflow: hidden; margin-bottom: 12px; width: 100%; }
         .bp-marquee-track { display: flex; gap: 40px; align-items: center; white-space: nowrap; animation: bp-scrollMarquee 22s linear infinite; }
         .bp-marquee-track.rtl { animation-direction: reverse; }
         .bp-marquee-track.slow { animation-duration: 30s; }
@@ -421,9 +501,82 @@ export default function BrandingPage() {
 
         /* Sticky Mobile CTA */
         .bp-sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: var(--paper); border-top: 1px solid var(--ink); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-        @media (min-width: 768px) { .bp-sticky-cta { display: none; } }
         .bp-sticky-cta .bp-txt { font-size: 12px; color: var(--ink-soft); font-family: 'IBM Plex Mono', monospace; }
         .bp-sticky-cta .bp-txt b { display: block; font-size: 14px; color: var(--ink); font-family: 'Inter', sans-serif; }
+
+        /* ── Comprehensive Mobile Responsive Overrides (< 768px) ── */
+        @media (max-width: 768px) {
+          section { padding: 48px 0 !important; }
+          .wrap { padding: 0 16px !important; }
+          
+          .bp-hero { padding: 20px 0 36px !important; }
+          .bp-hero h1 { font-size: clamp(28px, 7.5vw, 42px) !important; line-height: 1.15 !important; }
+          .bp-hero-sub { font-size: 15.5px !important; margin-bottom: 12px !important; }
+          .bp-hero-grid { grid-template-columns: 1fr !important; gap: 24px !important; margin-top: 24px !important; }
+          .bp-cta-row { flex-direction: column !important; align-items: stretch !important; gap: 10px !important; }
+          .bp-btn-primary { justify-content: center !important; width: 100% !important; text-align: center !important; }
+          .bp-annot-card { padding: 20px 16px !important; }
+          
+          .bp-stat-strip { display: grid !important; grid-template-columns: 1fr 1fr !important; margin-top: 32px !important; }
+          .bp-stat { padding: 16px 14px !important; border-right: 1px solid var(--ink) !important; border-bottom: 1px solid var(--ink) !important; }
+          .bp-stat:nth-child(2n) { border-right: none !important; }
+          .bp-stat:nth-child(3), .bp-stat:nth-child(4) { border-bottom: none !important; }
+          .bp-stat .num { font-size: 28px !important; }
+          
+          .category-strip { padding: 16px 0 !important; }
+          .category-row { gap: 8px !important; }
+          .category-row span { font-size: 11px !important; padding: 5px 10px !important; }
+          
+          .bp-problem-section { padding: 48px 0 !important; }
+          .bp-problem-copy { font-size: 16px !important; line-height: 1.55 !important; }
+          
+          .bp-qual-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+          .bp-qual-col { padding: 20px 16px !important; }
+
+          /* Connected System Sequence vertical stack on mobile */
+          .system-sequence { display: grid !important; grid-template-columns: 1fr !important; width: 100% !important; }
+          .seq-stage { min-width: 0 !important; width: 100% !important; border-right: none !important; border-bottom: 1px dashed var(--paper-line) !important; padding: 18px 16px !important; }
+          .seq-stage:last-child { border-bottom: none !important; }
+          
+          .case-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+          .think-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+          .bp-deliv-grid { grid-template-columns: 1fr !important; }
+          .bp-deliv-col { padding: 20px 16px !important; }
+          
+          /* Process steps touch scroll container */
+          .bp-process { width: 100% !important; max-width: 100% !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+          .bp-pstep { padding: 18px 16px !important; min-width: 160px !important; }
+          
+          /* Compare Table scroll wrapper */
+          .compare-wrap { width: 100% !important; max-width: 100% !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+          .compare-table th, .compare-table td { padding: 10px 12px !important; font-size: 12.5px !important; }
+          
+          /* Pricing Cards on mobile */
+          .bp-tiers { grid-template-columns: 1fr !important; gap: 20px !important; }
+          .bp-tier-head { padding: 20px 16px !important; min-height: auto !important; }
+          .bp-tier-price { padding: 16px !important; min-height: auto !important; }
+          .bp-deliv-bar { padding: 10px 16px !important; flex-wrap: wrap !important; gap: 8px !important; }
+          .bp-tier-slide { padding: 16px !important; min-height: auto !important; }
+          .bp-tier-foot { padding: 16px !important; }
+
+          .guarantee, .bp-guarantee { padding: 24px 16px !important; flex-direction: column !important; gap: 16px !important; }
+          
+          .scope-grid { grid-template-columns: 1fr !important; }
+          .scope-col:first-child { border-right: none !important; border-bottom: 1px solid var(--ink) !important; }
+          .scope-col { padding: 20px 16px !important; }
+          .scope-note { padding: 16px !important; }
+
+          .checklist { columns: 1 !important; }
+          
+          .lead-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+          .lead-form { padding: 20px 16px !important; }
+
+          .bp-section-head { margin-bottom: 28px !important; gap: 12px !important; }
+          .bp-section-head h2 { font-size: clamp(24px, 6.5vw, 32px) !important; }
+        }
+        @media (min-width: 769px) {
+          .bp-sticky-cta { display: none !important; }
+        }
       `}</style>
 
       <main className="bp-full-page">
@@ -683,29 +836,153 @@ export default function BrandingPage() {
               </div>
             </div>
             <div className="think-grid">
+              {/* Card 01: Category Audit (Slider with 4 images + Auto Slide + Click Lightbox) */}
               <div className="think-card">
-                <div className="img">Category Audit Board</div>
-                <div className="think-body"><div className="n mono">01</div><h4>Category audit</h4><p>What competitors repeat and where the brand can create distance.</p></div>
+                <div
+                  className="think-card-media"
+                  onMouseEnter={() => setIsCategoryHovered(true)}
+                  onMouseLeave={() => setIsCategoryHovered(false)}
+                  onClick={() => setLightboxImage(categoryAuditImages[categorySlide])}
+                  title="Click to view full image"
+                >
+                  <div
+                    className="think-slider-track"
+                    style={{ transform: `translateX(-${categorySlide * 100}%)` }}
+                  >
+                    {categoryAuditImages.map((src, i) => (
+                      <div key={i} className="think-slide-item">
+                        <img src={src} alt={`Category Audit ${i + 1}`} loading="lazy" />
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="think-controls-bar" onClick={(e) => e.stopPropagation()}>
+                    <button
+                      type="button"
+                      className="think-nav-btn"
+                      onClick={() => setCategorySlide((prev) => (prev > 0 ? prev - 1 : categoryAuditImages.length - 1))}
+                      title="Previous image"
+                    >
+                      ‹
+                    </button>
+                    <span className="think-counter">{categorySlide + 1}/{categoryAuditImages.length}</span>
+                    <button
+                      type="button"
+                      className="think-nav-btn"
+                      onClick={() => setCategorySlide((prev) => (prev + 1) % categoryAuditImages.length)}
+                      title="Next image"
+                    >
+                      ›
+                    </button>
+                  </div>
+                </div>
+                <div className="think-body">
+                  <div className="n mono">01</div>
+                  <h4>Category audit</h4>
+                  <p>What competitors repeat and where the brand can create distance.</p>
+                </div>
               </div>
+
+              {/* Card 02: Audience Understanding (Single Image + Click Lightbox) */}
               <div className="think-card">
-                <div className="img">Audience Context Strategy</div>
-                <div className="think-body"><div class="n mono">02</div><h4>Audience understanding</h4><p>What the customer needs to recognise, believe and remember.</p></div>
+                <div
+                  className="think-card-media"
+                  onClick={() => setLightboxImage('/images/think/audience_understanding.jpeg')}
+                >
+                  <img
+                    src="/images/think/audience_understanding.jpeg"
+                    alt="Audience Context Strategy"
+                    loading="lazy"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </div>
+                <div className="think-body">
+                  <div className="n mono">02</div>
+                  <h4>Audience understanding</h4>
+                  <p>What the customer needs to recognise, believe and remember.</p>
+                </div>
               </div>
+
+              {/* Card 03: Positioning Territory */}
               <div className="think-card">
-                <div className="img">Positioning Matrix</div>
-                <div className="think-body"><div className="n mono">03</div><h4>Positioning territory</h4><p>The idea the brand should own in the market.</p></div>
+                <div className="think-card-media" style={{ background: 'linear-gradient(135deg, #d8d2c1, #c3bda9)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px', color: 'rgba(27,27,23,0.4)', fontFamily: "'IBM Plex Mono', monospace", fontSize: '11px', textAlign: 'center' }}>
+                  Positioning Matrix
+                </div>
+                <div className="think-body">
+                  <div className="n mono">03</div>
+                  <h4>Positioning territory</h4>
+                  <p>The idea the brand should own in the market.</p>
+                </div>
               </div>
+
+              {/* Card 04: Information Hierarchy (Heatmap Slider with 4 images + Auto Slide + Click Lightbox) */}
               <div className="think-card">
-                <div className="img">Hierarchy Blueprint</div>
-                <div className="think-body"><div className="n mono">04</div><h4>Information hierarchy</h4><p>What customers must understand first, second and third.</p></div>
+                <div
+                  className="think-card-media"
+                  onMouseEnter={() => setIsHeatmapHovered(true)}
+                  onMouseLeave={() => setIsHeatmapHovered(false)}
+                  onClick={() => setLightboxImage(heatmapImages[heatmapSlide])}
+                >
+                  <div
+                    className="think-slider-track"
+                    style={{ transform: `translateX(-${heatmapSlide * 100}%)` }}
+                  >
+                    {heatmapImages.map((src, i) => (
+                      <div key={i} className="think-slide-item">
+                        <img src={src} alt={`Heatmap Visual Analysis ${i + 1}`} loading="lazy" />
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="think-controls-bar" onClick={(e) => e.stopPropagation()}>
+                    <button
+                      type="button"
+                      className="think-nav-btn"
+                      onClick={() => setHeatmapSlide((prev) => (prev > 0 ? prev - 1 : heatmapImages.length - 1))}
+                      title="Previous image"
+                    >
+                      ‹
+                    </button>
+                    <span className="think-counter">{heatmapSlide + 1}/{heatmapImages.length}</span>
+                    <button
+                      type="button"
+                      className="think-nav-btn"
+                      onClick={() => setHeatmapSlide((prev) => (prev + 1) % heatmapImages.length)}
+                      title="Next image"
+                    >
+                      ›
+                    </button>
+                  </div>
+                </div>
+                <div className="think-body">
+                  <div className="n mono">04</div>
+                  <h4>Information hierarchy</h4>
+                  <p>What customers must understand first, second and third (Visual Heatmap Analysis).</p>
+                </div>
               </div>
+
+              {/* Card 05: Creative Exploration */}
               <div className="think-card">
-                <div className="img">Typography & Symbol Lab</div>
-                <div className="think-body"><div className="n mono">05</div><h4>Creative exploration</h4><p>Typography, symbols, imagery, colour and composition tested against the strategy.</p></div>
+                <div className="think-card-media" style={{ background: 'linear-gradient(135deg, #d8d2c1, #c3bda9)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px', color: 'rgba(27,27,23,0.4)', fontFamily: "'IBM Plex Mono', monospace", fontSize: '11px', textAlign: 'center' }}>
+                  Typography &amp; Symbol Lab
+                </div>
+                <div className="think-body">
+                  <div className="n mono">05</div>
+                  <h4>Creative exploration</h4>
+                  <p>Typography, symbols, imagery, colour and composition tested against the strategy.</p>
+                </div>
               </div>
+
+              {/* Card 06: System Planning */}
               <div className="think-card">
-                <div className="img">System Architecture Plan</div>
-                <div className="think-body"><div className="n mono">06</div><h4>System planning</h4><p>How identity, SKUs, formats and digital components remain consistent as the brand grows.</p></div>
+                <div className="think-card-media" style={{ background: 'linear-gradient(135deg, #d8d2c1, #c3bda9)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px', color: 'rgba(27,27,23,0.4)', fontFamily: "'IBM Plex Mono', monospace", fontSize: '11px', textAlign: 'center' }}>
+                  System Architecture Plan
+                </div>
+                <div className="think-body">
+                  <div className="n mono">06</div>
+                  <h4>System planning</h4>
+                  <p>How identity, SKUs, formats and digital components remain consistent as the brand grows.</p>
+                </div>
               </div>
             </div>
             <p style={{ marginTop: '32px', fontSize: '14.5px', color: 'var(--ink-soft)', maxWidth: '600px' }}>
@@ -1593,15 +1870,17 @@ export default function BrandingPage() {
             <p style={{ color: '#C9C3B4', fontSize: '16px', marginBottom: '28px', maxWidth: '560px', lineHeight: 1.6 }}>
               Tell us what you are launching, changing or preparing to scale. We will review the requirement and recommend whether you need the Brand-to-Shelf system, the complete Brand-to-Market engagement or a different scope altogether.
             </p>
-            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '16px' }}>
+            <div className="bp-cta-row" style={{ marginTop: '24px', marginBottom: '16px' }}>
               <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="bp-btn-primary">
                 Discuss Your Project →
               </a>
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-outline-light">
-                Message The Drawing Board on WhatsApp
+                Message us on WhatsApp
               </a>
             </div>
-            <p style={{ color: '#C9C3B4', fontSize: '13px' }}>Engagements begin at ₹4,75,000.</p>
+            <p className="bp-price-note" style={{ color: '#C9C3B4', fontSize: '13px', fontFamily: "'IBM Plex Mono', monospace", margin: 0 }}>
+              Engagements begin at <b style={{ color: '#ffffff' }}>₹4,75,000</b>.
+            </p>
           </div>
         </section>
       </main>
@@ -1644,6 +1923,27 @@ export default function BrandingPage() {
           <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'var(--pine)', fontWeight: 600, fontSize: '13px' }}>Book now →</a>
         </div>
       </div>
+
+      {/* ── LIGHTBOX MODAL OVERLAY FOR THINK GRID IMAGES ───────────── */}
+      {lightboxImage && (
+        <div
+          className="think-lightbox-overlay"
+          onClick={() => setLightboxImage(null)}
+          title="Click anywhere to close"
+        >
+          <div className="think-lightbox-container" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className="think-lightbox-close"
+              onClick={() => setLightboxImage(null)}
+              title="Close image (Esc)"
+            >
+              ✕
+            </button>
+            <img src={lightboxImage} alt="Expanded Think Grid Asset" />
+          </div>
+        </div>
+      )}
 
       <Footer />
     </>
