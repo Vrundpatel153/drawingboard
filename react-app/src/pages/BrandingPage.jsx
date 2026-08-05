@@ -1186,9 +1186,9 @@ export default function BrandingPage() {
                     />
                   </div>
                   <div className="bp-sp-video-foot">
-                    <div className="bp-sp-vav">LF</div>
+                    <div className="bp-sp-vav">RJ</div>
                     <div>
-                      <div className="bp-sp-vname">Lena F.</div>
+                      <div className="bp-sp-vname">Rashika Jain</div>
                       <div className="bp-sp-vrole">CEO, Northbyte</div>
                     </div>
                   </div>
@@ -1206,9 +1206,9 @@ export default function BrandingPage() {
                     />
                   </div>
                   <div className="bp-sp-video-foot">
-                    <div className="bp-sp-vav">SK</div>
+                    <div className="bp-sp-vav">JB</div>
                     <div>
-                      <div className="bp-sp-vname">Shiba Krishnan</div>
+                      <div className="bp-sp-vname">Jagriti Bansal</div>
                       <div className="bp-sp-vrole">Owner, Shiba's Bar &amp; Kitchen</div>
                     </div>
                   </div>
@@ -1226,9 +1226,9 @@ export default function BrandingPage() {
                     />
                   </div>
                   <div className="bp-sp-video-foot">
-                    <div className="bp-sp-vav">MC</div>
+                    <div className="bp-sp-vav">PS</div>
                     <div>
-                      <div className="bp-sp-vname">Marcus Chen</div>
+                      <div className="bp-sp-vname">Priya Sharma</div>
                       <div className="bp-sp-vrole">Founder, Lumen Fine Jewellery</div>
                     </div>
                   </div>
@@ -1246,9 +1246,9 @@ export default function BrandingPage() {
                     />
                   </div>
                   <div className="bp-sp-video-foot">
-                    <div className="bp-sp-vav">VR</div>
+                    <div className="bp-sp-vav">SH</div>
                     <div>
-                      <div className="bp-sp-vname">Vikram R.</div>
+                      <div className="bp-sp-vname">Sarah Halder</div>
                       <div className="bp-sp-vrole">Product Lead, Sonar Platform</div>
                     </div>
                   </div>
