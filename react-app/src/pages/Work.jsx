@@ -10,9 +10,7 @@ import { usePageAnimations } from '../hooks/usePageAnimations';
 
 export default function Work() {
   const [filter, setFilter] = useState('all');
-  const [activeIdx, setActiveIdx] = useState(0);
   const pageRef = useRef(null);
-  const carouselRef = useRef(null);
 
   usePageAnimations(pageRef);
 
@@ -27,30 +25,6 @@ export default function Work() {
 
   const handleFilter = (val) => {
     setFilter(val);
-    setActiveIdx(0);
-    if (carouselRef.current) {
-      carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-    }
-  };
-
-  const scrollCarousel = (direction) => {
-    if (!carouselRef.current) return;
-    const cardWidth = carouselRef.current.firstElementChild?.offsetWidth || 380;
-    const gap = 24;
-    const scrollAmount = (cardWidth + gap) * (direction === 'next' ? 1 : -1);
-    carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  };
-
-  const handleScroll = () => {
-    if (!carouselRef.current) return;
-    const cardWidth = carouselRef.current.firstElementChild?.offsetWidth || 380;
-    const gap = 24;
-    const scrollPos = carouselRef.current.scrollLeft;
-    const idx = Math.min(
-      Math.max(0, Math.round(scrollPos / (cardWidth + gap))),
-      filteredProjects.length - 1
-    );
-    setActiveIdx(idx);
   };
 
   return (
@@ -58,6 +32,116 @@ export default function Work() {
       <div ref={pageRef}>
         <RegistrationMarks />
         <Navbar />
+
+        <style>{`
+          /* Work Grid Layout & Case Cards */
+          .work-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            width: 100%;
+          }
+
+          @media (max-width: 1024px) {
+            .work-grid {
+              grid-template-columns: repeat(2, 1fr);
+              gap: 24px;
+            }
+          }
+
+          @media (max-width: 768px) {
+            .work-grid {
+              grid-template-columns: 1fr !important;
+              gap: 24px;
+            }
+          }
+
+          .work-case-card {
+            border: 1.5px solid var(--ink);
+            background: var(--card);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+          }
+
+          .work-case-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(27, 27, 23, 0.08);
+          }
+
+          .work-case-card .img-box {
+            width: 100%;
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            background: linear-gradient(135deg, #d8d2c1, #c3bda9);
+            position: relative;
+          }
+
+          .work-case-card .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.45s ease;
+            display: block;
+          }
+
+          .work-case-card:hover .img-box img {
+            transform: scale(1.04);
+          }
+
+          .work-card-body {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          }
+
+          .work-card-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--pine);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+          }
+
+          .work-card-title {
+            font-size: 22px;
+            font-family: 'Fraunces', serif;
+            color: var(--ink);
+            margin-bottom: 10px;
+            line-height: 1.25;
+          }
+
+          .work-card-desc {
+            font-size: 14px;
+            color: var(--ink-soft);
+            line-height: 1.55;
+            margin-bottom: 20px;
+          }
+
+          .work-card-link {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--marker);
+            letter-spacing: 0.04em;
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.15s;
+          }
+
+          .work-case-card:hover .work-card-link {
+            color: var(--pine);
+          }
+        `}</style>
 
         {/* Page Hero */}
         <section className="hero-lite">
@@ -91,16 +175,16 @@ export default function Work() {
           </div>
         </section>
 
-        {/* Portfolio Carousel Section */}
-        <section style={{ paddingBottom: '80px', overflow: 'hidden' }}>
+        {/* Portfolio Long Grid Section */}
+        <section style={{ paddingBottom: '80px' }}>
           <div className="wrap">
-            {/* Top Carousel Navigation & Filters Bar */}
+            {/* Top Navigation & Filters Bar */}
             <div
               style={{
                 display: 'flex',
                 justify: 'space-between',
                 alignItems: 'center',
-                marginBottom: '28px',
+                marginBottom: '32px',
                 flexWrap: 'wrap',
                 gap: '16px',
                 borderBottom: '1px dashed var(--paper-line)',
@@ -115,113 +199,46 @@ export default function Work() {
                 <button className={`ftab ${filter === 'packaging' ? 'on' : ''}`} onClick={() => handleFilter('packaging')}>[ PACKAGING ]</button>
               </div>
 
-              {/* Counter Badge & Top Control Buttons */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                <span className="mono" style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ink-soft)', letterSpacing: '0.04em' }}>
-                  [ {String(activeIdx + 1).padStart(2, '0')} / {String(filteredProjects.length).padStart(2, '0')} ]
-                </span>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <button
-                    type="button"
-                    onClick={() => scrollCarousel('prev')}
-                    className="work-top-nav-btn"
-                    title="Previous case study"
-                  >
-                    ←
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => scrollCarousel('next')}
-                    className="work-top-nav-btn"
-                    title="Next case study"
-                  >
-                    →
-                  </button>
-                </div>
-              </div>
+              {/* Counter Badge */}
+              <span className="mono" style={{ fontSize: '12.5px', fontWeight: 600, color: 'var(--ink-soft)', letterSpacing: '0.05em' }}>
+                [ {filteredProjects.length} CASE {filteredProjects.length === 1 ? 'STUDY' : 'STUDIES'} ]
+              </span>
             </div>
 
-            {/* Relative Carousel Wrapper with Floating Side Arrows */}
-            <div style={{ position: 'relative', width: '100%' }}>
-              {/* Left Side Floating Arrow Button */}
-              <button
-                type="button"
-                onClick={() => scrollCarousel('prev')}
-                className="work-nav-arrow work-nav-prev"
-                title="Previous case study"
-                aria-label="Previous case study"
-              >
-                ‹
-              </button>
-
-              {/* Right Side Floating Arrow Button */}
-              <button
-                type="button"
-                onClick={() => scrollCarousel('next')}
-                className="work-nav-arrow work-nav-next"
-                title="Next case study"
-                aria-label="Next case study"
-              >
-                ›
-              </button>
-
-              {/* Smooth Horizontal Carousel Track */}
-              <div
-                ref={carouselRef}
-                onScroll={handleScroll}
-                className="work-carousel-track"
-                style={{
-                  display: 'flex',
-                  gap: '24px',
-                  overflowX: 'auto',
-                  scrollSnapType: 'x mandatory',
-                  scrollBehavior: 'smooth',
-                  paddingBottom: '16px',
-                  WebkitOverflowScrolling: 'touch',
-                  scrollbarWidth: 'none',
-                  msOverflowStyle: 'none'
-                }}
-              >
-                {filteredProjects.map((project, idx) => (
-                  <Link
-                    key={project.slug || idx}
-                    to={`/work/${project.slug}`}
-                    className="case-card work-carousel-card"
-                    style={{
-                      flex: '0 0 380px',
-                      scrollSnapAlign: 'start',
-                      textDecoration: 'none',
-                      borderRadius: '2px',
-                      transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease'
-                    }}
-                  >
-                    <div className="img" style={{ aspectRatio: '4/3', overflow: 'hidden', background: 'linear-gradient(135deg, #d8d2c1, #c3bda9)', position: 'relative' }}>
-                      <img
-                        src={project.coverImage}
-                        alt={project.title}
-                        loading="lazy"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.45s ease' }}
-                      />
-                    </div>
-                    <div className="case-body" style={{ padding: '24px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                      <div>
-                        <div className="tag mono" style={{ fontSize: '11px', color: 'var(--pine)', fontWeight: 600, letterSpacing: '0.04em', marginBottom: '8px' }}>
-                          {project.tag}
-                        </div>
-                        <h4 style={{ fontSize: '20px', fontFamily: "'Fraunces', serif", marginBottom: '8px', color: 'var(--ink)' }}>
-                          {project.title}
-                        </h4>
-                        <p style={{ fontSize: '13.5px', color: 'var(--ink-soft)', lineHeight: 1.5, marginBottom: '16px' }}>
-                          {project.description || 'Strategic brand identity, packaging design, and digital build.'}
-                        </p>
+            {/* Long Grid Layout */}
+            <div className="work-grid">
+              {filteredProjects.map((project, idx) => (
+                <Link
+                  key={project.slug || idx}
+                  to={`/work/${project.slug}`}
+                  className="work-case-card"
+                >
+                  <div className="img-box">
+                    <img
+                      src={project.coverImage}
+                      alt={project.title}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="work-card-body">
+                    <div>
+                      <div className="work-card-tag">
+                        {project.tag}
                       </div>
-                      <span className="case-metric mono" style={{ fontSize: '11px', fontWeight: 600, color: 'var(--marker)', letterSpacing: '0.04em' }}>
-                        {project.imageCount > 0 ? `${project.imageCount} REAL ASSETS` : 'VIEW CASE STUDY →'}
-                      </span>
+                      <h3 className="work-card-title">
+                        {project.title}
+                      </h3>
+                      <p className="work-card-desc">
+                        {project.description || 'Strategic brand identity, packaging design, and digital build.'}
+                      </p>
                     </div>
-                  </Link>
-                ))}
-              </div>
+                    <div className="work-card-link">
+                      <span>{project.imageCount > 0 ? `${project.imageCount} REAL ASSETS` : 'EXPLORE CASE STUDY'}</span>
+                      <span>→</span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
