@@ -62,9 +62,9 @@ export default function Navbar() {
       <header ref={headerRef}>
         <div className={`nav${scrolled ? ' nav--scrolled' : ''}`}>
           <Link to="/" className="logo-mark" onClick={() => setOpen(false)} aria-label="The Drawing Board Home">
-            <svg className="logo-icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="30.445 142.642 44.42 47.091" width="30" height="32" fill="currentColor">
-              <rect x="30.445" y="142.642" width="44.42" height="25.732"/>
-              <rect x="30.445" y="159.392" width="22.685" height="30.341"/>
+            <svg className="logo-icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="30.445 142.642 44.42 47.091" width="30" height="32">
+              <rect x="30.445" y="142.642" fill="#A19071" width="44.42" height="25.732"/>
+              <rect x="30.445" y="159.392" fill="#A19071" width="22.685" height="30.341"/>
             </svg>
           </Link>
 
@@ -109,9 +109,9 @@ export default function Navbar() {
         {/* Drawer header */}
         <div className="mobile-nav__head">
           <Link to="/" className="logo-mark" onClick={() => setOpen(false)} aria-label="The Drawing Board Home">
-            <svg className="logo-icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="30.445 142.642 44.42 47.091" width="30" height="32" fill="currentColor">
-              <rect x="30.445" y="142.642" width="44.42" height="25.732"/>
-              <rect x="30.445" y="159.392" width="22.685" height="30.341"/>
+            <svg className="logo-icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="30.445 142.642 44.42 47.091" width="30" height="32">
+              <rect x="30.445" y="142.642" fill="#A19071" width="44.42" height="25.732"/>
+              <rect x="30.445" y="159.392" fill="#A19071" width="22.685" height="30.341"/>
             </svg>
           </Link>
           <button

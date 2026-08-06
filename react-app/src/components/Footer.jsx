@@ -51,10 +51,15 @@ export default function Footer() {
       <div className="wrap">
         <div className="foot-grid">
           <div className="foot-brand">
-            <Link to="/" className="logo-mark">
-              <div className="box"></div>The Drawing Board
+            <Link to="/" className="foot-logo-link" aria-label="The Drawing Board Home">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="28 138 290 56" className="foot-logo-svg" style={{ height: '42px', width: 'auto', display: 'block' }}>
+                <rect x="30.445" y="142.642" fill="#A19071" width="44.42" height="25.732"/>
+                <rect x="30.445" y="159.392" fill="#A19071" width="22.685" height="30.341"/>
+                <text transform="matrix(1 0 0 1 78.917 167.3428)" fill="#A19071" font-family="'Constantia', 'Fraunces', serif" font-size="22.8942">THE DRAWING BOARD</text>
+                <text transform="matrix(1 0 0 1 148.7827 187.6387)" fill="#A19071" font-family="'Inter', 'IBM Plex Mono', sans-serif" font-size="11.0941" letter-spacing="1px" opacity="0.9">CREATIVE AGENCY</text>
+              </svg>
             </Link>
-            <p>Independent Brand, Web & Packaging Design Engineering Studio.</p>
+            <p>Independent Brand, Web &amp; Packaging Design Engineering Studio.</p>
           </div>
           <div className="foot-col">
             <h5>Navigation</h5>

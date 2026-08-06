@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="30.445 142.642 44.42 47.091" width="36" height="38" fill="currentColor">
-  <rect x="30.445" y="142.642" width="44.42" height="25.732"/>
-  <rect x="30.445" y="159.392" width="22.685" height="30.341"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="30.445 142.642 44.42 47.091" width="36" height="38">
+  <rect x="30.445" y="142.642" fill="#A19071" width="44.42" height="25.732"/>
+  <rect x="30.445" y="159.392" fill="#A19071" width="22.685" height="30.341"/>
 </svg>
