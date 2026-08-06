@@ -62,9 +62,11 @@ export default function Navbar() {
       <header ref={headerRef}>
         <div className={`nav${scrolled ? ' nav--scrolled' : ''}`}>
           <Link to="/" className="logo-mark" onClick={() => setOpen(false)} aria-label="The Drawing Board Home">
-            <svg className="logo-icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="30.445 142.642 44.42 47.091" width="30" height="32">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="28 138 290 56" className="nav-full-logo-svg" style={{ height: '34px', width: 'auto', display: 'block' }}>
               <rect x="30.445" y="142.642" fill="#A19071" width="44.42" height="25.732"/>
               <rect x="30.445" y="159.392" fill="#A19071" width="22.685" height="30.341"/>
+              <text transform="matrix(1 0 0 1 78.917 167.3428)" fill="var(--ink)" font-family="'Constantia', 'Fraunces', serif" font-size="22.8942">THE DRAWING BOARD</text>
+              <text transform="matrix(1 0 0 1 148.7827 187.6387)" fill="#A19071" font-family="'Inter', 'IBM Plex Mono', sans-serif" font-size="11.0941" letter-spacing="1px" opacity="0.9">CREATIVE AGENCY</text>
             </svg>
           </Link>
 
@@ -109,9 +111,11 @@ export default function Navbar() {
         {/* Drawer header */}
         <div className="mobile-nav__head">
           <Link to="/" className="logo-mark" onClick={() => setOpen(false)} aria-label="The Drawing Board Home">
-            <svg className="logo-icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="30.445 142.642 44.42 47.091" width="30" height="32">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="28 138 290 56" className="nav-full-logo-svg" style={{ height: '32px', width: 'auto', display: 'block' }}>
               <rect x="30.445" y="142.642" fill="#A19071" width="44.42" height="25.732"/>
               <rect x="30.445" y="159.392" fill="#A19071" width="22.685" height="30.341"/>
+              <text transform="matrix(1 0 0 1 78.917 167.3428)" fill="var(--ink)" font-family="'Constantia', 'Fraunces', serif" font-size="22.8942">THE DRAWING BOARD</text>
+              <text transform="matrix(1 0 0 1 148.7827 187.6387)" fill="#A19071" font-family="'Inter', 'IBM Plex Mono', sans-serif" font-size="11.0941" letter-spacing="1px" opacity="0.9">CREATIVE AGENCY</text>
             </svg>
           </Link>
           <button
