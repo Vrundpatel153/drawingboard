@@ -256,36 +256,27 @@ header {
 
 /* Logo */
 .logo-mark {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-family: 'Fraunces', serif;
-  font-weight: 600;
-  font-size: 17px;
   color: var(--ink);
-  white-space: nowrap;
   flex-shrink: 0;
   margin-right: auto;
   text-decoration: none;
 }
 
-.logo-box {
-  width: 22px;
-  height: 22px;
-  border: 1.5px solid var(--ink);
-  position: relative;
+.logo-icon-svg {
+  width: 32px;
+  height: 34px;
+  color: var(--ink);
   flex-shrink: 0;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
 }
 
-.logo-box::after {
-  content: '';
-  position: absolute;
-  inset: 4px;
-  border: 1px solid var(--ink);
+.logo-mark:hover .logo-icon-svg {
+  transform: scale(1.08);
+  color: var(--pine);
 }
-
-.logo-mark:hover .logo-box { transform: rotate(90deg); }
 
 /* Desktop nav links */
 .navlinks {
