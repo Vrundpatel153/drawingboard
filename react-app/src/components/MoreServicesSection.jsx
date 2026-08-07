@@ -20,8 +20,8 @@ export default function MoreServicesSection({ current = '' }) {
     },
     {
       id: 'development',
-      title: 'Web & App Development',
-      desc: 'High-code web and app development that performs seamlessly.',
+      title: 'Website & App Development',
+      desc: 'High-code website and app development that performs seamlessly.',
       link: '/services/development',
       linkText: 'See development →',
     },

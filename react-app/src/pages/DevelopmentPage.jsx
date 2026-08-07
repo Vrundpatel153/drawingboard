@@ -901,17 +901,17 @@ export default function DevelopmentPage() {
         <div className="wrap crumb">
           <Link to="/services">Services</Link>
           <span className="sep">/</span>
-          <span className="cur">Web &amp; App Development</span>
+          <span className="cur">Website &amp; App Development</span>
         </div>
 
         <section className="hero">
           <div className="wrap">
             <div className="sheet-label">
-              <span className="tag mono">SHEET NO. 08 — WEB &amp; APP DEVELOPMENT</span>
+              <span className="tag mono">SHEET NO. 08 — WEBSITE &amp; APP DEVELOPMENT</span>
               <span className="rule"></span>
               <span className="mono" style={{ fontSize: '12px', color: 'var(--ink-soft)' }}>SCALE 1:1</span>
             </div>
-            <h1>Custom web &amp; app development <em>that performs, seamlessly.</em></h1>
+            <h1>Custom website &amp; app development <em>that performs, seamlessly.</em></h1>
 
             <div className="hero-grid">
               <div>
@@ -927,7 +927,7 @@ export default function DevelopmentPage() {
               <div>
                 <div className="annot-card">
                   <div className="corner"></div>
-                  <div className="annot-title mono">Web &amp; App Development</div>
+                  <div className="annot-title mono">Website &amp; App Development</div>
                   <div className="annot-row"><span>Platforms</span><span>Shopify, Webflow, Custom code</span></div>
                   <div className="annot-row"><span>Timeline</span><span>3–10 weeks by scope</span></div>
                   <div className="annot-row"><span>Support</span><span>15 days – 2 months, included</span></div>
@@ -964,7 +964,7 @@ export default function DevelopmentPage() {
             <div className="split">
               <div>
                 <div className="eyebrow mono">WHAT WE BUILD</div>
-                <h2 style={{ fontSize: 'clamp(26px,3vw,36px)', marginBottom: '16px' }}>Web &amp; app development built to scale with your brand.</h2>
+                <h2 style={{ fontSize: 'clamp(26px,3vw,36px)', marginBottom: '16px' }}>Website &amp; app development built to scale with your brand.</h2>
                 <p style={{ color: 'var(--ink-soft)', fontSize: '15.5px' }}>From marketing websites to custom dashboards, we build digital products that load fast, look sharp, and adapt to your growth — no-code, low-code, or fully custom, delivered without compromising design.</p>
               </div>
               <img src="https://framerusercontent.com/images/TW8nh45W2f0jJxIXkfCtK2I9qo.webp?width=1876&height=1821" alt="Heydoh e-commerce site" />

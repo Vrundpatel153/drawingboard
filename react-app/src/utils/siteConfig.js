@@ -102,7 +102,7 @@ export const PAGE_META = {
     keywords: 'packaging design India, product packaging, label design, dieline design, FMCG packaging',
   },
   '/services/development': {
-    title: `Web & App Development — ${SITE_NAME}`,
+    title: `Website & App Development — ${SITE_NAME}`,
     description:
       'High-code web and app development — custom React, Next.js, Shopify, and Framer builds that are fast, scalable, and visually precise.',
     keywords: 'web development India, React development, Shopify development, Framer development',
