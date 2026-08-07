@@ -121,10 +121,18 @@ export default function Contact() {
                       <label htmlFor="budget">Estimated Budget *</label>
                       <select id="budget" required>
                         <option value="">Select Range...</option>
-                        <option value="8k-12k">$8.5k – $12k</option>
-                        <option value="12k-25k">$12k – $25k</option>
-                        <option value="25k-50k">$25k – $50k</option>
-                        <option value="50k+">$50k+</option>
+                        <optgroup label="— Indian Rupees (₹) —">
+                          <option value="inr-175k-250k">₹1,75,000 – ₹2,50,000</option>
+                          <option value="inr-250k-500k">₹2,50,000 – ₹5,00,000</option>
+                          <option value="inr-500k-1m">₹5,00,000 – ₹10,00,000</option>
+                          <option value="inr-1m+">₹10,00,000+</option>
+                        </optgroup>
+                        <optgroup label="— US Dollars ($) —">
+                          <option value="8k-12k">$8,500 – $12,000</option>
+                          <option value="12k-25k">$12,000 – $25,000</option>
+                          <option value="25k-50k">$25,000 – $50,000</option>
+                          <option value="50k+">$50,000+</option>
+                        </optgroup>
                       </select>
                     </div>
                   </div>
@@ -162,11 +170,11 @@ export default function Contact() {
                 </div>
                 <div className="info-row">
                   <span>Studio Location</span>
-                  <span className="val">New York &bull; Remote Worldwide</span>
+                  <span className="val">India &bull; New York &bull; Remote Worldwide</span>
                 </div>
                 <div className="info-row">
                   <span>Timezones</span>
-                  <span className="val">EST / PST / GMT</span>
+                  <span className="val">IST / EST / PST / GMT</span>
                 </div>
               </div>
 

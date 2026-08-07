@@ -14,6 +14,7 @@ export default function Services() {
   const pageRef = useRef(null);
   const carouselRef = useRef(null);
   const [activeCardIndex, setActiveCardIndex] = useState(0);
+  const [currency, setCurrency] = useState('INR');
 
   usePageAnimations(pageRef);
 
@@ -68,15 +69,56 @@ export default function Services() {
 
               <div className="annot-card">
                 <div className="corner"></div>
-                <div className="annot-title">ENGAGEMENT SPECS</div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
+                  <div className="annot-title" style={{ margin: 0 }}>ENGAGEMENT SPECS</div>
+                  <div style={{ display: 'flex', gap: '4px' }}>
+                    <button
+                      onClick={() => setCurrency('INR')}
+                      style={{
+                        background: currency === 'INR' ? 'var(--ink)' : 'transparent',
+                        color: currency === 'INR' ? 'var(--paper)' : 'var(--ink-soft)',
+                        border: '1px solid var(--ink)',
+                        fontFamily: "'IBM Plex Mono', monospace",
+                        fontSize: '9.5px',
+                        fontWeight: 700,
+                        letterSpacing: '0.06em',
+                        padding: '3px 8px',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s',
+                        borderRadius: '2px'
+                      }}
+                    >₹ INR</button>
+                    <button
+                      onClick={() => setCurrency('USD')}
+                      style={{
+                        background: currency === 'USD' ? 'var(--ink)' : 'transparent',
+                        color: currency === 'USD' ? 'var(--paper)' : 'var(--ink-soft)',
+                        border: '1px solid var(--ink)',
+                        fontFamily: "'IBM Plex Mono', monospace",
+                        fontSize: '9.5px',
+                        fontWeight: 700,
+                        letterSpacing: '0.06em',
+                        padding: '3px 8px',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s',
+                        borderRadius: '2px'
+                      }}
+                    >$ USD</button>
+                  </div>
+                </div>
                 {servicesData.map((s) => (
                   <div className="annot-row" key={s.id}>
                     <Link to={`/services/${s.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                       <span>{s.title}</span>
                     </Link>
-                    <span>From {s.startingPrice}</span>
+                    <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600, fontSize: '12px', color: 'var(--ink)' }}>
+                      From {currency === 'INR' ? s.startingPriceINR : s.startingPrice}
+                    </span>
                   </div>
                 ))}
+                <div style={{ marginTop: '12px', paddingTop: '10px', borderTop: '1px dashed var(--paper-line)', fontSize: '11px', color: 'var(--ink-soft)', fontFamily: "'IBM Plex Mono', monospace" }}>
+                  // Fixed scope · 50/50 payment split
+                </div>
               </div>
             </div>
           </div>
