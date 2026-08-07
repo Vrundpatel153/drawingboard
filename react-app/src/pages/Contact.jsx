@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import WhatsAppCTALink from '../components/WhatsAppCTALink';
+import BookCallLink from '../components/BookCallLink';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 import { CONTACT_EMAIL, MAILTO_URL, WHATSAPP_NUMBER } from '../utils/siteConfig';
 
@@ -235,10 +236,10 @@ export default function Contact() {
               </div>
 
               <div className="quick-links">
-                <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="quick-link pine">
+                <BookCallLink className="quick-link pine">
                   <span>Book 15-Min Discovery Call</span>
                   <span>&rarr;</span>
-                </a>
+                </BookCallLink>
                 <a href={MAILTO_URL} className="quick-link">
                   <span>Email Direct ({CONTACT_EMAIL})</span>
                   <span>&rarr;</span>
@@ -290,7 +291,7 @@ export default function Contact() {
         <div className="wrap">
           <h2>Prefer to talk live on a video call?</h2>
           <p>Pick a slot directly on our studio calendar for a quick 15-minute intro chat.</p>
-          <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-primary">Schedule Calendar Call &rarr;</a>
+          <BookCallLink className="btn-primary">Schedule Calendar Call &rarr;</BookCallLink>
         </div>
       </section>
 
