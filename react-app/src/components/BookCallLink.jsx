@@ -5,7 +5,7 @@ export const CAL_COM_URL = 'https://cal.com/dandelion-nrvrze';
 
 /**
  * BookCallLink — reusable wrapper for Cal.com booking buttons.
- * Opens Cal.com in a new tab and navigates current tab to /thank-you.
+ * Navigates current tab to /thank-you, then opens Cal.com in a new tab.
  */
 export default function BookCallLink({
   children,
@@ -18,8 +18,12 @@ export default function BookCallLink({
 
   const handleClick = (e) => {
     e.preventDefault();
-    window.open(href, '_blank', 'noopener,noreferrer');
+    // 1. Navigate current tab to /thank-you immediately
     navigate('/thank-you');
+    // 2. Open Cal.com in new tab / app
+    setTimeout(() => {
+      window.open(href, '_blank', 'noopener,noreferrer');
+    }, 20);
   };
 
   return (

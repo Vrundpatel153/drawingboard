@@ -3,12 +3,9 @@ import { useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   PAGE TRANSITION — Snappy single-panel wipe (ink → reveal)
-   Total duration: ~0.65s  (was ~1.8s across 3 panels)
-   • One ink panel slides UP to cover in 0.30s
-   • Content swaps instantly while covered
-   • Panel slides UP-OUT in 0.30s to reveal new page
-   • Small golden mark flashes at peak for brand continuity
+   PAGE TRANSITION — Snappy single-panel wipe
+   Swaps DOM children synchronously on route change so backgrounded tabs
+   never get stuck on previous routes when opening external windows.
 ───────────────────────────────────────────────────────────────────────────── */
 export default function PageTransition({ children }) {
   const location = useLocation();
@@ -18,14 +15,6 @@ export default function PageTransition({ children }) {
   const panelRef    = useRef(null);
   const markRef     = useRef(null);
   const isFirst     = useRef(true);
-  const isAnimating = useRef(false);
-
-  // Sync state when pathname hasn't changed (regular re-renders)
-  useEffect(() => {
-    if (location.pathname === lastPath.current) {
-      setDisplayChildren(children);
-    }
-  }, [children, location.pathname]);
 
   useEffect(() => {
     if (isFirst.current) {
@@ -34,53 +23,39 @@ export default function PageTransition({ children }) {
       return;
     }
 
+    // Always update DOM children & scroll top immediately on route change
+    lastPath.current = location.pathname;
+    setDisplayChildren(children);
+    window.scrollTo(0, 0);
+
     const panel = panelRef.current;
     const mark  = markRef.current;
-    if (!panel || isAnimating.current) return;
-
-    isAnimating.current = true;
+    if (!panel) return;
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
-        defaults: { ease: 'power3.inOut' },
-        onComplete: () => { isAnimating.current = false; }
+        defaults: { ease: 'power3.inOut' }
       });
 
-      // ── Start: panel sits below viewport, hidden ──────────────────────────
-      tl.set(panel, { display: 'flex', yPercent: 102, willChange: 'transform' })
+      // Start position: panel sits below viewport
+      tl.set(panel, { display: 'flex', yPercent: 100, willChange: 'transform' })
         .set(mark,  { opacity: 0 })
-
-        // ── IN: panel slides up to cover screen ──────────────────────────────
-        .to(panel, { yPercent: 0, duration: 0.30 })
-
-        // ── Flash brand mark at peak ──────────────────────────────────────────
-        .to(mark, { opacity: 1, duration: 0.10, ease: 'none' }, '-=0.05')
-
-        // ── Swap content at exact peak ────────────────────────────────────────
-        .add(() => {
-          lastPath.current = location.pathname;
-          setDisplayChildren(children);
-          window.scrollTo(0, 0);
-        })
-
-        // ── Very brief hold so the eye registers the brand mark ───────────────
-        .to({}, { duration: 0.06 })
-
-        // ── OUT: panel continues upward to reveal new page ────────────────────
-        .to(mark,  { opacity: 0, duration: 0.08, ease: 'none' })
-        .to(panel, { yPercent: -102, duration: 0.28, ease: 'power3.inOut' }, '-=0.05')
-
-        // ── Cleanup ───────────────────────────────────────────────────────────
-        .set(panel, { display: 'none', yPercent: 102, willChange: 'auto' });
+        // Slide up over new content
+        .to(panel, { yPercent: 0, duration: 0.22 })
+        .to(mark, { opacity: 1, duration: 0.08 }, '-=0.04')
+        .to({}, { duration: 0.05 })
+        // Exit up to reveal new page
+        .to(mark, { opacity: 0, duration: 0.06 })
+        .to(panel, { yPercent: -100, duration: 0.22 }, '-=0.04')
+        .set(panel, { display: 'none', yPercent: 100, willChange: 'auto' });
     });
 
     return () => ctx.revert();
-  }, [location.pathname]);
+  }, [location.pathname, children]);
 
   return (
     <div style={{ position: 'relative', width: '100%', minHeight: '100vh' }}>
-
-      {/* Single fast-wipe panel */}
+      {/* Wipe panel */}
       <div
         ref={panelRef}
         style={{
@@ -94,11 +69,7 @@ export default function PageTransition({ children }) {
           pointerEvents: 'none',
         }}
       >
-        {/* Minimal golden mark — just the logo mark SVG, tiny & centered */}
-        <div
-          ref={markRef}
-          style={{ opacity: 0 }}
-        >
+        <div ref={markRef} style={{ opacity: 0 }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="30.445 142.642 44.42 47.091"
@@ -110,7 +81,6 @@ export default function PageTransition({ children }) {
         </div>
       </div>
 
-      {/* Page content */}
       <div>{displayChildren}</div>
     </div>
   );

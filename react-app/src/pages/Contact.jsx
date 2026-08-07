@@ -97,13 +97,13 @@ export default function Contact() {
       `— Sent via thedrawingboard.studio`,
     ].join('\n');
 
-    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-
-    // Open WhatsApp in a new tab
-    window.open(waUrl, '_blank', 'noopener,noreferrer');
-
-    // Navigate current tab to /thank-you
+    // 1. Navigate current tab to /thank-you immediately
     navigate('/thank-you');
+
+    // 2. Open WhatsApp in new tab / app
+    setTimeout(() => {
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
+    }, 20);
   };
 
   return (
