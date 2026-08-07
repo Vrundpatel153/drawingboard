@@ -3,23 +3,24 @@ import { useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   PAGE TRANSITION — Layered Up-Down cinematic wipe
-   Three overlapping panels sliding up to cover, then up to reveal.
-   Theme: Ink → Pine green border → Paper grid.
-   Holds the previous route content until the screen is fully covered,
-   preventing visual flash of the new page before transition finishes.
+   PAGE TRANSITION — Snappy single-panel wipe (ink → reveal)
+   Total duration: ~0.65s  (was ~1.8s across 3 panels)
+   • One ink panel slides UP to cover in 0.30s
+   • Content swaps instantly while covered
+   • Panel slides UP-OUT in 0.30s to reveal new page
+   • Small golden mark flashes at peak for brand continuity
 ───────────────────────────────────────────────────────────────────────────── */
 export default function PageTransition({ children }) {
   const location = useLocation();
   const [displayChildren, setDisplayChildren] = useState(children);
   const lastPath = useRef(location.pathname);
 
-  const inkRef = useRef(null);
-  const pineRef = useRef(null);
-  const paperRef = useRef(null);
-  const isFirst = useRef(true);
+  const panelRef    = useRef(null);
+  const markRef     = useRef(null);
+  const isFirst     = useRef(true);
+  const isAnimating = useRef(false);
 
-  // Sync state if pathname has NOT changed (regular component updates)
+  // Sync state when pathname hasn't changed (regular re-renders)
   useEffect(() => {
     if (location.pathname === lastPath.current) {
       setDisplayChildren(children);
@@ -33,56 +34,44 @@ export default function PageTransition({ children }) {
       return;
     }
 
-    const ink = inkRef.current;
-    const pine = pineRef.current;
-    const paper = paperRef.current;
+    const panel = panelRef.current;
+    const mark  = markRef.current;
+    if (!panel || isAnimating.current) return;
 
-    if (!ink || !pine || !paper) return;
+    isAnimating.current = true;
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
-        defaults: { ease: 'power4.inOut', duration: 0.55 }
+        defaults: { ease: 'power3.inOut' },
+        onComplete: () => { isAnimating.current = false; }
       });
 
-      // Show panels
-      tl.set([ink, pine, paper], { display: 'flex', yPercent: 100 })
+      // ── Start: panel sits below viewport, hidden ──────────────────────────
+      tl.set(panel, { display: 'flex', yPercent: 102, willChange: 'transform' })
+        .set(mark,  { opacity: 0 })
 
-        // 1. Ink panel slide up to cover
-        .to(ink, { yPercent: 0 })
+        // ── IN: panel slides up to cover screen ──────────────────────────────
+        .to(panel, { yPercent: 0, duration: 0.30 })
 
-        // 2. Pine green follows
-        .to(pine, { yPercent: 0 }, "-=0.45")
+        // ── Flash brand mark at peak ──────────────────────────────────────────
+        .to(mark, { opacity: 1, duration: 0.10, ease: 'none' }, '-=0.05')
 
-        // 3. Paper grid panel settles at 0
-        .to(paper, { yPercent: 0 }, "-=0.45")
-
-        // Fade in monogram on paper panel
-        .fromTo(".transition-monogram", 
-          { opacity: 0, y: 15 },
-          { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" },
-          "-=0.1"
-        )
-
-        // At peak (completely covered), switch content to new children & scroll to top
+        // ── Swap content at exact peak ────────────────────────────────────────
         .add(() => {
           lastPath.current = location.pathname;
           setDisplayChildren(children);
           window.scrollTo(0, 0);
         })
 
-        // Hold peak moment
-        .to({}, { duration: 0.25 })
+        // ── Very brief hold so the eye registers the brand mark ───────────────
+        .to({}, { duration: 0.06 })
 
-        // 4. Staggered exit upwards to reveal the new page
-        .to(paper, { yPercent: -100 })
-        .to(pine, { yPercent: -100 }, "-=0.45")
-        .to(ink, { yPercent: -100 }, "-=0.45")
+        // ── OUT: panel continues upward to reveal new page ────────────────────
+        .to(mark,  { opacity: 0, duration: 0.08, ease: 'none' })
+        .to(panel, { yPercent: -102, duration: 0.28, ease: 'power3.inOut' }, '-=0.05')
 
-        // Fade out monogram
-        .to(".transition-monogram", { opacity: 0, duration: 0.2 }, "<")
-
-        // Reset positions
-        .set([ink, pine, paper], { display: 'none', yPercent: 100 });
+        // ── Cleanup ───────────────────────────────────────────────────────────
+        .set(panel, { display: 'none', yPercent: 102, willChange: 'auto' });
     });
 
     return () => ctx.revert();
@@ -90,95 +79,38 @@ export default function PageTransition({ children }) {
 
   return (
     <div style={{ position: 'relative', width: '100%', minHeight: '100vh' }}>
-      
-      {/* Panel 1: Ink */}
+
+      {/* Single fast-wipe panel */}
       <div
-        ref={inkRef}
+        ref={panelRef}
         style={{
           position: 'fixed',
           inset: 0,
           background: '#1B1B17',
           zIndex: 10000,
           display: 'none',
-          pointerEvents: 'none',
-          willChange: 'transform',
-        }}
-      />
-
-      {/* Panel 2: Pine */}
-      <div
-        ref={pineRef}
-        style={{
-          position: 'fixed',
-          inset: 0,
-          background: '#24463B',
-          zIndex: 10001,
-          display: 'none',
-          pointerEvents: 'none',
-          willChange: 'transform',
-        }}
-      />
-
-      {/* Panel 3: Paper + Grid */}
-      <div
-        ref={paperRef}
-        style={{
-          position: 'fixed',
-          inset: 0,
-          background: '#EFEBE2',
-          backgroundImage: `
-            linear-gradient(rgba(27,27,23,0.04) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(27,27,23,0.04) 1px, transparent 1px)
-          `,
-          backgroundSize: '40px 40px',
-          zIndex: 10002,
-          display: 'none',
           alignItems: 'center',
           justifyContent: 'center',
           pointerEvents: 'none',
-          willChange: 'transform',
         }}
       >
-        <div className="transition-monogram" style={{ textAlign: 'center', opacity: 0 }}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px',
-            marginBottom: '16px',
-            opacity: 0.4
-          }}>
-            <span style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: '9px', color: '#1B1B17' }}>[01]</span>
-            <span style={{ width: '6px', height: '6px', border: '1px solid #1B1B17' }} />
-            <span style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: '9px', color: '#1B1B17' }}>[02]</span>
-          </div>
-
-          <div style={{
-            fontFamily: "'Fraunces', serif",
-            fontSize: 'clamp(20px, 4vw, 32px)',
-            fontWeight: 600,
-            color: '#1B1B17',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.1,
-            marginBottom: '8px'
-          }}>
-            The Drawing Board
-          </div>
-
-          <div style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: '10px',
-            letterSpacing: '0.12em',
-            color: '#B8412E',
-            textTransform: 'uppercase',
-            opacity: 0.8
-          }}>
-            // ARCHITECTURAL IDENTITY
-          </div>
+        {/* Minimal golden mark — just the logo mark SVG, tiny & centered */}
+        <div
+          ref={markRef}
+          style={{ opacity: 0 }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="30.445 142.642 44.42 47.091"
+            style={{ width: '36px', height: '40px', display: 'block' }}
+          >
+            <rect x="30.445" y="142.642" fill="#A19071" width="44.42" height="25.732"/>
+            <rect x="30.445" y="159.392" fill="#A19071" width="22.685" height="30.341"/>
+          </svg>
         </div>
       </div>
 
-      {/* Render the displayChildren (holding old route until covered) */}
+      {/* Page content */}
       <div>{displayChildren}</div>
     </div>
   );

@@ -20,9 +20,10 @@ export default function Preloader({ onComplete }) {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         onComplete: () => {
+          // Exit wipe — faster clip-path collapse
           gsap.to(containerRef.current, {
             clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)',
-            duration: 0.95,
+            duration: 0.65,          // was 0.95 → 0.65
             ease: "power4.inOut",
             onComplete: () => { if (onComplete) onComplete(); }
           });
@@ -33,17 +34,19 @@ export default function Preloader({ onComplete }) {
         clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)'
       });
 
-      // ── 1. Letters slide up into view ────────────────────────────────────
+      // ── 1. Letters slide up — tightened stagger & duration ──────────────
       tl.fromTo(".preloader-char",
-        { opacity: 0, y: 45, rotateX: -80, skewX: 8 },
+        { opacity: 0, y: 35, rotateX: -70, skewX: 6 },
         { opacity: 1, y: 0, rotateX: 0, skewX: 0,
-          duration: 0.75, stagger: 0.025, ease: "power4.out" }
+          duration: 0.55,            // was 0.75
+          stagger: 0.018,            // was 0.025
+          ease: "power4.out" }
       );
 
-      // ── 2. Baseline rule draws in ────────────────────────────────────────
-      tl.to(lineRef.current, { scaleX: 1, duration: 0.7, ease: "power3.inOut" }, "-=0.45");
+      // ── 2. Baseline rule — faster draw ──────────────────────────────────
+      tl.to(lineRef.current, { scaleX: 1, duration: 0.45, ease: "power3.inOut" }, "-=0.35"); // was 0.7 / -=0.45
 
-      // ── 3. Position ball directly above the 'i', then drop it ───────────
+      // ── 3. Ball drop — same physics, compressed timing ───────────────────
       tl.add(() => {
         const ball      = ballRef.current;
         const targetEl  = dotlessIRef.current;
@@ -52,7 +55,6 @@ export default function Preloader({ onComplete }) {
         const parentRect = wordRef.current.getBoundingClientRect();
         const fontSize   = parseFloat(getComputedStyle(wordRef.current).fontSize);
 
-        // Range API → true ink bounding box of the glyph (not the line-height box)
         let charRect;
         try {
           const range = document.createRange();
@@ -62,66 +64,45 @@ export default function Preloader({ onComplete }) {
           charRect = targetEl.getBoundingClientRect();
         }
 
-        // Ball pixel size (0.15em rendered)
         const ballSize = ball.getBoundingClientRect().width || fontSize * 0.15;
-
-        // ── Final resting position ───────────────────────────────────────
-        // X: horizontally centred over the 'i' glyph
         const landX = (charRect.left + charRect.right) / 2 - parentRect.left - ballSize / 2;
-
-        // Y: Position the top of the dot ball exactly where the dot of 'i' belongs.
-        // In the Fraunces font, the top of the 'i' dot sits at 18% of the font size
-        // below the line box top edge (charRect.top).
         const landY = charRect.top - parentRect.top + fontSize * 0.18;
-
-        // ── Starting position: same X, high above ───────────────────────
-        const dropHeight = fontSize * 3.5;
+        const dropHeight = fontSize * 3.0;   // was 3.5
         const startY     = landY - dropHeight;
 
-        // Place ball at start
-        gsap.set(ball, {
-          left: 0, top: 0,
-          x: landX,
-          y: startY,
-          opacity: 1,
-          scale: 1,
-        });
+        gsap.set(ball, { left: 0, top: 0, x: landX, y: startY, opacity: 1, scale: 1 });
 
-        // ── Drop straight down then bounce AT the landing spot ───────────
-        // Bounces go UP from the landing position — the ball never goes below it.
+        // Drop + bounces — all durations × 0.78
         gsap.timeline()
-          // Fall to the dot position
-          .to(ball, { y: landY, duration: 0.55, ease: "power3.in" })
-          // Squish on first landing
-          .to(ball, { scaleY: 0.6, scaleX: 1.4, duration: 0.07, ease: "power1.out" })
-          .to(ball, { scaleY: 1.0, scaleX: 1.0, duration: 0.10, ease: "power2.out" })
-          // Bounce 1 — high
-          .to(ball, { y: landY - fontSize * 0.55, duration: 0.25, ease: "power2.out" })
-          .to(ball, { y: landY, duration: 0.20, ease: "power2.in" })
-          .to(ball, { scaleY: 0.75, scaleX: 1.25, duration: 0.06, ease: "power1.out" })
-          .to(ball, { scaleY: 1.0,  scaleX: 1.0,  duration: 0.08, ease: "power2.out" })
-          // Bounce 2 — medium
-          .to(ball, { y: landY - fontSize * 0.22, duration: 0.18, ease: "power2.out" })
-          .to(ball, { y: landY, duration: 0.14, ease: "power2.in" })
-          .to(ball, { scaleY: 0.85, scaleX: 1.15, duration: 0.05, ease: "power1.out" })
-          .to(ball, { scaleY: 1.0,  scaleX: 1.0,  duration: 0.07, ease: "power2.out" })
-          // Bounce 3 — small settle
-          .to(ball, { y: landY - fontSize * 0.07, duration: 0.10, ease: "power2.out" })
-          .to(ball, { y: landY, duration: 0.09, ease: "power2.in" })
-          // Tiny tap on the letter
-          .to(targetEl, { y: 3, duration: 0.06, yoyo: true, repeat: 1 }, "-=0.09");
+          .to(ball, { y: landY, duration: 0.40, ease: "power3.in" })          // was 0.55
+          .to(ball, { scaleY: 0.6, scaleX: 1.4, duration: 0.055, ease: "power1.out" })
+          .to(ball, { scaleY: 1.0, scaleX: 1.0, duration: 0.08, ease: "power2.out" })
+          // Bounce 1
+          .to(ball, { y: landY - fontSize * 0.50, duration: 0.18, ease: "power2.out" }) // was 0.25
+          .to(ball, { y: landY, duration: 0.15, ease: "power2.in" })
+          .to(ball, { scaleY: 0.78, scaleX: 1.22, duration: 0.05, ease: "power1.out" })
+          .to(ball, { scaleY: 1.0,  scaleX: 1.0,  duration: 0.06, ease: "power2.out" })
+          // Bounce 2
+          .to(ball, { y: landY - fontSize * 0.20, duration: 0.13, ease: "power2.out" })
+          .to(ball, { y: landY, duration: 0.11, ease: "power2.in" })
+          .to(ball, { scaleY: 0.88, scaleX: 1.12, duration: 0.04, ease: "power1.out" })
+          .to(ball, { scaleY: 1.0,  scaleX: 1.0,  duration: 0.05, ease: "power2.out" })
+          // Bounce 3 — settle
+          .to(ball, { y: landY - fontSize * 0.06, duration: 0.08, ease: "power2.out" })
+          .to(ball, { y: landY, duration: 0.07, ease: "power2.in" })
+          .to(targetEl, { y: 2, duration: 0.05, yoyo: true, repeat: 1 }, "-=0.07");
       });
 
-      // ── 4. Colour shifts to pine green after ball settles (~1.35s drop+bounces) ──
+      // ── 4. Colour shift — sooner, slightly faster ────────────────────────
       tl.to(".preloader-char", {
         color: '#24463B',
-        duration: 0.35,
-        stagger: 0.015,
+        duration: 0.28,              // was 0.35
+        stagger: 0.012,              // was 0.015
         ease: "power2.out"
-      }, "+=1.4");
+      }, "+=0.95");                  // was +=1.4
 
-      // ── 5. Brief pause so the settled ball is visible before exit ────────
-      tl.to({}, { duration: 0.55 });
+      // ── 5. Brief hold — trimmed ──────────────────────────────────────────
+      tl.to({}, { duration: 0.30 }); // was 0.55
     });
 
     return () => ctx.revert();
@@ -164,7 +145,7 @@ export default function Preloader({ onComplete }) {
             fontWeight: 600,
           }}
         >
-          {/* Ball — positioned inside wordRef, animates via x/y transforms */}
+          {/* Ball */}
           <div
             ref={ballRef}
             style={{
