@@ -1,20 +1,38 @@
 {
   "name": "The Drawing Board",
-  "short_name": "DrawingBoard",
-  "description": "Strategy-first design studio for brand identity, packaging, and digital products.",
+  "short_name": "TDB Studio",
+  "description": "Strategy-first design studio crafting brand identities, packaging systems, and digital products for ambitious founders.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F5F2EC",
   "theme_color": "#1B1B17",
   "orientation": "portrait-primary",
   "lang": "en",
-  "categories": ["design", "business"],
+  "categories": ["design", "business", "creativity"],
+  "scope": "/",
+  "id": "/",
+  "prefer_related_applications": false,
+  "screenshots": [
+    {
+      "src": "/home_preview.png",
+      "sizes": "1280x800",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Homepage — The Drawing Board Studio"
+    }
+  ],
   "icons": [
     {
       "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
     },
     {
       "src": "/apple-touch-icon.png",
@@ -30,6 +48,20 @@
       "src": "/favicon-16x16.png",
       "sizes": "16x16",
       "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Explore Work",
+      "short_name": "Work",
+      "url": "/work",
+      "description": "Browse our selected case studies"
+    },
+    {
+      "name": "Book a Call",
+      "short_name": "Book",
+      "url": "https://cal.com/dandelion-nrvrze",
+      "description": "Schedule a free 15-minute discovery call"
     }
   ]
 }

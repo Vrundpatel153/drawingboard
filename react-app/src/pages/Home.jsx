@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import ArrowIcon from '../components/ArrowIcon';
+import WhatsAppCTALink from '../components/WhatsAppCTALink';
 import projectsData from '../data/projectsData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 
@@ -45,7 +46,7 @@ export default function Home() {
                 Branding, websites, packaging, motion graphics and photography — crafted to connect, inspire, and grow your business. We turn your business into a brand that scales strategically, visually, and across every touchpoint.
               </p>
               <div className="cta-row">
-                <a href="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" target="_blank" rel="noopener noreferrer" className="btn-primary">WhatsApp Us <ArrowIcon /></a>
+                <WhatsAppCTALink className="btn-primary">WhatsApp Us <ArrowIcon /></WhatsAppCTALink>
                 <Link to="/work" className="btn-link">Explore Work <ArrowIcon size={13} /></Link>
               </div>
 

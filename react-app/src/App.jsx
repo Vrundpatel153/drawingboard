@@ -14,12 +14,15 @@ import Contact from './pages/Contact';
 import BlogDetail from './pages/BlogDetail';
 import LegalDetail from './pages/LegalDetail';
 import Admin from './pages/Admin';
+import ThankYou from './pages/ThankYou';
 import SmoothScroll from './components/SmoothScroll';
 import PageTransition from './components/PageTransition';
 import WhatsAppButton from './components/WhatsAppButton';
 import Preloader from './components/Preloader';
+import PWAInstallBanner from './components/PWAInstallBanner';
 import useAnalytics from './hooks/useAnalytics';
 import useSEO from './hooks/useSEO';
+import usePWA from './hooks/usePWA';
 
 /* ── RouterAnalytics must live inside <Router> to access location context ── */
 function RouterAnalytics() {
@@ -31,6 +34,9 @@ function RouterAnalytics() {
 export default function App() {
   const [loading, setLoading] = useState(true);
 
+  // Register PWA / Service Worker
+  const { promptInstall } = usePWA();
+
   const handlePreloaderComplete = () => {
     setLoading(false);
   };
@@ -38,7 +44,6 @@ export default function App() {
   if (loading) {
     return <Preloader onComplete={handlePreloaderComplete} />;
   }
-
 
   return (
     <Router>
@@ -88,6 +93,9 @@ export default function App() {
               {/* Contact route */}
               <Route path="/contact" element={<Contact />} />
 
+              {/* Thank You page */}
+              <Route path="/thank-you" element={<ThankYou />} />
+
               {/* Legal routes */}
               <Route path="/legal/:legalId" element={<LegalDetail />} />
 
@@ -101,6 +109,9 @@ export default function App() {
           </div>
         </PageTransition>
       </SmoothScroll>
+
+      {/* PWA Install Banner — slides up on homepage after 3s, first visit only */}
+      <PWAInstallBanner promptInstall={promptInstall} />
     </Router>
   );
 }

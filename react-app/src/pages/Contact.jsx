@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
+import WhatsAppCTALink from '../components/WhatsAppCTALink';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 import { CONTACT_EMAIL, MAILTO_URL, WHATSAPP_URL } from '../utils/siteConfig';
 
@@ -178,10 +179,10 @@ export default function Contact() {
                   <span>Email Direct ({CONTACT_EMAIL})</span>
                   <span>&rarr;</span>
                 </a>
-                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="quick-link">
+                <WhatsAppCTALink className="quick-link">
                   <span>Chat on WhatsApp (+91 94288 59768)</span>
                   <span>&rarr;</span>
-                </a>
+                </WhatsAppCTALink>
                 <Link to="/work" className="quick-link">
                   <span>Explore Portfolio Archive</span>
                   <span>&rarr;</span>

@@ -1,11 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ArrowIcon from './ArrowIcon';
 import { WHATSAPP_URL } from '../utils/siteConfig';
 
-export default function StickyMobileCTA({ title = "The Drawing Board", subtitle = "Now Booking Q3 Sprints", buttonText = "WhatsApp Us", link = "https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" }) {
+export default function StickyMobileCTA({ title = "The Drawing Board", subtitle = "Now Booking Q3 Sprints", buttonText = "WhatsApp Us", link = WHATSAPP_URL }) {
   const cleanBtnText = (buttonText || '').replace(/[→&rarr;->]/g, '').trim();
   const isExternal = link?.startsWith('http');
+  const isWhatsApp = link?.includes('wa.me') || link?.includes('whatsapp');
+  const navigate = useNavigate();
+
+  const handleWAClick = (e) => {
+    e.preventDefault();
+    window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer');
+    navigate('/thank-you');
+  };
+
+  const handleCtaBtnClick = (e) => {
+    if (isWhatsApp) {
+      e.preventDefault();
+      window.open(link, '_blank', 'noopener,noreferrer');
+      navigate('/thank-you');
+    }
+  };
 
   return (
     <div className="sticky-cta">
@@ -14,12 +30,14 @@ export default function StickyMobileCTA({ title = "The Drawing Board", subtitle 
         <span>{subtitle}</span>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+        {/* WhatsApp icon button */}
         <a
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contact on WhatsApp"
           className="wa-btn"
+          onClick={handleWAClick}
           style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -42,8 +60,9 @@ export default function StickyMobileCTA({ title = "The Drawing Board", subtitle 
             />
           </svg>
         </a>
+        {/* Main CTA button */}
         {isExternal ? (
-          <a href={link} target="_blank" rel="noopener noreferrer">
+          <a href={link} target="_blank" rel="noopener noreferrer" onClick={handleCtaBtnClick}>
             {cleanBtnText} <ArrowIcon size={12} />
           </a>
         ) : (
