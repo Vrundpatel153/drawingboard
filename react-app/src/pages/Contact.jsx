@@ -41,22 +41,50 @@ const AVAILABLE_SERVICES = [
   'Photography'
 ];
 
-const BUDGET_RANGES = [
-  { label: '₹1,75,000 – ₹2,50,000', value: 'inr-175k-250k' },
-  { label: '₹2,50,000 – ₹5,00,000', value: 'inr-250k-500k' },
-  { label: '₹5,00,000 – ₹10,00,000', value: 'inr-500k-1m' },
-  { label: '₹10,00,000+', value: 'inr-1m+' },
-  { label: '$8,500 – $12,000', value: '8k-12k' },
-  { label: '$12,000 – $25,000', value: '12k-25k' },
-  { label: '$25,000 – $50,000', value: '25k-50k' },
-  { label: '$50,000+', value: '50k+' }
+const ROLES = [
+  'Founder',
+  'C-level Executive',
+  'Team Member',
+  'Investor',
+  'Other'
 ];
 
-const TIMELINES = [
-  'ASAP (1–2 weeks)',
-  '1–2 Months',
-  '2–3 Months',
-  'Flexible / Planning Phase'
+const REVENUE_RANGES = [
+  'Less than $50,000',
+  '50k - 100k',
+  '100k - 250k',
+  '250k - 500k',
+  '500k - 1M',
+  '1M - 5M',
+  '5M - 25 M',
+  'Other'
+];
+
+const TEAM_STRUCTURES = [
+  'Solo founder + freelancers',
+  'Small in-house team with no brand lead',
+  'Ops/marketing/brand manager in-house',
+  'Full leadership team and scale-ready org chart'
+];
+
+const CHALLENGES = [
+  'We’re launching and need clarity on our positioning, brand strategy, and identity system.',
+  'Our brand feels inconsistent, we need a clear strategy and a unified visual identity.',
+  'Our communication (voice, messaging, guidelines) isn’t consistent across teams or channels.',
+  'We’re scaling and need packaging, identity, and brand systems that work across formats and geographies.',
+  'We’ve outgrown our current brand and need to rethink our foundation before expanding.',
+  'We’re preparing for fundraising or expansion and need a sharper, more cohesive brand.'
+];
+
+const BUDGET_OPTIONS = [
+  { group: 'USD ($)', options: ['$ 2,500', '$ 3,000 - $4,000', '$ 5,000 - $ 10,000', '$ 10,000 - 20,000', '$ 20,000+'] },
+  { group: 'INR (₹)', options: ['₹1,75,000 – ₹2,50,000', '₹2,50,000 – ₹5,00,000', '₹5,00,000 – ₹10,00,000', '₹10,00,000+'] }
+];
+
+const TIMELINE_OPTIONS = [
+  'Immediately',
+  'Within 30 days',
+  'Within 60–90 days'
 ];
 
 export default function Contact() {
@@ -64,13 +92,21 @@ export default function Contact() {
   const pageRef = useRef(null);
   const navigate = useNavigate();
 
-  // Controlled form state
+  // Controlled form state containing all questionnaire fields
   const [form, setForm] = useState({
     name: '',
+    phone: '',
+    whatsapp: '',
     email: '',
+    companyName: '',
+    role: '',
+    website: '',
+    annualRevenue: '',
+    teamStructure: '',
+    primaryChallenge: '',
     services: ['Branding'],
-    budget: 'inr-175k-250k',
-    timeline: 'ASAP (1–2 weeks)',
+    budget: '$ 3,000 - $4,000',
+    timeline: 'Immediately',
     message: ''
   });
 
@@ -100,21 +136,28 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const selectedBudgetObj = BUDGET_RANGES.find((b) => b.value === form.budget);
-    const budgetDisplay = selectedBudgetObj ? selectedBudgetObj.label : form.budget;
-
     // ── Build structured WhatsApp message payload ────────────────────────
     const msg = [
       `Hello The Drawing Board! 👋`,
       ``,
-      `*New Project Query from ${form.name}*`,
+      `*New Project Inquiry from ${form.name}*`,
+      `Company / Brand: ${form.companyName || 'N/A'}`,
+      `Role: ${form.role || 'N/A'}`,
       `Email: ${form.email}`,
+      `Phone: ${form.phone || 'N/A'}`,
+      `WhatsApp: ${form.whatsapp || 'N/A'}`,
+      `Website/Social: ${form.website || 'N/A'}`,
+      ``,
+      `*Current Annual Revenue:* ${form.annualRevenue || 'N/A'}`,
+      `*Team Structure:* ${form.teamStructure || 'N/A'}`,
+      `*Primary Challenge:*`,
+      `${form.primaryChallenge || 'N/A'}`,
       ``,
       `*Services Requested:* ${form.services.join(', ')}`,
-      `*Estimated Budget:* ${budgetDisplay}`,
-      `*Project Timeline:* ${form.timeline}`,
+      `*Allocated Budget:* ${form.budget}`,
+      `*Project Start Timeline:* ${form.timeline}`,
       ``,
-      `*Message:*`,
+      `*About the Brand / Product / Idea:*`,
       form.message || 'Ready to start project discussion.',
       ``,
       `— Sent via drawingsboards.com/contact`
@@ -125,10 +168,16 @@ export default function Contact() {
     // 1. Dispatch Meta Conversions API (CAPI) & Pixel lead event
     trackMetaFormSubmission({
       name: form.name,
+      phone: form.phone || form.whatsapp,
       email: form.email,
       services: form.services.join(', '),
-      budget: budgetDisplay,
+      budget: form.budget,
       timeline: form.timeline,
+      company: form.companyName,
+      role: form.role,
+      annualRevenue: form.annualRevenue,
+      teamStructure: form.teamStructure,
+      primaryChallenge: form.primaryChallenge,
       message: form.message
     });
 
@@ -146,6 +195,56 @@ export default function Contact() {
       <div ref={pageRef}>
         <RegistrationMarks />
         <Navbar />
+
+        <style>{`
+          .contact-section-divider {
+            margin: 24px 0 16px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed var(--paper-line);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--pine);
+            font-weight: 600;
+          }
+          .contact-form select {
+            width: 100%;
+            background: var(--paper);
+            border: 1px solid var(--ink-soft);
+            padding: 12px 14px;
+            font-size: 13.5px;
+            font-family: inherit;
+            color: var(--ink);
+            border-radius: 2px;
+            outline: none;
+            transition: border-color 0.2s ease;
+          }
+          .contact-form select:focus {
+            border-color: var(--pine);
+          }
+          .contact-form input, .contact-form textarea {
+            width: 100%;
+            background: var(--paper);
+            border: 1px solid var(--ink-soft);
+            padding: 12px 14px;
+            font-size: 13.5px;
+            font-family: inherit;
+            color: var(--ink);
+            border-radius: 2px;
+            outline: none;
+            transition: border-color 0.2s ease;
+          }
+          .contact-form input:focus, .contact-form textarea:focus {
+            border-color: var(--pine);
+          }
+          .field-note {
+            font-size: 11.5px;
+            color: var(--ink-soft);
+            margin-top: 4px;
+            font-family: 'IBM Plex Mono', monospace;
+          }
+        `}</style>
 
         {/* Hero Section */}
         <section className="hero-lite">
@@ -171,6 +270,9 @@ export default function Contact() {
                 <div className="corner"></div>
                 <h3>Project Inquiry</h3>
                 <p className="sub">Tell us about your brand, requirements, budget, and timeline.</p>
+
+                {/* Section 1: Contact Details */}
+                <div className="contact-section-divider">// 01 · CONTACT DETAILS</div>
 
                 {/* Name & Email Fields */}
                 <div className="field-row">
@@ -198,9 +300,110 @@ export default function Contact() {
                   </div>
                 </div>
 
+                {/* Phone & WhatsApp Fields */}
+                <div className="field-row">
+                  <div className="field">
+                    <label htmlFor="phone">Phone Number *</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      required
+                      placeholder="+1 (555) 000-0000 / +91 ..."
+                      value={form.phone}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="whatsapp">WhatsApp Number *</label>
+                    <input
+                      type="tel"
+                      id="whatsapp"
+                      required
+                      placeholder="+91 94288 59768 / +1 ..."
+                      value={form.whatsapp}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+
+                {/* Section 2: Company & Org Context */}
+                <div className="contact-section-divider">// 02 · COMPANY & ORGANIZATION</div>
+
+                {/* Company Name & Role */}
+                <div className="field-row">
+                  <div className="field">
+                    <label htmlFor="companyName">What is the name of your company or brand? *</label>
+                    <input
+                      type="text"
+                      id="companyName"
+                      required
+                      placeholder="Acme Studio / Brand Name"
+                      value={form.companyName}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="role">What is your role within the company? *</label>
+                    <select id="role" required value={form.role} onChange={handleChange}>
+                      <option value="" disabled>Select your role...</option>
+                      {ROLES.map((r) => (
+                        <option key={r} value={r}>{r}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Website / Social Link */}
+                <div className="field">
+                  <label htmlFor="website">Company Website or Social Media link (if you have any)</label>
+                  <input
+                    type="text"
+                    id="website"
+                    placeholder="https://yourbrand.com or @instagram / LinkedIn profile"
+                    value={form.website}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                {/* Revenue & Team Structure */}
+                <div className="field-row">
+                  <div className="field">
+                    <label htmlFor="annualRevenue">What is your current annual revenue? *</label>
+                    <select id="annualRevenue" required value={form.annualRevenue} onChange={handleChange}>
+                      <option value="" disabled>Select revenue range...</option>
+                      {REVENUE_RANGES.map((rev) => (
+                        <option key={rev} value={rev}>{rev}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="field">
+                    <label htmlFor="teamStructure">What does your current team structure look like? *</label>
+                    <select id="teamStructure" required value={form.teamStructure} onChange={handleChange}>
+                      <option value="" disabled>Select team structure...</option>
+                      {TEAM_STRUCTURES.map((ts) => (
+                        <option key={ts} value={ts}>{ts}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Section 3: Project Scope & Strategy */}
+                <div className="contact-section-divider">// 03 · PROJECT SCOPE & CHALLENGE</div>
+
+                {/* Primary Challenge */}
+                <div className="field">
+                  <label htmlFor="primaryChallenge">What best describes the challenge you’re trying to solve? *</label>
+                  <select id="primaryChallenge" required value={form.primaryChallenge} onChange={handleChange}>
+                    <option value="" disabled>Select the primary challenge...</option>
+                    {CHALLENGES.map((ch) => (
+                      <option key={ch} value={ch}>{ch}</option>
+                    ))}
+                  </select>
+                </div>
+
                 {/* Services Selection */}
-                <div className="field" style={{ marginBottom: '20px' }}>
-                  <label style={{ display: 'block', marginBottom: '10px' }}>Services *</label>
+                <div className="field" style={{ marginBottom: '16px' }}>
+                  <label style={{ display: 'block', marginBottom: '8px' }}>Services *</label>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                     {AVAILABLE_SERVICES.map((svc) => {
                       const isSelected = form.services.includes(svc);
@@ -233,40 +436,38 @@ export default function Contact() {
                 {/* Budget & Timeline Row */}
                 <div className="field-row">
                   <div className="field">
-                    <label htmlFor="budget">Estimated Budget *</label>
-                    <select id="budget" required value={form.budget} onChange={handleChange}>
-                      <optgroup label="— Indian Rupees (₹) —">
-                        <option value="inr-175k-250k">₹1,75,000 – ₹2,50,000</option>
-                        <option value="inr-250k-500k">₹2,50,000 – ₹5,00,000</option>
-                        <option value="inr-500k-1m">₹5,00,000 – ₹10,00,000</option>
-                        <option value="inr-1m+">₹10,00,000+</option>
-                      </optgroup>
-                      <optgroup label="— US Dollars ($) —">
-                        <option value="8k-12k">$8,500 – $12,000</option>
-                        <option value="12k-25k">$12,000 – $25,000</option>
-                        <option value="25k-50k">$25,000 – $50,000</option>
-                        <option value="50k+">$50,000+</option>
-                      </optgroup>
+                    <label htmlFor="budget">What budget have you allocated for this work? *</label>
+                    <div className="field-note">(Our strategy-led projects typically start at $2,500 and scale based on scope.)</div>
+                    <select id="budget" required value={form.budget} onChange={handleChange} style={{ marginTop: '6px' }}>
+                      {BUDGET_OPTIONS.map((grp) => (
+                        <optgroup key={grp.group} label={`— ${grp.group} —`}>
+                          {grp.options.map((opt) => (
+                            <option key={opt} value={opt}>{opt}</option>
+                          ))}
+                        </optgroup>
+                      ))}
                     </select>
                   </div>
 
                   <div className="field">
-                    <label htmlFor="timeline">Project Timeline *</label>
+                    <label htmlFor="timeline">How soon are you planning to begin this project? *</label>
                     <select id="timeline" required value={form.timeline} onChange={handleChange}>
-                      {TIMELINES.map((t) => (
+                      {TIMELINE_OPTIONS.map((t) => (
                         <option key={t} value={t}>{t}</option>
                       ))}
                     </select>
                   </div>
                 </div>
 
+                {/* Section 4: Brand & Product Vision */}
+                <div className="contact-section-divider">// 04 · BRAND VISION & DETAILS</div>
+
                 {/* Message Field */}
                 <div className="field">
-                  <label htmlFor="message">Your message</label>
+                  <label htmlFor="message">Tell us more about your brand/idea/product ?</label>
                   <textarea
                     id="message"
-                    required
-                    placeholder="Share your goals, product category, deliverables, or questions..."
+                    placeholder="Share your goals, product category, deliverables, vision, or questions..."
                     value={form.message}
                     onChange={handleChange}
                     rows={4}
