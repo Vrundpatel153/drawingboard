@@ -58,8 +58,8 @@ export default function BlogDetail() {
           </p>
 
           {/* Cover Image Container */}
-          <div className="hero-visual has-img" style={{ marginTop: '36px' }}>
-            <img src={blog.coverImage} alt={blog.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <div className="hero-visual has-img" style={{ marginTop: '36px', background: 'var(--card)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <img src={blog.coverImage} alt={blog.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
         </div>
       </section>
@@ -81,8 +81,8 @@ export default function BlogDetail() {
               <div className="gallery" style={{ marginTop: '32px' }}>
                 {blog.images.slice(1).map((imgUrl, idx) => (
                   <div key={idx} className="shot">
-                    <div className="img" style={{ background: 'none' }}>
-                      <img src={imgUrl} alt={`${blog.title} figure ${idx + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <div className="img" style={{ background: 'var(--card)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <img src={imgUrl} alt={`${blog.title} figure ${idx + 1}`} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                     </div>
                     <div className="cap">Figure {String(idx + 1).padStart(2, '0')}: Journal Visual Spec #{idx + 1}</div>
                   </div>

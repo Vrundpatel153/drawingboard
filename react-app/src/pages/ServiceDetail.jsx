@@ -89,8 +89,8 @@ export default function ServiceDetail() {
           <div className="wrap">
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
               {/* Primary Image */}
-              <div className="hero-visual has-img" style={{ height: '360px', overflow: 'hidden', border: '1px solid var(--ink)', borderRadius: '4px' }}>
-                <img src={service.heroImage} alt={service.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <div className="hero-visual has-img" style={{ height: '360px', overflow: 'hidden', border: '1px solid var(--ink)', borderRadius: '4px', background: 'var(--card)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <img src={service.heroImage} alt={service.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
               </div>
 
               {/* Video Showcase */}
@@ -182,12 +182,12 @@ export default function ServiceDetail() {
               <div className="gallery">
                 {service.gallery.map((imgUrl, imgIdx) => (
                   <div key={imgIdx} className={`shot ${imgIdx === 0 ? 'wide' : ''}`}>
-                    <div className="img" style={{ background: 'none' }}>
+                    <div className="img" style={{ background: 'var(--card)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <img
                         src={imgUrl}
                         alt={`${service.title} asset ${imgIdx + 1}`}
                         loading="lazy"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                       />
                     </div>
                     <div className="cap">

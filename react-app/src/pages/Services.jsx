@@ -303,13 +303,13 @@ export default function Services() {
                       </div>
 
                       {/* Image Preview */}
-                      <div className="img-wrap" style={{ height: '180px', marginBottom: '18px', overflow: 'hidden', border: '1px solid var(--ink-soft)', borderRadius: '2px' }}>
+                      <div className="img-wrap" style={{ height: '180px', marginBottom: '18px', overflow: 'hidden', border: '1px solid var(--ink-soft)', borderRadius: '2px', background: 'var(--card)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <img
                           src={s.heroImage}
                           alt={s.title}
                           loading="eager"
                           decoding="async"
-                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                         />
                       </div>
 

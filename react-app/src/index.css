@@ -808,13 +808,16 @@ header {
   width: 100%;
   border-bottom: 1px solid var(--ink);
   overflow: hidden;
-  background: var(--paper-line);
+  background: var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-img-box img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 /* Spotlight Grid */
@@ -991,16 +994,19 @@ section {
 
 .proof-card .img, .case-card .img {
   aspect-ratio: 4 / 3;
-  background: linear-gradient(135deg, #d8d2c1, #c3bda9);
+  background: var(--card);
   position: relative;
   overflow: hidden;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .proof-card .img img, .case-card .img img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 /* COMPLETELY REMOVE OVERLAY TEXT FROM IMAGES */
@@ -1507,11 +1513,20 @@ section {
 .hero-visual {
   margin-top: 40px;
   aspect-ratio: 16 / 8;
-  background: linear-gradient(135deg, #d8d2c1, #c3bda9);
+  background: var(--card);
   border: 1px solid var(--ink);
   position: relative;
   overflow: hidden;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .gallery {
@@ -1528,9 +1543,18 @@ section {
 
 .gallery .shot .img {
   aspect-ratio: 4 / 3;
-  background: linear-gradient(135deg, #d8d2c1, #c3bda9);
+  background: var(--card);
   position: relative;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery .shot .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .gallery .shot.wide {

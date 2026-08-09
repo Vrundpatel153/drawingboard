@@ -291,8 +291,8 @@ export default function BrandingPage() {
         /* Think Grid & Interactive Media Cards */
         .think-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
         .think-card { border: 1.5px solid var(--ink); background: var(--card); overflow: hidden; display: flex; flex-direction: column; border-radius: 2px; }
-        .think-card-media { position: relative; width: 100%; aspect-ratio: 16/10; overflow: hidden; background: #1B1B17; cursor: pointer; user-select: none; }
-        .think-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.35s ease, opacity 0.2s ease; display: block; }
+        .think-card-media { position: relative; width: 100%; aspect-ratio: 16/10; overflow: hidden; background: #1B1B17; cursor: pointer; user-select: none; display: flex; align-items: center; justify-content: center; }
+        .think-card-media img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.35s ease, opacity 0.2s ease; display: block; }
         .think-card-media:hover img { transform: scale(1.03); }
         .think-slider-track { display: flex; height: 100%; width: 100%; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         .think-slide-item { flex-shrink: 0; width: 100%; height: 100%; position: relative; }
@@ -421,8 +421,8 @@ export default function BrandingPage() {
         .bp-sp-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); flex-shrink: 0; scroll-snap-align: start; }
         .bp-sp-wa-img-card { width: 280px; padding: 14px; }
         .bp-sp-wa-img-header { display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: #7FB89F; margin-bottom: 10px; }
-        .bp-sp-wa-img-body { width: 100%; border-radius: 2px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); aspect-ratio: 3/4; background: rgba(0,0,0,0.3); }
-        .bp-sp-wa-img-body img { width: 100%; height: 100%; object-fit: cover; }
+        .bp-sp-wa-img-body { width: 100%; border-radius: 2px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); aspect-ratio: 3/4; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; }
+        .bp-sp-wa-img-body img { width: 100%; height: 100%; object-fit: contain; }
         .bp-sp-video-card.vert { width: 260px; padding: 14px; }
         .bp-sp-video-frame { position: relative; width: 100%; aspect-ratio: 9/16; border-radius: 2px; overflow: hidden; background: #000; margin-bottom: 12px; }
         .bp-sp-video-foot { display: flex; align-items: center; gap: 10px; }
@@ -752,7 +752,7 @@ export default function BrandingPage() {
                   <img
                     src="https://framerusercontent.com/images/GI9hs6gABp4QhAbVBk1Ej9TVE0.png"
                     alt="AFTER8® Brand System"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   />
                 </div>
                 <div className="case-body">
@@ -776,7 +776,7 @@ export default function BrandingPage() {
                   <img
                     src="https://framerusercontent.com/images/Gj0gd8TaOnBqjox9iFb1KV8EbY.jpeg"
                     alt="LUMIEN Packaging System"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   />
                 </div>
                 <div className="case-body">
@@ -800,7 +800,7 @@ export default function BrandingPage() {
                   <img
                     src="https://framerusercontent.com/images/hm5rbPr45EhYVKWHrF6fMu8xGA.png"
                     alt="CARDAMOM Brand System"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   />
                 </div>
                 <div className="case-body">

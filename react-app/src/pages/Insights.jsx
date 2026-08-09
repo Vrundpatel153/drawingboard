@@ -62,8 +62,8 @@ export default function Insights() {
                   </p>
                   <Link to={`/blog/${featuredBlog.slug}`} className="btn-primary" style={{ padding: '10px 18px', fontSize: '13px' }}>Read Full Essay &rarr;</Link>
                 </div>
-                <div className="spotlight-img-box">
-                  <img src={featuredBlog.coverImage} alt={featuredBlog.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+                <div className="spotlight-img-box" style={{ background: 'var(--card)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img src={featuredBlog.coverImage} alt={featuredBlog.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} loading="lazy" />
                 </div>
               </div>
             </div>
@@ -84,8 +84,8 @@ export default function Insights() {
           <div className="article-grid" ref={gridRef}>
             {filteredBlogs.map((blog, idx) => (
               <article key={blog.slug || idx} className="article-card" style={{ padding: '0', overflow: 'hidden' }}>
-                <div style={{ height: '180px', borderBottom: '1px solid var(--ink)', overflow: 'hidden', transition: 'transform 0.4s' }}>
-                  <img src={blog.coverImage} alt={blog.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' }} loading="lazy" />
+                <div style={{ height: '180px', borderBottom: '1px solid var(--ink)', overflow: 'hidden', background: 'var(--card)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img src={blog.coverImage} alt={blog.title} style={{ width: '100%', height: '100%', objectFit: 'contain', transition: 'transform 0.4s' }} loading="lazy" />
                 </div>
                 <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', flex: 1 }}>
                   <div className="meta">

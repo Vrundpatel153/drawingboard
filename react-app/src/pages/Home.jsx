@@ -6,6 +6,7 @@ import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import ArrowIcon from '../components/ArrowIcon';
 import WhatsAppCTALink from '../components/WhatsAppCTALink';
+import BookCallLink from '../components/BookCallLink';
 import projectsData from '../data/projectsData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 
@@ -132,8 +133,8 @@ export default function Home() {
           <div className="values-grid">
             {/* Visual Card 1 */}
             <div className="annot-card card-val" style={{ padding: 0, overflow: 'hidden' }}>
-              <div className="card-img-box">
-                <img src="https://framerusercontent.com/images/SzRYtW3gumxhjmxmvpYLl0WYuVo.jpg" alt="Brands Launched" loading="lazy" />
+              <div className="card-img-box" style={{ background: 'var(--card)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <img src="https://framerusercontent.com/images/SzRYtW3gumxhjmxmvpYLl0WYuVo.jpg" alt="Brands Launched" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
               </div>
               <div style={{ padding: '24px' }}>
                 <div className="eyebrow">25+ BRANDS LAUNCHED</div>
@@ -144,8 +145,8 @@ export default function Home() {
 
             {/* Visual Card 2 */}
             <div className="annot-card card-val" style={{ padding: 0, overflow: 'hidden' }}>
-              <div className="card-img-box">
-                <img src="https://framerusercontent.com/images/9ivjCTLXLCnuZ4dxAIE9YKA3g.jpeg" alt="Combined Experience" loading="lazy" />
+              <div className="card-img-box" style={{ background: 'var(--card)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <img src="https://framerusercontent.com/images/9ivjCTLXLCnuZ4dxAIE9YKA3g.jpeg" alt="Combined Experience" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
               </div>
               <div style={{ padding: '24px' }}>
                 <div className="eyebrow">10+ YEARS EXPERIENCE</div>
@@ -156,8 +157,8 @@ export default function Home() {
 
             {/* Visual Card 3 */}
             <div className="annot-card card-val" style={{ padding: 0, overflow: 'hidden' }}>
-              <div className="card-img-box">
-                <img src="https://framerusercontent.com/images/su5cXza26dFS3mIr1IBsz28UuIY.jpg" alt="Engagement Growth" loading="lazy" />
+              <div className="card-img-box" style={{ background: 'var(--card)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <img src="https://framerusercontent.com/images/su5cXza26dFS3mIr1IBsz28UuIY.jpg" alt="Engagement Growth" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
               </div>
               <div style={{ padding: '24px' }}>
                 <div className="eyebrow">+40% AVG GROWTH</div>
@@ -183,8 +184,8 @@ export default function Home() {
           <div className="proof-grid">
             {featuredProjects.map((p, idx) => (
               <Link key={p.slug || idx} to={`/work/${p.slug}`} className="proof-card has-img">
-                <div className="img">
-                  <img src={p.coverImage} alt={p.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <div className="img" style={{ background: 'var(--card)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img src={p.coverImage} alt={p.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                 </div>
                 <div className="proof-body">
                   <div className="tag">{p.tag}</div>
@@ -219,7 +220,7 @@ export default function Home() {
                 <li>Logo systems & typography</li>
                 <li>Comprehensive brand guidelines</li>
               </ul>
-              <Link to="/services" className="go">Explore Branding <ArrowIcon size={12} /></Link>
+              <Link to="/services/branding" className="go">Explore Branding <ArrowIcon size={12} /></Link>
             </div>
 
             <div className="deliv-col">
@@ -231,7 +232,7 @@ export default function Home() {
                 <li>Foil stamping & embossing specs</li>
                 <li>3D photorealistic renders</li>
               </ul>
-              <Link to="/services" className="go">Explore Packaging <ArrowIcon size={12} /></Link>
+              <Link to="/services/packaging-design" className="go">Explore Packaging <ArrowIcon size={12} /></Link>
             </div>
 
             <div className="deliv-col">
@@ -243,7 +244,7 @@ export default function Home() {
                 <li>Shopify & E-Commerce engines</li>
                 <li>Sub-second speed optimization</li>
               </ul>
-              <Link to="/services" className="go">Explore Web <ArrowIcon size={12} /></Link>
+              <Link to="/services/development" className="go">Explore Web <ArrowIcon size={12} /></Link>
             </div>
 
             <div className="deliv-col">
@@ -255,7 +256,7 @@ export default function Home() {
                 <li>Campaign & launch collateral</li>
                 <li>Social media asset kits</li>
               </ul>
-              <Link to="/services" className="go">Explore Visuals <ArrowIcon size={12} /></Link>
+              <Link to="/services/photography" className="go">Explore Visuals <ArrowIcon size={12} /></Link>
             </div>
           </div>
         </div>
@@ -302,7 +303,7 @@ export default function Home() {
         <div className="wrap">
           <h2>Ready to turn your business into a real brand?</h2>
           <p>Schedule a discovery call or send your project inquiry to start your engagement.</p>
-          <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-primary">Book 15-Min Call on Cal.com <ArrowIcon /></a>
+          <BookCallLink className="btn-primary">Book 15-Min Call on Cal.com <ArrowIcon /></BookCallLink>
         </div>
       </section>
 

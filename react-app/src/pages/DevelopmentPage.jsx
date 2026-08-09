@@ -302,11 +302,15 @@ export default function DevelopmentPage() {
         .dev-page .feat-case .fimg {
           aspect-ratio: 16/9;
           overflow: hidden;
+          background: var(--card);
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .dev-page .feat-case .fimg img {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: contain;
         }
         .dev-page .feat-case .fbody {
           padding: 16px 20px;
@@ -745,12 +749,15 @@ export default function DevelopmentPage() {
         .dev-page .case-card .img {
           aspect-ratio: 4/3;
           overflow: hidden;
-          background: #d8d2c1;
+          background: var(--card);
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .dev-page .case-card .img img {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: contain;
         }
         .dev-page .case-body {
           padding: 13px 15px;

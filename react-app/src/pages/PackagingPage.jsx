@@ -259,10 +259,8 @@ export default function PackagingPage() {
 
         .pp-page .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         @media (max-width: 860px) { .pp-page .proof-grid { grid-template-columns: 1fr; } }
-        .pp-page .proof-card { border: 1px solid var(--ink); background: var(--card); overflow: hidden; display: block; text-decoration: none; color: inherit; }
-        .pp-page .proof-card .img { aspect-ratio: 4/3; background: linear-gradient(135deg, #d8d2c1, #c3bda9); position: relative; }
-        .pp-page .proof-card .img::after { content: "IMAGE PLACEHOLDER"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.05em; color: #8b8571; text-align: center; padding: 0 20px; }
-        .pp-page .proof-card .img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
+        .pp-page .proof-card .img { aspect-ratio: 4/3; background: var(--card); position: relative; display: flex; align-items: center; justify-content: center; }
+        .pp-page .proof-card .img img { width: 100%; height: 100%; object-fit: contain; display: block; transition: transform .35s ease; }
         .pp-page .proof-card:hover .img img { transform: scale(1.04); }
         .pp-page .proof-body { padding: 18px 20px; }
         .pp-page .proof-body .tag { font-size: 11px; color: var(--marker); margin-bottom: 6px; }

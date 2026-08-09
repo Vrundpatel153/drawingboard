@@ -76,14 +76,17 @@ export default function Work() {
             width: 100%;
             aspect-ratio: 16/10;
             overflow: hidden;
-            background: linear-gradient(135deg, #d8d2c1, #c3bda9);
+            background: var(--card);
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
 
           .work-case-card .img-box img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             transition: transform 0.45s ease;
             display: block;
           }

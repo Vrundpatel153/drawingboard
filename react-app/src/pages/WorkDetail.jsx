@@ -138,7 +138,7 @@ export default function WorkDetail() {
               <img
                 src={project.coverImage}
                 alt={project.title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
               />
             </div>
           )}
@@ -443,7 +443,7 @@ export default function WorkDetail() {
                         src={imgUrl}
                         alt={`${project.title} figure ${imgIdx + 1}`}
                         loading="lazy"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                       />
                     </div>
                     <div className="cap">
@@ -455,7 +455,7 @@ export default function WorkDetail() {
             ) : (
               <div className="shot wide">
                 <div className="img" style={{ background: 'none' }}>
-                  {project.coverImage && <img src={project.coverImage} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
+                  {project.coverImage && <img src={project.coverImage} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
                 </div>
                 <div className="cap">Figure 01: Complete {project.title} System Showcase</div>
               </div>
