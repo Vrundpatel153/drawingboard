@@ -928,7 +928,7 @@ export default function DevelopmentPage() {
                   <a className="btn-link" href="https://wa.me/919428859768" target="_blank" rel="noopener noreferrer">or message us on WhatsApp</a>
                 </div>
 
-                <p className="price-note">Shopify builds, fixed at <b>₹96,000.</b> Custom builds, fixed at <b>₹1,45,000.</b> One price, agreed before work starts — no surprises at delivery.</p>
+                <p className="price-note">Shopify builds, fixed at <b>$1,200 (₹96,000).</b> Custom builds, fixed at <b>$1,850 (₹1,45,000).</b> One price, agreed before work starts — no surprises at delivery.</p>
               </div>
 
               <div>
@@ -1016,7 +1016,7 @@ export default function DevelopmentPage() {
                   <tr><td>Timeline</td><td>3–5 weeks</td><td className="hl">6–10 weeks</td></tr>
                   <tr><td>Flexibility</td><td>High, within Shopify's ecosystem &amp; apps</td><td className="hl">Unlimited — built exactly to your spec</td></tr>
                   <tr><td>Ongoing platform cost</td><td>Shopify subscription + paid apps</td><td className="hl">Hosting only — no platform fees</td></tr>
-                  <tr><td>Fixed price</td><td>₹96,000</td><td className="hl">₹1,45,000</td></tr>
+                  <tr><td>Fixed price</td><td>$1,200 (₹96,000)</td><td className="hl">$1,850 (₹1,45,000)</td></tr>
                 </tbody>
               </table>
             </div>
@@ -1039,7 +1039,7 @@ export default function DevelopmentPage() {
               <div className="tier">
                 <div className="use">Individuals &amp; small businesses</div>
                 <h4>Starter Site</h4>
-                <div className="price">₹85,000</div>
+                <div className="price">$1,050 <span style={{ fontSize: '15px', color: 'var(--ink-soft)' }}>(₹85,000)</span></div>
                 <div className="price-sub mono">PER PROJECT</div>
                 <ul>
                   <li>1–5 page website</li>
@@ -1056,7 +1056,7 @@ export default function DevelopmentPage() {
               <div className="tier">
                 <div className="use">DTC brands launching or migrating to Shopify</div>
                 <h4>Shopify / E-commerce Build</h4>
-                <div className="price">₹96,000</div>
+                <div className="price">$1,200 <span style={{ fontSize: '15px', color: 'var(--ink-soft)' }}>(₹96,000)</span></div>
                 <div className="price-sub mono">FIXED PRICE · UP TO 50 SKUs</div>
                 <ul>
                   <li>Built in Shopify, WooCommerce, or equivalent</li>
@@ -1076,7 +1076,7 @@ export default function DevelopmentPage() {
                 <div className="flag">RECOMMENDED FOR GROWING BRANDS</div>
                 <div className="use">Brands &amp; companies who've outgrown templates</div>
                 <h4>Custom Website Build</h4>
-                <div className="price">₹1,45,000</div>
+                <div className="price">$1,850 <span style={{ fontSize: '15px', color: 'var(--ink-soft)' }}>(₹1,45,000)</span></div>
                 <div className="price-sub mono">FIXED PRICE · UP TO 10 PAGES</div>
                 <ul>
                   <li>10-page website</li>
@@ -1092,7 +1092,7 @@ export default function DevelopmentPage() {
               <div className="tier">
                 <div className="use">Cross-platform app development</div>
                 <h4>App Development</h4>
-                <div className="price">₹2,85,000</div>
+                <div className="price">$3,600 <span style={{ fontSize: '15px', color: 'var(--ink-soft)' }}>(₹2,85,000)</span></div>
                 <div className="price-sub mono">PER PROJECT</div>
                 <ul>
                   <li>Single codebase for iOS &amp; Android</li>
@@ -1111,12 +1111,12 @@ export default function DevelopmentPage() {
               <div style={{ fontFamily: "'Fraunces', serif", fontSize: '17px', fontWeight: 600, marginBottom: '6px' }}>What changes the price — and what never does</div>
               <p style={{ fontSize: '13.5px', color: 'var(--ink-soft)', maxWidth: '640px', marginBottom: '18px' }}>Every price above is fixed for the scope listed. Nothing is added without your sign-off — if your project needs more than the base scope, here's exactly what that costs:</p>
               <div className="dev-price-addons-grid">
-                <div className="addon-row"><span className="lbl">Shopify catalog beyond 50 SKUs</span><span className="val">+₹10,000</span></div>
-                <div className="addon-row"><span className="lbl">Migration from an existing platform</span><span className="val">+₹15,000</span></div>
-                <div className="addon-row"><span className="lbl">Custom pages beyond 10 (Custom Build)</span><span className="val">+₹8,000 / page</span></div>
-                <div className="addon-row"><span className="lbl">Multi-currency / international checkout</span><span className="val">+₹10,000</span></div>
-                <div className="addon-row"><span className="lbl">Custom app or API integration</span><span className="val">+₹12,000</span></div>
-                <div className="addon-row"><span className="lbl">Membership / gated login system</span><span className="val">+₹18,000</span></div>
+                <div className="addon-row"><span className="lbl">Shopify catalog beyond 50 SKUs</span><span className="val">+$125 (+₹10,000)</span></div>
+                <div className="addon-row"><span className="lbl">Migration from an existing platform</span><span className="val">+$190 (+₹15,000)</span></div>
+                <div className="addon-row"><span className="lbl">Custom pages beyond 10 (Custom Build)</span><span className="val">+$100 / page (+₹8,000 / page)</span></div>
+                <div className="addon-row"><span className="lbl">Multi-currency / international checkout</span><span className="val">+$125 (+₹10,000)</span></div>
+                <div className="addon-row"><span className="lbl">Custom app or API integration</span><span className="val">+$150 (+₹12,000)</span></div>
+                <div className="addon-row"><span className="lbl">Membership / gated login system</span><span className="val">+$225 (+₹18,000)</span></div>
               </div>
 
               <p style={{ fontSize: '12.5px', color: 'var(--ink-soft)', marginTop: '16px' }}>You'll see all applicable add-ons in your quote before work begins — never after. If none apply, you pay exactly the fixed price above.</p>
@@ -1221,7 +1221,7 @@ export default function DevelopmentPage() {
       </div>
 
       <div className="sticky-cta">
-        <div className="txt">Shopify, fixed at ₹96,000<b>Free 15-min call</b></div>
+        <div className="txt">Shopify, fixed at $1,200 (₹96,000)<b>Free 15-min call</b></div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <a
             href={WHATSAPP_URL}

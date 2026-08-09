@@ -77,8 +77,25 @@ const CHALLENGES = [
 ];
 
 const BUDGET_OPTIONS = [
-  { group: 'USD ($)', options: ['$ 2,500', '$ 3,000 - $4,000', '$ 5,000 - $ 10,000', '$ 10,000 - 20,000', '$ 20,000+'] },
-  { group: 'INR (₹)', options: ['₹1,75,000 – ₹2,50,000', '₹2,50,000 – ₹5,00,000', '₹5,00,000 – ₹10,00,000', '₹10,00,000+'] }
+  {
+    group: 'USD ($)',
+    options: [
+      '$4,960 (Growth Brand-to-Shelf)',
+      '$6,780 (Scale Brand-to-Market)',
+      '$8,000 – $12,000',
+      '$12,000 – $20,000',
+      '$20,000+'
+    ]
+  },
+  {
+    group: 'INR (₹)',
+    options: [
+      '₹4,75,000 (Growth Brand-to-Shelf)',
+      '₹6,50,000 (Scale Brand-to-Market)',
+      '₹8,00,000 – ₹12,00,000',
+      '₹12,00,000+'
+    ]
+  }
 ];
 
 const TIMELINE_OPTIONS = [
@@ -106,7 +123,7 @@ export default function Contact() {
     teamStructure: '',
     primaryChallenge: '',
     services: ['Branding'],
-    budget: '$ 3,000 - $4,000',
+    budget: '$4,960 (Growth Brand-to-Shelf)',
     timeline: 'Immediately',
     message: ''
   });

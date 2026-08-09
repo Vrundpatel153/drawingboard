@@ -133,7 +133,7 @@ export default function ServiceDetail() {
                 <div className="lbl">// SPRINT GUARANTEE</div>
                 <p>"Senior-only execution with zero junior pass-offs. Every milestone is reviewed directly with studio partners."</p>
                 <div style={{ marginTop: '20px', fontSize: '14px', fontWeight: 'bold' }}>
-                  Fixed Sprint Price: From {service.startingPrice}
+                  Fixed Sprint Price: From {service.startingPrice} {service.startingPriceINR && <span style={{ fontSize: '12px', color: 'var(--ink-soft)', fontWeight: 500 }}>({service.startingPriceINR})</span>}
                 </div>
               </div>
             </div>
@@ -173,10 +173,10 @@ export default function ServiceDetail() {
             <div className="wrap">
               <div className="section-head">
                 <div>
-                  <div className="eyebrow">VISUAL SHOWCASE</div>
-                  <h2>{service.title} — Work Examples & Renders</h2>
+                  <div className="eyebrow">VISUAL CRAFT</div>
+                  <h2>Gallery & Design Specifications</h2>
                 </div>
-                <p>Selected visual assets and execution samples.</p>
+                <p>High-resolution production renders and system touchpoints.</p>
               </div>
 
               <div className="gallery">
@@ -217,7 +217,9 @@ export default function ServiceDetail() {
                   <div className="deliv-col" key={pmIdx} style={{ padding: '28px', background: 'var(--bg)', border: '1px solid var(--ink)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
                       <h4 style={{ fontSize: '18px' }}>{pm.tier}</h4>
-                      <span className="badge" style={{ fontSize: '14px', fontWeight: 'bold' }}>{pm.price}</span>
+                      <span className="badge" style={{ fontSize: '14px', fontWeight: 'bold' }}>
+                        {pm.price} {pm.priceINR && <span style={{ fontSize: '11.5px', color: 'var(--ink-soft)', fontWeight: 500, marginLeft: '4px' }}>({pm.priceINR})</span>}
+                      </span>
                     </div>
                     <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ink-soft)', marginBottom: '20px' }}>
                       {pm.desc}

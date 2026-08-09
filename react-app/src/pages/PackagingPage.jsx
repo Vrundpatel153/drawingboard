@@ -31,7 +31,7 @@ export default function PackagingPage() {
 
   const faqs = [
     {
-      q: "What is included in the ₹1,75,000 packaging engagement?",
+      q: "What is included in the $2,500 (₹1,75,000) packaging engagement?",
       a: "One master packaging direction covering front, back and side-panel design, typography and colour system, claims hierarchy, up to five straightforward SKU adaptations, presentation mockups, print-ready artwork on approved dielines, editable source files, and printer handoff support."
     },
     {
@@ -408,7 +408,7 @@ export default function PackagingPage() {
                     <a className="btn-primary" href="#pricing">Book a 15-min call →</a>
                     <a className="btn-link" href="https://wa.me/919428859768">or message us on WhatsApp</a>
                   </div>
-                  <p className="price-note">Packaging engagements start at <b>₹1,75,000.</b> Built for serious launches, redesigns and growing product ranges.</p>
+                  <p className="price-note">Packaging engagements start at <b>$2,500 (₹1,75,000).</b> Built for serious launches, redesigns and growing product ranges.</p>
                 </div>
 
                 <div className="annot-card">
@@ -418,7 +418,7 @@ export default function PackagingPage() {
                   <div className="annot-row"><span>Base scope</span><span>1 master design + SKU adaptations</span></div>
                   <div className="annot-row"><span>Delivery</span><span>Approximately 3–5 weeks</span></div>
                   <div className="annot-row"><span>Handoff</span><span>Print-ready + editable source files</span></div>
-                  <div className="annot-row"><span>Starting investment</span><span style={{ color: 'var(--pine)', fontWeight: 600 }}>₹1,75,000</span></div>
+                  <div className="annot-row"><span>Starting investment</span><span style={{ color: 'var(--pine)', fontWeight: 600 }}>$2,500 (₹1,75,000)</span></div>
                 </div>
               </div>
 
@@ -610,7 +610,7 @@ export default function PackagingPage() {
                   </ul>
                 </div>
               </div>
-              <p className="deliv-note"><strong>Scope note:</strong> the base ₹1,75,000 scope includes one master packaging design and up to five straightforward SKU adaptations using the approved structure. New formats, structural changes, additional sizes or major copy changes are quoted separately.</p>
+              <p className="deliv-note"><strong>Scope note:</strong> the base $2,500 (₹1,75,000) scope includes one master packaging design and up to five straightforward SKU adaptations using the approved structure. New formats, structural changes, additional sizes or major copy changes are quoted separately.</p>
               <p className="deliv-note warn">The client or manufacturer must provide final, technically verified dielines. Structural engineering, prototype manufacturing, printing, legal review and regulatory certification are not included unless separately quoted.</p>
             </div>
           </section>
@@ -782,9 +782,9 @@ export default function PackagingPage() {
                     </tr>
                     <tr>
                       <td>Typical investment</td>
-                      <td>₹20,000–₹80,000</td>
-                      <td>₹8,00,000+</td>
-                      <td className="hl">Starts at ₹1,75,000</td>
+                      <td>$250–$1,000 (₹20k–₹80k)</td>
+                      <td>$10,000+ (₹8,00,000+)</td>
+                      <td className="hl">Starts at $2,500 (₹1,75,000)</td>
                     </tr>
                   </tbody>
                 </table>
@@ -929,7 +929,7 @@ export default function PackagingPage() {
                     <p className="desc">Starting investment for one master packaging direction.</p>
                   </div>
                   <div className="feat-price">
-                    <span className="amt">₹1,75,000</span>
+                    <span className="amt">$2,500 <span style={{ fontSize: '18px', color: 'var(--ink-soft)' }}>(₹1,75,000)</span></span>
                     <div className="per">per project</div>
                   </div>
                   <ul className="feat-list">
@@ -978,7 +978,7 @@ export default function PackagingPage() {
           <section style={{ paddingTop: 0 }}>
             <div className="wrap" style={{ maxWidth: '860px' }}>
               <div className="quote-strip">
-                <h2>Why does strategic packaging start at ₹1,75,000?</h2>
+                <h2>Why does strategic packaging start at $2,500 (₹1,75,000)?</h2>
                 <p>The engagement is not priced as one front label or a set of decorative graphics. It covers the research, decision-making, hierarchy, core design system, SKU logic, production artwork and source-file handoff required to build packaging that can survive launch, print, retail and future expansion.</p>
                 <p className="close">You are not paying for the number of hours spent moving elements. You are investing in the decisions your brand should not have to remake for every new product.</p>
               </div>
@@ -1124,7 +1124,7 @@ export default function PackagingPage() {
 
       <div className="pp-page">
         <div className="sticky-cta">
-          <div className="txt">Packaging from ₹1,75,000<b>Free 15-min call</b></div>
+          <div className="txt">Packaging from $2,500 (₹1,75,000)<b>Free 15-min call</b></div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <a
               href={WHATSAPP_URL}
