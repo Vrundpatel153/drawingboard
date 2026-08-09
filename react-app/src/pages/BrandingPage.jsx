@@ -212,7 +212,7 @@ export default function BrandingPage() {
         .bp-btn-primary:hover { background: var(--pine-deep); border-color: var(--pine-deep); }
         .btn-outline-light { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border: 1.5px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.04); color: var(--paper); font-size: 14px; font-weight: 600; border-radius: var(--radius); transition: all 0.15s; text-decoration: none; min-height: 48px; box-sizing: border-box; text-align: center; }
         .btn-outline-light:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.6); }
-        .bp-btn-link { font-size: 14.5px; border-bottom: 1px solid currentColor; padding-bottom: 2px; color: var(--ink-soft); text-decoration: none; }
+        .bp-btn-link { font-size: 14.5px; border-bottom: 1px solid currentColor; padding-bottom: 2px; color: var(--ink-soft); text-decoration: none; display: inline-block; width: fit-content; max-width: 100%; transition: color 0.15s; }
         .bp-btn-link:hover { color: var(--ink); }
         
         .bp-price-note { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
@@ -513,8 +513,9 @@ export default function BrandingPage() {
           .bp-hero h1 { font-size: clamp(28px, 7.5vw, 42px) !important; line-height: 1.15 !important; }
           .bp-hero-sub { font-size: 15.5px !important; margin-bottom: 12px !important; }
           .bp-hero-grid { grid-template-columns: 1fr !important; gap: 24px !important; margin-top: 24px !important; }
-          .bp-cta-row { flex-direction: column !important; align-items: stretch !important; gap: 10px !important; }
-          .bp-btn-primary { justify-content: center !important; width: 100% !important; text-align: center !important; }
+          .bp-cta-row { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+          .bp-cta-row .bp-btn-primary { justify-content: center !important; width: 100% !important; text-align: center !important; }
+          .bp-cta-row .bp-btn-link { width: fit-content !important; align-self: flex-start !important; }
           .bp-annot-card { padding: 20px 16px !important; }
           
           .bp-stat-strip { display: grid !important; grid-template-columns: 1fr 1fr !important; margin-top: 32px !important; }
@@ -606,10 +607,10 @@ export default function BrandingPage() {
                 </p>
                 <div className="bp-cta-row">
                   <a className="bp-btn-primary" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Discuss Your Project →</a>
-                  <a className="bp-btn-link" href="#case-studies">View Selected Work</a>
+                  <a className="bp-btn-link" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Prefer WhatsApp? Message the studio.</a>
                 </div>
                 <p style={{ marginBottom: '14px' }}>
-                  <a className="bp-btn-link" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Prefer WhatsApp? Message the studio.</a>
+                  <a className="bp-btn-link" href="#case-studies">View Selected Work ↓</a>
                 </p>
                 <p className="bp-price-note">Brand and packaging engagements begin at <b>₹4,75,000</b>.</p>
               </div>
@@ -801,27 +802,27 @@ export default function BrandingPage() {
                 </div>
               </Link>
 
-              <Link to="/work/ajumma-kitchen-modern-asian-bistro" className="case-card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
+              <Link to="/work/shiba-s-bar-kitchen-and-bar" className="case-card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
                 <div className="img" style={{ background: 'none' }}>
                   <img
                     src="https://framerusercontent.com/images/hm5rbPr45EhYVKWHrF6fMu8xGA.png"
-                    alt="CARDAMOM Brand System"
+                    alt="Shoba's Bar &amp; Kitchen Brand System"
                     style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   />
                 </div>
                 <div className="case-body">
-                  <div className="tag mono">Tea &amp; Coffee</div>
-                  <h4>CARDAMOM</h4>
-                  <p><strong>Challenge:</strong> Create one recognisable house language across tea, coffee, matcha and future product formats.</p>
-                  <p style={{ marginTop: '8px' }}><strong>Direction:</strong> A calm, ingredient-led system with clear product differentiation and consistent brand recognition.</p>
+                  <div className="tag mono">Hospitality &amp; Cocktails</div>
+                  <h4>SHOBA'S BAR &amp; KITCHEN</h4>
+                  <p><strong>Challenge:</strong> Create a distinguished, vintage-luxury cocktail bar identity and illustrated mascot system that balances elegance with playful character.</p>
+                  <p style={{ marginTop: '8px' }}><strong>Direction:</strong> Bespoke calligraphy wordmark paired with an illustrated aristocrat mascot, tactile gold-foiled coasters, menus, and environmental signage.</p>
                   <ul className="sys-list">
-                    <li>Identity application</li>
-                    <li>Packaging hierarchy</li>
-                    <li>SKU logic</li>
-                    <li>Product-format adaptation</li>
-                    <li>Retail and digital presentation</li>
+                    <li>Identity application &amp; mascot illustration</li>
+                    <li>Custom calligraphic wordmark</li>
+                    <li>Cocktail menu &amp; coaster suite</li>
+                    <li>Architectural signage &amp; ambient branding</li>
+                    <li>Digital brand kit &amp; social templates</li>
                   </ul>
-                  <div className="demo"><b>What This Project Demonstrates</b>How a master packaging language can expand across categories without making every product look identical.</div>
+                  <div className="demo"><b>What This Project Demonstrates</b>How hand-crafted illustration and fine typography create an unforgettable, premium hospitality destination.</div>
                   <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                     View Case Study <span style={{ fontSize: '16px' }}>→</span>
                   </div>

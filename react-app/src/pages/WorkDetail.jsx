@@ -593,7 +593,7 @@ export default function WorkDetail() {
           <div className="section-head">
             <div>
               <div className="eyebrow">DESIGN SYSTEM GALLERY</div>
-              <h2>{isBondwith ? 'Bondwith — 32 Master System Figures & Guideline Architecture' : isAfter8 ? 'Visual system & product showcase.' : `${project.title} — Visual System & Renders`}</h2>
+              <h2>{isBondwith ? 'Bondwith — 31 Master System Figures & Guideline Architecture' : isAfter8 ? 'Visual system & product showcase.' : `${project.title} — Visual System & Renders`}</h2>
             </div>
             <p>Detailed breakdown of typographic pairings, color swatches, and packaging renders.</p>
           </div>
