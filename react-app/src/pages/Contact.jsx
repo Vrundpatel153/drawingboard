@@ -89,6 +89,7 @@ const TIMELINE_OPTIONS = [
 
 export default function Contact() {
   const [openFaq, setOpenFaq] = useState(null);
+  const [showChannelModal, setShowChannelModal] = useState(false);
   const pageRef = useRef(null);
   const navigate = useNavigate();
 
@@ -135,34 +136,79 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setShowChannelModal(true);
+  };
 
-    // ── Build structured WhatsApp message payload ────────────────────────
-    const msg = [
-      `Hello The Drawing Board! 👋`,
+  // Structured brief builder (Strictly NO emojis for 100% OS consistency)
+  const buildBriefText = (channel = 'whatsapp') => {
+    if (channel === 'whatsapp') {
+      return [
+        `Hello The Drawing Board!`,
+        ``,
+        `*PROJECT INQUIRY BRIEF*`,
+        ``,
+        `*Client Name:* ${form.name}`,
+        `*Email:* ${form.email}`,
+        `*Phone Number:* ${form.phone || 'N/A'}`,
+        `*WhatsApp Number:* ${form.whatsapp || 'N/A'}`,
+        ``,
+        `*Company / Brand:* ${form.companyName || 'N/A'}`,
+        `*Role:* ${form.role || 'N/A'}`,
+        `*Website / Social:* ${form.website || 'N/A'}`,
+        `*Annual Revenue:* ${form.annualRevenue || 'N/A'}`,
+        `*Team Structure:* ${form.teamStructure || 'N/A'}`,
+        ``,
+        `*Primary Challenge:*`,
+        `${form.primaryChallenge || 'N/A'}`,
+        ``,
+        `*Services Requested:* ${form.services.join(', ')}`,
+        `*Allocated Budget:* ${form.budget}`,
+        `*Project Start Timeline:* ${form.timeline}`,
+        ``,
+        `*About the Brand / Product / Idea:*`,
+        form.message || 'Ready to start project discussion.',
+        ``,
+        `---`,
+        `Sent via drawingsboards.com/contact`
+      ].join('\n');
+    }
+
+    // Email plain text format
+    return [
+      `PROJECT INQUIRY BRIEF — THE DRAWING BOARD`,
+      `========================================`,
       ``,
-      `*New Project Inquiry from ${form.name}*`,
-      `Company / Brand: ${form.companyName || 'N/A'}`,
-      `Role: ${form.role || 'N/A'}`,
-      `Email: ${form.email}`,
-      `Phone: ${form.phone || 'N/A'}`,
-      `WhatsApp: ${form.whatsapp || 'N/A'}`,
-      `Website/Social: ${form.website || 'N/A'}`,
+      `[01. CONTACT DETAILS]`,
+      `Client Name: ${form.name}`,
+      `Email Address: ${form.email}`,
+      `Phone Number: ${form.phone || 'N/A'}`,
+      `WhatsApp Number: ${form.whatsapp || 'N/A'}`,
       ``,
-      `*Current Annual Revenue:* ${form.annualRevenue || 'N/A'}`,
-      `*Team Structure:* ${form.teamStructure || 'N/A'}`,
-      `*Primary Challenge:*`,
+      `[02. COMPANY & ORGANIZATION]`,
+      `Company / Brand Name: ${form.companyName || 'N/A'}`,
+      `Role within Company: ${form.role || 'N/A'}`,
+      `Website / Social Profile: ${form.website || 'N/A'}`,
+      `Current Annual Revenue: ${form.annualRevenue || 'N/A'}`,
+      `Team Structure: ${form.teamStructure || 'N/A'}`,
+      ``,
+      `[03. PROJECT SCOPE & CHALLENGE]`,
+      `Primary Challenge:`,
       `${form.primaryChallenge || 'N/A'}`,
       ``,
-      `*Services Requested:* ${form.services.join(', ')}`,
-      `*Allocated Budget:* ${form.budget}`,
-      `*Project Start Timeline:* ${form.timeline}`,
+      `Services Requested: ${form.services.join(', ')}`,
+      `Allocated Budget: ${form.budget}`,
+      `Project Start Timeline: ${form.timeline}`,
       ``,
-      `*About the Brand / Product / Idea:*`,
+      `[04. BRAND / PRODUCT / VISION DETAILS]`,
       form.message || 'Ready to start project discussion.',
       ``,
-      `— Sent via drawingsboards.com/contact`
+      `----------------------------------------`,
+      `Submitted via drawingsboards.com/contact`
     ].join('\n');
+  };
 
+  const handleSendWhatsApp = () => {
+    const msg = buildBriefText('whatsapp');
     const waUrl = `https://wa.me/919428859768?text=${encodeURIComponent(msg)}`;
 
     // 1. Dispatch Meta Conversions API (CAPI) & Pixel lead event
@@ -170,6 +216,7 @@ export default function Contact() {
       name: form.name,
       phone: form.phone || form.whatsapp,
       email: form.email,
+      channel: 'WhatsApp',
       services: form.services.join(', '),
       budget: form.budget,
       timeline: form.timeline,
@@ -181,13 +228,46 @@ export default function Contact() {
       message: form.message
     });
 
-    // 2. Navigate current tab to /thank-you immediately
-    navigate('/thank-you');
+    setShowChannelModal(false);
 
-    // 3. Open WhatsApp in new tab / app
+    // 2. Open WhatsApp in new tab / app
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
+
+    // 3. Navigate current tab to /thank-you immediately
+    navigate('/thank-you');
+  };
+
+  const handleSendMail = () => {
+    const body = buildBriefText('mail');
+    const subject = `Project Inquiry: ${form.name} — ${form.companyName || 'New Project'}`;
+    const mailUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // 1. Dispatch Meta Conversions API (CAPI) & Pixel lead event
+    trackMetaFormSubmission({
+      name: form.name,
+      phone: form.phone || form.whatsapp,
+      email: form.email,
+      channel: 'Email',
+      services: form.services.join(', '),
+      budget: form.budget,
+      timeline: form.timeline,
+      company: form.companyName,
+      role: form.role,
+      annualRevenue: form.annualRevenue,
+      teamStructure: form.teamStructure,
+      primaryChallenge: form.primaryChallenge,
+      message: form.message
+    });
+
+    setShowChannelModal(false);
+
+    // 2. Open default email client / webmail
+    window.location.href = mailUrl;
+
+    // 3. Navigate current tab to /thank-you
     setTimeout(() => {
-      window.open(waUrl, '_blank', 'noopener,noreferrer');
-    }, 20);
+      navigate('/thank-you');
+    }, 250);
   };
 
   return (
@@ -195,6 +275,158 @@ export default function Contact() {
       <div ref={pageRef}>
         <RegistrationMarks />
         <Navbar />
+
+        {/* ── Smooth Interactive Channel Choice Modal ──────────────────── */}
+        {showChannelModal && (
+          <div
+            style={{
+              position: 'fixed',
+              inset: 0,
+              background: 'rgba(27, 27, 23, 0.72)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
+              zIndex: 9999,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '20px'
+            }}
+            onClick={() => setShowChannelModal(false)}
+          >
+            <div
+              style={{
+                background: 'var(--paper)',
+                border: '1.5px solid var(--ink)',
+                maxWidth: '490px',
+                width: '100%',
+                padding: '32px 28px',
+                position: 'relative',
+                boxShadow: '0 24px 50px rgba(0,0,0,0.28)',
+                borderRadius: '4px'
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Corner mark */}
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '-1px',
+                  right: '-1px',
+                  width: '26px',
+                  height: '26px',
+                  background: 'var(--marker)',
+                  clipPath: 'polygon(0 0, 100% 0, 100% 100%)'
+                }}
+              />
+
+              <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '11px', color: 'var(--pine)', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '8px' }}>
+                // TRANSMISSION READY · SELECT CHANNEL
+              </div>
+
+              <h3 style={{ fontSize: '22px', fontFamily: "'Fraunces', serif", margin: '0 0 10px 0', color: 'var(--ink)' }}>
+                How would you like to continue?
+              </h3>
+
+              <p style={{ fontSize: '14px', color: 'var(--ink-soft)', lineHeight: 1.5, margin: '0 0 24px 0' }}>
+                Your project brief has been formatted. Choose your preferred channel to transmit directly to our team:
+              </p>
+
+              {/* 2 Smooth Action Buttons */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                
+                {/* Option 1: Continue with WhatsApp */}
+                <button
+                  type="button"
+                  onClick={handleSendWhatsApp}
+                  style={{
+                    background: '#24463B',
+                    color: '#FFF',
+                    border: '1.5px solid #24463B',
+                    padding: '16px 20px',
+                    borderRadius: '2px',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    textAlign: 'left',
+                    transition: 'transform 0.15s ease, background 0.15s ease',
+                    boxShadow: '0 4px 12px rgba(36, 70, 59, 0.18)'
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-2px)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = 'translateY(0)')}
+                >
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: '15px', letterSpacing: '0.01em' }}>
+                      Continue with WhatsApp
+                    </div>
+                    <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.85)', marginTop: '2px', fontFamily: "'IBM Plex Mono', monospace" }}>
+                      Instant direct chat · +91 94288 59768
+                    </div>
+                  </div>
+                  <span style={{ fontSize: '18px', fontWeight: 700 }}>→</span>
+                </button>
+
+                {/* Option 2: Continue with Mail */}
+                <button
+                  type="button"
+                  onClick={handleSendMail}
+                  style={{
+                    background: 'var(--card)',
+                    color: 'var(--ink)',
+                    border: '1.5px solid var(--ink)',
+                    padding: '16px 20px',
+                    borderRadius: '2px',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    textAlign: 'left',
+                    transition: 'transform 0.15s ease, background 0.15s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.background = 'var(--paper)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.background = 'var(--card)';
+                  }}
+                >
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: '15px', letterSpacing: '0.01em' }}>
+                      Continue with Mail
+                    </div>
+                    <div style={{ fontSize: '12px', color: 'var(--ink-soft)', marginTop: '2px', fontFamily: "'IBM Plex Mono', monospace" }}>
+                      Open pre-filled draft to Dandelionpa7@gmail.com
+                    </div>
+                  </div>
+                  <span style={{ fontSize: '18px', fontWeight: 700 }}>→</span>
+                </button>
+
+              </div>
+
+              {/* Dismiss / Review Button */}
+              <div style={{ marginTop: '20px', textAlign: 'center' }}>
+                <button
+                  type="button"
+                  onClick={() => setShowChannelModal(false)}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: 'var(--ink-soft)',
+                    fontSize: '12.5px',
+                    cursor: 'pointer',
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    textDecoration: 'underline'
+                  }}
+                >
+                  ← Back to review form details
+                </button>
+              </div>
+
+            </div>
+          </div>
+        )}
 
         <style>{`
           .contact-section-divider {
