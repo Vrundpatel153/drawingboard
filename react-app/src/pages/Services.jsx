@@ -14,7 +14,7 @@ export default function Services() {
   const pageRef = useRef(null);
   const carouselRef = useRef(null);
   const [activeCardIndex, setActiveCardIndex] = useState(0);
-  const [currency, setCurrency] = useState('INR');
+  const [currency, setCurrency] = useState('USD');
 
   usePageAnimations(pageRef);
 
@@ -45,6 +45,80 @@ export default function Services() {
         <RegistrationMarks />
         <Navbar />
 
+        <style>{`
+          /* Precision Alignments for Engagement Pricing Card */
+          .engagement-specs-card {
+            background: var(--card);
+            border: 1px solid var(--ink);
+            padding: 26px;
+            position: relative;
+          }
+          .engagement-specs-card .corner {
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            width: 26px;
+            height: 26px;
+            background: var(--marker);
+            clip-path: polygon(0 0, 100% 0, 100% 100%);
+          }
+          .engagement-specs-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dashed var(--paper-line);
+            padding: 12px 0;
+            gap: 16px;
+            transition: background 0.15s ease;
+          }
+          .engagement-specs-row:last-of-type {
+            border-bottom: none;
+          }
+          .engagement-specs-title {
+            flex: 1;
+            min-width: 0;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--ink);
+            text-decoration: none;
+            display: block;
+            line-height: 1.4;
+            transition: color 0.15s ease;
+          }
+          .engagement-specs-title:hover {
+            color: var(--pine);
+          }
+          .engagement-specs-price {
+            width: 145px;
+            min-width: 145px;
+            flex-shrink: 0;
+            text-align: right;
+            font-family: 'IBM Plex Mono', monospace;
+            font-variant-numeric: tabular-nums;
+            font-weight: 700;
+            font-size: 12.5px;
+            color: var(--ink);
+            white-space: nowrap;
+          }
+          @media (max-width: 768px) {
+            .engagement-specs-card {
+              padding: 20px 16px;
+            }
+            .engagement-specs-row {
+              padding: 10px 0;
+              gap: 10px;
+            }
+            .engagement-specs-title {
+              font-size: 12.5px;
+            }
+            .engagement-specs-price {
+              width: 120px;
+              min-width: 120px;
+              font-size: 11.5px;
+            }
+          }
+        `}</style>
+
         {/* Hero Section */}
         <section className="hero-lite">
           <div className="wrap">
@@ -67,58 +141,62 @@ export default function Services() {
                 </a>
               </div>
 
-              <div className="annot-card">
+              {/* Engagement Specs Pricing Card with rock-solid tabular alignment */}
+              <div className="engagement-specs-card">
                 <div className="corner"></div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '8px' }}>
                   <div className="annot-title" style={{ margin: 0 }}>ENGAGEMENT SPECS</div>
-                  <div style={{ display: 'flex', gap: '4px' }}>
+                  
+                  {/* Currency Toggle Switch (USD default on Left, INR on Right) */}
+                  <div style={{ display: 'inline-flex', padding: '2px', background: 'var(--paper)', border: '1px solid var(--ink)', borderRadius: '2px', gap: '2px' }}>
                     <button
-                      onClick={() => setCurrency('INR')}
-                      style={{
-                        background: currency === 'INR' ? 'var(--ink)' : 'transparent',
-                        color: currency === 'INR' ? 'var(--paper)' : 'var(--ink-soft)',
-                        border: '1px solid var(--ink)',
-                        fontFamily: "'IBM Plex Mono', monospace",
-                        fontSize: '9.5px',
-                        fontWeight: 700,
-                        letterSpacing: '0.06em',
-                        padding: '3px 8px',
-                        cursor: 'pointer',
-                        transition: 'all 0.15s',
-                        borderRadius: '2px'
-                      }}
-                    >₹ INR</button>
-                    <button
+                      type="button"
                       onClick={() => setCurrency('USD')}
                       style={{
                         background: currency === 'USD' ? 'var(--ink)' : 'transparent',
                         color: currency === 'USD' ? 'var(--paper)' : 'var(--ink-soft)',
-                        border: '1px solid var(--ink)',
+                        border: 'none',
                         fontFamily: "'IBM Plex Mono', monospace",
                         fontSize: '9.5px',
                         fontWeight: 700,
                         letterSpacing: '0.06em',
-                        padding: '3px 8px',
+                        padding: '3px 9px',
                         cursor: 'pointer',
-                        transition: 'all 0.15s',
-                        borderRadius: '2px'
+                        transition: 'all 0.15s ease',
+                        borderRadius: '1px'
                       }}
                     >$ USD</button>
+                    <button
+                      type="button"
+                      onClick={() => setCurrency('INR')}
+                      style={{
+                        background: currency === 'INR' ? 'var(--ink)' : 'transparent',
+                        color: currency === 'INR' ? 'var(--paper)' : 'var(--ink-soft)',
+                        border: 'none',
+                        fontFamily: "'IBM Plex Mono', monospace",
+                        fontSize: '9.5px',
+                        fontWeight: 700,
+                        letterSpacing: '0.06em',
+                        padding: '3px 9px',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s ease',
+                        borderRadius: '1px'
+                      }}
+                    >₹ INR</button>
                   </div>
                 </div>
+
+                {/* Service Rows with Guaranteed Tabular Non-Jumping Alignment */}
                 {servicesData.map((s) => (
-                  <div className="annot-row" key={s.id}>
-                    <Link to={`/services/${s.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
-                      <span>{s.title}</span>
+                  <div className="engagement-specs-row" key={s.id}>
+                    <Link to={`/services/${s.slug}`} className="engagement-specs-title">
+                      {s.title}
                     </Link>
-                    <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600, fontSize: '12px', color: 'var(--ink)' }}>
-                      From {currency === 'INR' ? s.startingPriceINR : s.startingPrice}
-                    </span>
+                    <div className="engagement-specs-price">
+                      From {currency === 'USD' ? s.startingPrice : s.startingPriceINR}
+                    </div>
                   </div>
                 ))}
-                <div style={{ marginTop: '12px', paddingTop: '10px', borderTop: '1px dashed var(--paper-line)', fontSize: '11px', color: 'var(--ink-soft)', fontFamily: "'IBM Plex Mono', monospace" }}>
-                  // Fixed scope · 50/50 payment split
-                </div>
               </div>
             </div>
           </div>

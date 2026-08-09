@@ -31,9 +31,85 @@ export default function WorkDetail() {
 
   return (
     <>
-      <div ref={pageRef}>
-      <RegistrationMarks />
-      <Navbar />
+      <div ref={pageRef} className="work-detail-page">
+        <style>{`
+          /* ─────────────────────────────────────────────────────────────
+             Frameless Free-Standing Full-Resolution Images in Project Pages
+             - Displays full natural height & width without small box clamping
+             - Work Page Grid Cards retain their original framed borders
+          ───────────────────────────────────────────────────────────── */
+          .work-detail-page .hero-visual {
+            border: none !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            aspect-ratio: auto !important;
+            height: auto !important;
+          }
+
+          .work-detail-page .hero-visual::after {
+            display: none !important;
+          }
+
+          .work-detail-page .hero-visual img {
+            border: none !important;
+            box-shadow: none !important;
+            width: 100% !important;
+            height: auto !important;
+            max-height: none !important;
+            object-fit: contain !important;
+            display: block !important;
+          }
+
+          .work-detail-page .gallery {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 48px !important;
+          }
+
+          .work-detail-page .gallery .shot {
+            border: none !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            width: 100% !important;
+          }
+
+          .work-detail-page .gallery .shot .img {
+            border: none !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            aspect-ratio: auto !important;
+            height: auto !important;
+            min-height: 0 !important;
+            display: block !important;
+            width: 100% !important;
+          }
+
+          .work-detail-page .gallery .shot .img::after {
+            display: none !important;
+          }
+
+          .work-detail-page .gallery .shot .img img {
+            border: none !important;
+            box-shadow: none !important;
+            width: 100% !important;
+            height: auto !important;
+            max-height: none !important;
+            object-fit: contain !important;
+            display: block !important;
+          }
+
+          .work-detail-page .gallery .cap {
+            border-top: none !important;
+            padding: 14px 2px 0 2px !important;
+            font-size: 12.5px;
+            color: var(--ink-soft);
+            font-family: 'IBM Plex Mono', monospace;
+          }
+        `}</style>
+        <RegistrationMarks />
+        <Navbar />
 
       {/* Breadcrumbs */}
       <div className="wrap">
@@ -585,11 +661,24 @@ export default function WorkDetail() {
                   "AFTER8® Brand System Master Asset Overview"
                 ];
 
+                const isWebProject = (project.category === 'web') || (project.tag && (project.tag.includes('WEB') || project.tag.includes('UI UX')));
+                const isPackagingProject = (project.category === 'packaging') || (project.tag && project.tag.includes('PACKAGING'));
+
+                const defaultCaption = (idx) => {
+                  if (isWebProject) {
+                    return `${project.title} — ${idx === 0 ? 'Digital Platform & User Experience Architecture' : idx === 1 ? 'Complete UI Interface & Responsive Web Layout' : 'Interactive Component & Visual Design System'}`;
+                  }
+                  if (isPackagingProject) {
+                    return `${project.title} — ${idx === 0 ? 'Structural Packaging Architecture & Silhouette' : idx === 1 ? 'Tactile Box Dielines & Unboxing Experience' : 'Product Suite & Label Detailing'}`;
+                  }
+                  return `${project.title} — ${idx === 0 ? 'Brand Identity System & Logomark Construction' : idx === 1 ? 'Typographic Hierarchy & Color Usability' : 'Collateral Applications & Design Guidelines'}`;
+                };
+
                 const captionText = isBondwith && imgIdx < bondwithCaptions.length
                   ? bondwithCaptions[imgIdx]
                   : isAfter8 && imgIdx < after8Captions.length
                   ? after8Captions[imgIdx]
-                  : `${project.title} — ${imgIdx === 0 ? 'Packaging Architecture & Bottle Silhouettes' : imgIdx === 1 ? 'Rigid Box Debossing Detail' : 'Mobile Interface UI Showcase'}`;
+                  : defaultCaption(imgIdx);
 
                 return (
                   <div key={imgIdx} className={`shot ${imgIdx === 0 || imgIdx % 7 === 0 ? 'wide' : ''}`}>
