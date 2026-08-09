@@ -747,7 +747,7 @@ export default function BrandingPage() {
             </div>
 
             <div className="case-grid">
-              <article className="case-card">
+              <Link to="/work/after8%C2%AE---reimagining-intimacy-for-a-new-generation." className="case-card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
                 <div className="img" style={{ background: 'none' }}>
                   <img
                     src="https://framerusercontent.com/images/GI9hs6gABp4QhAbVBk1Ej9TVE0.png"
@@ -768,10 +768,13 @@ export default function BrandingPage() {
                     <li>Digital launch direction</li>
                   </ul>
                   <div className="demo"><b>What This Project Demonstrates</b>How one central brand idea can remain recognisable across identity, product packaging and digital communication.</div>
+                  <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    View Case Study <span style={{ fontSize: '16px' }}>→</span>
+                  </div>
                 </div>
-              </article>
+              </Link>
 
-              <article className="case-card">
+              <Link to="/work/lumen-fine-jewellery" className="case-card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
                 <div className="img" style={{ background: 'none' }}>
                   <img
                     src="https://framerusercontent.com/images/Gj0gd8TaOnBqjox9iFb1KV8EbY.jpeg"
@@ -792,10 +795,13 @@ export default function BrandingPage() {
                     <li>Digital art direction</li>
                   </ul>
                   <div className="demo"><b>What This Project Demonstrates</b>How a restrained visual system can communicate value through consistency, tactility and thoughtful detail.</div>
+                  <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    View Case Study <span style={{ fontSize: '16px' }}>→</span>
+                  </div>
                 </div>
-              </article>
+              </Link>
 
-              <article className="case-card">
+              <Link to="/work/ajumma-kitchen-modern-asian-bistro" className="case-card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
                 <div className="img" style={{ background: 'none' }}>
                   <img
                     src="https://framerusercontent.com/images/hm5rbPr45EhYVKWHrF6fMu8xGA.png"
@@ -816,8 +822,11 @@ export default function BrandingPage() {
                     <li>Retail and digital presentation</li>
                   </ul>
                   <div className="demo"><b>What This Project Demonstrates</b>How a master packaging language can expand across categories without making every product look identical.</div>
+                  <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    View Case Study <span style={{ fontSize: '16px' }}>→</span>
+                  </div>
                 </div>
-              </article>
+              </Link>
             </div>
 
             <div className="bp-cases-foot">

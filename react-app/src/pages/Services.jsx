@@ -303,7 +303,7 @@ export default function Services() {
                       </div>
 
                       {/* Image Preview */}
-                      <div className="img-wrap" style={{ height: '180px', marginBottom: '18px', overflow: 'hidden', border: '1px solid var(--ink-soft)', borderRadius: '2px', background: 'var(--card)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Link to={`/services/${s.slug}`} className="img-wrap" style={{ height: '180px', marginBottom: '18px', overflow: 'hidden', border: '1px solid var(--ink-soft)', borderRadius: '2px', background: 'var(--card)', display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' }}>
                         <img
                           src={s.heroImage}
                           alt={s.title}
@@ -311,9 +311,13 @@ export default function Services() {
                           decoding="async"
                           style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                         />
-                      </div>
+                      </Link>
 
-                      <h4 style={{ fontSize: '20px', margin: '4px 0 6px' }}>{s.title}</h4>
+                      <h4 style={{ fontSize: '20px', margin: '4px 0 6px' }}>
+                        <Link to={`/services/${s.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                          {s.title}
+                        </Link>
+                      </h4>
                       <div className="sub" style={{ margin: '0 0 14px', color: 'var(--ink-soft)', fontSize: '12.5px' }}>
                         // {s.tagline}
                       </div>

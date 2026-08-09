@@ -120,14 +120,14 @@ export default function Studio() {
           </div>
 
           <div className="roster-grid">
-            <div className="roster-item">AFTER8®</div>
-            <div className="roster-item">Lumen & Co.</div>
-            <div className="roster-item">Verve Audio</div>
-            <div className="roster-item">Kroma Coffee</div>
-            <div className="roster-item">Aether Capital</div>
-            <div className="roster-item">Nectar Spirits</div>
-            <div className="roster-item">Solstice Labs</div>
-            <div className="roster-item">Oasis Health</div>
+            <Link to="/work/after8%C2%AE---reimagining-intimacy-for-a-new-generation." className="roster-item" style={{ textDecoration: 'none', color: 'inherit' }}>AFTER8®</Link>
+            <Link to="/work/lumen-fine-jewellery" className="roster-item" style={{ textDecoration: 'none', color: 'inherit' }}>Lumen &amp; Co.</Link>
+            <Link to="/work/alder---outdoor-essentials-built-for-slower-movement" className="roster-item" style={{ textDecoration: 'none', color: 'inherit' }}>Alder Essentials</Link>
+            <Link to="/work/krona-architecture-studio" className="roster-item" style={{ textDecoration: 'none', color: 'inherit' }}>Krona Studio</Link>
+            <Link to="/work/good-protein-branding-packaging-design" className="roster-item" style={{ textDecoration: 'none', color: 'inherit' }}>Good Protein</Link>
+            <Link to="/work/nectar-hard-seltzer" className="roster-item" style={{ textDecoration: 'none', color: 'inherit' }}>Nectar Spirits</Link>
+            <Link to="/work/oras-plant-protein" className="roster-item" style={{ textDecoration: 'none', color: 'inherit' }}>Oras Plant</Link>
+            <Link to="/work/picco-gelato-branding" className="roster-item" style={{ textDecoration: 'none', color: 'inherit' }}>Picco Gelato</Link>
           </div>
         </div>
       </section>

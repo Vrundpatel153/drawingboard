@@ -73,9 +73,9 @@ export default function Footer() {
           <div className="foot-col">
             <h5>Selected Work</h5>
             <Link to="/work/after8">AFTER8® Wellness</Link>
-            <Link to="/work/lumen">Lumen & Co.</Link>
-            <Link to="/work">Verve Audio</Link>
-            <Link to="/work">Kroma Coffee</Link>
+            <Link to="/work/lumen">Lumen &amp; Co.</Link>
+            <Link to="/work/alder---outdoor-essentials-built-for-slower-movement">Alder Essentials</Link>
+            <Link to="/work/krona-architecture-studio">Krona Architecture</Link>
           </div>
           <div className="foot-col">
             <h5>Connect</h5>
@@ -83,9 +83,8 @@ export default function Footer() {
               Book a Call
             </a>
             <a href={MAILTO_URL}>Email Studio</a>
-            <a href="#">Twitter / X</a>
-
-            <a href="#">LinkedIn</a>
+            <a href="https://twitter.com/thedrawingboard" target="_blank" rel="noopener noreferrer">Twitter / X</a>
+            <a href="https://linkedin.com/company/thedrawingboard" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
         </div>
         <div className="foot-bottom">

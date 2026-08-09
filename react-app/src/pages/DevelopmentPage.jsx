@@ -948,10 +948,14 @@ export default function DevelopmentPage() {
                     <div className="tag mono">FEATURED — SONAR, SAAS PLATFORM</div>
                     <h4 style={{ fontSize: '16px' }}>Clean, responsive site</h4>
                     <p>Drove 70% more client inquiries after launch.</p>
-                    <a className="btn-link" href="https://wa.me/919428859768" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', fontSize: '13px', marginTop: '12px' }}>
-                      or message us on WhatsApp
-                    </a>
-
+                    <div style={{ display: 'flex', gap: '14px', alignItems: 'center', marginTop: '12px', flexWrap: 'wrap' }}>
+                      <Link to="/work/seneca-shopify-development" style={{ color: 'var(--pine)', fontWeight: 600, fontSize: '13px', textDecoration: 'none' }}>
+                        Explore Case Study →
+                      </Link>
+                      <a className="btn-link" href="https://wa.me/919428859768" target="_blank" rel="noopener noreferrer" style={{ fontSize: '13px' }}>
+                        or message us
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
