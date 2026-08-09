@@ -9,7 +9,7 @@
 
 export const SITE_URL =
   import.meta.env.VITE_SITE_URL?.replace(/\/$/, '') ||
-  'https://thedrawingboard.studio';
+  'https://drawingsboards.com';
 
 export const SITE_NAME =
   import.meta.env.VITE_SITE_NAME || 'The Drawing Board';

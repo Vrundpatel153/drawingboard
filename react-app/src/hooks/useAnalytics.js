@@ -83,5 +83,9 @@ export default function useAnalytics() {
         page_path: location.pathname,
       });
     }
+    // Meta (Facebook) Pixel SPA PageView
+    if (typeof window !== 'undefined' && window.fbq) {
+      window.fbq('track', 'PageView');
+    }
   }, [location]);
 }

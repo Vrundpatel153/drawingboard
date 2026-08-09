@@ -5,11 +5,21 @@ import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import ArrowIcon from '../components/ArrowIcon';
 import { usePageAnimations } from '../hooks/usePageAnimations';
+import { trackMetaEvent } from '../utils/metaEvents';
 
 export default function ThankYou() {
   const pageRef   = useRef(null);
   const canvasRef = useRef(null);
   usePageAnimations(pageRef);
+
+  // ── Track Meta Lead Conversion on arrival ─────────────────────────────────
+  useEffect(() => {
+    trackMetaEvent('Lead', {
+      content_name: 'Thank You Page Confirmation',
+      value: 175000,
+      currency: 'INR'
+    });
+  }, []);
 
   // ── Smooth celebration particle burst once on mount ────────────────────────
   useEffect(() => {

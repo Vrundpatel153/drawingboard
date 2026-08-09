@@ -8,6 +8,7 @@ import ArrowIcon from '../components/ArrowIcon';
 import BookCallLink from '../components/BookCallLink';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 import { CONTACT_EMAIL, MAILTO_URL } from '../utils/siteConfig';
+import { trackMetaFormSubmission } from '../utils/metaEvents';
 
 const faqs = [
   {
@@ -116,15 +117,25 @@ export default function Contact() {
       `*Message:*`,
       form.message || 'Ready to start project discussion.',
       ``,
-      `— Sent via thedrawingboard.studio/contact`
+      `— Sent via drawingsboards.com/contact`
     ].join('\n');
 
     const waUrl = `https://wa.me/919428859768?text=${encodeURIComponent(msg)}`;
 
-    // 1. Navigate current tab to /thank-you immediately
+    // 1. Dispatch Meta Conversions API (CAPI) & Pixel lead event
+    trackMetaFormSubmission({
+      name: form.name,
+      email: form.email,
+      services: form.services.join(', '),
+      budget: budgetDisplay,
+      timeline: form.timeline,
+      message: form.message
+    });
+
+    // 2. Navigate current tab to /thank-you immediately
     navigate('/thank-you');
 
-    // 2. Open WhatsApp in new tab / app
+    // 3. Open WhatsApp in new tab / app
     setTimeout(() => {
       window.open(waUrl, '_blank', 'noopener,noreferrer');
     }, 20);

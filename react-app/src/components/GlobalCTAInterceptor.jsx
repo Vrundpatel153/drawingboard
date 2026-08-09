@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { trackMetaWhatsAppClick, trackMetaCalComClick } from '../utils/metaEvents';
 
 /**
  * GlobalCTAInterceptor
  * Intercepts any click on WhatsApp or Cal.com links across the entire website.
- * Automatically navigates the current tab to /thank-you immediately,
- * while launching the external WhatsApp chat or Cal.com scheduling window in a new tab.
+ * 1. Dispatches Meta Conversions API (CAPI) & Meta Browser Pixel events.
+ * 2. Automatically navigates the current tab to /thank-you immediately.
+ * 3. Launches the external WhatsApp chat or Cal.com scheduling window in a new tab.
  */
 export default function GlobalCTAInterceptor() {
   const navigate = useNavigate();
@@ -26,10 +28,27 @@ export default function GlobalCTAInterceptor() {
         e.preventDefault();
         e.stopPropagation();
 
-        // 1. Navigate current tab to /thank-you immediately
+        const buttonText = anchor.textContent?.trim() || (isCal ? 'Book a Call' : 'WhatsApp Us');
+
+        // 1. Fire Meta Conversions API + Pixel Events with Deduplication
+        if (isCal) {
+          trackMetaCalComClick({
+            buttonText,
+            targetUrl: rawHref,
+            page: window.location.pathname
+          });
+        } else if (isWA) {
+          trackMetaWhatsAppClick({
+            buttonText,
+            targetUrl: rawHref,
+            page: window.location.pathname
+          });
+        }
+
+        // 2. Navigate current tab to /thank-you immediately
         navigate('/thank-you');
 
-        // 2. Open external Cal.com or WhatsApp window in new tab
+        // 3. Open external Cal.com or WhatsApp window in new tab
         setTimeout(() => {
           window.open(rawHref, '_blank', 'noopener,noreferrer');
         }, 10);
