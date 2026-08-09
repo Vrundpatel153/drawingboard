@@ -20,6 +20,7 @@ import PageTransition from './components/PageTransition';
 import WhatsAppButton from './components/WhatsAppButton';
 import Preloader from './components/Preloader';
 import PWAInstallBanner from './components/PWAInstallBanner';
+import GlobalCTAInterceptor from './components/GlobalCTAInterceptor';
 import useAnalytics from './hooks/useAnalytics';
 import useSEO from './hooks/useSEO';
 import usePWA from './hooks/usePWA';
@@ -48,6 +49,7 @@ export default function App() {
   return (
     <Router>
       <RouterAnalytics />
+      <GlobalCTAInterceptor />
       <SmoothScroll>
         <PageTransition>
           <div id="main">
