@@ -134,13 +134,13 @@ export function usePageAnimations(containerRef) {
         );
       });
 
-      /* ── 9. Gallery shots ── */
-      el.querySelectorAll('.gallery').forEach((gal) => {
-        gsap.fromTo(gal.querySelectorAll('.shot'),
-          { opacity: 0, y: 30 },
+      /* ── 9. Gallery shots — lightweight per-element trigger ── */
+      el.querySelectorAll('.gallery .shot').forEach((shot) => {
+        gsap.fromTo(shot,
+          { opacity: 0, y: 20 },
           {
-            opacity: 1, y: 0, duration: 0.65, stagger: 0.07, ease: 'power2.out',
-            scrollTrigger: { trigger: gal, start: 'top 85%', toggleActions: 'play none none none' }
+            opacity: 1, y: 0, duration: 0.5, ease: 'power2.out',
+            scrollTrigger: { trigger: shot, start: 'top 92%', toggleActions: 'play none none none' }
           }
         );
       });

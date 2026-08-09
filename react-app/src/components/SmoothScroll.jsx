@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import gsap from 'gsap';
@@ -6,49 +6,63 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+let globalLenis = null;
+
+export function getLenis() {
+  return globalLenis;
+}
+
 /* ─────────────────────────────────────────────────────────────────────────
-   Lenis smooth scroll — optimized for 60fps/120Hz hardware performance.
-   Provides buttery smooth inertia scrolling on desktop PC layout.
+   Lenis Smooth Scroll — 120Hz/60Hz Hardware Acceleration.
+   Integrated synchronously with GSAP Ticker & ScrollTrigger.
 ───────────────────────────────────────────────────────────────────────── */
 export default function SmoothScroll({ children }) {
   const location = useLocation();
+  const lenisRef = useRef(null);
 
   useEffect(() => {
-    // Detect touch capability or mobile screen
-    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.innerWidth <= 768;
+    // Singleton Lenis instance: prevents recreation / destroy lag on route change
+    if (!globalLenis) {
+      const lenis = new Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.2,
+        infinite: false,
+      });
 
-    const lenis = new Lenis({
-      duration: isTouch ? 0 : 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      smoothWheel: !isTouch,
-      wheelMultiplier: 1.0,
-      syncTouch: false,
-      smoothTouch: false,
-      touchMultiplier: 0,
-      infinite: false,
-    });
+      globalLenis = lenis;
+      window.__lenis = lenis;
 
-    lenis.on('scroll', ScrollTrigger.update);
+      lenis.on('scroll', ScrollTrigger.update);
 
-    let reqId;
-    function update(time) {
-      lenis.raf(time);
-      reqId = requestAnimationFrame(update);
+      const tickerCallback = (time) => {
+        lenis.raf(time * 1000);
+      };
+
+      gsap.ticker.add(tickerCallback);
+      gsap.ticker.lagSmoothing(0);
     }
-    reqId = requestAnimationFrame(update);
 
+    lenisRef.current = globalLenis;
+
+    // Instantly reset scroll to top on navigation
     window.scrollTo(0, 0);
-    lenis.scrollTo(0, { immediate: true });
+    globalLenis.scrollTo(0, { immediate: true });
 
-    const refreshTimeout = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 200);
+    // Refresh layout measurements after route transition
+    const timer = setTimeout(() => {
+      if (globalLenis) {
+        globalLenis.resize();
+        ScrollTrigger.refresh();
+      }
+    }, 100);
 
     return () => {
-      clearTimeout(refreshTimeout);
-      cancelAnimationFrame(reqId);
-      lenis.destroy();
+      clearTimeout(timer);
     };
   }, [location.pathname]);
 

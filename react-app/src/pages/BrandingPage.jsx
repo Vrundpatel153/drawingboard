@@ -914,8 +914,17 @@ export default function BrandingPage() {
 
               {/* Card 03: Positioning Territory */}
               <div className="think-card">
-                <div className="think-card-media" style={{ background: 'linear-gradient(135deg, #d8d2c1, #c3bda9)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px', color: 'rgba(27,27,23,0.4)', fontFamily: "'IBM Plex Mono', monospace", fontSize: '11px', textAlign: 'center' }}>
-                  Positioning Matrix
+                <div
+                  className="think-card-media"
+                  onClick={() => setLightboxImage('/images/think/positioning_territory.jpeg')}
+                  title="Click to view full image"
+                >
+                  <img
+                    src="/images/think/positioning_territory.jpeg"
+                    alt="Positioning Territory Strategy"
+                    loading="lazy"
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  />
                 </div>
                 <div className="think-body">
                   <div className="n mono">03</div>

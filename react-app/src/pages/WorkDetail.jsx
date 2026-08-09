@@ -18,12 +18,13 @@ export default function WorkDetail() {
   
   const isAfter8 = cleanId.includes('after8') || cleanId.includes('intimacy');
   const isLumen = cleanId.includes('lumen');
+  const isBondwith = cleanId.includes('bondwith');
 
   // Find matching project in dataset
   const project = projectsData.find(p => {
     const slug = (p.slug || '').toLowerCase();
     return slug === cleanId || cleanId.includes(slug) || slug.includes(cleanId);
-  }) || (isAfter8 ? projectsData[0] : isLumen ? projectsData[1] : projectsData[0]);
+  }) || (isBondwith ? projectsData[0] : isAfter8 ? projectsData[1] : isLumen ? projectsData[2] : projectsData[0]);
 
   const currentIndex = projectsData.indexOf(project);
   const nextProject = projectsData[(currentIndex + 1) % projectsData.length];
@@ -39,7 +40,15 @@ export default function WorkDetail() {
         <div className="crumb">
           <Link to="/work">Work</Link>
           <span className="sep">/</span>
-          <span className="cur">{isAfter8 ? 'AFTER8® Case Study' : isLumen ? 'Lumen & Co. Case Study' : `${project.title} Case Study`}</span>
+          <span className="cur">
+            {isBondwith
+              ? 'Bondwith Brand Guidelines'
+              : isAfter8
+              ? 'AFTER8® Case Study'
+              : isLumen
+              ? 'Lumen & Co. Case Study'
+              : `${project.title} Case Study`}
+          </span>
         </div>
       </div>
 
@@ -48,12 +57,43 @@ export default function WorkDetail() {
         <div className="wrap">
           <div className="sheet-label">
             <span className="tag">
-              {isAfter8 ? 'CASE STUDY // SPEC 08' : isLumen ? 'CASE STUDY // SPEC 09' : `CASE STUDY // SPEC ${String(currentIndex + 1).padStart(2, '0')}`}
+              {isBondwith
+                ? 'CASE STUDY // SPEC 01 — BRAND GUIDELINES'
+                : isAfter8
+                ? 'CASE STUDY // SPEC 08'
+                : isLumen
+                ? 'CASE STUDY // SPEC 09'
+                : `CASE STUDY // SPEC ${String(currentIndex + 1).padStart(2, '0')}`}
             </span>
             <div className="rule"></div>
           </div>
 
-          {isAfter8 ? (
+          {isBondwith ? (
+            <>
+              <h1>Bondwith — <em>Comprehensive brand identity</em> &amp; visual guidelines.</h1>
+              <p className="dek">
+                A master brand architecture featuring geometric logomark construction, responsive app iconography, cross-platform color usability matrices, and lifestyle fashion brand collateral.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Bondwith</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Identity &amp; Guidelines</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">4 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>32 Master System Assets</div>
+                </div>
+              </div>
+            </>
+          ) : isAfter8 ? (
             <>
               <h1>AFTER8® — Reimagining <em>intimacy & wellness</em> for a new generation.</h1>
               <p className="dek">
@@ -148,7 +188,29 @@ export default function WorkDetail() {
       {/* Dark Contrast Problem / Insight Block */}
       <section className="problem">
         <div className="wrap">
-          {isAfter8 ? (
+          {isBondwith ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE BRAND CHALLENGE</div>
+                  <h2>Building a scalable, mathematically constructed identity system.</h2>
+                </div>
+                <p>Engineering a master visual guideline that unifies app, web, lifestyle apparel, and packaging.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>Bondwith needed a comprehensive identity and visual guideline architecture:</strong> To establish instant recognition in digital interfaces while seamlessly expanding into physical merchandise, corporate collateral, and packaging.</p>
+                  <p>We designed a precision geometric logomark, clear-space isolation boundaries, high-contrast primary and secondary color palettes, and typographic usability standards built for long-term scalability.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// ARCHITECTURAL INSIGHT</div>
+                  <p>"A great brand guideline is not merely a set of rules — it is an operating system that empowers teams to deploy consistent, high-converting design across every single touchpoint."</p>
+                </div>
+              </div>
+            </>
+          ) : isAfter8 ? (
             <>
               <div className="section-head">
                 <div>
@@ -221,7 +283,63 @@ export default function WorkDetail() {
       {/* Deliverables / Execution Architecture */}
       <section>
         <div className="wrap">
-          {isAfter8 ? (
+          {isBondwith ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">EXECUTION ARCHITECTURE</div>
+                  <h2>Master guideline deliverables & design specifications.</h2>
+                </div>
+                <p>A unified 32-asset identity system spanning brand guidelines, app iconography, and lifestyle collateral.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Visual Identity</h4>
+                  <div className="sub">// LOGO & GEOMETRIC SYSTEM</div>
+                  <ul>
+                    <li>Geometric logomark grid</li>
+                    <li>Responsive app icon architecture</li>
+                    <li>Primary & secondary color tokens</li>
+                    <li>Monochrome & inverted marks</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Typography & Rules</h4>
+                  <div className="sub">// TYPEFACE & CLEAR SPACE</div>
+                  <ul>
+                    <li>Poppins primary typeface hierarchy</li>
+                    <li>Minimum size & isolation bounds</li>
+                    <li>Color usability & contrast matrix</li>
+                    <li>Logo misuse & governance rules</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Digital & UI Flow</h4>
+                  <div className="sub">// APP & WEB ENVIRONMENTS</div>
+                  <ul>
+                    <li>Mobile app UI screens & flows</li>
+                    <li>Web platform dashboard layouts</li>
+                    <li>Social media asset kit templates</li>
+                    <li>Digital marketing collateral</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Collateral & Fashion</h4>
+                  <div className="sub">// PACKAGING & APPAREL</div>
+                  <ul>
+                    <li>Corporate stationery & letterhead</li>
+                    <li>Structural product packaging box</li>
+                    <li>Apparel & fashion merchandising</li>
+                    <li>Environmental directional signage</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isAfter8 ? (
             <>
               <div className="section-head">
                 <div>
@@ -328,7 +446,7 @@ export default function WorkDetail() {
                     <li>+180% Retail Placement Growth</li>
                     <li>45+ Boutique Stockists Signed</li>
                     <li>3.9x E-Commerce Conversion Rate</li>
-                    <li>Zero Single-Use Plastic Used</li>
+                    <li>45+ Premium Retailers Placed</li>
                   </ul>
                 </div>
               </div>
@@ -338,15 +456,15 @@ export default function WorkDetail() {
               <div className="section-head">
                 <div>
                   <div className="eyebrow">PROJECT DELIVERABLES</div>
-                  <h2>Technical execution specifications.</h2>
+                  <h2>Master deliverables & scope specifications.</h2>
                 </div>
-                <p>A complete production-ready blueprint engineered for long-term scalability.</p>
+                <p>Unified design engineering spanning brand identity, structural packaging, and code.</p>
               </div>
 
               <div className="deliv-grid">
                 <div className="deliv-col">
-                  <h4>Visual Identity</h4>
-                  <div className="sub">// LOGO & MARKS</div>
+                  <h4>Brand System</h4>
+                  <div className="sub">// IDENTITY & MARKS</div>
                   <ul>
                     <li>Primary & secondary wordmarks</li>
                     <li>Embossed icon marks</li>
@@ -399,7 +517,7 @@ export default function WorkDetail() {
           <div className="section-head">
             <div>
               <div className="eyebrow">DESIGN SYSTEM GALLERY</div>
-              <h2>{isAfter8 ? 'Visual system & product showcase.' : `${project.title} — Visual System & Renders`}</h2>
+              <h2>{isBondwith ? 'Bondwith — 32 Master System Figures & Guideline Architecture' : isAfter8 ? 'Visual system & product showcase.' : `${project.title} — Visual System & Renders`}</h2>
             </div>
             <p>Detailed breakdown of typographic pairings, color swatches, and packaging renders.</p>
           </div>
@@ -407,6 +525,41 @@ export default function WorkDetail() {
           <div className="gallery">
             {project.images && project.images.length > 0 ? (
               project.images.map((imgUrl, imgIdx) => {
+                const bondwithCaptions = [
+                  "Brand Guidelines Architecture & Master Specification Cover",
+                  "Visual Table of Contents & Specifications Architecture",
+                  "Primary Logo Design & Core Logomark",
+                  "App Icon & Mobile UI Iconography (Primary Color & Dark/Light Modes)",
+                  "Full Logo Proportions & Print/Web Placement Scaling Rules",
+                  "Logomark Geometric Construction & Mathematical Grid Alignment",
+                  "Minimum Size Standards & Responsive Safe Bounds",
+                  "Clear Space & Safe Margin Exclusion Zone Protection",
+                  "Primary Brandmark Color Application & Contrast Specs",
+                  "Monochrome & High-Contrast Negative Space Treatments",
+                  "Primary & Supporting Color Palette Architecture",
+                  "Primary Color HEX, RGB, CMYK & Pantone Formulae",
+                  "Color Usability, Contrast Ratios & Background Hierarchy",
+                  "Typographic Hierarchy & Editorial Heading System",
+                  "Primary Typeface Specification (Poppins Weights & Scaling)",
+                  "Secondary Typeface & Body Copy Implementation Guidelines",
+                  "Digital UI Interface & Web Environment Application",
+                  "Mobile App UX Flows & User Interaction Showcase",
+                  "Web Platform Dashboard & Desktop Design System",
+                  "Corporate Stationery, Letterhead & Business Collateral",
+                  "Environmental Signage & Architectural Directional Elements",
+                  "Structural Packaging & Product Box Packaging Specifications",
+                  "Product Hangtags, Dielines & Unboxing Touchpoints",
+                  "Retail Display & In-Store Merchandising Architecture",
+                  "Social Media Kit & Digital Campaign Templates",
+                  "Editorial Marketing Collateral & Publication Systems",
+                  "Advertising Art Direction & Campaign Photography Guidelines",
+                  "Lifestyle Merchandising, Wearables & Brand Swag",
+                  "Apparel Collection & Garment Graphic Applications",
+                  "Fashion Line Editorial Art Direction & Lookbook Specs",
+                  "Brand Guidelines Version Control & Revision Governance",
+                  "Master Brand Sign-off, Asset Delivery & Final Production Close"
+                ];
+
                 const after8Captions = [
                   "Complete AFTER8® Packaging Architecture & Bottle Silhouettes",
                   "Rigid Box Debossing Detail & Foil Stamping",
@@ -432,7 +585,9 @@ export default function WorkDetail() {
                   "AFTER8® Brand System Master Asset Overview"
                 ];
 
-                const captionText = isAfter8 && imgIdx < after8Captions.length
+                const captionText = isBondwith && imgIdx < bondwithCaptions.length
+                  ? bondwithCaptions[imgIdx]
+                  : isAfter8 && imgIdx < after8Captions.length
                   ? after8Captions[imgIdx]
                   : `${project.title} — ${imgIdx === 0 ? 'Packaging Architecture & Bottle Silhouettes' : imgIdx === 1 ? 'Rigid Box Debossing Detail' : 'Mobile Interface UI Showcase'}`;
 
@@ -443,6 +598,7 @@ export default function WorkDetail() {
                         src={imgUrl}
                         alt={`${project.title} figure ${imgIdx + 1}`}
                         loading="lazy"
+                        decoding="async"
                         style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                       />
                     </div>

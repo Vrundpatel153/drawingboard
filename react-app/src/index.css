@@ -1539,6 +1539,9 @@ section {
   border: 1px solid var(--ink);
   background: var(--card);
   overflow: hidden;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 360px;
+  transform: translateZ(0);
 }
 
 .gallery .shot .img {
