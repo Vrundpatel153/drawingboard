@@ -194,6 +194,12 @@ export default function BrandingPage() {
         .bp-hero { padding: 28px 0 56px; position: relative; }
         @media (max-width: 768px) { .bp-hero { padding: 18px 0 40px; } }
         
+        /* ── Master Section Heading & Eyebrow Spacing System ── */
+        .bp-section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 28px; margin-bottom: 44px; flex-wrap: wrap; }
+        .bp-eyebrow { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; color: var(--marker); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0; margin-bottom: 12px !important; line-height: 1.35; }
+        .bp-section-head h2 { font-family: 'Fraunces', Georgia, serif; font-size: clamp(28px, 3.6vw, 44px); font-weight: 600; line-height: 1.25 !important; color: var(--ink); margin-top: 0; margin-bottom: 14px !important; }
+        .bp-section-head p { color: var(--ink-soft); max-width: 460px; font-size: 15px; line-height: 1.55; margin-top: 0; margin-bottom: 0; }
+
         .bp-sheet-label { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
         .bp-sheet-label .tag { font-size: 12px; padding: 6px 10px; border: 1px solid var(--ink); background: var(--card); font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; }
         .bp-sheet-label .rule { flex: 1; height: 1px; background: var(--ink-soft); opacity: 0.4; }
@@ -274,7 +280,29 @@ export default function BrandingPage() {
 
         /* Case Grid */
         .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        @media (max-width: 900px) { .case-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 900px) {
+          .case-grid {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding: 4px 16px 20px 16px;
+            margin-left: -16px;
+            margin-right: -16px;
+            width: calc(100% + 32px);
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+          }
+          .case-grid::-webkit-scrollbar { display: none; }
+          .case-grid .case-card {
+            flex: 0 0 clamp(280px, 82vw, 340px);
+            max-width: 340px;
+            scroll-snap-align: start;
+          }
+        }
         .case-card { border: 1px solid var(--ink); background: var(--card); overflow: hidden; transition: transform 0.2s; display: flex; flex-direction: column; }
         .case-card:hover { transform: translateY(-2px); }
         .case-card .img { aspect-ratio: 4/3; background: linear-gradient(135deg, #d8d2c1, #c3bda9); position: relative; overflow: hidden; width: 100%; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(27,27,23,0.4); text-align: center; padding: 12px; }
@@ -441,12 +469,14 @@ export default function BrandingPage() {
         .bp-sp-quote-av { width: 28px; height: 28px; border-radius: 50%; background: var(--pine); color: var(--paper); display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 12px; font-weight: 600; }
         .bp-sp-qname { font-size: 13px; font-weight: 600; color: #fff; }
         .bp-sp-qrole { font-size: 11px; color: #8B8571; }
-        .bp-sp-badge { margin-top: 36px; border: 1px solid rgba(255,255,255,0.12); padding: 18px 24px; background: rgba(255,255,255,0.03); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-        .bp-sp-badge-left { display: flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #7FB89F; }
-        .bp-sp-dot { width: 7px; height: 7px; border-radius: 50%; background: #7FB89F; animation: bp-pulse 1.6s infinite; }
-        .bp-sp-stat-item { text-align: right; }
-        .bp-sp-stat-num { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: #fff; display: block; line-height: 1; }
-        .bp-sp-stat-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #8B8571; }
+        .bp-sp-badge { margin-top: 36px; border: 1px solid rgba(255,255,255,0.12); padding: 16px 24px; background: rgba(255,255,255,0.03); border-radius: 2px; display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; gap: 20px; width: 100%; box-sizing: border-box; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+        .bp-sp-badge::-webkit-scrollbar { display: none; }
+        .bp-sp-badge-left { display: flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #7FB89F; white-space: nowrap; flex-shrink: 0; letter-spacing: 0.05em; }
+        .bp-sp-dot { width: 7px; height: 7px; border-radius: 50%; background: #7FB89F; animation: bp-pulse 1.6s infinite; flex-shrink: 0; }
+        .bp-sp-badge-stats { display: flex; align-items: center; gap: 28px; flex-shrink: 0; white-space: nowrap; }
+        .bp-sp-stat-item { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; flex-shrink: 0; }
+        .bp-sp-stat-num { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: #fff; line-height: 1; margin-bottom: 3px; }
+        .bp-sp-stat-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #8B8571; letter-spacing: 0.06em; }
 
         /* Mobile Container & Viewport Containment */
         html, body, #root, main, .bp-full-page, section {
@@ -539,7 +569,28 @@ export default function BrandingPage() {
           .seq-stage { min-width: 0 !important; width: 100% !important; border-right: none !important; border-bottom: 1px dashed var(--paper-line) !important; padding: 18px 16px !important; }
           .seq-stage:last-child { border-bottom: none !important; }
           
-          .case-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+          /* Selected Brand Systems horizontal slider on mobile */
+          .case-grid {
+            display: flex !important;
+            gap: 16px !important;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            scroll-snap-type: x mandatory !important;
+            scroll-behavior: smooth !important;
+            -webkit-overflow-scrolling: touch !important;
+            padding: 4px 16px 20px 16px !important;
+            margin-left: -16px !important;
+            margin-right: -16px !important;
+            width: calc(100% + 32px) !important;
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+          }
+          .case-grid::-webkit-scrollbar { display: none !important; }
+          .case-grid .case-card {
+            flex: 0 0 clamp(280px, 82vw, 340px) !important;
+            max-width: 340px !important;
+            scroll-snap-align: start !important;
+          }
           .think-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
           .bp-deliv-grid { grid-template-columns: 1fr !important; }
           .bp-deliv-col { padding: 20px 16px !important; }
@@ -572,8 +623,15 @@ export default function BrandingPage() {
           .lead-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
           .lead-form { padding: 20px 16px !important; }
 
-          .bp-section-head { margin-bottom: 28px !important; gap: 12px !important; }
-          .bp-section-head h2 { font-size: clamp(24px, 6.5vw, 32px) !important; }
+          .bp-section-head { margin-bottom: 32px !important; gap: 14px !important; display: flex !important; flex-direction: column !important; align-items: flex-start !important; }
+          .bp-eyebrow { font-size: 11px !important; margin-bottom: 10px !important; letter-spacing: 0.05em !important; }
+          .bp-section-head h2 { font-size: clamp(23px, 6vw, 30px) !important; line-height: 1.28 !important; margin-bottom: 12px !important; }
+          .bp-section-head p { font-size: 14px !important; line-height: 1.55 !important; }
+          .bp-sp-badge { padding: 12px 14px !important; gap: 12px !important; flex-wrap: nowrap !important; }
+          .bp-sp-badge-left { font-size: 10px !important; gap: 6px !important; }
+          .bp-sp-badge-stats { gap: 14px !important; }
+          .bp-sp-stat-num { font-size: 16px !important; }
+          .bp-sp-stat-lbl { font-size: 8.5px !important; }
         }
         @media (min-width: 769px) {
           .bp-sticky-cta { display: none !important; }
@@ -666,6 +724,44 @@ export default function BrandingPage() {
               <p>The identity begins to feel inconsistent. Packaging variants lose cohesion. The website tells a different story. Every new campaign requires another visual decision.</p>
               <p>We replace that collection of disconnected assets with one clear system — built around what the brand should own, how customers should recognise it and how it should grow across products, packaging and digital touchpoints.</p>
               <p><strong>A stronger brand does not add decoration. It removes doubt.</strong></p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── LOGOS MARQUEE SECTION ─────────────── */}
+        <section className="bp-logo-marquee-section">
+          <div className="bp-marquee-title">TRUSTED BY AMBITIOUS BRANDS GLOBAL</div>
+          
+          {/* Row 1 (LTR) */}
+          <div className="bp-marquee-row">
+            <div className="bp-marquee-track fast">
+              {row1Logos.concat(row1Logos).map((logoUrl, i) => (
+                <div key={i} className="bp-marquee-item">
+                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2 (RTL) */}
+          <div className="bp-marquee-row">
+            <div className="bp-marquee-track rtl">
+              {row2Logos.concat(row2Logos).map((logoUrl, i) => (
+                <div key={i} className="bp-marquee-item">
+                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 3 (LTR) */}
+          <div className="bp-marquee-row">
+            <div className="bp-marquee-track slow">
+              {row3Logos.concat(row3Logos).map((logoUrl, i) => (
+                <div key={i} className="bp-marquee-item">
+                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -1836,44 +1932,6 @@ export default function BrandingPage() {
                   </>
                 )}
               </form>
-            </div>
-          </div>
-        </section>
-
-        {/* ── 19. LOCKED LOGOS MARQUEE SECTION (NO CHANGE) ─────────────── */}
-        <section className="bp-logo-marquee-section">
-          <div className="bp-marquee-title">TRUSTED BY AMBITIOUS BRANDS GLOBAL</div>
-          
-          {/* Row 1 (LTR) */}
-          <div className="bp-marquee-row">
-            <div className="bp-marquee-track fast">
-              {row1Logos.concat(row1Logos).map((logoUrl, i) => (
-                <div key={i} className="bp-marquee-item">
-                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Row 2 (RTL) */}
-          <div className="bp-marquee-row">
-            <div className="bp-marquee-track rtl">
-              {row2Logos.concat(row2Logos).map((logoUrl, i) => (
-                <div key={i} className="bp-marquee-item">
-                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Row 3 (LTR) */}
-          <div className="bp-marquee-row">
-            <div className="bp-marquee-track slow">
-              {row3Logos.concat(row3Logos).map((logoUrl, i) => (
-                <div key={i} className="bp-marquee-item">
-                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
-                </div>
-              ))}
             </div>
           </div>
         </section>

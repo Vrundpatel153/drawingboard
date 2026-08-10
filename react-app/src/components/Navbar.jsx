@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import gsap from 'gsap';
+import usePWA from '../hooks/usePWA';
 
 const NAV_LINKS = [
   { to: '/', label: 'Home', end: true },
@@ -18,6 +19,21 @@ export default function Navbar() {
   const lastY = useRef(0);
   const hidden = useRef(false);
   const location = useLocation();
+  const { promptInstall } = usePWA();
+
+  const handleAddToHomeScreen = async () => {
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    if (isIOS) {
+      alert("To add The Drawing Board to your Home Screen:\n\n1. Tap the Share icon (at bottom of Safari)\n2. Scroll down and select 'Add to Home Screen' ➕");
+      return;
+    }
+    const outcome = await promptInstall();
+    if (outcome === 'accepted') {
+      setOpen(false);
+    } else if (!outcome) {
+      alert("To add to your Home Screen:\n\nOpen your browser menu (⋮ or Share) and select 'Add to Home Screen' or 'Install App'.");
+    }
+  };
 
   // Close on route change
   useEffect(() => { setOpen(false); }, [location.pathname]);
@@ -152,6 +168,21 @@ export default function Navbar() {
           >
             Book a 15-min call →
           </a>
+
+          {/* Mobile Burger Menu Add to Home Screen Option */}
+          <div className="mobile-pwa-item" onClick={handleAddToHomeScreen} role="button" tabIndex={0}>
+            <div className="mobile-pwa-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+              </svg>
+            </div>
+            <div className="mobile-pwa-text">
+              <span className="mobile-pwa-title">Add to Home Screen</span>
+              <span className="mobile-pwa-sub">Get instant access — no browser required</span>
+            </div>
+          </div>
+
           <p className="mono" style={{ fontSize: '11px', color: 'var(--ink-soft)', marginTop: '16px' }}>
             THE DRAWING BOARD // INDEPENDENT STUDIO
           </p>

@@ -51,7 +51,7 @@ export default function Home() {
                 <Link to="/work" className="btn-link">Explore Work <ArrowIcon size={13} /></Link>
               </div>
 
-              <p className="price-note">Projects start at <b>1,75,000/-</b> ($8,500) &bull; Turnaround <b>3&ndash;6 weeks</b></p>
+              <p className="price-note">Projects start at <b>₹4,75,000/-</b> ($4,960) &bull; Turnaround <b>3&ndash;6 weeks</b></p>
             </div>
 
             {/* Annotated Metric Card */}
@@ -307,7 +307,7 @@ export default function Home() {
         </div>
       </section>
 
-      <StickyMobileCTA title="The Drawing Board" subtitle="Projects start at 1,75,000/-" buttonText="WhatsApp Us" link="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" />
+      <StickyMobileCTA title="The Drawing Board" subtitle="Projects start at ₹4,75,000/- ($4,960)" buttonText="WhatsApp Us" link="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" />
       <Footer />
       </div>
     </>

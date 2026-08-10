@@ -19,7 +19,6 @@ import SmoothScroll from './components/SmoothScroll';
 import PageTransition from './components/PageTransition';
 import WhatsAppButton from './components/WhatsAppButton';
 import Preloader from './components/Preloader';
-import PWAInstallBanner from './components/PWAInstallBanner';
 import GlobalCTAInterceptor from './components/GlobalCTAInterceptor';
 import useAnalytics from './hooks/useAnalytics';
 import useSEO from './hooks/useSEO';
@@ -111,9 +110,6 @@ export default function App() {
           </div>
         </PageTransition>
       </SmoothScroll>
-
-      {/* PWA Install Banner — slides up on homepage after 3s, first visit only */}
-      <PWAInstallBanner promptInstall={promptInstall} />
     </Router>
   );
 }

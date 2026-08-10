@@ -486,6 +486,53 @@ header {
   padding: 14px 20px;
 }
 
+/* Mobile Burger Menu Add to Home Screen Option */
+.mobile-pwa-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: var(--card);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius, 4px);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  user-select: none;
+}
+.mobile-pwa-item:hover, .mobile-pwa-item:active {
+  background: rgba(36, 70, 59, 0.08);
+  border-color: var(--pine);
+}
+.mobile-pwa-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--pine);
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.mobile-pwa-text {
+  display: flex;
+  flex-direction: column;
+}
+.mobile-pwa-title {
+  font-family: 'Fraunces', serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.mobile-pwa-sub {
+  font-size: 10.5px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
 /* Backdrop */
 .mobile-nav__backdrop {
   display: none;
