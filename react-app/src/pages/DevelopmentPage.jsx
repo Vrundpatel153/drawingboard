@@ -1969,27 +1969,27 @@ export default function DevelopmentPage() {
                 </div>
 
                 <div className="demo-panel" style={{ background: 'var(--card)', border: '1px solid var(--ink)', padding: '20px', borderRadius: '2px' }}>
-                  <div className="demo-toolbar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', paddingBottom: '12px', borderBottom: '1px solid var(--paper-line)' }}>
+                  <div className="demo-toolbar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', paddingBottom: '12px', borderBottom: '1px solid var(--paper-line)', flexWrap: 'wrap', gap: '8px' }}>
                     <div className="dots" style={{ display: 'flex', gap: '6px' }}>
                       <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FF5F56', display: 'inline-block' }}></span>
                       <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FFBD2E', display: 'inline-block' }}></span>
                       <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#27C93F', display: 'inline-block' }}></span>
                     </div>
-                    <div className="url" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '11.5px', color: 'var(--ink-soft)' }}>
+                    <div className="url" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '11.5px', color: 'var(--ink-soft)', wordBreak: 'break-all' }}>
                       {commercePp === 'standard' ? 'yourbrand.com/products/standard-store' : 'yourbrand.com/products/drawingboard-experience'}
                     </div>
                   </div>
 
                   <div className="demo-body">
-                    <div className="demo-toggle" style={{ display: 'flex', gap: '10px', marginBottom: '16px' }}>
+                    <div className="demo-toggle" style={{ display: 'flex', gap: '10px', marginBottom: '16px', flexWrap: 'wrap' }}>
                       <button
                         type="button"
                         className={commercePp === 'standard' ? 'on' : ''}
                         onClick={() => setCommercePp('standard')}
                         style={{
-                          flex: 1,
-                          padding: '10px 14px',
-                          fontSize: '12.5px',
+                          flex: '1 1 140px',
+                          padding: '8px 12px',
+                          fontSize: 'clamp(11px, 2.8vw, 12.5px)',
                           fontFamily: "'IBM Plex Mono', monospace",
                           fontWeight: 600,
                           border: '1px solid var(--ink)',
@@ -1997,19 +1997,20 @@ export default function DevelopmentPage() {
                           color: commercePp === 'standard' ? '#FFF' : 'var(--ink)',
                           cursor: 'pointer',
                           borderRadius: '2px',
-                          transition: 'all 0.2s ease'
+                          transition: 'all 0.2s ease',
+                          textAlign: 'center'
                         }}
                       >
-                        Standard Product Page
+                        Standard Build
                       </button>
                       <button
                         type="button"
                         className={commercePp === 'improved' ? 'on' : ''}
                         onClick={() => setCommercePp('improved')}
                         style={{
-                          flex: 1,
-                          padding: '10px 14px',
-                          fontSize: '12.5px',
+                          flex: '1 1 140px',
+                          padding: '8px 12px',
+                          fontSize: 'clamp(11px, 2.8vw, 12.5px)',
                           fontFamily: "'IBM Plex Mono', monospace",
                           fontWeight: 600,
                           border: '1px solid var(--ink)',
@@ -2017,14 +2018,15 @@ export default function DevelopmentPage() {
                           color: commercePp === 'improved' ? '#FFF' : 'var(--ink)',
                           cursor: 'pointer',
                           borderRadius: '2px',
-                          transition: 'all 0.2s ease'
+                          transition: 'all 0.2s ease',
+                          textAlign: 'center'
                         }}
                       >
-                        Drawing Board Experience
+                        Drawing Board Build
                       </button>
                     </div>
 
-                    {/* Active Full View Frame */}
+                    {/* Active Full View Frame — Clean White Background & Responsive Contain */}
                     <div
                       className="shopify-active-frame"
                       style={{
@@ -2032,8 +2034,9 @@ export default function DevelopmentPage() {
                         border: '1px solid var(--ink)',
                         borderRadius: '2px',
                         overflow: 'hidden',
-                        background: '#0D1117',
-                        boxShadow: '0 8px 24px rgba(0,0,0,0.12)'
+                        background: '#FFFFFF',
+                        padding: '16px',
+                        boxShadow: 'inset 0 0 0 1px var(--paper-line)'
                       }}
                     >
                       <img
@@ -2042,9 +2045,10 @@ export default function DevelopmentPage() {
                         style={{
                           width: '100%',
                           height: 'auto',
-                          maxHeight: '520px',
+                          maxHeight: '440px',
                           objectFit: 'contain',
-                          display: 'block'
+                          display: 'block',
+                          margin: '0 auto'
                         }}
                       />
                     </div>
@@ -2080,27 +2084,27 @@ export default function DevelopmentPage() {
                 </div>
 
                 <div className="demo-panel exp-demo" style={{ background: 'var(--card)', border: '1px solid var(--ink)', padding: '20px', borderRadius: '2px' }}>
-                  <div className="demo-toolbar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', paddingBottom: '12px', borderBottom: '1px solid var(--paper-line)' }}>
+                  <div className="demo-toolbar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', paddingBottom: '12px', borderBottom: '1px solid var(--paper-line)', flexWrap: 'wrap', gap: '8px' }}>
                     <div className="dots" style={{ display: 'flex', gap: '6px' }}>
                       <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FF5F56', display: 'inline-block' }}></span>
                       <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FFBD2E', display: 'inline-block' }}></span>
                       <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#27C93F', display: 'inline-block' }}></span>
                     </div>
-                    <div className="url" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '11.5px', color: 'var(--ink-soft)' }}>
+                    <div className="url" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '11.5px', color: 'var(--ink-soft)', wordBreak: 'break-all' }}>
                       yourbrand.com — interactive UI experience
                     </div>
                   </div>
 
                   <div className="demo-body">
-                    <div className="exp-states" style={{ display: 'flex', gap: '10px', marginBottom: '16px' }}>
+                    <div className="exp-states" style={{ display: 'flex', gap: '10px', marginBottom: '16px', flexWrap: 'wrap' }}>
                       <button
                         type="button"
                         className={expStateIdx === 0 ? 'on' : ''}
                         onClick={() => setExpStateIdx(0)}
                         style={{
-                          flex: 1,
-                          padding: '10px 14px',
-                          fontSize: '12.5px',
+                          flex: '1 1 140px',
+                          padding: '8px 12px',
+                          fontSize: 'clamp(11px, 2.8vw, 12.5px)',
                           fontFamily: "'IBM Plex Mono', monospace",
                           fontWeight: 600,
                           border: '1px solid var(--ink)',
@@ -2108,7 +2112,8 @@ export default function DevelopmentPage() {
                           color: expStateIdx === 0 ? '#FFF' : 'var(--ink)',
                           cursor: 'pointer',
                           borderRadius: '2px',
-                          transition: 'all 0.2s ease'
+                          transition: 'all 0.2s ease',
+                          textAlign: 'center'
                         }}
                       >
                         UI View 01: Hero &amp; Motion
@@ -2118,9 +2123,9 @@ export default function DevelopmentPage() {
                         className={expStateIdx === 1 ? 'on' : ''}
                         onClick={() => setExpStateIdx(1)}
                         style={{
-                          flex: 1,
-                          padding: '10px 14px',
-                          fontSize: '12.5px',
+                          flex: '1 1 140px',
+                          padding: '8px 12px',
+                          fontSize: 'clamp(11px, 2.8vw, 12.5px)',
                           fontFamily: "'IBM Plex Mono', monospace",
                           fontWeight: 600,
                           border: '1px solid var(--ink)',
@@ -2128,7 +2133,8 @@ export default function DevelopmentPage() {
                           color: expStateIdx === 1 ? '#FFF' : 'var(--ink)',
                           cursor: 'pointer',
                           borderRadius: '2px',
-                          transition: 'all 0.2s ease'
+                          transition: 'all 0.2s ease',
+                          textAlign: 'center'
                         }}
                       >
                         UI View 02: Interface System
@@ -2142,8 +2148,9 @@ export default function DevelopmentPage() {
                         border: '1px solid var(--ink)',
                         borderRadius: '2px',
                         overflow: 'hidden',
-                        background: '#0D1117',
-                        boxShadow: '0 8px 24px rgba(0,0,0,0.12)'
+                        background: '#FFFFFF',
+                        padding: '16px',
+                        boxShadow: 'inset 0 0 0 1px var(--paper-line)'
                       }}
                     >
                       <img
@@ -2152,14 +2159,15 @@ export default function DevelopmentPage() {
                         style={{
                           width: '100%',
                           height: 'auto',
-                          maxHeight: '520px',
+                          maxHeight: '440px',
                           objectFit: 'contain',
-                          display: 'block'
+                          display: 'block',
+                          margin: '0 auto'
                         }}
                       />
                     </div>
                     
-                    <p style={{ marginTop: '12px', fontSize: '13px', fontFamily: "'IBM Plex Mono', monospace", color: 'var(--ink-soft)', textAlign: 'center' }}>
+                    <p style={{ marginTop: '12px', fontSize: '12.5px', fontFamily: "'IBM Plex Mono', monospace", color: 'var(--ink-soft)', textAlign: 'center' }}>
                       {expStateIdx === 0
                         ? '↳ Kinetic typography, fluid product motion, and immersive brand storytelling.'
                         : '↳ Interactive editorial layouts, scroll-triggered state transitions, and responsive UI.'}
