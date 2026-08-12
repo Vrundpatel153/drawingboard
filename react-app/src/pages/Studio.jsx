@@ -19,12 +19,12 @@ export default function Studio() {
     {
       name: 'RajLaxmi',
       role: 'Brand Designer & Illustrator',
-      image: '/images/studio/studio_about_02.png'
+      image: '/images/studio/studio_about_12.jpeg'
     },
     {
       name: 'Ajit Biswas',
       role: 'Web & App Developer',
-      image: '/images/studio/studio_about_12.jpeg'
+      image: '/images/studio/studio_about_13.jpeg'
     },
     {
       name: 'Vrund Patel',
@@ -34,22 +34,22 @@ export default function Studio() {
     {
       name: 'Jane Taylor',
       role: 'UI/UX Designer',
-      image: '/images/studio/studio_about_13.jpeg'
+      image: '/images/studio/studio_about_14.jpg'
     },
     {
       name: 'Michael Wilson',
       role: 'Photographer',
-      image: '/images/studio/studio_about_14.jpg'
+      image: '/images/studio/studio_about_15.jpg'
     },
     {
       name: 'Trisha Agarwal',
       role: 'Brand Designer',
-      image: '/images/studio/studio_about_15.jpg'
+      image: '/images/studio/studio_about_16.jpg'
     },
     {
       name: 'Omisha Ghandi',
       role: 'Creative Head',
-      image: '/images/studio/studio_about_16.jpg'
+      image: '/images/studio/studio_about_07.webp'
     }
   ];
 
