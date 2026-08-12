@@ -1981,15 +1981,14 @@ export default function DevelopmentPage() {
                   </div>
 
                   <div className="demo-body">
-                    <div className="demo-toggle" style={{ display: 'flex', gap: '10px', marginBottom: '16px', flexWrap: 'wrap' }}>
+                    <div className="demo-toggle" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '16px' }}>
                       <button
                         type="button"
                         className={commercePp === 'standard' ? 'on' : ''}
                         onClick={() => setCommercePp('standard')}
                         style={{
-                          flex: '1 1 140px',
-                          padding: '8px 12px',
-                          fontSize: 'clamp(11px, 2.8vw, 12.5px)',
+                          padding: '10px 8px',
+                          fontSize: 'clamp(10px, 2.7vw, 12px)',
                           fontFamily: "'IBM Plex Mono', monospace",
                           fontWeight: 600,
                           border: '1px solid var(--ink)',
@@ -1998,7 +1997,10 @@ export default function DevelopmentPage() {
                           cursor: 'pointer',
                           borderRadius: '2px',
                           transition: 'all 0.2s ease',
-                          textAlign: 'center'
+                          textAlign: 'center',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis'
                         }}
                       >
                         Standard Build
@@ -2008,9 +2010,8 @@ export default function DevelopmentPage() {
                         className={commercePp === 'improved' ? 'on' : ''}
                         onClick={() => setCommercePp('improved')}
                         style={{
-                          flex: '1 1 140px',
-                          padding: '8px 12px',
-                          fontSize: 'clamp(11px, 2.8vw, 12.5px)',
+                          padding: '10px 8px',
+                          fontSize: 'clamp(10px, 2.7vw, 12px)',
                           fontFamily: "'IBM Plex Mono', monospace",
                           fontWeight: 600,
                           border: '1px solid var(--ink)',
@@ -2019,7 +2020,10 @@ export default function DevelopmentPage() {
                           cursor: 'pointer',
                           borderRadius: '2px',
                           transition: 'all 0.2s ease',
-                          textAlign: 'center'
+                          textAlign: 'center',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis'
                         }}
                       >
                         Drawing Board Build
