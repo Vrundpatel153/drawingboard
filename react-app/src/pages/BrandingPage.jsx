@@ -898,27 +898,27 @@ export default function BrandingPage() {
                 </div>
               </Link>
 
-              <Link to="/work/shiba-s-bar-kitchen-and-bar" className="case-card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
+              <Link to="/work/soul-brew-branding-packaging-design" className="case-card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
                 <div className="img" style={{ background: 'none' }}>
                   <img
-                    src="https://framerusercontent.com/images/hm5rbPr45EhYVKWHrF6fMu8xGA.png"
-                    alt="Shoba's Bar &amp; Kitchen Brand System"
+                    src="/images/soul-brew/o1.png"
+                    alt="Soul Brew Coffee Brand &amp; Packaging System"
                     style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   />
                 </div>
                 <div className="case-body">
-                  <div className="tag mono">Hospitality &amp; Cocktails</div>
-                  <h4>SHOBA'S BAR &amp; KITCHEN</h4>
-                  <p><strong>Challenge:</strong> Create a distinguished, vintage-luxury cocktail bar identity and illustrated mascot system that balances elegance with playful character.</p>
-                  <p style={{ marginTop: '8px' }}><strong>Direction:</strong> Bespoke calligraphy wordmark paired with an illustrated aristocrat mascot, tactile gold-foiled coasters, menus, and environmental signage.</p>
+                  <div className="tag mono">Specialty Coffee &amp; F&amp;B</div>
+                  <h4>SOUL BREW</h4>
+                  <p><strong>Challenge:</strong> Build a distinctive brand identity, custom roast packaging architecture, and brand narrative for an artisanal specialty coffee brand.</p>
+                  <p style={{ marginTop: '8px' }}><strong>Direction:</strong> Artisanal logotype, custom roast color-coding, sustainable pouch packaging, and tactile coffee collateral.</p>
                   <ul className="sys-list">
-                    <li>Identity application &amp; mascot illustration</li>
-                    <li>Custom calligraphic wordmark</li>
-                    <li>Cocktail menu &amp; coaster suite</li>
-                    <li>Architectural signage &amp; ambient branding</li>
-                    <li>Digital brand kit &amp; social templates</li>
+                    <li>Brand positioning &amp; strategy</li>
+                    <li>Visual identity &amp; logotype</li>
+                    <li>Roast packaging dielines</li>
+                    <li>Color-coded SKU system</li>
+                    <li>Digital storefront direction</li>
                   </ul>
-                  <div className="demo"><b>What This Project Demonstrates</b>How hand-crafted illustration and fine typography create an unforgettable, premium hospitality destination.</div>
+                  <div className="demo"><b>What This Project Demonstrates</b>How strategy-led packaging architecture and brand storytelling create category leadership in consumer F&B.</div>
                   <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                     View Case Study <span style={{ fontSize: '16px' }}>→</span>
                   </div>
