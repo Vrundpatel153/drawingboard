@@ -73,12 +73,12 @@ export default function Studio() {
   ];
 
   const studioGallery = [
-    { src: '/images/studio/studio_about_09.jpg', alt: 'Studio Atmosphere & Interior Architecture' },
-    { src: '/images/studio/studio_about_03.jpg', alt: 'Design & Craft Exploration' },
-    { src: '/images/studio/studio_about_04.jpg', alt: 'Color & Typography Studies' },
-    { src: '/images/studio/studio_about_05.jpg', alt: 'Packaging Dieline Prototyping' },
-    { src: '/images/studio/studio_about_06.jpg', alt: 'Brand Strategy Review' },
-    { src: '/images/studio/studio_about_08.jpg', alt: 'Creative Studio Environment' }
+    { src: '/images/studio/studio_about_09.jpg', alt: 'Studio Atmosphere & Architectural Workspace' },
+    { src: '/images/studio/studio_about_03.jpg', alt: 'Tactile Packaging & Culinary Brand System' },
+    { src: '/images/studio/studio_about_08.jpg', alt: 'Botanical Skincare Packaging & 3D Form' },
+    { src: '/images/soul-brew/02.png', alt: 'Soul Brew Specialty Coffee Identity & Dieline' },
+    { src: '/images/bondwith/bondwith_page_01.jpg', alt: 'Intimacy Brand Architecture & Tactile Print' },
+    { src: '/images/think/category_audit.jpeg', alt: 'Strategic Visual Audit & Category Mapping' }
   ];
 
   return (
