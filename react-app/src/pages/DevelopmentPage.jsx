@@ -1916,43 +1916,156 @@ export default function DevelopmentPage() {
           justify-content: center;
         }
 
-        /* 4-Tier Pricing Grid & Currency Toggle */
-        .dp-currency-wrap {
+        /* 4-Tier Pricing Grid & Mini Card Currency Toggle */
+        .dp-card-curr-toggle {
+          display: inline-flex;
+          align-items: center;
+          gap: 2px;
+          background: rgba(0, 0, 0, 0.05);
+          border: 1px solid var(--paper-line);
+          padding: 2px;
+          border-radius: 4px;
+        }
+        .dp-tier-card.featured .dp-card-curr-toggle {
+          background: rgba(255, 255, 255, 0.12);
+          border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .dp-mini-curr {
+          font-family: 'IBM Plex Mono', monospace;
+          font-size: 11px;
+          font-weight: 700;
+          padding: 2px 7px;
+          border: none;
+          background: transparent;
+          color: var(--ink-soft);
+          cursor: pointer;
+          border-radius: 3px;
+          transition: all 0.15s ease;
+          line-height: 1.2;
+        }
+        .dp-tier-card.featured .dp-mini-curr {
+          color: rgba(255, 255, 255, 0.7);
+        }
+
+        .dp-mini-curr.on {
+          background: var(--pine, #24463B);
+          color: #FFFFFF;
+        }
+        .dp-tier-card.featured .dp-mini-curr.on {
+          background: #FFFFFF;
+          color: #1B1B17;
+        }
+
+        /* Live Store Showcase Cards - Full Width Responsive Grid */
+        .live-store-showcase {
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .live-stores-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+          width: 100%;
+        }
+        @media (max-width: 900px) {
+          .live-stores-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+          }
+        }
+        @media (max-width: 600px) {
+          .live-stores-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+          }
+        }
+
+        .live-store-card {
+          display: flex;
+          flex-direction: column;
+          border: 1.5px solid var(--ink);
+          background: var(--card);
+          border-radius: 2px;
+          overflow: hidden;
+          text-decoration: none;
+          color: var(--ink);
+          transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        .live-store-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 10px 24px rgba(27,27,23,0.12);
+          border-color: var(--pine);
+        }
+
+        .live-store-img-wrap {
+          position: relative;
+          width: 100%;
+          height: 180px;
+          overflow: hidden;
+          background: #1B1B17;
+        }
+        @media (max-width: 600px) {
+          .live-store-img-wrap {
+            height: 200px;
+          }
+        }
+        .live-store-img-wrap img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top center;
+          transition: transform 0.35s ease;
+        }
+        .live-store-card:hover .live-store-img-wrap img {
+          transform: scale(1.04);
+        }
+
+        .live-store-badge {
+          position: absolute;
+          top: 8px;
+          right: 8px;
+          background: rgba(36, 70, 59, 0.92);
+          backdrop-filter: blur(4px);
+          color: #FFFFFF;
+          font-family: 'IBM Plex Mono', monospace;
+          font-size: 10px;
+          font-weight: 700;
+          padding: 3px 8px;
+          border-radius: 2px;
+          border: 1px solid rgba(255,255,255,0.25);
+          letter-spacing: 0.05em;
+        }
+
+        .live-store-info {
+          padding: 12px 14px;
+          background: var(--card);
+          border-top: 1px solid var(--paper-line);
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 32px;
-          flex-wrap: wrap;
-          gap: 16px;
+          gap: 8px;
         }
-        .dp-currency-toggle {
-          display: inline-flex;
-          align-items: center;
-          gap: 4px;
-          background: var(--card);
-          border: 1.5px solid var(--ink);
-          padding: 4px;
-          border-radius: 2px;
-        }
-        .dp-curr-btn {
-          padding: 7px 16px;
-          font-family: 'IBM Plex Mono', monospace;
-          font-size: 12px;
+        .live-store-info h5 {
+          font-family: 'Fraunces', serif;
+          font-size: 15px;
           font-weight: 700;
-          border: none;
-          background: transparent;
-          cursor: pointer;
-          color: var(--ink-soft);
-          border-radius: 2px;
-          transition: all 0.2s ease;
-        }
-        .dp-curr-btn.on {
-          background: var(--pine);
-          color: #FFFFFF;
-        }
-        .dp-curr-btn:hover:not(.on) {
+          margin: 0 0 2px 0;
           color: var(--ink);
-          background: rgba(0,0,0,0.05);
+          line-height: 1.2;
+        }
+        .live-store-info .sub-desc {
+          display: block;
+          font-family: 'IBM Plex Mono', monospace;
+          font-size: 10.5px;
+          color: var(--ink-soft);
+        }
+        .live-store-info .link-text {
+          font-family: 'IBM Plex Mono', monospace;
+          font-size: 11px;
+          color: var(--pine);
+          font-weight: 700;
+          white-space: nowrap;
         }
 
         .dev-pricing-grid {
@@ -2502,9 +2615,6 @@ export default function DevelopmentPage() {
                   <p className="tagline">Turn browsing into buying.</p>
                   <div className="price">$1,200 <span style={{ fontSize: '15px', color: 'var(--ink-soft)' }}>(£895 · ₹1,14,516)</span></div>
                   <div className="price-conv">FIXED PRICE · UP TO 50 SKUs</div>
-                  <div style={{ fontFamily: 'var(--mono)', fontSize: '11.5px', color: 'var(--ink-soft)', marginTop: '4px', marginBottom: '12px' }}>
-                    Live Client Stores: <a href="https://shaktimat.ca/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--pine)', textDecoration: 'underline', fontWeight: 600 }}>Shaktimat</a> · <a href="https://suta.in/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--pine)', textDecoration: 'underline', fontWeight: 600 }}>Suta</a> · <a href="https://www.arata.in/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--pine)', textDecoration: 'underline', fontWeight: 600 }}>Arata</a>
-                  </div>
                   <p className="desc">For consumer brands ready to replace a generic storefront with a considered shopping experience.</p>
                   <div className="svc-tags">
                     <span>Fashion</span><span>Beauty</span><span>F&amp;B</span><span>Jewellery</span><span>DTC</span><span>Home</span>
@@ -2610,6 +2720,58 @@ export default function DevelopmentPage() {
                         }}
                       />
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Full-Width 3 Live Shopify Store Cards Showcase */}
+              <div className="wrap">
+                <div className="live-store-showcase" style={{ marginTop: '36px', paddingTop: '28px', borderTop: '1.5px dashed var(--paper-line)' }}>
+                  <div style={{ fontFamily: 'var(--mono)', fontSize: '11.5px', fontWeight: 700, textTransform: 'uppercase', color: 'var(--ink)', marginBottom: '16px', letterSpacing: '0.05em' }}>
+                    [ RECENT SHOPIFY STORES DEVELOPED BY US ]
+                  </div>
+                  <div className="live-stores-grid">
+                    <a href="https://shaktimat.ca/" target="_blank" rel="noopener noreferrer" className="live-store-card">
+                      <div className="live-store-img-wrap">
+                        <img src="/images/live-stores/shaktimat_mobile.png" alt="Shaktimat Shopify Build" loading="lazy" />
+                        <span className="live-store-badge">LIVE ↗</span>
+                      </div>
+                      <div className="live-store-info">
+                        <div>
+                          <h5>Shaktimat</h5>
+                          <span className="sub-desc">Wellness &amp; Health E-Commerce</span>
+                        </div>
+                        <span className="mono link-text">shaktimat.ca ↗</span>
+                      </div>
+                    </a>
+
+                    <a href="https://suta.in/" target="_blank" rel="noopener noreferrer" className="live-store-card">
+                      <div className="live-store-img-wrap">
+                        <img src="/images/live-stores/suta_mobile.png" alt="Suta Shopify Build" loading="lazy" />
+                        <span className="live-store-badge">LIVE ↗</span>
+                      </div>
+                      <div className="live-store-info">
+                        <div>
+                          <h5>Suta</h5>
+                          <span className="sub-desc">Fashion &amp; Apparel Storefront</span>
+                        </div>
+                        <span className="mono link-text">suta.in ↗</span>
+                      </div>
+                    </a>
+
+                    <a href="https://www.arata.in/" target="_blank" rel="noopener noreferrer" className="live-store-card">
+                      <div className="live-store-img-wrap">
+                        <img src="/images/live-stores/arata_mobile.png" alt="Arata Shopify Build" loading="lazy" />
+                        <span className="live-store-badge">LIVE ↗</span>
+                      </div>
+                      <div className="live-store-info">
+                        <div>
+                          <h5>Arata</h5>
+                          <span className="sub-desc">Personal Care &amp; Beauty Brand</span>
+                        </div>
+                        <span className="mono link-text">arata.in ↗</span>
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -3172,36 +3334,7 @@ export default function DevelopmentPage() {
                 <div className="eyebrow">PRICING &amp; TIERS</div>
                 <h2>Transparent, fixed-scope pricing for every stage.</h2>
               </div>
-              <p>Select your preferred currency (INR / USD / GBP). All packages include full source code ownership and technical handoff.</p>
-            </div>
-
-            <div className="dp-currency-wrap">
-              <span className="mono" style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ink)' }}>
-                [ CURRENCY TOGGLE ]
-              </span>
-              <div className="dp-currency-toggle">
-                <button
-                  type="button"
-                  className={`dp-curr-btn ${devCurrency === 'INR' ? 'on' : ''}`}
-                  onClick={() => setDevCurrency('INR')}
-                >
-                  INR (₹)
-                </button>
-                <button
-                  type="button"
-                  className={`dp-curr-btn ${devCurrency === 'USD' ? 'on' : ''}`}
-                  onClick={() => setDevCurrency('USD')}
-                >
-                  USD ($)
-                </button>
-                <button
-                  type="button"
-                  className={`dp-curr-btn ${devCurrency === 'GBP' ? 'on' : ''}`}
-                  onClick={() => setDevCurrency('GBP')}
-                >
-                  GBP (£)
-                </button>
-              </div>
+              <p>All packages include full source code ownership and technical handoff.</p>
             </div>
 
             <div className="dev-pricing-grid">
@@ -3210,10 +3343,35 @@ export default function DevelopmentPage() {
                 <div>
                   <div className="dp-target">Individuals &amp; small businesses</div>
                   <h3 className="dp-title">Starter Site</h3>
-                  <div className="dp-price">
-                    {devCurrency === 'INR' && '₹85,000'}
-                    {devCurrency === 'USD' && '$900'}
-                    {devCurrency === 'GBP' && '£670'}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', marginBottom: '4px' }}>
+                    <div className="dp-price">
+                      {devCurrency === 'INR' && '₹85,000'}
+                      {devCurrency === 'USD' && '$900'}
+                      {devCurrency === 'GBP' && '£670'}
+                    </div>
+                    <div className="dp-card-curr-toggle">
+                      <button
+                        type="button"
+                        className={`dp-mini-curr ${devCurrency === 'INR' ? 'on' : ''}`}
+                        onClick={() => setDevCurrency('INR')}
+                      >
+                        ₹
+                      </button>
+                      <button
+                        type="button"
+                        className={`dp-mini-curr ${devCurrency === 'USD' ? 'on' : ''}`}
+                        onClick={() => setDevCurrency('USD')}
+                      >
+                        $
+                      </button>
+                      <button
+                        type="button"
+                        className={`dp-mini-curr ${devCurrency === 'GBP' ? 'on' : ''}`}
+                        onClick={() => setDevCurrency('GBP')}
+                      >
+                        £
+                      </button>
+                    </div>
                   </div>
                   <div className="dp-sub">PER PROJECT</div>
                   <ul className="dp-features">
@@ -3238,10 +3396,35 @@ export default function DevelopmentPage() {
                 <div>
                   <div className="dp-target">DTC brands launching or migrating to Shopify</div>
                   <h3 className="dp-title">Shopify / E-commerce Build</h3>
-                  <div className="dp-price">
-                    {devCurrency === 'INR' && '₹96,000'}
-                    {devCurrency === 'USD' && '$1,200'}
-                    {devCurrency === 'GBP' && '£895'}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', marginBottom: '4px' }}>
+                    <div className="dp-price">
+                      {devCurrency === 'INR' && '₹96,000'}
+                      {devCurrency === 'USD' && '$1,200'}
+                      {devCurrency === 'GBP' && '£895'}
+                    </div>
+                    <div className="dp-card-curr-toggle">
+                      <button
+                        type="button"
+                        className={`dp-mini-curr ${devCurrency === 'INR' ? 'on' : ''}`}
+                        onClick={() => setDevCurrency('INR')}
+                      >
+                        ₹
+                      </button>
+                      <button
+                        type="button"
+                        className={`dp-mini-curr ${devCurrency === 'USD' ? 'on' : ''}`}
+                        onClick={() => setDevCurrency('USD')}
+                      >
+                        $
+                      </button>
+                      <button
+                        type="button"
+                        className={`dp-mini-curr ${devCurrency === 'GBP' ? 'on' : ''}`}
+                        onClick={() => setDevCurrency('GBP')}
+                      >
+                        £
+                      </button>
+                    </div>
                   </div>
                   <div className="dp-sub">FIXED PRICE · UP TO 50 SKUs</div>
                   <ul className="dp-features">
@@ -3257,8 +3440,24 @@ export default function DevelopmentPage() {
                   <button className="dp-btn" onClick={() => openLeadModal('Shopify / E-commerce Build')}>
                     Get started
                   </button>
-                  <div className="dp-examples">
-                    Live Builds: <a href="https://shaktimat.ca/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline', fontWeight: 600 }}>Shaktimat</a> · <a href="https://suta.in/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline', fontWeight: 600 }}>Suta</a> · <a href="https://www.arata.in/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline', fontWeight: 600 }}>Arata</a>
+                  <div className="dp-examples" style={{ marginTop: '12px' }}>
+                    <div style={{ fontFamily: 'var(--mono)', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', color: 'var(--ink-soft)', marginBottom: '6px' }}>
+                      RECENT CLIENT STORES:
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px' }}>
+                      <a href="https://shaktimat.ca/" target="_blank" rel="noopener noreferrer" style={{ display: 'block', borderRadius: '2px', overflow: 'hidden', border: '1px solid var(--paper-line)', background: '#1B1B17', textDecoration: 'none' }} title="Shaktimat (shaktimat.ca)">
+                        <img src="/images/live-stores/shaktimat_mobile.png" alt="Shaktimat" style={{ width: '100%', height: '46px', objectFit: 'cover', objectPosition: 'top center', display: 'block' }} />
+                        <span style={{ display: 'block', padding: '2px 4px', fontSize: '9px', fontFamily: 'var(--mono)', background: 'var(--card)', color: 'var(--ink)', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: 600 }}>Shaktimat ↗</span>
+                      </a>
+                      <a href="https://suta.in/" target="_blank" rel="noopener noreferrer" style={{ display: 'block', borderRadius: '2px', overflow: 'hidden', border: '1px solid var(--paper-line)', background: '#1B1B17', textDecoration: 'none' }} title="Suta (suta.in)">
+                        <img src="/images/live-stores/suta_mobile.png" alt="Suta" style={{ width: '100%', height: '46px', objectFit: 'cover', objectPosition: 'top center', display: 'block' }} />
+                        <span style={{ display: 'block', padding: '2px 4px', fontSize: '9px', fontFamily: 'var(--mono)', background: 'var(--card)', color: 'var(--ink)', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: 600 }}>Suta ↗</span>
+                      </a>
+                      <a href="https://www.arata.in/" target="_blank" rel="noopener noreferrer" style={{ display: 'block', borderRadius: '2px', overflow: 'hidden', border: '1px solid var(--paper-line)', background: '#1B1B17', textDecoration: 'none' }} title="Arata (arata.in)">
+                        <img src="/images/live-stores/arata_mobile.png" alt="Arata" style={{ width: '100%', height: '46px', objectFit: 'cover', objectPosition: 'top center', display: 'block' }} />
+                        <span style={{ display: 'block', padding: '2px 4px', fontSize: '9px', fontFamily: 'var(--mono)', background: 'var(--card)', color: 'var(--ink)', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: 600 }}>Arata ↗</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -3269,10 +3468,35 @@ export default function DevelopmentPage() {
                 <div>
                   <div className="dp-target">Brands &amp; companies who've outgrown templates</div>
                   <h3 className="dp-title">Custom Website Build</h3>
-                  <div className="dp-price">
-                    {devCurrency === 'INR' && '₹1,45,000'}
-                    {devCurrency === 'USD' && '$1,500'}
-                    {devCurrency === 'GBP' && '£1,120'}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', marginBottom: '4px' }}>
+                    <div className="dp-price">
+                      {devCurrency === 'INR' && '₹1,45,000'}
+                      {devCurrency === 'USD' && '$1,500'}
+                      {devCurrency === 'GBP' && '£1,120'}
+                    </div>
+                    <div className="dp-card-curr-toggle">
+                      <button
+                        type="button"
+                        className={`dp-mini-curr ${devCurrency === 'INR' ? 'on' : ''}`}
+                        onClick={() => setDevCurrency('INR')}
+                      >
+                        ₹
+                      </button>
+                      <button
+                        type="button"
+                        className={`dp-mini-curr ${devCurrency === 'USD' ? 'on' : ''}`}
+                        onClick={() => setDevCurrency('USD')}
+                      >
+                        $
+                      </button>
+                      <button
+                        type="button"
+                        className={`dp-mini-curr ${devCurrency === 'GBP' ? 'on' : ''}`}
+                        onClick={() => setDevCurrency('GBP')}
+                      >
+                        £
+                      </button>
+                    </div>
                   </div>
                   <div className="dp-sub">FIXED PRICE · UP TO 10 PAGES</div>
                   <ul className="dp-features">
@@ -3296,10 +3520,35 @@ export default function DevelopmentPage() {
                 <div>
                   <div className="dp-target">Cross-platform app development</div>
                   <h3 className="dp-title">App Development</h3>
-                  <div className="dp-price">
-                    {devCurrency === 'INR' && '₹2,85,000'}
-                    {devCurrency === 'USD' && '$3,000'}
-                    {devCurrency === 'GBP' && '£2,240'}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', marginBottom: '4px' }}>
+                    <div className="dp-price">
+                      {devCurrency === 'INR' && '₹2,85,000'}
+                      {devCurrency === 'USD' && '$3,000'}
+                      {devCurrency === 'GBP' && '£2,240'}
+                    </div>
+                    <div className="dp-card-curr-toggle">
+                      <button
+                        type="button"
+                        className={`dp-mini-curr ${devCurrency === 'INR' ? 'on' : ''}`}
+                        onClick={() => setDevCurrency('INR')}
+                      >
+                        ₹
+                      </button>
+                      <button
+                        type="button"
+                        className={`dp-mini-curr ${devCurrency === 'USD' ? 'on' : ''}`}
+                        onClick={() => setDevCurrency('USD')}
+                      >
+                        $
+                      </button>
+                      <button
+                        type="button"
+                        className={`dp-mini-curr ${devCurrency === 'GBP' ? 'on' : ''}`}
+                        onClick={() => setDevCurrency('GBP')}
+                      >
+                        £
+                      </button>
+                    </div>
                   </div>
                   <div className="dp-sub">PER PROJECT</div>
                   <ul className="dp-features">
