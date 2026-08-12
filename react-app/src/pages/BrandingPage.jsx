@@ -1078,8 +1078,17 @@ export default function BrandingPage() {
 
               {/* Card 05: Creative Exploration */}
               <div className="think-card">
-                <div className="think-card-media" style={{ background: 'linear-gradient(135deg, #d8d2c1, #c3bda9)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px', color: 'rgba(27,27,23,0.4)', fontFamily: "'IBM Plex Mono', monospace", fontSize: '11px', textAlign: 'center' }}>
-                  Typography &amp; Symbol Lab
+                <div
+                  className="think-card-media"
+                  onClick={() => setLightboxImage('/images/think/creative_exploration.jpeg')}
+                  title="Click to view full image"
+                >
+                  <img
+                    src="/images/think/creative_exploration.jpeg"
+                    alt="Creative Exploration Strategy"
+                    loading="lazy"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
                 </div>
                 <div className="think-body">
                   <div className="n mono">05</div>
@@ -1090,8 +1099,17 @@ export default function BrandingPage() {
 
               {/* Card 06: System Planning */}
               <div className="think-card">
-                <div className="think-card-media" style={{ background: 'linear-gradient(135deg, #d8d2c1, #c3bda9)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px', color: 'rgba(27,27,23,0.4)', fontFamily: "'IBM Plex Mono', monospace", fontSize: '11px', textAlign: 'center' }}>
-                  System Architecture Plan
+                <div
+                  className="think-card-media"
+                  onClick={() => setLightboxImage('/images/think/system_planning.png')}
+                  title="Click to view full image"
+                >
+                  <img
+                    src="/images/think/system_planning.png"
+                    alt="System Architecture Plan"
+                    loading="lazy"
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  />
                 </div>
                 <div className="think-body">
                   <div className="n mono">06</div>
