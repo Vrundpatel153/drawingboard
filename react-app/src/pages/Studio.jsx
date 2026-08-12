@@ -13,45 +13,43 @@ export default function Studio() {
   const teamMembers = [
     {
       name: 'Vinayak Agarwal',
+      role: 'Founder',
+      image: '/images/studio/studio_about_10.jpeg'
+    },
+    {
+      name: 'RajLaxmi',
       role: 'Brand Designer & Illustrator',
-      image: '/images/studio/studio_about_10.jpeg',
-      bio: 'Specializes in strategic brand identities, custom typography, and bespoke vector illustration systems.'
+      image: '/images/studio/studio_about_02.png'
     },
     {
       name: 'Ajit Biswas',
       role: 'Web & App Developer',
-      image: '/images/studio/studio_about_12.jpeg',
-      bio: 'Crafts high-performance digital interfaces, React architectures, interactive motion, and custom e-commerce engines.'
+      image: '/images/studio/studio_about_12.jpeg'
     },
     {
       name: 'Vrund Patel',
-      role: 'Founder & Lead Design Engineer',
-      image: '/images/studio/vrund_patel.jpg',
-      bio: 'Leads digital design engineering, full-stack website architectures, brand positioning systems, and technical execution.'
+      role: 'Web & App Developer',
+      image: '/images/studio/vrund_patel.jpg'
     },
     {
       name: 'Jane Taylor',
       role: 'UI/UX Designer',
-      image: '/images/studio/studio_about_13.jpeg',
-      bio: 'Focuses on user research, intuitive interface design systems, and conversion-optimized digital workflows.'
+      image: '/images/studio/studio_about_13.jpeg'
     },
     {
       name: 'Michael Wilson',
-      role: 'Photographer & Art Director',
-      image: '/images/studio/studio_about_14.jpg',
-      bio: 'Captures high-impact commercial photography, product lighting, and cinematic brand visual direction.'
+      role: 'Photographer',
+      image: '/images/studio/studio_about_14.jpg'
     },
     {
       name: 'Trisha Agarwal',
       role: 'Brand Designer',
-      image: '/images/studio/studio_about_15.jpg',
-      bio: 'Passionate about structural packaging design, tactile print finishes, dieline accuracy, and editorial aesthetics.'
+      image: '/images/studio/studio_about_15.jpg'
     },
     {
       name: 'Omisha Ghandi',
       role: 'Creative Head',
-      image: '/images/studio/studio_about_16.jpg',
-      bio: 'Leads cross-disciplinary creative strategy, brand positioning, client alignment, and studio artistic vision.'
+      image: '/images/studio/studio_about_16.jpg'
     }
   ];
 
@@ -299,7 +297,7 @@ export default function Studio() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
               {teamMembers.map((member, idx) => (
                 <div key={idx} style={{ border: '1px solid var(--ink)', background: 'var(--paper)', borderRadius: '2px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ width: '100%', height: '320px', overflow: 'hidden', background: '#000000' }}>
+                  <div style={{ width: '100%', height: '340px', overflow: 'hidden', background: '#000000' }}>
                     <img
                       src={member.image}
                       alt={member.name}
@@ -314,17 +312,12 @@ export default function Studio() {
                       onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.0)'}
                     />
                   </div>
-                  <div style={{ padding: '20px', background: 'var(--paper)', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                    <div>
-                      <div className="mono" style={{ fontSize: '11px', color: 'var(--pine)', fontWeight: 700, textTransform: 'uppercase', marginBottom: '6px' }}>
-                        // {member.role}
-                      </div>
-                      <h3 style={{ fontSize: '19px', fontFamily: "'Schibsted Grotesk', sans-serif", fontWeight: 700, margin: '0 0 10px 0', color: 'var(--ink)' }}>
-                        {member.name}
-                      </h3>
-                      <p style={{ fontSize: '13px', color: 'var(--ink-soft)', lineHeight: 1.55, margin: 0 }}>
-                        {member.bio}
-                      </p>
+                  <div style={{ padding: '16px 20px', background: 'var(--paper)', flexGrow: 1 }}>
+                    <h3 style={{ fontSize: '18px', fontFamily: "'Schibsted Grotesk', sans-serif", fontWeight: 700, margin: '0 0 4px 0', color: 'var(--ink)' }}>
+                      {member.name}
+                    </h3>
+                    <div className="mono" style={{ fontSize: '12px', color: 'var(--ink-soft)', fontWeight: 500 }}>
+                      {member.role}
                     </div>
                   </div>
                 </div>
