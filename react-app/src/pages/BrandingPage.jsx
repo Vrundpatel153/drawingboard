@@ -21,8 +21,10 @@ export default function BrandingPage() {
   // Think Section Interactive Media State
   const [categorySlide, setCategorySlide] = useState(0);
   const [heatmapSlide, setHeatmapSlide] = useState(0);
+  const [systemSlide, setSystemSlide] = useState(0);
   const [isCategoryHovered, setIsCategoryHovered] = useState(false);
   const [isHeatmapHovered, setIsHeatmapHovered] = useState(false);
+  const [isSystemHovered, setIsSystemHovered] = useState(false);
   const [lightboxImage, setLightboxImage] = useState(null);
 
   const categoryAuditImages = [
@@ -39,7 +41,16 @@ export default function BrandingPage() {
     '/images/think/heatmap3.jpeg'
   ];
 
-  // Auto slide timers for Category Audit and Heatmap sliders
+  const systemPlanningImages = [
+    'https://framerusercontent.com/images/GI9hs6gABp4QhAbVBk1Ej9TVE0.png',
+    'https://framerusercontent.com/images/uBSqtsY2yQrXzDwj5TCFNnvU.png',
+    'https://framerusercontent.com/images/qant71hj9KPeyj6vzVQEMQgl5T8.png',
+    'https://framerusercontent.com/images/XVsYVfYaAZSCgqPrDrAySvOEqsk.png',
+    'https://framerusercontent.com/images/JpoZtKncR1F4TWug62YHNXhY8I.png',
+    'https://framerusercontent.com/images/DBUf1j4gdz1eKAhD9k4P9CynCg.png'
+  ];
+
+  // Auto slide timers for Category Audit, Heatmap, and System Planning sliders
   useEffect(() => {
     if (isCategoryHovered) return;
     const interval = setInterval(() => {
@@ -55,6 +66,14 @@ export default function BrandingPage() {
     }, 4000);
     return () => clearInterval(interval);
   }, [isHeatmapHovered, heatmapImages.length]);
+
+  useEffect(() => {
+    if (isSystemHovered) return;
+    const interval = setInterval(() => {
+      setSystemSlide((prev) => (prev + 1) % systemPlanningImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [isSystemHovered, systemPlanningImages.length]);
 
   // Close lightbox on Escape key
   useEffect(() => {
@@ -1090,19 +1109,49 @@ export default function BrandingPage() {
                 </div>
               </div>
 
-              {/* Card 06: System Planning */}
+              {/* Card 06: System Planning (Auto Slide with 6 After8 work images) */}
               <div className="think-card">
                 <div
                   className="think-card-media"
-                  onClick={() => setLightboxImage('/images/think/system_planning.png')}
-                  title="Click to view full image"
+                  onMouseEnter={() => setIsSystemHovered(true)}
+                  onMouseLeave={() => setIsSystemHovered(false)}
+                  onClick={() => setLightboxImage(systemPlanningImages[systemSlide])}
                 >
-                  <img
-                    src="/images/think/system_planning.png"
-                    alt="System Architecture Plan"
-                    loading="lazy"
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  />
+                  <div
+                    className="think-slider-track"
+                    style={{ transform: `translateX(-${systemSlide * 100}%)` }}
+                  >
+                    {systemPlanningImages.map((src, i) => (
+                      <div key={i} className="think-slide-item">
+                        <img
+                          src={src}
+                          alt={`After8 System Planning ${i + 1}`}
+                          loading="lazy"
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="think-controls-bar" onClick={(e) => e.stopPropagation()}>
+                    <button
+                      type="button"
+                      className="think-nav-btn"
+                      onClick={() => setSystemSlide((prev) => (prev > 0 ? prev - 1 : systemPlanningImages.length - 1))}
+                      title="Previous image"
+                    >
+                      ‹
+                    </button>
+                    <span className="think-counter">{systemSlide + 1}/{systemPlanningImages.length}</span>
+                    <button
+                      type="button"
+                      className="think-nav-btn"
+                      onClick={() => setSystemSlide((prev) => (prev + 1) % systemPlanningImages.length)}
+                      title="Next image"
+                    >
+                      ›
+                    </button>
+                  </div>
                 </div>
                 <div className="think-body">
                   <div className="n mono">06</div>

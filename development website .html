@@ -254,7 +254,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(243,238,226,0.92);backdr
 .decision-row .need{font-size:14.5px;color:var(--ink)}
 .decision-row .arrow{text-align:center;color:var(--pine);font-family:var(--mono)}
 .decision-row .tech{font-family:var(--mono);font-size:13px;color:var(--pine-deep);font-weight:600;text-align:right}
-@media (max-width:640px){.decision-row{grid-template-columns:1fr;gap:6px;text-align:left}.decision-row .tech{text-align:left}}
+@media (max-width:640px){.decision-row{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:14px 16px;text-align:left}.decision-row .arrow{display:none !important}.decision-row .need{font-size:13.5px;font-weight:500;color:var(--ink);line-height:1.4}.decision-row .tech{text-align:left;display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:var(--pine-deep);font-weight:700}.decision-row .tech::before{content:'→';color:var(--marker,#B8412E);font-weight:900;font-size:16px}}
 
 /* ============ STRATEGY LAYERS ============ */
 .strategy-list{border-top:1px solid var(--ink)}
@@ -371,8 +371,9 @@ footer a:hover{opacity:.75}
 
 /* Universal Arrow System */
 .seq-stage:not(:last-child)::after { content: '→' !important; position: absolute !important; right: -12px !important; top: 24px !important; color: var(--marker, #B8412E) !important; font-family: 'IBM Plex Mono', monospace !important; font-size: 20px !important; font-weight: 900 !important; line-height: 1 !important; z-index: 5 !important; transform: scaleX(1.2); }
-.decision-row .arrow { color: var(--marker, #B8412E) !important; font-family: 'IBM Plex Mono', monospace !important; font-weight: 900 !important; font-size: 20px !important; display: inline-block !important; transform: scaleX(1.2); }
-.decision-row .tech::before { font-size: 18px !important; font-weight: 900 !important; margin-right: 6px !important; display: inline-block !important; }
+.decision-row .arrow { color: var(--marker, #B8412E) !important; font-family: 'IBM Plex Mono', monospace !important; font-weight: 900 !important; font-size: 20px !important; transform: scaleX(1.2); }
+@media (max-width:640px){ .decision-row .arrow { display: none !important; } }
+.decision-row .tech::before { font-size: 18px !important; font-weight: 900 !important; margin-right: 6px !important; color: var(--marker, #B8412E) !important; }
 .btn-primary .arrow, .btn-link .arrow, a .arrow, button .arrow { font-family: 'IBM Plex Mono', monospace !important; font-size: 1.15em !important; font-weight: 800 !important; display: inline-block !important; margin-left: 4px !important; }
 </style>
 </head>

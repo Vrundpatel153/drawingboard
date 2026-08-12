@@ -37,6 +37,9 @@ export default function DevelopmentPage() {
   // Project Estimator State
   const [estState, setEstState] = useState({ need: null, complexity: null, brand: null, copy: null });
 
+  // Pricing Tiers Currency Toggle State
+  const [devCurrency, setDevCurrency] = useState('INR');
+
   // FAQ Accordion State
   const [openFaq, setOpenFaq] = useState(null);
 
@@ -1444,25 +1447,36 @@ export default function DevelopmentPage() {
         }
         @media (max-width: 640px) {
           .dev-bp-page .decision-row {
-            grid-template-columns: 1fr;
-            gap: 8px;
-            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+            padding: 14px 16px;
             text-align: left;
           }
           .dev-bp-page .decision-row .arrow {
-            display: none;
+            display: none !important;
+          }
+          .dev-bp-page .decision-row .need {
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--ink);
+            line-height: 1.4;
           }
           .dev-bp-page .decision-row .tech {
             text-align: left;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 6px;
             font-size: 13.5px;
+            color: var(--pine-deep);
+            font-weight: 700;
           }
           .dev-bp-page .decision-row .tech::before {
             content: '→';
-            color: var(--pine);
-            font-weight: 700;
+            color: var(--marker, #B8412E);
+            font-weight: 900;
+            font-size: 16px;
           }
         }
 
@@ -1902,6 +1916,218 @@ export default function DevelopmentPage() {
           justify-content: center;
         }
 
+        /* 4-Tier Pricing Grid & Currency Toggle */
+        .dp-currency-wrap {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 32px;
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+        .dp-currency-toggle {
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          background: var(--card);
+          border: 1.5px solid var(--ink);
+          padding: 4px;
+          border-radius: 2px;
+        }
+        .dp-curr-btn {
+          padding: 7px 16px;
+          font-family: 'IBM Plex Mono', monospace;
+          font-size: 12px;
+          font-weight: 700;
+          border: none;
+          background: transparent;
+          cursor: pointer;
+          color: var(--ink-soft);
+          border-radius: 2px;
+          transition: all 0.2s ease;
+        }
+        .dp-curr-btn.on {
+          background: var(--pine);
+          color: #FFFFFF;
+        }
+        .dp-curr-btn:hover:not(.on) {
+          color: var(--ink);
+          background: rgba(0,0,0,0.05);
+        }
+
+        .dev-pricing-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
+          width: 100%;
+          align-items: stretch;
+        }
+        @media (max-width: 1100px) {
+          .dev-pricing-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+          }
+        }
+        @media (max-width: 640px) {
+          .dev-pricing-grid {
+            grid-template-columns: 1fr;
+            gap: 24px;
+          }
+        }
+
+        .dp-tier-card {
+          border: 1.5px solid var(--ink);
+          background: var(--card);
+          padding: 28px 22px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          border-radius: 2px;
+          position: relative;
+          box-sizing: border-box;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .dp-tier-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(27,27,23,0.08);
+        }
+        .dp-tier-card.featured {
+          background: var(--pine, #24463B);
+          color: #FFFFFF;
+          border-color: var(--ink);
+          padding-top: 36px;
+        }
+
+        .dp-rec-badge {
+          position: absolute;
+          top: -1px;
+          left: -1px;
+          right: -1px;
+          background: var(--marker, #B8412E);
+          color: #FFFFFF;
+          font-family: 'IBM Plex Mono', monospace;
+          font-size: 10px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          padding: 5px 10px;
+          text-align: center;
+        }
+
+        .dp-target {
+          font-size: 13px;
+          color: var(--ink-soft);
+          line-height: 1.45;
+          margin-bottom: 14px;
+          min-height: 38px;
+        }
+        .dp-tier-card.featured .dp-target {
+          color: rgba(255,255,255,0.78);
+        }
+
+        .dp-title {
+          font-family: 'Fraunces', serif;
+          font-size: 22px;
+          font-weight: 700;
+          color: var(--ink);
+          margin-bottom: 16px;
+          line-height: 1.25;
+          min-height: 54px;
+        }
+        .dp-tier-card.featured .dp-title {
+          color: #FFFFFF;
+        }
+
+        .dp-price {
+          font-family: 'Fraunces', serif;
+          font-size: 36px;
+          font-weight: 700;
+          color: var(--ink);
+          margin-bottom: 4px;
+          line-height: 1.1;
+          letter-spacing: -0.02em;
+        }
+        .dp-tier-card.featured .dp-price {
+          color: #FFFFFF;
+        }
+
+        .dp-sub {
+          font-family: 'IBM Plex Mono', monospace;
+          font-size: 10.5px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: var(--ink-soft);
+          margin-bottom: 24px;
+          min-height: 28px;
+          display: flex;
+          align-items: center;
+        }
+        .dp-tier-card.featured .dp-sub {
+          color: rgba(255,255,255,0.7);
+        }
+
+        .dp-features {
+          list-style: none;
+          padding: 0;
+          margin: 0 0 24px 0;
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+        }
+        .dp-features li {
+          padding: 11px 0;
+          border-bottom: 1px dashed var(--paper-line);
+          font-size: 13.5px;
+          color: var(--ink);
+          line-height: 1.4;
+        }
+        .dp-tier-card.featured .dp-features li {
+          border-bottom-color: rgba(255,255,255,0.18);
+          color: #FFFFFF;
+        }
+
+        .dp-btn {
+          width: 100%;
+          padding: 13px 16px;
+          background: var(--paper, #EFEBE2);
+          border: 1.5px solid var(--ink);
+          color: var(--ink);
+          font-family: 'IBM Plex Mono', monospace;
+          font-weight: 700;
+          font-size: 13px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          border-radius: 2px;
+          text-align: center;
+        }
+        .dp-btn:hover {
+          background: var(--ink);
+          color: #FFFFFF;
+        }
+        .dp-tier-card.featured .dp-btn {
+          background: #FFFFFF;
+          border-color: #FFFFFF;
+          color: #1B1B17;
+        }
+        .dp-tier-card.featured .dp-btn:hover {
+          background: var(--paper);
+          color: #1B1B17;
+          transform: translateY(-1px);
+        }
+
+        .dp-examples {
+          margin-top: 10px;
+          font-size: 11.5px;
+          color: var(--ink-soft);
+          font-family: 'IBM Plex Mono', monospace;
+          line-height: 1.4;
+        }
+        .dp-examples u {
+          text-decoration: underline;
+          cursor: default;
+        }
+
         /* Sticky CTA Bottom Bar Mobile */
         .dev-bp-page .sticky-cta {
           display: none;
@@ -2276,6 +2502,9 @@ export default function DevelopmentPage() {
                   <p className="tagline">Turn browsing into buying.</p>
                   <div className="price">$1,200 <span style={{ fontSize: '15px', color: 'var(--ink-soft)' }}>(£895 · ₹1,14,516)</span></div>
                   <div className="price-conv">FIXED PRICE · UP TO 50 SKUs</div>
+                  <div style={{ fontFamily: 'var(--mono)', fontSize: '11.5px', color: 'var(--ink-soft)', marginTop: '4px', marginBottom: '12px' }}>
+                    Live Client Stores: <a href="https://shaktimat.ca/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--pine)', textDecoration: 'underline', fontWeight: 600 }}>Shaktimat</a> · <a href="https://suta.in/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--pine)', textDecoration: 'underline', fontWeight: 600 }}>Suta</a> · <a href="https://www.arata.in/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--pine)', textDecoration: 'underline', fontWeight: 600 }}>Arata</a>
+                  </div>
                   <p className="desc">For consumer brands ready to replace a generic storefront with a considered shopping experience.</p>
                   <div className="svc-tags">
                     <span>Fashion</span><span>Beauty</span><span>F&amp;B</span><span>Jewellery</span><span>DTC</span><span>Home</span>
@@ -2931,6 +3160,164 @@ export default function DevelopmentPage() {
                   <tr><td>Post-launch support</td><td className="no">—</td><td className="no">Varies</td><td className="yes">Yes</td><td className="us yes">Yes</td></tr>
                 </tbody>
               </table>
+            </div>
+          </div>
+        </section>
+
+        {/* ============ PRICING & TIERS ============ */}
+        <section id="pricingTiers" style={{ padding: '80px 0' }}>
+          <div className="wrap">
+            <div className="section-head">
+              <div>
+                <div className="eyebrow">PRICING &amp; TIERS</div>
+                <h2>Transparent, fixed-scope pricing for every stage.</h2>
+              </div>
+              <p>Select your preferred currency (INR / USD / GBP). All packages include full source code ownership and technical handoff.</p>
+            </div>
+
+            <div className="dp-currency-wrap">
+              <span className="mono" style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ink)' }}>
+                [ CURRENCY TOGGLE ]
+              </span>
+              <div className="dp-currency-toggle">
+                <button
+                  type="button"
+                  className={`dp-curr-btn ${devCurrency === 'INR' ? 'on' : ''}`}
+                  onClick={() => setDevCurrency('INR')}
+                >
+                  INR (₹)
+                </button>
+                <button
+                  type="button"
+                  className={`dp-curr-btn ${devCurrency === 'USD' ? 'on' : ''}`}
+                  onClick={() => setDevCurrency('USD')}
+                >
+                  USD ($)
+                </button>
+                <button
+                  type="button"
+                  className={`dp-curr-btn ${devCurrency === 'GBP' ? 'on' : ''}`}
+                  onClick={() => setDevCurrency('GBP')}
+                >
+                  GBP (£)
+                </button>
+              </div>
+            </div>
+
+            <div className="dev-pricing-grid">
+              {/* Tier 1: Starter Site */}
+              <div className="dp-tier-card">
+                <div>
+                  <div className="dp-target">Individuals &amp; small businesses</div>
+                  <h3 className="dp-title">Starter Site</h3>
+                  <div className="dp-price">
+                    {devCurrency === 'INR' && '₹85,000'}
+                    {devCurrency === 'USD' && '$900'}
+                    {devCurrency === 'GBP' && '£670'}
+                  </div>
+                  <div className="dp-sub">PER PROJECT</div>
+                  <ul className="dp-features">
+                    <li>1–5 page website</li>
+                    <li>Mobile responsive design</li>
+                    <li>Basic UI/UX design</li>
+                    <li>Contact form Integration</li>
+                    <li>Fast loading speed</li>
+                    <li>Basic SEO setup</li>
+                    <li>15 days free support</li>
+                  </ul>
+                </div>
+                <div>
+                  <button className="dp-btn" onClick={() => openLeadModal('Starter Site')}>
+                    Get started
+                  </button>
+                </div>
+              </div>
+
+              {/* Tier 2: Shopify / E-Commerce Build */}
+              <div className="dp-tier-card">
+                <div>
+                  <div className="dp-target">DTC brands launching or migrating to Shopify</div>
+                  <h3 className="dp-title">Shopify / E-commerce Build</h3>
+                  <div className="dp-price">
+                    {devCurrency === 'INR' && '₹96,000'}
+                    {devCurrency === 'USD' && '$1,200'}
+                    {devCurrency === 'GBP' && '£895'}
+                  </div>
+                  <div className="dp-sub">FIXED PRICE · UP TO 50 SKUs</div>
+                  <ul className="dp-features">
+                    <li>Built in Shopify, WooCommerce, or equivalent</li>
+                    <li>Dynamic product listing</li>
+                    <li>Unlimited pages</li>
+                    <li>Payment gateway integration</li>
+                    <li>Launch support</li>
+                    <li>15 days free support</li>
+                  </ul>
+                </div>
+                <div>
+                  <button className="dp-btn" onClick={() => openLeadModal('Shopify / E-commerce Build')}>
+                    Get started
+                  </button>
+                  <div className="dp-examples">
+                    Live Builds: <a href="https://shaktimat.ca/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline', fontWeight: 600 }}>Shaktimat</a> · <a href="https://suta.in/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline', fontWeight: 600 }}>Suta</a> · <a href="https://www.arata.in/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline', fontWeight: 600 }}>Arata</a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tier 3: Custom Website Build (Recommended) */}
+              <div className="dp-tier-card featured">
+                <div className="dp-rec-badge">RECOMMENDED FOR GROWING BRANDS</div>
+                <div>
+                  <div className="dp-target">Brands &amp; companies who've outgrown templates</div>
+                  <h3 className="dp-title">Custom Website Build</h3>
+                  <div className="dp-price">
+                    {devCurrency === 'INR' && '₹1,45,000'}
+                    {devCurrency === 'USD' && '$1,500'}
+                    {devCurrency === 'GBP' && '£1,120'}
+                  </div>
+                  <div className="dp-sub">FIXED PRICE · UP TO 10 PAGES</div>
+                  <ul className="dp-features">
+                    <li>10-page website</li>
+                    <li>Advanced animations &amp; interactions</li>
+                    <li>Advanced SEO optimization</li>
+                    <li>Third-party integrations (CRM, APIs)</li>
+                    <li>AI integration where useful</li>
+                    <li>2 months free support</li>
+                  </ul>
+                </div>
+                <div>
+                  <button className="dp-btn" onClick={() => openLeadModal('Custom Website Build')}>
+                    Get started
+                  </button>
+                </div>
+              </div>
+
+              {/* Tier 4: App Development */}
+              <div className="dp-tier-card">
+                <div>
+                  <div className="dp-target">Cross-platform app development</div>
+                  <h3 className="dp-title">App Development</h3>
+                  <div className="dp-price">
+                    {devCurrency === 'INR' && '₹2,85,000'}
+                    {devCurrency === 'USD' && '$3,000'}
+                    {devCurrency === 'GBP' && '£2,240'}
+                  </div>
+                  <div className="dp-sub">PER PROJECT</div>
+                  <ul className="dp-features">
+                    <li>Single codebase for iOS &amp; Android</li>
+                    <li>UX moodboard</li>
+                    <li>Custom wireframe &amp; UI/UX design</li>
+                    <li>Advanced dynamic animation</li>
+                    <li>Payment gateways</li>
+                    <li>Speed optimization</li>
+                    <li>Special &amp; custom API integrations</li>
+                  </ul>
+                </div>
+                <div>
+                  <button className="dp-btn" onClick={() => openLeadModal('App Development')}>
+                    Get started
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </section>

@@ -2238,8 +2238,14 @@ header {
   font-family: 'IBM Plex Mono', monospace, sans-serif !important;
   font-weight: 900 !important;
   font-size: 20px !important;
-  display: inline-block !important;
   transform: scaleX(1.2);
+}
+
+@media (max-width: 640px) {
+  .decision-row .arrow,
+  .dev-bp-page .decision-row .arrow {
+    display: none !important;
+  }
 }
 
 .decision-row .tech::before,
@@ -2247,7 +2253,7 @@ header {
   font-size: 18px !important;
   font-weight: 900 !important;
   margin-right: 6px !important;
-  display: inline-block !important;
+  color: var(--marker, #B8412E) !important;
 }
 
 .btn-primary .arrow,
