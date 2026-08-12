@@ -34,9 +34,6 @@ export default function DevelopmentPage() {
   // Systems Dashboard Demo
   const [dashMetricKey, setDashMetricKey] = useState('leads');
 
-  // Before / After Slider
-  const [sliderVal, setSliderVal] = useState(50);
-
   // Project Estimator State
   const [estState, setEstState] = useState({ need: null, complexity: null, brand: null, copy: null });
 
@@ -96,19 +93,19 @@ export default function DevelopmentPage() {
       tag: 'RECOMMENDED',
       title: 'Commerce',
       desc: 'Built for brands where the website is part storefront, part salesperson.',
-      price: 'Starting ₹95,000'
+      price: '$1,200 (₹96,000)'
     },
     experience: {
       tag: 'RECOMMENDED',
       title: 'Experience',
       desc: 'Built for brands where being remembered matters as much as being understood.',
-      price: 'Starting ₹1,50,000'
+      price: '$1,850 (₹1,45,000)'
     },
     systems: {
       tag: 'RECOMMENDED',
       title: 'Systems',
       desc: "Built when the website isn't really a website anymore — it's a product.",
-      price: 'Starting ₹2,25,000'
+      price: 'Starting $2,800 (₹2,25,000)'
     }
   };
 
@@ -136,7 +133,7 @@ export default function DevelopmentPage() {
   const faqs = [
     {
       q: 'How much does a website cost?',
-      a: "Shopify builds start from ₹95,000 ($1,000), immersive websites from ₹1,50,000 ($1,575), and custom platforms from ₹2,25,000 ($2,350). Exact cost depends on catalog size, page count, integrations and complexity — we'll give you a real number after understanding scope."
+      a: "Shopify builds are fixed at $1,200 (₹96,000), custom website builds at $1,850 (₹1,45,000), and custom platform systems starting from $2,800 (₹2,25,000). Exact investment depends on catalog size, page count, integrations, and complexity — we'll give you an exact figure after understanding scope."
     },
     {
       q: 'Why does custom development cost more than a template?',
@@ -1088,11 +1085,20 @@ export default function DevelopmentPage() {
         .dev-bp-page .spectrum-wrap {
           padding: 20px 0 10px;
         }
+        .dev-bp-page .spectrum-container {
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          padding: 10px 0 35px;
+        }
+        .dev-bp-page .spectrum-inner {
+          min-width: 680px;
+          padding: 0 30px;
+        }
         .dev-bp-page .spectrum-line {
           position: relative;
           height: 2px;
           background: var(--paper-line);
-          margin: 60px 0 20px;
+          margin: 50px 0 30px;
         }
         .dev-bp-page .spectrum-marker {
           position: absolute;
@@ -1164,11 +1170,24 @@ export default function DevelopmentPage() {
         @media (max-width: 640px) {
           .dev-bp-page .decision-row {
             grid-template-columns: 1fr;
-            gap: 6px;
+            gap: 8px;
+            padding: 16px 18px;
             text-align: left;
+          }
+          .dev-bp-page .decision-row .arrow {
+            display: none;
           }
           .dev-bp-page .decision-row .tech {
             text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13.5px;
+          }
+          .dev-bp-page .decision-row .tech::before {
+            content: '→';
+            color: var(--pine);
+            font-weight: 700;
           }
         }
 
@@ -1202,53 +1221,73 @@ export default function DevelopmentPage() {
           }
         }
 
-        /* Compare slider */
-        .dev-bp-page .compare {
-          position: relative;
-          border: 1px solid var(--ink);
-          overflow: hidden;
-          user-select: none;
-        }
-        .dev-bp-page .compare-row {
+        /* Compare Grid - Ultra Clean Architectural 2-Column Side-by-Side */
+        .dev-bp-page .compare-grid {
           display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 24px;
         }
-        .dev-bp-page .compare-col {
-          padding: 26px;
+        @media (max-width: 768px) {
+          .dev-bp-page .compare-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+          }
         }
-        .dev-bp-page .compare-col.left {
-          background-color: var(--paper);
+        .dev-bp-page .compare-card {
+          border: 1.5px solid var(--ink);
+          padding: 32px 28px;
+          background: var(--paper);
+          position: relative;
         }
-        .dev-bp-page .compare-col.right {
-          background-color: var(--card);
+        .dev-bp-page .compare-card.infrastructure {
+          background: var(--card);
+          border-color: var(--pine);
+          box-shadow: 0 4px 20px rgba(36, 70, 59, 0.08);
         }
-        .dev-bp-page .compare-col h4 {
-          font-family: var(--mono);
-          font-size: 12px;
-          text-transform: uppercase;
-          letter-spacing: 0.04em;
-          margin-bottom: 16px;
+        .dev-bp-page .compare-card .card-tag {
+          font-size: 11px;
           color: var(--ink-soft);
+          margin-bottom: 8px;
+          letter-spacing: 0.05em;
         }
-        .dev-bp-page .compare-col ul {
-          list-style: none;
-          font-size: 14px;
+        .dev-bp-page .compare-card.infrastructure .card-tag {
+          color: var(--pine);
+          font-weight: 600;
         }
-        .dev-bp-page .compare-col li {
-          padding: 8px 0;
-          border-top: 1px dashed var(--paper-line);
-          color: var(--ink-soft);
-        }
-        .dev-bp-page .compare-col li:first-child {
-          border-top: none;
-        }
-        .dev-bp-page .compare-col.right li {
+        .dev-bp-page .compare-card h3 {
+          font-family: var(--serif);
+          font-size: 22px;
+          margin-bottom: 20px;
           color: var(--ink);
         }
-        .dev-bp-page .compare-slider {
-          width: 100%;
-          margin-top: 2px;
-          accent-color: var(--pine);
-          cursor: pointer;
+        .dev-bp-page .comp-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        .dev-bp-page .comp-list li {
+          padding: 10px 0;
+          border-top: 1px dashed var(--paper-line);
+          font-size: 14px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          color: var(--ink-soft);
+        }
+        .dev-bp-page .compare-card.infrastructure .comp-list li {
+          color: var(--ink);
+          font-weight: 500;
+        }
+        .dev-bp-page .comp-list li:first-child {
+          border-top: none;
+        }
+        .dev-bp-page .comp-list .x-mark {
+          color: #C0392B;
+          font-weight: 700;
+        }
+        .dev-bp-page .comp-list .check-mark {
+          color: var(--pine);
+          font-weight: 700;
         }
 
         /* Value stack */
@@ -1784,9 +1823,12 @@ export default function DevelopmentPage() {
                   <a className="btn-link" href="#diagnostic">
                     Find the right build for you ↓
                   </a>
+                  <a className="btn-link" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                    Prefer WhatsApp for discussion →
+                  </a>
                 </div>
                 <p className="price-note">
-                  Projects starting from <b>₹95,000</b> · approx. <b>$1K</b> / <b>£750</b>
+                  Shopify builds, fixed at <b>$1,200 (₹96,000).</b> Custom builds, fixed at <b>$1,850 (₹1,45,000).</b>
                 </p>
               </div>
 
@@ -1907,8 +1949,8 @@ export default function DevelopmentPage() {
                   <div className="svc-label">01 / COMMERCE</div>
                   <h3>Shopify &amp; E-Commerce</h3>
                   <p className="tagline">Turn browsing into buying.</p>
-                  <div className="price">₹95,000+</div>
-                  <div className="price-conv">Approx. $1,000 / £750</div>
+                  <div className="price">$1,200 <span style={{ fontSize: '16px', color: 'var(--ink-soft)' }}>(₹96,000)</span></div>
+                  <div className="price-conv">FIXED PRICE · UP TO 50 SKUs</div>
                   <p className="desc">For consumer brands ready to replace a generic storefront with a considered shopping experience.</p>
                   <div className="svc-tags">
                     <span>Fashion</span><span>Beauty</span><span>F&amp;B</span><span>Jewellery</span><span>DTC</span><span>Home</span>
@@ -1926,37 +1968,85 @@ export default function DevelopmentPage() {
                   </div>
                 </div>
 
-                <div className="demo-panel">
-                  <div className="demo-toolbar">
-                    <div className="dots"><span></span><span></span><span></span></div>
-                    <div className="url">yourbrand.com/products/…</div>
+                <div className="demo-panel" style={{ background: 'var(--card)', border: '1px solid var(--ink)', padding: '20px', borderRadius: '2px' }}>
+                  <div className="demo-toolbar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', paddingBottom: '12px', borderBottom: '1px solid var(--paper-line)' }}>
+                    <div className="dots" style={{ display: 'flex', gap: '6px' }}>
+                      <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FF5F56', display: 'inline-block' }}></span>
+                      <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FFBD2E', display: 'inline-block' }}></span>
+                      <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#27C93F', display: 'inline-block' }}></span>
+                    </div>
+                    <div className="url" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '11.5px', color: 'var(--ink-soft)' }}>
+                      {commercePp === 'standard' ? 'yourbrand.com/products/standard-store' : 'yourbrand.com/products/drawingboard-experience'}
+                    </div>
                   </div>
+
                   <div className="demo-body">
-                    <div className="demo-toggle">
+                    <div className="demo-toggle" style={{ display: 'flex', gap: '10px', marginBottom: '16px' }}>
                       <button
+                        type="button"
                         className={commercePp === 'standard' ? 'on' : ''}
                         onClick={() => setCommercePp('standard')}
+                        style={{
+                          flex: 1,
+                          padding: '10px 14px',
+                          fontSize: '12.5px',
+                          fontFamily: "'IBM Plex Mono', monospace",
+                          fontWeight: 600,
+                          border: '1px solid var(--ink)',
+                          background: commercePp === 'standard' ? 'var(--pine)' : 'var(--paper)',
+                          color: commercePp === 'standard' ? '#FFF' : 'var(--ink)',
+                          cursor: 'pointer',
+                          borderRadius: '2px',
+                          transition: 'all 0.2s ease'
+                        }}
                       >
-                        Standard product page
+                        Standard Product Page
                       </button>
                       <button
+                        type="button"
                         className={commercePp === 'improved' ? 'on' : ''}
                         onClick={() => setCommercePp('improved')}
+                        style={{
+                          flex: 1,
+                          padding: '10px 14px',
+                          fontSize: '12.5px',
+                          fontFamily: "'IBM Plex Mono', monospace",
+                          fontWeight: 600,
+                          border: '1px solid var(--ink)',
+                          background: commercePp === 'improved' ? 'var(--pine)' : 'var(--paper)',
+                          color: commercePp === 'improved' ? '#FFF' : 'var(--ink)',
+                          cursor: 'pointer',
+                          borderRadius: '2px',
+                          transition: 'all 0.2s ease'
+                        }}
                       >
-                        Drawing Board experience
+                        Drawing Board Experience
                       </button>
                     </div>
 
-                    <div className={`pp-mock ${commercePp === 'improved' ? 'improved' : ''}`}>
-                      <div className="pp-img">[ PRODUCT PHOTO ]</div>
-                      <div className="pp-info">
-                        <span className="badge">BACK IN STOCK</span>
-                        <div className="t1"></div>
-                        <div className="t2"></div>
-                        <div className="stars">★★★★★ &nbsp;considered reviews</div>
-                        <div className="cta-btn"></div>
-                        <div className="sticky-hint">↳ sticky purchase bar follows on scroll</div>
-                      </div>
+                    {/* Active Full View Frame */}
+                    <div
+                      className="shopify-active-frame"
+                      style={{
+                        width: '100%',
+                        border: '1px solid var(--ink)',
+                        borderRadius: '2px',
+                        overflow: 'hidden',
+                        background: '#0D1117',
+                        boxShadow: '0 8px 24px rgba(0,0,0,0.12)'
+                      }}
+                    >
+                      <img
+                        src={commercePp === 'standard' ? '/images/development/shopify_store_01.png' : '/images/development/shopify_store_02.png'}
+                        alt={commercePp === 'standard' ? 'Standard Shopify Store Build' : 'Drawing Board High-Conversion Shopify Experience'}
+                        style={{
+                          width: '100%',
+                          height: 'auto',
+                          maxHeight: '520px',
+                          objectFit: 'contain',
+                          display: 'block'
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
@@ -1970,8 +2060,8 @@ export default function DevelopmentPage() {
                   <div className="svc-label">02 / EXPERIENCE</div>
                   <h3>Immersive &amp; Interactive Websites</h3>
                   <p className="tagline">A website people remember after they close the tab.</p>
-                  <div className="price">₹1,50,000+</div>
-                  <div className="price-conv">Approx. $1,575 / £1,175</div>
+                  <div className="price">$1,850 <span style={{ fontSize: '16px', color: 'var(--ink-soft)' }}>(₹1,45,000)</span></div>
+                  <div className="price-conv">FIXED PRICE · UP TO 10 PAGES</div>
                   <p className="desc">For brands where experience itself is part of the product — built with the level of craft you'd expect from award-calibre digital work.</p>
                   <div className="svc-tags">
                     <span>Real Estate</span><span>Hospitality</span><span>Luxury</span><span>Automotive</span><span>Launches</span>
@@ -1989,33 +2079,91 @@ export default function DevelopmentPage() {
                   </div>
                 </div>
 
-                <div className="demo-panel exp-demo">
-                  <div className="demo-toolbar">
-                    <div className="dots"><span></span><span></span><span></span></div>
-                    <div className="url">yourbrand.com — scroll states</div>
+                <div className="demo-panel exp-demo" style={{ background: 'var(--card)', border: '1px solid var(--ink)', padding: '20px', borderRadius: '2px' }}>
+                  <div className="demo-toolbar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', paddingBottom: '12px', borderBottom: '1px solid var(--paper-line)' }}>
+                    <div className="dots" style={{ display: 'flex', gap: '6px' }}>
+                      <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FF5F56', display: 'inline-block' }}></span>
+                      <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FFBD2E', display: 'inline-block' }}></span>
+                      <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#27C93F', display: 'inline-block' }}></span>
+                    </div>
+                    <div className="url" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '11.5px', color: 'var(--ink-soft)' }}>
+                      yourbrand.com — interactive UI experience
+                    </div>
                   </div>
+
                   <div className="demo-body">
-                    <div className="exp-states">
-                      {[0, 1, 2, 3, 4, 5].map((idx) => (
-                        <button
-                          key={idx}
-                          className={expStateIdx === idx ? 'on' : ''}
-                          onClick={() => setExpStateIdx(idx)}
-                        >
-                          0{idx + 1}
-                        </button>
-                      ))}
-                    </div>
-                    <div className={`exp-stage ${expData[expStateIdx].caption ? 'show-caption' : ''}`}>
-                      <div
-                        className="frame-obj"
+                    <div className="exp-states" style={{ display: 'flex', gap: '10px', marginBottom: '16px' }}>
+                      <button
+                        type="button"
+                        className={expStateIdx === 0 ? 'on' : ''}
+                        onClick={() => setExpStateIdx(0)}
                         style={{
-                          width: `${30 + expData[expStateIdx].scale * 40}%`,
-                          opacity: expData[expStateIdx].opacity
+                          flex: 1,
+                          padding: '10px 14px',
+                          fontSize: '12.5px',
+                          fontFamily: "'IBM Plex Mono', monospace",
+                          fontWeight: 600,
+                          border: '1px solid var(--ink)',
+                          background: expStateIdx === 0 ? 'var(--pine)' : 'var(--paper)',
+                          color: expStateIdx === 0 ? '#FFF' : 'var(--ink)',
+                          cursor: 'pointer',
+                          borderRadius: '2px',
+                          transition: 'all 0.2s ease'
                         }}
-                      ></div>
-                      <div className="caption">{expData[expStateIdx].caption}</div>
+                      >
+                        UI View 01: Hero &amp; Motion
+                      </button>
+                      <button
+                        type="button"
+                        className={expStateIdx === 1 ? 'on' : ''}
+                        onClick={() => setExpStateIdx(1)}
+                        style={{
+                          flex: 1,
+                          padding: '10px 14px',
+                          fontSize: '12.5px',
+                          fontFamily: "'IBM Plex Mono', monospace",
+                          fontWeight: 600,
+                          border: '1px solid var(--ink)',
+                          background: expStateIdx === 1 ? 'var(--pine)' : 'var(--paper)',
+                          color: expStateIdx === 1 ? '#FFF' : 'var(--ink)',
+                          cursor: 'pointer',
+                          borderRadius: '2px',
+                          transition: 'all 0.2s ease'
+                        }}
+                      >
+                        UI View 02: Interface System
+                      </button>
                     </div>
+
+                    <div
+                      className="exp-stage"
+                      style={{
+                        width: '100%',
+                        border: '1px solid var(--ink)',
+                        borderRadius: '2px',
+                        overflow: 'hidden',
+                        background: '#0D1117',
+                        boxShadow: '0 8px 24px rgba(0,0,0,0.12)'
+                      }}
+                    >
+                      <img
+                        src={expStateIdx === 0 ? '/images/development/immersive_ui_01.jpeg' : '/images/development/immersive_ui_02.jpeg'}
+                        alt={expStateIdx === 0 ? 'Immersive Hero & Kinetic Motion UI' : 'Interactive Interface System UI'}
+                        style={{
+                          width: '100%',
+                          height: 'auto',
+                          maxHeight: '520px',
+                          objectFit: 'contain',
+                          display: 'block'
+                        }}
+                      />
+                    </div>
+                    
+                    <p style={{ marginTop: '12px', fontSize: '13px', fontFamily: "'IBM Plex Mono', monospace", color: 'var(--ink-soft)', textAlign: 'center' }}>
+                      {expStateIdx === 0
+                        ? '↳ Kinetic typography, fluid product motion, and immersive brand storytelling.'
+                        : '↳ Interactive editorial layouts, scroll-triggered state transitions, and responsive UI.'}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -2028,8 +2176,8 @@ export default function DevelopmentPage() {
                   <div className="svc-label">03 / SYSTEMS</div>
                   <h3>Custom Platforms &amp; Web Applications</h3>
                   <p className="tagline">When a website needs to think, not just display.</p>
-                  <div className="price">Starting ₹2,25,000</div>
-                  <div className="price-conv">Approx. $2,350 / £1,750 · complex platforms scoped individually</div>
+                  <div className="price">Starting $2,800 <span style={{ fontSize: '16px', color: 'var(--ink-soft)' }}>(₹2,25,000)</span></div>
+                  <div className="price-conv">PER PROJECT · Custom platforms scoped individually</div>
                   <p className="desc">SaaS MVPs, customer portals, internal dashboards, booking and quotation systems, dealer and property platforms — built as custom digital systems, not template add-ons.</p>
                   <ul className="svc-includes">
                     <li>React / Next.js / TypeScript</li><li>Authentication &amp; roles</li><li>Databases &amp; APIs</li>
@@ -2094,18 +2242,22 @@ export default function DevelopmentPage() {
             </div>
 
             <div className="spectrum-wrap">
-              <div className="spectrum-ends">
-                <span>Website</span>
-                <span>Digital Product</span>
-              </div>
-              <div className="spectrum-line">
-                <div className="spectrum-marker" style={{ left: '6%' }}><span className="spectrum-label">Landing page</span></div>
-                <div className="spectrum-marker" style={{ left: '20%' }}><span className="spectrum-label">Corporate site</span></div>
-                <div className="spectrum-marker hot" style={{ left: '36%' }}><span className="spectrum-label">E-commerce</span></div>
-                <div className="spectrum-marker hot" style={{ left: '50%' }}><span className="spectrum-label">Interactive experience</span></div>
-                <div className="spectrum-marker" style={{ left: '66%' }}><span className="spectrum-label">Customer portal</span></div>
-                <div className="spectrum-marker hot" style={{ left: '80%' }}><span className="spectrum-label">Dashboard</span></div>
-                <div className="spectrum-marker" style={{ left: '94%' }}><span className="spectrum-label">SaaS</span></div>
+              <div className="spectrum-container">
+                <div className="spectrum-inner">
+                  <div className="spectrum-ends">
+                    <span>Website</span>
+                    <span>Digital Product</span>
+                  </div>
+                  <div className="spectrum-line">
+                    <div className="spectrum-marker" style={{ left: '6%' }}><span className="spectrum-label">Landing page</span></div>
+                    <div className="spectrum-marker" style={{ left: '20%' }}><span className="spectrum-label">Corporate site</span></div>
+                    <div className="spectrum-marker hot" style={{ left: '36%' }}><span className="spectrum-label">E-commerce</span></div>
+                    <div className="spectrum-marker hot" style={{ left: '50%' }}><span className="spectrum-label">Interactive experience</span></div>
+                    <div className="spectrum-marker" style={{ left: '66%' }}><span className="spectrum-label">Customer portal</span></div>
+                    <div className="spectrum-marker hot" style={{ left: '80%' }}><span className="spectrum-label">Dashboard</span></div>
+                    <div className="spectrum-marker" style={{ left: '94%' }}><span className="spectrum-label">SaaS</span></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -2159,7 +2311,7 @@ export default function DevelopmentPage() {
           </div>
         </section>
 
-        {/* ============ BEFORE / AFTER SLIDER ============ */}
+        {/* ============ BEFORE / AFTER COMPARISON ============ */}
         <section data-band style={{ backgroundColor: 'var(--card)', borderTop: '1px solid var(--ink)', borderBottom: '1px solid var(--ink)' }}>
           <div className="wrap">
             <div className="section-head">
@@ -2167,32 +2319,34 @@ export default function DevelopmentPage() {
                 <div className="eyebrow">THE DIFFERENCE</div>
                 <h2>Website as decoration vs. website as infrastructure.</h2>
               </div>
+              <p>The difference between a website that looks nice in a mockup vs. one that drives revenue.</p>
             </div>
 
-            <div className="compare">
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={sliderVal}
-                onChange={(e) => setSliderVal(Number(e.target.value))}
-                className="compare-slider"
-              />
-              <div className="compare-row" style={{ gridTemplateColumns: `${sliderVal}fr ${100 - sliderVal}fr` }}>
-                <div className="compare-col left">
-                  <h4>Website as decoration</h4>
-                  <ul>
-                    <li>Template-led</li><li>Generic hierarchy</li><li>Desktop-first</li>
-                    <li>Feature dumping</li><li>Random animation</li><li>Technology first</li>
-                  </ul>
-                </div>
-                <div className="compare-col right">
-                  <h4>Website as infrastructure</h4>
-                  <ul>
-                    <li>Strategy-led</li><li>Purposeful hierarchy</li><li>Mobile considered from day one</li>
-                    <li>Clear user journeys</li><li>Intentional interaction</li><li>Business problem first</li>
-                  </ul>
-                </div>
+            <div className="compare-grid">
+              <div className="compare-card decoration">
+                <div className="card-tag mono">APPROACH 01</div>
+                <h3>Website as decoration</h3>
+                <ul className="comp-list">
+                  <li><span className="x-mark">✕</span> Template-led structure</li>
+                  <li><span className="x-mark">✕</span> Generic information hierarchy</li>
+                  <li><span className="x-mark">✕</span> Desktop-first (broken on mobile)</li>
+                  <li><span className="x-mark">✕</span> Feature dumping without focus</li>
+                  <li><span className="x-mark">✕</span> Distracting, random animation</li>
+                  <li><span className="x-mark">✕</span> Technology chosen before strategy</li>
+                </ul>
+              </div>
+
+              <div className="compare-card infrastructure">
+                <div className="card-tag mono">APPROACH 02 · THE DRAWING BOARD WAY</div>
+                <h3>Website as infrastructure</h3>
+                <ul className="comp-list">
+                  <li><span className="check-mark">✓</span> Strategy-led foundation</li>
+                  <li><span className="check-mark">✓</span> Purposeful conversion hierarchy</li>
+                  <li><span className="check-mark">✓</span> Mobile-first from day one</li>
+                  <li><span className="check-mark">✓</span> Clear, frictionless user journeys</li>
+                  <li><span className="check-mark">✓</span> Intentional micro-interactions</li>
+                  <li><span className="check-mark">✓</span> Business problem solved first</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -2203,7 +2357,7 @@ export default function DevelopmentPage() {
           <div className="wrap">
             <div className="section-head">
               <div>
-                <div className="eyebrow">WHAT ₹95K–₹2.25L ACTUALLY BUYS</div>
+                <div className="eyebrow">WHAT $1,200–$2,800 (₹96K–₹2.25L) ACTUALLY BUYS</div>
                 <h2>You're not paying for pages.</h2>
               </div>
               <p>You're paying for the thinking that determines what those pages need to accomplish.</p>
@@ -2457,7 +2611,7 @@ export default function DevelopmentPage() {
               </a>
             </div>
             <p className="price-note" style={{ marginTop: '14px' }}>
-              Projects from <b>₹95,000</b> · approx. <b>$1K</b> / <b>£750</b>
+              Shopify builds fixed at <b>$1,200 (₹96,000)</b> · Custom builds fixed at <b>$1,850 (₹1,45,000)</b>
             </p>
           </div>
         </section>
@@ -2465,7 +2619,7 @@ export default function DevelopmentPage() {
         {/* Sticky Mobile CTA */}
         <div className="sticky-cta">
           <div className="txt">
-            Shopify, fixed at ₹96,000<b>Free 15-min call</b>
+            Shopify, fixed at $1,200 (₹96,000)<b>Free 15-min call</b>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <a
@@ -2567,7 +2721,7 @@ export default function DevelopmentPage() {
               <div className="dev-bp-modal-step">
                 <h4>Expected investment?</h4>
                 <div className="dev-bp-modal-opts">
-                  {['₹95K–₹1.5L', '₹1.5L–₹2.25L', '₹2.25L–₹5L', '₹5L+', 'Need guidance'].map((opt) => (
+                  {['$1,200–$1,850 (₹96K–₹1.45L)', '$1,850–$2,800 (₹1.45L–₹2.25L)', '$2,800–$6,000 (₹2.25L–₹4.8L)', '$6,000+ (₹4.8L+)', 'Need guidance'].map((opt) => (
                     <button
                       key={opt}
                       className={modalData.budget === opt ? 'on' : ''}

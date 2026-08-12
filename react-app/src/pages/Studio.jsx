@@ -25,6 +25,11 @@ export default function Studio() {
           </div>
           <h1>Built on architectural discipline, <em>pure typography</em> & clean code.</h1>
           <p>The Drawing Board is an independent design engineering studio based in New York. We partner with ambitious founders to build enduring visual identity systems and high-conversion digital experiences.</p>
+          <p style={{ marginTop: '14px' }}>
+            <a className="btn-link" href="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" target="_blank" rel="noopener noreferrer" style={{ fontSize: '14.5px', color: 'var(--pine)', fontWeight: 600 }}>
+              Prefer WhatsApp for discussion →
+            </a>
+          </p>
 
           {/* Stat Strip */}
           <div className="stat-strip">
@@ -120,6 +125,7 @@ export default function Studio() {
           </div>
 
           <div className="roster-grid">
+            <Link to="/work/soul-brew-branding-packaging-design" className="roster-item" style={{ textDecoration: 'none', color: 'inherit' }}>Soul Brew</Link>
             <Link to="/work/after8%C2%AE---reimagining-intimacy-for-a-new-generation." className="roster-item" style={{ textDecoration: 'none', color: 'inherit' }}>AFTER8®</Link>
             <Link to="/work/lumen-fine-jewellery" className="roster-item" style={{ textDecoration: 'none', color: 'inherit' }}>Lumen &amp; Co.</Link>
             <Link to="/work/alder---outdoor-essentials-built-for-slower-movement" className="roster-item" style={{ textDecoration: 'none', color: 'inherit' }}>Alder Essentials</Link>

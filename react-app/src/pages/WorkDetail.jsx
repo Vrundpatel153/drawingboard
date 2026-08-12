@@ -6,6 +6,7 @@ import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import projectsData from '../data/projectsData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
+import After8CaseStudyView from '../components/After8CaseStudyView';
 
 export default function WorkDetail() {
   const { projectId } = useParams();
@@ -16,6 +17,7 @@ export default function WorkDetail() {
   // Normalize URL decoding and slug matching
   const cleanId = decodeURIComponent(projectId || '').toLowerCase();
   
+  const isSoulBrew = cleanId.includes('soul') || cleanId.includes('brew');
   const isAfter8 = cleanId.includes('after8') || cleanId.includes('intimacy');
   const isLumen = cleanId.includes('lumen');
   const isBondwith = cleanId.includes('bondwith');
@@ -24,10 +26,14 @@ export default function WorkDetail() {
   const project = projectsData.find(p => {
     const slug = (p.slug || '').toLowerCase();
     return slug === cleanId || cleanId.includes(slug) || slug.includes(cleanId);
-  }) || (isBondwith ? projectsData[0] : isAfter8 ? projectsData[1] : isLumen ? projectsData[2] : projectsData[0]);
+  }) || (isSoulBrew ? projectsData[0] : isBondwith ? projectsData[1] : isAfter8 ? projectsData[2] : isLumen ? projectsData[3] : projectsData[0]);
 
   const currentIndex = projectsData.indexOf(project);
   const nextProject = projectsData[(currentIndex + 1) % projectsData.length];
+
+  if (isAfter8) {
+    return <After8CaseStudyView nextProject={nextProject} pageRef={pageRef} />;
+  }
 
   return (
     <>
@@ -144,7 +150,32 @@ export default function WorkDetail() {
             <div className="rule"></div>
           </div>
 
-          {isBondwith ? (
+          {isSoulBrew ? (
+            <>
+              <h1>Soul Brew — <em>Artisan Coffee &amp; Cafe</em> Brand Identity System.</h1>
+              <p className="dek">
+                How we engineered an authentic brand identity, hand-drawn character illustrations, tactile packaging dielines, and animated logo reveals for an artisan specialty coffee roaster.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Soul Brew Roasters</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Identity, Pack &amp; Motion</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">4 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>+240% Brand Engagement</div>
+                </div>
+              </div>
+            </>
+          ) : isBondwith ? (
             <>
               <h1>Bondwith — <em>Comprehensive brand identity</em> &amp; visual guidelines.</h1>
               <p className="dek">
@@ -264,7 +295,29 @@ export default function WorkDetail() {
       {/* Dark Contrast Problem / Insight Block */}
       <section className="problem">
         <div className="wrap">
-          {isBondwith ? (
+          {isSoulBrew ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE BRAND CHALLENGE</div>
+                  <h2>Standing out in a crowded specialty coffee market.</h2>
+                </div>
+                <p>Moving beyond generic coffee cup templates to an unforgettable, character-led visual identity.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>Specialty coffee roasters often fall into predictable design traps:</strong> either minimalist industrial sterile packaging or generic stock vector badges.</p>
+                  <p>Soul Brew needed a distinct, warm, and personality-filled identity system — centered around hand-drawn character artwork, custom typography, tactile unboxing sleeves, and animated brand reveals.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// ILLUSTRATION &amp; BRAND INSIGHT</div>
+                  <p>"Infusing character-driven illustration into packaging transforms a simple cup of coffee into an emotional daily ritual that customers proudly share and remember."</p>
+                </div>
+              </div>
+            </>
+          ) : isBondwith ? (
             <>
               <div className="section-head">
                 <div>
@@ -661,6 +714,34 @@ export default function WorkDetail() {
                   "AFTER8® Brand System Master Asset Overview"
                 ];
 
+                const soulBrewCaptions = [
+                  "Soul Brew — Primary Hand-Drawn Brand Mark & Logo Seal (o1.png)",
+                  "Main Logo Motion Reveal & Brand Mark Animation",
+                  "Introductory Brand Identity Showcase & Character Motion",
+                  "Primary Logo & Iconography Variants",
+                  "Hand-Drawn Character Illustration & Mascot Design",
+                  "Custom Typographic Seal & Brandmark Construction",
+                  "Warm Terracotta & Warm Cream Brand Color Palette Specs",
+                  "Artisan Coffee Bag Structural Packaging & Label Architecture",
+                  "Retail Packaging Box Dielines & Unboxing Experience",
+                  "Cold Brew Bottle Labeling & Matte Glass Mockup",
+                  "Takeaway Cup System & Custom Illustrated Sleeves",
+                  "Cafe Menu System & Layout Architecture",
+                  "Hand-Drawn Character Illustration Expressions & Animation",
+                  "Specialty Coffee Can Silhouettes & Colorway Variations",
+                  "Roastery Packaging Suite & Batch Stamp Details",
+                  "Brand Identity Collateral & Stationery Architecture",
+                  "In-Store Retail Merchandising & Signage Guidelines",
+                  "Editorial Coffee Bag Packaging & Product Renders",
+                  "Interactive Menu Flip Book & Digital Animation",
+                  "Technical Logo Grid Alignment & Geometric Proportions",
+                  "Color Swatch Usability & High-Contrast Typography",
+                  "Brand Story Animation & Origin Narrative",
+                  "Visual System Guidelines & Typography Hierarchy",
+                  "Artisan Cafe Branding Application Showcase",
+                  "Complete Soul Brew Master Asset Suite Overview"
+                ];
+
                 const isWebProject = (project.category === 'web') || (project.tag && (project.tag.includes('WEB') || project.tag.includes('UI UX')));
                 const isPackagingProject = (project.category === 'packaging') || (project.tag && project.tag.includes('PACKAGING'));
 
@@ -674,22 +755,38 @@ export default function WorkDetail() {
                   return `${project.title} — ${idx === 0 ? 'Brand Identity System & Logomark Construction' : idx === 1 ? 'Typographic Hierarchy & Color Usability' : 'Collateral Applications & Design Guidelines'}`;
                 };
 
-                const captionText = isBondwith && imgIdx < bondwithCaptions.length
+                const captionText = isSoulBrew && imgIdx < soulBrewCaptions.length
+                  ? soulBrewCaptions[imgIdx]
+                  : isBondwith && imgIdx < bondwithCaptions.length
                   ? bondwithCaptions[imgIdx]
                   : isAfter8 && imgIdx < after8Captions.length
                   ? after8Captions[imgIdx]
                   : defaultCaption(imgIdx);
 
+                const isVideo = typeof imgUrl === 'string' && imgUrl.match(/\.(mp4|webm|mov)$/i);
+
                 return (
                   <div key={imgIdx} className={`shot ${imgIdx === 0 || imgIdx % 7 === 0 ? 'wide' : ''}`}>
                     <div className="img" style={{ background: 'none' }}>
-                      <img
-                        src={imgUrl}
-                        alt={`${project.title} figure ${imgIdx + 1}`}
-                        loading="lazy"
-                        decoding="async"
-                        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                      />
+                      {isVideo ? (
+                        <video
+                          src={imgUrl}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          controls
+                          style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '4px' }}
+                        />
+                      ) : (
+                        <img
+                          src={imgUrl}
+                          alt={`${project.title} figure ${imgIdx + 1}`}
+                          loading="lazy"
+                          decoding="async"
+                          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                        />
+                      )}
                     </div>
                     <div className="cap">
                       Figure {String(imgIdx + 1).padStart(2, '0')}: {captionText}

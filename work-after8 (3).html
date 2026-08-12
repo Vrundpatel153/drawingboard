@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AFTER8® — Reimagining Intimacy for a New Generation | The Drawing Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,450;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EFEBE2;
+  --paper-line:#DAD3C2;
+  --ink:#1B1B17;
+  --ink-soft:#4A473F;
+  --pine:#24463B;
+  --pine-deep:#173029;
+  --marker:#B8412E;
+  --card:#F7F4EC;
+  --radius:2px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  background-image:
+    linear-gradient(var(--paper-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+  background-size:48px 48px;
+  background-attachment:fixed;
+}
+::selection{background:var(--pine);color:var(--paper);}
+h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;line-height:1.05;}
+.mono{font-family:'IBM Plex Mono',monospace;letter-spacing:0.03em;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+
+.reg{position:fixed;width:18px;height:18px;pointer-events:none;z-index:40;opacity:0.55;}
+.reg::before,.reg::after{content:"";position:absolute;background:var(--ink);}
+.reg::before{width:100%;height:1px;top:50%;}
+.reg::after{width:1px;height:100%;left:50%;}
+.reg-tl{top:14px;left:14px;} .reg-tr{top:14px;right:14px;}
+.reg-bl{bottom:14px;left:14px;} .reg-br{bottom:14px;right:14px;}
+
+header{
+  position:sticky;top:0;z-index:30;
+  background:rgba(239,235,226,0.92);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--ink);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;max-width:1180px;margin:0 auto;}
+.logo-mark{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:18px;}
+.logo-mark .box{width:22px;height:22px;border:1.5px solid var(--ink);position:relative;flex-shrink:0;}
+.logo-mark .box::after{content:"";position:absolute;inset:4px;border:1px solid var(--ink);}
+.navlinks{display:flex;gap:36px;font-size:14px;}
+.navlinks a{position:relative;padding:2px 0;}
+.navlinks a.active{color:var(--pine);}
+.navlinks a.active::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:2px;background:var(--marker);}
+.nav-cta{font-size:13px;padding:10px 18px;border:1.5px solid var(--ink);border-radius:var(--radius);}
+.nav-cta:hover{background:var(--ink);color:var(--paper);}
+@media(max-width:860px){.navlinks{display:none;}}
+
+/* breadcrumb */
+.crumb{padding:22px 0 0;font-size:12.5px;color:var(--ink-soft);}
+.crumb a{color:var(--ink-soft);border-bottom:1px dashed var(--ink-soft);}
+.crumb a:hover{color:var(--pine);border-color:var(--pine);}
+.crumb span.sep{margin:0 8px;opacity:0.5;}
+.crumb span.cur{color:var(--ink);}
+
+/* hero */
+.case-hero{padding:26px 0 48px;}
+.sheet-label{display:flex;align-items:center;gap:14px;margin-bottom:26px;}
+.sheet-label .tag{font-size:12px;padding:6px 10px;border:1px solid var(--ink);}
+.sheet-label .rule{flex:1;height:1px;background:var(--ink-soft);opacity:0.4;}
+.case-hero h1{font-size:clamp(32px,4.8vw,60px);max-width:920px;}
+.case-hero h1 em{font-style:normal;color:var(--pine);}
+.case-hero .dek{font-size:18px;color:var(--ink-soft);max-width:680px;margin-top:20px;}
+
+.meta-strip{display:flex;flex-wrap:wrap;border:1px solid var(--ink);margin-top:40px;}
+.meta-cell{flex:1;min-width:150px;padding:18px 22px;border-right:1px solid var(--ink);}
+.meta-cell:last-child{border-right:none;}
+.meta-cell .k{font-size:10.5px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;}
+.meta-cell .v{font-family:'Fraunces',serif;font-size:15.5px;font-weight:600;}
+@media(max-width:800px){.meta-strip{flex-wrap:wrap;} .meta-cell{flex:1 1 50%;border-bottom:1px solid var(--ink);}}
+
+.hero-visual{margin-top:32px;border:1px solid var(--ink);overflow:hidden;}
+.hero-visual img{width:100%;display:block;}
+
+/* in-page toc */
+.toc-bar{display:flex;overflow-x:auto;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);background:var(--card);position:sticky;top:65px;z-index:20;}
+.toc-bar a{flex:0 0 auto;padding:14px 20px;font-size:12px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.02em;border-right:1px solid var(--paper-line);color:var(--ink-soft);white-space:nowrap;transition:background .15s,color .15s;}
+.toc-bar a:hover{color:var(--pine);background:var(--paper);}
+.toc-bar a:last-child{border-right:none;}
+@media(max-width:700px){.toc-bar{top:0;}}
+
+section{padding:72px 0;}
+.section-head{margin-bottom:32px;}
+.eyebrow{font-size:12px;color:var(--marker);margin-bottom:10px;}
+.section-head h2{font-size:clamp(26px,3.2vw,40px);max-width:720px;}
+.section-head p.lede{color:var(--ink-soft);max-width:600px;font-size:15.5px;margin-top:12px;}
+
+/* problem (dark) */
+.problem{background:var(--ink);color:var(--paper);}
+.problem .eyebrow{color:#C9C3B4;}
+.problem-copy{font-size:18px;line-height:1.7;color:#E7E3D8;max-width:820px;}
+.problem-copy strong{color:#fff;}
+.problem-copy p+p{margin-top:16px;}
+
+/* compare table (category vs after8) */
+.compare-wrap{overflow-x:auto;border:1px solid var(--paper-line);margin-top:36px;}
+table.compare{width:100%;border-collapse:collapse;min-width:600px;background:rgba(255,255,255,0.03);}
+table.compare th,table.compare td{padding:15px 18px;text-align:left;font-size:13.5px;border-bottom:1px solid rgba(255,255,255,0.12);color:#E7E3D8;}
+table.compare th{font-family:'Fraunces',serif;font-size:15px;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.3);color:#fff;}
+table.compare th.hl{color:#8FD6B8;}
+table.compare td.hl{background:rgba(143,214,184,0.08);font-weight:600;color:#fff;}
+table.compare tr:last-child td{border-bottom:none;}
+table.compare td:first-child{color:#C9C3B4;}
+.ic-yes{color:#8FD6B8;font-weight:700;}
+.ic-no{color:#8B8571;}
+
+/* mosaic gallery */
+.mosaic{columns:3;column-gap:16px;}
+.mosaic img{width:100%;display:block;margin-bottom:16px;border:1px solid var(--ink);break-inside:avoid;}
+@media(max-width:860px){.mosaic{columns:2;}}
+@media(max-width:520px){.mosaic{columns:1;}}
+.mosaic.small{columns:4;}
+@media(max-width:860px){.mosaic.small{columns:3;}}
+@media(max-width:560px){.mosaic.small{columns:2;}}
+
+/* qual grid (category default vs shift) */
+.qual-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ink);border:1px solid var(--ink);}
+@media(max-width:760px){.qual-grid{grid-template-columns:1fr;}}
+.qual-col{background:var(--card);padding:30px 28px;}
+.qual-col.no{background:#EFEBE2;}
+.qual-col.yes{background:var(--pine);color:var(--paper);}
+.qual-col h4{font-size:16px;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.qual-col.yes h4{color:#fff;}
+.qual-col h4 .mark{width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
+.qual-col.yes h4 .mark{background:var(--paper);color:var(--pine);}
+.qual-col.no h4 .mark{background:transparent;border:1.5px solid var(--ink-soft);color:var(--ink-soft);}
+.qual-col ul{list-style:none;font-size:14px;color:var(--ink-soft);}
+.qual-col.yes ul{color:#CFE0DA;}
+.qual-col li{padding:8px 0;border-top:1px dashed var(--paper-line);}
+.qual-col.yes li{border-top:1px dashed rgba(255,255,255,0.2);}
+.qual-col li:first-child{border-top:none;}
+
+/* positioning statement block */
+.statement{background:var(--pine);color:var(--paper);text-align:center;padding:64px 40px;border:1px solid var(--ink);}
+.statement .eyebrow2{font-size:12px;color:#9FCBB6;margin-bottom:16px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;}
+.statement h2{font-size:clamp(28px,4.6vw,50px);color:#fff;max-width:820px;margin:0 auto;}
+.statement-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px;}
+.statement-tags span{font-size:12.5px;font-family:'IBM Plex Mono',monospace;border:1px solid rgba(255,255,255,0.4);padding:6px 14px;color:#CFE0DA;}
+
+/* giant eight signature */
+.giant-eight{display:flex;align-items:center;justify-content:center;position:relative;padding:10px 0 30px;}
+.giant-eight .num{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(140px,22vw,300px);line-height:0.8;color:var(--ink);opacity:0.94;}
+.giant-eight .tagbox{position:absolute;top:8px;right:calc(50% - clamp(90px,14vw,190px));font-size:11px;font-family:'IBM Plex Mono',monospace;border:1px solid var(--ink);padding:6px 10px;background:var(--card);}
+@media(max-width:700px){.giant-eight .tagbox{position:static;margin-top:12px;}
+  .giant-eight{flex-direction:column;}}
+
+/* annot card reused */
+.annot-card{background:var(--card);border:1px solid var(--ink);padding:26px;position:relative;}
+.annot-card .corner{position:absolute;top:-1px;right:-1px;width:26px;height:26px;background:var(--marker);clip-path:polygon(0 0,100% 0,100% 100%);}
+.annot-row{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px dashed var(--paper-line);padding:10px 0;font-size:13px;}
+.annot-row:last-child{border-bottom:none;}
+.annot-row span:first-child{color:var(--ink-soft);}
+.annot-title{font-size:12px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px;}
+
+.audience-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:start;}
+@media(max-width:860px){.audience-grid{grid-template-columns:1fr;}}
+.audience-copy p{font-size:16px;color:var(--ink-soft);line-height:1.7;}
+.audience-copy p+p{margin-top:14px;}
+.audience-copy strong{color:var(--ink);}
+
+.insight-card{border-left:3px solid var(--marker);padding:8px 0 8px 24px;margin-top:30px;}
+.insight-card .lbl{font-size:11px;color:var(--marker);margin-bottom:10px;font-family:'IBM Plex Mono',monospace;}
+.insight-card p{font-family:'Fraunces',serif;font-size:22px;font-weight:450;max-width:700px;line-height:1.4;}
+
+/* pillars process */
+.process{display:flex;gap:0;overflow-x:auto;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);}
+.pstep{flex:1;min-width:190px;padding:24px 20px;border-right:1px solid var(--ink-soft);position:relative;}
+.pstep:last-child{border-right:none;}
+.pstep .n{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--marker);}
+.pstep h4{font-size:16px;margin:8px 0 6px;}
+.pstep p{font-size:13px;color:var(--ink-soft);}
+
+/* flavour system */
+.flavor-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:32px;}
+@media(max-width:900px){.flavor-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:520px){.flavor-grid{grid-template-columns:repeat(2,1fr);}}
+.flavor-card{border:1px solid var(--ink);overflow:hidden;background:var(--card);}
+.flavor-swatch{height:88px;}
+.flavor-info{padding:14px 12px;}
+.flavor-info .name{font-family:'Fraunces',serif;font-weight:600;font-size:14.5px;}
+.flavor-info .mood{font-size:11px;color:var(--ink-soft);margin-top:4px;}
+
+/* deliverable-style grid reused for structural system */
+.deliv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink);border:1px solid var(--ink);margin-top:10px;}
+@media(max-width:760px){.deliv-grid{grid-template-columns:1fr;}}
+.deliv-col{background:var(--card);padding:24px 22px;}
+.deliv-col h4{font-size:15px;margin-bottom:10px;}
+.deliv-col ul{list-style:none;font-size:13.5px;color:var(--ink-soft);}
+.deliv-col li{padding:7px 0;display:flex;gap:10px;}
+.deliv-col li::before{content:"—";color:var(--pine);flex-shrink:0;}
+
+/* photography split */
+.photo-split{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media(max-width:700px){.photo-split{grid-template-columns:1fr;}}
+.photo-split img{border:1px solid var(--ink);width:100%;}
+
+/* messaging wall */
+.messaging-wall{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:12px;}
+@media(max-width:860px){.messaging-wall{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.messaging-wall{grid-template-columns:1fr;}}
+.msg-card{border:1px solid var(--ink);background:var(--card);padding:26px 22px;min-height:120px;display:flex;align-items:center;}
+.msg-card p{font-family:'Fraunces',serif;font-size:19px;font-weight:600;line-height:1.28;}
+
+/* scope / outcome stat strip */
+.stat-strip{display:flex;flex-wrap:wrap;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);}
+.stat{flex:1;min-width:140px;padding:24px 22px;border-right:1px solid var(--ink);}
+.stat:last-child{border-right:none;}
+.stat .num{font-family:'Fraunces',serif;font-size:36px;font-weight:600;color:var(--pine);}
+.stat .lbl{font-size:12px;color:var(--ink-soft);margin-top:6px;}
+@media(max-width:700px){.stat-strip{flex-wrap:wrap;} .stat{flex:1 1 50%;border-bottom:1px solid var(--ink);}}
+
+/* testimonial empty slot */
+.testi-empty{border:1.5px dashed var(--ink-soft);padding:34px;text-align:center;color:var(--ink-soft);font-size:13.5px;background:rgba(255,255,255,0.3);}
+.testi-empty b{display:block;color:var(--ink);font-family:'Fraunces',serif;font-size:17px;margin-bottom:8px;font-weight:600;}
+
+/* colophon */
+.colophon{display:flex;flex-wrap:wrap;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);}
+.colophon .c-item{flex:1;min-width:180px;padding:20px 24px;border-right:1px solid var(--paper-line);}
+.colophon .c-item:last-child{border-right:none;}
+.colophon .k{font-size:10.5px;color:var(--ink-soft);text-transform:uppercase;margin-bottom:6px;}
+.colophon .v{font-family:'Fraunces',serif;font-size:15.5px;font-weight:600;}
+@media(max-width:760px){.colophon .c-item{flex:1 1 50%;border-bottom:1px solid var(--paper-line);}}
+
+/* pricing anchor */
+.pricing-anchor{background:var(--card);border:2px solid var(--pine);padding:36px;position:relative;}
+.pricing-anchor .flag{position:absolute;top:-1px;right:-1px;background:var(--pine);color:var(--paper);font-size:11px;padding:5px 10px;font-family:'IBM Plex Mono',monospace;}
+.pricing-anchor .row{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+.pricing-anchor h3{font-size:22px;margin-bottom:8px;}
+.pricing-anchor p{font-size:14px;color:var(--ink-soft);max-width:520px;}
+.pricing-anchor .amt{font-family:'Fraunces',serif;font-size:30px;font-weight:600;color:var(--pine);white-space:nowrap;}
+.pricing-anchor .amt .per{display:block;font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--ink-soft);font-weight:400;margin-top:2px;}
+.btn-primary{background:var(--pine);color:var(--paper);padding:15px 26px;font-size:14.5px;font-weight:600;border-radius:var(--radius);display:inline-flex;align-items:center;gap:8px;transition:background .15s;white-space:nowrap;}
+.btn-primary:hover{background:var(--pine-deep);}
+
+/* next project */
+.next-project{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);}
+.next-project a{display:flex;align-items:center;justify-content:space-between;padding:28px 0;}
+.next-project a:hover .arrow{transform:translateX(6px);}
+.next-project .lbl{font-size:11px;color:var(--marker);margin-bottom:6px;}
+.next-project h3{font-size:24px;}
+.arrow{transition:transform .2s;font-size:22px;}
+
+.final{background:var(--ink);color:var(--paper);text-align:center;}
+.final h2{font-size:clamp(28px,4.2vw,44px);max-width:700px;margin:0 auto 18px;color:#fff;}
+.final p{color:#C9C3B4;max-width:520px;margin:0 auto 28px;font-size:16px;}
+.final .btn-primary{background:var(--paper);color:var(--ink);}
+.final .btn-primary:hover{background:#fff;}
+
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:50;background:var(--ink);padding:14px 18px;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid #000;}
+.sticky-cta .txt{color:#fff;font-size:13px;}
+.sticky-cta .txt b{display:block;font-size:14.5px;}
+.sticky-cta a{background:var(--paper);color:var(--ink);padding:11px 18px;font-size:13px;font-weight:600;border-radius:var(--radius);white-space:nowrap;}
+@media(max-width:700px){.sticky-cta{display:flex;} body{padding-bottom:64px;}}
+
+footer{border-top:1px solid var(--ink);padding:50px 0 30px;font-size:13px;color:var(--ink-soft);}
+.foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;margin-bottom:30px;}
+.foot-grid a{display:block;padding:4px 0;}
+.foot-bottom{border-top:1px solid var(--paper-line);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+</style>
+</head>
+<body>
+
+<div class="reg reg-tl"></div><div class="reg reg-tr"></div><div class="reg reg-bl"></div><div class="reg reg-br"></div>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo-mark"><div class="box"></div>The Drawing Board</a>
+    <nav class="navlinks">
+      <a href="index.html">Studio</a>
+      <a class="active" href="work.html">Work</a>
+      <a href="branding-page-redesign.html">Services</a>
+      <a href="#">Insights</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav-cta" href="https://cal.com/dandelion-nrvrze">Book a 15-min call</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap crumb">
+    <a href="work.html">Work</a><span class="sep">/</span><span class="cur">AFTER8®</span>
+  </div>
+
+  <section class="case-hero" style="padding-bottom:0;">
+    <div class="wrap">
+      <div class="sheet-label">
+        <span class="tag mono">SHEET NO. 07 — CASE STUDY</span>
+        <span class="rule"></span>
+        <span class="mono" style="font-size:12px;color:var(--ink-soft)">SCALE 1:1</span>
+      </div>
+      <h1>AFTER8® — reimagining intimacy <em>for a new generation.</em></h1>
+      <p class="dek">AFTER8 was created as a bold rethinking of how modern intimacy brands should look, feel, and behave in culture — a full cultural repositioning, not just a packaging refresh.</p>
+
+      <div class="meta-strip">
+        <div class="meta-cell"><div class="k mono">CLIENT</div><div class="v">AFTER8®</div></div>
+        <div class="meta-cell"><div class="k mono">YEAR</div><div class="v">2026</div></div>
+        <div class="meta-cell"><div class="k mono">TIMELINE</div><div class="v">8 Weeks</div></div>
+        <div class="meta-cell"><div class="k mono">SERVICES</div><div class="v">Branding / Packaging / Web / Photography</div></div>
+      </div>
+
+      <div class="hero-visual">
+        <img src="https://framerusercontent.com/images/GI9hs6gABp4QhAbVBk1Ej9TVE0.png?width=1685&height=933" alt="AFTER8 key visual">
+      </div>
+    </div>
+  </section>
+
+  <nav class="toc-bar">
+    <a href="#challenge">Challenge</a>
+    <a href="#solution">Solution</a>
+    <a href="#positioning">Positioning</a>
+    <a href="#audience">Audience</a>
+    <a href="#strategy">Strategy</a>
+    <a href="#naming">Naming</a>
+    <a href="#packaging">Packaging</a>
+    <a href="#photography">Photography</a>
+    <a href="#campaign">Campaign</a>
+    <a href="#outcome">Outcome</a>
+  </nav>
+
+  <section id="challenge" class="problem">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow mono">THE CHALLENGE</div>
+        <h2>The category was still designed to be hidden, not shared.</h2>
+      </div>
+      <div class="problem-copy">
+        <p><strong>AFTER8 was created as a bold rethinking of how modern intimacy brands should look, feel, and behave in culture.</strong> The category was dominated by outdated visual systems — overly clinical packaging, awkward messaging, masculine visual language, generic pharmacy aesthetics, and branding that felt emotionally disconnected from the people actually buying it.</p>
+        <p>We saw an opportunity to transform condoms and pleasure products into something people would actually want to display, photograph, and talk about — designed to sit somewhere between fashion, beauty, nightlife, pop culture, wellness, and intimacy. This wasn't a packaging project. It was a full cultural repositioning of what an intimacy brand could become.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <table class="compare">
+          <tr><th>&nbsp;</th><th>The category, today</th><th class="hl">AFTER8</th></tr>
+          <tr><td>Tone of voice</td><td><span class="ic-no">Fear-based, clinical</span></td><td class="hl"><span class="ic-yes">Confident, playful</span></td></tr>
+          <tr><td>Visual language</td><td>Aggressive, masculine</td><td class="hl">Fashion & nightlife-inspired</td></tr>
+          <tr><td>Retail presence</td><td><span class="ic-no">Uninspired, forgettable</span></td><td class="hl"><span class="ic-yes">Shelf-dominating</span></td></tr>
+          <tr><td>Social shareability</td><td><span class="ic-no">Low</span></td><td class="hl"><span class="ic-yes">Built to be photographed</span></td></tr>
+          <tr><td>Emotional connection</td><td>Sterile, cold</td><td class="hl">Warm, collectible</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-bottom:0;">
+    <div class="wrap">
+      <div class="mosaic">
+        <img src="https://framerusercontent.com/images/uBSqtsY2yQrXzDwj5TCFNnvU.png?width=1536&height=1024" alt="AFTER8 packaging system">
+        <img src="https://framerusercontent.com/images/qant71hj9KPeyj6vzVQEMQgl5T8.png?width=1536&height=1024" alt="AFTER8 identity application">
+        <img src="https://framerusercontent.com/images/XVsYVfYaAZSCgqPrDrAySvOEqsk.png?width=1568&height=1003" alt="AFTER8 brand system">
+      </div>
+    </div>
+  </section>
+
+  <section id="solution">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow mono">OUR SOLUTION — THE WHITESPACE</div>
+        <h2>We found the one gap nobody in the category was designing for.</h2>
+        <p class="lede">Every competitor was optimizing for fear, performance, or technical specification. Nobody was designing for how the moment actually feels.</p>
+      </div>
+
+      <div class="qual-grid">
+        <div class="qual-col no">
+          <h4><span class="mark">✕</span>The category defaults to</h4>
+          <ul>
+            <li>Fear-based messaging</li>
+            <li>Hyper-masculine visual codes</li>
+            <li>Technical specifications up front</li>
+            <li>Performance as the whole story</li>
+          </ul>
+        </div>
+        <div class="qual-col yes">
+          <h4><span class="mark">✓</span>AFTER8 shifts toward</h4>
+          <ul>
+            <li>Confidence and chemistry</li>
+            <li>Self-expression and modern relationships</li>
+            <li>Intimacy as identity, not just function</li>
+            <li>A visual identity people want to be seen with</li>
+          </ul>
+        </div>
+      </div>
+
+      <p style="margin-top:30px;font-size:16px;color:var(--ink-soft);max-width:720px;">We wanted AFTER8 to feel like a fashion accessory, a beauty product, a nightlife brand, a social-first lifestyle company — not simply a condom company.</p>
+
+      <div class="mosaic" style="margin-top:36px;">
+        <img src="https://framerusercontent.com/images/JpoZtKncR1F4TWug62YHNXhY8I.png?width=1086&height=1448" alt="AFTER8 packaging detail">
+        <img src="https://framerusercontent.com/images/DBUf1j4gdz1eKAhD9k4P9CynCg.png?width=1101&height=1428" alt="AFTER8 packaging detail">
+        <img src="https://framerusercontent.com/images/W7hnRGNI0WrTxD7zgePuiUpb0c.png?width=1178&height=1335" alt="AFTER8 product system">
+        <img src="https://framerusercontent.com/images/EPFV2nlOvDqbHwdKsC2Rds1NGjs.png?width=1698&height=926" alt="AFTER8 identity spread">
+        <img src="https://framerusercontent.com/images/5frC5Sqe7IwwH8IhN77rJtZz478.png?width=1182&height=1330" alt="AFTER8 packaging">
+        <img src="https://framerusercontent.com/images/X82qaE1jdLvt6crEwMKhMJJBPA.png?width=1182&height=1330" alt="AFTER8 packaging variant">
+      </div>
+    </div>
+  </section>
+
+  <section id="positioning" style="padding-top:0;">
+    <div class="wrap">
+      <div class="statement">
+        <div class="eyebrow2 mono">BRAND POSITIONING</div>
+        <h2>"Made for the moments after 8."</h2>
+        <div class="statement-tags">
+          <span>Confidence</span><span>Intimacy</span><span>Expression</span><span>Nightlife</span><span>Pleasure</span><span>Aesthetics</span>
+        </div>
+      </div>
+      <p style="margin-top:30px;font-size:16px;color:var(--ink-soft);max-width:760px;">AFTER8 positions itself as a premium intimacy and pleasure brand designed for modern nightlife culture — behaving like a lifestyle brand rather than a healthcare company. The brand language is playful, flirtatious, premium, culturally aware, and socially expressive.</p>
+    </div>
+  </section>
+
+  <section id="audience" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow mono">TARGET AUDIENCE</div>
+        <h2>Designed for people who buy based on identity, not indication.</h2>
+      </div>
+      <div class="audience-grid">
+        <div class="audience-copy">
+          <p><strong>Gen-Z and millennial consumers, aged 21–35</strong> — urban, digitally native, and used to choosing brands the way they choose clothes. They care about aesthetics, purchase based on brand identity, value expressive packaging, enjoy nightlife culture, and share the products they use online.</p>
+          <p>This audience doesn't want products that feel embarrassing. They want products that feel stylish, safe, culturally relevant, expressive, and confidence-building.</p>
+          <div class="insight-card">
+            <div class="lbl">THE INSIGHT THAT SHAPED EVERYTHING</div>
+            <p>Consumers in this category aren't just buying condoms — they're buying confidence, chemistry, emotional comfort, and identity.</p>
+          </div>
+        </div>
+        <div class="annot-card">
+          <div class="corner"></div>
+          <div class="annot-title mono">Audience Snapshot</div>
+          <div class="annot-row"><span>Age</span><span>21–35</span></div>
+          <div class="annot-row"><span>Context</span><span>Urban, digitally native</span></div>
+          <div class="annot-row"><span>Buys on</span><span>Identity & aesthetics</span></div>
+          <div class="annot-row"><span>Reference brands</span><span>Fashion & beauty, not pharma</span></div>
+          <div class="annot-row"><span>Every touchpoint should feel</span><span style="color:var(--pine);font-weight:600">Inviting, warm, collectible</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="strategy" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow mono">BRAND STRATEGY</div>
+        <h2>"Make intimacy feel aesthetic."</h2>
+        <p class="lede">Five pillars carried the strategy from positioning through to every physical and digital touchpoint.</p>
+      </div>
+      <div class="process">
+        <div class="pstep"><div class="n">01</div><h4>Emotional Warmth</h4><p>Welcoming rather than clinical, at every touchpoint.</p></div>
+        <div class="pstep"><div class="n">02</div><h4>Cultural Relevance</h4><p>Native to social media culture, not adjacent to it.</p></div>
+        <div class="pstep"><div class="n">03</div><h4>Shelf Impact</h4><p>Dominates both retail shelves and digital thumbnails.</p></div>
+        <div class="pstep"><div class="n">04</div><h4>Social Shareability</h4><p>Photographable and collectible by design.</p></div>
+        <div class="pstep"><div class="n">05</div><h4>Premium Accessibility</h4><p>Premium without ever becoming intimidating.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="naming" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow mono">NAMING & VISUAL IDENTITY</div>
+        <h2>One number, doing all the work of a logo.</h2>
+        <p class="lede">AFTER8 references nightlife, chemistry, evening intimacy, and post-work freedom — immediately curious, but minimal and memorable. The "8" became a recognizable visual mnemonic across packaging, advertising, social, merchandise, and the website.</p>
+      </div>
+      <div class="giant-eight">
+        <div class="num">8</div>
+        <div class="tagbox mono">HERO ASSET — REPEATS ACROSS EVERY TOUCHPOINT</div>
+      </div>
+      <p style="font-size:15px;color:var(--ink-soft);max-width:700px;">Instead of a complicated logo, illustration, or symbol, the identity leans entirely on recognizability, repetition, and silhouette impact. Typography is intentionally thick, soft, rounded, and playful — balancing softness, boldness, and humour without becoming explicit.</p>
+    </div>
+  </section>
+
+  <section id="packaging" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow mono">PACKAGING DESIGN</div>
+        <h2>Somewhere between candy, skincare, and editorial design.</h2>
+        <p class="lede">We intentionally avoided dark masculine tones, metallic clichés, overly sexual visuals, and pharmaceutical aesthetics — building instead around bright gradients, pastel palettes, playful flavour coding, and oversized typography.</p>
+      </div>
+
+      <div class="eyebrow mono" style="margin-bottom:4px;">THE FLAVOUR SYSTEM — 6 SKUs, 6 MOODS</div>
+      <div class="flavor-grid">
+        <div class="flavor-card">
+          <div class="flavor-swatch" style="background:#9C8FC9;"></div>
+          <div class="flavor-info"><div class="name">Grape</div><div class="mood">Soft nightlife energy</div></div>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-swatch" style="background:#EB6FA0;"></div>
+          <div class="flavor-info"><div class="name">Strawberry</div><div class="mood">Playful chemistry</div></div>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-swatch" style="background:#8ECB4E;"></div>
+          <div class="flavor-info"><div class="name">Mint</div><div class="mood">Freshness & confidence</div></div>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-swatch" style="background:#F2994A;"></div>
+          <div class="flavor-info"><div class="name">Cola</div><div class="mood">Bold, extroverted energy</div></div>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-swatch" style="background:#F4A94A;"></div>
+          <div class="flavor-info"><div class="name">Mango</div><div class="mood">Tropical warmth</div></div>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-swatch" style="background:#F2D24B;"></div>
+          <div class="flavor-info"><div class="name">Pineapple</div><div class="mood">Fun & energetic</div></div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--ink-soft);margin-top:16px;">Six distinct emotional palettes built for shelf differentiation, social content variation, and scalable future launches.</p>
+
+      <div class="deliv-grid">
+        <div class="deliv-col">
+          <h4>Front Panel</h4>
+          <ul>
+            <li>Oversized "8" as hero mark</li>
+            <li>Strong flavour naming</li>
+            <li>Minimal product hierarchy</li>
+            <li>Large, confident whitespace</li>
+          </ul>
+        </div>
+        <div class="deliv-col">
+          <h4>Side Panels</h4>
+          <ul>
+            <li>Editorial rather than technical</li>
+            <li>Mandatory info woven into the system</li>
+            <li>Soft framing devices</li>
+          </ul>
+        </div>
+        <div class="deliv-col">
+          <h4>What It Achieves</h4>
+          <ul>
+            <li>Premium simplicity</li>
+            <li>Easy scanning in retail</li>
+            <li>Strong social media visibility</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mosaic small" style="margin-top:36px;">
+        <img src="https://framerusercontent.com/images/ZDmig4277rYuPQnjzIodmYncFvo.png?width=1536&height=1024" alt="AFTER8 packaging shot">
+        <img src="https://framerusercontent.com/images/AlavHXaiVad4JtlzzODjwrgIXkA.png?width=1182&height=1330" alt="AFTER8 packaging shot">
+        <img src="https://framerusercontent.com/images/EX19NyD9cfd4MdJtCSL8F2Q0Hx4.png?width=1698&height=926" alt="AFTER8 packaging shot">
+        <img src="https://framerusercontent.com/images/GiL8F1WpVpxAO7CayLQNAlSUnyM.png?width=1182&height=1330" alt="AFTER8 packaging shot">
+      </div>
+    </div>
+  </section>
+
+  <section id="photography" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow mono">PRODUCT PHOTOGRAPHY DIRECTION</div>
+        <h2>Cinematic, not clinical.</h2>
+        <p class="lede">Photography was art directed around colour lighting, nightlife moods, playful styling, and tactile softness — making the brand feel desirable and social-first rather than medical.</p>
+      </div>
+      <div class="photo-split">
+        <img src="https://framerusercontent.com/images/zFiYwLkHRT5KfYHf5Tpre2AoDM.png?width=1698&height=926" alt="AFTER8 photography direction">
+        <img src="https://framerusercontent.com/images/1LSCDh062d3ZmMcFyFHoL5wHX2U.png?width=1536&height=1024" alt="AFTER8 photography direction">
+      </div>
+    </div>
+  </section>
+
+  <section id="campaign" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow mono">CAMPAIGN DIRECTION & MESSAGING</div>
+        <h2>Confidence, chemistry, and humour — never explicit.</h2>
+        <p class="lede">Campaign language avoids awkwardness and hyper-sexual advertising, speaking instead through confidence, chemistry, and visual culture.</p>
+      </div>
+      <div class="messaging-wall">
+        <div class="msg-card"><p>"Made for the moments after 8."</p></div>
+        <div class="msg-card"><p>"Pleasure with personality."</p></div>
+        <div class="msg-card"><p>"Designed for better chemistry."</p></div>
+        <div class="msg-card"><p>"Less awkward. More AFTER8."</p></div>
+        <div class="msg-card"><p>"Looks good. Feels better."</p></div>
+        <div class="msg-card"><p>"Confidence looks good on you."</p></div>
+      </div>
+
+      <div class="mosaic" style="margin-top:36px;">
+        <img src="https://framerusercontent.com/images/Lh3N8DdP069sN0ucVbBlfN2rEtU.png?width=1536&height=1024" alt="AFTER8 social content system">
+        <img src="https://framerusercontent.com/images/2YhblEnODOITAdC2EGkdSqAgzM.png?width=1536&height=1024" alt="AFTER8 social content system">
+        <img src="https://framerusercontent.com/images/opdGMlGhkxTNZMpuoBOpOsbhMI.png?width=1536&height=1024" alt="AFTER8 social content system">
+        <img src="https://framerusercontent.com/images/97o1xIBJ5D8QC9i1AMDfChRVw.png?width=1536&height=1024" alt="AFTER8 social content system">
+      </div>
+      <p style="font-size:14.5px;color:var(--ink-soft);margin-top:12px;max-width:680px;">The social strategy was built around repeatable graphic systems, bold colour blocking, and editorial layouts — designed to feel closer to a fashion or beauty feed than a healthcare brand's.</p>
+    </div>
+  </section>
+
+  <section id="outcome" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow mono">THE OUTCOME</div>
+        <h2>An idea, turned into a complete, shelf-ready brand — in 8 weeks.</h2>
+      </div>
+      <div class="stat-strip">
+        <div class="stat"><div class="num">8</div><div class="lbl mono">weeks, strategy to shelf-ready files</div></div>
+        <div class="stat"><div class="num">4</div><div class="lbl mono">disciplines — brand, packaging, web, photography</div></div>
+        <div class="stat"><div class="num">6</div><div class="lbl mono">flavour SKUs, each with its own system</div></div>
+        <div class="stat"><div class="num">1</div><div class="lbl mono">idea, taken to full cultural repositioning</div></div>
+      </div>
+
+      <div style="margin-top:32px;">
+        <div class="testi-empty">
+          <b>Client testimonial — reserved</b>
+          Drop AFTER8's verbatim quote here once approved. A short line on how the rebrand changed how the team or retail partners see the product lands harder than any stat above.
+        </div>
+      </div>
+
+      <div class="colophon" style="margin-top:40px;">
+        <div class="c-item"><div class="k mono">BRANDING</div><div class="v">Vinayak Agarwal</div></div>
+        <div class="c-item"><div class="k mono">TYPEFACE DESIGN</div><div class="v">Vinayak & Rajlaxmi</div></div>
+        <div class="c-item"><div class="k mono">PHOTOGRAPHY</div><div class="v">Dhananjay Rawat</div></div>
+        <div class="c-item"><div class="k mono">PACKAGING</div><div class="v">The Drawing Board</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="pricing-anchor">
+        <div class="flag">SAME SCOPE, PRICED</div>
+        <div class="row">
+          <div>
+            <h3>This is a Scale-tier project.</h3>
+            <p>Full brand system + packaging across up to 6 SKUs — the exact scope AFTER8 shipped in 8 weeks — sits in our Scale engagement model.</p>
+          </div>
+          <div class="amt">₹6,50,000<span class="per">PER PROJECT, UP TO 6 SKUs</span></div>
+          <a class="btn-primary" href="branding-page-redesign.html#pricing">See the Scale tier →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="next-project">
+      <a href="work.html">
+        <div>
+          <div class="lbl mono">MORE WORK</div>
+          <h3>Back to all case studies</h3>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <section class="final">
+    <div class="wrap">
+      <h2>Building a brand in a category that needs a braver visual language?</h2>
+      <p>Book a free 15-minute call. We'll tell you honestly what scope your brand actually needs.</p>
+      <a class="btn-primary" href="https://cal.com/dandelion-nrvrze">Book a 15-min call →</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo-mark" style="margin-bottom:14px;"><div class="box"></div>The Drawing Board</div>
+        <p style="max-width:260px;">Bold ideas, beautifully executed. Brands, websites, and visual content that move businesses forward.</p>
+      </div>
+      <div>
+        <div class="mono" style="font-size:11px;margin-bottom:10px;color:var(--ink)">SERVICES</div>
+        <a href="branding-page-redesign.html">Branding</a><a href="packaging-design.html">Packaging Design</a><a href="work.html">UI/UX Design</a><a href="service-development.html">Web Development</a>
+      </div>
+      <div>
+        <div class="mono" style="font-size:11px;margin-bottom:10px;color:var(--ink)">STUDIO</div>
+        <a href="index.html">About</a><a href="work.html">Work</a><a href="#">Insights</a><a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <div class="mono" style="font-size:11px;margin-bottom:10px;color:var(--ink)">CONNECT</div>
+        <a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Dribbble</a><a href="mailto:hello@drawingsboards.com">Email us</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© The Drawing Board 2026. All rights reserved.</span>
+      <span><a href="#">Terms of Service</a> &nbsp;·&nbsp; <a href="#">Privacy Policy</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <div class="txt">Projects from ₹2,37,000<b>Free 15-min call</b></div>
+  <a href="https://cal.com/dandelion-nrvrze">Book now →</a>
+</div>
+
+</body>
+</html>

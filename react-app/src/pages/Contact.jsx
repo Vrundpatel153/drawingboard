@@ -7,7 +7,7 @@ import StickyMobileCTA from '../components/StickyMobileCTA';
 import ArrowIcon from '../components/ArrowIcon';
 import BookCallLink from '../components/BookCallLink';
 import { usePageAnimations } from '../hooks/usePageAnimations';
-import { CONTACT_EMAIL, MAILTO_URL } from '../utils/siteConfig';
+import { CONTACT_EMAIL, MAILTO_URL, WHATSAPP_URL } from '../utils/siteConfig';
 import { trackMetaFormSubmission } from '../utils/metaEvents';
 
 const faqs = [
@@ -506,6 +506,11 @@ export default function Contact() {
             <p className="hero-sub" style={{ maxWidth: '680px', marginTop: '12px', fontSize: '16.5px', color: 'var(--ink-soft)' }}>
               Ready to start a project, collaborate, or just say hello? Drop us a message — we typically reply within 24 hours.
             </p>
+            <p style={{ marginTop: '14px' }}>
+              <a className="btn-link" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" style={{ fontSize: '14.5px', color: 'var(--pine)', fontWeight: 600 }}>
+                Prefer WhatsApp for discussion →
+              </a>
+            </p>
           </div>
         </section>
 
@@ -760,10 +765,6 @@ export default function Contact() {
                         <a href="tel:+919428859768" style={{ color: 'inherit', textDecoration: 'none', fontWeight: 500 }}>+91 94288 59768</a>
                         <span className="mono" style={{ fontSize: '10.5px', color: 'var(--ink-soft)', marginLeft: '6px' }}>(India)</span>
                       </div>
-                      <div style={{ marginTop: '4px' }}>
-                        <a href="tel:+13475550123" style={{ color: 'inherit', textDecoration: 'none', fontWeight: 500 }}>+1 (347) 555-0123</a>
-                        <span className="mono" style={{ fontSize: '10.5px', color: 'var(--ink-soft)', marginLeft: '6px' }}>(USA)</span>
-                      </div>
                     </div>
                   </div>
 
@@ -777,12 +778,6 @@ export default function Contact() {
                         </a>
                         <span className="mono" style={{ fontSize: '10.5px', color: 'var(--ink-soft)', marginLeft: '6px' }}>(India)</span>
                       </div>
-                      <div style={{ marginTop: '4px' }}>
-                        <a href="https://wa.me/13475550123" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--pine)', textDecoration: 'none', fontWeight: 600 }}>
-                          +1 (347) 555-0123
-                        </a>
-                        <span className="mono" style={{ fontSize: '10.5px', color: 'var(--ink-soft)', marginLeft: '6px' }}>(USA)</span>
-                      </div>
                     </div>
                   </div>
 
@@ -791,7 +786,7 @@ export default function Contact() {
                     <span style={{ fontWeight: 600, color: 'var(--ink)' }}>Hours</span>
                     <div className="val" style={{ textAlign: 'right', fontSize: '13px' }}>
                       <div style={{ fontWeight: 600 }}>Monday – Friday</div>
-                      <div style={{ color: 'var(--ink-soft)', marginTop: '2px' }}>9:00 AM – 6:00 PM (EST)</div>
+                      <div style={{ color: 'var(--ink-soft)', marginTop: '2px' }}>9:00 AM – 6:00 PM (IST)</div>
                     </div>
                   </div>
 
@@ -853,11 +848,7 @@ export default function Contact() {
                     <span>&rarr;</span>
                   </a>
                   <a href="https://wa.me/919428859768" target="_blank" rel="noopener noreferrer" className="quick-link">
-                    <span>WhatsApp India (+91 94288 59768)</span>
-                    <span>&rarr;</span>
-                  </a>
-                  <a href="https://wa.me/13475550123" target="_blank" rel="noopener noreferrer" className="quick-link">
-                    <span>WhatsApp US (+1 347 555-0123)</span>
+                    <span>WhatsApp Studio (+91 94288 59768)</span>
                     <span>&rarr;</span>
                   </a>
                 </div>

@@ -406,7 +406,7 @@ export default function PackagingPage() {
                   <p className="hero-sub">Your customer may discover the product through an ad, but the packaging often closes the decision. We combine positioning, category research, visual storytelling and production thinking to build packaging that feels distinctive, credible and ready to scale.</p>
                   <div className="cta-row">
                     <a className="btn-primary" href="#pricing">Book a 15-min call →</a>
-                    <a className="btn-link" href="https://wa.me/919428859768">or message us on WhatsApp</a>
+                    <a className="btn-link" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Prefer WhatsApp for discussion →</a>
                   </div>
                   <p className="price-note">Packaging engagements start at <b>$2,500 (₹1,75,000).</b> Built for serious launches, redesigns and growing product ranges.</p>
                 </div>

@@ -49,6 +49,9 @@ export default function Home() {
               <div className="cta-row">
                 <WhatsAppCTALink className="btn-primary">WhatsApp Us <ArrowIcon /></WhatsAppCTALink>
                 <Link to="/work" className="btn-link">Explore Work <ArrowIcon size={13} /></Link>
+                <a href="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" target="_blank" rel="noopener noreferrer" className="btn-link" style={{ marginLeft: '6px' }}>
+                  Prefer WhatsApp for discussion →
+                </a>
               </div>
 
               <p className="price-note">Projects start at <b>₹4,75,000/-</b> ($4,960) &bull; Turnaround <b>3&ndash;6 weeks</b></p>

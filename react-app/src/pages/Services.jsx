@@ -139,6 +139,9 @@ export default function Services() {
                 <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-link">
                   Schedule Discovery Call <ArrowIcon size={13} />
                 </a>
+                <a href="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" target="_blank" rel="noopener noreferrer" className="btn-link" style={{ marginLeft: '6px' }}>
+                  Prefer WhatsApp for discussion →
+                </a>
               </div>
 
               {/* Engagement Specs Pricing Card with rock-solid tabular alignment */}
