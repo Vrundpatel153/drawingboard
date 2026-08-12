@@ -2040,7 +2040,7 @@ export default function DevelopmentPage() {
                       }}
                     >
                       <img
-                        src={commercePp === 'standard' ? '/images/development/shopify_store_01.png' : '/images/development/shopify_store_02.png'}
+                        src={commercePp === 'standard' ? '/images/development/shopify_store_01.png' : '/images/development/immersive_ui_01.jpeg'}
                         alt={commercePp === 'standard' ? 'Standard Shopify Store Build' : 'Drawing Board High-Conversion Shopify Experience'}
                         style={{
                           width: '100%',
@@ -2091,87 +2091,38 @@ export default function DevelopmentPage() {
                       <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#27C93F', display: 'inline-block' }}></span>
                     </div>
                     <div className="url" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '11.5px', color: 'var(--ink-soft)', wordBreak: 'break-all' }}>
-                      yourbrand.com — interactive UI experience
+                      yourbrand.com — scroll states
                     </div>
                   </div>
 
                   <div className="demo-body">
-                    <div className="exp-states" style={{ display: 'flex', gap: '10px', marginBottom: '16px', flexWrap: 'wrap' }}>
-                      <button
-                        type="button"
-                        className={expStateIdx === 0 ? 'on' : ''}
-                        onClick={() => setExpStateIdx(0)}
-                        style={{
-                          flex: '1 1 140px',
-                          padding: '8px 12px',
-                          fontSize: 'clamp(11px, 2.8vw, 12.5px)',
-                          fontFamily: "'IBM Plex Mono', monospace",
-                          fontWeight: 600,
-                          border: '1px solid var(--ink)',
-                          background: expStateIdx === 0 ? 'var(--pine)' : 'var(--paper)',
-                          color: expStateIdx === 0 ? '#FFF' : 'var(--ink)',
-                          cursor: 'pointer',
-                          borderRadius: '2px',
-                          transition: 'all 0.2s ease',
-                          textAlign: 'center'
-                        }}
-                      >
-                        UI View 01: Hero &amp; Motion
-                      </button>
-                      <button
-                        type="button"
-                        className={expStateIdx === 1 ? 'on' : ''}
-                        onClick={() => setExpStateIdx(1)}
-                        style={{
-                          flex: '1 1 140px',
-                          padding: '8px 12px',
-                          fontSize: 'clamp(11px, 2.8vw, 12.5px)',
-                          fontFamily: "'IBM Plex Mono', monospace",
-                          fontWeight: 600,
-                          border: '1px solid var(--ink)',
-                          background: expStateIdx === 1 ? 'var(--pine)' : 'var(--paper)',
-                          color: expStateIdx === 1 ? '#FFF' : 'var(--ink)',
-                          cursor: 'pointer',
-                          borderRadius: '2px',
-                          transition: 'all 0.2s ease',
-                          textAlign: 'center'
-                        }}
-                      >
-                        UI View 02: Interface System
-                      </button>
-                    </div>
-
+                    {/* Empty Single Browser Frame */}
                     <div
                       className="exp-stage"
                       style={{
                         width: '100%',
-                        border: '1px solid var(--ink)',
+                        height: '360px',
+                        border: '1px dashed var(--ink)',
                         borderRadius: '2px',
-                        overflow: 'hidden',
                         background: '#FFFFFF',
-                        padding: '16px',
-                        boxShadow: 'inset 0 0 0 1px var(--paper-line)'
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justify: 'center',
+                        alignItems: 'center',
+                        padding: '24px',
+                        textAlign: 'center'
                       }}
                     >
-                      <img
-                        src={expStateIdx === 0 ? '/images/development/immersive_ui_01.jpeg' : '/images/development/immersive_ui_02.jpeg'}
-                        alt={expStateIdx === 0 ? 'Immersive Hero & Kinetic Motion UI' : 'Interactive Interface System UI'}
-                        style={{
-                          width: '100%',
-                          height: 'auto',
-                          maxHeight: '440px',
-                          objectFit: 'contain',
-                          display: 'block',
-                          margin: '0 auto'
-                        }}
-                      />
+                      <div className="mono" style={{ fontSize: '11px', color: 'var(--pine)', fontWeight: 700, letterSpacing: '1px', marginBottom: '8px' }}>
+                        // INTERACTIVE EXPERIENCE FRAME
+                      </div>
+                      <div style={{ fontSize: '18px', fontFamily: "'Schibsted Grotesk', sans-serif", fontWeight: 700, color: 'var(--ink)', marginBottom: '8px' }}>
+                        Custom Kinetic &amp; Interactive Web Engine
+                      </div>
+                      <div style={{ fontSize: '13px', color: 'var(--ink-soft)', maxWidth: '380px', lineHeight: 1.5 }}>
+                        Scroll-triggered storytelling, WebGL canvas motion, 3D product stages, and bespoke interaction design.
+                      </div>
                     </div>
-                    
-                    <p style={{ marginTop: '12px', fontSize: '12.5px', fontFamily: "'IBM Plex Mono', monospace", color: 'var(--ink-soft)', textAlign: 'center' }}>
-                      {expStateIdx === 0
-                        ? '↳ Kinetic typography, fluid product motion, and immersive brand storytelling.'
-                        : '↳ Interactive editorial layouts, scroll-triggered state transitions, and responsive UI.'}
-                    </p>
                   </div>
                 </div>
               </div>
