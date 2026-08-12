@@ -73,12 +73,48 @@ export default function Studio() {
   ];
 
   const studioGallery = [
-    { src: '/images/studio/studio_about_09.jpg', alt: 'Studio Atmosphere & Architectural Workspace' },
-    { src: '/images/studio/studio_about_03.jpg', alt: 'Tactile Packaging & Culinary Brand System' },
-    { src: '/images/studio/studio_about_08.jpg', alt: 'Botanical Skincare Packaging & 3D Form' },
-    { src: '/images/soul-brew/02.png', alt: 'Soul Brew Specialty Coffee Identity & Dieline' },
-    { src: '/images/bondwith/bondwith_page_01.jpg', alt: 'Intimacy Brand Architecture & Tactile Print' },
-    { src: '/images/think/category_audit.jpeg', alt: 'Strategic Visual Audit & Category Mapping' }
+    {
+      category: '01 // CULINARY PACKAGING',
+      title: 'Food & Flavor Brand System',
+      desc: 'Tactile packaging, dieline engineering & label design',
+      src: '/images/studio/studio_about_09.jpg',
+      alt: 'Tactile Culinary & Flavor Packaging System'
+    },
+    {
+      category: '02 // BEAUTY & SKINCARE',
+      title: 'Botanical Cosmetic 3D Packaging',
+      desc: 'Structural packaging, custom 3D forms & print finishes',
+      src: '/images/studio/studio_about_17.jpg',
+      alt: 'Botanical Cosmetic Packaging & 3D Form'
+    },
+    {
+      category: '03 // SPECIALTY BEVERAGE',
+      title: 'Soul Brew Coffee Identity System',
+      desc: 'Brand strategy, pouch packaging & visual guidelines',
+      src: '/images/soul-brew/02.png',
+      alt: 'Soul Brew Specialty Coffee Identity & Dieline'
+    },
+    {
+      category: '04 // ARTISAN COFFEE PACKAGING',
+      title: 'Roast Packaging & Merchandise',
+      desc: 'Custom coffee bags, takeaway cups & brand collateral',
+      src: '/images/soul-brew/11.png',
+      alt: 'Artisan Roast Packaging & Merchandise'
+    },
+    {
+      category: '05 // LUXURY & LIFESTYLE',
+      title: 'Brand Architecture & Identity System',
+      desc: 'End-to-end visual system, typography & brand manual',
+      src: '/images/bondwith/bondwith_page_17.jpg',
+      alt: 'Intimacy Brand Architecture & Tactile Print'
+    },
+    {
+      category: '06 // BRAND STRATEGY',
+      title: 'Visual Audit & Category Landscape',
+      desc: 'Competitor audit, market positioning & strategic territory',
+      src: '/images/think/category_audit.jpeg',
+      alt: 'Strategic Visual Audit & Category Mapping'
+    }
   ];
 
   return (
@@ -184,23 +220,33 @@ export default function Studio() {
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
-              {studioGallery.map((img, idx) => (
-                <div key={idx} style={{ border: '1px solid var(--ink)', overflow: 'hidden', background: 'var(--card)', borderRadius: '2px' }}>
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    style={{
-                      width: '100%',
-                      height: '280px',
-                      objectFit: 'cover',
-                      display: 'block',
-                      transition: 'transform 0.4s ease'
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.03)'}
-                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.0)'}
-                  />
-                  <div style={{ padding: '12px 16px', borderTop: '1px solid var(--paper-line)', background: 'var(--paper)', fontSize: '12px', fontFamily: "'IBM Plex Mono', monospace", color: 'var(--ink-soft)' }}>
-                    ↳ {img.alt}
+              {studioGallery.map((item, idx) => (
+                <div key={idx} style={{ border: '1px solid var(--ink)', overflow: 'hidden', background: 'var(--card)', borderRadius: '2px', display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ width: '100%', height: '240px', overflow: 'hidden', background: 'var(--paper-line)' }}>
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        display: 'block',
+                        transition: 'transform 0.4s ease'
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.03)'}
+                      onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.0)'}
+                    />
+                  </div>
+                  <div style={{ padding: '16px 18px', borderTop: '1px solid var(--paper-line)', background: 'var(--paper)', flexGrow: 1 }}>
+                    <div className="mono" style={{ fontSize: '11px', color: 'var(--pine)', fontWeight: 700, marginBottom: '6px' }}>
+                      {item.category}
+                    </div>
+                    <h4 style={{ fontSize: '16px', fontFamily: "'Schibsted Grotesk', sans-serif", fontWeight: 700, margin: '0 0 6px 0', color: 'var(--ink)' }}>
+                      {item.title}
+                    </h4>
+                    <p style={{ fontSize: '12.5px', color: 'var(--ink-soft)', margin: 0, lineHeight: 1.5 }}>
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
               ))}
