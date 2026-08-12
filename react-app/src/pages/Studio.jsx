@@ -10,45 +10,6 @@ export default function Studio() {
   const pageRef = useRef(null);
   usePageAnimations(pageRef);
 
-  const teamMembers = [
-    {
-      name: 'Vinayak Agarwal',
-      role: 'Brand Designer & Illustrator',
-      image: '/images/studio/studio_about_10.jpeg',
-      bio: 'Specializes in strategic brand identities, custom typography, and bespoke vector illustration systems.'
-    },
-    {
-      name: 'Ajit Biswas',
-      role: 'Web & App Developer',
-      image: '/images/studio/studio_about_12.jpeg',
-      bio: 'Crafts high-performance digital interfaces, React architectures, interactive motion, and custom e-commerce engines.'
-    },
-    {
-      name: 'Jane Taylor',
-      role: 'UI/UX Designer',
-      image: '/images/studio/studio_about_13.jpeg',
-      bio: 'Focuses on user research, intuitive interface design systems, and conversion-optimized digital workflows.'
-    },
-    {
-      name: 'Michael Wilson',
-      role: 'Photographer & Art Director',
-      image: '/images/studio/studio_about_14.jpg',
-      bio: 'Captures high-impact commercial photography, product lighting, and cinematic brand visual direction.'
-    },
-    {
-      name: 'Trisha Agarwal',
-      role: 'Brand Designer',
-      image: '/images/studio/studio_about_15.jpg',
-      bio: 'Passionate about structural packaging design, tactile print finishes, dieline accuracy, and editorial aesthetics.'
-    },
-    {
-      name: 'Omisha Ghandi',
-      role: 'Creative Head',
-      image: '/images/studio/studio_about_16.jpg',
-      bio: 'Leads cross-disciplinary creative strategy, brand positioning, client alignment, and studio artistic vision.'
-    }
-  ];
-
   const processSteps = [
     {
       step: '01',
@@ -72,74 +33,116 @@ export default function Studio() {
     }
   ];
 
-  const studioGallery = [
-    {
-      category: '01 // CULINARY PACKAGING',
-      title: 'Food & Flavor Brand System',
-      desc: 'Tactile packaging, dieline engineering & label design',
-      src: '/images/studio/studio_about_09.jpg',
-      alt: 'Tactile Culinary & Flavor Packaging System'
-    },
-    {
-      category: '02 // BEAUTY & SKINCARE',
-      title: 'Botanical Cosmetic 3D Packaging',
-      desc: 'Structural packaging, custom 3D forms & print finishes',
-      src: '/images/studio/studio_about_17.jpg',
-      alt: 'Botanical Cosmetic Packaging & 3D Form'
-    },
-    {
-      category: '03 // SPECIALTY BEVERAGE',
-      title: 'Soul Brew Coffee Identity System',
-      desc: 'Brand strategy, pouch packaging & visual guidelines',
-      src: '/images/soul-brew/02.png',
-      alt: 'Soul Brew Specialty Coffee Identity & Dieline'
-    },
-    {
-      category: '04 // ARTISAN COFFEE PACKAGING',
-      title: 'Roast Packaging & Merchandise',
-      desc: 'Custom coffee bags, takeaway cups & brand collateral',
-      src: '/images/soul-brew/11.png',
-      alt: 'Artisan Roast Packaging & Merchandise'
-    },
-    {
-      category: '05 // LUXURY & LIFESTYLE',
-      title: 'Brand Architecture & Identity System',
-      desc: 'End-to-end visual system, typography & brand manual',
-      src: '/images/bondwith/bondwith_page_17.jpg',
-      alt: 'Intimacy Brand Architecture & Tactile Print'
-    },
-    {
-      category: '06 // BRAND STRATEGY',
-      title: 'Visual Audit & Category Landscape',
-      desc: 'Competitor audit, market positioning & strategic territory',
-      src: '/images/think/category_audit.jpeg',
-      alt: 'Strategic Visual Audit & Category Mapping'
-    }
-  ];
-
   return (
     <>
       <div ref={pageRef}>
         <RegistrationMarks />
         <Navbar />
 
-        {/* Hero Section */}
+        {/* Hero & Manifesto Section */}
         <section className="hero-lite">
           <div className="wrap">
             <div className="sheet-label">
-              <span className="tag">SHEET 05 // STUDIO MANIFESTO</span>
+              <span className="tag">SHEET 05 // ABOUT THE STUDIO</span>
               <div className="rule"></div>
             </div>
-            <h1>Built on architectural discipline, <em>pure typography</em> &amp; clean code.</h1>
-            <p>The Drawing Board is an independent design engineering studio. We partner with ambitious founders to build enduring visual identity systems, tactile packaging, and high-conversion digital experiences.</p>
-            <p style={{ marginTop: '14px' }}>
+
+            <h1 style={{ marginBottom: '24px' }}>
+              Built on architectural discipline, <em>pure typography</em> &amp; clean code.
+            </h1>
+
+            {/* Framer About Manifesto Text */}
+            <div style={{ maxWidth: '960px', margin: '0 0 24px 0' }}>
+              <p style={{
+                fontSize: 'clamp(16px, 2.2vw, 21px)',
+                fontFamily: "'Schibsted Grotesk', sans-serif",
+                fontWeight: 800,
+                color: 'var(--ink)',
+                lineHeight: 1.4,
+                letterSpacing: '0.01em',
+                textTransform: 'uppercase',
+                marginBottom: '18px'
+              }}>
+                THE DRAWING BOARDS EXISTS TO CLOSE A FRUSTRATING GAP: EXTRAORDINARY PRODUCTS HELD DOWN BY ORDINARY BRANDING. WE HELP FOUNDERS TO BUILD BRANDS THAT STAND OUT WITHOUT LOSING CLARITY, CONVICTION, OR SCALE.
+              </p>
+
+              <p style={{
+                fontSize: 'clamp(15px, 2vw, 19px)',
+                fontFamily: "'Schibsted Grotesk', sans-serif",
+                fontWeight: 700,
+                color: 'var(--ink-soft)',
+                lineHeight: 1.45,
+                letterSpacing: '0.01em',
+                textTransform: 'uppercase',
+                margin: 0
+              }}>
+                WE'RE A CREATIVE AGENCY BUILT FOR BRANDS THAT WANT MORE THAN SURFACE-LEVEL DESIGN. WITH ROOTS IN BRANDING, DESIGN, DEVELOPMENT, AND PHOTOGRAPHY — WE BRING CLARITY, BEAUTY, AND IMPACT TO EVERY PROJECT.
+              </p>
+            </div>
+
+            {/* Small Profile Circular Avatars & Social Proof Strip */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginTop: '24px', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img
+                  src="/images/studio/studio_about_04.jpg"
+                  alt="Client Profile 1"
+                  style={{ width: '44px', height: '44px', borderRadius: '50%', border: '2px solid var(--paper)', objectFit: 'cover', marginLeft: 0 }}
+                />
+                <img
+                  src="/images/studio/studio_about_05.jpg"
+                  alt="Client Profile 2"
+                  style={{ width: '44px', height: '44px', borderRadius: '50%', border: '2px solid var(--paper)', objectFit: 'cover', marginLeft: '-12px' }}
+                />
+                <img
+                  src="/images/studio/studio_about_06.jpg"
+                  alt="Client Profile 3"
+                  style={{ width: '44px', height: '44px', borderRadius: '50%', border: '2px solid var(--paper)', objectFit: 'cover', marginLeft: '-12px' }}
+                />
+                <img
+                  src="/images/studio/studio_about_07.webp"
+                  alt="Client Profile 4"
+                  style={{ width: '44px', height: '44px', borderRadius: '50%', border: '2px solid var(--paper)', objectFit: 'cover', marginLeft: '-12px' }}
+                />
+                <div
+                  style={{
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '50%',
+                    border: '2px solid var(--paper)',
+                    background: '#000000',
+                    color: '#FFFFFF',
+                    fontSize: '12px',
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontWeight: 700,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginLeft: '-12px'
+                  }}
+                >
+                  65+
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
+                <div style={{ color: '#000000', letterSpacing: '2px', fontSize: '14px', lineHeight: 1 }}>
+                  ★★★★★
+                </div>
+                <div className="mono" style={{ fontSize: '12.5px', color: 'var(--ink)', fontWeight: 600 }}>
+                  Trusted by clients worldwide
+                </div>
+              </div>
+            </div>
+
+            {/* WhatsApp Link */}
+            <p style={{ marginTop: '20px' }}>
               <a className="btn-link" href="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" target="_blank" rel="noopener noreferrer" style={{ fontSize: '14.5px', color: 'var(--pine)', fontWeight: 600 }}>
                 Prefer WhatsApp for discussion →
               </a>
             </p>
 
             {/* Stat Strip */}
-            <div className="stat-strip">
+            <div className="stat-strip" style={{ marginTop: '36px' }}>
               <div className="stat">
                 <div className="num">50+</div>
                 <div className="lbl">Brands Launched</div>
@@ -208,54 +211,8 @@ export default function Studio() {
           </div>
         </section>
 
-        {/* Studio Craft & Environment Photo Grid */}
-        <section style={{ borderTop: '1px solid var(--ink)' }}>
-          <div className="wrap">
-            <div className="section-head">
-              <div>
-                <div className="eyebrow">INSIDE THE ATELIER</div>
-                <h2>Where strategy meets physical &amp; digital craft.</h2>
-              </div>
-              <p>A glimpse into our studio space, design explorations, and technical workflows.</p>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
-              {studioGallery.map((item, idx) => (
-                <div key={idx} style={{ border: '1px solid var(--ink)', overflow: 'hidden', background: 'var(--card)', borderRadius: '2px', display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ width: '100%', height: '240px', overflow: 'hidden', background: 'var(--paper-line)' }}>
-                    <img
-                      src={item.src}
-                      alt={item.alt}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        display: 'block',
-                        transition: 'transform 0.4s ease'
-                      }}
-                      onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.03)'}
-                      onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.0)'}
-                    />
-                  </div>
-                  <div style={{ padding: '16px 18px', borderTop: '1px solid var(--paper-line)', background: 'var(--paper)', flexGrow: 1 }}>
-                    <div className="mono" style={{ fontSize: '11px', color: 'var(--pine)', fontWeight: 700, marginBottom: '6px' }}>
-                      {item.category}
-                    </div>
-                    <h4 style={{ fontSize: '16px', fontFamily: "'Schibsted Grotesk', sans-serif", fontWeight: 700, margin: '0 0 6px 0', color: 'var(--ink)' }}>
-                      {item.title}
-                    </h4>
-                    <p style={{ fontSize: '12.5px', color: 'var(--ink-soft)', margin: 0, lineHeight: 1.5 }}>
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Our Process Section */}
-        <section style={{ background: 'var(--card)', borderTop: '1px solid var(--ink)', borderBottom: '1px solid var(--ink)' }}>
+        <section style={{ background: 'var(--paper)', borderTop: '1px solid var(--ink)', borderBottom: '1px solid var(--ink)' }}>
           <div className="wrap">
             <div className="section-head">
               <div>
@@ -267,7 +224,7 @@ export default function Studio() {
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
               {processSteps.map((p, idx) => (
-                <div key={idx} style={{ border: '1px solid var(--ink)', padding: '24px', background: 'var(--paper)', borderRadius: '2px', position: 'relative' }}>
+                <div key={idx} style={{ border: '1px solid var(--ink)', padding: '24px', background: 'var(--card)', borderRadius: '2px', position: 'relative' }}>
                   <div className="mono" style={{ fontSize: '28px', fontWeight: 800, color: 'var(--pine)', marginBottom: '12px', opacity: 0.9 }}>
                     {p.step}
                   </div>
@@ -277,54 +234,6 @@ export default function Studio() {
                   <p style={{ fontSize: '13.5px', color: 'var(--ink-soft)', lineHeight: 1.6, margin: 0 }}>
                     {p.desc}
                   </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Team Section: The People Behind the Craft */}
-        <section style={{ borderBottom: '1px solid var(--ink)' }}>
-          <div className="wrap">
-            <div className="section-head">
-              <div>
-                <div className="eyebrow">OUR TEAM</div>
-                <h2>The People Behind the Craft.</h2>
-              </div>
-              <p>A diverse mix of strategists, designers, developers, and creators — united by curiosity, craft, and care.</p>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
-              {teamMembers.map((member, idx) => (
-                <div key={idx} style={{ border: '1px solid var(--ink)', background: 'var(--card)', borderRadius: '2px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ width: '100%', height: '320px', overflow: 'hidden', background: '#000' }}>
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        display: 'block',
-                        transition: 'transform 0.4s ease'
-                      }}
-                      onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.04)'}
-                      onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.0)'}
-                    />
-                  </div>
-                  <div style={{ padding: '20px', background: 'var(--paper)', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                    <div>
-                      <div className="mono" style={{ fontSize: '11px', color: 'var(--pine)', fontWeight: 700, textTransform: 'uppercase', marginBottom: '6px' }}>
-                        // {member.role}
-                      </div>
-                      <h3 style={{ fontSize: '19px', fontFamily: "'Schibsted Grotesk', sans-serif", fontWeight: 700, margin: '0 0 10px 0', color: 'var(--ink)' }}>
-                        {member.name}
-                      </h3>
-                      <p style={{ fontSize: '13px', color: 'var(--ink-soft)', lineHeight: 1.55, margin: 0 }}>
-                        {member.bio}
-                      </p>
-                    </div>
-                  </div>
                 </div>
               ))}
             </div>
