@@ -49,7 +49,7 @@ export default function Studio() {
     {
       name: 'Omisha Ghandi',
       role: 'Creative Head',
-      image: '/images/studio/studio_about_07.webp'
+      image: '/images/studio/omisha_ghandi.webp'
     }
   ];
 
