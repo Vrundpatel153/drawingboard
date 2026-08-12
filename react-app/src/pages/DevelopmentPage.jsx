@@ -2095,38 +2095,45 @@ export default function DevelopmentPage() {
                       <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#27C93F', display: 'inline-block' }}></span>
                     </div>
                     <div className="url" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '11.5px', color: 'var(--ink-soft)', wordBreak: 'break-all' }}>
-                      yourbrand.com — scroll states
+                      yourbrand.com — interactive UI &amp; scroll states
                     </div>
                   </div>
 
                   <div className="demo-body">
-                    {/* Empty Single Browser Frame */}
+                    {/* Immersive Video Browser Frame */}
                     <div
-                      className="exp-stage"
+                      className="exp-video-frame"
                       style={{
                         width: '100%',
-                        height: '360px',
-                        border: '1px dashed var(--ink)',
+                        border: '1px solid var(--ink)',
                         borderRadius: '2px',
+                        overflow: 'hidden',
                         background: '#FFFFFF',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justify: 'center',
-                        alignItems: 'center',
-                        padding: '24px',
-                        textAlign: 'center'
+                        padding: '12px',
+                        boxShadow: 'inset 0 0 0 1px var(--paper-line)'
                       }}
                     >
-                      <div className="mono" style={{ fontSize: '11px', color: 'var(--pine)', fontWeight: 700, letterSpacing: '1px', marginBottom: '8px' }}>
-                        // INTERACTIVE EXPERIENCE FRAME
-                      </div>
-                      <div style={{ fontSize: '18px', fontFamily: "'Schibsted Grotesk', sans-serif", fontWeight: 700, color: 'var(--ink)', marginBottom: '8px' }}>
-                        Custom Kinetic &amp; Interactive Web Engine
-                      </div>
-                      <div style={{ fontSize: '13px', color: 'var(--ink-soft)', maxWidth: '380px', lineHeight: 1.5 }}>
-                        Scroll-triggered storytelling, WebGL canvas motion, 3D product stages, and bespoke interaction design.
-                      </div>
+                      <video
+                        src="/images/development/immersive_video.mp4"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        controls
+                        style={{
+                          width: '100%',
+                          height: 'auto',
+                          maxHeight: '460px',
+                          objectFit: 'contain',
+                          display: 'block',
+                          margin: '0 auto',
+                          borderRadius: '2px'
+                        }}
+                      />
                     </div>
+                    <p style={{ marginTop: '12px', fontSize: '12.5px', fontFamily: "'IBM Plex Mono', monospace", color: 'var(--ink-soft)', textAlign: 'center' }}>
+                      ↳ Live kinetic scroll interactions &amp; interactive motion demo.
+                    </p>
                   </div>
                 </div>
               </div>
