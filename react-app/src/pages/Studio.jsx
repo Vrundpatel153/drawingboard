@@ -90,102 +90,118 @@ export default function Studio() {
               <div className="rule"></div>
             </div>
 
-            <h1 style={{ marginBottom: '24px' }}>
-              Built on architectural discipline, <em>pure typography</em> &amp; clean code.
-            </h1>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '40px', alignItems: 'start', marginTop: '16px' }}>
+              {/* Left Column: Title, Copy & WhatsApp */}
+              <div>
+                <h1 style={{ marginBottom: '24px', fontSize: 'clamp(32px, 4.5vw, 56px)', lineHeight: 1.1 }}>
+                  Built on architectural discipline, <em>pure typography</em> &amp; clean code.
+                </h1>
 
-            {/* Framer About Manifesto Text */}
-            <div style={{ maxWidth: '960px', margin: '0 0 24px 0' }}>
-              <p style={{
-                fontSize: 'clamp(16px, 2.2vw, 21px)',
-                fontFamily: "'Schibsted Grotesk', sans-serif",
-                fontWeight: 800,
-                color: 'var(--ink)',
-                lineHeight: 1.4,
-                letterSpacing: '0.01em',
-                textTransform: 'uppercase',
-                marginBottom: '18px'
-              }}>
-                THE DRAWING BOARDS EXISTS TO CLOSE A FRUSTRATING GAP: EXTRAORDINARY PRODUCTS HELD DOWN BY ORDINARY BRANDING. WE HELP FOUNDERS TO BUILD BRANDS THAT STAND OUT WITHOUT LOSING CLARITY, CONVICTION, OR SCALE.
-              </p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '18px', marginBottom: '24px' }}>
+                  <p style={{
+                    fontSize: 'clamp(15px, 1.8vw, 17.5px)',
+                    fontFamily: "'Schibsted Grotesk', sans-serif",
+                    fontWeight: 500,
+                    color: 'var(--ink)',
+                    lineHeight: 1.65,
+                    margin: 0
+                  }}>
+                    The Drawing Board exists to close a frustrating gap: extraordinary products held down by ordinary branding. We help ambitious founders build brands that stand out without losing clarity, conviction, or scale.
+                  </p>
 
-              <p style={{
-                fontSize: 'clamp(15px, 2vw, 19px)',
-                fontFamily: "'Schibsted Grotesk', sans-serif",
-                fontWeight: 700,
-                color: 'var(--ink-soft)',
-                lineHeight: 1.45,
-                letterSpacing: '0.01em',
-                textTransform: 'uppercase',
-                margin: 0
-              }}>
-                WE'RE A CREATIVE AGENCY BUILT FOR BRANDS THAT WANT MORE THAN SURFACE-LEVEL DESIGN. WITH ROOTS IN BRANDING, DESIGN, DEVELOPMENT, AND PHOTOGRAPHY — WE BRING CLARITY, BEAUTY, AND IMPACT TO EVERY PROJECT.
-              </p>
-            </div>
-
-            {/* Small Profile Circular Avatars & Social Proof Strip */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginTop: '24px', flexWrap: 'wrap' }}>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img
-                  src="/images/studio/studio_about_04.jpg"
-                  alt="Client Profile 1"
-                  style={{ width: '44px', height: '44px', borderRadius: '50%', border: '2px solid var(--paper)', objectFit: 'cover', marginLeft: 0 }}
-                />
-                <img
-                  src="/images/studio/studio_about_05.jpg"
-                  alt="Client Profile 2"
-                  style={{ width: '44px', height: '44px', borderRadius: '50%', border: '2px solid var(--paper)', objectFit: 'cover', marginLeft: '-12px' }}
-                />
-                <img
-                  src="/images/studio/studio_about_06.jpg"
-                  alt="Client Profile 3"
-                  style={{ width: '44px', height: '44px', borderRadius: '50%', border: '2px solid var(--paper)', objectFit: 'cover', marginLeft: '-12px' }}
-                />
-                <img
-                  src="/images/studio/studio_about_07.webp"
-                  alt="Client Profile 4"
-                  style={{ width: '44px', height: '44px', borderRadius: '50%', border: '2px solid var(--paper)', objectFit: 'cover', marginLeft: '-12px' }}
-                />
-                <div
-                  style={{
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '50%',
-                    border: '2px solid var(--paper)',
-                    background: '#000000',
-                    color: '#FFFFFF',
-                    fontSize: '12px',
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontWeight: 700,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginLeft: '-12px'
-                  }}
-                >
-                  65+
+                  <p style={{
+                    fontSize: 'clamp(14.5px, 1.6vw, 16.5px)',
+                    fontFamily: "'Schibsted Grotesk', sans-serif",
+                    fontWeight: 400,
+                    color: 'var(--ink-soft)',
+                    lineHeight: 1.65,
+                    margin: 0
+                  }}>
+                    We're a creative engineering studio built for brands that want more than surface-level design. With deep roots in strategy, branding, digital engineering, and commercial photography — we bring clarity, beauty, and measurable impact to every project.
+                  </p>
                 </div>
+
+                <p style={{ margin: 0 }}>
+                  <a className="btn-link" href="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" target="_blank" rel="noopener noreferrer" style={{ fontSize: '14.5px', color: 'var(--pine)', fontWeight: 600 }}>
+                    Prefer WhatsApp for discussion →
+                  </a>
+                </p>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
-                <div style={{ color: '#000000', letterSpacing: '2px', fontSize: '14px', lineHeight: 1 }}>
-                  ★★★★★
+              {/* Right Column: Social Proof Card */}
+              <div style={{
+                border: '1px solid var(--ink)',
+                padding: '28px 24px',
+                background: 'var(--paper)',
+                borderRadius: '2px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '20px',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.03)'
+              }}>
+                <div className="mono" style={{ fontSize: '11px', color: 'var(--pine)', fontWeight: 700, letterSpacing: '1px' }}>
+                  // CLIENT CONFIDENCE &amp; REPUTATION
                 </div>
-                <div className="mono" style={{ fontSize: '12.5px', color: 'var(--ink)', fontWeight: 600 }}>
-                  Trusted by clients worldwide
+
+                {/* Avatar Stack */}
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <img
+                    src="/images/studio/studio_about_04.jpg"
+                    alt="Client Profile 1"
+                    style={{ width: '48px', height: '48px', borderRadius: '50%', border: '2px solid var(--paper)', objectFit: 'cover', marginLeft: 0 }}
+                  />
+                  <img
+                    src="/images/studio/studio_about_05.jpg"
+                    alt="Client Profile 2"
+                    style={{ width: '48px', height: '48px', borderRadius: '50%', border: '2px solid var(--paper)', objectFit: 'cover', marginLeft: '-12px' }}
+                  />
+                  <img
+                    src="/images/studio/studio_about_06.jpg"
+                    alt="Client Profile 3"
+                    style={{ width: '48px', height: '48px', borderRadius: '50%', border: '2px solid var(--paper)', objectFit: 'cover', marginLeft: '-12px' }}
+                  />
+                  <img
+                    src="/images/studio/studio_about_07.webp"
+                    alt="Client Profile 4"
+                    style={{ width: '48px', height: '48px', borderRadius: '50%', border: '2px solid var(--paper)', objectFit: 'cover', marginLeft: '-12px' }}
+                  />
+                  <div
+                    style={{
+                      width: '48px',
+                      height: '48px',
+                      borderRadius: '50%',
+                      border: '2px solid var(--paper)',
+                      background: '#000000',
+                      color: '#FFFFFF',
+                      fontSize: '13px',
+                      fontFamily: "'IBM Plex Mono', monospace",
+                      fontWeight: 700,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginLeft: '-12px'
+                    }}
+                  >
+                    65+
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  <div style={{ color: '#000000', letterSpacing: '3px', fontSize: '18px', lineHeight: 1 }}>
+                    ★★★★★
+                  </div>
+                  <div className="mono" style={{ fontSize: '13px', color: 'var(--ink)', fontWeight: 700 }}>
+                    Trusted by founders &amp; brands worldwide
+                  </div>
+                  <p style={{ fontSize: '12.5px', color: 'var(--ink-soft)', margin: '4px 0 0 0', lineHeight: 1.5 }}>
+                    Senior-led team delivering brand identity, custom web engineering, and commercial creative direction.
+                  </p>
                 </div>
               </div>
             </div>
-
-            {/* WhatsApp Link */}
-            <p style={{ marginTop: '20px' }}>
-              <a className="btn-link" href="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" target="_blank" rel="noopener noreferrer" style={{ fontSize: '14.5px', color: 'var(--pine)', fontWeight: 600 }}>
-                Prefer WhatsApp for discussion →
-              </a>
-            </p>
 
             {/* Stat Strip */}
-            <div className="stat-strip" style={{ marginTop: '36px' }}>
+            <div className="stat-strip" style={{ marginTop: '48px' }}>
               <div className="stat">
                 <div className="num">50+</div>
                 <div className="lbl">Brands Launched</div>
