@@ -150,7 +150,7 @@ export default function Services() {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '8px' }}>
                   <div className="annot-title" style={{ margin: 0 }}>ENGAGEMENT SPECS</div>
                   
-                  {/* Currency Toggle Switch (USD default on Left, INR on Right) */}
+                  {/* 3-Way Currency Toggle Switch ($ USD / £ GBP / ₹ INR) */}
                   <div style={{ display: 'inline-flex', padding: '2px', background: 'var(--paper)', border: '1px solid var(--ink)', borderRadius: '2px', gap: '2px' }}>
                     <button
                       type="button"
@@ -160,15 +160,32 @@ export default function Services() {
                         color: currency === 'USD' ? 'var(--paper)' : 'var(--ink-soft)',
                         border: 'none',
                         fontFamily: "'IBM Plex Mono', monospace",
-                        fontSize: '9.5px',
+                        fontSize: '8.5px',
                         fontWeight: 700,
-                        letterSpacing: '0.06em',
-                        padding: '3px 9px',
+                        letterSpacing: '0.04em',
+                        padding: '2px 6px',
                         cursor: 'pointer',
                         transition: 'all 0.15s ease',
                         borderRadius: '1px'
                       }}
                     >$ USD</button>
+                    <button
+                      type="button"
+                      onClick={() => setCurrency('GBP')}
+                      style={{
+                        background: currency === 'GBP' ? 'var(--ink)' : 'transparent',
+                        color: currency === 'GBP' ? 'var(--paper)' : 'var(--ink-soft)',
+                        border: 'none',
+                        fontFamily: "'IBM Plex Mono', monospace",
+                        fontSize: '8.5px',
+                        fontWeight: 700,
+                        letterSpacing: '0.04em',
+                        padding: '2px 6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s ease',
+                        borderRadius: '1px'
+                      }}
+                    >£ GBP</button>
                     <button
                       type="button"
                       onClick={() => setCurrency('INR')}
@@ -177,10 +194,10 @@ export default function Services() {
                         color: currency === 'INR' ? 'var(--paper)' : 'var(--ink-soft)',
                         border: 'none',
                         fontFamily: "'IBM Plex Mono', monospace",
-                        fontSize: '9.5px',
+                        fontSize: '8.5px',
                         fontWeight: 700,
-                        letterSpacing: '0.06em',
-                        padding: '3px 9px',
+                        letterSpacing: '0.04em',
+                        padding: '2px 6px',
                         cursor: 'pointer',
                         transition: 'all 0.15s ease',
                         borderRadius: '1px'
@@ -189,14 +206,14 @@ export default function Services() {
                   </div>
                 </div>
 
-                {/* Service Rows with Guaranteed Tabular Non-Jumping Alignment */}
+                {/* Service Rows with Guaranteed Tabular Alignment */}
                 {servicesData.map((s) => (
                   <div className="engagement-specs-row" key={s.id}>
                     <Link to={`/services/${s.slug}`} className="engagement-specs-title">
                       {s.title}
                     </Link>
                     <div className="engagement-specs-price">
-                      From {currency === 'USD' ? s.startingPrice : s.startingPriceINR}
+                      From {currency === 'USD' ? s.startingPrice : currency === 'GBP' ? (s.startingPriceGBP || s.startingPrice) : s.startingPriceINR}
                     </div>
                   </div>
                 ))}

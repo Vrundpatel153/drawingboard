@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import MoreServicesSection from '../components/MoreServicesSection';
+import StickyMobileCTA from '../components/StickyMobileCTA';
 import { WHATSAPP_URL } from '../utils/siteConfig';
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -504,7 +505,7 @@ export default function BrandingPage() {
         .bp-tier-price .amt { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 600; color: var(--pine); }
         .bp-tier-price .per { font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; }
         .bp-currency-toggle { display: flex; gap: 4px; }
-        .bp-curr-btn { background: transparent; border: 1px solid var(--ink); padding: 3px 8px; font-size: 10.5px; cursor: pointer; color: var(--ink); border-radius: 2px; font-family: 'IBM Plex Mono', monospace; transition: all 0.15s; }
+        .bp-curr-btn { background: transparent; border: 1px solid var(--ink); padding: 2px 6px; font-size: 8.5px; cursor: pointer; color: var(--ink); border-radius: 2px; font-family: 'IBM Plex Mono', monospace; transition: all 0.15s; letter-spacing: 0.03em; }
         .bp-curr-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); font-weight: 600; }
         .bp-deliv-bar { display: flex; justify-content: space-between; align-items: center; padding: 12px 28px; background: rgba(27,27,23,0.04); border-bottom: 1px dashed var(--paper-line); }
         .bp-tier-slide { width: 100%; flex-shrink: 0; padding: 20px 28px; min-height: 240px; display: flex; flex-direction: column; justify-content: flex-start; }
@@ -528,11 +529,6 @@ export default function BrandingPage() {
         .bp-marquee-item img { height: 28px; width: auto; opacity: 0.75; filter: grayscale(100%) brightness(180%); transition: opacity 0.2s, filter 0.2s; }
         .bp-marquee-item img:hover { opacity: 1; filter: grayscale(0%) brightness(100%); }
         @keyframes bp-scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        /* Sticky Mobile CTA */
-        .bp-sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: var(--paper); border-top: 1px solid var(--ink); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-        .bp-sticky-cta .bp-txt { font-size: 12px; color: var(--ink-soft); font-family: 'IBM Plex Mono', monospace; }
-        .bp-sticky-cta .bp-txt b { display: block; font-size: 14px; color: var(--ink); font-family: 'Inter', sans-serif; }
 
         /* ── Comprehensive Mobile Responsive Overrides (< 768px) ── */
         @media (max-width: 768px) {
@@ -632,9 +628,6 @@ export default function BrandingPage() {
           .bp-sp-badge-stats { gap: 14px !important; }
           .bp-sp-stat-num { font-size: 16px !important; }
           .bp-sp-stat-lbl { font-size: 8.5px !important; }
-        }
-        @media (min-width: 769px) {
-          .bp-sticky-cta { display: none !important; }
         }
       `}</style>
 
@@ -1981,43 +1974,12 @@ export default function BrandingPage() {
       </main>
 
       {/* ── STICKY MOBILE CTA ────────────────────────────────────────── */}
-      <div className="bp-sticky-cta">
-        <div className="bp-txt">
-          Projects from $4,960 (₹4,75,000)/-
-          <b>Free 15-min call</b>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Contact on WhatsApp"
-            className="wa-btn"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '38px',
-              height: '38px',
-              minWidth: '38px',
-              backgroundColor: '#25D366',
-              borderRadius: '4px',
-              color: '#ffffff',
-              flexShrink: 0,
-              padding: 0,
-              textDecoration: 'none'
-            }}
-          >
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="#ffffff" style={{ width: '22px', height: '22px', display: 'block', fill: '#ffffff' }}>
-              <path
-                fill="#ffffff"
-                d="M12.031 2C6.49 2 2 6.491 2 12.029c0 1.947.558 3.766 1.523 5.308L2 22l4.823-1.46c1.512.923 3.284 1.455 5.208 1.455C17.57 22 22 17.509 22 11.97 21.999 6.491 17.57 2 12.031 2zm0 18.064c-1.745 0-3.353-.489-4.717-1.332l-.337-.21-2.817.852.868-2.656-.23-.368c-.923-1.472-1.442-3.21-1.442-5.08 0-4.992 4.062-9.052 9.06-9.052 4.998 0 9.057 4.06 9.057 9.052.001 4.997-4.06 9.058-9.042 9.058zm5.086-6.666c-.28-.14-1.649-.813-1.903-.906-.254-.093-.44-.14-.627.14-.187.28-.722.906-.886 1.093-.163.186-.328.21-.608.07-.28-.14-1.18-.435-2.247-1.385-.83-.74-1.39-1.656-1.553-1.936-.163-.28-.018-.431.122-.571.127-.126.28-.327.42-.49.14-.163.187-.28.28-.466.094-.187.047-.35-.024-.49-.07-.14-.627-1.508-.859-2.07-.226-.543-.456-.468-.627-.477-.163-.008-.35-.01-.537-.01-.187 0-.49.07-.747.35-.257.28-1.028.98-1.028 2.392s1.028 2.776 1.17 2.964c.14.186 2.019 3.084 4.89 4.324.683.295 1.218.47 1.633.602.686.218 1.31.187 1.803.114.549-.08 1.65-.675 1.884-1.326.234-.65.234-1.21.164-1.325-.07-.116-.257-.186-.537-.326z"
-              />
-            </svg>
-          </a>
-          <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'var(--pine)', fontWeight: 600, fontSize: '13px' }}>Book now →</a>
-        </div>
-      </div>
+      <StickyMobileCTA
+        title="Brand engagements from $4,960 (₹4,75,000)"
+        subtitle="Free 15-min discovery call"
+        buttonText="Book a call →"
+        link="https://cal.com/dandelion-nrvrze"
+      />
 
       {/* ── LIGHTBOX MODAL OVERLAY FOR THINK GRID IMAGES ───────────── */}
       {lightboxImage && (

@@ -2216,5 +2216,64 @@ header {
   .case-card:hover, .article-card:hover { transform: none; box-shadow: none; }
 }
 
+/* ── Universal Arrow System (Bold, Prominent, Crisp Across Site) ── */
+.seq-stage:not(:last-child)::after,
+.dev-bp-page .seq-stage:not(:last-child)::after {
+  content: '→' !important;
+  position: absolute !important;
+  right: -12px !important;
+  top: 24px !important;
+  color: var(--marker, #B8412E) !important;
+  font-family: 'IBM Plex Mono', monospace, sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  z-index: 5 !important;
+  transform: scaleX(1.2);
+}
+
+.decision-row .arrow,
+.dev-bp-page .decision-row .arrow {
+  color: var(--marker, #B8412E) !important;
+  font-family: 'IBM Plex Mono', monospace, sans-serif !important;
+  font-weight: 900 !important;
+  font-size: 20px !important;
+  display: inline-block !important;
+  transform: scaleX(1.2);
+}
+
+.decision-row .tech::before,
+.dev-bp-page .decision-row .tech::before {
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  margin-right: 6px !important;
+  display: inline-block !important;
+}
+
+.btn-primary .arrow,
+.btn-secondary .arrow,
+.btn-link .arrow,
+.bp-btn-primary .arrow,
+.bp-btn-link .arrow,
+a .arrow,
+button .arrow,
+.arrow-icon {
+  font-family: 'IBM Plex Mono', system-ui, sans-serif !important;
+  font-size: 1.15em !important;
+  font-weight: 800 !important;
+  display: inline-block !important;
+  margin-left: 4px !important;
+  transition: transform 0.2s ease !important;
+}
+
+.btn-primary:hover .arrow,
+.btn-link:hover .arrow,
+.bp-btn-primary:hover .arrow,
+.bp-btn-link:hover .arrow,
+a:hover .arrow,
+button:hover .arrow {
+  transform: translateX(4px) !important;
+}
+
 /* ── end of stylesheet ── */
 

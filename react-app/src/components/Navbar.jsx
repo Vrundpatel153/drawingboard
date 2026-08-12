@@ -78,7 +78,7 @@ export default function Navbar() {
       <header ref={headerRef}>
         <div className={`nav${scrolled ? ' nav--scrolled' : ''}`}>
           <Link to="/" className="logo-mark" onClick={() => setOpen(false)} aria-label="The Drawing Board Home">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="28 138 290 56" className="nav-full-logo-svg" style={{ height: '34px', width: 'auto', display: 'block' }}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="25 138 320 56" className="nav-full-logo-svg" style={{ height: '30px', width: 'auto', display: 'block', maxWidth: '100%' }}>
               <rect x="30.445" y="142.642" fill="#A19071" width="44.42" height="25.732"/>
               <rect x="30.445" y="159.392" fill="#A19071" width="22.685" height="30.341"/>
               <text transform="matrix(1 0 0 1 78.917 167.3428)" fill="var(--ink)" font-family="'Constantia', 'Fraunces', serif" font-size="22.8942">THE DRAWING BOARD</text>
@@ -127,7 +127,7 @@ export default function Navbar() {
         {/* Drawer header */}
         <div className="mobile-nav__head">
           <Link to="/" className="logo-mark" onClick={() => setOpen(false)} aria-label="The Drawing Board Home">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="28 138 290 56" className="nav-full-logo-svg" style={{ height: '32px', width: 'auto', display: 'block' }}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="25 138 320 56" className="nav-full-logo-svg" style={{ height: '26px', width: 'auto', display: 'block', maxWidth: '100%' }}>
               <rect x="30.445" y="142.642" fill="#A19071" width="44.42" height="25.732"/>
               <rect x="30.445" y="159.392" fill="#A19071" width="22.685" height="30.341"/>
               <text transform="matrix(1 0 0 1 78.917 167.3428)" fill="var(--ink)" font-family="'Constantia', 'Fraunces', serif" font-size="22.8942">THE DRAWING BOARD</text>

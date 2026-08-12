@@ -93,19 +93,19 @@ export default function DevelopmentPage() {
       tag: 'RECOMMENDED',
       title: 'Commerce',
       desc: 'Built for brands where the website is part storefront, part salesperson.',
-      price: '$1,200 (₹96,000)'
+      price: '$1,200 / £895 (₹1,14,516)'
     },
     experience: {
       tag: 'RECOMMENDED',
       title: 'Experience',
       desc: 'Built for brands where being remembered matters as much as being understood.',
-      price: '$1,850 (₹1,45,000)'
+      price: '$1,500 / £1,120 (₹1,43,145)'
     },
     systems: {
       tag: 'RECOMMENDED',
       title: 'Systems',
       desc: "Built when the website isn't really a website anymore — it's a product.",
-      price: 'Starting $2,800 (₹2,25,000)'
+      price: 'Starting $2,800 / £2,090 (₹2,67,204)'
     }
   };
 
@@ -133,7 +133,7 @@ export default function DevelopmentPage() {
   const faqs = [
     {
       q: 'How much does a website cost?',
-      a: "Shopify builds are fixed at $1,200 (₹96,000), custom website builds at $1,850 (₹1,45,000), and custom platform systems starting from $2,800 (₹2,25,000). Exact investment depends on catalog size, page count, integrations, and complexity — we'll give you an exact figure after understanding scope."
+      a: "Shopify builds are fixed at $1,200 / £895 (₹1,14,516), custom website builds at $1,500 / £1,120 (₹1,43,145), and custom platform systems starting from $2,800 / £2,090 (₹2,67,204). Exact investment depends on catalog size, page count, integrations, and complexity — we'll give you an exact figure after understanding scope."
     },
     {
       q: 'Why does custom development cost more than a template?',
@@ -177,7 +177,7 @@ export default function DevelopmentPage() {
     },
     {
       q: 'Do you work with international clients?',
-      a: 'Yes, regularly. Pricing is shown in INR with approximate USD/GBP conversions, and calls are scheduled across time zones.'
+      a: 'Yes, regularly. All pricing is specified in USD ($), GBP (£), and INR (₹) based on current market rates (1 USD = 95.43 INR, 1 GBP = 128.88 INR / 1.34 USD), and calls are scheduled conveniently across time zones.'
     },
     {
       q: 'What do you need from us before starting?',
@@ -301,11 +301,11 @@ export default function DevelopmentPage() {
   const getEstResult = () => {
     if (!estState.need || !estState.complexity || !estState.brand || !estState.copy) return null;
     const estMap = {
-      'Shopify / E-Commerce': { title: 'Shopify / E-Commerce', price: '₹95,000+', time: '3–5 weeks' },
-      'Immersive Website': { title: 'Immersive Experience', price: '₹1,50,000+', time: '4–7 weeks' },
-      'Custom Platform': { title: 'Custom Platform / Systems', price: 'Starting ₹2,25,000', time: '6–12+ weeks' }
+      'Shopify / E-Commerce': { title: 'Shopify / E-Commerce', price: '$1,200 / £895 (₹1,14,516)', time: '3–5 weeks' },
+      'Immersive Website': { title: 'Immersive Experience', price: '$1,500 / £1,120 (₹1,43,145)', time: '4–7 weeks' },
+      'Custom Platform': { title: 'Custom Platform / Systems', price: 'Starting $2,800 / £2,090 (₹2,67,204)', time: '6–12+ weeks' }
     };
-    return estMap[estState.need] || { title: estState.need, price: 'Starting ₹95,000', time: '3–6 weeks' };
+    return estMap[estState.need] || { title: estState.need, price: 'Starting $1,200 / £895 (₹1,14,516)', time: '3–6 weeks' };
   };
 
   const estResult = getEstResult();
@@ -586,6 +586,118 @@ export default function DevelopmentPage() {
         }
         .dev-bp-page .price-note b {
           color: var(--ink);
+        }
+        .dev-price-blocks {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 10px;
+          margin-top: 18px;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+        .dev-price-chip {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          background: #FFFFFF;
+          border: 1px solid var(--ink, #1B1B17);
+          color: var(--ink, #1B1B17);
+          padding: 7px 13px;
+          border-radius: 2px;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+          transition: transform 0.15s ease, border-color 0.15s ease;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+        .dev-price-chip:hover {
+          transform: translateY(-1px);
+          border-color: var(--pine, #24463B);
+        }
+        .dev-chip-label {
+          font-family: 'IBM Plex Mono', monospace;
+          font-size: 10px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: #FFFFFF;
+          background: var(--pine, #24463B);
+          border: none;
+          padding: 3px 8px;
+          border-radius: 2px;
+          white-space: nowrap;
+        }
+        .dev-chip-price {
+          font-size: 12.5px;
+          color: #1B1B17;
+          font-family: 'IBM Plex Mono', monospace;
+          white-space: nowrap;
+        }
+        .dev-chip-price b {
+          font-weight: 700;
+          color: #1B1B17;
+        }
+        .dev-chip-price .inr-sub {
+          color: #5A584E;
+          font-size: 11.5px;
+          font-weight: 500;
+        }
+        .final-cta .dev-price-chip {
+          background: rgba(255, 255, 255, 0.08) !important;
+          border: 1px solid rgba(255, 255, 255, 0.25) !important;
+          color: #FFFFFF !important;
+          box-shadow: none !important;
+        }
+        .final-cta .dev-chip-label {
+          background: rgba(255, 255, 255, 0.2) !important;
+          border: 1px solid rgba(255, 255, 255, 0.3) !important;
+          color: #FFFFFF !important;
+        }
+        .final-cta .dev-chip-price {
+          color: #FFFFFF !important;
+        }
+        .final-cta .dev-chip-price b {
+          color: #FFFFFF !important;
+        }
+        .final-cta .dev-chip-price .inr-sub {
+          color: #CFE0DA !important;
+        }
+        @media (max-width: 600px) {
+          .dev-price-blocks {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 8px;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+          }
+          .dev-price-chip {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            padding: 9px 12px;
+          }
+          .dev-chip-label {
+            font-size: 10px;
+          }
+          .dev-chip-price {
+            font-size: 11.5px;
+            white-space: normal;
+            line-height: 1.4;
+            word-break: break-word;
+          }
+          .dev-bp-page .sheet-label {
+            flex-wrap: wrap;
+            gap: 8px;
+          }
+          .dev-bp-page .sheet-label .rule {
+            display: none;
+          }
         }
 
         .dev-bp-page .annot-card {
@@ -928,6 +1040,10 @@ export default function DevelopmentPage() {
         .bp-sp-vav { width: 32px; height: 32px; border-radius: 50%; background: var(--pine); color: var(--paper); display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 13px; font-weight: 600; flex-shrink: 0; }
         .bp-sp-vname { font-size: 13.5px; font-weight: 600; color: #fff; }
         .bp-sp-vrole { font-size: 11.5px; color: #8B8571; }
+        .bp-sp-wa-marquee-wrap { overflow: hidden; width: 100%; }
+        .bp-sp-wa-marquee-track { display: flex; gap: 16px; width: max-content; animation: bp-sp-marquee 40s linear infinite; }
+        .bp-sp-wa-marquee-track:hover { animation-play-state: paused; }
+        @keyframes bp-sp-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .bp-sp-quote-card { width: 340px; padding: 24px; }
         .bp-sp-stars { color: #E5A93C; font-size: 13px; margin-bottom: 8px; }
         .bp-sp-qs { font-family: 'Fraunces', serif; font-size: 32px; color: #7FB89F; line-height: 1; display: block; margin-bottom: -10px; }
@@ -1216,17 +1332,29 @@ export default function DevelopmentPage() {
         .dev-bp-page .spectrum-container {
           overflow-x: auto;
           -webkit-overflow-scrolling: touch;
-          padding: 10px 0 35px;
+          padding: 10px 0 45px;
+          position: relative;
+        }
+        .dev-bp-page .spectrum-container::-webkit-scrollbar {
+          height: 4px;
+        }
+        .dev-bp-page .spectrum-container::-webkit-scrollbar-track {
+          background: var(--paper-deep);
+          border-radius: 2px;
+        }
+        .dev-bp-page .spectrum-container::-webkit-scrollbar-thumb {
+          background: var(--pine-soft);
+          border-radius: 2px;
         }
         .dev-bp-page .spectrum-inner {
-          min-width: 680px;
-          padding: 0 30px;
+          min-width: 900px;
+          padding: 0 40px;
         }
         .dev-bp-page .spectrum-line {
           position: relative;
           height: 2px;
           background: var(--paper-line);
-          margin: 50px 0 30px;
+          margin: 60px 0 55px;
         }
         .dev-bp-page .spectrum-marker {
           position: absolute;
@@ -1244,13 +1372,18 @@ export default function DevelopmentPage() {
         }
         .dev-bp-page .spectrum-label {
           position: absolute;
-          top: 20px;
           transform: translateX(-50%);
           font-size: 11px;
           font-family: var(--mono);
           color: var(--ink-soft);
           white-space: nowrap;
           text-align: center;
+        }
+        .dev-bp-page .spectrum-marker:nth-child(odd) .spectrum-label {
+          top: 20px;
+        }
+        .dev-bp-page .spectrum-marker:nth-child(even) .spectrum-label {
+          top: 38px;
         }
         .dev-bp-page .spectrum-ends {
           display: flex;
@@ -1260,6 +1393,20 @@ export default function DevelopmentPage() {
           text-transform: uppercase;
           letter-spacing: 0.05em;
           color: var(--ink);
+        }
+        .dev-bp-page .spectrum-scroll-hint {
+          display: none;
+          font-family: var(--mono);
+          font-size: 11px;
+          color: var(--marker);
+          text-align: center;
+          margin-bottom: 14px;
+          letter-spacing: 0.04em;
+        }
+        @media (max-width: 768px) {
+          .dev-bp-page .spectrum-scroll-hint {
+            display: block;
+          }
         }
 
         /* Decision map */
@@ -1729,7 +1876,12 @@ export default function DevelopmentPage() {
         /* Final CTA */
         .dev-bp-page .final-cta {
           text-align: center;
-          padding: 100px 0;
+          padding: 60px 0 32px;
+        }
+        @media (max-width: 600px) {
+          .dev-bp-page .final-cta {
+            padding: 40px 0 20px;
+          }
         }
         .dev-bp-page .final-cta .eyebrow {
           justify-content: center;
@@ -1955,9 +2107,16 @@ export default function DevelopmentPage() {
                     Prefer WhatsApp for discussion →
                   </a>
                 </div>
-                <p className="price-note">
-                  Shopify builds, fixed at <b>$1,200 (₹96,000).</b> Custom builds, fixed at <b>$1,850 (₹1,45,000).</b>
-                </p>
+                <div className="dev-price-blocks">
+                  <div className="dev-price-chip">
+                    <span className="dev-chip-label">Shopify Builds</span>
+                    <span className="dev-chip-price">Fixed at <b>$1,200</b> · £895 <span className="inr-sub">(₹1,14,516)</span></span>
+                  </div>
+                  <div className="dev-price-chip">
+                    <span className="dev-chip-label">Custom Builds</span>
+                    <span className="dev-chip-price">Fixed at <b>$1,500</b> · £1,120 <span className="inr-sub">(₹1,43,145)</span></span>
+                  </div>
+                </div>
               </div>
 
               <div>
@@ -2007,7 +2166,7 @@ export default function DevelopmentPage() {
 
         {/* ── LOGOS MARQUEE SECTION ─────────────── */}
         <section className="bp-logo-marquee-section">
-          <div className="bp-marquee-title">TRUSTED BY AMBITIOUS BRANDS GLOBALLY</div>
+          <div className="bp-marquee-title">TRUSTED BY AMBITIOUS BRANDS GLOBAL</div>
           
           {/* Row 1 (LTR) */}
           <div className="bp-marquee-row">
@@ -2115,7 +2274,7 @@ export default function DevelopmentPage() {
                   <div className="svc-label">01 / COMMERCE</div>
                   <h3>Shopify &amp; E-Commerce</h3>
                   <p className="tagline">Turn browsing into buying.</p>
-                  <div className="price">$1,200 <span style={{ fontSize: '16px', color: 'var(--ink-soft)' }}>(₹96,000)</span></div>
+                  <div className="price">$1,200 <span style={{ fontSize: '15px', color: 'var(--ink-soft)' }}>(£895 · ₹1,14,516)</span></div>
                   <div className="price-conv">FIXED PRICE · UP TO 50 SKUs</div>
                   <p className="desc">For consumer brands ready to replace a generic storefront with a considered shopping experience.</p>
                   <div className="svc-tags">
@@ -2234,7 +2393,7 @@ export default function DevelopmentPage() {
                   <div className="svc-label">02 / EXPERIENCE</div>
                   <h3>Immersive &amp; Interactive Websites</h3>
                   <p className="tagline">A website people remember after they close the tab.</p>
-                  <div className="price">$1,850 <span style={{ fontSize: '16px', color: 'var(--ink-soft)' }}>(₹1,45,000)</span></div>
+                  <div className="price">$1,500 <span style={{ fontSize: '15px', color: 'var(--ink-soft)' }}>(£1,120 · ₹1,43,145)</span></div>
                   <div className="price-conv">FIXED PRICE · UP TO 10 PAGES</div>
                   <p className="desc">For brands where experience itself is part of the product — built with the level of craft you'd expect from award-calibre digital work.</p>
                   <div className="svc-tags">
@@ -2312,7 +2471,7 @@ export default function DevelopmentPage() {
                   <div className="svc-label">03 / SYSTEMS</div>
                   <h3>Custom Platforms &amp; Web Applications</h3>
                   <p className="tagline">When a website needs to think, not just display.</p>
-                  <div className="price">Starting $2,800 <span style={{ fontSize: '16px', color: 'var(--ink-soft)' }}>(₹2,25,000)</span></div>
+                  <div className="price">Starting $2,800 <span style={{ fontSize: '15px', color: 'var(--ink-soft)' }}>(£2,090 · ₹2,67,204)</span></div>
                   <div className="price-conv">PER PROJECT · Custom platforms scoped individually</div>
                   <p className="desc">SaaS MVPs, customer portals, internal dashboards, booking and quotation systems, dealer and property platforms — built as custom digital systems, not template add-ons.</p>
                   <ul className="svc-includes">
@@ -2378,6 +2537,7 @@ export default function DevelopmentPage() {
             </div>
 
             <div className="spectrum-wrap">
+              <div className="spectrum-scroll-hint">← Drag or swipe to explore spectrum →</div>
               <div className="spectrum-container">
                 <div className="spectrum-inner">
                   <div className="spectrum-ends">
@@ -2493,7 +2653,7 @@ export default function DevelopmentPage() {
           <div className="wrap">
             <div className="section-head">
               <div>
-                <div className="eyebrow">WHAT $1,200–$2,800 (₹96K–₹2.25L) ACTUALLY BUYS</div>
+                <div className="eyebrow">WHAT $1,200–$2,800 (£895–£2,090 / ₹1.14L–₹2.67L) ACTUALLY BUYS</div>
                 <h2>You're not paying for pages.</h2>
               </div>
               <p>You're paying for the thinking that determines what those pages need to accomplish.</p>
@@ -2564,15 +2724,15 @@ export default function DevelopmentPage() {
           </div>
         </section>
 
-        {/* ── TESTIMONIAL / SOCIAL PROOF SECTION ── */}
+        {/* ── TESTIMONIAL / SOCIAL PROOF SECTION (CLONED FROM BRANDING PAGE) ── */}
         <section className="bp-sp-section">
           <div className="wrap">
             <div className="bp-sp-head">
               <div>
-                <div className="bp-eyebrow mono" style={{ color: '#C9C3B4' }}>SOCIAL PROOF</div>
-                <h2 style={{ color: '#fff' }}>Real founders. Real results. <em style={{ fontStyle: 'normal', color: '#7FB89F' }}>In their own words.</em></h2>
+                <div className="bp-eyebrow mono">SOCIAL PROOF</div>
+                <h2>Real founders. Real results. <em>In their own words.</em></h2>
               </div>
-              <div className="bp-sp-head-sub" style={{ fontSize: '11px', fontFamily: "'IBM Plex Mono', monospace", color: '#7FB89F', letterSpacing: '0.06em' }}>VERIFIED FEEDBACK &amp; CASE EVIDENCE</div>
+              <div className="bp-sp-head-sub">VERIFIED FEEDBACK &amp; CASE EVIDENCE</div>
             </div>
 
             {/* ROW 1: WHATSAPP SCREENSHOTS HORIZONTAL SLIDER */}
@@ -2646,51 +2806,93 @@ export default function DevelopmentPage() {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            {/* ROW 3: WRITTEN FOUNDER REVIEWS */}
-            <div className="bp-sp-row" style={{ marginBottom: 0 }}>
-              <div className="bp-sp-row-head">
-                <div className="bp-sp-row-title">03 // Written Founder Feedback</div>
-              </div>
-
-              <div className="bp-sp-slider">
-                {founderQuotes.map((q, idx) => (
-                  <div key={idx} className="bp-sp-quote-card bp-sp-card">
-                    <div className="bp-sp-stars">★★★★★</div>
-                    <span className="bp-sp-qs">“</span>
-                    <blockquote>{q.text}</blockquote>
-                    <div className="bp-sp-quote-who">
-                      <div className="bp-sp-quote-av">{q.av}</div>
-                      <div>
-                        <div className="bp-sp-qname">{q.name}</div>
-                        <div className="bp-sp-qrole">{q.role}</div>
-                      </div>
+                <div className="bp-sp-card bp-sp-video-card vert">
+                  <div className="bp-sp-video-frame">
+                    <iframe
+                      src="https://player.cloudinary.com/embed/?cloud_name=vkrgr9y0&public_id=VID-20260727-WA0003_kca11r"
+                      width="100%"
+                      height="100%"
+                      allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                      allowFullScreen
+                      style={{ border: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                    />
+                  </div>
+                  <div className="bp-sp-video-foot">
+                    <div className="bp-sp-vav">PS</div>
+                    <div>
+                      <div className="bp-sp-vname">Priya Sharma</div>
+                      <div className="bp-sp-vrole">Founder, Lumen Fine Jewellery</div>
                     </div>
                   </div>
-                ))}
+                </div>
+
+                <div className="bp-sp-card bp-sp-video-card vert">
+                  <div className="bp-sp-video-frame">
+                    <iframe
+                      src="https://player.cloudinary.com/embed/?cloud_name=vkrgr9y0&public_id=VID-20260727-WA0002_xy7yox"
+                      width="100%"
+                      height="100%"
+                      allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                      allowFullScreen
+                      style={{ border: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                    />
+                  </div>
+                  <div className="bp-sp-video-foot">
+                    <div className="bp-sp-vav">SH</div>
+                    <div>
+                      <div className="bp-sp-vname">Sarah Halder</div>
+                      <div className="bp-sp-vrole">Product Lead, Sonar Platform</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* FOOTER BADGE */}
+            {/* ROW 3: FOUNDER QUOTES AUTO INFINITE MARQUEE */}
+            <div className="bp-sp-row">
+              <div className="bp-sp-row-head">
+                <div className="bp-sp-row-title">03 // Founder Quotes</div>
+              </div>
+
+              <div className="bp-sp-wa-marquee-wrap">
+                <div className="bp-sp-wa-marquee-track" style={{ animationDuration: '40s' }}>
+                  {[...founderQuotes, ...founderQuotes].map((q, idx) => (
+                    <div key={idx} className="bp-sp-card bp-sp-quote-card" style={{ flexShrink: 0 }}>
+                      <div className="bp-sp-stars">★★★★★</div>
+                      <span className="bp-sp-qs">"</span>
+                      <blockquote>{q.text}</blockquote>
+                      <div className="bp-sp-quote-who">
+                        <div className="bp-sp-quote-av">{q.av}</div>
+                        <div>
+                          <div className="bp-sp-qname">{q.name}</div>
+                          <div className="bp-sp-qrole">{q.role}</div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Stats strip */}
             <div className="bp-sp-badge">
               <div className="bp-sp-badge-left">
                 <span className="bp-sp-dot"></span>
-                <span>100% VERIFIED CLIENT FEEDBACK</span>
+                <span>LIVE FEEDBACK FROM CLIENTS</span>
               </div>
               <div className="bp-sp-badge-stats">
                 <div className="bp-sp-stat-item">
-                  <span className="bp-sp-stat-num">50+</span>
-                  <span className="bp-sp-stat-lbl">CLIENT BRANDS LAUNCHED</span>
+                  <span className="bp-sp-stat-num">40+</span>
+                  <span className="bp-sp-stat-lbl">PROJECTS</span>
                 </div>
                 <div className="bp-sp-stat-item">
-                  <span className="bp-sp-stat-num">4.9/5</span>
-                  <span className="bp-sp-stat-lbl">SATISFACTION RATING</span>
+                  <span className="bp-sp-stat-num">4.9</span>
+                  <span className="bp-sp-stat-lbl">AVG RATING</span>
                 </div>
                 <div className="bp-sp-stat-item">
                   <span className="bp-sp-stat-num">100%</span>
-                  <span className="bp-sp-stat-lbl">ON-TIME HANDOVER</span>
+                  <span className="bp-sp-stat-lbl">FILE OWNERSHIP</span>
                 </div>
               </div>
             </div>
@@ -2868,16 +3070,13 @@ export default function DevelopmentPage() {
                 WhatsApp The Drawing Board
               </a>
             </div>
-            <p className="price-note" style={{ marginTop: '14px' }}>
-              Shopify builds fixed at <b>$1,200 (₹96,000)</b> · Custom builds fixed at <b>$1,850 (₹1,45,000)</b>
-            </p>
           </div>
         </section>
 
         {/* Sticky Mobile CTA */}
         <div className="sticky-cta">
           <div className="txt">
-            Shopify, fixed at $1,200 (₹96,000)<b>Free 15-min call</b>
+            Shopify, fixed at $1,200 / £895 (₹1,14,516)<b>Free 15-min call</b>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <a
@@ -2979,7 +3178,7 @@ export default function DevelopmentPage() {
               <div className="dev-bp-modal-step">
                 <h4>Expected investment?</h4>
                 <div className="dev-bp-modal-opts">
-                  {['$1,200–$1,850 (₹96K–₹1.45L)', '$1,850–$2,800 (₹1.45L–₹2.25L)', '$2,800–$6,000 (₹2.25L–₹4.8L)', '$6,000+ (₹4.8L+)', 'Need guidance'].map((opt) => (
+                  {['$1,200–$1,500 (£895–£1,120 / ₹1.14L–₹1.43L)', '$1,500–$2,800 (£1,120–£2,090 / ₹1.43L–₹2.67L)', '$2,800–$6,000 (£2,090–£4,478 / ₹2.67L–₹5.72L)', '$6,000+ (£4,478+ / ₹5.72L+)', 'Need guidance'].map((opt) => (
                     <button
                       key={opt}
                       className={modalData.budget === opt ? 'on' : ''}

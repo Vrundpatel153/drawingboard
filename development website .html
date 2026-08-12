@@ -117,6 +117,19 @@ header{position:sticky;top:0;z-index:50;background:rgba(243,238,226,0.92);backdr
 .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:16px}
 .price-note{font-size:13px;color:var(--ink-soft)}
 .price-note b{color:var(--ink)}
+.dev-price-blocks{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:18px;width:100%;max-width:100%;box-sizing:border-box}
+.dev-price-chip{display:inline-flex;align-items:center;gap:10px;background:#FFFFFF;border:1px solid var(--ink,#1B1B17);color:var(--ink,#1B1B17);padding:7px 13px;border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,0.06);transition:transform 0.15s ease,border-color 0.15s ease;max-width:100%;box-sizing:border-box}
+.dev-price-chip:hover{transform:translateY(-1px);border-color:var(--pine,#24463B)}
+.dev-chip-label{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#FFFFFF;background:var(--pine,#24463B);border:none;padding:3px 8px;border-radius:2px;white-space:nowrap}
+.dev-chip-price{font-size:12.5px;color:#1B1B17;font-family:'IBM Plex Mono',monospace;white-space:nowrap}
+.dev-chip-price b{font-weight:700;color:#1B1B17}
+.dev-chip-price .inr-sub{color:#5A584E;font-size:11.5px;font-weight:500}
+.final-cta .dev-price-chip{background:rgba(255,255,255,0.08) !important;border:1px solid rgba(255,255,255,0.25) !important;color:#FFFFFF !important;box-shadow:none !important}
+.final-cta .dev-chip-label{background:rgba(255,255,255,0.2) !important;border:1px solid rgba(255,255,255,0.3) !important;color:#FFFFFF !important}
+.final-cta .dev-chip-price{color:#FFFFFF !important}
+.final-cta .dev-chip-price b{color:#FFFFFF !important}
+.final-cta .dev-chip-price .inr-sub{color:#CFE0DA !important}
+@media (max-width:600px){.dev-price-blocks{flex-direction:column;align-items:stretch;gap:8px;width:100%;max-width:100%;box-sizing:border-box}.dev-price-chip{display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:100%;max-width:100%;box-sizing:border-box;padding:9px 12px}.dev-chip-label{font-size:10px}.dev-chip-price{font-size:11.5px;white-space:normal;line-height:1.4;word-break:break-word}.sheet-label{flex-wrap:wrap;gap:8px}.sheet-label .rule{display:none}}
 
 .annot-card{background-color:var(--card);border:1px solid var(--ink);padding:26px;position:relative}
 .annot-card .corner{position:absolute;top:-1px;right:-1px;width:26px;height:26px;background:var(--marker);clip-path:polygon(0 0,100% 0,100% 100%)}
@@ -219,11 +232,20 @@ header{position:sticky;top:0;z-index:50;background:rgba(243,238,226,0.92);backdr
 
 /* ============ SPECTRUM ============ */
 .spectrum-wrap{padding:20px 0 10px}
-.spectrum-line{position:relative;height:2px;background:var(--paper-line);margin:60px 0 20px}
+.spectrum-container{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:10px 0 45px;position:relative}
+.spectrum-container::-webkit-scrollbar{height:4px}
+.spectrum-container::-webkit-scrollbar-track{background:var(--paper-deep);border-radius:2px}
+.spectrum-container::-webkit-scrollbar-thumb{background:var(--pine-soft);border-radius:2px}
+.spectrum-inner{min-width:900px;padding:0 40px}
+.spectrum-line{position:relative;height:2px;background:var(--paper-line);margin:60px 0 55px}
 .spectrum-marker{position:absolute;top:50%;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;background-color:var(--paper);border:2px solid var(--ink-soft);cursor:pointer}
 .spectrum-marker.hot{border-color:var(--pine);background:var(--pine)}
-.spectrum-label{position:absolute;top:20px;transform:translateX(-50%);font-size:11px;font-family:var(--mono);color:var(--ink-soft);white-space:nowrap;text-align:center}
+.spectrum-label{position:absolute;transform:translateX(-50%);font-size:11px;font-family:var(--mono);color:var(--ink-soft);white-space:nowrap;text-align:center}
+.spectrum-marker:nth-child(odd) .spectrum-label{top:20px}
+.spectrum-marker:nth-child(even) .spectrum-label{top:38px}
 .spectrum-ends{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink)}
+.spectrum-scroll-hint{display:none;font-family:var(--mono);font-size:11px;color:var(--marker);text-align:center;margin-bottom:14px;letter-spacing:0.04em}
+@media (max-width:768px){.spectrum-scroll-hint{display:block}}
 
 /* ============ TECH DECISION MAP ============ */
 .decision-map{display:flex;flex-direction:column;border:1px solid var(--ink)}
@@ -318,7 +340,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(243,238,226,0.92);backdr
 .faq-item.open .faq-icon{transform:rotate(45deg)}
 
 /* ============ FINAL CTA ============ */
-.final-cta{text-align:center;padding:100px 0}
+.final-cta{text-align:center;padding:60px 0 32px}
+@media (max-width:600px){.final-cta{padding:40px 0 20px}}
 .final-cta .eyebrow{justify-content:center}
 .final-cta h2{font-size:clamp(30px,4.4vw,54px);max-width:760px;margin:0 auto 18px}
 .final-cta p{color:var(--ink-soft);font-size:16px;max-width:520px;margin:0 auto 32px}
@@ -345,6 +368,12 @@ header{position:sticky;top:0;z-index:50;background:rgba(243,238,226,0.92);backdr
 .modal-confirm h4{font-size:22px;margin-bottom:10px}
 
 footer a:hover{opacity:.75}
+
+/* Universal Arrow System */
+.seq-stage:not(:last-child)::after { content: '→' !important; position: absolute !important; right: -12px !important; top: 24px !important; color: var(--marker, #B8412E) !important; font-family: 'IBM Plex Mono', monospace !important; font-size: 20px !important; font-weight: 900 !important; line-height: 1 !important; z-index: 5 !important; transform: scaleX(1.2); }
+.decision-row .arrow { color: var(--marker, #B8412E) !important; font-family: 'IBM Plex Mono', monospace !important; font-weight: 900 !important; font-size: 20px !important; display: inline-block !important; transform: scaleX(1.2); }
+.decision-row .tech::before { font-size: 18px !important; font-weight: 900 !important; margin-right: 6px !important; display: inline-block !important; }
+.btn-primary .arrow, .btn-link .arrow, a .arrow, button .arrow { font-family: 'IBM Plex Mono', monospace !important; font-size: 1.15em !important; font-weight: 800 !important; display: inline-block !important; margin-left: 4px !important; }
 </style>
 </head>
 <body>
@@ -382,7 +411,16 @@ footer a:hover{opacity:.75}
             <button class="btn-primary" id="heroCtaOpen">Discuss your website →</button>
             <a class="btn-link" href="#diagnostic">Find the right build for you ↓</a>
           </div>
-          <p class="price-note">Projects starting from <b>₹95,000</b> · approx. <b>$1K</b> / <b>£750</b></p>
+          <div class="dev-price-blocks">
+            <div class="dev-price-chip">
+              <span class="dev-chip-label">Shopify Builds</span>
+              <span class="dev-chip-price">Fixed at <b>$1,200</b> · £895 <span class="inr-sub">(₹1,14,516)</span></span>
+            </div>
+            <div class="dev-price-chip">
+              <span class="dev-chip-label">Custom Builds</span>
+              <span class="dev-chip-price">Fixed at <b>$1,500</b> · £1,120 <span class="inr-sub">(₹1,43,145)</span></span>
+            </div>
+          </div>
         </div>
 
         <div class="annot-card">
@@ -456,8 +494,8 @@ footer a:hover{opacity:.75}
             <div class="svc-label">01 / COMMERCE</div>
             <h3>Shopify &amp; E-Commerce</h3>
             <p class="tagline">Turn browsing into buying.</p>
-            <div class="price">₹95,000+</div>
-            <div class="price-conv">Approx. $1,000 / £750</div>
+            <div class="price">$1,200 <span style="font-size:15px;color:var(--ink-soft)">(£895 · ₹1,14,516)</span></div>
+            <div class="price-conv">FIXED PRICE · UP TO 50 SKUs</div>
             <p class="desc">For consumer brands ready to replace a generic storefront with a considered shopping experience.</p>
             <div class="svc-tags"><span>Fashion</span><span>Beauty</span><span>F&amp;B</span><span>Jewellery</span><span>DTC</span><span>Home</span></div>
             <ul class="svc-includes">
@@ -499,8 +537,8 @@ footer a:hover{opacity:.75}
             <div class="svc-label">02 / EXPERIENCE</div>
             <h3>Immersive &amp; Interactive Websites</h3>
             <p class="tagline">A website people remember after they close the tab.</p>
-            <div class="price">₹1,50,000+</div>
-            <div class="price-conv">Approx. $1,575 / £1,175</div>
+            <div class="price">$1,500 <span style="font-size:15px;color:var(--ink-soft)">(£1,120 · ₹1,43,145)</span></div>
+            <div class="price-conv">FIXED PRICE · UP TO 10 PAGES</div>
             <p class="desc">For brands where experience itself is part of the product — built with the level of craft you'd expect from award-calibre digital work.</p>
             <div class="svc-tags"><span>Real Estate</span><span>Hospitality</span><span>Luxury</span><span>Automotive</span><span>Launches</span></div>
             <ul class="svc-includes">
@@ -540,8 +578,8 @@ footer a:hover{opacity:.75}
             <div class="svc-label">03 / SYSTEMS</div>
             <h3>Custom Platforms &amp; Web Applications</h3>
             <p class="tagline">When a website needs to think, not just display.</p>
-            <div class="price">Starting ₹2,25,000</div>
-            <div class="price-conv">Approx. $2,350 / £1,750 · complex platforms scoped individually</div>
+            <div class="price">Starting $2,800 <span style="font-size:15px;color:var(--ink-soft)">(£2,090 · ₹2,67,204)</span></div>
+            <div class="price-conv">PER PROJECT · Custom platforms scoped individually</div>
             <p class="desc">SaaS MVPs, customer portals, internal dashboards, booking and quotation systems, dealer and property platforms — built as custom digital systems, not template add-ons.</p>
             <ul class="svc-includes">
               <li>React / Next.js / TypeScript</li><li>Authentication &amp; roles</li><li>Databases &amp; APIs</li>
@@ -588,15 +626,20 @@ footer a:hover{opacity:.75}
         <p>We recommend the architecture based on the problem — not by forcing every client onto the same platform.</p>
       </div>
       <div class="spectrum-wrap">
-        <div class="spectrum-ends"><span>Website</span><span>Digital Product</span></div>
-        <div class="spectrum-line" id="spectrumLine">
-          <div class="spectrum-marker" style="left:6%"><span class="spectrum-label">Landing page</span></div>
-          <div class="spectrum-marker" style="left:20%"><span class="spectrum-label">Corporate site</span></div>
-          <div class="spectrum-marker hot" style="left:36%"><span class="spectrum-label">E-commerce</span></div>
-          <div class="spectrum-marker hot" style="left:50%"><span class="spectrum-label">Interactive experience</span></div>
-          <div class="spectrum-marker" style="left:66%"><span class="spectrum-label">Customer portal</span></div>
-          <div class="spectrum-marker hot" style="left:80%"><span class="spectrum-label">Dashboard</span></div>
-          <div class="spectrum-marker" style="left:94%"><span class="spectrum-label">SaaS</span></div>
+        <div class="spectrum-scroll-hint">← Drag or swipe to explore spectrum →</div>
+        <div class="spectrum-container">
+          <div class="spectrum-inner">
+            <div class="spectrum-ends"><span>Website</span><span>Digital Product</span></div>
+            <div class="spectrum-line" id="spectrumLine">
+              <div class="spectrum-marker" style="left:6%"><span class="spectrum-label">Landing page</span></div>
+              <div class="spectrum-marker" style="left:20%"><span class="spectrum-label">Corporate site</span></div>
+              <div class="spectrum-marker hot" style="left:36%"><span class="spectrum-label">E-commerce</span></div>
+              <div class="spectrum-marker hot" style="left:50%"><span class="spectrum-label">Interactive experience</span></div>
+              <div class="spectrum-marker" style="left:66%"><span class="spectrum-label">Customer portal</span></div>
+              <div class="spectrum-marker hot" style="left:80%"><span class="spectrum-label">Dashboard</span></div>
+              <div class="spectrum-marker" style="left:94%"><span class="spectrum-label">SaaS</span></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -682,7 +725,7 @@ footer a:hover{opacity:.75}
     <div class="wrap">
       <div class="section-head">
         <div>
-          <div class="eyebrow">WHAT ₹95K–₹2.25L ACTUALLY BUYS</div>
+          <div class="eyebrow">WHAT $1,200–$2,800 (£895–£2,090 / ₹1.14L–₹2.67L) ACTUALLY BUYS</div>
           <h2>You're not paying for pages.</h2>
         </div>
         <p>You're paying for the thinking that determines what those pages need to accomplish.</p>
@@ -850,7 +893,7 @@ footer a:hover{opacity:.75}
       <div id="faqList">
         <div class="faq-item">
           <button class="faq-q">How much does a website cost?<span class="faq-icon">+</span></button>
-          <div class="faq-a">Shopify builds start from ₹95,000, immersive websites from ₹1,50,000, and custom platforms from ₹2,25,000. Exact cost depends on catalog size, page count, integrations and complexity — we'll give you a real number after understanding scope.</div>
+          <div class="faq-a">Shopify builds fixed at $1,200 / £895 (₹1,14,516), custom website builds at $1,500 / £1,120 (₹1,43,145), and custom platform systems starting from $2,800 / £2,090 (₹2,67,204). Exact cost depends on catalog size, page count, integrations and complexity — we'll give you a real number after understanding scope.</div>
         </div>
         <div class="faq-item">
           <button class="faq-q">Why does custom development cost more than a template?<span class="faq-icon">+</span></button>
@@ -894,7 +937,7 @@ footer a:hover{opacity:.75}
         </div>
         <div class="faq-item">
           <button class="faq-q">Do you work with international clients?<span class="faq-icon">+</span></button>
-          <div class="faq-a">Yes, regularly. Pricing is shown in INR with approximate USD/GBP conversions, and calls are scheduled across time zones.</div>
+          <div class="faq-a">Yes, regularly. All pricing is specified in USD ($), GBP (£), and INR (₹) based on current market rates (1 USD = 95.43 INR, 1 GBP = 128.88 INR / 1.34 USD), and calls are scheduled conveniently across time zones.</div>
         </div>
         <div class="faq-item">
           <button class="faq-q">What do you need from us before starting?<span class="faq-icon">+</span></button>
@@ -940,7 +983,6 @@ footer a:hover{opacity:.75}
         <button class="btn-primary" data-openmodal data-build="">Start a website project →</button>
         <a class="btn-link" href="https://wa.me/919428859768" target="_blank" rel="noopener noreferrer">WhatsApp The Drawing Board</a>
       </div>
-      <p class="price-note" style="margin-top:14px">Projects from <b>₹95,000</b> · approx. <b>$1K</b> / <b>£750</b></p>
     </div>
   </section>
 </main>
@@ -1028,10 +1070,10 @@ footer a:hover{opacity:.75}
     <div class="modal-step" data-step="4" style="display:none">
       <h4>Expected investment?</h4>
       <div class="modal-opts" data-field="budget">
-        <button data-v="₹95K–₹1.5L">₹95K–₹1.5L</button>
-        <button data-v="₹1.5L–₹2.25L">₹1.5L–₹2.25L</button>
-        <button data-v="₹2.25L–₹5L">₹2.25L–₹5L</button>
-        <button data-v="₹5L+">₹5L+</button>
+        <button data-v="$1,200–$1,500">$1,200–$1,500 (£895–£1,120 / ₹1.14L–₹1.43L)</button>
+        <button data-v="$1,500–$2,800">$1,500–$2,800 (£1,120–£2,090 / ₹1.43L–₹2.67L)</button>
+        <button data-v="$2,800–$6,000">$2,800–$6,000 (£2,090–£4,478 / ₹2.67L–₹5.72L)</button>
+        <button data-v="$6,000+">$6,000+ (£4,478+ / ₹5.72L+)</button>
         <button data-v="Need guidance">Need guidance</button>
       </div>
     </div>
@@ -1106,9 +1148,9 @@ window.addEventListener('scroll', () => {
 
 /* ===== diagnostic ===== */
 const diagData = {
-  commerce: { tag:'Recommended', title:'Commerce', desc:"Built for brands where the website is part storefront, part salesperson.", price:'Starting ₹95,000' },
-  experience: { tag:'Recommended', title:'Experience', desc:"Built for brands where being remembered matters as much as being understood.", price:'Starting ₹1,50,000' },
-  systems: { tag:'Recommended', title:'Systems', desc:"Built when the website isn't really a website anymore — it's a product.", price:'Starting ₹2,25,000' }
+  commerce: { tag:'Recommended', title:'Commerce', desc:"Built for brands where the website is part storefront, part salesperson.", price:'$1,200 / £895 (₹1,14,516)' },
+  experience: { tag:'Recommended', title:'Experience', desc:"Built for brands where being remembered matters as much as being understood.", price:'$1,500 / £1,120 (₹1,43,145)' },
+  systems: { tag:'Recommended', title:'Systems', desc:"Built when the website isn't really a website anymore — it's a product.", price:'Starting $2,800 / £2,090 (₹2,67,204)' }
 };
 document.querySelectorAll('.diag-opt').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -1221,9 +1263,9 @@ bindEstGroup('estQ1','need'); bindEstGroup('estQ2','complexity'); bindEstGroup('
 function maybeShowEstimate(){
   if(!estState.need || !estState.complexity || !estState.brand || !estState.copy) return;
   const map = {
-    'Shopify / E-Commerce': {title:'Shopify / E-Commerce', price:'₹95,000+', time:'3–5 weeks'},
-    'Immersive Website': {title:'Immersive Experience', price:'₹1,50,000+', time:'4–7 weeks'},
-    'Custom Platform': {title:'Custom Platform / Systems', price:'Starting ₹2,25,000', time:'6–12+ weeks'}
+    'Shopify / E-Commerce': {title:'Shopify / E-Commerce', price:'$1,200 / £895 (₹1,14,516)', time:'3–5 weeks'},
+    'Immersive Website': {title:'Immersive Experience', price:'$1,500 / £1,120 (₹1,43,145)', time:'4–7 weeks'},
+    'Custom Platform': {title:'Custom Platform / Systems', price:'Starting $2,800 / £2,090 (₹2,67,204)', time:'6–12+ weeks'}
   };
   const r = map[estState.need];
   document.getElementById('estTitle').textContent = r.title;
