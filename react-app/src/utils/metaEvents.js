@@ -266,3 +266,31 @@ export function trackMetaFormSubmission(formData = {}) {
 
   trackMetaEvent('Lead', eventData, userData);
 }
+
+export function trackMetaEmailClick(details = {}) {
+  const eventData = {
+    content_name: 'Email Contact Link',
+    content_category: 'Direct Email Inquiry',
+    destination: 'Email',
+    button_label: details.buttonText || 'Email Us',
+    source_url: typeof window !== 'undefined' ? window.location.href : '',
+    ...details
+  };
+
+  trackMetaEvent('Contact', eventData);
+  trackMetaEvent('Lead', eventData);
+}
+
+export function trackMetaPhoneClick(details = {}) {
+  const eventData = {
+    content_name: 'Phone Call Link',
+    content_category: 'Direct Phone Inquiry',
+    destination: 'Phone',
+    button_label: details.buttonText || 'Call Us',
+    source_url: typeof window !== 'undefined' ? window.location.href : '',
+    ...details
+  };
+
+  trackMetaEvent('Contact', eventData);
+  trackMetaEvent('Lead', eventData);
+}

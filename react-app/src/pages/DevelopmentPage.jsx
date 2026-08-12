@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import MoreServicesSection from '../components/MoreServicesSection';
 import { WHATSAPP_URL } from '../utils/siteConfig';
+import { trackMetaFormSubmission } from '../utils/metaEvents';
 
 /* ─────────────────────────────────────────────────────────────────────────────
    DevelopmentPage — Architectural Blueprint Redesign
@@ -3914,7 +3915,20 @@ export default function DevelopmentPage() {
                   </button>
                   <button
                     className="btn-primary"
-                    onClick={() => setModalStepIdx((prev) => Math.min(6, prev + 1))}
+                    onClick={() => {
+                      if (modalStepIdx === 5) {
+                        trackMetaFormSubmission({
+                          name: modalData.name,
+                          company: modalData.company,
+                          email: modalData.email,
+                          phone: modalData.phone,
+                          website: modalData.website,
+                          build: modalData.build,
+                          service: 'Development Brief'
+                        });
+                      }
+                      setModalStepIdx((prev) => Math.min(6, prev + 1));
+                    }}
                   >
                     {modalStepIdx === 5 ? 'Submit brief →' : 'Continue →'}
                   </button>

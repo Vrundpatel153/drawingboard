@@ -2,15 +2,22 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ArrowIcon from './ArrowIcon';
 import { WHATSAPP_URL } from '../utils/siteConfig';
+import { trackMetaWhatsAppClick, trackMetaCalComClick } from '../utils/metaEvents';
 
 export default function StickyMobileCTA({ title = "The Drawing Board", subtitle = "Now Booking Q3 Sprints", buttonText = "WhatsApp Us", link = WHATSAPP_URL }) {
   const cleanBtnText = (buttonText || '').replace(/[→&rarr;->]/g, '').trim();
   const isExternal = link?.startsWith('http');
   const isWhatsApp = link?.includes('wa.me') || link?.includes('whatsapp');
+  const isCal = link?.includes('cal.com');
   const navigate = useNavigate();
 
   const handleWAClick = (e) => {
     e.preventDefault();
+    trackMetaWhatsAppClick({
+      buttonText: 'Sticky Mobile WhatsApp Icon',
+      targetUrl: WHATSAPP_URL,
+      page: window.location.pathname
+    });
     window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer');
     navigate('/thank-you');
   };
@@ -18,6 +25,20 @@ export default function StickyMobileCTA({ title = "The Drawing Board", subtitle 
   const handleCtaBtnClick = (e) => {
     if (isWhatsApp) {
       e.preventDefault();
+      trackMetaWhatsAppClick({
+        buttonText: cleanBtnText || 'Sticky Mobile WhatsApp',
+        targetUrl: link,
+        page: window.location.pathname
+      });
+      window.open(link, '_blank', 'noopener,noreferrer');
+      navigate('/thank-you');
+    } else if (isCal) {
+      e.preventDefault();
+      trackMetaCalComClick({
+        buttonText: cleanBtnText || 'Sticky Mobile Book Call',
+        targetUrl: link,
+        page: window.location.pathname
+      });
       window.open(link, '_blank', 'noopener,noreferrer');
       navigate('/thank-you');
     }
