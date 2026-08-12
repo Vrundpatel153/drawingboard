@@ -36,7 +36,7 @@ export const GA_MEASUREMENT_ID =
   import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-3FHFNH8BZ7';
 
 export const GTM_CONTAINER_ID =
-  import.meta.env.VITE_GTM_CONTAINER_ID || '';
+  import.meta.env.VITE_GTM_CONTAINER_ID || 'GTM-WJ3GNS9C';
 
 export const GOOGLE_SITE_VERIFICATION =
   import.meta.env.VITE_GOOGLE_SITE_VERIFICATION || '';

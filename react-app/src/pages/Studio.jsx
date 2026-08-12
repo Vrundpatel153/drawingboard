@@ -236,14 +236,16 @@ export default function Studio() {
         </section>
 
         {/* Studio Philosophy / Vision & Mission */}
-        <section className="problem" style={{ borderTop: '1px solid var(--ink)', background: 'var(--card)' }}>
+        <section className="studio-philosophy-section" style={{ borderTop: '1px solid var(--ink)', background: 'var(--card)', padding: '60px 0' }}>
           <div className="wrap">
-            <div className="section-head">
+            <div className="section-head" style={{ marginBottom: '28px' }}>
               <div>
-                <div className="eyebrow">OUR PHILOSOPHY</div>
-                <h2>Strategy-Led, Design-Driven, Human-Focused.</h2>
+                <div className="eyebrow" style={{ color: 'var(--pine)', fontWeight: 700, letterSpacing: '0.08em' }}>OUR PHILOSOPHY</div>
+                <h2 style={{ color: 'var(--ink)', fontWeight: 700, margin: '8px 0' }}>Strategy-Led, Design-Driven, Human-Focused.</h2>
               </div>
-              <p>To shape a world where brands inspire, connect, and create meaningful impact.</p>
+              <p style={{ color: 'var(--ink-soft)', fontSize: '15.5px', lineHeight: 1.6, maxWidth: '420px' }}>
+                To shape a world where brands inspire, connect, and create meaningful impact.
+              </p>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', marginTop: '20px' }}>

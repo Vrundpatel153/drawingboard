@@ -97,19 +97,19 @@ export default function DevelopmentPage() {
       tag: 'RECOMMENDED',
       title: 'Commerce',
       desc: 'Built for brands where the website is part storefront, part salesperson.',
-      price: '$1,200 / £895 (₹1,14,516)'
+      price: '$1,200 / £889 (₹1,14,156)'
     },
     experience: {
       tag: 'RECOMMENDED',
       title: 'Experience',
       desc: 'Built for brands where being remembered matters as much as being understood.',
-      price: '$1,500 / £1,120 (₹1,43,145)'
+      price: '$1,500 / £1,111 (₹1,42,695)'
     },
     systems: {
       tag: 'RECOMMENDED',
       title: 'Systems',
       desc: "Built when the website isn't really a website anymore — it's a product.",
-      price: 'Starting $2,800 / £2,090 (₹2,67,204)'
+      price: 'Starting $2,800 / £2,074 (₹2,66,364)'
     }
   };
 
@@ -137,7 +137,7 @@ export default function DevelopmentPage() {
   const faqs = [
     {
       q: 'How much does a website cost?',
-      a: "Shopify builds are fixed at $1,200 / £895 (₹1,14,516), custom website builds at $1,500 / £1,120 (₹1,43,145), and custom platform systems starting from $2,800 / £2,090 (₹2,67,204). Exact investment depends on catalog size, page count, integrations, and complexity — we'll give you an exact figure after understanding scope."
+      a: "Shopify builds are fixed at $1,200 / £889 (₹1,14,156), custom website builds at $1,500 / £1,111 (₹1,42,695), and custom platform systems starting from $2,800 / £2,074 (₹2,66,364). Exact investment depends on catalog size, page count, integrations, and complexity — we'll give you an exact figure after understanding scope."
     },
     {
       q: 'Why does custom development cost more than a template?',
@@ -181,7 +181,7 @@ export default function DevelopmentPage() {
     },
     {
       q: 'Do you work with international clients?',
-      a: 'Yes, regularly. All pricing is specified in USD ($), GBP (£), and INR (₹) based on current market rates (1 USD = 95.43 INR, 1 GBP = 128.88 INR / 1.34 USD), and calls are scheduled conveniently across time zones.'
+      a: 'Yes, regularly. All pricing is specified in USD ($), GBP (£), and INR (₹) based on current market rates (1 USD = 95.13 INR, 1 GBP = 128.34 INR / 1.35 USD), and calls are scheduled conveniently across time zones.'
     },
     {
       q: 'What do you need from us before starting?',
@@ -305,11 +305,11 @@ export default function DevelopmentPage() {
   const getEstResult = () => {
     if (!estState.need || !estState.complexity || !estState.brand || !estState.copy) return null;
     const estMap = {
-      'Shopify / E-Commerce': { title: 'Shopify / E-Commerce', price: '$1,200 / £895 (₹1,14,516)', time: '3–5 weeks' },
-      'Immersive Website': { title: 'Immersive Experience', price: '$1,500 / £1,120 (₹1,43,145)', time: '4–7 weeks' },
-      'Custom Platform': { title: 'Custom Platform / Systems', price: 'Starting $2,800 / £2,090 (₹2,67,204)', time: '6–12+ weeks' }
+      'Shopify / E-Commerce': { title: 'Shopify / E-Commerce', price: '$1,200 / £889 (₹1,14,156)', time: '3–5 weeks' },
+      'Immersive Website': { title: 'Immersive Experience', price: '$1,500 / £1,111 (₹1,42,695)', time: '4–7 weeks' },
+      'Custom Platform': { title: 'Custom Platform / Systems', price: 'Starting $2,800 / £2,074 (₹2,66,364)', time: '6–12+ weeks' }
     };
-    return estMap[estState.need] || { title: estState.need, price: 'Starting $1,200 / £895 (₹1,14,516)', time: '3–6 weeks' };
+    return estMap[estState.need] || { title: estState.need, price: 'Starting $1,200 / £889 (₹1,14,156)', time: '3–6 weeks' };
   };
 
   const estResult = getEstResult();
@@ -2450,11 +2450,11 @@ export default function DevelopmentPage() {
                 <div className="dev-price-blocks">
                   <div className="dev-price-chip">
                     <span className="dev-chip-label">Shopify Builds</span>
-                    <span className="dev-chip-price">Fixed at <b>$1,200</b> · £895 <span className="inr-sub">(₹1,14,516)</span></span>
+                    <span className="dev-chip-price">Fixed at <b>$1,200</b> · £889 <span className="inr-sub">(₹1,14,156)</span></span>
                   </div>
                   <div className="dev-price-chip">
                     <span className="dev-chip-label">Custom Builds</span>
-                    <span className="dev-chip-price">Fixed at <b>$1,500</b> · £1,120 <span className="inr-sub">(₹1,43,145)</span></span>
+                    <span className="dev-chip-price">Fixed at <b>$1,500</b> · £1,111 <span className="inr-sub">(₹1,42,695)</span></span>
                   </div>
                 </div>
               </div>
@@ -2614,7 +2614,7 @@ export default function DevelopmentPage() {
                   <div className="svc-label">01 / COMMERCE</div>
                   <h3>Shopify &amp; E-Commerce</h3>
                   <p className="tagline">Turn browsing into buying.</p>
-                  <div className="price">$1,200 <span style={{ fontSize: '15px', color: 'var(--ink-soft)' }}>(£895 · ₹1,14,516)</span></div>
+                  <div className="price">$1,200 <span style={{ fontSize: '15px', color: 'var(--ink-soft)' }}>(£889 · ₹1,14,156)</span></div>
                   <div className="price-conv">FIXED PRICE · UP TO 50 SKUs</div>
                   <p className="desc">For consumer brands ready to replace a generic storefront with a considered shopping experience.</p>
                   <div className="svc-tags">
@@ -2785,7 +2785,7 @@ export default function DevelopmentPage() {
                   <div className="svc-label">02 / EXPERIENCE</div>
                   <h3>Immersive &amp; Interactive Websites</h3>
                   <p className="tagline">A website people remember after they close the tab.</p>
-                  <div className="price">$1,500 <span style={{ fontSize: '15px', color: 'var(--ink-soft)' }}>(£1,120 · ₹1,43,145)</span></div>
+                  <div className="price">$1,500 <span style={{ fontSize: '15px', color: 'var(--ink-soft)' }}>(£1,111 · ₹1,42,695)</span></div>
                   <div className="price-conv">FIXED PRICE · UP TO 10 PAGES</div>
                   <p className="desc">For brands where experience itself is part of the product — built with the level of craft you'd expect from award-calibre digital work.</p>
                   <div className="svc-tags">
@@ -2863,7 +2863,7 @@ export default function DevelopmentPage() {
                   <div className="svc-label">03 / SYSTEMS</div>
                   <h3>Custom Platforms &amp; Web Applications</h3>
                   <p className="tagline">When a website needs to think, not just display.</p>
-                  <div className="price">Starting $2,800 <span style={{ fontSize: '15px', color: 'var(--ink-soft)' }}>(£2,090 · ₹2,67,204)</span></div>
+                  <div className="price">Starting $2,800 <span style={{ fontSize: '15px', color: 'var(--ink-soft)' }}>(£2,074 · ₹2,66,364)</span></div>
                   <div className="price-conv">PER PROJECT · Custom platforms scoped individually</div>
                   <p className="desc">SaaS MVPs, customer portals, internal dashboards, booking and quotation systems, dealer and property platforms — built as custom digital systems, not template add-ons.</p>
                   <ul className="svc-includes">
@@ -3045,7 +3045,7 @@ export default function DevelopmentPage() {
           <div className="wrap">
             <div className="section-head">
               <div>
-                <div className="eyebrow">WHAT $1,200–$2,800 (£895–£2,090 / ₹1.14L–₹2.67L) ACTUALLY BUYS</div>
+                <div className="eyebrow">WHAT $1,200–$2,800 (£889–£2,074 / ₹1.14L–₹2.66L) ACTUALLY BUYS</div>
                 <h2>You're not paying for pages.</h2>
               </div>
               <p>You're paying for the thinking that determines what those pages need to accomplish.</p>
@@ -3346,9 +3346,9 @@ export default function DevelopmentPage() {
                   <h3 className="dp-title">Starter Site</h3>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', marginBottom: '4px' }}>
                     <div className="dp-price">
-                      {devCurrency === 'INR' && '₹85,000'}
+                      {devCurrency === 'INR' && '₹85,617'}
                       {devCurrency === 'USD' && '$900'}
-                      {devCurrency === 'GBP' && '£670'}
+                      {devCurrency === 'GBP' && '£667'}
                     </div>
                     <div className="dp-card-curr-toggle">
                       <button
@@ -3399,9 +3399,9 @@ export default function DevelopmentPage() {
                   <h3 className="dp-title">Shopify / E-commerce Build</h3>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', marginBottom: '4px' }}>
                     <div className="dp-price">
-                      {devCurrency === 'INR' && '₹96,000'}
+                      {devCurrency === 'INR' && '₹1,14,156'}
                       {devCurrency === 'USD' && '$1,200'}
-                      {devCurrency === 'GBP' && '£895'}
+                      {devCurrency === 'GBP' && '£889'}
                     </div>
                     <div className="dp-card-curr-toggle">
                       <button
@@ -3471,9 +3471,9 @@ export default function DevelopmentPage() {
                   <h3 className="dp-title">Custom Website Build</h3>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', marginBottom: '4px' }}>
                     <div className="dp-price">
-                      {devCurrency === 'INR' && '₹1,45,000'}
+                      {devCurrency === 'INR' && '₹1,42,695'}
                       {devCurrency === 'USD' && '$1,500'}
-                      {devCurrency === 'GBP' && '£1,120'}
+                      {devCurrency === 'GBP' && '£1,111'}
                     </div>
                     <div className="dp-card-curr-toggle">
                       <button
@@ -3523,9 +3523,9 @@ export default function DevelopmentPage() {
                   <h3 className="dp-title">App Development</h3>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', marginBottom: '4px' }}>
                     <div className="dp-price">
-                      {devCurrency === 'INR' && '₹2,85,000'}
+                      {devCurrency === 'INR' && '₹2,85,390'}
                       {devCurrency === 'USD' && '$3,000'}
-                      {devCurrency === 'GBP' && '£2,240'}
+                      {devCurrency === 'GBP' && '£2,222'}
                     </div>
                     <div className="dp-card-curr-toggle">
                       <button
@@ -3713,7 +3713,7 @@ export default function DevelopmentPage() {
         {/* Sticky Mobile CTA */}
         <div className="sticky-cta">
           <div className="txt">
-            Shopify, fixed at $1,200 / £895 (₹1,14,516)<b>Free 15-min call</b>
+            Shopify, fixed at $1,200 / £889 (₹1,14,156)<b>Free 15-min call</b>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <a
@@ -3815,7 +3815,7 @@ export default function DevelopmentPage() {
               <div className="dev-bp-modal-step">
                 <h4>Expected investment?</h4>
                 <div className="dev-bp-modal-opts">
-                  {['$1,200–$1,500 (£895–£1,120 / ₹1.14L–₹1.43L)', '$1,500–$2,800 (£1,120–£2,090 / ₹1.43L–₹2.67L)', '$2,800–$6,000 (£2,090–£4,478 / ₹2.67L–₹5.72L)', '$6,000+ (£4,478+ / ₹5.72L+)', 'Need guidance'].map((opt) => (
+                  {['$1,200–$1,500 (£889–£1,111 / ₹1.14L–₹1.43L)', '$1,500–$2,800 (£1,111–£2,074 / ₹1.43L–₹2.66L)', '$2,800–$6,000 (£2,074–£4,444 / ₹2.66L–₹5.71L)', '$6,000+ (£4,444+ / ₹5.71L+)', 'Need guidance'].map((opt) => (
                     <button
                       key={opt}
                       className={modalData.budget === opt ? 'on' : ''}
