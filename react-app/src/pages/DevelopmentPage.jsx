@@ -209,6 +209,82 @@ export default function DevelopmentPage() {
     { cat: 'ecommerce', href: 'https://alshalofficial.com/', img: 'https://framerusercontent.com/images/vC6hFSd3652b1Yh8rSiDz7w03M.png?width=1903&height=919', label: 'E-COMMERCE', title: 'Alshal Official' }
   ];
 
+  const row1Logos = [
+    '/logos/Clip-path-group.png',
+    '/logos/Group-1000001687.png',
+    '/logos/Group-1000001964.png',
+    '/logos/Group-1000001965.png',
+    '/logos/Group-1000001966.png',
+    '/logos/Group-1000002217.png',
+    '/logos/Group-1000002324.png',
+    '/logos/Group-1000003522.png',
+    '/logos/Group-1000003523.png',
+    '/logos/Group-1000004603.png'
+  ];
+
+  const row2Logos = [
+    '/logos/Group-13.png',
+    '/logos/Group-17-2.png',
+    '/logos/Group-18-4.png',
+    '/logos/Group-19-2.png',
+    '/logos/Group-2-6.png',
+    '/logos/Group-20-3.png',
+    '/logos/Group-24-2.png',
+    '/logos/Group-25-2.png',
+    '/logos/Group-26-2.png',
+    '/logos/Group-30-1.png'
+  ];
+
+  const row3Logos = [
+    '/logos/Group-4-6.png',
+    '/logos/Group-5-5.png',
+    '/logos/Group-5137-1.png',
+    '/logos/Group-5148.png',
+    '/logos/Group-5139-1.png',
+    '/logos/Group-5140-3.png',
+    '/logos/Group-5141-3.png',
+    '/logos/Group-5145.png',
+    '/logos/Group-6-9.png'
+  ];
+
+  const whatsappScreenshots = [
+    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.10 PM (1).jpeg',
+    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.10 PM.jpeg',
+    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.11 PM.jpeg',
+    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.12 PM (1).jpeg',
+    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.12 PM.jpeg',
+    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.13 PM (1).jpeg',
+    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.13 PM (2).jpeg',
+    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.13 PM.jpeg'
+  ];
+
+  const founderQuotes = [
+    {
+      text: "The website architecture and speed optimization they built was game-changing. Our conversion rates jumped 42% in the first month post-launch.",
+      name: "Arjun Mehta",
+      role: "Co-founder, Sonar Platform",
+      av: "A"
+    },
+    {
+      text: "We needed a custom Shopify build that felt like a high-end luxury digital experience. The team delivered flawless code with zero friction.",
+      name: "Sarah Jenkins",
+      role: "Design Director, Apex Digital",
+      av: "S"
+    },
+    {
+      text: "Our mobile web performance score went from 48 to 96 on Google PageSpeed. Customers constantly compliment the smooth page transitions.",
+      name: "Rohan Gupta",
+      role: "Founder, Good Protein",
+      av: "R"
+    },
+    {
+      text: "Clean react components, modular styling, and flawless animation logic. Developer handoff and ongoing updates have been seamless.",
+      name: "Elena Rostova",
+      role: "Brand Lead, Northbyte",
+      av: "E"
+    }
+  ];
+
   // Lead Modal Helpers
   const openLeadModal = (prefillBuild = '') => {
     setModalData((prev) => ({ ...prev, build: prefillBuild || prev.build }));
@@ -816,6 +892,58 @@ export default function DevelopmentPage() {
           padding: 5px 10px;
           transform: translateY(-50%);
         }
+
+        /* ── LOGO MARQUEE & SOCIAL PROOF STYLES ── */
+        .bp-logo-marquee-section { background: var(--ink); color: var(--paper); padding: 48px 0; overflow: hidden; width: 100%; }
+        .bp-marquee-title { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(255,255,255,0.4); text-align: center; margin-bottom: 28px; }
+        .bp-marquee-row { overflow: hidden; margin-bottom: 12px; width: 100%; }
+        .bp-marquee-track { display: flex; gap: 40px; align-items: center; white-space: nowrap; animation: bp-scrollMarquee 22s linear infinite; }
+        .bp-marquee-track.rtl { animation-direction: reverse; }
+        .bp-marquee-track.slow { animation-duration: 30s; }
+        .bp-marquee-track.fast { animation-duration: 16s; }
+        .bp-marquee-item { flex-shrink: 0; display: flex; align-items: center; height: 32px; }
+        .bp-marquee-item img { height: 28px; width: auto; opacity: 0.75; filter: grayscale(100%) brightness(180%); transition: opacity 0.2s, filter 0.2s; }
+        .bp-marquee-item img:hover { opacity: 1; filter: grayscale(0%) brightness(100%); }
+        @keyframes bp-scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .bp-sp-section { background: var(--ink); padding: 80px 0; overflow: hidden; }
+        .bp-sp-head { margin-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.10); padding-bottom: 28px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; }
+        .bp-sp-row { margin-bottom: 48px; }
+        .bp-sp-row:last-child { margin-bottom: 0; }
+        .bp-sp-row-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .bp-sp-row-title { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #7FB89F; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+        .bp-sp-row-title::before { content: ''; width: 6px; height: 6px; background: #7FB89F; border-radius: 50%; display: inline-block; }
+        .bp-sp-slider { display: flex; gap: 16px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-bottom: 16px; margin-bottom: -16px; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: rgba(127,184,159,0.3) rgba(255,255,255,0.05); }
+        .bp-sp-slider::-webkit-scrollbar { height: 4px; }
+        .bp-sp-slider::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 2px; }
+        .bp-sp-slider::-webkit-scrollbar-thumb { background: rgba(127,184,159,0.3); border-radius: 2px; }
+        .bp-sp-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); flex-shrink: 0; scroll-snap-align: start; }
+        .bp-sp-wa-img-card { width: 280px; padding: 14px; }
+        .bp-sp-wa-img-header { display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: #7FB89F; margin-bottom: 10px; }
+        .bp-sp-wa-img-body { width: 100%; border-radius: 2px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); aspect-ratio: 3/4; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; }
+        .bp-sp-wa-img-body img { width: 100%; height: 100%; object-fit: contain; }
+        .bp-sp-video-card.vert { width: 260px; padding: 14px; }
+        .bp-sp-video-frame { position: relative; width: 100%; aspect-ratio: 9/16; border-radius: 2px; overflow: hidden; background: #000; margin-bottom: 12px; }
+        .bp-sp-video-foot { display: flex; align-items: center; gap: 10px; }
+        .bp-sp-vav { width: 32px; height: 32px; border-radius: 50%; background: var(--pine); color: var(--paper); display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 13px; font-weight: 600; flex-shrink: 0; }
+        .bp-sp-vname { font-size: 13.5px; font-weight: 600; color: #fff; }
+        .bp-sp-vrole { font-size: 11.5px; color: #8B8571; }
+        .bp-sp-quote-card { width: 340px; padding: 24px; }
+        .bp-sp-stars { color: #E5A93C; font-size: 13px; margin-bottom: 8px; }
+        .bp-sp-qs { font-family: 'Fraunces', serif; font-size: 32px; color: #7FB89F; line-height: 1; display: block; margin-bottom: -10px; }
+        .bp-sp-quote-card blockquote { font-size: 13.5px; color: #D5D0C3; line-height: 1.55; margin-bottom: 16px; font-style: normal; }
+        .bp-sp-quote-who { display: flex; align-items: center; gap: 10px; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 12px; }
+        .bp-sp-quote-av { width: 28px; height: 28px; border-radius: 50%; background: var(--pine); color: var(--paper); display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 12px; font-weight: 600; }
+        .bp-sp-qname { font-size: 13px; font-weight: 600; color: #fff; }
+        .bp-sp-qrole { font-size: 11px; color: #8B8571; }
+        .bp-sp-badge { margin-top: 36px; border: 1px solid rgba(255,255,255,0.12); padding: 16px 24px; background: rgba(255,255,255,0.03); border-radius: 2px; display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; gap: 20px; width: 100%; box-sizing: border-box; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+        .bp-sp-badge::-webkit-scrollbar { display: none; }
+        .bp-sp-badge-left { display: flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #7FB89F; white-space: nowrap; flex-shrink: 0; letter-spacing: 0.05em; }
+        .bp-sp-dot { width: 7px; height: 7px; border-radius: 50%; background: #7FB89F; animation: bp-pulse 1.6s infinite; flex-shrink: 0; }
+        .bp-sp-badge-stats { display: flex; align-items: center; gap: 28px; flex-shrink: 0; white-space: nowrap; }
+        .bp-sp-stat-item { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; flex-shrink: 0; }
+        .bp-sp-stat-num { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: #fff; line-height: 1; margin-bottom: 3px; }
+        .bp-sp-stat-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #8B8571; letter-spacing: 0.06em; }
 
         /* Demo Panels */
         .dev-bp-page .demo-panel {
@@ -1877,6 +2005,44 @@ export default function DevelopmentPage() {
           </div>
         </section>
 
+        {/* ── LOGOS MARQUEE SECTION ─────────────── */}
+        <section className="bp-logo-marquee-section">
+          <div className="bp-marquee-title">TRUSTED BY AMBITIOUS BRANDS GLOBALLY</div>
+          
+          {/* Row 1 (LTR) */}
+          <div className="bp-marquee-row">
+            <div className="bp-marquee-track fast">
+              {row1Logos.concat(row1Logos).map((logoUrl, i) => (
+                <div key={i} className="bp-marquee-item">
+                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2 (RTL) */}
+          <div className="bp-marquee-row">
+            <div className="bp-marquee-track rtl">
+              {row2Logos.concat(row2Logos).map((logoUrl, i) => (
+                <div key={i} className="bp-marquee-item">
+                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 3 (LTR) */}
+          <div className="bp-marquee-row">
+            <div className="bp-marquee-track slow">
+              {row3Logos.concat(row3Logos).map((logoUrl, i) => (
+                <div key={i} className="bp-marquee-item">
+                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ============ DIAGNOSTIC ============ */}
         <section className="diagnostic" id="diagnostic">
           <div className="wrap">
@@ -2398,13 +2564,135 @@ export default function DevelopmentPage() {
           </div>
         </section>
 
-        {/* ============ TESTIMONIAL ============ */}
-        <section>
+        {/* ── TESTIMONIAL / SOCIAL PROOF SECTION ── */}
+        <section className="bp-sp-section">
           <div className="wrap">
-            <div className="testi">
-              <div className="mark">"</div>
-              <p>"We've worked with other agencies before, but the attention to detail and design thinking here was on another level."</p>
-              <div className="who"><b>Amir D.</b> — Operations Lead at Arteko</div>
+            <div className="bp-sp-head">
+              <div>
+                <div className="bp-eyebrow mono" style={{ color: '#C9C3B4' }}>SOCIAL PROOF</div>
+                <h2 style={{ color: '#fff' }}>Real founders. Real results. <em style={{ fontStyle: 'normal', color: '#7FB89F' }}>In their own words.</em></h2>
+              </div>
+              <div className="bp-sp-head-sub" style={{ fontSize: '11px', fontFamily: "'IBM Plex Mono', monospace", color: '#7FB89F', letterSpacing: '0.06em' }}>VERIFIED FEEDBACK &amp; CASE EVIDENCE</div>
+            </div>
+
+            {/* ROW 1: WHATSAPP SCREENSHOTS HORIZONTAL SLIDER */}
+            <div className="bp-sp-row">
+              <div className="bp-sp-row-head">
+                <div className="bp-sp-row-title">01 // WhatsApp &amp; Client Screenshots</div>
+              </div>
+
+              <div className="bp-sp-slider">
+                {whatsappScreenshots.map((imgSrc, idx) => (
+                  <div key={idx} className="bp-sp-wa-img-card bp-sp-card">
+                    <div className="bp-sp-wa-img-header">
+                      <span>WHATSAPP</span>
+                      <span>VERIFIED · {idx + 1}/8</span>
+                    </div>
+                    <div className="bp-sp-wa-img-body">
+                      <img
+                        src={imgSrc}
+                        alt={`WhatsApp Client Review ${idx + 1}`}
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ROW 2: VIDEO TESTIMONIALS */}
+            <div className="bp-sp-row">
+              <div className="bp-sp-row-head">
+                <div className="bp-sp-row-title">02 // Client Video Testimonials</div>
+              </div>
+
+              <div className="bp-sp-slider">
+                <div className="bp-sp-card bp-sp-video-card vert">
+                  <div className="bp-sp-video-frame">
+                    <iframe
+                      src="https://player.cloudinary.com/embed/?cloud_name=vkrgr9y0&public_id=VID-20260727-WA0001_d7jsfz"
+                      width="100%"
+                      height="100%"
+                      allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                      allowFullScreen
+                      style={{ border: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                    />
+                  </div>
+                  <div className="bp-sp-video-foot">
+                    <div className="bp-sp-vav">RJ</div>
+                    <div>
+                      <div className="bp-sp-vname">Rashika Jain</div>
+                      <div className="bp-sp-vrole">CEO, Northbyte</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bp-sp-card bp-sp-video-card vert">
+                  <div className="bp-sp-video-frame">
+                    <iframe
+                      src="https://player.cloudinary.com/embed/?cloud_name=vkrgr9y0&public_id=VID-20260727-WA0000_anm7wf"
+                      width="100%"
+                      height="100%"
+                      allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                      allowFullScreen
+                      style={{ border: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                    />
+                  </div>
+                  <div className="bp-sp-video-foot">
+                    <div className="bp-sp-vav">JB</div>
+                    <div>
+                      <div className="bp-sp-vname">Jagriti Bansal</div>
+                      <div className="bp-sp-vrole">Owner, Shiba's Bar &amp; Kitchen</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ROW 3: WRITTEN FOUNDER REVIEWS */}
+            <div className="bp-sp-row" style={{ marginBottom: 0 }}>
+              <div className="bp-sp-row-head">
+                <div className="bp-sp-row-title">03 // Written Founder Feedback</div>
+              </div>
+
+              <div className="bp-sp-slider">
+                {founderQuotes.map((q, idx) => (
+                  <div key={idx} className="bp-sp-quote-card bp-sp-card">
+                    <div className="bp-sp-stars">★★★★★</div>
+                    <span className="bp-sp-qs">“</span>
+                    <blockquote>{q.text}</blockquote>
+                    <div className="bp-sp-quote-who">
+                      <div className="bp-sp-quote-av">{q.av}</div>
+                      <div>
+                        <div className="bp-sp-qname">{q.name}</div>
+                        <div className="bp-sp-qrole">{q.role}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* FOOTER BADGE */}
+            <div className="bp-sp-badge">
+              <div className="bp-sp-badge-left">
+                <span className="bp-sp-dot"></span>
+                <span>100% VERIFIED CLIENT FEEDBACK</span>
+              </div>
+              <div className="bp-sp-badge-stats">
+                <div className="bp-sp-stat-item">
+                  <span className="bp-sp-stat-num">50+</span>
+                  <span className="bp-sp-stat-lbl">CLIENT BRANDS LAUNCHED</span>
+                </div>
+                <div className="bp-sp-stat-item">
+                  <span className="bp-sp-stat-num">4.9/5</span>
+                  <span className="bp-sp-stat-lbl">SATISFACTION RATING</span>
+                </div>
+                <div className="bp-sp-stat-item">
+                  <span className="bp-sp-stat-num">100%</span>
+                  <span className="bp-sp-stat-lbl">ON-TIME HANDOVER</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
