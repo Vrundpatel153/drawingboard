@@ -17,6 +17,9 @@ export default function WorkDetail() {
   // Normalize URL decoding and slug matching
   const cleanId = decodeURIComponent(projectId || '').toLowerCase();
   
+  const isPronto = cleanId.includes('pronto');
+  const isMatchaClub = cleanId.includes('matcha');
+  const isMurami = cleanId.includes('murami');
   const isSoulBrew = cleanId.includes('soul') || cleanId.includes('brew');
   const isAfter8 = cleanId.includes('after8') || cleanId.includes('intimacy');
   const isLumen = cleanId.includes('lumen');
@@ -26,7 +29,7 @@ export default function WorkDetail() {
   const project = projectsData.find(p => {
     const slug = (p.slug || '').toLowerCase();
     return slug === cleanId || cleanId.includes(slug) || slug.includes(cleanId);
-  }) || (isSoulBrew ? projectsData[0] : isBondwith ? projectsData[1] : isAfter8 ? projectsData[2] : isLumen ? projectsData[3] : projectsData[0]);
+  }) || (isPronto ? projectsData[0] : isMatchaClub ? projectsData[1] : isMurami ? projectsData[2] : isSoulBrew ? projectsData[3] : isBondwith ? projectsData[4] : isAfter8 ? projectsData[5] : projectsData[0]);
 
   const currentIndex = projectsData.indexOf(project);
   const nextProject = projectsData[(currentIndex + 1) % projectsData.length];
@@ -123,7 +126,13 @@ export default function WorkDetail() {
           <Link to="/work">Work</Link>
           <span className="sep">/</span>
           <span className="cur">
-            {isBondwith
+            {isPronto
+              ? 'PRONTO! Case Study'
+              : isMatchaClub
+              ? 'Matcha Club Case Study'
+              : isMurami
+              ? 'Murami Case Study'
+              : isBondwith
               ? 'Bondwith Brand Guidelines'
               : isAfter8
               ? 'AFTER8® Case Study'
@@ -139,8 +148,14 @@ export default function WorkDetail() {
         <div className="wrap">
           <div className="sheet-label">
             <span className="tag">
-              {isBondwith
-                ? 'CASE STUDY // SPEC 01 — BRAND GUIDELINES'
+              {isPronto
+                ? 'CASE STUDY // SPEC 01 — RESTAURANT & PACKAGING'
+                : isMatchaClub
+                ? 'CASE STUDY // SPEC 02 — CPG & RITUAL BRANDING'
+                : isMurami
+                ? 'CASE STUDY // SPEC 03 — CHARACTER & HOSPITALITY'
+                : isBondwith
+                ? 'CASE STUDY // SPEC 04 — BRAND GUIDELINES'
                 : isAfter8
                 ? 'CASE STUDY // SPEC 08'
                 : isLumen
@@ -150,7 +165,82 @@ export default function WorkDetail() {
             <div className="rule"></div>
           </div>
 
-          {isSoulBrew ? (
+          {isPronto ? (
+            <>
+              <h1>PRONTO! — <em>Authentic Italian</em> Restaurant &amp; Neapolitan Pizzeria Identity.</h1>
+              <p className="dek">
+                How we engineered a bold, design-forward Italian restaurant visual identity, custom Neapolitan pizza packaging dielines, custom merchandise, vibrant menu systems, and kinetic motion graphics.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">PRONTO! Ristorante</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Brand, Pack &amp; Motion</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">4 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>+180% Dine-In &amp; Takeout</div>
+                </div>
+              </div>
+            </>
+          ) : isMatchaClub ? (
+            <>
+              <h1>Matcha Club — <em>Mindful ceremonial ritual</em> &amp; character-driven brand identity.</h1>
+              <p className="dek">
+                Character-driven storytelling, mindful ceremonial matcha tin packaging, custom label systems, vibrant motion reveals, and organic wellness aesthetics.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Matcha Club Co.</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Identity, Pack &amp; Motion</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">3 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>+220% DTC Subscriptions</div>
+                </div>
+              </div>
+            </>
+          ) : isMurami ? (
+            <>
+              <h1>Murami — <em>High-energy character-driven</em> brand identity &amp; restaurant art direction.</h1>
+              <p className="dek">
+                High-energy character-driven visual identity, custom mascot illustration system, vibrant restaurant packaging, merchandise, and environmental brand collateral.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Murami Japanese Bistro</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Brand Identity &amp; Packaging</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">4 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>+310% Brand Recall</div>
+                </div>
+              </div>
+            </>
+          ) : isSoulBrew ? (
             <>
               <h1>Soul Brew — <em>Artisan Coffee &amp; Cafe</em> Brand Identity System.</h1>
               <p className="dek">
@@ -295,7 +385,73 @@ export default function WorkDetail() {
       {/* Dark Contrast Problem / Insight Block */}
       <section className="problem">
         <div className="wrap">
-          {isSoulBrew ? (
+          {isPronto ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE RESTAURANT CHALLENGE</div>
+                  <h2>Reinventing traditional Italian dining for modern urban culture.</h2>
+                </div>
+                <p>Moving beyond generic trattoria tropes to an energetic, design-forward culinary brand.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>Most Italian restaurants rely on predictable clichés:</strong> generic flags, script fonts, and checked tablecloths.</p>
+                  <p>PRONTO! needed a bold, retro-modern Italian identity that captures authentic Neapolitan craftsmanship while resonating with an urban, design-conscious demographic across dine-in, takeout, and delivery.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// CULINARY BRAND INSIGHT</div>
+                  <p>"Pairing bold typography with high-contrast graphic framing and tactile unboxing elevates everyday dining into a vibrant cultural lifestyle ritual."</p>
+                </div>
+              </div>
+            </>
+          ) : isMatchaClub ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE CEREMONIAL CHALLENGE</div>
+                  <h2>Demystifying matcha into an approachable daily lifestyle ritual.</h2>
+                </div>
+                <p>Balancing traditional Japanese ceremonial reverence with playful, modern consumer accessibility.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>Matcha brands frequently swing between two extremes:</strong> ultra-stiff ceremonial minimalism or cheap mass-market novelty.</p>
+                  <p>Matcha Club required an inviting, character-driven identity that honors traditional ceremonial grades while making daily whisking and preparation joyful, tactile, and community-driven.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// MINDFUL RITUAL INSIGHT</div>
+                  <p>"Character-led visual storytelling bridges the gap between ancient tradition and modern wellness, turning daily preparation into a cherished habit."</p>
+                </div>
+              </div>
+            </>
+          ) : isMurami ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE BRAND CHALLENGE</div>
+                  <h2>Standing out with an iconic, character-driven mascot universe.</h2>
+                </div>
+                <p>Merging Japanese street culture art direction with contemporary hospitality branding.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>In a saturated fast-casual and modern dining landscape,</strong> standard minimalist branding easily gets lost in the noise.</p>
+                  <p>Murami required an unmistakable character-led visual universe with dynamic poses, distinct high-voltage colorways, and modular applications across menus, packaging, streetwear merch, and interior spaces.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// MASCOT &amp; ART DIRECTION INSIGHT</div>
+                  <p>"A strong character mascot serves as a living brand ambassador, creating instant emotional attachment and organic social shareability across every touchpoint."</p>
+                </div>
+              </div>
+            </>
+          ) : isSoulBrew ? (
             <>
               <div className="section-head">
                 <div>
@@ -412,7 +568,175 @@ export default function WorkDetail() {
       {/* Deliverables / Execution Architecture */}
       <section>
         <div className="wrap">
-          {isBondwith ? (
+          {isPronto ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Master restaurant &amp; packaging specifications.</h2>
+                </div>
+                <p>Complete brand system, structural pizza dielines, staff apparel, and kinetic animations.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Visual Identity</h4>
+                  <div className="sub">// LOGO &amp; MOTION</div>
+                  <ul>
+                    <li>Primary bold wordmark</li>
+                    <li>Custom pizza seal brand mark</li>
+                    <li>Animated logo reveals &amp; motion loops</li>
+                    <li>High-contrast Italian color palette</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Packaging Dielines</h4>
+                  <div className="sub">// PIZZA BOXES &amp; CUPS</div>
+                  <ul>
+                    <li>Custom corrugated pizza boxes</li>
+                    <li>Takeaway beverage cup sleeves</li>
+                    <li>Paper takeaway bags &amp; tape seals</li>
+                    <li>Custom greaseproof food liners</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Restaurant Collateral</h4>
+                  <div className="sub">// MENUS &amp; MERCH</div>
+                  <ul>
+                    <li>Dine-in &amp; takeout menu systems</li>
+                    <li>Embroidered staff aprons &amp; caps</li>
+                    <li>Window graphics &amp; storefront signage</li>
+                    <li>Digital ordering kiosk displays</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>+180% Dine-In &amp; Takeout Orders</li>
+                    <li>4.9/5 Brand Satisfaction Rating</li>
+                    <li>17 Master Production Assets</li>
+                    <li>100% On-Time Studio Handover</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isMatchaClub ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Ceremonial packaging &amp; brand asset suite.</h2>
+                </div>
+                <p>Character-driven storytelling, tactile aluminum tins, refill pouches, and kinetic rituals.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Brand Universe</h4>
+                  <div className="sub">// IDENTITY &amp; MOTION</div>
+                  <ul>
+                    <li>Character mascot illustration system</li>
+                    <li>Animated brand marks &amp; daily rituals</li>
+                    <li>Custom typographic hierarchy</li>
+                    <li>Earth &amp; matcha green color palette</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Packaging Suite</h4>
+                  <div className="sub">// TINS &amp; POUCHES</div>
+                  <ul>
+                    <li>Matte aluminum ceremonial matcha tins</li>
+                    <li>Sealed eco-friendly refill pouches</li>
+                    <li>Foil-stamped label architecture</li>
+                    <li>Whisk &amp; scoop unboxing box dielines</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Digital Collateral</h4>
+                  <div className="sub">// E-COMMERCE &amp; SOCIAL</div>
+                  <ul>
+                    <li>E-Commerce product render suite</li>
+                    <li>Step-by-step brewing guide cards</li>
+                    <li>Social media kinetic loop templates</li>
+                    <li>Limited-edition merch &amp; ceramic cups</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>+220% DTC Subscription Growth</li>
+                    <li>3.8x Social Engagement Multiplier</li>
+                    <li>16 Master Production Deliverables</li>
+                    <li>High Brand Loyalty &amp; Retention</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isMurami ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Mascot universe &amp; restaurant art direction.</h2>
+                </div>
+                <p>Dynamic character poses, street-culture merchandise, custom packaging, and interior branding.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Character System</h4>
+                  <div className="sub">// MASCOT &amp; ART DIRECTION</div>
+                  <ul>
+                    <li>Modular character mascot system</li>
+                    <li>Dynamic action poses &amp; expressions</li>
+                    <li>Japanese street-culture art direction</li>
+                    <li>High-voltage neon color palette</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Packaging Dielines</h4>
+                  <div className="sub">// TAKEOUT &amp; CONTAINERS</div>
+                  <ul>
+                    <li>Custom bento box &amp; bowl sleeves</li>
+                    <li>Illustrated takeaway kraft bags</li>
+                    <li>Custom chopstick wrappers</li>
+                    <li>Branded condiment packets &amp; cups</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Merch &amp; Spaces</h4>
+                  <div className="sub">// MERCHANDISE &amp; INTERIORS</div>
+                  <ul>
+                    <li>Screen-printed streetwear &amp; hoodies</li>
+                    <li>In-store neon signs &amp; mural specs</li>
+                    <li>Illustrated menu boards</li>
+                    <li>Collectible brand sticker packs</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>+310% Brand Recall &amp; Engagement</li>
+                    <li>5.0x Organic Social Mentions</li>
+                    <li>14 Master Production Assets</li>
+                    <li>Complete Turnkey Asset Handoff</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isBondwith ? (
             <>
               <div className="section-head">
                 <div>
@@ -646,7 +970,19 @@ export default function WorkDetail() {
           <div className="section-head">
             <div>
               <div className="eyebrow">DESIGN SYSTEM GALLERY</div>
-              <h2>{isBondwith ? 'Bondwith — 31 Master System Figures & Guideline Architecture' : isAfter8 ? 'Visual system & product showcase.' : `${project.title} — Visual System & Renders`}</h2>
+              <h2>
+                {isPronto
+                  ? 'PRONTO! — 17 Master System Figures & Motion Assets'
+                  : isMatchaClub
+                  ? 'Matcha Club — 16 Ceremonial Packaging Figures & Loops'
+                  : isMurami
+                  ? 'Murami — 14 Mascot System Figures & Restaurant Renders'
+                  : isBondwith
+                  ? 'Bondwith — 31 Master System Figures & Guideline Architecture'
+                  : isAfter8
+                  ? 'Visual system & product showcase.'
+                  : `${project.title} — Visual System & Renders`}
+              </h2>
             </div>
             <p>Detailed breakdown of typographic pairings, color swatches, and packaging renders.</p>
           </div>
@@ -654,6 +990,62 @@ export default function WorkDetail() {
           <div className="gallery">
             {project.images && project.images.length > 0 ? (
               project.images.map((imgUrl, imgIdx) => {
+                const prontoCaptions = [
+                  "PRONTO! — Primary Bold Wordmark & Brand Seal Cover",
+                  "Brand Positioning Statement & Authentic Italian Heritage",
+                  "Neapolitan Pizza Box Structural Packaging & Custom Illustration",
+                  "Takeaway Paper Bags & Kraft Packaging Suite",
+                  "Animated Brand Mark & Pizza Slice Motion Graphics",
+                  "Animated Mascot & Dynamic Brand Expression",
+                  "Complete Tableware & Restaurant Dine-In Collateral",
+                  "Kinetic Motion Reveal & Social Media Animation",
+                  "Vibrant Colorway Matrix & Typographic Hierarchy",
+                  "Custom Branded Merchandise, Aprons & Apparel",
+                  "Dine-In Menu Architecture & Typography Layout",
+                  "Takeout Beverage Cups & Illustrated Sleeves",
+                  "Environmental Signage, Window Decals & Storefront",
+                  "Animated Delivery Van & Motion Asset System",
+                  "Packaging Unboxing Experience & Brand Details",
+                  "Secondary Badge System & Seal Variants",
+                  "PRONTO! Master Brand Assets & Design System Overview"
+                ];
+
+                const matchaClubCaptions = [
+                  "Matcha Club — Mindful Character Motion Loop & Mascot Reveal",
+                  "Ceremonial Grade Matcha Tin Packaging Architecture",
+                  "Animated Whisking Ritual & Japanese Character Motion",
+                  "Refill Pouch Packaging & Minimalist Label Architecture",
+                  "Animated Mascot Steaming Cup & Daily Ritual Motion",
+                  "Tactile Aluminum Tins & Matte Label Detailing",
+                  "Custom Brewing Guide Card & Typographic Hierarchy",
+                  "Animated Brand Mark & Kinetic Organic Loop",
+                  "Complete Unboxing Experience & Chasen Whisk Box",
+                  "Organic Earth & Matcha Green Color Palette Specs",
+                  "Animated Matcha Sachet Motion & Pouring Reveal",
+                  "Social Media Motion System & Editorial Templates",
+                  "Minimalist Iconography & Ingredient Transparency Marks",
+                  "Animated Character Expressions & Mascot Emotions",
+                  "Ceremonial Tin Motion Reveal & Packaging Animation",
+                  "Matcha Club Master Asset Suite & Design System Overview"
+                ];
+
+                const muramiCaptions = [
+                  "Murami — AI-Assisted Character Mascot & Hero Illustration",
+                  "Primary Wordmark Construction & High-Contrast Typography",
+                  "Custom Illustrated Takeout Bags & Bento Packaging",
+                  "Japanese Streetwear Merchandising & Screen-Printed Hoodies",
+                  "Modular Mascot Poses & Dynamic Character Art Direction",
+                  "Vibrant Packaging Dielines & Food Container Sleeves",
+                  "Chopstick Packaging, Sauce Packets & Table Collateral",
+                  "In-Store Environmental Graphics, Neon Signage & Mural Specs",
+                  "High-Voltage Colorway System & Background Usability",
+                  "Editorial Dine-In Menu Layout & Item Hierarchy",
+                  "Collectible Brand Sticker Pack & Streetwear Graphics",
+                  "Social Media Launch Campaign & Digital Brand Renders",
+                  "Takeaway Beverage Cups & Branded Container Mockups",
+                  "Murami Master Brand Guidelines & Complete Asset Suite"
+                ];
+
                 const bondwithCaptions = [
                   "Brand Guidelines Architecture & Master Specification Cover",
                   "Visual Table of Contents & Specifications Architecture",
@@ -755,7 +1147,13 @@ export default function WorkDetail() {
                   return `${project.title} — ${idx === 0 ? 'Brand Identity System & Logomark Construction' : idx === 1 ? 'Typographic Hierarchy & Color Usability' : 'Collateral Applications & Design Guidelines'}`;
                 };
 
-                const captionText = isSoulBrew && imgIdx < soulBrewCaptions.length
+                const captionText = isPronto && imgIdx < prontoCaptions.length
+                  ? prontoCaptions[imgIdx]
+                  : isMatchaClub && imgIdx < matchaClubCaptions.length
+                  ? matchaClubCaptions[imgIdx]
+                  : isMurami && imgIdx < muramiCaptions.length
+                  ? muramiCaptions[imgIdx]
+                  : isSoulBrew && imgIdx < soulBrewCaptions.length
                   ? soulBrewCaptions[imgIdx]
                   : isBondwith && imgIdx < bondwithCaptions.length
                   ? bondwithCaptions[imgIdx]
