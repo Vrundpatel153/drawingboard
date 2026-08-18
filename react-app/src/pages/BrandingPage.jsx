@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -17,6 +17,17 @@ export default function BrandingPage() {
   const [scaleSlide, setScaleSlide] = useState(0);
   const [leadFormData, setLeadFormData] = useState({ email: '', brand: '', web: '', stage: '' });
   const [leadSubmitted, setLeadSubmitted] = useState(false);
+  const caseSliderRef = useRef(null);
+
+  const slideCases = (direction) => {
+    if (caseSliderRef.current) {
+      const scrollAmount = caseSliderRef.current.offsetWidth * 0.8;
+      caseSliderRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   // Think Section Interactive Media State
   const [categorySlide, setCategorySlide] = useState(0);
@@ -298,33 +309,88 @@ export default function BrandingPage() {
         .bp-seq-caption { margin-top: 20px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; }
         .bp-seq-caption strong { color: var(--ink); }
 
-        /* Case Grid */
-        .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        /* Selected Brand Systems Smooth Horizontal Slider */
+        .case-slider-container {
+          position: relative;
+          width: 100%;
+          margin-top: 32px;
+        }
+        .case-grid {
+          display: flex !important;
+          gap: 24px !important;
+          overflow-x: auto !important;
+          overflow-y: hidden !important;
+          scroll-snap-type: x mandatory !important;
+          scroll-behavior: smooth !important;
+          -webkit-overflow-scrolling: touch !important;
+          padding: 4px 4px 20px 4px !important;
+          scrollbar-width: thin;
+          scrollbar-color: var(--pine) var(--paper-line);
+        }
+        .case-grid::-webkit-scrollbar {
+          height: 6px;
+        }
+        .case-grid::-webkit-scrollbar-track {
+          background: var(--paper-line);
+          border-radius: 3px;
+        }
+        .case-grid::-webkit-scrollbar-thumb {
+          background: var(--pine);
+          border-radius: 3px;
+        }
+        .case-grid .case-card {
+          flex: 0 0 clamp(320px, 32vw, 420px) !important;
+          max-width: 420px !important;
+          min-width: 320px !important;
+          scroll-snap-align: start !important;
+          border: 1px solid var(--ink);
+          background: var(--card);
+          overflow: hidden;
+          transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
+          display: flex;
+          flex-direction: column;
+        }
+        .case-grid .case-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 14px 30px rgba(27, 27, 23, 0.08);
+        }
+        .case-nav-btn {
+          width: 42px;
+          height: 42px;
+          border: 1.5px solid var(--ink);
+          background: var(--card);
+          color: var(--ink);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          font-size: 18px;
+          font-family: 'IBM Plex Mono', monospace;
+          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+          border-radius: 2px;
+        }
+        .case-nav-btn:hover {
+          background: var(--pine);
+          color: var(--paper);
+          border-color: var(--pine);
+          transform: scale(1.05);
+        }
         @media (max-width: 900px) {
           .case-grid {
-            display: flex;
-            gap: 16px;
-            overflow-x: auto;
-            overflow-y: hidden;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            padding: 4px 16px 20px 16px;
-            margin-left: -16px;
-            margin-right: -16px;
-            width: calc(100% + 32px);
-            scrollbar-width: none;
-            -ms-overflow-style: none;
+            gap: 16px !important;
+            padding: 4px 16px 20px 16px !important;
+            margin-left: -16px !important;
+            margin-right: -16px !important;
+            width: calc(100% + 32px) !important;
+            scrollbar-width: none !important;
           }
-          .case-grid::-webkit-scrollbar { display: none; }
+          .case-grid::-webkit-scrollbar { display: none !important; }
           .case-grid .case-card {
-            flex: 0 0 clamp(280px, 82vw, 340px);
-            max-width: 340px;
-            scroll-snap-align: start;
+            flex: 0 0 clamp(280px, 82vw, 340px) !important;
+            max-width: 340px !important;
+            min-width: 280px !important;
           }
         }
-        .case-card { border: 1px solid var(--ink); background: var(--card); overflow: hidden; transition: transform 0.2s; display: flex; flex-direction: column; }
-        .case-card:hover { transform: translateY(-2px); }
         .case-card .img { aspect-ratio: 4/3; background: linear-gradient(135deg, #d8d2c1, #c3bda9); position: relative; overflow: hidden; width: 100%; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(27,27,23,0.4); text-align: center; padding: 12px; }
         .case-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
         .case-body .tag { font-size: 11px; color: var(--marker); margin-bottom: 6px; font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; }
@@ -844,102 +910,210 @@ export default function BrandingPage() {
           </div>
         </section>
 
-        {/* ── 6. NEW SELECTED BRAND SYSTEMS (CASE STUDIES) ─────────────── */}
+        {/* ── 6. NEW SELECTED BRAND SYSTEMS (CASE STUDIES SLIDER) ─────────────── */}
         <section id="case-studies">
           <div className="wrap">
-            <div className="bp-section-head">
+            <div className="bp-section-head" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '20px' }}>
               <div>
                 <div className="bp-eyebrow mono">SELECTED BRAND SYSTEMS</div>
                 <h2>Work designed to live beyond a single mockup.</h2>
+                <p style={{ marginTop: '8px', maxWidth: '640px' }}>Each project reveals the business problem, strategic decision and system created — not only the final logo.</p>
               </div>
-              <p>Each project reveals the business problem, strategic decision and system created — not only the final logo.</p>
+              <div className="case-slider-nav" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <span className="mono" style={{ fontSize: '11px', color: 'var(--ink-soft)', letterSpacing: '0.05em', marginRight: '6px' }}>[ SLIDE TO EXPLORE 6 PROJECTS ]</span>
+                <button
+                  type="button"
+                  aria-label="Previous Case Study"
+                  onClick={() => slideCases('left')}
+                  className="case-nav-btn"
+                >
+                  ←
+                </button>
+                <button
+                  type="button"
+                  aria-label="Next Case Study"
+                  onClick={() => slideCases('right')}
+                  className="case-nav-btn"
+                >
+                  →
+                </button>
+              </div>
             </div>
 
-            <div className="case-grid">
-              <Link to="/work/after8%C2%AE---reimagining-intimacy-for-a-new-generation." className="case-card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
-                <div className="img" style={{ background: 'none' }}>
-                  <img
-                    src="https://framerusercontent.com/images/GI9hs6gABp4QhAbVBk1Ej9TVE0.png"
-                    alt="AFTER8® Brand System"
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  />
-                </div>
-                <div className="case-body">
-                  <div className="tag mono">Personal Wellness</div>
-                  <h4>AFTER8®</h4>
-                  <p><strong>Challenge:</strong> Enter a sensitive and visually crowded category without feeling clinical, crude or generic.</p>
-                  <p style={{ marginTop: '8px' }}><strong>Direction:</strong> A confident after-hours identity balancing discretion, modernity and clear product recognition.</p>
-                  <ul className="sys-list">
-                    <li>Positioning direction</li>
-                    <li>Visual identity</li>
-                    <li>Packaging architecture</li>
-                    <li>Variant logic</li>
-                    <li>Digital launch direction</li>
-                  </ul>
-                  <div className="demo"><b>What This Project Demonstrates</b>How one central brand idea can remain recognisable across identity, product packaging and digital communication.</div>
-                  <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    View Case Study <span style={{ fontSize: '16px' }}>→</span>
+            <div className="case-slider-container">
+              <div ref={caseSliderRef} className="case-grid">
+                {/* 1. AFTER8 */}
+                <Link to="/work/after8%C2%AE---reimagining-intimacy-for-a-new-generation." className="case-card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
+                  <div className="img" style={{ background: 'none' }}>
+                    <img
+                      src="https://framerusercontent.com/images/GI9hs6gABp4QhAbVBk1Ej9TVE0.png"
+                      alt="AFTER8® Brand System"
+                      style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                    />
                   </div>
-                </div>
-              </Link>
+                  <div className="case-body">
+                    <div className="tag mono">Personal Wellness</div>
+                    <h4>AFTER8®</h4>
+                    <p><strong>Challenge:</strong> Enter a sensitive and visually crowded category without feeling clinical, crude or generic.</p>
+                    <p style={{ marginTop: '8px' }}><strong>Direction:</strong> A confident after-hours identity balancing discretion, modernity and clear product recognition.</p>
+                    <ul className="sys-list">
+                      <li>Positioning direction</li>
+                      <li>Visual identity</li>
+                      <li>Packaging architecture</li>
+                      <li>Variant logic</li>
+                      <li>Digital launch direction</li>
+                    </ul>
+                    <div className="demo"><b>What This Project Demonstrates</b>How one central brand idea can remain recognisable across identity, product packaging and digital communication.</div>
+                    <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      View Case Study <span style={{ fontSize: '16px' }}>→</span>
+                    </div>
+                  </div>
+                </Link>
 
-              <Link to="/work/lumen-fine-jewellery" className="case-card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
-                <div className="img" style={{ background: 'none' }}>
-                  <img
-                    src="https://framerusercontent.com/images/Gj0gd8TaOnBqjox9iFb1KV8EbY.jpeg"
-                    alt="LUMIEN Packaging System"
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  />
-                </div>
-                <div className="case-body">
-                  <div className="tag mono">Fine Jewellery</div>
-                  <h4>LUMIEN</h4>
-                  <p><strong>Challenge:</strong> Build a modern jewellery brand that feels aspirational and refined without relying on predictable luxury codes.</p>
-                  <p style={{ marginTop: '8px' }}><strong>Direction:</strong> Restraint, proportion and tactile detail used to create a distinctive identity and gifting experience.</p>
-                  <ul className="sys-list">
-                    <li>Brand story</li>
-                    <li>Identity</li>
-                    <li>Packaging</li>
-                    <li>Retail details</li>
-                    <li>Digital art direction</li>
-                  </ul>
-                  <div className="demo"><b>What This Project Demonstrates</b>How a restrained visual system can communicate value through consistency, tactility and thoughtful detail.</div>
-                  <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    View Case Study <span style={{ fontSize: '16px' }}>→</span>
+                {/* 2. LUMIEN */}
+                <Link to="/work/lumen-fine-jewellery" className="case-card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
+                  <div className="img" style={{ background: 'none' }}>
+                    <img
+                      src="https://framerusercontent.com/images/Gj0gd8TaOnBqjox9iFb1KV8EbY.jpeg"
+                      alt="LUMIEN Packaging System"
+                      style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                    />
                   </div>
-                </div>
-              </Link>
+                  <div className="case-body">
+                    <div className="tag mono">Fine Jewellery</div>
+                    <h4>LUMIEN</h4>
+                    <p><strong>Challenge:</strong> Build a modern jewellery brand that feels aspirational and refined without relying on predictable luxury codes.</p>
+                    <p style={{ marginTop: '8px' }}><strong>Direction:</strong> Restraint, proportion and tactile detail used to create a distinctive identity and gifting experience.</p>
+                    <ul className="sys-list">
+                      <li>Brand story</li>
+                      <li>Identity</li>
+                      <li>Packaging</li>
+                      <li>Retail details</li>
+                      <li>Digital art direction</li>
+                    </ul>
+                    <div className="demo"><b>What This Project Demonstrates</b>How a restrained visual system can communicate value through consistency, tactility and thoughtful detail.</div>
+                    <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      View Case Study <span style={{ fontSize: '16px' }}>→</span>
+                    </div>
+                  </div>
+                </Link>
 
-              <Link to="/work/soul-brew-branding-packaging-design" className="case-card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
-                <div className="img" style={{ background: 'none' }}>
-                  <img
-                    src="/images/soul-brew/o1.png"
-                    alt="Soul Brew Coffee Brand &amp; Packaging System"
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  />
-                </div>
-                <div className="case-body">
-                  <div className="tag mono">Specialty Coffee &amp; F&amp;B</div>
-                  <h4>SOUL BREW</h4>
-                  <p><strong>Challenge:</strong> Build a distinctive brand identity, custom roast packaging architecture, and brand narrative for an artisanal specialty coffee brand.</p>
-                  <p style={{ marginTop: '8px' }}><strong>Direction:</strong> Artisanal logotype, custom roast color-coding, sustainable pouch packaging, and tactile coffee collateral.</p>
-                  <ul className="sys-list">
-                    <li>Brand positioning &amp; strategy</li>
-                    <li>Visual identity &amp; logotype</li>
-                    <li>Roast packaging dielines</li>
-                    <li>Color-coded SKU system</li>
-                    <li>Digital storefront direction</li>
-                  </ul>
-                  <div className="demo"><b>What This Project Demonstrates</b>How strategy-led packaging architecture and brand storytelling create category leadership in consumer F&B.</div>
-                  <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    View Case Study <span style={{ fontSize: '16px' }}>→</span>
+                {/* 3. SOUL BREW */}
+                <Link to="/work/soul-brew-branding-packaging-design" className="case-card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
+                  <div className="img" style={{ background: 'none' }}>
+                    <img
+                      src="/images/soul-brew/o1.png"
+                      alt="Soul Brew Coffee Brand &amp; Packaging System"
+                      style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                    />
                   </div>
-                </div>
-              </Link>
+                  <div className="case-body">
+                    <div className="tag mono">Specialty Coffee &amp; F&amp;B</div>
+                    <h4>SOUL BREW</h4>
+                    <p><strong>Challenge:</strong> Build a distinctive brand identity, custom roast packaging architecture, and brand narrative for an artisanal specialty coffee brand.</p>
+                    <p style={{ marginTop: '8px' }}><strong>Direction:</strong> Artisanal logotype, custom roast color-coding, sustainable pouch packaging, and tactile coffee collateral.</p>
+                    <ul className="sys-list">
+                      <li>Brand positioning &amp; strategy</li>
+                      <li>Visual identity &amp; logotype</li>
+                      <li>Roast packaging dielines</li>
+                      <li>Color-coded SKU system</li>
+                      <li>Digital storefront direction</li>
+                    </ul>
+                    <div className="demo"><b>What This Project Demonstrates</b>How strategy-led packaging architecture and brand storytelling create category leadership in consumer F&B.</div>
+                    <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      View Case Study <span style={{ fontSize: '16px' }}>→</span>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* 4. PRONTO! */}
+                <Link to="/work/pronto-italian-restaurant-identity" className="case-card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
+                  <div className="img" style={{ background: 'none' }}>
+                    <img
+                      src="/images/pronto/pronto_01.png"
+                      alt="PRONTO! Italian Restaurant &amp; Pizzeria"
+                      style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                    />
+                  </div>
+                  <div className="case-body">
+                    <div className="tag mono">Italian Restaurant &amp; Pizzeria</div>
+                    <h4>PRONTO!</h4>
+                    <p><strong>Challenge:</strong> Reinvent traditional Italian dining for modern urban culture without predictable trattoria clichés.</p>
+                    <p style={{ marginTop: '8px' }}><strong>Direction:</strong> Retro-modern Italian visual identity, custom Neapolitan pizza box dielines, staff merch, and kinetic motion graphics.</p>
+                    <ul className="sys-list">
+                      <li>Brand positioning &amp; seal</li>
+                      <li>Visual identity &amp; typography</li>
+                      <li>Pizza box packaging dielines</li>
+                      <li>Restaurant tableware &amp; merch</li>
+                      <li>Kinetic motion reveal loops</li>
+                    </ul>
+                    <div className="demo"><b>What This Project Demonstrates</b>How character-rich typography and custom packaging elevate everyday dining into an unforgettable cultural ritual.</div>
+                    <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      View Case Study <span style={{ fontSize: '16px' }}>→</span>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* 5. MATCHA CLUB */}
+                <Link to="/work/matcha-club-brand-identity" className="case-card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
+                  <div className="img" style={{ background: 'none' }}>
+                    <img
+                      src="/images/matcha-club/matcha-club_02.png"
+                      alt="Matcha Club Brand Identity &amp; Packaging"
+                      style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                    />
+                  </div>
+                  <div className="case-body">
+                    <div className="tag mono">Mindful Ritual &amp; Ceremonial CPG</div>
+                    <h4>MATCHA CLUB</h4>
+                    <p><strong>Challenge:</strong> Demystify ceremonial matcha into an approachable daily lifestyle habit while balancing ancient reverence with modern accessibility.</p>
+                    <p style={{ marginTop: '8px' }}><strong>Direction:</strong> Character-driven storytelling, tactile matte aluminum tin packaging, custom label systems, and joyful kinetic rituals.</p>
+                    <ul className="sys-list">
+                      <li>Brand story &amp; mascot system</li>
+                      <li>Ceremonial tin architecture</li>
+                      <li>Eco-friendly refill pouches</li>
+                      <li>Brewing guides &amp; card kit</li>
+                      <li>E-Commerce motion direction</li>
+                    </ul>
+                    <div className="demo"><b>What This Project Demonstrates</b>How character-led visual storytelling bridges tradition and modern wellness to drive recurring DTC subscription growth.</div>
+                    <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      View Case Study <span style={{ fontSize: '16px' }}>→</span>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* 6. MURAMI */}
+                <Link to="/work/murami-character-driven-brand-identity" className="case-card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
+                  <div className="img" style={{ background: 'none' }}>
+                    <img
+                      src="/images/murami/murami_01.png"
+                      alt="Murami Mascot System &amp; Restaurant Art Direction"
+                      style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                    />
+                  </div>
+                  <div className="case-body">
+                    <div className="tag mono">Character &amp; Hospitality</div>
+                    <h4>MURAMI</h4>
+                    <p><strong>Challenge:</strong> Create an unmistakable character-led mascot universe in a fast-paced dining scene without losing culinary authority or scalability.</p>
+                    <p style={{ marginTop: '8px' }}><strong>Direction:</strong> High-energy modular mascot illustration system, Japanese streetwear art direction, custom takeout packaging, and interior neon specs.</p>
+                    <ul className="sys-list">
+                      <li>Modular character mascot</li>
+                      <li>Takeout packaging dielines</li>
+                      <li>Streetwear apparel &amp; hoodies</li>
+                      <li>In-store signage &amp; murals</li>
+                      <li>Digital launch kit</li>
+                    </ul>
+                    <div className="demo"><b>What This Project Demonstrates</b>How an iconic mascot system serves as a living brand ambassador, driving organic social shareability across physical and digital touchpoints.</div>
+                    <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      View Case Study <span style={{ fontSize: '16px' }}>→</span>
+                    </div>
+                  </div>
+                </Link>
+              </div>
             </div>
 
             <div className="bp-cases-foot">
-              <Link className="bp-btn-link" to="/work">See the strategy behind the work →</Link>
+              <Link className="bp-btn-link" to="/work">See all case studies and strategic breakdowns →</Link>
             </div>
           </div>
         </section>
