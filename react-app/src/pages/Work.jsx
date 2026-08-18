@@ -16,10 +16,11 @@ export default function Work() {
 
   const filteredProjects = projectsData.filter(p => {
     if (filter === 'all') return true;
-    if (filter === 'branding') return p.category === 'branding' || p.tag.includes('BRANDING');
-    if (filter === 'packaging') return p.category === 'packaging' || p.tag.includes('PACKAGING');
-    if (filter === 'web') return p.category === 'web' || p.tag.includes('WEB') || p.tag.includes('UI UX');
-    if (filter === 'photography') return p.category === 'photography' || p.tag.includes('PHOTO');
+    if (filter === 'branding') return p.category === 'branding' || (p.tag && p.tag.includes('BRANDING'));
+    if (filter === 'food') return p.category === 'food' || (p.tag && (p.tag.includes('FOOD') || p.tag.includes('BEVERAGE') || p.tag.includes('RESTAURANT') || p.tag.includes('CAFE'))) || ['pronto', 'matcha', 'murami', 'soul-brew'].some(s => (p.slug || '').includes(s));
+    if (filter === 'packaging') return p.category === 'packaging' || (p.tag && p.tag.includes('PACKAGING'));
+    if (filter === 'web') return p.category === 'web' || (p.tag && (p.tag.includes('WEB') || p.tag.includes('UI UX')));
+    if (filter === 'photography') return p.category === 'photography' || (p.tag && p.tag.includes('PHOTO'));
     return true;
   });
 
@@ -203,6 +204,7 @@ export default function Work() {
               <div className="filter-tabs" style={{ margin: 0, padding: 0 }}>
                 <button className={`ftab ${filter === 'all' ? 'on' : ''}`} onClick={() => handleFilter('all')}>[ ALL PROJECTS ]</button>
                 <button className={`ftab ${filter === 'branding' ? 'on' : ''}`} onClick={() => handleFilter('branding')}>[ BRANDING ]</button>
+                <button className={`ftab ${filter === 'food' ? 'on' : ''}`} onClick={() => handleFilter('food')}>[ FOOD ]</button>
                 <button className={`ftab ${filter === 'web' ? 'on' : ''}`} onClick={() => handleFilter('web')}>[ WEB &amp; DIGITAL ]</button>
                 <button className={`ftab ${filter === 'packaging' ? 'on' : ''}`} onClick={() => handleFilter('packaging')}>[ PACKAGING ]</button>
               </div>
