@@ -14,7 +14,7 @@ export default function Services() {
   const pageRef = useRef(null);
   const carouselRef = useRef(null);
   const [activeCardIndex, setActiveCardIndex] = useState(0);
-  const [currency, setCurrency] = useState('USD');
+  const [currency, setCurrency] = useState('INR');
 
   usePageAnimations(pageRef);
 

@@ -12,7 +12,7 @@ import { WHATSAPP_URL } from '../utils/siteConfig';
    ───────────────────────────────────────────────────────────────────────────── */
 export default function Home() {
   const [openFaq, setOpenFaq] = useState(null);
-  const [currency, setCurrency] = useState('USD');
+  const [currency, setCurrency] = useState('INR');
   const [growthSlide, setGrowthSlide] = useState(0);
   const [scaleSlide, setScaleSlide] = useState(0);
   const [leadFormData, setLeadFormData] = useState({ email: '', brand: '', web: '', stage: '' });
