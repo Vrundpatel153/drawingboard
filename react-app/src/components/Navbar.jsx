@@ -81,8 +81,8 @@ export default function Navbar() {
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="25 138 320 56" className="nav-full-logo-svg" style={{ height: '30px', width: 'auto', display: 'block', maxWidth: '100%' }}>
               <rect x="30.445" y="142.642" fill="#A19071" width="44.42" height="25.732"/>
               <rect x="30.445" y="159.392" fill="#A19071" width="22.685" height="30.341"/>
-              <text transform="matrix(1 0 0 1 78.917 167.3428)" fill="var(--ink)" font-family="'Constantia', 'Fraunces', serif" font-size="22.8942">THE DRAWING BOARD</text>
-              <text transform="matrix(1 0 0 1 148.7827 187.6387)" fill="#A19071" font-family="'Inter', 'IBM Plex Mono', sans-serif" font-size="11.0941" letter-spacing="1px" opacity="0.9">CREATIVE AGENCY</text>
+              <text transform="matrix(1 0 0 1 78.917 167.3428)" fill="var(--ink)" fontFamily="'Constantia', 'Fraunces', serif" fontSize="22.8942">THE DRAWING BOARD</text>
+              <text transform="matrix(1 0 0 1 148.7827 187.6387)" fill="#A19071" fontFamily="'Inter', 'IBM Plex Mono', sans-serif" fontSize="11.0941" letterSpacing="1px" opacity="0.9">CREATIVE AGENCY</text>
             </svg>
           </Link>
 

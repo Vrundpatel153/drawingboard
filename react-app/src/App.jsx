@@ -13,6 +13,8 @@ import DevelopmentPage from './pages/DevelopmentPage';
 import Contact from './pages/Contact';
 import BlogDetail from './pages/BlogDetail';
 import LegalDetail from './pages/LegalDetail';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 import Admin from './pages/Admin';
 import ThankYou from './pages/ThankYou';
 import SmoothScroll from './components/SmoothScroll';
@@ -85,6 +87,11 @@ export default function App() {
             <Route path="/thank-you" element={<ThankYou />} />
 
             {/* Legal routes */}
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/terms" element={<TermsOfService />} />
+            <Route path="/terms-and-conditions" element={<TermsOfService />} />
             <Route path="/legal/:legalId" element={<LegalDetail />} />
 
             {/* Secret Admin Route */}

@@ -55,8 +55,8 @@ export default function Footer() {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="25 138 320 56" className="foot-logo-svg" style={{ height: '34px', width: 'auto', display: 'block', maxWidth: '100%' }}>
                 <rect x="30.445" y="142.642" fill="#A19071" width="44.42" height="25.732"/>
                 <rect x="30.445" y="159.392" fill="#A19071" width="22.685" height="30.341"/>
-                <text transform="matrix(1 0 0 1 78.917 167.3428)" fill="#A19071" font-family="'Constantia', 'Fraunces', serif" font-size="22.8942">THE DRAWING BOARD</text>
-                <text transform="matrix(1 0 0 1 148.7827 187.6387)" fill="#A19071" font-family="'Inter', 'IBM Plex Mono', sans-serif" font-size="11.0941" letter-spacing="1px" opacity="0.9">CREATIVE AGENCY</text>
+                <text transform="matrix(1 0 0 1 78.917 167.3428)" fill="#A19071" fontFamily="'Constantia', 'Fraunces', serif" fontSize="22.8942">THE DRAWING BOARD</text>
+                <text transform="matrix(1 0 0 1 148.7827 187.6387)" fill="#A19071" fontFamily="'Inter', 'IBM Plex Mono', sans-serif" fontSize="11.0941" letterSpacing="1px" opacity="0.9">CREATIVE AGENCY</text>
               </svg>
             </Link>
             <p>Independent Brand, Web &amp; Packaging Design Engineering Studio.</p>
@@ -78,6 +78,11 @@ export default function Footer() {
             <Link to="/work/krona-architecture-studio">Krona Architecture</Link>
           </div>
           <div className="foot-col">
+            <h5>Legal</h5>
+            <Link to="/privacy-policy">Privacy Policy</Link>
+            <Link to="/terms-of-service">Terms &amp; Conditions</Link>
+          </div>
+          <div className="foot-col">
             <h5>Connect</h5>
             <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">
               Book a Call
@@ -89,6 +94,11 @@ export default function Footer() {
         </div>
         <div className="foot-bottom">
           <span>&copy; 2026 The Drawing Board Studio. All rights reserved.</span>
+          <div className="foot-legal-links">
+            <Link to="/privacy-policy">Privacy Policy</Link>
+            <span className="foot-sep">•</span>
+            <Link to="/terms-of-service">Terms &amp; Conditions</Link>
+          </div>
           <span>Architectural Blueprint Editorial System</span>
         </div>
       </div>

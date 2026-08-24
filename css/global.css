@@ -1505,9 +1505,30 @@ footer {
   padding-top: 20px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
   font-size: 12px;
+}
+
+.foot-legal-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.foot-legal-links a {
+  color: var(--ink-soft);
+  transition: color 0.15s;
+}
+
+.foot-legal-links a:hover {
+  color: var(--pine);
+  text-decoration: underline;
+}
+
+.foot-sep {
+  opacity: 0.4;
 }
 
 /* ==========================================================================
