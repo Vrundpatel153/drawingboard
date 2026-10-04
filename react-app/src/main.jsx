@@ -5,14 +5,7 @@ import App from './App.jsx'
 
 const rootElement = document.getElementById('root')
 
-if (rootElement && rootElement.hasChildNodes()) {
-  hydrateRoot(
-    rootElement,
-    <StrictMode>
-      <App />
-    </StrictMode>
-  )
-} else if (rootElement) {
+if (rootElement) {
   createRoot(rootElement).render(
     <StrictMode>
       <App />
