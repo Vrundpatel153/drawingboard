@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import MoreServicesSection from '../components/MoreServicesSection';
 import StickyMobileCTA from '../components/StickyMobileCTA';
+import ArrowIcon from '../components/ArrowIcon';
 import { WHATSAPP_URL } from '../utils/siteConfig';
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -12,6 +13,7 @@ import { WHATSAPP_URL } from '../utils/siteConfig';
    ───────────────────────────────────────────────────────────────────────────── */
 export default function BrandingPage() {
   const [openFaq, setOpenFaq] = useState(null);
+  const faqRefs = useRef([]);
   const [currency, setCurrency] = useState('INR');
   const [growthSlide, setGrowthSlide] = useState(0);
   const [scaleSlide, setScaleSlide] = useState(0);
@@ -186,6 +188,10 @@ export default function BrandingPage() {
 
   const faqs = [
     { q: 'What is included in the $4,960 (₹4,75,000) engagement?', a: 'The Brand-to-Shelf engagement includes strategy, positioning, messaging direction, a complete identity system, brand guidelines, one master packaging direction, front and back information hierarchy, up to five straightforward SKU adaptations, presentation mockups, print-ready artwork on approved dielines and editable source files.' },
+    { q: 'What is your turnaround timeline, and why is it faster than traditional agencies?', a: 'Our focused sprint runs 4 to 6 weeks for Brand-to-Shelf and 6 to 8 weeks for Brand-to-Market. Traditional legacy agencies (like NOW Media or holding groups) take 8 to 14 weeks because your brief gets passed through layers of junior account executives, coordinators, and approval committees. At The Drawing Board, you work directly with senior design directors and founders—meaning rapid alignment, zero bureaucratic dilution, and swift turnaround.' },
+    { q: 'What is the Architectural Brand Engine™ process?', a: 'We operate on a proprietary 5-stage sprint methodology: 01 Discovery Blueprint (category whitespace and buyer psychology), 02 Verbal Architecture (defining the core idea your brand uniquely owns), 03 Visual Identity System (engineering mathematical logomarks and type hierarchy), 04 Tactile Production (translating assets to physical production dielines and foil specs), and 05 Kinetic Rollout (delivering complete editable Figma libraries, motion assets, and turnkey guidelines).' },
+    { q: 'How do you demonstrate proof of results compared to agencies that list "200+ logos"?', a: 'Rather than displaying hundreds of superficial, templated logos from quick design contests, we engineer fewer, high-impact systems with verified business outcomes. Our case studies prove tangible commercial performance: PRONTO! achieved +180% dine-in & takeout orders, Matcha Club grew DTC subscriptions by +220%, Murami delivered +310% brand recall, Soul Brew drove +240% customer engagement, AFTER8® generated +340% DTC revenue growth, and Flint achieved a +340% increase in enterprise qualified leads.' },
+    { q: 'How is The Drawing Board different from traditional branding agencies?', a: 'Three key advantages: (1) Strategy before decoration—we do not pitch random visual styles; every curve and typeface is anchored in market positioning and unit economics. (2) Senior boutique focus—we take only 2 to 3 founder-led projects concurrently to ensure direct principal attention. (3) Multi-touchpoint integration—your identity, packaging dielines, and digital website are built as one unified system, eliminating disconnects between separate vendors.' },
     { q: 'What is included in the $6,780 (₹6,50,000) engagement?', a: 'Brand-to-Market includes everything in Brand-to-Shelf plus website strategy, sitemap, customer journey, content hierarchy, responsive UI/UX design, an agreed page-template system, website development, testing, launch support and handover.' },
     { q: 'Can we begin with branding and packaging and add the website later?', a: 'Yes. Brand-to-Shelf can be completed first, with the website scoped as a second phase. This works especially well when product information, photography or website content will not be ready during the branding stage.' },
     { q: 'How many packaging SKUs are included?', a: 'Brand-to-Shelf includes one master packaging direction and up to five straightforward SKU adaptations using the approved structure. Additional SKUs, sizes, structures or formats are quoted separately.' },
@@ -236,7 +242,9 @@ export default function BrandingPage() {
         .bp-sheet-label .rule { flex: 1; height: 1px; background: var(--ink-soft); opacity: 0.4; }
         .bp-sheet-right { font-size: 12px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.05em; font-family: 'IBM Plex Mono', monospace; }
 
-        .bp-avail { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--pine); font-family: 'IBM Plex Mono', monospace; margin-bottom: 20px; background: rgba(36,70,59,0.08); border: 1px solid rgba(36,70,59,0.2); padding: 7px 14px; border-radius: 100px; line-height: 1.4; }
+        .bp-avail { display: inline-flex; align-items: flex-start; gap: 10px; font-size: 12px; color: var(--ink); font-family: 'IBM Plex Mono', monospace; margin-bottom: 22px; background: var(--card); border: 1px solid var(--ink); padding: 9px 13px; border-radius: 2px; line-height: 1.5; max-width: 680px; box-shadow: 2px 2px 0px rgba(27,27,23,0.08); }
+        .bp-avail .bp-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--marker); display: inline-block; flex-shrink: 0; margin-top: 5px; animation: bp-pulse 1.8s infinite; }
+        @keyframes bp-pulse { 0% { box-shadow: 0 0 0 0 rgba(184, 65, 46, 0.4); } 70% { box-shadow: 0 0 0 5px rgba(184, 65, 46, 0); } 100% { box-shadow: 0 0 0 0 rgba(184, 65, 46, 0); } }
         
         .bp-hero h1 { font-size: clamp(34px, 5vw, 66px); max-width: 880px; margin-bottom: 0; }
         .bp-hero h1 em { font-style: normal; color: var(--pine); }
@@ -713,7 +721,18 @@ export default function BrandingPage() {
           .bp-sp-badge-stats { gap: 14px !important; }
           .bp-sp-stat-num { font-size: 16px !important; }
           .bp-sp-stat-lbl { font-size: 8.5px !important; }
+          .bp-avail { font-size: 11px !important; padding: 8px 11px !important; margin-bottom: 16px !important; width: 100% !important; box-sizing: border-box !important; }
         }
+
+        /* FAQ Section Styles */
+        .bp-faq-section { background: var(--paper); border-top: 1px solid var(--ink); padding: 80px 0; }
+        .bp-faq-list { margin-top: 24px; }
+        .bp-faq-item { border-bottom: 1px solid rgba(27, 27, 23, 0.2); }
+        .bp-faq-q { width: 100%; text-align: left; background: none; border: none; padding: 22px 4px; font-family: 'Fraunces', serif; font-size: 19px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: var(--ink); gap: 16px; font-weight: 500; }
+        .bp-faq-q .plus { font-family: 'IBM Plex Mono', monospace; font-size: 20px; color: var(--marker); transition: transform .25s ease; flex-shrink: 0; }
+        .bp-faq-item.open .plus { transform: rotate(45deg); }
+        .bp-faq-a { max-height: 0; overflow: hidden; transition: max-height .3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .bp-faq-a p { padding: 0 4px 22px; font-size: 15px; color: var(--ink-soft); max-width: 760px; line-height: 1.65; margin: 0; }
       `}</style>
 
       <main className="bp-full-page">
@@ -727,8 +746,8 @@ export default function BrandingPage() {
             </div>
 
             <div className="bp-avail">
-              <span aria-hidden="true">●</span>
-              We work with a limited number of founder-led brands at a time so strategy and senior creative direction stay closely involved.
+              <span className="bp-dot" aria-hidden="true" />
+              <span>We work with a limited number of founder-led brands at a time so strategy and senior creative direction stay closely involved.</span>
             </div>
 
             <h1>Build the brand people choose <em>before they compare.</em></h1>
@@ -742,8 +761,8 @@ export default function BrandingPage() {
                   From how your brand is understood to how it looks on the shelf and performs online, we build one connected system designed to earn attention, communicate value and support growth.
                 </p>
                 <div className="bp-cta-row">
-                  <a className="bp-btn-primary" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Discuss Your Project →</a>
-                  <a className="bp-btn-link" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Prefer WhatsApp for discussion →</a>
+                  <a className="bp-btn-primary" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Discuss Your Project <ArrowIcon size={14} /></a>
+                  <a className="bp-btn-link" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Prefer WhatsApp for discussion <ArrowIcon size={13} /></a>
                 </div>
                 <p style={{ marginBottom: '14px' }}>
                   <a className="bp-btn-link" href="#case-studies">View Selected Work ↓</a>
@@ -880,7 +899,7 @@ export default function BrandingPage() {
               </div>
             </div>
             <div style={{ textAlign: 'center', marginTop: '36px' }}>
-              <a className="bp-btn-link" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">This sounds like our stage → Discuss the project</a>
+              <a className="bp-btn-link" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">This sounds like our stage <ArrowIcon size={13} /> Discuss the project</a>
             </div>
           </div>
         </section>
@@ -965,7 +984,7 @@ export default function BrandingPage() {
                     </ul>
                     <div className="demo"><b>What This Project Demonstrates</b>How one central brand idea can remain recognisable across identity, product packaging and digital communication.</div>
                     <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      View Case Study <span style={{ fontSize: '16px' }}>→</span>
+                      View Case Study <ArrowIcon size={14} />
                     </div>
                   </div>
                 </Link>
@@ -993,7 +1012,7 @@ export default function BrandingPage() {
                     </ul>
                     <div className="demo"><b>What This Project Demonstrates</b>How a restrained visual system can communicate value through consistency, tactility and thoughtful detail.</div>
                     <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      View Case Study <span style={{ fontSize: '16px' }}>→</span>
+                      View Case Study <ArrowIcon size={14} />
                     </div>
                   </div>
                 </Link>
@@ -1021,7 +1040,7 @@ export default function BrandingPage() {
                     </ul>
                     <div className="demo"><b>What This Project Demonstrates</b>How strategy-led packaging architecture and brand storytelling create category leadership in consumer F&B.</div>
                     <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      View Case Study <span style={{ fontSize: '16px' }}>→</span>
+                      View Case Study <ArrowIcon size={14} />
                     </div>
                   </div>
                 </Link>
@@ -1049,7 +1068,7 @@ export default function BrandingPage() {
                     </ul>
                     <div className="demo"><b>What This Project Demonstrates</b>How character-rich typography and custom packaging elevate everyday dining into an unforgettable cultural ritual.</div>
                     <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      View Case Study <span style={{ fontSize: '16px' }}>→</span>
+                      View Case Study <ArrowIcon size={14} />
                     </div>
                   </div>
                 </Link>
@@ -1077,7 +1096,7 @@ export default function BrandingPage() {
                     </ul>
                     <div className="demo"><b>What This Project Demonstrates</b>How character-led visual storytelling bridges tradition and modern wellness to drive recurring DTC subscription growth.</div>
                     <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      View Case Study <span style={{ fontSize: '16px' }}>→</span>
+                      View Case Study <ArrowIcon size={14} />
                     </div>
                   </div>
                 </Link>
@@ -1105,7 +1124,7 @@ export default function BrandingPage() {
                     </ul>
                     <div className="demo"><b>What This Project Demonstrates</b>How an iconic mascot system serves as a living brand ambassador, driving organic social shareability across physical and digital touchpoints.</div>
                     <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      View Case Study <span style={{ fontSize: '16px' }}>→</span>
+                      View Case Study <ArrowIcon size={14} />
                     </div>
                   </div>
                 </Link>
@@ -1113,7 +1132,7 @@ export default function BrandingPage() {
             </div>
 
             <div className="bp-cases-foot">
-              <Link className="bp-btn-link" to="/work">See all case studies and strategic breakdowns →</Link>
+              <Link className="bp-btn-link" to="/work">See all case studies and strategic breakdowns <ArrowIcon size={13} /></Link>
             </div>
           </div>
         </section>
@@ -1437,7 +1456,7 @@ export default function BrandingPage() {
               <div className="bp-pstep"><div className="n mono">05</div><h4>Extend</h4><p>Adapt the approved system across SKUs, website templates and launch applications.</p><div className="chk mono">✓ Applications approved</div></div>
               <div className="bp-pstep"><div className="n mono">06</div><h4>Prepare</h4><p>Organise production-ready artwork, source files, guidelines, testing and handover.</p><div className="chk mono">✓ Final balance and handover</div></div>
             </div>
-            <p className="process-scroll-note">Scroll to see all six stages →</p>
+            <p className="process-scroll-note">Scroll to see all six stages <ArrowIcon size={12} /></p>
             <p style={{ marginTop: '28px', fontSize: '14px', color: 'var(--ink-soft)', maxWidth: '640px', lineHeight: 1.6 }}>
               <strong style={{ color: 'var(--ink)' }}>Typical timeline:</strong> Brand-to-Shelf runs approximately 6–8 weeks; Brand-to-Market runs approximately 8–12 weeks. Timelines depend on feedback speed, decision-maker availability, final copy, approved claims, approved dielines, SKU complexity, website content readiness and integration requirements.
             </p>
@@ -2161,12 +2180,78 @@ export default function BrandingPage() {
                       </select>
                     </div>
                     <button type="submit" className="bp-btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
-                      Send the audit →
+                      Send the audit <ArrowIcon size={14} />
                     </button>
                   </>
                 )}
               </form>
             </div>
+          </div>
+        </section>
+
+        {/* ── 19. BRANDING FAQS & SEARCH VISIBILITY ── */}
+        <section className="bp-faq-section" id="faq">
+          <div className="wrap" style={{ maxWidth: '820px' }}>
+            <div className="bp-section-head" style={{ display: 'block', marginBottom: '32px' }}>
+              <div className="bp-eyebrow mono">FREQUENTLY ASKED QUESTIONS</div>
+              <h2>Questions founders ask before hiring a design studio.</h2>
+              <p style={{ marginTop: '8px', color: 'var(--ink-soft)' }}>
+                Direct answers on pricing, turnaround timelines, our Architectural Brand Engine™ process, and how we compare to traditional agencies.
+              </p>
+            </div>
+
+            <div className="bp-faq-list" id="faq-list">
+              {faqs.map((faq, idx) => (
+                <div
+                  key={idx}
+                  className={`bp-faq-item ${openFaq === idx ? 'open' : ''}`}
+                >
+                  <h3>
+                    <button
+                      className="bp-faq-q"
+                      onClick={() => toggleFaq(idx)}
+                      aria-expanded={openFaq === idx ? 'true' : 'false'}
+                      aria-controls={`bp-faq-a-${idx}`}
+                      id={`bp-faq-q-${idx}`}
+                    >
+                      {faq.q}
+                      <span className="plus" aria-hidden="true">+</span>
+                    </button>
+                  </h3>
+                  <div
+                    ref={(el) => (faqRefs.current[idx] = el)}
+                    className="bp-faq-a"
+                    id={`bp-faq-a-${idx}`}
+                    role="region"
+                    aria-labelledby={`bp-faq-q-${idx}`}
+                    style={{
+                      maxHeight: openFaq === idx ? `${faqRefs.current[idx]?.scrollHeight || 300}px` : '0px'
+                    }}
+                  >
+                    <p>{faq.a}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Embedded JSON-LD FAQPage Schema for Search Engines and AI Crawlers */}
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "FAQPage",
+                  "mainEntity": faqs.map((f) => ({
+                    "@type": "Question",
+                    "name": f.q,
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": f.a
+                    }
+                  }))
+                })
+              }}
+            />
           </div>
         </section>
 
@@ -2183,7 +2268,7 @@ export default function BrandingPage() {
             </p>
             <div className="bp-cta-row" style={{ marginTop: '24px', marginBottom: '16px' }}>
               <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="bp-btn-primary">
-                Discuss Your Project →
+                Discuss Your Project <ArrowIcon size={14} />
               </a>
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-outline-light">
                 Message us on WhatsApp
@@ -2200,7 +2285,7 @@ export default function BrandingPage() {
       <StickyMobileCTA
         title="Brand engagements from $4,960 (₹4,75,000)"
         subtitle="Free 15-min discovery call"
-        buttonText="Book a call →"
+        buttonText="Book a call"
         link="https://cal.com/dandelion-nrvrze"
       />
 

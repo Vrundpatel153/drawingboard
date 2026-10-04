@@ -59,14 +59,19 @@ export default function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/service" element={<Services />} />
             {/* Dedicated Branding page */}
+            <Route path="/branding" element={<BrandingPage />} />
             <Route path="/services/branding" element={<BrandingPage />} />
             <Route path="/service/branding" element={<BrandingPage />} />
             {/* Dedicated Packaging page */}
+            <Route path="/packaging" element={<PackagingPage />} />
+            <Route path="/packaging-design" element={<PackagingPage />} />
             <Route path="/services/packaging-design" element={<PackagingPage />} />
             <Route path="/service/packaging-design" element={<PackagingPage />} />
             <Route path="/services/packaging" element={<PackagingPage />} />
             <Route path="/service/packaging" element={<PackagingPage />} />
             {/* Dedicated Development page */}
+            <Route path="/web-development" element={<DevelopmentPage />} />
+            <Route path="/development" element={<DevelopmentPage />} />
             <Route path="/services/development" element={<DevelopmentPage />} />
             <Route path="/service/development" element={<DevelopmentPage />} />
             <Route path="/services/web-development" element={<DevelopmentPage />} />

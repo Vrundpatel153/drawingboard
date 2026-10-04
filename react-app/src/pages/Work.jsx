@@ -158,7 +158,7 @@ export default function Work() {
             <p>Explore our recent work across brand positioning, digital platforms, Framer development, and physical packaging systems.</p>
             <p style={{ marginTop: '14px' }}>
               <a className="btn-link" href="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" target="_blank" rel="noopener noreferrer" style={{ fontSize: '14.5px', color: 'var(--pine)', fontWeight: 600 }}>
-                Prefer WhatsApp for discussion →
+                Prefer WhatsApp for discussion <ArrowIcon size={13} />
               </a>
             </p>
 
@@ -244,7 +244,7 @@ export default function Work() {
                     </div>
                     <div className="work-card-link">
                       <span>{project.imageCount > 0 ? `${project.imageCount} REAL ASSETS` : 'EXPLORE CASE STUDY'}</span>
-                      <span>→</span>
+                      <ArrowIcon size={14} />
                     </div>
                   </div>
                 </Link>

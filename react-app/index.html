@@ -26,6 +26,67 @@
     <!-- Canonical URL (updated per route by useSEO hook) -->
     <link rel="canonical" href="https://drawingsboards.com/" />
 
+    <!-- AI & LLM Search Standards (llms.txt) -->
+    <link rel="help" type="text/plain" href="/llms.txt" title="LLM Context Documentation" />
+
+    <!-- Organization & ProfessionalService JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "The Drawing Board",
+      "alternateName": "The Drawing Board Studio",
+      "url": "https://drawingsboards.com",
+      "logo": "https://drawingsboards.com/favicon.svg",
+      "image": "https://drawingsboards.com/home_preview.png",
+      "description": "Strategy-first design engineering studio crafting high-converting brand identities, structural packaging systems, and digital product experiences for ambitious consumer brands and tech ventures.",
+      "founder": {
+        "@type": "Person",
+        "name": "Vrund Patel",
+        "jobTitle": "Creative Director & Founder"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ahmedabad",
+        "addressRegion": "Gujarat",
+        "addressCountry": "IN"
+      },
+      "priceRange": "₹4,75,000 - ₹8,50,000",
+      "telephone": "+919428859768",
+      "email": "dandelionpa7@gmail.com",
+      "sameAs": [
+        "https://twitter.com/thedrawingboard",
+        "https://linkedin.com/company/thedrawingboard"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Design & Engineering Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Brand-to-Shelf System (Identity + Packaging)",
+              "description": "Comprehensive strategic positioning, mathematical logomark architecture, typography, color tokens, and structural packaging dielines for up to 5 SKUs."
+            },
+            "price": "475000",
+            "priceCurrency": "INR"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Brand-to-Market System (Identity + Packaging + Web)",
+              "description": "Complete brand identity, packaging architecture, and custom responsive web platform development with conversion checkout flows."
+            },
+            "price": "650000",
+            "priceCurrency": "INR"
+          }
+        ]
+      }
+    }
+    </script>
+
     <!-- Open Graph -->
     <meta property="og:type"        content="website" />
     <meta property="og:site_name"   content="The Drawing Board" />

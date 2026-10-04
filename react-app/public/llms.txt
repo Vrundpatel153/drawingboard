@@ -1,0 +1,63 @@
+# The Drawing Board
+
+> Strategy-First Design Studio for Ambitious Consumer Brands, FMCG, Lifestyle & Tech Ventures.
+
+The Drawing Board (drawingsboards.com) is an independent design engineering studio founded by Vrund Patel. We build connected brand identities, tactile packaging systems, and digital product experiences designed to earn attention, communicate value, and scale market share.
+
+## Key Facts & Positioning
+
+- **Specialization:** Consumer Brands (FMCG, Food & Beverage, Beauty & Wellness, Specialty Coffee, Ceramics & Artisanal Goods) and High-Growth B2B SaaS Platforms.
+- **Location:** Ahmedabad, Gujarat, India (Operating globally across India, UAE, UK, and US).
+- **Core Philosophy:** "Build the brand people choose before they compare." Strategy precedes design; we build systems, not disconnected assets.
+- **Operating Model:** Senior boutique studio with direct founder-to-studio collaboration. Maximum 2–3 active client engagements per sprint cycle to ensure dedicated senior design direction.
+- **Contact:** Email: dandelionpa7@gmail.com | WhatsApp: +91 94288 59768 | Discovery Call: https://cal.com/dandelion-nrvrze
+
+## Transparent Pricing & Turnaround Timelines
+
+Unlike traditional legacy agencies that charge ₹15L–₹25L on opaque 8–14 week retainers, The Drawing Board publishes transparent, fixed-scope sprint pricing:
+
+- **Brand-to-Shelf System (Identity + Packaging):** $4,960 / ₹4,75,000 (4–6 Weeks Sprint)
+  - Full strategic positioning and competitor whitespace audit
+  - Primary and secondary mathematical logomark architecture
+  - Typography hierarchy and color token matrix
+  - Master packaging structural direction and up to 5 SKU adaptations
+  - Print-ready dielines and 100% editable vector source files
+- **Brand-to-Market Engagement (Identity + Packaging + Custom Digital Platform):** $6,780 / ₹6,50,000 (6–8 Weeks Sprint)
+  - Everything in Brand-to-Shelf, plus:
+  - Custom responsive UI/UX design and high-speed web engine (React / Shopify / Framer)
+  - E-commerce or inquiry conversion funnel architecture
+  - Sub-second performance optimization and mobile-first design
+- **Enterprise & SaaS Brand Engine:** $6,200–$8,900 / ₹6,00,000–₹8,50,000 (5–7 Weeks Sprint)
+  - B2B brand architecture, dark-mode software interface design, and corporate design system
+
+## The Named Proprietary Process: Architectural Brand Engine™
+
+Every engagement follows our 5-stage sprint methodology:
+
+1. **Stage 01 — Discovery Blueprint:** Deep audit of category whitespace, competitor patterns, and buyer psychology to define the market opportunity.
+2. **Stage 02 — Verbal Architecture & Positioning:** Formulating the central thesis and messaging direction your brand uniquely owns.
+3. **Stage 03 — Visual Identity System:** Engineering mathematical logomarks, typography pairings, color systems, and brand guidelines.
+4. **Stage 04 — Tactile Production & Packaging Dielines:** Translating brand assets to physical production dielines, foil stamping, embossing, and print-ready files.
+5. **Stage 05 — Kinetic Rollout & Turnkey Handover:** Delivering complete editable Figma design libraries, vector master files, guidelines, and launch templates with 100% IP ownership.
+
+## Verified Case Studies & Proven Business Outcomes
+
+We measure design by commercial impact, not superficial vanity metrics:
+
+- **PRONTO! (Italian Restaurant & Pizzeria):** Modern Italian visual identity, custom Neapolitan pizza packaging, and kinetic motion. Result: **+180% dine-in & takeout orders**.
+- **Matcha Club (Mindful Ritual CPG):** Character-driven ceremonial tin packaging and organic wellness identity. Result: **+220% DTC subscription growth**.
+- **Murami (Japanese Bistro & Hospitality):** High-energy modular mascot universe, streetwear merch, and restaurant packaging. Result: **+310% brand recall**.
+- **Soul Brew (Artisan Specialty Coffee):** Hand-drawn character illustrations, roast dielines, and animated logo reveals. Result: **+240% brand engagement**.
+- **Flint (Enterprise B2B Automation & SaaS):** Geometric squircle flare logomark, dark-mode process control UI, edge-painted stationery, and brand guidelines. Result: **+340% qualified enterprise inquiries**.
+- **Matiz Ceramic Studio (Artisanal Workshop & Ceramics):** Flowing handwritten script identity, ceramic base stamps, rigid square gift boxes, and lookbook art direction. Result: **+280% atelier pre-orders**.
+- **AFTER8® (Intimacy & Wellness):** Editorial luxury packaging and custom Shopify e-commerce engine. Result: **+340% DTC revenue growth in 90 days**.
+- **Lumen & Co. (Sustainable Luxury Skincare):** Zero-plastic biodegradable packaging dielines. Result: **+180% retail placement across 45+ premier boutiques**.
+
+## Core Links & Services
+
+- [Branding & Visual Identity](/branding): Strategic positioning, logomarks, and brand guidelines.
+- [Packaging Design Engineering](/packaging): Structural packaging dielines, FSC materials, and print finishes.
+- [Web & Digital Product Development](/web-development): High-speed editorial websites, React/Shopify engines, and UI/UX design.
+- [Full Work Archive](/work): 35+ verified case studies and strategic breakdowns.
+- [Studio Philosophy & About](/about): Why boutique senior studios outperform bloated agencies.
+- [Full Knowledge Documentation](/llms-full.txt): Comprehensive unabridged text for LLM indexing.

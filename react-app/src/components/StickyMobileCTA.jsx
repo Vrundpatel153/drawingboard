@@ -5,7 +5,7 @@ import { WHATSAPP_URL } from '../utils/siteConfig';
 import { trackMetaWhatsAppClick, trackMetaCalComClick } from '../utils/metaEvents';
 
 export default function StickyMobileCTA({ title = "The Drawing Board", subtitle = "Now Booking Q3 Sprints", buttonText = "WhatsApp Us", link = WHATSAPP_URL }) {
-  const cleanBtnText = (buttonText || '').replace(/[→&rarr;->]/g, '').trim();
+  const cleanBtnText = (buttonText || '').replace(/(&rarr;|->|→)/g, '').trim();
   const isExternal = link?.startsWith('http');
   const isWhatsApp = link?.includes('wa.me') || link?.includes('whatsapp');
   const isCal = link?.includes('cal.com');

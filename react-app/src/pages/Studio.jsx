@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
+import ArrowIcon from '../components/ArrowIcon';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 
 export default function Studio() {
@@ -123,7 +124,7 @@ export default function Studio() {
 
                 <p style={{ margin: 0 }}>
                   <a className="btn-link" href="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" target="_blank" rel="noopener noreferrer" style={{ fontSize: '14.5px', color: 'var(--pine)', fontWeight: 600 }}>
-                    Prefer WhatsApp for discussion →
+                    Prefer WhatsApp for discussion <ArrowIcon size={13} />
                   </a>
                 </p>
               </div>

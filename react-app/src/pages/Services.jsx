@@ -140,7 +140,7 @@ export default function Services() {
                   Schedule Discovery Call <ArrowIcon size={13} />
                 </a>
                 <a href="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" target="_blank" rel="noopener noreferrer" className="btn-link" style={{ marginLeft: '6px' }}>
-                  Prefer WhatsApp for discussion →
+                  Prefer WhatsApp for discussion <ArrowIcon size={13} />
                 </a>
               </div>
 
@@ -332,7 +332,7 @@ export default function Services() {
                       fontSize: '16px'
                     }}
                   >
-                    →
+                    <ArrowIcon size={16} style={{ marginLeft: 0 }} />
                   </button>
                 </div>
               </div>

@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import MoreServicesSection from '../components/MoreServicesSection';
+import ArrowIcon from '../components/ArrowIcon';
 import { WHATSAPP_URL } from '../utils/siteConfig';
 
 
@@ -405,8 +406,8 @@ export default function PackagingPage() {
                 <div>
                   <p className="hero-sub">Your customer may discover the product through an ad, but the packaging often closes the decision. We combine positioning, category research, visual storytelling and production thinking to build packaging that feels distinctive, credible and ready to scale.</p>
                   <div className="cta-row">
-                    <a className="btn-primary" href="#pricing">Book a 15-min call →</a>
-                    <a className="btn-link" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Prefer WhatsApp for discussion →</a>
+                    <a className="btn-primary" href="#pricing">Book a 15-min call <ArrowIcon size={14} /></a>
+                    <a className="btn-link" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Prefer WhatsApp for discussion <ArrowIcon size={13} /></a>
                   </div>
                   <p className="price-note">Packaging engagements start at <b>$2,500 (₹1,75,000).</b> Built for serious launches, redesigns and growing product ranges.</p>
                 </div>
@@ -801,7 +802,7 @@ export default function PackagingPage() {
                   <div className="eyebrow mono">SELECTED PACKAGING WORK</div>
                   <h2>Systems designed to live beyond a single mockup.</h2>
                 </div>
-                <p><Link className="btn-link" to="/work">View all packaging work →</Link></p>
+                <p><Link className="btn-link" to="/work">View all packaging work <ArrowIcon size={13} /></Link></p>
               </div>
               <div className="proof-grid">
                 <Link className="proof-card" to="/work">
@@ -951,7 +952,7 @@ export default function PackagingPage() {
                     <div className="feat-timeline"><strong>Timeline:</strong> approximately 3–5 weeks</div>
                     <div className="feat-payment"><strong>Payment:</strong> 50% advance · 25% after master direction approval · 25% before final file handover</div>
                     <div className="feat-cta-row">
-                      <a className="btn-primary" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min packaging call →</a>
+                      <a className="btn-primary" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min packaging call <ArrowIcon size={14} /></a>
                       <a className="btn-link" href="https://wa.me/919428859768" target="_blank" rel="noopener noreferrer">or message us on WhatsApp</a>
                     </div>
                   </div>
@@ -1113,7 +1114,7 @@ export default function PackagingPage() {
             <div className="wrap">
               <h2>Your product is ready. Now make the packaging feel ready too.</h2>
               <p>Book a free 15-minute call to discuss your product, current packaging, launch stage and the scope required. We will tell you honestly whether you need a master redesign, a SKU system, a smaller adaptation or more preparation before design begins.</p>
-              <a className="btn-primary" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min packaging call →</a>
+              <a className="btn-primary" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min packaging call <ArrowIcon size={14} /></a>
               <p style={{ marginTop: '16px' }}>
                 <a className="btn-link" style={{ color: '#CFE0DA' }} href="https://wa.me/919428859768" target="_blank" rel="noopener noreferrer">Message us on WhatsApp</a>
               </p>
@@ -1155,7 +1156,7 @@ export default function PackagingPage() {
                 />
               </svg>
             </a>
-            <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book now →</a>
+            <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book now <ArrowIcon size={14} /></a>
           </div>
 
         </div>

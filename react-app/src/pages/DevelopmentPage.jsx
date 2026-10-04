@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import MoreServicesSection from '../components/MoreServicesSection';
+import ArrowIcon from '../components/ArrowIcon';
 import { WHATSAPP_URL } from '../utils/siteConfig';
 import { trackMetaFormSubmission } from '../utils/metaEvents';
 
@@ -2436,13 +2437,13 @@ export default function DevelopmentPage() {
                 </p>
                 <div className="cta-row">
                   <button className="btn-primary" onClick={() => openLeadModal('')}>
-                    Discuss your website →
+                    Discuss your website <ArrowIcon size={14} />
                   </button>
                   <a className="btn-link" href="#diagnostic">
                     Find the right build for you ↓
                   </a>
                   <a className="btn-link" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                    Prefer WhatsApp for discussion →
+                    Prefer WhatsApp for discussion <ArrowIcon size={13} />
                   </a>
                 </div>
                 <div className="dev-price-blocks">
@@ -2479,7 +2480,7 @@ export default function DevelopmentPage() {
                       Drove 70% more client inquiries after launch.
                     </p>
                     <Link to="/work/seneca-shopify-development" className="btn-link" style={{ fontSize: '13px', fontWeight: 600, color: 'var(--pine)' }}>
-                      Explore Case Study →
+                      Explore Case Study <ArrowIcon size={14} />
                     </Link>
                   </div>
                 </div>
@@ -2581,7 +2582,7 @@ export default function DevelopmentPage() {
                     <p className="rec-desc">{diagData[selectedDiag].desc}</p>
                     <div className="rec-price">{diagData[selectedDiag].price}</div>
                     <button className="btn-primary" onClick={() => openLeadModal(diagData[selectedDiag].title)}>
-                      Talk about this build →
+                      Talk about this build <ArrowIcon size={14} />
                     </button>
                   </div>
                 ) : (
@@ -2625,7 +2626,7 @@ export default function DevelopmentPage() {
                   </ul>
                   <div className="svc-foot">
                     <button className="btn-primary" onClick={() => openLeadModal('Shopify / E-Commerce')}>
-                      Build my store →
+                      Build my store <ArrowIcon size={14} />
                     </button>
                     <span className="svc-time">3–5 weeks</span>
                   </div>
@@ -2796,7 +2797,7 @@ export default function DevelopmentPage() {
                   </ul>
                   <div className="svc-foot">
                     <button className="btn-primary" onClick={() => openLeadModal('Immersive Website')}>
-                      Create an experience →
+                      Create an experience <ArrowIcon size={14} />
                     </button>
                     <span className="svc-time">4–7 weeks</span>
                   </div>
@@ -2871,7 +2872,7 @@ export default function DevelopmentPage() {
                   </ul>
                   <div className="svc-foot">
                     <button className="btn-primary" onClick={() => openLeadModal('Custom Platform / SaaS')}>
-                      Scope a custom platform →
+                      Scope a custom platform <ArrowIcon size={14} />
                     </button>
                     <span className="svc-time">6–12+ weeks</span>
                   </div>
@@ -2961,12 +2962,12 @@ export default function DevelopmentPage() {
             </div>
 
             <div className="decision-map">
-              <div className="decision-row"><div className="need">Need to sell products?</div><div className="arrow">→</div><div className="tech">Shopify</div></div>
-              <div className="decision-row"><div className="need">Need marketing to update content themselves?</div><div className="arrow">→</div><div className="tech">CMS / content platform</div></div>
-              <div className="decision-row"><div className="need">Need cinematic storytelling?</div><div className="arrow">→</div><div className="tech">Animation / interaction stack</div></div>
-              <div className="decision-row"><div className="need">Need custom functionality?</div><div className="arrow">→</div><div className="tech">React / Next.js</div></div>
-              <div className="decision-row"><div className="need">Need accounts, data &amp; workflows?</div><div className="arrow">→</div><div className="tech">Custom application architecture</div></div>
-              <div className="decision-row"><div className="need">Need something unusual?</div><div className="arrow">→</div><div className="tech">Let's architect it.</div></div>
+              <div className="decision-row"><div className="need">Need to sell products?</div><div className="arrow"><ArrowIcon size={14} /></div><div className="tech">Shopify</div></div>
+              <div className="decision-row"><div className="need">Need marketing to update content themselves?</div><div className="arrow"><ArrowIcon size={14} /></div><div className="tech">CMS / content platform</div></div>
+              <div className="decision-row"><div className="need">Need cinematic storytelling?</div><div className="arrow"><ArrowIcon size={14} /></div><div className="tech">Animation / interaction stack</div></div>
+              <div className="decision-row"><div className="need">Need custom functionality?</div><div className="arrow"><ArrowIcon size={14} /></div><div className="tech">React / Next.js</div></div>
+              <div className="decision-row"><div className="need">Need accounts, data &amp; workflows?</div><div className="arrow"><ArrowIcon size={14} /></div><div className="tech">Custom application architecture</div></div>
+              <div className="decision-row"><div className="need">Need something unusual?</div><div className="arrow"><ArrowIcon size={14} /></div><div className="tech">Let's architect it.</div></div>
             </div>
           </div>
         </section>
@@ -3079,7 +3080,7 @@ export default function DevelopmentPage() {
                 <div className="eyebrow">SELECTED WORK</div>
                 <h2>Live builds &amp; client websites shipped.</h2>
               </div>
-              <Link to="/work" className="btn-link">View all work →</Link>
+              <Link to="/work" className="btn-link">View all work <ArrowIcon size={13} /></Link>
             </div>
 
             <div className="filter-tabs">
@@ -3407,7 +3408,7 @@ export default function DevelopmentPage() {
                   </div>
                   <p className="est-disclaimer">This isn't a final quotation. It gives us a starting point.</p>
                   <button className="btn-primary" onClick={() => openLeadModal(estResult.title)}>
-                    Discuss this scope →
+                    Discuss this scope <ArrowIcon size={14} />
                   </button>
                 </div>
               )}
@@ -3497,7 +3498,7 @@ export default function DevelopmentPage() {
               </svg>
             </a>
             <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">
-              Book now →
+              Book now <ArrowIcon size={14} />
             </a>
           </div>
         </div>

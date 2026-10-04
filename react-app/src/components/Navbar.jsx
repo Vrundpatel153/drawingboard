@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 import usePWA from '../hooks/usePWA';
+import ArrowIcon from './ArrowIcon';
 
 const NAV_LINKS = [
   { to: '/', label: 'Home', end: true },
@@ -166,7 +167,7 @@ export default function Navbar() {
             className="btn-primary"
             onClick={() => setOpen(false)}
           >
-            Book a 15-min call →
+            Book a 15-min call <ArrowIcon size={14} />
           </a>
 
           {/* Mobile Burger Menu Add to Home Screen Option */}

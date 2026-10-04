@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
+import ArrowIcon from '../components/ArrowIcon';
 import projectsData from '../data/projectsData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 import After8CaseStudyView from '../components/After8CaseStudyView';
@@ -21,15 +22,17 @@ export default function WorkDetail() {
   const isMatchaClub = cleanId.includes('matcha');
   const isMurami = cleanId.includes('murami');
   const isSoulBrew = cleanId.includes('soul') || cleanId.includes('brew');
+  const isBondwith = cleanId.includes('bondwith');
+  const isFlint = cleanId.includes('flint');
+  const isMatiz = cleanId.includes('matiz');
   const isAfter8 = cleanId.includes('after8') || cleanId.includes('intimacy');
   const isLumen = cleanId.includes('lumen');
-  const isBondwith = cleanId.includes('bondwith');
 
   // Find matching project in dataset
   const project = projectsData.find(p => {
     const slug = (p.slug || '').toLowerCase();
     return slug === cleanId || cleanId.includes(slug) || slug.includes(cleanId);
-  }) || (isPronto ? projectsData[0] : isMatchaClub ? projectsData[1] : isMurami ? projectsData[2] : isSoulBrew ? projectsData[3] : isBondwith ? projectsData[4] : isAfter8 ? projectsData[5] : projectsData[0]);
+  }) || (isPronto ? projectsData[0] : isMatchaClub ? projectsData[1] : isMurami ? projectsData[2] : isSoulBrew ? projectsData[3] : isBondwith ? projectsData[4] : isFlint ? projectsData[5] : isMatiz ? projectsData[6] : isAfter8 ? projectsData[7] : projectsData[0]);
 
   const currentIndex = projectsData.indexOf(project);
   const nextProject = projectsData[(currentIndex + 1) % projectsData.length];
@@ -132,8 +135,14 @@ export default function WorkDetail() {
               ? 'Matcha Club Case Study'
               : isMurami
               ? 'Murami Case Study'
+              : isSoulBrew
+              ? 'Soul Brew Case Study'
               : isBondwith
               ? 'Bondwith Brand Guidelines'
+              : isFlint
+              ? 'Flint Enterprise Case Study'
+              : isMatiz
+              ? 'Matiz Ceramic Studio Case Study'
               : isAfter8
               ? 'AFTER8® Case Study'
               : isLumen
@@ -154,8 +163,14 @@ export default function WorkDetail() {
                 ? 'CASE STUDY // SPEC 02 — CPG & RITUAL BRANDING'
                 : isMurami
                 ? 'CASE STUDY // SPEC 03 — CHARACTER & HOSPITALITY'
+                : isSoulBrew
+                ? 'CASE STUDY // SPEC 04 — ARTISAN COFFEE & MOTION'
                 : isBondwith
-                ? 'CASE STUDY // SPEC 04 — BRAND GUIDELINES'
+                ? 'CASE STUDY // SPEC 05 — BRAND GUIDELINES'
+                : isFlint
+                ? 'CASE STUDY // SPEC 06 — SAAS & AUTOMATION PLATFORM'
+                : isMatiz
+                ? 'CASE STUDY // SPEC 07 — ARTISANAL CERAMICS & BRANDING'
                 : isAfter8
                 ? 'CASE STUDY // SPEC 08'
                 : isLumen
@@ -287,6 +302,56 @@ export default function WorkDetail() {
                 <div className="meta-cell">
                   <div className="k">Impact</div>
                   <div className="v" style={{ color: 'var(--pine)' }}>32 Master System Assets</div>
+                </div>
+              </div>
+            </>
+          ) : isFlint ? (
+            <>
+              <h1>Flint — <em>Enterprise B2B SaaS</em> &amp; Business Automation Brand Identity.</h1>
+              <p className="dek">
+                Strategic enterprise brand architecture, geometric logomark construction, dark-mode software interfaces, and premium collateral engineered for automated workflow orchestration.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Flint Technologies Inc.</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Brand, UI &amp; Collateral</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">5 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>+340% Enterprise Inquiries</div>
+                </div>
+              </div>
+            </>
+          ) : isMatiz ? (
+            <>
+              <h1>Matiz — <em>Handmade Ceramic Studio</em> &amp; Tactile Brand Identity.</h1>
+              <p className="dek">
+                How we crafted an organic, artisanal visual identity, earthy colorway system, custom debossed stamps, and rigid unboxing packaging for a contemporary handmade ceramics atelier.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Matiz Ceramic Studio</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Brand Identity &amp; Packaging</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">4 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>+280% Atelier Pre-Orders</div>
                 </div>
               </div>
             </>
@@ -492,6 +557,50 @@ export default function WorkDetail() {
                 <div className="insight-card">
                   <div className="lbl">// ARCHITECTURAL INSIGHT</div>
                   <p>"A great brand guideline is not merely a set of rules — it is an operating system that empowers teams to deploy consistent, high-converting design across every single touchpoint."</p>
+                </div>
+              </div>
+            </>
+          ) : isFlint ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE ENTERPRISE SAAS CHALLENGE</div>
+                  <h2>Turning routine enterprise chaos into effortless algorithmic clarity.</h2>
+                </div>
+                <p>Evolving beyond cold corporate tech aesthetics into a high-precision, human-centered SaaS identity.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>Most enterprise B2B software suffers from severe visual fatigue:</strong> generic blue palettes, chaotic dashboards, and impersonal stock graphics that obscure real product value.</p>
+                  <p>Flint required a commanding, high-precision visual language centered on a mathematically constructed 4-pointed flare—a beacon of automated efficiency and process control that builds trust with executive leadership and developer teams alike.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// AUTOMATION ARCHITECTURE INSIGHT</div>
+                  <p>"A truly potent SaaS brand transforms complex background logic into visual tranquility, proving that enterprise software can feel as polished and covetable as luxury hardware."</p>
+                </div>
+              </div>
+            </>
+          ) : isMatiz ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE ARTISAN WORKSHOP CHALLENGE</div>
+                  <h2>Expressing the raw, tactile soul of clay in a digital-first world.</h2>
+                </div>
+                <p>Bridging ancient wheel-thrown craftsmanship with refined editorial simplicity.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>Contemporary pottery brands frequently struggle with identity balance:</strong> either appearing sterile and mass-produced, or disjointed and rustic without premium design credibility.</p>
+                  <p>Matiz needed an identity that honors the tactile essence of wheel-thrown ceramics—celebrating organic imperfections, raw mineral tones, calligraphic gestures, and blind-embossed packaging seals that turn each unboxing into a collectible art experience.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// TACTILE CRAFTSMANSHIP INSIGHT</div>
+                  <p>"Handmade pottery is an intimate extension of touch and earth. The brand identity must echo the tactile texture of raw clay and warm kiln glazes across every ribbon, box, and mark."</p>
                 </div>
               </div>
             </>
@@ -792,6 +901,118 @@ export default function WorkDetail() {
                 </div>
               </div>
             </>
+          ) : isFlint ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Enterprise brand architecture &amp; technical specifications.</h2>
+                </div>
+                <p>Geometric logomark system, corporate collateral, SaaS dashboard UI, and exhibition architecture.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Visual Identity</h4>
+                  <div className="sub">// LOGO &amp; GEOMETRIC SYSTEM</div>
+                  <ul>
+                    <li>4-pointed squircle flare logomark</li>
+                    <li>9×9 precision grid construction</li>
+                    <li>Electric Purple &amp; Obsidian palette</li>
+                    <li>PP Neue Montreal &amp; Suisse Int'l Mono</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Physical Collateral</h4>
+                  <div className="sub">// STATIONERY &amp; PACKAGING</div>
+                  <ul>
+                    <li>Edge-painted matte black business cards</li>
+                    <li>Luxury rigid boxes with purple foil star</li>
+                    <li>String-tied debossed envelopes</li>
+                    <li>CNC laser-engraved employee lanyard badges</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>SaaS UI &amp; Spaces</h4>
+                  <div className="sub">// DIGITAL &amp; WAYFINDING</div>
+                  <ul>
+                    <li>Dark-mode process control laptop UI</li>
+                    <li>Tabbed corporate booklet suite (+SERVICES)</li>
+                    <li>Corporate outdoor flags &amp; wayfinding</li>
+                    <li>Keynote event stage graphics &amp; backdrops</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>+340% Qualified Enterprise Inquiries</li>
+                    <li>24 High-Resolution Master Assets</li>
+                    <li>100% Turnkey Guideline Handoff</li>
+                    <li>Series-A Investor Presentation Ready</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isMatiz ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Artisanal ceramics &amp; tactile packaging suite.</h2>
+                </div>
+                <p>Calligraphic brand marks, pottery base stamps, multi-color rigid boxes, and atelier lookbook.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Brand Identity</h4>
+                  <div className="sub">// SCRIPT LOGO &amp; MARKS</div>
+                  <ul>
+                    <li>Custom handwritten script wordmark</li>
+                    <li>Organic pebble monogram &amp; seal</li>
+                    <li>Olive Beige &amp; Dark Brown colorway</li>
+                    <li>Refined editorial typography hierarchy</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Packaging Suite</h4>
+                  <div className="sub">// BOXES &amp; SEALS</div>
+                  <ul>
+                    <li>Four-color rigid square gift boxes</li>
+                    <li>Woven branded satin ribbons</li>
+                    <li>Gloss-embossed craft cardstock seals</li>
+                    <li>Eco-friendly protective pottery packaging</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Atelier Collateral</h4>
+                  <div className="sub">// WORKSHOP &amp; MERCH</div>
+                  <ul>
+                    <li>Pottery base debossing stamp marks</li>
+                    <li>Artisan moodboards &amp; dimension sheets</li>
+                    <li>Editorial lookbook &amp; pottery photography</li>
+                    <li>Certificates of handcrafted authenticity</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>+280% Atelier Pre-Orders</li>
+                    <li>17 Curated System Deliverables</li>
+                    <li>4.9/5 Collector Satisfaction Rating</li>
+                    <li>Premier Gallery Boutique Placement</li>
+                  </ul>
+                </div>
+              </div>
+            </>
           ) : isAfter8 ? (
             <>
               <div className="section-head">
@@ -1081,6 +1302,53 @@ export default function WorkDetail() {
                   "Master Brand Sign-off, Asset Delivery & Final Production Close"
                 ];
 
+                const flintCaptions = [
+                  "Flint — Enterprise Automation Brand Identity & Cover Showcase",
+                  "Flint Corporate Presentation & Vision Overview",
+                  "Turn Routine into Efficiency — Strategic Brand Manifesto",
+                  "Core Logomark Symbol & 4-Pointed Flare Design",
+                  "Logomark Geometric Construction & Mathematical Grid Alignment",
+                  "Grid System & Corner Smoothing Architecture (60% Squircle)",
+                  "Primary & Supporting Color Tokens (Electric Purple, Digital Violet & Dark Obsidian)",
+                  "Typographic Hierarchy: PP Neue Montreal & Suisse Int'l Mono",
+                  "Corporate Stationery & Luxury Business Cards (Edge-Painted Foil Detail)",
+                  "Executive Edge-Painted Matte Black Business Card Close-Up",
+                  "Rigid Presentation Packaging Box with Purple Foil Star Detail",
+                  "String-Tied Debossed Corporate Envelope & Letterhead Suite",
+                  "Executive Badge System & CNC Laser-Engraved Lanyard Details",
+                  "Tabbed Corporate Booklet Suite (+SERVICES, +BENEFITS, +ABOUT, +APPROACH)",
+                  "Tabbed Corporate Notebooks & Spiral-Bound Executive Collateral",
+                  "Dark-Mode Enterprise SaaS UI — 'Flare of Automation & Process Control'",
+                  "Corporate Outdoor Flags & Architectural Wayfinding Graphics",
+                  "Event Stage Graphics, Keynote Backdrop & Signage Architecture",
+                  "Brand Application Matrix & Physical Merchandise Suite",
+                  "Executive Collateral Suite & Stationery System Showcase",
+                  "Digital Product Interface & Analytics Dashboard UI",
+                  "Process Control Workflow Architecture & System Hierarchy",
+                  "Master Brand Guidelines Version Control & Design Standards",
+                  "Flint Master Asset Suite & Comprehensive Brand Architecture Close"
+                ];
+
+                const matizCaptions = [
+                  "Matiz Ceramic Studio — Floating Artisanal Pottery & Script Logo Hero",
+                  "Brand Manifesto: Contemporary Simplicity Meets Traditional Craftsmanship",
+                  "Studio Artisan & Wheel-Thrown Ceramic Vase Photography",
+                  "Earth & Mineral Colorway Architecture: Olive Beige, Dark Brown, Cream Ivory & Black",
+                  "Craft Process Moodboard: Pottery Wheel, Raw Clay & Measurement Sketches",
+                  "Gloss Embossed Craft Paper Seal & Artisan Stamp Mark",
+                  "Rigid Gift Box Packaging Suite & Woven Script Ribbon Array",
+                  "Minimalist Glazed Ceramic Tumbler & Brand Stamp Detailing",
+                  "Square Kraft Packaging Unboxing Experience & Inner Protective Sleeve",
+                  "Handcrafted Ceramic Mug in Olive Beige & Organic Silhouette",
+                  "Artisan Pottery Duo & Branded Black Satin Ribbon Close-Up",
+                  "Atelier Ceramics Display & High-Fired Glazed Vessel",
+                  "Matiz Debossed Gift Box Silhouette & Woven Ribbon Detailing",
+                  "Handcrafted Ceramic Pitcher & Studio Clay Art Direction",
+                  "Editorial Studio Fashion & Artisan Sculptural Teapot Lookbook",
+                  "Minimalist Stoneware Bowl & Atelier Tableware Collection",
+                  "Matiz Master Brand Guidelines & Complete Ceramic Identity Close"
+                ];
+
                 const after8Captions = [
                   "Complete AFTER8® Packaging Architecture & Bottle Silhouettes",
                   "Rigid Box Debossing Detail & Foil Stamping",
@@ -1157,6 +1425,10 @@ export default function WorkDetail() {
                   ? soulBrewCaptions[imgIdx]
                   : isBondwith && imgIdx < bondwithCaptions.length
                   ? bondwithCaptions[imgIdx]
+                  : isFlint && imgIdx < flintCaptions.length
+                  ? flintCaptions[imgIdx]
+                  : isMatiz && imgIdx < matizCaptions.length
+                  ? matizCaptions[imgIdx]
                   : isAfter8 && imgIdx < after8Captions.length
                   ? after8Captions[imgIdx]
                   : defaultCaption(imgIdx);
@@ -1208,37 +1480,103 @@ export default function WorkDetail() {
               <div className="eyebrow">BRAND SYSTEM SPECIFICATIONS</div>
             </div>
 
-            <div className="spec-grid">
-              <div className="swatches">
-                <div className="swatch" style={{ background: '#1B1B17', color: '#FFF' }}>
-                  <div className="lbl">INK // #1B1B17</div>
+            {isFlint ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#8A38F5', color: '#FFF' }}>
+                    <div className="lbl">PURPLE // #8A38F5</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#8E55FC', color: '#FFF' }}>
+                    <div className="lbl">VIOLET // #8E55FC</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#956FFA', color: '#FFF' }}>
+                    <div className="lbl">LAVENDER // #956FFA</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#151223', color: '#FFF' }}>
+                    <div className="lbl">OBSIDIAN // #151223</div>
+                  </div>
                 </div>
-                <div className="swatch" style={{ background: '#EFEBE2', color: '#1B1B17' }}>
-                  <div className="lbl">PAPER // #EFEBE2</div>
-                </div>
-                <div className="swatch" style={{ background: '#24463B', color: '#FFF' }}>
-                  <div className="lbl">PINE // #24463B</div>
-                </div>
-                <div className="swatch" style={{ background: '#B8412E', color: '#FFF' }}>
-                  <div className="lbl">MARKER // #B8412E</div>
-                </div>
-              </div>
 
-              <div className="type-spec">
-                <div className="row">
-                  <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY SERIF:</span>
-                  <h4 style={{ fontSize: '20px', marginTop: '4px' }}>Fraunces SemiBold &bull; 9..144 Optical</h4>
-                </div>
-                <div className="row">
-                  <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>BODY SANS:</span>
-                  <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter Regular & Medium for seamless legibility.</p>
-                </div>
-                <div className="row">
-                  <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
-                  <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for lot codes & specs.</p>
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>PP Neue Montreal &bull; Bold &amp; Medium</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'IBM Plex Mono', monospace", marginTop: '4px' }}>Suisse Int'l Mono &bull; Code &amp; Interface Metrics.</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>BODY SANS:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>Inter / Neue Montreal for high-speed readability.</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : isMatiz ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#A18A5B', color: '#FFF' }}>
+                    <div className="lbl">OLIVE BEIGE // #A18A5B</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#5C4A3E', color: '#FFF' }}>
+                    <div className="lbl">DARK BROWN // #5C4A3E</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#F6F1E3', color: '#1B1B17' }}>
+                    <div className="lbl">CREAM IVORY // #F6F1E3</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#0D0D0D', color: '#FFF' }}>
+                    <div className="lbl">BLACK // #0D0D0D</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY SCRIPT:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px', fontStyle: 'italic' }}>Matiz Handwritten Script &bull; Custom Calligraphy</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>EDITORIAL SERIF:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Fraunces', serif", fontStyle: 'italic', marginTop: '4px' }}>Hand Made Ceramic Studio &bull; Editorial Titles.</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for lot codes, batch stamps &amp; dimensions.</p>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#1B1B17', color: '#FFF' }}>
+                    <div className="lbl">INK // #1B1B17</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#EFEBE2', color: '#1B1B17' }}>
+                    <div className="lbl">PAPER // #EFEBE2</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#24463B', color: '#FFF' }}>
+                    <div className="lbl">PINE // #24463B</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#B8412E', color: '#FFF' }}>
+                    <div className="lbl">MARKER // #B8412E</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY SERIF:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>Fraunces SemiBold &bull; 9..144 Optical</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>BODY SANS:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter Regular &amp; Medium for seamless legibility.</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for lot codes &amp; specs.</p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -1253,10 +1591,10 @@ export default function WorkDetail() {
               : `Discover how we engineered strategy and design for ${nextProject.title}.`}
           </p>
           <Link to={`/work/${nextProject.slug}`} className="btn-primary" style={{ marginRight: '14px' }}>
-            {isAfter8 ? 'View Lumen & Co. Case Study →' : `View ${nextProject.title} →`}
+            {isAfter8 ? 'View Lumen & Co. Case Study' : `View ${nextProject.title}`} <ArrowIcon size={14} />
           </Link>
           <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ background: 'transparent', border: '1px solid #FFF', color: '#FFF' }}>
-            Book Discovery Call &rarr;
+            Book Discovery Call <ArrowIcon size={14} />
           </a>
         </div>
       </section>

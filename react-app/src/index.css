@@ -2283,22 +2283,39 @@ header {
 .bp-btn-primary .arrow,
 .bp-btn-link .arrow,
 a .arrow,
-button .arrow,
+button .arrow {
+  display: inline-flex !important;
+  align-items: center !important;
+  vertical-align: middle !important;
+  margin-left: 6px !important;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
 .arrow-icon {
-  font-family: 'IBM Plex Mono', system-ui, sans-serif !important;
-  font-size: 1.15em !important;
-  font-weight: 800 !important;
   display: inline-block !important;
-  margin-left: 4px !important;
-  transition: transform 0.2s ease !important;
+  vertical-align: -1.5px !important;
+  margin-left: 6px !important;
+  flex-shrink: 0 !important;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .btn-primary:hover .arrow,
+.btn-primary:hover .arrow-icon,
+.btn-secondary:hover .arrow,
+.btn-secondary:hover .arrow-icon,
 .btn-link:hover .arrow,
+.btn-link:hover .arrow-icon,
 .bp-btn-primary:hover .arrow,
+.bp-btn-primary:hover .arrow-icon,
 .bp-btn-link:hover .arrow,
+.bp-btn-link:hover .arrow-icon,
+.case-card:hover .arrow-icon,
+.proof-card:hover .arrow-icon,
+.work-card:hover .arrow-icon,
 a:hover .arrow,
-button:hover .arrow {
+a:hover .arrow-icon,
+button:hover .arrow,
+button:hover .arrow-icon {
   transform: translateX(4px) !important;
 }
 
