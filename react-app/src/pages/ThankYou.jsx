@@ -256,7 +256,7 @@ export default function ThankYou() {
           {/* Prominent THANK YOU top badge */}
           <div className="thankyou-badge-top">
             <span style={{ width: '6px', height: '6px', background: '#A19071', borderRadius: '50%' }}></span>
-            <span>THANK YOU // SHEET 05</span>
+            <span>THANK YOU // INQUIRY CONFIRMED</span>
           </div>
 
           {/* Animated check circle */}

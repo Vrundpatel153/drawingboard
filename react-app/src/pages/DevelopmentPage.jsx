@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import MoreServicesSection from '../components/MoreServicesSection';
 import ArrowIcon from '../components/ArrowIcon';
-import { WHATSAPP_URL } from '../utils/siteConfig';
+import { WHATSAPP_URL, DISCUSS_URL } from '../utils/siteConfig';
 import { trackMetaFormSubmission } from '../utils/metaEvents';
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -2250,41 +2250,71 @@ export default function DevelopmentPage() {
           right: 0;
           z-index: 500;
           background: var(--ink);
-          padding: 9px 14px;
+          padding: 5px 12px;
+          min-height: 42px;
+          max-height: 48px;
           align-items: center;
           justify-content: space-between;
-          gap: 10px;
-          border-top: 1px solid #000;
+          gap: 8px;
+          border-top: 1px solid rgba(255,255,255,0.14);
         }
         .dev-bp-page .sticky-cta .txt {
           color: #fff;
-          font-size: 11.5px;
-          line-height: 1.2;
+          font-size: 11px;
+          line-height: 1.15;
+          min-width: 0;
+          flex: 1;
+          overflow: hidden;
         }
         .dev-bp-page .sticky-cta .txt b {
           display: block;
-          font-size: 13px;
+          font-size: 11.5px;
+          font-weight: 600;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .dev-bp-page .sticky-cta .txt span {
+          display: block;
+          font-size: 9.5px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          color: #C9C3B4;
         }
         .dev-bp-page .sticky-cta a {
           background: var(--paper);
           color: var(--ink);
-          padding: 0 14px;
-          height: 34px;
+          padding: 0 10px;
+          height: 28px;
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          font-size: 12.5px;
+          font-size: 11px;
           font-weight: 600;
-          border-radius: var(--radius);
+          border-radius: var(--radius, 2px);
           white-space: nowrap;
           text-decoration: none;
+        }
+        .dev-bp-page .sticky-cta a.wa-btn {
+          background: #25D366 !important;
+          color: #ffffff !important;
+          padding: 0 !important;
+          width: 28px !important;
+          height: 28px !important;
+          min-width: 28px !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          border-radius: 2px !important;
+          flex-shrink: 0;
         }
         @media (max-width: 700px) {
           .dev-bp-page .sticky-cta {
             display: flex;
           }
           body {
-            padding-bottom: 56px;
+            padding-bottom: 50px;
           }
         }
 
@@ -2409,9 +2439,8 @@ export default function DevelopmentPage() {
             </div>
 
             <div className="sheet-label">
-              <span className="tag">SHEET NO. 05 — WEB DESIGN &amp; DEV</span>
+              <span className="sheet-meta mono">WEB DESIGN &amp; DEVELOPMENT // HIGH-CODE &bull; REACT &bull; FRAMER // SCALE 1:1</span>
               <span className="rule"></span>
-              <span className="scale">SCALE 1:1</span>
             </div>
 
             <h1>
@@ -2442,9 +2471,9 @@ export default function DevelopmentPage() {
                   <a className="btn-link" href="#diagnostic">
                     Find the right build for you ↓
                   </a>
-                  <a className="btn-link" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                    Prefer WhatsApp for discussion <ArrowIcon size={13} />
-                  </a>
+                  <Link className="btn-secondary-cta" to="/brand-readiness">
+                    Get Quote <ArrowIcon size={14} />
+                  </Link>
                 </div>
                 <div className="dev-price-blocks">
                   <div className="dev-price-chip">
@@ -3497,8 +3526,8 @@ export default function DevelopmentPage() {
                 />
               </svg>
             </a>
-            <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">
-              Book now <ArrowIcon size={14} />
+            <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">
+              Discuss <ArrowIcon size={14} />
             </a>
           </div>
         </div>
@@ -3648,11 +3677,11 @@ export default function DevelopmentPage() {
                   </p>
                   <a
                     className="btn-primary"
-                    href="https://cal.com/dandelion-nrvrze"
+                    href={DISCUSS_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Book discovery call →
+                    Discuss Your Project <ArrowIcon size={14} />
                   </a>
                 </div>
               </div>

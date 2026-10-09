@@ -6,7 +6,7 @@ import RegistrationMarks from '../components/RegistrationMarks';
 import MoreServicesSection from '../components/MoreServicesSection';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import ArrowIcon from '../components/ArrowIcon';
-import { WHATSAPP_URL } from '../utils/siteConfig';
+import { DISCUSS_URL } from '../utils/siteConfig';
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Home — Full Branding page as site homepage
@@ -740,9 +740,8 @@ export default function Home() {
         <section className="bp-hero">
           <div className="wrap">
             <div className="bp-sheet-label">
-              <span className="tag mono">SHEET NO. 02 — BRAND SYSTEMS</span>
-              <span className="rule"></span>
               <span className="bp-sheet-right mono">POSITION / IDENTITY / PACKAGING / DIGITAL</span>
+              <span className="rule"></span>
             </div>
 
             <div className="bp-avail">
@@ -761,8 +760,8 @@ export default function Home() {
                   From how your brand is understood to how it looks on the shelf and performs online, we build one connected system designed to earn attention, communicate value and support growth.
                 </p>
                 <div className="bp-cta-row">
-                  <a className="bp-btn-primary" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Discuss Your Project <ArrowIcon size={14} /></a>
-                  <a className="bp-btn-link" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Prefer WhatsApp for discussion <ArrowIcon size={13} /></a>
+                  <a className="bp-btn-primary" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">Discuss Your Project <ArrowIcon size={14} /></a>
+                  <Link className="bp-btn-secondary" to="/brand-readiness">Get Quote <ArrowIcon size={14} /></Link>
                 </div>
                 <p style={{ marginBottom: '14px' }}>
                   <a className="bp-btn-link" href="#case-studies">View Selected Work ↓</a>
@@ -807,129 +806,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── 3. NEW GROWTH PROBLEM SECTION ───────────────────────────── */}
-        <section className="bp-problem-section">
-          <div className="wrap">
-            <div className="bp-section-head">
-              <div>
-                <div className="bp-eyebrow mono">WHEN THE EARLY BRAND STOPS WORKING</div>
-                <h2>Growth exposes the gaps your first identity could hide.</h2>
-              </div>
-            </div>
-            <div className="bp-problem-copy">
-              <p>What worked for the first launch often stops working when the product range expands, the price increases or the business enters a more competitive market.</p>
-              <p>The identity begins to feel inconsistent. Packaging variants lose cohesion. The website tells a different story. Every new campaign requires another visual decision.</p>
-              <p>We replace that collection of disconnected assets with one clear system — built around what the brand should own, how customers should recognise it and how it should grow across products, packaging and digital touchpoints.</p>
-              <p><strong>A stronger brand does not add decoration. It removes doubt.</strong></p>
-            </div>
-          </div>
-        </section>
-
-        {/* ── LOGOS MARQUEE SECTION ─────────────── */}
-        <section className="bp-logo-marquee-section">
-          <div className="bp-marquee-title">TRUSTED BY AMBITIOUS BRANDS GLOBAL</div>
-          
-          {/* Row 1 (LTR) */}
-          <div className="bp-marquee-row">
-            <div className="bp-marquee-track fast">
-              {row1Logos.concat(row1Logos).map((logoUrl, i) => (
-                <div key={i} className="bp-marquee-item">
-                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Row 2 (RTL) */}
-          <div className="bp-marquee-row">
-            <div className="bp-marquee-track rtl">
-              {row2Logos.concat(row2Logos).map((logoUrl, i) => (
-                <div key={i} className="bp-marquee-item">
-                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Row 3 (LTR) */}
-          <div className="bp-marquee-row">
-            <div className="bp-marquee-track slow">
-              {row3Logos.concat(row3Logos).map((logoUrl, i) => (
-                <div key={i} className="bp-marquee-item">
-                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── 4. NEW QUALIFICATION SECTION ────────────────────────────── */}
-        <section>
-          <div className="wrap">
-            <div className="bp-section-head">
-              <div>
-                <div className="bp-eyebrow mono">IS THIS THE RIGHT STAGE?</div>
-                <h2>Built for businesses with a real product and a serious next move.</h2>
-              </div>
-              <p>A focused engagement works best when the business, product and decision-makers are ready to move together.</p>
-            </div>
-            <div className="bp-qual-grid">
-              <div className="bp-qual-col bp-yes">
-                <h4><span className="mark" aria-hidden="true">✓</span>A strong fit when</h4>
-                <ul>
-                  <li>You have a validated product or a well-defined launch plan.</li>
-                  <li>Your current identity no longer reflects the quality or scale of the business.</li>
-                  <li>You need brand, packaging and digital touchpoints to work as one system.</li>
-                  <li>You are preparing to launch, reposition, enter retail or expand into more SKUs.</li>
-                  <li>You value research, clear reasoning and structured collaboration.</li>
-                  <li>You are prepared to invest in a foundation intended to serve the business for years.</li>
-                  <li>The core decision-makers can participate in major approvals.</li>
-                </ul>
-              </div>
-              <div className="bp-qual-col bp-no">
-                <h4><span className="mark" aria-hidden="true">✕</span>Probably too early when</h4>
-                <ul>
-                  <li>Your product, audience or business model is changing every week.</li>
-                  <li>You need only a temporary logo or quick label adaptation.</li>
-                  <li>Your main selection criterion is the lowest quotation.</li>
-                  <li>You need the entire engagement completed within a few days.</li>
-                  <li>Final product information, claims or packaging requirements are unavailable.</li>
-                  <li>No one involved has authority to approve strategy and creative direction.</li>
-                </ul>
-              </div>
-            </div>
-            <div style={{ textAlign: 'center', marginTop: '36px' }}>
-              <a className="bp-btn-link" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">This sounds like our stage <ArrowIcon size={13} /> Discuss the project</a>
-            </div>
-          </div>
-        </section>
-
-        {/* ── 5. NEW CONNECTED SYSTEM PHILOSOPHY ─────────────────────── */}
-        <section>
-          <div className="wrap">
-            <div className="bp-section-head">
-              <div>
-                <div className="bp-eyebrow mono">ONE IDEA, EVERY TOUCHPOINT</div>
-                <h2>Identity, packaging and website should not feel like three different companies.</h2>
-              </div>
-              <p>We begin by deciding what the brand should stand for, what it should own in the market and why customers should choose it.</p>
-            </div>
-            <p style={{ maxWidth: '760px', fontSize: '15.5px', color: 'var(--ink-soft)', lineHeight: 1.65, marginBottom: '40px' }}>
-              That central idea then guides the identity, packaging hierarchy, product range and digital journey. The result is not a collection of attractive assets. It is one recognisable system designed to build familiarity wherever the customer meets the brand.
-            </p>
-
-            <div className="system-sequence">
-              <div className="seq-stage"><div className="step-n mono">01</div><h4>Positioning</h4><p>The reason to choose you</p></div>
-              <div className="seq-stage"><div className="step-n mono">02</div><h4>Identity</h4><p>The recognisable visual language</p></div>
-              <div className="seq-stage"><div className="step-n mono">03</div><h4>Packaging</h4><p>The shelf and product system</p></div>
-              <div className="seq-stage"><div className="step-n mono">04</div><h4>Digital</h4><p>The path from interest to action</p></div>
-              <div className="seq-stage"><div className="step-n mono">05</div><h4>Launch</h4><p>The tools needed to enter the market coherently</p></div>
-            </div>
-            <p className="bp-seq-caption"><strong>When each piece reinforces the same idea,</strong> the brand becomes easier to recognise, trust and grow.</p>
-          </div>
-        </section>
-
-        {/* ── 6. NEW SELECTED BRAND SYSTEMS (CASE STUDIES SLIDER) ─────────────── */}
+        {/* ── 3. NEW SELECTED BRAND SYSTEMS (CASE STUDIES SLIDER) ─────────────── */}
         <section id="case-studies">
           <div className="wrap">
             <div className="bp-section-head" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '20px' }}>
@@ -1050,23 +927,23 @@ export default function Home() {
                   <div className="img" style={{ background: 'none' }}>
                     <img
                       src="/images/pronto/pronto_01.png"
-                      alt="PRONTO! Italian Restaurant &amp; Pizzeria"
+                      alt="PRONTO! Fast-Casual Italian Brand System"
                       style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                     />
                   </div>
                   <div className="case-body">
-                    <div className="tag mono">Italian Restaurant &amp; Pizzeria</div>
+                    <div className="tag mono">Fast-Casual Hospitality</div>
                     <h4>PRONTO!</h4>
-                    <p><strong>Challenge:</strong> Reinvent traditional Italian dining for modern urban culture without predictable trattoria clichés.</p>
-                    <p style={{ marginTop: '8px' }}><strong>Direction:</strong> Retro-modern Italian visual identity, custom Neapolitan pizza box dielines, staff merch, and kinetic motion graphics.</p>
+                    <p><strong>Challenge:</strong> Modernise an authentic Italian pasta bar identity for high-volume urban rollout without losing culinary heritage.</p>
+                    <p style={{ marginTop: '8px' }}><strong>Direction:</strong> Bold typographic lockups, Italian racing-red palette, custom delivery packaging, and kinetic kitchen menus.</p>
                     <ul className="sys-list">
-                      <li>Brand positioning &amp; seal</li>
-                      <li>Visual identity &amp; typography</li>
-                      <li>Pizza box packaging dielines</li>
-                      <li>Restaurant tableware &amp; merch</li>
-                      <li>Kinetic motion reveal loops</li>
+                      <li>Logomark &amp; secondary badges</li>
+                      <li>Takeaway box &amp; bag dielines</li>
+                      <li>Menu boards &amp; queue graphics</li>
+                      <li>Digital ordering UI kit</li>
+                      <li>Staff uniform guidelines</li>
                     </ul>
-                    <div className="demo"><b>What This Project Demonstrates</b>How character-rich typography and custom packaging elevate everyday dining into an unforgettable cultural ritual.</div>
+                    <div className="demo"><b>What This Project Demonstrates</b>How high-contrast, energetic branding transforms casual dining operations into an scalable franchise model.</div>
                     <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                       View Case Study <ArrowIcon size={14} />
                     </div>
@@ -1074,27 +951,27 @@ export default function Home() {
                 </Link>
 
                 {/* 5. MATCHA CLUB */}
-                <Link to="/work/matcha-club-brand-identity" className="case-card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
+                <Link to="/work/matcha-club-organic-ceremonial-tea" className="case-card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
                   <div className="img" style={{ background: 'none' }}>
                     <img
                       src="/images/matcha-club/matcha-club_02.png"
-                      alt="Matcha Club Brand Identity &amp; Packaging"
+                      alt="Matcha Club Brand &amp; Packaging Architecture"
                       style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                     />
                   </div>
                   <div className="case-body">
-                    <div className="tag mono">Mindful Ritual &amp; Ceremonial CPG</div>
+                    <div className="tag mono">Organic Japanese Tea</div>
                     <h4>MATCHA CLUB</h4>
-                    <p><strong>Challenge:</strong> Demystify ceremonial matcha into an approachable daily lifestyle habit while balancing ancient reverence with modern accessibility.</p>
-                    <p style={{ marginTop: '8px' }}><strong>Direction:</strong> Character-driven storytelling, tactile matte aluminum tin packaging, custom label systems, and joyful kinetic rituals.</p>
+                    <p><strong>Challenge:</strong> Introduce ceremonial-grade Japanese Uji matcha to western wellness consumers with supreme shelf presence.</p>
+                    <p style={{ marginTop: '8px' }}><strong>Direction:</strong> Minimalist tin packaging architecture, washi paper label textures, and clean Scandinavian-Japanese typography.</p>
                     <ul className="sys-list">
-                      <li>Brand story &amp; mascot system</li>
-                      <li>Ceremonial tin architecture</li>
-                      <li>Eco-friendly refill pouches</li>
-                      <li>Brewing guides &amp; card kit</li>
-                      <li>E-Commerce motion direction</li>
+                      <li>Ceremonial tin dielines</li>
+                      <li>Grade hierarchy &amp; seals</li>
+                      <li>Custom refill pouch design</li>
+                      <li>Shopify e-commerce experience</li>
+                      <li>Wholesale retail display caddy</li>
                     </ul>
-                    <div className="demo"><b>What This Project Demonstrates</b>How character-led visual storytelling bridges tradition and modern wellness to drive recurring DTC subscription growth.</div>
+                    <div className="demo"><b>What This Project Demonstrates</b>How packaging materiality and subtle visual restraint command premium shelf pricing in wellness categories.</div>
                     <div style={{ marginTop: '16px', color: 'var(--pine)', fontWeight: 600, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                       View Case Study <ArrowIcon size={14} />
                     </div>
@@ -1137,7 +1014,129 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── 7. NEW SHOW THE THINKING SECTION ───────────────────────── */}
+        {/* ── 4. NEW GROWTH PROBLEM SECTION ───────────────────────────── */}
+        <section className="bp-problem-section">
+          <div className="wrap">
+            <div className="bp-section-head">
+              <div>
+                <div className="bp-eyebrow mono">WHEN THE EARLY BRAND STOPS WORKING</div>
+                <h2>Growth exposes the gaps your first identity could hide.</h2>
+              </div>
+            </div>
+            <div className="bp-problem-copy">
+              <p>What worked for the first launch often stops working when the product range expands, the price increases or the business enters a more competitive market.</p>
+              <p>The identity begins to feel inconsistent. Packaging variants lose cohesion. The website tells a different story. Every new campaign requires another visual decision.</p>
+              <p>We replace that collection of disconnected assets with one clear system — built around what the brand should own, how customers should recognise it and how it should grow across products, packaging and digital touchpoints.</p>
+              <p><strong>A stronger brand does not add decoration. It removes doubt.</strong></p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── LOGOS MARQUEE SECTION ─────────────── */}
+        <section className="bp-logo-marquee-section">
+          <div className="bp-marquee-title">TRUSTED BY AMBITIOUS BRANDS GLOBAL</div>
+          
+          {/* Row 1 (LTR) */}
+          <div className="bp-marquee-row">
+            <div className="bp-marquee-track fast">
+              {row1Logos.concat(row1Logos).map((logoUrl, i) => (
+                <div key={i} className="bp-marquee-item">
+                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2 (RTL) */}
+          <div className="bp-marquee-row">
+            <div className="bp-marquee-track rtl">
+              {row2Logos.concat(row2Logos).map((logoUrl, i) => (
+                <div key={i} className="bp-marquee-item">
+                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 3 (LTR) */}
+          <div className="bp-marquee-row">
+            <div className="bp-marquee-track slow">
+              {row3Logos.concat(row3Logos).map((logoUrl, i) => (
+                <div key={i} className="bp-marquee-item">
+                  <img src={logoUrl} alt={`Brand logo ${i + 1}`} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── 4. NEW QUALIFICATION SECTION ────────────────────────────── */}
+        <section>
+          <div className="wrap">
+            <div className="bp-section-head">
+              <div>
+                <div className="bp-eyebrow mono">IS THIS THE RIGHT STAGE?</div>
+                <h2>Built for businesses with a real product and a serious next move.</h2>
+              </div>
+              <p>A focused engagement works best when the business, product and decision-makers are ready to move together.</p>
+            </div>
+            <div className="bp-qual-grid">
+              <div className="bp-qual-col bp-yes">
+                <h4><span className="mark" aria-hidden="true">✓</span>A strong fit when</h4>
+                <ul>
+                  <li>You have a validated product or a well-defined launch plan.</li>
+                  <li>Your current identity no longer reflects the quality or scale of the business.</li>
+                  <li>You need brand, packaging and digital touchpoints to work as one system.</li>
+                  <li>You are preparing to launch, reposition, enter retail or expand into more SKUs.</li>
+                  <li>You value research, clear reasoning and structured collaboration.</li>
+                  <li>You are prepared to invest in a foundation intended to serve the business for years.</li>
+                  <li>The core decision-makers can participate in major approvals.</li>
+                </ul>
+              </div>
+              <div className="bp-qual-col bp-no">
+                <h4><span className="mark" aria-hidden="true">✕</span>Probably too early when</h4>
+                <ul>
+                  <li>Your product, audience or business model is changing every week.</li>
+                  <li>You need only a temporary logo or quick label adaptation.</li>
+                  <li>Your main selection criterion is the lowest quotation.</li>
+                  <li>You need the entire engagement completed within a few days.</li>
+                  <li>Final product information, claims or packaging requirements are unavailable.</li>
+                  <li>No one involved has authority to approve strategy and creative direction.</li>
+                </ul>
+              </div>
+            </div>
+            <div style={{ textAlign: 'center', marginTop: '36px' }}>
+              <a className="bp-btn-link" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">This sounds like our stage <ArrowIcon size={13} /> Discuss the project</a>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 5. NEW CONNECTED SYSTEM PHILOSOPHY ─────────────────────── */}
+        <section>
+          <div className="wrap">
+            <div className="bp-section-head">
+              <div>
+                <div className="bp-eyebrow mono">ONE IDEA, EVERY TOUCHPOINT</div>
+                <h2>Identity, packaging and website should not feel like three different companies.</h2>
+              </div>
+              <p>We begin by deciding what the brand should stand for, what it should own in the market and why customers should choose it.</p>
+            </div>
+            <p style={{ maxWidth: '760px', fontSize: '15.5px', color: 'var(--ink-soft)', lineHeight: 1.65, marginBottom: '40px' }}>
+              That central idea then guides the identity, packaging hierarchy, product range and digital journey. The result is not a collection of attractive assets. It is one recognisable system designed to build familiarity wherever the customer meets the brand.
+            </p>
+
+            <div className="system-sequence">
+              <div className="seq-stage"><div className="step-n mono">01</div><h4>Positioning</h4><p>The reason to choose you</p></div>
+              <div className="seq-stage"><div className="step-n mono">02</div><h4>Identity</h4><p>The recognisable visual language</p></div>
+              <div className="seq-stage"><div className="step-n mono">03</div><h4>Packaging</h4><p>The shelf and product system</p></div>
+              <div className="seq-stage"><div className="step-n mono">04</div><h4>Digital</h4><p>The path from interest to action</p></div>
+              <div className="seq-stage"><div className="step-n mono">05</div><h4>Launch</h4><p>The tools needed to enter the market coherently</p></div>
+            </div>
+            <p className="bp-seq-caption"><strong>When each piece reinforces the same idea,</strong> the brand becomes easier to recognise, trust and grow.</p>
+          </div>
+        </section>
+
+        {/* ── 6. NEW SHOW THE THINKING SECTION ───────────────────────── */}
         <section style={{ background: 'var(--card)' }}>
           <div className="wrap">
             <div className="bp-section-head">
@@ -1815,7 +1814,7 @@ export default function Home() {
                 </div>
 
                 <div className="bp-tier-foot">
-                  <a className="bp-tier-btn" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min call</a>
+                  <a className="bp-tier-btn" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">Discuss Your Project</a>
                   <div className="bp-tier-time">6–8 week delivery</div>
                 </div>
               </div>
@@ -1945,7 +1944,7 @@ export default function Home() {
                 </div>
 
                 <div className="bp-tier-foot">
-                  <a className="bp-tier-btn" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min call</a>
+                  <a className="bp-tier-btn" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">Discuss Your Project</a>
                   <div className="bp-tier-time">8–12 week delivery</div>
                 </div>
               </div>
@@ -2267,12 +2266,12 @@ export default function Home() {
               Tell us what you are launching, changing or preparing to scale. We will review the requirement and recommend whether you need the Brand-to-Shelf system, the complete Brand-to-Market engagement or a different scope altogether.
             </p>
             <div className="bp-cta-row" style={{ marginTop: '24px', marginBottom: '16px' }}>
-              <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="bp-btn-primary">
+              <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="bp-btn-primary">
                 Discuss Your Project <ArrowIcon size={14} />
               </a>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-outline-light">
-                Message us on WhatsApp
-              </a>
+              <Link to="/brand-readiness" className="bp-btn-secondary bp-btn-secondary--light">
+                Get Quote <ArrowIcon size={14} />
+              </Link>
             </div>
             <p className="bp-price-note" style={{ color: '#C9C3B4', fontSize: '13px', fontFamily: "'IBM Plex Mono', monospace", margin: 0 }}>
               Engagements begin at <b style={{ color: '#ffffff' }}>$4,960 (₹4,75,000)</b>.
@@ -2283,10 +2282,10 @@ export default function Home() {
 
       {/* ── STICKY MOBILE CTA ────────────────────────────────────────── */}
       <StickyMobileCTA
-        title="Brand engagements from $4,960 (₹4,75,000)"
-        subtitle="Free 15-min discovery call"
-        buttonText="Book a call"
-        link="https://cal.com/dandelion-nrvrze"
+        title="From ₹4,75,000 ($4,960)"
+        subtitle="Now Booking Q3 Sprints"
+        buttonText="Discuss"
+        link={DISCUSS_URL}
       />
 
       {/* ── LIGHTBOX MODAL OVERLAY FOR THINK GRID IMAGES ───────────── */}

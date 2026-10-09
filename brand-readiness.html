@@ -1,0 +1,1434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brand Readiness Check | The Drawing Board</title>
+<meta name="description" content="Eight questions about where your brand is today and where it's going. See where The Drawing Board would focus first.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!--
+  ANALYTICS (12): paste your real tags here. They are intentionally commented out.
+
+  GA4 / Google Ads:
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+
+  or Google Tag Manager (the page already pushes events to window.dataLayer):
+  <script>(function(w,d,s,l,i){...})(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+
+  Meta Pixel:
+  <script>!function(f,b,e,v,n,t,s){...}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');</script>
+-->
+
+<style>
+/* ==========================================================================
+   01 TOKENS  (change these to match drawingsboard.com)
+   ========================================================================== */
+:root{
+  --paper:#EFEBE2;
+  --paper-line:#DAD3C2;
+  --ink:#1B1B17;
+  --ink-soft:#4A473F;
+  --pine:#24463B;
+  --pine-deep:#173029;
+  --marker:#B8412E;
+  --card:#F7F4EC;
+  --radius:2px;
+
+  /* Aliases for brand-readiness engine */
+  --background:var(--paper);
+  --foreground:var(--ink);
+  --muted:var(--ink-soft);
+  --accent:var(--pine);
+  --accent-marker:var(--marker);
+  --border:var(--paper-line);
+  --display-font:'Fraunces',Georgia,serif;
+  --body-font:'Inter',system-ui,-apple-system,sans-serif;
+  --max-width:1120px;
+  --section-space:clamp(48px,8vw,100px);
+
+  --accent-ink:var(--paper);
+  --surface:var(--card);
+  --on-dark-muted:#B7B6AB;
+  --label-font:'IBM Plex Mono',ui-monospace,monospace;
+  --gutter:clamp(20px,4vw,48px);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+
+/* ==========================================================================
+   02 BASE
+   ========================================================================== */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:env(safe-area-inset-top,0px);overflow-x:clip}
+body{
+  margin:0;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(var(--paper-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+  background-size:48px 48px;
+  background-position:top left;
+  background-attachment:fixed;
+  color:var(--foreground);
+  font:400 16px/1.55 var(--body-font);-webkit-font-smoothing:antialiased;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  overflow-x:clip;
+}
+main{flex:1;display:flex;flex-direction:column}
+img,svg{max-width:100%}
+p{margin:0 0 1em}
+h1,h2,h3{margin:0;font-weight:500}
+ul,ol,dl,dd{margin:0;padding:0}
+ul{list-style:none}
+[tabindex="-1"]:focus{outline:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+::selection{background:var(--foreground);color:var(--background)}
+.wrap{width:100%;max-width:var(--max-width);margin:0 auto;padding:0 var(--gutter)}
+.label{font:500 12px/1.4 var(--label-font);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.sr-only{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.hp{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+
+/* ==========================================================================
+   03 LAYOUT
+   ========================================================================== */
+.site-header{position:sticky;top:0;background:rgba(239,235,226,0.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:100;padding:16px 0}
+.site-header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.site-nav{display:flex;align-items:center;gap:24px}
+.site-nav a{text-decoration:none;color:var(--ink);font-size:14px;font-weight:500;transition:color .15s}
+.site-nav a:hover,.site-nav a.active{color:var(--marker)}
+.nav-cta{display:inline-flex;align-items:center;padding:10px 20px;background:var(--pine);color:var(--paper);font-size:13.5px;font-weight:600;border-radius:var(--radius);text-decoration:none;transition:background .15s}
+.nav-cta:hover{background:var(--pine-deep);color:var(--paper)}
+
+.site-footer{margin-top:auto;border-top:1px solid var(--border);background:rgba(239,235,226,0.85);padding:48px 0 32px}
+.foot-grid{display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr;gap:36px;margin-bottom:32px}
+.foot-brand p{font-size:14px;color:var(--ink-soft);line-height:1.6}
+.foot-col h5{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--pine);text-transform:uppercase;margin-bottom:14px}
+.foot-col a{display:block;color:var(--ink);text-decoration:none;font-size:14px;line-height:2;transition:color .15s}
+.foot-col a:hover{color:var(--marker)}
+.foot-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--ink-soft);flex-wrap:wrap;gap:12px}
+.foot-legal-links{display:flex;gap:12px;align-items:center}
+.foot-legal-links a{color:var(--ink-soft);text-decoration:none}
+.foot-legal-links a:hover{color:var(--ink)}
+
+@media(max-width:860px){
+  .site-nav{display:none}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:540px){
+  .foot-grid{grid-template-columns:1fr}
+}
+
+/* view transitions */
+#app{flex:1;display:flex;flex-direction:column;transition:opacity .3s var(--ease),transform .3s var(--ease)}
+#app.leaving{opacity:0;transform:translateY(-6px);transition-duration:.15s}
+#app.entering{opacity:0;transform:translateY(10px);transition:none}
+
+/* ==========================================================================
+   04 COMPONENTS
+   ========================================================================== */
+.btn{
+  position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:12px;
+  min-height:50px;padding:0 24px;border:1.5px solid var(--pine);background:var(--pine);color:var(--paper);
+  font:600 13.5px/1 var(--body-font);letter-spacing:.02em;text-transform:none;text-decoration:none;cursor:pointer;
+  border-radius:var(--radius);
+  transition:all .2s var(--ease);
+}
+.btn::before{content:"";position:absolute;inset:0;background:var(--pine-deep);transform:translateX(-101%);transition:transform .25s var(--ease);z-index:-1}
+.btn .arr{display:inline-block;transition:transform .2s var(--ease)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.ghost::before{background:var(--ink)}
+.btn.ghost:hover{color:var(--paper)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.btn[disabled]::before{display:none}
+@media (hover:hover){
+  .btn:not([disabled]):hover{border-color:var(--pine-deep);color:var(--paper)}
+  .btn:not([disabled]):hover::before{transform:none}
+  .btn:not([disabled]):hover .arr{transform:translateX(4px)}
+}
+.btn:focus-visible::before{transform:none}
+.btn:focus-visible{color:var(--accent-ink);border-color:var(--accent)}
+.tlink{
+  display:inline-block;background:none;border:0;border-bottom:1px solid currentColor;padding:6px 0 3px;
+  font:500 12.5px/1.3 var(--label-font);letter-spacing:.09em;text-transform:uppercase;color:var(--foreground);cursor:pointer;text-decoration:none;
+}
+.tlink.quiet{color:var(--muted);border-bottom-color:transparent}
+@media (hover:hover){.tlink:hover{color:var(--accent);border-bottom-color:var(--accent)}}
+.cta-row{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center}
+
+/* forms */
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+.field{margin-bottom:22px;min-width:0}
+.field.full{grid-column:1 / -1}
+.field label{display:block;margin-bottom:6px;font:500 12px/1.4 var(--label-font);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.field label em{font-style:normal;color:var(--foreground)}
+.field input,.field select,.field textarea{
+  width:100%;min-height:52px;padding:12px 0;border:0;border-bottom:1.5px solid var(--foreground);border-radius:0;background:transparent;color:var(--foreground);
+  font:400 18px/1.4 var(--body-font);-webkit-appearance:none;appearance:none;
+}
+.field select{background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 14px) 50%,calc(100% - 8px) 50%;background-size:6px 6px;background-repeat:no-repeat;padding-right:30px}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-bottom-color:var(--accent);box-shadow:0 1.5px 0 var(--accent)}
+.field [aria-invalid="true"]{border-bottom-color:var(--accent)}
+.field-error{margin:6px 0 0;min-height:0;color:var(--accent);font:500 14px/1.4 var(--body-font)}
+.form-error{color:var(--accent);font-weight:500;margin:0 0 16px}
+
+/* ==========================================================================
+   03b LANDING
+   ========================================================================== */
+.hero{padding-top:clamp(20px,4vw,48px)}
+.eyebrow{display:flex;align-items:center;gap:18px;margin-bottom:clamp(20px,3.4vw,40px)}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--border)}
+h1.mega{font:500 clamp(31px,8.6vw,104px)/.95 var(--display-font);letter-spacing:-.015em;text-transform:uppercase}
+h1.mega span{display:block}
+h1.mega .i2{padding-left:clamp(0px,6vw,96px)}
+h1.mega .i3{padding-left:clamp(0px,2vw,32px)}
+h1.mega .i4{padding-left:clamp(0px,12vw,190px);font-style:italic;font-weight:400}
+.hero-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:32px 24px;margin-top:clamp(28px,4.4vw,60px)}
+.hero-copy{grid-column:1 / span 5}
+.lede{font:400 clamp(18px,1.9vw,21px)/1.5 var(--body-font);max-width:44ch;margin-bottom:28px}
+.aside{margin:22px 0 0;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+.meta-row{grid-column:7 / span 6;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--foreground);align-self:start}
+.meta-row li{padding:14px 12px 0 0}
+.meta-row b{display:block;font:500 clamp(26px,3.6vw,44px)/1 var(--display-font);letter-spacing:-.01em}
+.meta-row span{display:block;margin-top:8px}
+.shelf-fig{margin:clamp(32px,6vw,80px) 0 0;border-top:1px solid var(--foreground);padding-top:14px}
+.shelf-fig figcaption{margin-top:10px}
+.systems{display:grid;grid-template-columns:repeat(4,1fr);gap:0 24px;margin-top:clamp(36px,6vw,72px);padding:16px 0 var(--section-space);border-top:1px solid var(--border)}
+.systems h2{grid-column:1 / -1;margin-bottom:14px}
+.systems li{padding:6px 0 14px}
+.systems b{display:block;font:500 clamp(18px,2vw,24px)/1.2 var(--display-font)}
+.systems a{color:inherit;text-decoration:none;border-bottom:1px solid var(--border)}
+
+/* ==========================================================================
+   04b QUIZ
+   ========================================================================== */
+.quiz{flex:1;display:flex;flex-direction:column;padding-top:clamp(8px,2vw,24px)}
+.progress{display:flex;align-items:center;gap:20px}
+.progress .count{white-space:nowrap}
+.ticks{display:flex;gap:6px;flex:1;max-width:340px;align-items:flex-end;height:22px}
+.tick{flex:1;height:10px;border-left:1.5px solid var(--border);transition:height .3s var(--ease),border-color .3s}
+.tick.done{border-color:var(--foreground)}
+.tick.now{height:22px;border-color:var(--accent)}
+.qgrid{display:grid;grid-template-columns:minmax(110px,1fr) minmax(0,6fr);gap:clamp(16px,4vw,64px);margin-top:clamp(24px,5vw,64px)}
+.qnum{font:400 clamp(60px,11vw,160px)/.8 var(--display-font);letter-spacing:-.03em;color:var(--foreground)}
+.qnum small{display:block;margin-top:10px;font:500 12px/1 var(--label-font);letter-spacing:.09em;color:var(--muted)}
+#qbody{transition:opacity .22s var(--ease),transform .22s var(--ease)}
+#qbody.out{opacity:0;transform:translateX(-8px)}
+#qbody.in{opacity:0;transform:translateX(12px);transition:none}
+.q{font:500 clamp(28px,4.6vw,54px)/1.06 var(--display-font);letter-spacing:-.012em;max-width:20ch}
+.q.wide{max-width:26ch}
+.q-help{margin:14px 0 0;color:var(--muted);font-size:16px;max-width:52ch}
+.opts{margin-top:clamp(22px,3.4vw,40px);border-top:1px solid var(--foreground)}
+.opt{
+  display:flex;align-items:baseline;gap:18px;width:100%;min-height:56px;padding:15px 0;background:none;border:0;border-bottom:1px solid var(--border);
+  color:var(--foreground);font:400 clamp(18px,2.1vw,24px)/1.3 var(--body-font);text-align:left;cursor:pointer;
+  transition:padding .25s var(--ease),color .2s;
+}
+.opt .k{flex:none;font:500 12px/1 var(--label-font);color:var(--muted);width:2.4ch}
+.opt .t{flex:1}
+.opt .mk{flex:none;width:1.2em;text-align:right;font:500 14px/1 var(--label-font)}
+.opt[aria-pressed="true"]{color:var(--accent);padding-left:14px}
+.opt[aria-pressed="true"] .mk::before{content:"\25CF"}
+.opt[data-multi="1"][aria-pressed="true"] .mk::before{content:"\25A0"}
+@media (hover:hover){.opt:hover{padding-left:12px}}
+.qactions{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:30px}
+.qcount{margin:14px 0 0}
+.keyhint{margin-top:22px}
+@media (hover:none){.keyhint{display:none}}
+textarea.free{
+  display:block;width:100%;margin-top:clamp(22px,3.4vw,40px);min-height:190px;padding:18px 0;border:0;border-top:1px solid var(--foreground);border-bottom:1px solid var(--foreground);
+  background:transparent;color:var(--foreground);font:400 clamp(19px,2.4vw,26px)/1.4 var(--display-font);resize:vertical;border-radius:0;
+}
+textarea.free::placeholder{color:var(--muted);opacity:1}
+textarea.free:focus{outline:none;border-bottom-color:var(--accent);box-shadow:0 1px 0 var(--accent)}
+.shelf-strip{margin-top:auto;padding:clamp(32px,6vw,64px) 0 clamp(8px,2vw,20px)}
+
+/* ==========================================================================
+   04c SHELF MOTIF (inline SVG)
+   ========================================================================== */
+.shelf{display:block;width:100%;height:auto;overflow:visible}
+.shelf .plain{fill:none;stroke:var(--muted);stroke-width:1.5;transition:opacity .5s var(--ease)}
+.shelf .floor{stroke:var(--foreground);stroke-width:1.5}
+.shelf .evo{transition:transform .45s var(--ease)}
+.shelf .sh{opacity:0;transition:opacity .3s var(--ease)}
+.shelf .sh.show{opacity:1}
+.shelf .sh .body{fill:var(--background);stroke:none}
+.shelf .sh .edge{fill:none;stroke:var(--foreground);stroke-width:2}
+.shelf .ly{opacity:0;transition:opacity .4s var(--ease)}
+.shelf .band{fill:var(--foreground)}
+.shelf .word{fill:var(--background)}
+.shelf .tint{fill:var(--accent)}
+.shelf .rule{stroke:var(--muted);stroke-width:2;stroke-linecap:round}
+.shelf .seal{fill:var(--background)}
+.shelf .dim{fill:none;stroke:var(--accent);stroke-width:1.5}
+.shelf.on-2 .evo{transform:translateY(-6px)}
+.shelf.on-3 .ly3,.shelf.on-4 .ly4,.shelf.on-5 .ly5,.shelf.on-6 .ly6,.shelf.on-7 .ly7,.shelf.on-8 .ly8{opacity:1}
+.shelf.on-8 .plain{opacity:.35}
+.shelf.on-1 .evo-plain{opacity:0}
+.shelf-strip .shelf{max-height:96px}
+
+/* ==========================================================================
+   04d REPORT
+   ========================================================================== */
+.report{padding:clamp(8px,2vw,24px) 0 var(--section-space)}
+.rhead{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-top:2px solid var(--foreground);border-bottom:1px solid var(--foreground);padding:12px 0}
+.rtitle{margin:clamp(24px,4.6vw,56px) 0 clamp(24px,4vw,48px);font:500 clamp(38px,9vw,112px)/.94 var(--display-font);letter-spacing:-.015em;text-transform:uppercase}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(24px,5vw,72px);border-top:1px solid var(--border)}
+.fact{display:grid;grid-template-columns:minmax(120px,170px) 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--border);align-items:baseline}
+.fact dd{font:500 clamp(18px,2vw,22px)/1.25 var(--display-font)}
+.scoreblock{display:grid;grid-template-columns:5fr 7fr;gap:clamp(28px,6vw,80px);padding:clamp(36px,6vw,80px) 0;border-bottom:1px solid var(--border)}
+.score{font:400 clamp(104px,19vw,230px)/.8 var(--display-font);letter-spacing:-.04em;margin:18px 0 0}
+.score .of{font:500 clamp(16px,2vw,22px)/1 var(--label-font);letter-spacing:.04em;color:var(--muted);margin-left:10px}
+.band-text{font:500 clamp(20px,2.4vw,26px)/1.2 var(--display-font);margin:22px 0 8px;max-width:20ch}
+.dimgroup+.dimgroup{margin-top:26px}
+.dim{display:grid;grid-template-columns:minmax(130px,190px) 1fr 3ch;align-items:center;gap:6px 16px;padding:11px 0;border-top:1px solid var(--border)}
+.dim .n{font:500 14px/1 var(--label-font);text-align:right}
+.bar{height:3px;background:var(--border);position:relative}
+.bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--foreground);transition:width .9s var(--ease)}
+.bar.ctx i{background:var(--accent)}
+details.how{margin-top:22px;font-size:15px;color:var(--muted)}
+details.how summary{cursor:pointer;color:var(--foreground);font:500 12px/1.4 var(--label-font);letter-spacing:.09em;text-transform:uppercase}
+details.how ul{margin-top:10px;padding-left:18px;list-style:disc}
+details.how li{margin-bottom:4px}
+.inwords{margin:0;padding:clamp(28px,5vw,56px) 0;border-bottom:1px solid var(--border)}
+.inwords blockquote{margin:12px 0 0;font:400 italic clamp(22px,3vw,34px)/1.3 var(--display-font);max-width:34ch}
+.sec-label{padding-top:clamp(36px,6vw,72px);margin-bottom:6px}
+.sec-title{font:500 clamp(30px,5vw,56px)/1 var(--display-font);text-transform:uppercase;letter-spacing:-.01em}
+.dx{display:grid;grid-template-columns:clamp(70px,12vw,150px) 1fr;gap:clamp(12px,3vw,40px);padding:clamp(22px,4vw,40px) 0;border-top:1px solid var(--foreground)}
+.dx:last-of-type{border-bottom:1px solid var(--foreground)}
+.dx .no{font:400 clamp(48px,9vw,110px)/.85 var(--display-font);color:var(--accent);letter-spacing:-.03em}
+.dx h3{font:500 clamp(21px,2.6vw,30px)/1.1 var(--display-font);text-transform:uppercase;margin-bottom:12px;letter-spacing:-.005em}
+.dx p{margin:0;font-size:clamp(17px,1.8vw,20px);max-width:56ch}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,72px);padding:clamp(36px,6vw,72px) 0}
+.duo p.big{margin:10px 0 0;font:400 clamp(20px,2.3vw,26px)/1.35 var(--display-font);max-width:30ch}
+.duo > div{border-top:1px solid var(--foreground);padding-top:14px}
+.fitblock{background:var(--foreground);color:var(--background);padding:clamp(32px,6vw,72px) clamp(20px,4vw,56px);margin:0 calc(var(--gutter) * -1)}
+.fitblock .label{color:var(--on-dark-muted)}
+.fitblock h2{font:500 clamp(36px,7vw,88px)/.95 var(--display-font);text-transform:uppercase;letter-spacing:-.015em;margin:16px 0 clamp(24px,4vw,44px)}
+.fitgrid{display:grid;grid-template-columns:7fr 5fr;gap:clamp(24px,5vw,72px)}
+.fitgrid li{padding:11px 0;border-top:1px solid rgba(238,237,232,.25);font-size:18px}
+.fitgrid li:last-child{border-bottom:1px solid rgba(238,237,232,.25)}
+.figs{display:grid;gap:22px;align-content:start}
+.figs b{display:block;font:500 clamp(22px,3vw,34px)/1.1 var(--display-font);margin-top:6px}
+.fitnote{margin:clamp(24px,4vw,40px) 0 0;color:var(--on-dark-muted);font-size:15px;max-width:60ch}
+.prework li{padding:12px 0;border-top:1px solid var(--border);font-size:18px;max-width:60ch}
+.ending{padding:clamp(48px,8vw,100px) 0 clamp(36px,6vw,64px)}
+.end-h{font:500 clamp(30px,5.4vw,66px)/1 var(--display-font);text-transform:uppercase;letter-spacing:-.012em;max-width:18ch}
+.end-p{font-size:clamp(18px,2vw,22px);max-width:44ch;margin:20px 0 30px}
+
+/* project / success */
+.sheet{padding:clamp(8px,2vw,24px) 0 var(--section-space);max-width:880px}
+.sheet h2.q{max-width:none;margin-top:clamp(20px,3vw,36px)}
+.summary{margin:clamp(24px,4vw,40px) 0;border-top:2px solid var(--foreground)}
+.summary div{display:grid;grid-template-columns:minmax(110px,150px) 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);align-items:baseline}
+.summary dd{font:500 clamp(18px,2vw,22px)/1.25 var(--display-font)}
+.thanks{font:500 clamp(36px,7vw,88px)/.97 var(--display-font);text-transform:uppercase;letter-spacing:-.015em;margin:clamp(20px,3vw,36px) 0 24px}
+.thanks span{display:block;font-weight:400;font-style:italic}
+
+/* reveal */
+.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.js .reveal.in{opacity:1;transform:none}
+
+/* ==========================================================================
+   05 RESPONSIVE
+   ========================================================================== */
+@media (max-width:900px){
+  .hero-copy{grid-column:1 / -1}
+  .meta-row{grid-column:1 / -1}
+  .scoreblock,.fitgrid,.duo{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr}
+  .systems{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  body{font-size:16.5px}
+  .qgrid{grid-template-columns:1fr;gap:12px}
+  .qnum{display:flex;align-items:baseline;gap:12px;font-size:56px}
+  .qnum small{display:inline;margin:0}
+  .fields{grid-template-columns:1fr}
+  .fact,.summary div{grid-template-columns:1fr;gap:2px}
+  .dim{grid-template-columns:1fr auto}
+  .dim .bar{grid-column:1 / -1}
+  .btn{width:100%;justify-content:space-between}
+  .cta-row .tlink{align-self:flex-start}
+  .qactions .btn{width:100%}
+  .shelf-strip .shelf{max-height:74px}
+  .fitblock{padding-left:var(--gutter);padding-right:var(--gutter)}
+  .meta-row b{font-size:26px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .reveal{opacity:1;transform:none}
+}
+@media print{
+  body{background:#fff;color:#000}
+  .no-print,.site-header,.site-footer,.shelf-strip{display:none!important}
+  .js .reveal{opacity:1!important;transform:none!important}
+  .fitblock{background:#fff;color:#000;border:1px solid #000;margin:0}
+  .fitblock .label,.fitnote{color:#333}
+  .fitgrid li{border-color:#999}
+  .bar i{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header no-print">
+  <div class="wrap site-header-inner">
+    <a href="/" class="logo-mark" aria-label="The Drawing Board Home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="25 138 320 56" style="height:28px;width:auto;display:block;">
+        <rect x="30.445" y="142.642" fill="#A19071" width="44.42" height="25.732"/>
+        <rect x="30.445" y="159.392" fill="#A19071" width="22.685" height="30.341"/>
+        <text transform="matrix(1 0 0 1 78.917 167.3428)" fill="var(--ink)" font-family="'Constantia', 'Fraunces', serif" font-size="22.8942">THE DRAWING BOARD</text>
+        <text transform="matrix(1 0 0 1 148.7827 187.6387)" fill="#A19071" font-family="'Inter', 'IBM Plex Mono', sans-serif" font-size="11.0941" letter-spacing="1px" opacity="0.9">CREATIVE AGENCY</text>
+      </svg>
+    </a>
+    <nav class="site-nav">
+      <a href="/">Home</a>
+      <a href="/studio">Studio</a>
+      <a href="/work">Work</a>
+      <a href="/services">Services</a>
+      <a href="/brand-readiness" class="active">Get Quote</a>
+      <a href="/insights">Insights</a>
+      <a href="/contact">Contact</a>
+    </nav>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="nav-cta">
+      Discuss Your Project
+    </a>
+  </div>
+</header>
+
+<main id="app" tabindex="-1"></main>
+<div id="live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+<footer class="site-footer no-print">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="/" class="foot-logo-link" aria-label="The Drawing Board Home">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="25 138 320 56" style="height:32px;width:auto;display:block;">
+            <rect x="30.445" y="142.642" fill="#A19071" width="44.42" height="25.732"/>
+            <rect x="30.445" y="159.392" fill="#A19071" width="22.685" height="30.341"/>
+            <text transform="matrix(1 0 0 1 78.917 167.3428)" fill="#A19071" font-family="'Constantia', 'Fraunces', serif" font-size="22.8942">THE DRAWING BOARD</text>
+            <text transform="matrix(1 0 0 1 148.7827 187.6387)" fill="#A19071" font-family="'Inter', 'IBM Plex Mono', sans-serif" font-size="11.0941" letter-spacing="1px" opacity="0.9">CREATIVE AGENCY</text>
+          </svg>
+        </a>
+        <p style="margin-top:10px;font-size:14px;color:var(--ink-soft);max-width:320px;">Independent Brand, Web &amp; Packaging Design Engineering Studio.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Navigation</h5>
+        <a href="/">Home</a>
+        <a href="/studio">Studio</a>
+        <a href="/work">Work</a>
+        <a href="/services">Services</a>
+        <a href="/brand-readiness">Get Quote</a>
+        <a href="/insights">Insights</a>
+        <a href="/contact">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h5>Selected Work</h5>
+        <a href="/work/after8">AFTER8® Wellness</a>
+        <a href="/work/lumen">Lumen &amp; Co.</a>
+        <a href="/work/alder---outdoor-essentials-built-for-slower-movement">Alder Essentials</a>
+        <a href="/work/krona-architecture-studio">Krona Architecture</a>
+      </div>
+      <div class="foot-col">
+        <h5>Connect</h5>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header" target="_blank" rel="noopener noreferrer">Discuss Your Project</a>
+        <a href="mailto:dandelionpa7@gmail.com">Email Studio</a>
+        <a href="https://twitter.com/thedrawingboard" target="_blank" rel="noopener noreferrer">Twitter / X</a>
+        <a href="https://linkedin.com/company/thedrawingboard" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 The Drawing Board Studio. All rights reserved.</span>
+      <div class="foot-legal-links">
+        <a href="/privacy-policy">Privacy Policy</a>
+        <span class="foot-sep">•</span>
+        <a href="/terms-of-service">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<noscript><div class="wrap"><p style="padding:40px 0">This assessment needs JavaScript. Please enable it, or write to us through drawingsboard.com.</p></div></noscript>
+
+<script>
+(function(){
+'use strict';
+document.documentElement.classList.add('js');
+
+/* ==========================================================================
+   01 CONFIG
+   ========================================================================== */
+const CONFIG = {
+  leadEndpoint: '',
+  projectEndpoint: '',
+  bookingUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header',
+  discussUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header',
+  replyTime: '2 working days',
+  startingPrice: 475000,
+  siteUrl: '/',
+  requestTimeoutMs: 10000
+};
+const DEBUG = /[?&]debug=1/.test(location.search);
+
+/* ==========================================================================
+   02 SMALL HELPERS
+   ========================================================================== */
+const $  = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => Array.prototype.slice.call((r || document).querySelectorAll(s));
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+const RM = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : {matches:false};
+const inr = n => '\u20B9' + Number(n).toLocaleString('en-IN');
+const lakh = n => '\u20B9' + (n / 100000).toFixed(2).replace(/\.?0+$/, '') + 'L';
+const truncate = (s, n) => s.length > n ? s.slice(0, n).replace(/\s+\S*$/, '') + '\u2026' : s;
+const app = $('#app');
+
+/* ==========================================================================
+   06 DATA: questions, labels, engagements, diagnosis fragments
+   ========================================================================== */
+const QUESTIONS = [
+  {id:'category', type:'single', title:'What are you building?', help:'',
+   options:[['fnb','Food & beverage'],['beauty','Beauty & wellness'],['fashion','Fashion & lifestyle'],['consumer','Consumer product'],['hospitality','Hospitality'],['tech','Technology / SaaS'],['other','Something else']]},
+  {id:'stage', type:'single', title:'Where is the business today?', help:'',
+   options:[['launch','Preparing to launch'],['recent','Recently launched'],['established',"Established, but the brand hasn't kept up"],['scaling','Scaling quickly'],['retail','Entering retail or new markets']]},
+  {id:'problems', type:'multi', max:2, title:"What's holding the brand back?", help:'Choose up to two.',
+   options:[['interchangeable','We look interchangeable with competitors'],['price',"The brand doesn't justify our price"],['inconsistent','Our identity feels inconsistent'],['packaging',"Our packaging isn't doing the product justice"],['website',"Our website doesn't reflect the quality of the business"],['retail',"We're entering retail / quick commerce"],['outgrown',"We've outgrown the identity we started with"],['unsure',"We're not completely sure \u2014 we just know something isn't working"]]},
+  {id:'scope', type:'single', title:'What needs to change?', help:'',
+   options:[['strategy','Brand strategy & positioning'],['identity','Visual identity'],['packaging','Packaging'],['website','Website / e-commerce'],['system','The entire brand system'],['guidance','Not sure \u2014 we need guidance']]},
+  {id:'event', type:'single', title:"What's happening in the next 12 months?", help:'',
+   options:[['launching','Launching the business'],['skus','Launching new products / SKUs'],['retail','Entering retail'],['international','Expanding internationally'],['reposition','Repositioning the company'],['capital','Raising capital'],['scale','Scaling what is already working']]},
+  {id:'timeline', type:'single', title:'When does this need to happen?', help:'',
+   options:[['30','Within 30 days'],['1-3','1\u20133 months'],['3-6','3\u20136 months'],['flexible','Flexible / exploring']]},
+  {id:'budget', type:'single', title:'What level of investment have you planned for the brand?',
+   help:'Our comprehensive brand systems begin at ' + lakh(CONFIG.startingPrice) + '. This helps us recommend an appropriate route rather than overscope your project.',
+   options:[['u3','Under \u20B93 lakh'],['3-475','\u20B93\u20134.75 lakh'],['475-7','\u20B94.75\u20137 lakh'],['7-10','\u20B97\u201310 lakh'],['10+','\u20B910 lakh+'],['undecided','Not decided yet']]},
+  {id:'outcome', type:'text', title:'If this project goes brilliantly, what changes for the business?',
+   help:"Don't overthink it. A sentence or two is enough.",
+   placeholder:'For example: We enter retail looking credible beside established brands, launch six new SKUs without the range becoming inconsistent, and finally feel confident sending buyers to our website.'}
+];
+const QBY = {}; QUESTIONS.forEach(q => QBY[q.id] = q);
+const optLabel = (qid, v) => { const o = (QBY[qid].options || []).filter(x => x[0] === v)[0]; return o ? o[1] : ''; };
+
+const STAGE_SHORT = {launch:'Pre-launch', recent:'Recently launched', established:'Established', scaling:'Scaling', retail:'Entering new markets'};
+const EVENT_SHORT = {launching:'Business launch', skus:'New products and SKUs', retail:'Retail expansion', international:'International expansion', reposition:'Repositioning', capital:'Fundraising', scale:'Scaling what works'};
+const SCOPE_SHORT = {strategy:'Strategy and positioning', identity:'Visual identity', packaging:'Packaging', website:'Website and e-commerce', system:'The entire brand system', guidance:'To be defined together'};
+const TIME_SHORT  = {'30':'Within 30 days','1-3':'1\u20133 months','3-6':'3\u20136 months','flexible':'Flexible'};
+const PRESSURE_ORDER = ['price','interchangeable','inconsistent','retail','packaging','outgrown','website','unsure'];
+const PRESSURE_LABEL = {price:'Perceived value', interchangeable:'Differentiation', inconsistent:'Consistency', retail:'Retail readiness', packaging:'Packaging', outgrown:'Brand maturity', website:'Digital credibility', unsure:'Clarity'};
+
+/* PRODUCTION: confirm every price and timeline below matches drawingsboard.com */
+const ENGAGEMENTS = {
+  foundation:{key:'brand_foundation', name:'Brand Foundation', price:'From ' + inr(CONFIG.startingPrice), weeks:'4\u20136 weeks',
+    scope:['Founder and business discovery','Category and competitor audit','Positioning and central brand idea','Messaging direction','Identity system','Guidelines and editable files']},
+  shelf:{key:'brand_to_shelf', name:'Brand-to-Shelf', price:'From ' + inr(CONFIG.startingPrice), weeks:'6\u20138 weeks',
+    scope:['Strategy and positioning','Identity system','Packaging architecture','Master packaging system','SKU extension logic','Launch direction']},
+  market:{key:'brand_to_market', name:'Brand-to-Market', price:inr(650000) + ' \u2013 ' + inr(1000000) + '+', weeks:'8\u201312 weeks',
+    scope:['Strategy and positioning','Identity system','Packaging architecture','Master packaging system','SKU extension logic','Website strategy and UI/UX','E-commerce or enquiry flow','Website development and handover']}
+};
+const SYSTEMS = [
+  {name:'AFTER8®', cat:'Personal wellness', href:'/work/after8'},
+  {name:'LUMEN & CO.', cat:'Fine jewellery', href:'/work/lumen'},
+  {name:'ALDER ESSENTIALS', cat:'Outdoor & lifestyle', href:'/work/alder---outdoor-essentials-built-for-slower-movement'},
+  {name:'KRONA ARCHITECTURE', cat:'Spatial design', href:'/work/krona-architecture-studio'}
+];
+
+const SURFACE = {fnb:'the shelf', beauty:'the shelf', consumer:'the shelf', fashion:'the rail and the feed', hospitality:'the street, the menu and the table', tech:'the product and the website', other:'every touchpoint'};
+
+/* Diagnosis fragments. w(c) returns relevance weight; the engine picks the three
+   strongest from different groups so the result never repeats one idea. */
+const FRAGMENTS = [
+ {id:'positioning', group:'position', title:'Positioning before polish',
+  w:c=>3*c.p('interchangeable')+2*c.p('price')+3*c.p('unsure')+2*c.p('outgrown')+3*(c.a.scope==='strategy')+2*(c.a.scope==='guidance')+2*(c.a.event==='reposition')+1,
+  body:c=>"Your answers suggest the problem isn't only how the brand looks. The reason to choose you has to become obvious before more design complexity is added. Decide what you stand for first, then let identity and packaging prove it."},
+ {id:'crowded', group:'position', title:'Crowded categories reward clarity',
+  w:c=>3*c.p('interchangeable')*(['fnb','beauty','consumer','fashion'].indexOf(c.a.category)>-1?1.5:1),
+  body:c=>"In a crowded category most brands repeat the same cues. We'd map what the leaders repeat, then decide where you can be clearly different instead of slightly better."},
+ {id:'diagnose', group:'position', title:'Start with a diagnosis',
+  w:c=>4*c.p('unsure')+3*(c.a.scope==='guidance'),
+  body:c=>"Knowing something is off without knowing what is common, and it's the right place to start. We'd look at the category, the customer and your current assets before recommending any design work."},
+ {id:'reposition', group:'position', title:'A repositioning is a business decision',
+  w:c=>4*(c.a.event==='reposition'),
+  body:c=>"Moving the brand up, across or toward a new audience changes price, packaging and tone together. The identity should follow that decision, not try to make it for you."},
+ {id:'outgrown', group:'position', title:'The first identity did its job',
+  w:c=>3*c.p('outgrown')+2*(c.a.stage==='established')+c.p('price'),
+  body:c=>"An identity built for the first range rarely holds a bigger business. The work now is keeping what customers already recognise and rebuilding what no longer fits."},
+ {id:'system', group:'system', title:"Build the system for where you're going",
+  w:c=>2*(c.a.event==='skus')+2*(c.a.event==='retail')+2*(c.a.event==='international')+2*(c.a.event==='scale')+2*c.p('inconsistent')+2*(c.a.scope==='system')+1,
+  body:c=>"Growth like yours needs identity and packaging with rules, ones that survive " + c.surface + ", thumbnails, campaigns and the next set of products. Not another collection of individual assets."},
+ {id:'skus', group:'system', title:'More SKUs need better rules',
+  w:c=>3.5*(c.a.event==='skus')+c.p('inconsistent'),
+  body:c=>"Your first five products can survive inconsistency. Your next twenty won't. Naming, colour coding and layout should be decided once, so every launch after that is faster and cheaper."},
+ {id:'consistency', group:'system', title:'Consistency comes before more channels',
+  w:c=>3*c.p('inconsistent')+(c.a.event==='skus'||c.a.event==='retail'),
+  body:c=>"Each new channel multiplies whatever is already inconsistent. Fixing the rules first costs less than correcting a dozen touchpoints afterwards."},
+ {id:'value', group:'value', title:'Make value visible',
+  w:c=>3*c.p('price')+2*c.p('packaging')+(c.a.stage==='established')+(c.a.scope==='packaging'||c.a.scope==='identity'),
+  body:c=>"If the product is stronger than the way it presents itself, the job is to close that perception gap. Premium isn't a colour palette. It's a perception the entire system has to support."},
+ {id:'packaging', group:'value', title:'The pack is your loudest media',
+  w:c=>3*c.p('packaging')+2*(c.a.scope==='packaging'),
+  body:c=>"Packaging carries the product into homes, shelves and photos. If it doesn't do the product justice, no campaign makes up for it. We'd rebuild hierarchy, structure and materials as one decision."},
+ {id:'retail', group:'market', title:'Retail exposes weak hierarchy',
+  w:c=>4*(c.a.event==='retail')+3*(c.a.stage==='retail')+2*c.p('retail')+(c.a.event==='skus'),
+  body:c=>"On a shelf or a quick-commerce thumbnail you get a glance. Name, product type and reason to buy have to land inside it. We'd test hierarchy at small sizes before polishing anything else."},
+ {id:'international', group:'market', title:'New markets re-read your brand',
+  w:c=>4*(c.a.event==='international'),
+  body:c=>"In a new market your name, colour and claims are read without your history. We'd check what travels, what needs adapting and what should never change."},
+ {id:'capital', group:'market', title:'Investors read consistency',
+  w:c=>4*(c.a.event==='capital'),
+  body:c=>"Investors and partners read brand as a sign of operating discipline. A sharper system won't replace traction, but a weak one makes good traction harder to believe."},
+ {id:'foundation', group:'build', title:'Decide before you design',
+  w:c=>3*(c.a.stage==='launch')+3*(c.a.event==='launching'),
+  body:c=>"Before launch is the cheapest time to decide what the brand stands for. Changing it after products are printed, listed and shipped costs several times more."},
+ {id:'recent', group:'build', title:'Early signals beat early polish',
+  w:c=>3*(c.a.stage==='recent'),
+  body:c=>"You've launched, so you have real customer signals. Use them. What people notice, buy and repeat tells us what the brand should hold on to."},
+ {id:'scale', group:'build', title:"Protect what's working",
+  w:c=>3*(c.a.event==='scale')+2*(c.a.stage==='scaling'),
+  body:c=>"Something is working, so the brief isn't to start over. It's to find what customers already recognise and build rules around it, so growth stops diluting it."},
+ {id:'website', group:'digital', title:'The website should say what the brand means',
+  w:c=>3*c.p('website')+3*(c.a.scope==='website'),
+  body:c=>"Before redesigning the website, we'd decide what the brand actually needs to say. Then the site becomes the place where packaging, identity and message finally agree."},
+ {id:'sequence', group:'time', title:'Sequence the work',
+  w:c=>3*(c.a.timeline==='30'&&(c.a.scope==='system'||c.a.scope==='website'))+2*((c.a.budget==='u3'||c.a.budget==='3-475')&&c.a.scope==='system'),
+  body:c=>"A short window and a wide scope rarely fit. We'd separate what must be ready on day one from what can follow, so the launch isn't held up by the nice-to-haves."},
+ {id:'hospitality', group:'category', title:'The experience is the brand',
+  w:c=>3*(c.a.category==='hospitality'),
+  body:c=>"A hospitality brand is met in the room, on the menu and on the phone long before it's read as a logo. The system has to work across all of it."},
+ {id:'tech', group:'category', title:'Explain it before you design it',
+  w:c=>3*(c.a.category==='tech'),
+  body:c=>"In technology the brand's job is often to make something complex feel simple and trustworthy. Message and structure come first. Visuals follow."},
+ {id:'fashion', group:'category', title:'Taste is part of the product',
+  w:c=>2.5*(c.a.category==='fashion'),
+  body:c=>"In fashion the brand is part of what customers are buying. Consistency of taste across product, packaging and imagery matters more than any single piece."}
+];
+
+const OPP = {
+  price:"Close the gap between what the product is and what the brand suggests, and price stops being the first conversation.",
+  interchangeable:"Once the brand owns one clear idea that competitors don't, recognition gets easier and every new product starts with an advantage.",
+  inconsistent:"A system with real rules turns every launch, campaign and listing into something that adds to the brand instead of diluting it.",
+  retail:"A pack that reads in a glance gives you a better chance with buyers, and a better chance in a thumbnail than the products around it.",
+  packaging:"Packaging that carries the story gives the product a stronger first impression and a reason to be picked up, photographed and bought again.",
+  outgrown:"Retiring what you've outgrown while keeping what customers recognise lets the brand look as established as the business has become.",
+  website:"A website that matches the quality of the product lets every ad, listing and referral convert on better terms.",
+  unsure:"Once the business knows what the brand stands for, every later design, hire and campaign decision gets shorter."
+};
+const OPP_EVENT = {
+  launching:"You'd launch with a system instead of fixing a first version later.",
+  skus:"New products would slot into the range instead of each needing a fresh decision.",
+  retail:"You'd walk into retail looking credible beside established brands.",
+  international:"You'd enter new markets with a brand built to travel.",
+  reposition:"The repositioning would be visible in the product, not just in the pitch.",
+  capital:"You'd put a more convincing business in front of investors.",
+  scale:"Growth would build on what's working instead of diluting it."
+};
+const RISK = {
+  price:"Price pressure becomes a habit. Customers compare you on cost because nothing in the brand gives them another reason.",
+  interchangeable:"Competitors keep taking the same space, and each new product becomes harder to tell apart from the last.",
+  inconsistent:"If you're adding channels and products while the identity is already inconsistent, every new touchpoint compounds the problem. Rebranding later becomes more expensive because there is more to replace.",
+  retail:"Retail exposes weak hierarchy quickly. A pack that is unclear at shelf distance rarely gets a second look, however good the product is.",
+  packaging:"The product keeps being judged by its pack, and good reviews have to work against a weak first impression.",
+  outgrown:"The business keeps growing inside an identity designed for a smaller one, and the gap gets more visible to buyers, partners and new hires.",
+  website:"Visitors arrive curious and leave unsure, which makes every rupee of ad spend work harder than it should.",
+  unsure:"Without a clear idea at the centre, each decision is made from scratch, and the brand drifts toward whoever is shouting loudest."
+};
+const RISK_EVENT = {
+  launching:"A weak launch identity is hardest to change once products are printed and listed.",
+  skus:"Each new SKU adds another decision that can be made inconsistently.",
+  retail:"Buyers decide quickly, and you rarely get a second review.",
+  international:"Without a clear core, each market adapts the brand differently.",
+  reposition:"A move that isn't visible stays a plan on a slide.",
+  capital:"Investors notice when the brand and the business tell different stories.",
+  scale:"Scaling speeds up everything, including the inconsistencies."
+};
+const PREWORK = [
+  "Write the one sentence that explains why a customer should choose you over the nearest alternative.",
+  "Put your packs, website and social profile side by side. Write down what a stranger would think each one says.",
+  "Lock your range, claims and price before commissioning packaging. Changing them mid-project is where budgets disappear.",
+  "Collect what customers already say about you. It's the best positioning research you can get for free.",
+  "Spend on the one asset doing most of the work now, usually the pack or the product page, and leave the rest."
+];
+
+/* ==========================================================================
+   07 STATE
+   ========================================================================== */
+const state = {
+  view:'landing', step:0, answers:{}, lead:{}, report:null,
+  mode:'scope',          // project form mode: 'scope' | 'brief' | 'direct'
+  callRequested:false, built:false, locked:false, busy:false,
+  leadFired:false, submitted:null, idx:0, demoTimers:[], uid:0
+};
+const hasAnswer = q => q.type === 'multi' ? (state.answers[q.id] || []).length > 0 : q.type === 'single' ? !!state.answers[q.id] : false;
+
+/* ==========================================================================
+   08 SCORING  (transparent, directional, deliberately not scientific)
+   ========================================================================== */
+const SCORING = {
+  start: 84, floor: 30, ceiling: 92,
+  weights: {clarity:.30, distinct:.30, system:.40},
+  pressureDrag: .08
+};
+function scoreModel(a){
+  const pr = a.problems || [];
+  const P = k => pr.indexOf(k) > -1;
+  const crowded = ['fnb','beauty','consumer'].indexOf(a.category) > -1;
+  const fit = v => clamp(Math.round(v), SCORING.floor, SCORING.ceiling);
+
+  let clarity = SCORING.start;
+  if (P('interchangeable')) clarity -= 10; if (P('price')) clarity -= 7; if (P('unsure')) clarity -= 16; if (P('outgrown')) clarity -= 7;
+  if (a.scope === 'strategy') clarity -= 6; if (a.scope === 'guidance') clarity -= 8; if (a.event === 'reposition') clarity -= 7;
+
+  let distinct = SCORING.start;
+  if (P('interchangeable')) distinct -= 20; if (P('price')) distinct -= 7; if (P('packaging')) distinct -= 10; if (P('inconsistent')) distinct -= 6;
+  if (P('outgrown')) distinct -= 6; if (P('website')) distinct -= 3; if (P('unsure')) distinct -= 4; if (crowded) distinct -= 3;
+
+  let system = SCORING.start;
+  if (P('inconsistent')) system -= 17; if (P('packaging')) system -= 9; if (P('outgrown')) system -= 8; if (P('website')) system -= 3; if (P('retail')) system -= 4;
+  if (a.event === 'skus') system -= 6; if (a.event === 'retail') system -= 6; if (a.event === 'international') system -= 6;
+  if (a.stage === 'established') system -= 10; if (a.stage === 'scaling') system -= 6; if (a.stage === 'retail') system -= 4;
+  if (a.scope === 'system') system -= 4;
+
+  clarity = fit(clarity); distinct = fit(distinct); system = fit(system);
+
+  // Context dimensions: shown, not scored, except that growth pressure drags the score
+  // slightly in proportion to how much of the system is not ready.
+  let pressure = {launch:40, recent:45, established:60, scaling:80, retail:85}[a.stage] || 40;
+  pressure += {launching:5, skus:15, retail:20, international:25, reposition:15, capital:20, scale:15}[a.event] || 0;
+  pressure += a.timeline === '30' ? 10 : a.timeline === '1-3' ? 5 : 0;
+  pressure = clamp(pressure, 10, 100);
+
+  let project = {u3:5, '3-475':25, '475-7':70, '7-10':85, '10+':90, undecided:40}[a.budget] || 0;
+  project += {'30':10, '1-3':8, '3-6':3, flexible:0}[a.timeline] || 0;
+  project += ['established','scaling','retail'].indexOf(a.stage) > -1 ? 10 : a.stage === 'recent' ? 5 : 0;
+  project += a.scope && a.scope !== 'guidance' ? 5 : 0;
+  project += (a.outcome || '').length >= 60 ? 5 : 0;
+  project = clamp(project, 5, 100);
+
+  const W = SCORING.weights;
+  const raw = clarity * W.clarity + distinct * W.distinct + system * W.system - SCORING.pressureDrag * (pressure / 100) * (100 - system);
+  const overall = clamp(Math.round(raw), 18, 94);
+  const band = overall >= 80 ? 'Well placed for the next stage' : overall >= 65 ? 'A strong base with an uneven system' : overall >= 50 ? 'The gaps are starting to show' : 'The foundations need attention';
+  return {clarity, distinct, system, pressure, project, overall, band};
+}
+
+function complexity(a){
+  let n = ({system:2, website:1, packaging:1})[a.scope] || 0;
+  n += ({skus:1, retail:2, international:2, capital:1})[a.event] || 0;
+  n += (a.stage === 'scaling' || a.stage === 'retail') ? 1 : 0;
+  n += (a.problems || []).length > 1 ? 1 : 0;
+  return n >= 5 ? 'High' : n >= 3 ? 'Medium' : 'Focused';
+}
+
+/* internal tiers only: exploratory | emerging | project_ready | priority. Never shown by name. */
+function fitTier(a){
+  const b = a.budget, t = a.timeline;
+  const top = b === '7-10' || b === '10+', mid = b === '475-7', near = b === '3-475', low = b === 'u3', und = b === 'undecided';
+  const soon = t === '30' || t === '1-3';
+  const real = ['recent','established','scaling','retail'].indexOf(a.stage) > -1;
+  const grow = ['skus','retail','international','reposition','capital','scale'].indexOf(a.event) > -1;
+  let pts = 0;
+  pts += top ? 4 : mid ? 3 : und ? 1.5 : near ? 1 : 0;
+  pts += (t === '30' || t === '1-3') ? 2 : t === '3-6' ? 1 : 0;
+  pts += ['established','scaling','retail'].indexOf(a.stage) > -1 ? 2 : (a.stage === 'recent' || a.stage === 'launch') ? 1 : 0;
+  pts += grow ? 2 : a.event === 'launching' ? 1 : 0;
+  pts += (a.scope === 'system' || a.scope === 'packaging') ? 2 : (a.scope && a.scope !== 'guidance') ? 1 : 0;
+  pts += (a.problems || []).some(p => p !== 'unsure') ? 1 : 0;
+  if (low) return 'emerging';
+  if (near) return (t === 'flexible' && a.stage === 'launch') ? 'emerging' : 'exploratory';
+  if (und) return (real && grow && soon && pts >= 7) ? 'project_ready' : 'exploratory';
+  if (top && pts >= 12 && soon && real) return 'priority';
+  if (pts >= 7) return 'project_ready';
+  return 'exploratory';
+}
+// Used only when someone skips the assessment and writes straight to us.
+function directTier(a){
+  const b = a.budget;
+  return (b === '475-7' || b === '7-10' || b === '10+') ? 'project_ready' : (b === 'u3') ? 'emerging' : 'exploratory';
+}
+
+function recommend(a){
+  const pr = a.problems || [], P = k => pr.indexOf(k) > -1;
+  const physical = ['fnb','beauty','consumer','fashion','other'].indexOf(a.category) > -1;
+  const wantsPack = physical && (['packaging','system','guidance'].indexOf(a.scope) > -1 || P('packaging') || P('retail') || ['retail','skus','launching'].indexOf(a.event) > -1);
+  const wantsDigital = a.scope === 'website' || P('website') || (a.scope === 'system' && (a.budget === '7-10' || a.budget === '10+' || !physical));
+  let key = 'foundation';
+  if (wantsPack && wantsDigital) key = 'market';
+  else if (wantsPack) key = 'shelf';
+  else if (wantsDigital) key = 'market';
+  const e = ENGAGEMENTS[key];
+  let scope = e.scope.slice();
+  if (['tech','hospitality'].indexOf(a.category) > -1) {
+    scope = scope.filter(s => !/packaging|SKU/i.test(s));
+    scope.splice(2, 0, 'Brand applications and templates');
+  }
+  return {key:key, id:e.key, name:e.name, price:e.price, weeks:e.weeks, scope:scope};
+}
+
+/* ==========================================================================
+   09 DIAGNOSIS ENGINE
+   ========================================================================== */
+function diagnose(a){
+  const pr = a.problems || [];
+  const ctx = {a:a, surface:SURFACE[a.category] || 'every touchpoint', p:k => pr.indexOf(k) > -1 ? 1 : 0};
+  const scored = FRAGMENTS.map(f => ({f:f, w:f.w(ctx)})).filter(x => x.w > 0).sort((x, y) => y.w - x.w);
+  const out = [], used = {};
+  scored.forEach(x => { if (out.length < 3 && !used[x.f.group]) { out.push(x.f); used[x.f.group] = 1; } });
+  ['positioning','system','value'].forEach(id => {
+    if (out.length < 3) { const f = FRAGMENTS.filter(z => z.id === id)[0]; if (out.indexOf(f) < 0) out.push(f); }
+  });
+  return out.map(f => ({title:f.title, body:f.body(ctx)}));
+}
+function primaryPressure(a){
+  const pr = a.problems || [];
+  for (let i = 0; i < PRESSURE_ORDER.length; i++) if (pr.indexOf(PRESSURE_ORDER[i]) > -1) return PRESSURE_ORDER[i];
+  return 'unsure';
+}
+function computeReport(){
+  const a = state.answers, pk = primaryPressure(a);
+  return {
+    score: scoreModel(a), tier: fitTier(a), engagement: recommend(a), frags: diagnose(a),
+    pressureKey: pk, pressure: PRESSURE_LABEL[pk], complexity: complexity(a),
+    opp: OPP[pk] + (OPP_EVENT[a.event] ? ' ' + OPP_EVENT[a.event] : ''),
+    risk: RISK[pk] + (RISK_EVENT[a.event] ? ' ' + RISK_EVENT[a.event] : '')
+  };
+}
+
+/* ==========================================================================
+   12 ANALYTICS  (dataLayer + Meta Pixel, safe if neither exists)
+   ========================================================================== */
+const META_STANDARD = {Lead:'Lead', ProjectRequest:'SubmitApplication'}; // everything else is sent as a custom event
+function newId(){
+  try { if (window.crypto && crypto.randomUUID) return crypto.randomUUID(); } catch(e){}
+  return 'e' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+}
+function baseParams(){
+  const a = state.answers, r = state.report;
+  const p = {category:a.category, stage:a.stage, scope:a.scope, growth_event:a.event, budget:a.budget, timeline:a.timeline};
+  if (r) { p.fit_tier = r.tier; p.recommended_engagement = r.engagement.id; p.readiness_score = r.score.overall; }
+  Object.keys(p).forEach(k => { if (p[k] === undefined) delete p[k]; });
+  return p; // no personal data and no free text is ever sent to analytics
+}
+function track(name, extra, eventId){
+  const params = Object.assign(baseParams(), extra || {});
+  const id = eventId || newId();
+  try { window.dataLayer = window.dataLayer || []; window.dataLayer.push(Object.assign({event:name, event_id:id}, params)); } catch(e){}
+  try {
+    if (typeof window.fbq === 'function') {
+      if (META_STANDARD[name]) window.fbq('track', META_STANDARD[name], params, {eventID:id});
+      else window.fbq('trackCustom', name, params, {eventID:id});
+    }
+  } catch(e){}
+  if (DEBUG) console.log('[track]', name, params);
+  return id;
+}
+const Events = {
+  AssessmentView:     () => track('AssessmentView'),
+  AssessmentStart:    () => track('AssessmentStart'),
+  AssessmentStep:     q  => track('AssessmentStep', {step:state.step + 1, question:q.id}),
+  AssessmentComplete: () => track('AssessmentComplete'),
+  Lead:               id => track('Lead', {}, id),            // only after contact details are successfully submitted
+  QualifiedLead:      () => track('QualifiedLead'),           // only for project_ready and priority
+  ProjectScopeView:   () => track('ProjectScopeView', {mode:state.mode}),
+  ProjectRequest:     id => track('ProjectRequest', {}, id),
+  FitCallClick:       k  => track('FitCallClick', {kind:k})
+};
+
+/* ==========================================================================
+   13 API INTEGRATION
+   ========================================================================== */
+function getAttribution(){
+  const out = {}, q = new URLSearchParams(location.search);
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'].forEach(k => { if (q.get(k)) out[k] = q.get(k); });
+  return out;
+}
+async function postJSON(url, payload){
+  const ctl = ('AbortController' in window) ? new AbortController() : null;
+  const timer = ctl ? setTimeout(() => ctl.abort(), CONFIG.requestTimeoutMs) : null;
+  try {
+    const res = await fetch(url, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload), signal:ctl ? ctl.signal : undefined});
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return true;
+  } finally { if (timer) clearTimeout(timer); }
+}
+function assessmentSnapshot(){
+  const r = state.report;
+  return {
+    answers: state.answers,
+    assessment: r ? {score:r.score.overall, dimensions:{clarity:r.score.clarity, distinctiveness:r.score.distinct, system_readiness:r.score.system, growth_pressure:r.score.pressure, project_readiness:r.score.project}, fit_tier:r.tier, recommended_engagement:r.engagement.id} : null,
+    attribution: getAttribution(), page: location.href.split('#')[0], submitted_at: new Date().toISOString()
+  };
+}
+/* PRODUCTION: connect this to your CRM / webhook / backend (Zapier, Make, n8n, HubSpot, Airtable, a serverless function).
+   Send fit_tier and the assessment snapshot with the lead so your team sees context before replying.
+   Do not put API secrets in this file: call your own endpoint, and keep keys server-side. */
+async function submitLead(payload){
+  if (!CONFIG.leadEndpoint) return {ok:true, simulated:true};
+  await postJSON(CONFIG.leadEndpoint, Object.assign({type:'lead'}, payload));
+  return {ok:true, simulated:false};
+}
+/* PRODUCTION: connect this to your CRM / webhook / backend. Same rules as submitLead. */
+async function submitProjectRequest(payload){
+  if (!CONFIG.projectEndpoint) return {ok:true, simulated:true};
+  await postJSON(CONFIG.projectEndpoint, Object.assign({type:'project_request'}, payload));
+  return {ok:true, simulated:false};
+}
+
+/* ==========================================================================
+   10 RENDERING: shelf motif
+   ========================================================================== */
+const EVO = 4, CELL = 720 / 7;
+const SHAPE_FOR = {fnb:'pouch', beauty:'bottle', fashion:'bag', consumer:'carton', hospitality:'cup', tech:'device', other:'box'};
+const SHAPES = ['box','pouch','bottle','bag','carton','cup','device'];
+function shapePath(s, cx){
+  const x0 = cx - 24, x1 = cx + 24, b = 118;
+  switch (s) {
+    case 'bottle': return 'M'+x0+' '+b+'V70Q'+x0+' 60 '+(cx-7)+' 58V30H'+(cx+7)+'V58Q'+x1+' 60 '+x1+' 70V'+b+'Z';
+    case 'pouch':  return 'M'+x0+' '+b+'V46L'+(x0+6)+' 34H'+(x1-6)+'L'+x1+' 46V'+b+'Z';
+    case 'carton': return 'M'+x0+' '+b+'V54L'+cx+' 30L'+x1+' 54V'+b+'Z';
+    case 'cup':    return 'M'+(x0-3)+' 46H'+(x1+3)+'L'+(x1-6)+' '+b+'H'+(x0+6)+'Z';
+    case 'device': return 'M'+(x0+7)+' 36H'+(x1-7)+'Q'+x1+' 36 '+x1+' 43V111Q'+x1+' '+b+' '+(x1-7)+' '+b+'H'+(x0+7)+'Q'+x0+' '+b+' '+x0+' 111V43Q'+x0+' 36 '+(x0+7)+' 36Z';
+    case 'bag':    return 'M'+x0+' '+b+'V58H'+x1+'V'+b+'Z';
+    default:       return 'M'+x0+' '+b+'V40H'+x1+'V'+b+'Z';
+  }
+}
+function evoGroup(shape, cx, uid){
+  const d = shapePath(shape, cx), x0 = cx - 24, cid = 'cp' + uid + shape;
+  const handle = shape === 'bag' ? '<path class="edge" d="M'+(cx-10)+' 58V46Q'+(cx-10)+' 36 '+cx+' 36Q'+(cx+10)+' 36 '+(cx+10)+' 46V58"/>' : '';
+  return '<g class="sh sh-'+shape+'" data-shape="'+shape+'">' +
+    '<defs><clipPath id="'+cid+'"><path d="'+d+'"/></clipPath></defs>' +
+    '<path class="body" d="'+d+'"/>' +
+    '<g clip-path="url(#'+cid+')">' +
+      '<rect class="ly ly5 tint" x="'+x0+'" y="24" width="48" height="42"/>' +
+      '<rect class="ly ly3 band" x="'+x0+'" y="74" width="48" height="22"/>' +
+      '<rect class="ly ly4 word" x="'+(cx-14)+'" y="79" width="28" height="5"/>' +
+      '<rect class="ly ly4 word" x="'+(cx-9)+'" y="88" width="18" height="2"/>' +
+      '<path class="ly ly6 rule" d="M'+(cx-14)+' 103H'+(cx+14)+'M'+(cx-10)+' 109H'+(cx+10)+'M'+(cx-6)+' 115H'+(cx+6)+'"/>' +
+      '<circle class="ly ly7 seal" cx="'+cx+'" cy="48" r="5"/>' +
+    '</g>' +
+    '<path class="edge" d="'+d+'"/>' + handle +
+    '<path class="ly ly8 dim" d="M'+x0+' 14H'+(cx+24)+'M'+x0+' 8V20M'+(cx+24)+' 8V20"/>' +
+  '</g>';
+}
+function shelfSVG(){
+  const uid = ++state.uid;
+  let packs = '';
+  for (let i = 0; i < 7; i++) {
+    const cx = CELL / 2 + i * CELL;
+    if (i === EVO) {
+      packs += '<g class="evo"><rect class="plain evo-plain" x="'+(cx-24)+'" y="40" width="48" height="78"/>' +
+        SHAPES.map(s => evoGroup(s, cx, uid)).join('') + '</g>';
+    } else {
+      packs += '<rect class="plain" x="'+(cx-24)+'" y="40" width="48" height="78"/>';
+    }
+  }
+  return '<svg class="shelf" viewBox="0 0 720 132" aria-hidden="true" focusable="false">' + packs + '<line class="floor" x1="0" y1="121" x2="720" y2="121"/></svg>';
+}
+function shelfStage(){
+  if (state.built) return 8;
+  return QUESTIONS.slice(0, 7).filter(hasAnswer).length;
+}
+function setShelf(stage, shape){
+  $$('.shelf').forEach(svg => {
+    for (let i = 1; i <= 8; i++) svg.classList.toggle('on-' + i, i <= stage);
+    $$('.sh', svg).forEach(g => g.classList.toggle('show', stage >= 1 && g.getAttribute('data-shape') === shape));
+  });
+}
+function updateShelf(){ setShelf(shelfStage(), SHAPE_FOR[state.answers.category] || 'box'); }
+function clearDemo(){ state.demoTimers.forEach(clearTimeout); state.demoTimers = []; }
+function runDemo(){
+  clearDemo();
+  if (RM.matches) { setShelf(8, 'bottle'); return; }
+  setShelf(0, 'bottle');
+  for (let i = 1; i <= 8; i++) state.demoTimers.push(setTimeout(() => setShelf(i, 'bottle'), 900 + i * 420));
+}
+
+/* ==========================================================================
+   10b RENDERING: views
+   ========================================================================== */
+const ARROW = '<span class="arr" aria-hidden="true">\u2192</span>';
+
+function systemsList(){
+  return '<ul class="systems"><li style="grid-column:1 / -1;padding:0 0 10px"><h2 class="label">Selected systems</h2></li>' +
+    SYSTEMS.map(s => '<li><b>' + (s.href ? '<a href="'+esc(s.href)+'">'+esc(s.name)+'</a>' : esc(s.name)) + '</b><span class="label">' + esc(s.cat) + '</span></li>').join('') + '</ul>';
+}
+
+function viewLanding(){
+  return '' +
+  '<section class="hero wrap" aria-labelledby="h1">' +
+    '<p class="eyebrow label"><span>The Drawing Board / Brand Readiness</span></p>' +
+    '<h1 id="h1" class="mega"><span class="i1">Is your brand</span> <span class="i2">ready for its</span> <span class="i3">next stage</span> <span class="i4">of growth?</span></h1>' +
+    '<div class="hero-grid">' +
+      '<div class="hero-copy">' +
+        '<p class="lede">Eight questions about where your brand is today, where it\u2019s going, and what\u2019s getting in the way. We\u2019ll show you where we\u2019d focus first.</p>' +
+        '<div class="cta-row"><button class="btn" type="button" data-action="start">Check my brand ' + ARROW + '</button></div>' +
+        '<p class="aside label">Already have a brief? <a class="tlink" href="https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header" target="_blank" rel="noopener noreferrer">Discuss a project \u2192</a></p>' +
+      '</div>' +
+      '<ul class="meta-row" aria-label="About this assessment">' +
+        '<li><b>02</b><span class="label">Min</span></li>' +
+        '<li><b>08</b><span class="label">Questions</span></li>' +
+        '<li><b>' + lakh(CONFIG.startingPrice) + '</b><span class="label">Projects from</span></li>' +
+      '</ul>' +
+    '</div>' +
+    '<figure class="shelf-fig">' + shelfSVG() + '<figcaption class="label">Fig. 01 / Seven packs. One of them knows what it is.</figcaption></figure>' +
+    systemsList() +
+  '</section>';
+}
+
+function progressInner(){
+  let t = '';
+  for (let i = 0; i < 8; i++) t += '<span class="tick' + (i < state.step ? ' done' : i === state.step ? ' now' : '') + '"></span>';
+  return '<div class="count label" aria-hidden="true">' + String(state.step + 1).padStart(2, '0') + ' / 08</div><div class="ticks" aria-hidden="true">' + t + '</div>';
+}
+function backBtn(){ return '<button class="tlink quiet" type="button" data-action="back">\u2190 Back</button>'; }
+function questionHTML(){
+  const q = QUESTIONS[state.step], n = state.step + 1, a = state.answers;
+  let body = '';
+  if (q.type === 'text') {
+    body = '<textarea id="outcome" class="free" rows="5" maxlength="600" aria-labelledby="qtitle" aria-describedby="qhelp" placeholder="' + esc(q.placeholder) + '">' + esc(a.outcome || '') + '</textarea>' +
+      '<div class="qactions"><button class="btn" type="button" data-action="build">Build my readout ' + ARROW + '</button>' + backBtn() + '</div>';
+  } else {
+    const multi = q.type === 'multi', sel = multi ? (a[q.id] || []) : [a[q.id]];
+    const opts = q.options.map((o, i) =>
+      '<li><button type="button" class="opt" data-action="opt" data-value="' + o[0] + '" data-multi="' + (multi ? 1 : 0) + '" aria-pressed="' + (sel.indexOf(o[0]) > -1) + '">' +
+      '<span class="k" aria-hidden="true">' + String(i + 1).padStart(2, '0') + '</span><span class="t">' + esc(o[1]) + '</span><span class="mk" aria-hidden="true"></span></button></li>').join('');
+    body = '<ul class="opts" role="group" aria-labelledby="qtitle">' + opts + '</ul>' +
+      (multi ? '<p id="qcount" class="qcount label" aria-live="polite">' + sel.length + ' of ' + q.max + ' selected</p>' : '') +
+      '<div class="qactions">' +
+        (multi ? '<button class="btn" type="button" id="nextbtn" data-action="next"' + (sel.length ? '' : ' disabled') + '>Continue ' + ARROW + '</button>' : '') +
+        backBtn() +
+      '</div>' +
+      '<p class="keyhint label">Tip: press the number keys to choose.</p>';
+  }
+  return '<div class="qgrid">' +
+    '<div class="qnum" aria-hidden="true">' + String(n).padStart(2, '0') + '<small>/ 08</small></div>' +
+    '<div><h2 id="qtitle" class="q' + (q.type === 'text' ? ' wide' : '') + '" tabindex="-1">' + esc(q.title) + '</h2>' +
+    (q.help ? '<p id="qhelp" class="q-help">' + esc(q.help) + '</p>' : '<p id="qhelp" class="sr-only">Question ' + n + ' of 8</p>') +
+    body + '</div></div>';
+}
+function viewQuiz(){
+  return '<section class="quiz wrap" aria-label="Brand readiness check">' +
+    '<div id="prog" class="progress" role="progressbar" aria-label="Assessment progress" aria-valuemin="1" aria-valuemax="8" aria-valuenow="' + (state.step + 1) + '" aria-valuetext="Question ' + (state.step + 1) + ' of 8">' + progressInner() + '</div>' +
+    '<div id="qbody">' + questionHTML() + '</div>' +
+    '<div class="shelf-strip no-print">' + shelfSVG() + '</div>' +
+  '</section>';
+}
+
+/* form helpers */
+function field(o){
+  const id = o.id, req = o.required ? ' required aria-required="true"' : '';
+  const label = '<label for="' + id + '">' + esc(o.label) + (o.required ? '' : ' <em>(optional)</em>') + '</label>';
+  const common = ' id="' + id + '" name="' + o.name + '" aria-describedby="err-' + id + '"' + req + (o.maxlength ? ' maxlength="' + o.maxlength + '"' : '') + (o.autocomplete ? ' autocomplete="' + o.autocomplete + '"' : '');
+  let ctl;
+  if (o.kind === 'textarea') ctl = '<textarea' + common + (o.placeholder ? ' placeholder="' + esc(o.placeholder) + '"' : '') + '>' + esc(o.value || '') + '</textarea>';
+  else if (o.kind === 'select') ctl = '<select' + common + '><option value="">Choose one</option>' + o.options.map(x => '<option value="' + x[0] + '"' + (o.value === x[0] ? ' selected' : '') + '>' + esc(x[1]) + '</option>').join('') + '</select>';
+  else ctl = '<input type="' + (o.type || 'text') + '"' + common + (o.inputmode ? ' inputmode="' + o.inputmode + '"' : '') + (o.placeholder ? ' placeholder="' + esc(o.placeholder) + '"' : '') + ' value="' + esc(o.value || '') + '">';
+  return '<div class="field' + (o.full ? ' full' : '') + '">' + label + ctl + '<p class="field-error" id="err-' + id + '"></p></div>';
+}
+const honeypot = '<div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="hp_check" tabindex="-1" autocomplete="off"></label></div>';
+
+function copyLine(){
+  return CONFIG.leadEndpoint
+    ? "We\u2019ll show your readout immediately and send you a copy. If your project looks like a fit, someone from The Drawing Board may follow up."
+    : "We\u2019ll show your readout immediately. This is a prototype, so nothing you enter is sent or stored.";
+}
+function viewCapture(){
+  const L = state.lead;
+  return '<section class="sheet wrap" aria-labelledby="ch">' +
+    '<p class="label">08 / 08 complete</p>' +
+    '<h2 id="ch" class="q" tabindex="-1">Your readout is ready.</h2>' +
+    '<p class="lede" style="margin-top:18px">' + copyLine() + '</p>' +
+    '<form id="leadform" novalidate>' +
+      '<p class="label" style="margin:34px 0 18px">Where should we send a copy?</p>' +
+      '<div class="fields">' +
+        field({id:'l-first', name:'first', label:'First name', required:true, autocomplete:'given-name', maxlength:60, value:L.first}) +
+        field({id:'l-email', name:'email', label:'Work email', type:'email', required:true, autocomplete:'email', inputmode:'email', maxlength:120, value:L.email}) +
+        field({id:'l-brand', name:'brand', label:'Brand or company', required:true, autocomplete:'organization', maxlength:80, value:L.brand}) +
+        field({id:'l-site', name:'website', label:'Website or Instagram', autocomplete:'url', maxlength:150, value:L.website}) +
+        field({id:'l-wa', name:'whatsapp', label:'WhatsApp', type:'tel', inputmode:'tel', autocomplete:'tel', maxlength:20, value:L.whatsapp}) +
+      '</div>' + honeypot +
+      '<p id="formerr" class="form-error" role="alert"></p>' +
+      '<div class="cta-row"><button class="btn" type="submit" id="leadbtn">Show my brand readout ' + ARROW + '</button>' + backBtn() + '</div>' +
+    '</form></section>';
+}
+
+function dimRow(label, v, ctx){
+  return '<div class="dim"><span class="label">' + label + '</span><span class="n">' + v + '</span><div class="bar' + (ctx ? ' ctx' : '') + '" aria-hidden="true"><i data-w="' + v + '"></i></div></div>';
+}
+function endingHTML(r){
+  const callLabel = CONFIG.bookingUrl ? 'Book a fit call' : 'Request a call';
+  if (r.tier === 'project_ready' || r.tier === 'priority') {
+    return '<section class="ending reveal no-print"><h2 class="end-h">This looks like a project we should talk about.</h2>' +
+      '<p class="end-p">Your ambition, timing and scope are within the kind of work we take on.</p>' +
+      '<div class="cta-row"><button class="btn" type="button" data-action="request">Request project scope ' + ARROW + '</button>' +
+      '<button class="btn ghost" type="button" data-action="call">' + callLabel + '</button></div></section>';
+  }
+  if (r.tier === 'exploratory') {
+    return '<section class="ending reveal no-print"><h2 class="end-h">You\u2019re close \u2014 but the scope needs clarity.</h2>' +
+      '<p class="end-p">Before commissioning a full brand system, we\u2019d narrow what actually needs changing and what can wait.</p>' +
+      '<div class="cta-row"><button class="btn" type="button" data-action="request">Send us the brief ' + ARROW + '</button></div></section>';
+  }
+  return '<section class="ending reveal no-print"><h2 class="end-h">The brand may need a little more time before a full rebuild.</h2>' +
+    '<p class="end-p">Based on what you\u2019ve told us, a ' + lakh(CONFIG.startingPrice) + '+ brand system may be more than the business needs right now. Your readout is still yours to use.</p>' +
+    '<div class="cta-row"><button class="btn" type="button" data-action="print">Keep my readout ' + ARROW + '</button>' +
+    '<a class="tlink" href="' + esc(CONFIG.siteUrl) + '" data-site-link>Come back when the timing is right \u2192</a></div></section>';
+}
+function fitBlock(r, a){
+  const e = r.engagement;
+  if (r.tier === 'emerging') {
+    const physical = ['fnb','beauty','consumer','fashion','other'].indexOf(a.category) > -1;
+    const items = [PREWORK[0], PREWORK[1], physical ? PREWORK[2] : PREWORK[3]];
+    return '<section class="reveal"><p class="label sec-label">Before a full rebuild</p><h2 class="sec-title" style="margin-bottom:20px">What to do in the meantime</h2>' +
+      '<ul class="prework">' + items.map(i => '<li>' + esc(i) + '</li>').join('') + '</ul></section>';
+  }
+  return '<section class="reveal" style="margin-top:clamp(36px,6vw,72px)"><div class="fitblock">' +
+    '<p class="label">Based on what you told us, we\u2019d probably start here</p>' +
+    '<h2>' + esc(e.name) + '</h2>' +
+    '<div class="fitgrid"><ul>' + e.scope.map(s => '<li>' + esc(s) + '</li>').join('') + '</ul>' +
+    '<div class="figs"><div><span class="label">Investment</span><b>' + esc(e.price) + '</b></div><div><span class="label">Typical timeline</span><b>' + esc(e.weeks) + '</b></div></div></div>' +
+    '<p class="fitnote">Final scope depends on the number of SKUs, research depth, deliverables and launch requirements.</p>' +
+    '</div></section>';
+}
+function viewReport(){
+  const a = state.answers, r = state.report, brand = state.lead.brand || 'Your brand', s = r.score;
+  const year = new Date().getFullYear();
+  const facts = [['Brand', brand], ['Stage', STAGE_SHORT[a.stage]], ['Primary pressure', r.pressure], ['Current priority', SCOPE_SHORT[a.scope]], ['Growth event', EVENT_SHORT[a.event]], ['Complexity', r.complexity]];
+  return '<article class="report wrap" aria-labelledby="rt">' +
+    '<div class="rhead"><span class="label">The Drawing Board / Brand Readiness / ' + year + '</span>' +
+    '<button class="tlink quiet no-print" type="button" data-action="print">Save as PDF</button></div>' +
+    '<h2 id="rt" class="rtitle" tabindex="-1">Your brand readout</h2>' +
+    '<dl class="facts">' + facts.map(f => '<div class="fact"><dt class="label">' + f[0] + '</dt><dd>' + esc(f[1]) + '</dd></div>').join('') + '</dl>' +
+
+    '<section class="scoreblock reveal" aria-label="Brand readiness score">' +
+      '<div><p class="label">Brand readiness score</p>' +
+      '<p class="score" role="img" aria-label="' + s.overall + ' out of 100"><span id="scoreNum" aria-hidden="true" data-target="' + s.overall + '">' + (RM.matches ? s.overall : 0) + '</span><span class="of" aria-hidden="true">/ 100</span></p>' +
+      '<p class="band-text">' + esc(s.band) + '</p><p class="label">Directional assessment based on your answers.</p>' +
+      '<details class="how"><summary>How this is calculated</summary><ul>' +
+        '<li>Three scored dimensions start high and move down only where your answers point to a gap: clarity (30%), distinctiveness (30%) and system readiness (40%).</li>' +
+        '<li>Growth pressure and project readiness are context. Growth pressure only lowers the score in proportion to how much of your system is not ready for it.</li>' +
+        '<li>Successful, growing businesses are not penalised for growing.</li>' +
+        '<li>It is a conversation starter, not an audit.</li></ul></details></div>' +
+      '<div><div class="dimgroup"><p class="label" style="margin-bottom:6px">Scored</p>' +
+        dimRow('Clarity', s.clarity) + dimRow('Distinctiveness', s.distinct) + dimRow('System readiness', s.system) + '</div>' +
+      '<div class="dimgroup"><p class="label" style="margin-bottom:6px">Context</p>' +
+        dimRow('Growth pressure', s.pressure, true) + dimRow('Project readiness', s.project, true) + '</div></div>' +
+    '</section>' +
+
+    (a.outcome ? '<figure class="inwords reveal"><p class="label">You said success looks like</p><blockquote>\u201C' + esc(truncate(a.outcome, 280)) + '\u201D</blockquote></figure>' : '') +
+
+    '<section><p class="label sec-label">Field note</p><h2 class="sec-title reveal" style="margin-bottom:26px">Where we\u2019d start</h2>' +
+    r.frags.map((f, i) => '<div class="dx reveal"><div class="no" aria-hidden="true">0' + (i + 1) + '</div><div><h3>' + esc(f.title) + '</h3><p>' + esc(f.body) + '</p></div></div>').join('') + '</section>' +
+
+    '<section class="duo reveal"><div><p class="label">The opportunity</p><p class="big">' + esc(r.opp) + '</p></div>' +
+    '<div><p class="label">If nothing changes</p><p class="big">' + esc(r.risk) + '</p></div></section>' +
+
+    fitBlock(r, a) + endingHTML(r) +
+    '<div class="reveal no-print">' + systemsList().replace('class="systems"', 'class="systems" style="padding-bottom:0"') + '</div>' +
+  '</article>';
+}
+
+function viewProject(){
+  const a = state.answers, r = state.report, L = state.lead, mode = state.mode;
+  const head = mode === 'brief' ? 'Send us the brief.' : mode === 'direct' ? 'Discuss a project.' : 'Request project scope.';
+  const sub = r ? "Your answers are already attached. A few details and we\u2019ll review this like a brief."
+                : "Tell us what you\u2019re building and what\u2019s changing. We read every brief.";
+  const summary = r ? '<dl class="summary" aria-label="Your project">' +
+    '<div><dt class="label">Brand</dt><dd>' + esc(L.brand || '\u2014') + '</dd></div>' +
+    '<div><dt class="label">Recommended</dt><dd>' + esc(r.engagement.name) + '</dd></div>' +
+    '<div><dt class="label">Investment</dt><dd>' + esc(r.engagement.price) + '</dd></div>' +
+    '<div><dt class="label">Timing</dt><dd>' + esc(TIME_SHORT[a.timeline] || '\u2014') + '</dd></div></dl>' : '';
+  const direct = !r ? '<div class="fields">' +
+    field({id:'p-cat', name:'category', kind:'select', label:'What are you building?', required:true, options:QBY.category.options, value:a.category}) +
+    field({id:'p-bud', name:'budget', kind:'select', label:'Investment you have planned', required:true, options:QBY.budget.options, value:a.budget}) + '</div>' : '';
+  return '<section class="sheet wrap" aria-labelledby="ph">' +
+    '<p class="label">Your project</p>' +
+    '<h2 id="ph" class="q" tabindex="-1">' + head + '</h2>' +
+    '<p class="lede" style="margin-top:18px">' + sub + '</p>' + summary +
+    '<form id="projectform" novalidate>' + direct +
+      '<div class="fields">' +
+        field({id:'p-name', name:'name', label:'Your name', required:true, autocomplete:'name', maxlength:80, value:L.first}) +
+        field({id:'p-brand', name:'brand', label:'Company', required:true, autocomplete:'organization', maxlength:80, value:L.brand}) +
+        field({id:'p-email', name:'email', label:'Email', type:'email', required:true, autocomplete:'email', inputmode:'email', maxlength:120, value:L.email}) +
+        field({id:'p-wa', name:'whatsapp', label:'WhatsApp', type:'tel', inputmode:'tel', autocomplete:'tel', maxlength:20, value:L.whatsapp}) +
+        field({id:'p-site', name:'website', label:'Website or Instagram', autocomplete:'url', maxlength:150, value:L.website}) +
+        field({id:'p-date', name:'launch', label:'Desired launch date', maxlength:40, placeholder:'For example: March 2027'}) +
+        field({id:'p-notes', name:'notes', kind:'textarea', label:'Anything we should know?', maxlength:1000, full:true}) +
+      '</div>' + honeypot +
+      '<p id="formerr" class="form-error" role="alert"></p>' +
+      '<div class="cta-row"><button class="btn" type="submit" id="projbtn">Send project request ' + ARROW + '</button>' + backBtn() + '</div>' +
+    '</form></section>';
+}
+
+function viewSuccess(){
+  const s = state.submitted || {}, first = esc((s.first || 'there').split(' ')[0]);
+  const msg = s.simulated
+    ? '<p class="lede">Prototype submission complete. Nothing has been sent, because no endpoint is connected yet.</p>'
+    : '<p class="lede">Someone from The Drawing Board will review your answers and respond within ' + esc(CONFIG.replyTime) + '.</p>';
+  return '<section class="sheet wrap" aria-labelledby="th">' +
+    '<h2 id="th" class="thanks" tabindex="-1">Thank you, ' + first + '.<span>We\u2019ll review this like a brief, not a form submission.</span></h2>' + msg +
+    '<div class="cta-row" style="margin-top:28px"><button class="btn ghost" type="button" data-action="print">Keep my readout</button><a class="tlink" href="' + esc(CONFIG.siteUrl) + '" data-site-link>Back to drawingsboard.com \u2192</a></div></section>';
+}
+
+const VIEWS = {landing:viewLanding, quiz:viewQuiz, capture:viewCapture, report:viewReport, project:viewProject, success:viewSuccess};
+
+/* ==========================================================================
+   10c RENDERING: navigation, transitions, post-render effects
+   ========================================================================== */
+const live = msg => { const el = $('#live'); if (el) { el.textContent = ''; setTimeout(() => { el.textContent = msg; }, 30); } };
+let revealObserver = null;
+
+function guard(view){
+  if (view === 'report' && !state.report) return 'landing';
+  if (view === 'success' && !state.submitted) return 'landing';
+  if (view === 'capture' && !state.report) return 'landing';
+  return view;
+}
+function pushHistory(view){
+  try { state.idx += 1; history.pushState({view:view, step:state.step, idx:state.idx}, '', '#' + view + (view === 'quiz' ? '-' + (state.step + 1) : '')); } catch(e){}
+}
+function go(view, opts){
+  opts = opts || {};
+  view = guard(view);
+  if (opts.push !== false) pushHistory(view);
+  swapView(view);
+}
+function swapView(view){
+  const run = () => {
+    clearDemo(); state.view = view;
+    app.innerHTML = VIEWS[view]();
+    afterRender(view);
+  };
+  if (RM.matches || !app.innerHTML) { run(); return; }
+  app.classList.add('leaving');
+  setTimeout(() => {
+    run(); app.classList.remove('leaving'); app.classList.add('entering');
+    requestAnimationFrame(() => requestAnimationFrame(() => app.classList.remove('entering')));
+  }, 150);
+}
+function afterRender(view){
+  window.scrollTo(0, 0);
+  const h = $('h1, h2', app);
+  if (h) { h.setAttribute('tabindex', '-1'); h.focus({preventScroll:true}); }
+  if (view === 'landing') { runDemo(); live('Brand readiness check'); }
+  if (view === 'quiz') { updateShelf(); live('Question ' + (state.step + 1) + ' of 8. ' + QUESTIONS[state.step].title); }
+  if (view === 'capture') { live('Your readout is ready. Add your details to see it.'); }
+  if (view === 'report') { setShelfOnReport(); live('Your brand readout'); initReport(); }
+  if (view === 'project') { live('Project request'); Events.ProjectScopeView(); }
+  if (view === 'success') { live('Request sent'); }
+}
+function setShelfOnReport(){ /* the report has no shelf; hook kept for future use */ }
+
+function initReport(){
+  $$('.bar i').forEach(i => { i.style.width = '0'; });
+  const reveal = el => el.classList.add('in');
+  if (RM.matches || !('IntersectionObserver' in window)) {
+    $$('.reveal').forEach(reveal);
+    $$('.bar i').forEach(i => { i.style.width = i.getAttribute('data-w') + '%'; });
+    const sn = $('#scoreNum'); if (sn) sn.textContent = sn.getAttribute('data-target');
+    return;
+  }
+  if (revealObserver) revealObserver.disconnect();
+  revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) { reveal(en.target); revealObserver.unobserve(en.target); if (en.target.classList.contains('scoreblock')) animateScore(); } });
+  }, {threshold:.15});
+  $$('.reveal').forEach(el => revealObserver.observe(el));
+}
+function animateScore(){
+  const el = $('#scoreNum'); if (!el) return;
+  const target = +el.getAttribute('data-target'), t0 = performance.now(), dur = 900;
+  $$('.bar i').forEach(i => { i.style.width = i.getAttribute('data-w') + '%'; });
+  const tick = now => { const p = Math.min(1, (now - t0) / dur); el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(tick); };
+  requestAnimationFrame(tick);
+}
+
+function showQuestion(){
+  const body = $('#qbody'), prog = $('#prog');
+  if (!body || !prog) { swapView('quiz'); return; }
+  const apply = () => {
+    body.innerHTML = questionHTML(); prog.innerHTML = progressInner();
+    prog.setAttribute('aria-valuenow', state.step + 1); prog.setAttribute('aria-valuetext', 'Question ' + (state.step + 1) + ' of 8');
+    const h = $('#qtitle'); if (h) h.focus({preventScroll:true});
+    live('Question ' + (state.step + 1) + ' of 8. ' + QUESTIONS[state.step].title);
+    updateShelf(); state.locked = false;
+  };
+  if (RM.matches) { apply(); return; }
+  body.classList.add('out');
+  setTimeout(() => { apply(); body.classList.remove('out'); body.classList.add('in'); requestAnimationFrame(() => requestAnimationFrame(() => body.classList.remove('in'))); }, 150);
+}
+
+/* ==========================================================================
+   11 FORMS: validation
+   ========================================================================== */
+const RX_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+function setErr(id, msg){
+  const input = document.getElementById(id), err = document.getElementById('err-' + id);
+  if (err) err.textContent = msg || '';
+  if (input) { if (msg) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid'); }
+}
+function validate(form, rules){
+  let first = null;
+  Object.keys(rules).forEach(id => {
+    const el = document.getElementById(id); if (!el) return;
+    const v = el.value.trim(), rule = rules[id]; let msg = '';
+    if (rule.required && !v) msg = rule.msg || 'This field is required.';
+    else if (v && rule.type === 'email' && !RX_EMAIL.test(v)) msg = 'Enter a valid email address, like name@company.com.';
+    else if (v && rule.type === 'phone' && (v.replace(/\D/g, '').length < 8 || v.replace(/\D/g, '').length > 15)) msg = 'Enter a phone number with 8 to 15 digits.';
+    setErr(id, msg);
+    if (msg && !first) first = el;
+  });
+  if (first) first.focus();
+  return !first;
+}
+const val = id => (document.getElementById(id) || {value:''}).value.trim();
+
+/* ==========================================================================
+   14 EVENTS
+   ========================================================================== */
+function nextStep(){
+  if (state.step < QUESTIONS.length - 1) { state.step += 1; pushHistory('quiz'); showQuestion(); }
+  else completeAssessment();
+}
+function completeAssessment(){
+  state.built = true;
+  state.report = computeReport();
+  Events.AssessmentComplete();
+  go('capture');
+}
+function chooseOption(btn){
+  if (state.locked) return;
+  const q = QUESTIONS[state.step], v = btn.getAttribute('data-value');
+  if (q.type === 'multi') {
+    const cur = state.answers[q.id] || [], i = cur.indexOf(v);
+    if (i > -1) cur.splice(i, 1);
+    else if (cur.length < q.max) cur.push(v);
+    else { const c = $('#qcount'); if (c) c.textContent = 'Up to ' + q.max + '. Deselect one to change.'; return; }
+    state.answers[q.id] = cur;
+    $$('.opt').forEach(b => b.setAttribute('aria-pressed', cur.indexOf(b.getAttribute('data-value')) > -1));
+    const c = $('#qcount'); if (c) c.textContent = cur.length + ' of ' + q.max + ' selected';
+    const n = $('#nextbtn'); if (n) n.disabled = cur.length === 0;
+    updateShelf();
+    return;
+  }
+  state.answers[q.id] = v; state.locked = true;
+  $$('.opt').forEach(b => b.setAttribute('aria-pressed', b === btn));
+  updateShelf(); Events.AssessmentStep(q);
+  setTimeout(nextStep, RM.matches ? 0 : 320);
+}
+function goBack(){
+  const h = history.state;
+  if (h && h.idx > 0) { history.back(); return; }
+  if (state.view === 'quiz' && state.step > 0) { state.step -= 1; showQuestion(); return; }
+  if (state.view === 'capture') { state.built = false; state.step = QUESTIONS.length - 1; swapView('quiz'); return; }
+  if (state.view === 'project') { swapView(state.report ? 'report' : 'landing'); return; }
+  swapView('landing');
+}
+function leadFromForm(){
+  return {first:val('l-first'), email:val('l-email'), brand:val('l-brand'), website:val('l-site'), whatsapp:val('l-wa')};
+}
+function fireLead(qualifies){
+  if (state.leadFired) return;
+  state.leadFired = true;
+  const id = Events.Lead();
+  if (qualifies) Events.QualifiedLead();
+  return id;
+}
+async function onLeadSubmit(form){
+  if (state.busy) return;
+  if (form.elements.hp_check && form.elements.hp_check.value) return; // honeypot
+  const ok = validate(form, {'l-first':{required:true, msg:'Enter your first name.'}, 'l-email':{required:true, type:'email', msg:'Enter your work email.'}, 'l-brand':{required:true, msg:'Enter your brand or company name.'}, 'l-wa':{type:'phone'}});
+  if (!ok) return;
+  state.lead = leadFromForm();
+  const btn = $('#leadbtn'), err = $('#formerr');
+  state.busy = true; btn.disabled = true; btn.firstChild.nodeValue = 'Building ';
+  err.textContent = '';
+  try {
+    const payload = Object.assign({contact:state.lead}, assessmentSnapshot());
+    const res = await submitLead(payload);
+    state.leadSimulated = res.simulated;
+    fireLead(state.report.tier === 'project_ready' || state.report.tier === 'priority');
+    state.busy = false;
+    go('report');
+  } catch (e) {
+    state.busy = false; btn.disabled = false; btn.firstChild.nodeValue = 'Try again ';
+    err.innerHTML = 'We couldn\u2019t send your details just now. Please try again.';
+    if (DEBUG) console.error(e);
+  }
+}
+async function onProjectSubmit(form){
+  if (state.busy) return;
+  if (form.elements.hp_check && form.elements.hp_check.value) return;
+  const rules = {'p-name':{required:true, msg:'Enter your name.'}, 'p-brand':{required:true, msg:'Enter your company name.'}, 'p-email':{required:true, type:'email', msg:'Enter your email.'}, 'p-wa':{type:'phone'}};
+  if (!state.report) { rules['p-cat'] = {required:true, msg:'Choose what you are building.'}; rules['p-bud'] = {required:true, msg:'Choose a budget band.'}; }
+  if (!validate(form, rules)) return;
+  if (!state.report) { state.answers.category = val('p-cat'); state.answers.budget = val('p-bud'); }
+  const lead = {first:val('p-name'), email:val('p-email'), brand:val('p-brand'), website:val('p-site'), whatsapp:val('p-wa')};
+  state.lead = Object.assign(state.lead, lead);
+  const btn = $('#projbtn'), err = $('#formerr');
+  state.busy = true; btn.disabled = true; btn.firstChild.nodeValue = 'Sending '; err.textContent = '';
+  try {
+    const tier = state.report ? state.report.tier : directTier(state.answers);
+    const payload = Object.assign({contact:state.lead, project:{launch:val('p-date'), notes:val('p-notes'), call_requested:state.callRequested, mode:state.mode, fit_tier:tier}}, assessmentSnapshot());
+    const res = await submitProjectRequest(payload);
+    if (!state.report) fireLead(tier === 'project_ready');   // direct enquiries count as a Lead exactly once
+    const id = Events.ProjectRequest();
+    state.submitted = {first:state.lead.first, simulated:res.simulated};
+    state.busy = false;
+    go('success');
+  } catch (e) {
+    state.busy = false; btn.disabled = false; btn.firstChild.nodeValue = 'Try again ';
+    err.textContent = 'We couldn\u2019t send your request just now. Please try again.';
+    if (DEBUG) console.error(e);
+  }
+}
+
+app.addEventListener('click', e => {
+  const t = e.target.closest('[data-action]'); if (!t) return;
+  const act = t.getAttribute('data-action');
+  if (act === 'start') { Events.AssessmentStart(); state.built = false; state.step = 0; state.answers = state.answers || {}; go('quiz'); }
+  else if (act === 'discuss') { state.mode = 'direct'; state.report = null; go('project'); }
+  else if (act === 'opt') chooseOption(t);
+  else if (act === 'next') { if (!t.disabled) { Events.AssessmentStep(QUESTIONS[state.step]); nextStep(); } }
+  else if (act === 'build') {
+    const ta = $('#outcome'); state.answers.outcome = ta ? ta.value.trim().slice(0, 600) : '';
+    Events.AssessmentStep(QUESTIONS[state.step]); completeAssessment();
+  }
+  else if (act === 'back') goBack();
+  else if (act === 'request') { state.mode = state.report && state.report.tier === 'exploratory' ? 'brief' : 'scope'; state.callRequested = false; go('project'); }
+  else if (act === 'call') {
+    if (CONFIG.bookingUrl) { Events.FitCallClick('booking'); window.open(CONFIG.bookingUrl, '_blank', 'noopener'); }
+    else { Events.FitCallClick('request'); state.callRequested = true; state.mode = 'scope'; go('project'); }
+  }
+  else if (act === 'print') window.print();
+});
+app.addEventListener('submit', e => {
+  e.preventDefault();
+  if (e.target.id === 'leadform') onLeadSubmit(e.target);
+  else if (e.target.id === 'projectform') onProjectSubmit(e.target);
+});
+document.addEventListener('keydown', e => {
+  if (state.view !== 'quiz' || e.metaKey || e.ctrlKey || e.altKey) return;
+  const tag = (e.target.tagName || '').toLowerCase();
+  if (tag === 'textarea' || tag === 'input' || tag === 'select') return;
+  if (/^[1-9]$/.test(e.key)) { const b = $$('.opt')[+e.key - 1]; if (b) { e.preventDefault(); chooseOption(b); } }
+});
+window.addEventListener('popstate', e => {
+  const s = e.state;
+  if (!s || !s.view) { if (state.view !== 'landing') swapView('landing'); return; }
+  const view = guard(s.view);
+  if (view === 'quiz') { state.step = clamp(s.step || 0, 0, QUESTIONS.length - 1); state.built = false; if (state.view === 'quiz') showQuestion(); else swapView('quiz'); }
+  else { if (view === 'capture') state.built = false; swapView(view); }
+});
+
+/* ==========================================================================
+   INIT
+   ========================================================================== */
+try { history.replaceState({view:'landing', step:0, idx:0}, '', location.pathname + location.search + '#landing'); } catch(e){}
+swapView('landing');
+Events.AssessmentView();
+})();
+</script>
+</body>
+</html>

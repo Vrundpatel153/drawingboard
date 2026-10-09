@@ -10,6 +10,7 @@ import ServiceDetail from './pages/ServiceDetail';
 import BrandingPage from './pages/BrandingPage';
 import PackagingPage from './pages/PackagingPage';
 import DevelopmentPage from './pages/DevelopmentPage';
+import SaaSBrandingPage from './pages/SaaSBrandingPage';
 import Contact from './pages/Contact';
 import BlogDetail from './pages/BlogDetail';
 import LegalDetail from './pages/LegalDetail';
@@ -17,6 +18,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import Admin from './pages/Admin';
 import ThankYou from './pages/ThankYou';
+import BrandReadiness from './pages/BrandReadiness';
 import SmoothScroll from './components/SmoothScroll';
 import WhatsAppButton from './components/WhatsAppButton';
 import GlobalCTAInterceptor from './components/GlobalCTAInterceptor';
@@ -76,6 +78,18 @@ export default function App() {
             <Route path="/service/development" element={<DevelopmentPage />} />
             <Route path="/services/web-development" element={<DevelopmentPage />} />
             <Route path="/service/web-development" element={<DevelopmentPage />} />
+            {/* Dedicated SaaS Branding & UI/UX page */}
+            <Route path="/saas-branding" element={<SaaSBrandingPage />} />
+            <Route path="/services/saas-branding" element={<SaaSBrandingPage />} />
+            <Route path="/service/saas-branding" element={<SaaSBrandingPage />} />
+            <Route path="/services/design" element={<SaaSBrandingPage />} />
+            <Route path="/service/design" element={<SaaSBrandingPage />} />
+            <Route path="/services/ui-ux" element={<SaaSBrandingPage />} />
+            <Route path="/service/ui-ux" element={<SaaSBrandingPage />} />
+            <Route path="/services/ui-ux-design" element={<SaaSBrandingPage />} />
+            <Route path="/service/ui-ux-design" element={<SaaSBrandingPage />} />
+            <Route path="/ui-ux" element={<SaaSBrandingPage />} />
+            <Route path="/ui-ux-design" element={<SaaSBrandingPage />} />
             <Route path="/services/:serviceId" element={<ServiceDetail />} />
             <Route path="/service/:serviceId" element={<ServiceDetail />} />
 
@@ -87,6 +101,12 @@ export default function App() {
 
             {/* Contact route */}
             <Route path="/contact" element={<Contact />} />
+
+            {/* Brand Readiness & Instant Quote routes */}
+            <Route path="/brand-readiness" element={<BrandReadiness />} />
+            <Route path="/brand-readiness.html" element={<BrandReadiness />} />
+            <Route path="/get-quote" element={<BrandReadiness />} />
+            <Route path="/quote" element={<BrandReadiness />} />
 
             {/* Thank You page */}
             <Route path="/thank-you" element={<ThankYou />} />

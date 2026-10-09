@@ -7,7 +7,7 @@ import StickyMobileCTA from '../components/StickyMobileCTA';
 import ArrowIcon from '../components/ArrowIcon';
 import BookCallLink from '../components/BookCallLink';
 import { usePageAnimations } from '../hooks/usePageAnimations';
-import { CONTACT_EMAIL, MAILTO_URL, WHATSAPP_URL } from '../utils/siteConfig';
+import { CONTACT_EMAIL, MAILTO_URL } from '../utils/siteConfig';
 import { trackMetaFormSubmission } from '../utils/metaEvents';
 
 const faqs = [
@@ -499,18 +499,18 @@ export default function Contact() {
         <section className="hero-lite">
           <div className="wrap">
             <div className="sheet-label">
-              <span className="tag">SHEET 04 // CONTACT US</span>
+              <span className="sheet-meta mono">DIRECT STUDIO CONTACT // 24H RESPONSE TIME</span>
               <div className="rule"></div>
             </div>
             <h1>Contact us</h1>
             <p className="hero-sub" style={{ maxWidth: '680px', marginTop: '12px', fontSize: '16.5px', color: 'var(--ink-soft)' }}>
               Ready to start a project, collaborate, or just say hello? Drop us a message — we typically reply within 24 hours.
             </p>
-            <p style={{ marginTop: '14px' }}>
-              <a className="btn-link" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" style={{ fontSize: '14.5px', color: 'var(--pine)', fontWeight: 600 }}>
-                Prefer WhatsApp for discussion →
-              </a>
-            </p>
+            <div style={{ marginTop: '16px', display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
+              <Link className="btn-secondary-cta" to="/brand-readiness">
+                Get Quote <ArrowIcon size={14} />
+              </Link>
+            </div>
           </div>
         </section>
 

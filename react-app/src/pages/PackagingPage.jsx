@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import MoreServicesSection from '../components/MoreServicesSection';
 import ArrowIcon from '../components/ArrowIcon';
-import { WHATSAPP_URL } from '../utils/siteConfig';
+import { DISCUSS_URL } from '../utils/siteConfig';
 
 
 
@@ -366,11 +366,12 @@ export default function PackagingPage() {
         .pp-page .final .btn-primary { background: var(--paper); color: var(--pine); }
         .pp-page .final .btn-primary:hover { background: #fff; }
 
-        .pp-page .sticky-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; background: var(--ink); padding: 9px 14px; align-items: center; justify-content: space-between; gap: 10px; border-top: 1px solid #000; }
-        .pp-page .sticky-cta .txt { color: #fff; font-size: 11.5px; line-height: 1.2; }
-        .pp-page .sticky-cta .txt b { display: block; font-size: 13px; }
-        .pp-page .sticky-cta a { background: var(--paper); color: var(--ink); padding: 0 14px; height: 34px; display: inline-flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 600; border-radius: var(--radius, 4px); white-space: nowrap; text-decoration: none; }
-        .pp-page .sticky-cta a.wa-btn { background: #25D366 !important; color: #ffffff !important; padding: 0 !important; width: 34px !important; height: 34px !important; min-width: 34px !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; border-radius: 4px !important; flex-shrink: 0; }
+        .pp-page .sticky-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; background: var(--ink); padding: 5px 12px; min-height: 42px; max-height: 48px; align-items: center; justify-content: space-between; gap: 8px; border-top: 1px solid rgba(255,255,255,0.14); }
+        .pp-page .sticky-cta .txt { color: #fff; font-size: 11px; line-height: 1.15; min-width: 0; flex: 1; overflow: hidden; }
+        .pp-page .sticky-cta .txt b { display: block; font-size: 11.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .pp-page .sticky-cta .txt span { display: block; font-size: 9.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #C9C3B4; }
+        .pp-page .sticky-cta a { background: var(--paper); color: var(--ink); padding: 0 10px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; border-radius: var(--radius, 2px); white-space: nowrap; text-decoration: none; }
+        .pp-page .sticky-cta a.wa-btn { background: #25D366 !important; color: #ffffff !important; padding: 0 !important; width: 28px !important; height: 28px !important; min-width: 28px !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; border-radius: 2px !important; flex-shrink: 0; }
         @media (max-width: 700px) { .pp-page .sticky-cta { display: flex; } }
 
 
@@ -391,9 +392,8 @@ export default function PackagingPage() {
           <section className="hero">
             <div className="wrap">
               <div className="sheet-label">
-                <span className="tag mono">SHEET NO. 03 — PACKAGING</span>
+                <span className="sheet-meta mono">PACKAGING DESIGN ENGINEERING // STRUCTURAL &bull; LABELS &bull; UNBOXING // SCALE 1:1</span>
                 <span className="rule"></span>
-                <span className="mono" style={{ fontSize: '12px', color: 'var(--ink-soft)' }}>SCALE 1:1</span>
               </div>
               <div className="urgency">
                 <span className="dot" aria-hidden="true"></span>
@@ -406,8 +406,8 @@ export default function PackagingPage() {
                 <div>
                   <p className="hero-sub">Your customer may discover the product through an ad, but the packaging often closes the decision. We combine positioning, category research, visual storytelling and production thinking to build packaging that feels distinctive, credible and ready to scale.</p>
                   <div className="cta-row">
-                    <a className="btn-primary" href="#pricing">Book a 15-min call <ArrowIcon size={14} /></a>
-                    <a className="btn-link" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Prefer WhatsApp for discussion <ArrowIcon size={13} /></a>
+                    <a className="btn-primary" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">Discuss Your Project <ArrowIcon size={14} /></a>
+                    <Link className="btn-secondary-cta" to="/brand-readiness">Get Quote <ArrowIcon size={14} /></Link>
                   </div>
                   <p className="price-note">Packaging engagements start at <b>$2,500 (₹1,75,000).</b> Built for serious launches, redesigns and growing product ranges.</p>
                 </div>
@@ -952,8 +952,8 @@ export default function PackagingPage() {
                     <div className="feat-timeline"><strong>Timeline:</strong> approximately 3–5 weeks</div>
                     <div className="feat-payment"><strong>Payment:</strong> 50% advance · 25% after master direction approval · 25% before final file handover</div>
                     <div className="feat-cta-row">
-                      <a className="btn-primary" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min packaging call <ArrowIcon size={14} /></a>
-                      <a className="btn-link" href="https://wa.me/919428859768" target="_blank" rel="noopener noreferrer">or message us on WhatsApp</a>
+                      <a className="btn-primary" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">Discuss Your Project <ArrowIcon size={14} /></a>
+                      <Link className="btn-secondary-card" to="/brand-readiness">Get Quote <ArrowIcon size={13} /></Link>
                     </div>
                   </div>
                 </div>
@@ -1114,10 +1114,10 @@ export default function PackagingPage() {
             <div className="wrap">
               <h2>Your product is ready. Now make the packaging feel ready too.</h2>
               <p>Book a free 15-minute call to discuss your product, current packaging, launch stage and the scope required. We will tell you honestly whether you need a master redesign, a SKU system, a smaller adaptation or more preparation before design begins.</p>
-              <a className="btn-primary" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min packaging call <ArrowIcon size={14} /></a>
-              <p style={{ marginTop: '16px' }}>
-                <a className="btn-link" style={{ color: '#CFE0DA' }} href="https://wa.me/919428859768" target="_blank" rel="noopener noreferrer">Message us on WhatsApp</a>
-              </p>
+              <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center', marginTop: '20px' }}>
+                <a className="btn-primary" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">Discuss Your Project <ArrowIcon size={14} /></a>
+                <Link className="btn-secondary-cta" to="/brand-readiness" style={{ color: '#CFE0DA', borderColor: '#CFE0DA' }}>Get Quote <ArrowIcon size={14} /></Link>
+              </div>
             </div>
           </section>
         </main>
@@ -1156,7 +1156,7 @@ export default function PackagingPage() {
                 />
               </svg>
             </a>
-            <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book now <ArrowIcon size={14} /></a>
+            <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">Discuss <ArrowIcon size={14} /></a>
           </div>
 
         </div>

@@ -44,45 +44,45 @@
   },
   {
     "id": "design",
-    "slug": "design",
-    "title": "UI/UX & Interactive Design",
-    "headline": "Design That Balances Clarity, Creativity, and Conversion",
-    "eyebrow": "02 // DIGITAL UI/UX",
-    "tagline": "UI/UX & DESIGN SYSTEMS",
-    "startingPrice": "$1,200",
-    "startingPriceGBP": "£895",
-    "startingPriceINR": "₹1,14,516",
+    "slug": "saas-branding",
+    "title": "SaaS Branding & UI/UX",
+    "headline": "System-Grade Brand & Interface Engineering for B2B Software",
+    "eyebrow": "02 // SAAS BRANDING & UI/UX",
+    "tagline": "SYSTEM-GRADE IDENTITY & PRODUCT SURFACES",
+    "startingPrice": "$4,960",
+    "startingPriceGBP": "£3,700",
+    "startingPriceINR": "₹4,75,000",
     "duration": "4-6 Weeks Sprint",
     "heroImage": "https://framerusercontent.com/images/gTIfPf4an07uhbykxhoEyw0o0M.gif?width=640&height=480",
     "secondaryImage": "https://framerusercontent.com/images/JUgN5ECm4HnK6pp1E3Igc5Vibc.jpeg?width=1024&height=1024",
     "videoUrl": "/_assets/assets/GmWiQg0MZIvFU3cvgIL12lysLK0.mp4",
-    "description": "We craft design systems and digital interfaces that solve complex user flows, convey authority, and convert visitors into high-LTV customers across desktop and mobile screens.",
+    "description": "We bridge brand positioning with software reality — designing unified visual identities, tokenized Figma component systems, and high-conversion web & app product surfaces built to scale.",
     "deliverables": [
-      "Information Architecture & User Experience Mapping",
-      "High-Fidelity Figma Wireframes & Interactive Prototypes",
-      "Responsive Multi-Breakpoint Mobile & Desktop UI",
-      "Figma Design Systems & Shared Component Libraries",
-      "Micro-Animations, Hover States & Interaction Specs",
-      "Design-to-Code Handoff Documentation"
+      "Brand-to-Product Architecture & Positioning",
+      "Tokenized Figma Design System & Component Library",
+      "Key Product Workflows & Multi-Device UI",
+      "Marketing Engine & Conversion Architecture",
+      "Micro-Interactions, Motion & State Specifications",
+      "Design Token Specs & Direct Developer Handover"
     ],
     "process": [
-      { "step": "01", "name": "UX Architecture", "desc": "Map out sitemap, page hierarchy, and high-conversion user user flows." },
-      { "step": "02", "name": "High-Fidelity UI", "desc": "Design bespoke interface layouts, dark/light modes, and interactive components." },
-      { "step": "03", "name": "Prototype & Handoff", "desc": "Deliver clickable Figma prototypes and developer specs." }
+      { "step": "01", "name": "Brand-to-Product Audit", "desc": "Audit market positioning, evaluate product friction, and map brand tokens to interface primitives." },
+      { "step": "02", "name": "System & Interface Design", "desc": "Design unified visual identity, tokenized Figma libraries, and key software workflow surfaces." },
+      { "step": "03", "name": "Token Handover & Polish", "desc": "Deliver production tokens, interactive prototypes, and collaborate directly with engineering." }
     ],
     "gallery": [
-      "https://framerusercontent.com/images/gTIfPf4an07uhbykxhoEyw0o0M.gif?width=640&height=480",
-      "https://framerusercontent.com/images/JUgN5ECm4HnK6pp1E3Igc5Vibc.jpeg?width=1024&height=1024",
-      "https://framerusercontent.com/images/K6cUNifhQFa6qEX3kqNwfqMkiY.jpg?width=6220&height=6220",
-      "https://framerusercontent.com/images/TW8nh45W2f0jJxIXkfCtK2I9qo.webp?width=1876&height=1821"
+      "/images/flint/flint_01.png",
+      "/images/flint/flint_08.png",
+      "/images/flint/flint_02.png",
+      "/images/flint/flint_12.png"
     ],
     "pricingModels": [
-      { "tier": "Marketing Site UI/UX", "price": "$1,200", "priceGBP": "£895", "priceINR": "₹1,14,516", "desc": "Bespoke multi-page design system, mobile layouts, and high-converting landing pages." },
-      { "tier": "Full Product UI/UX Suite", "price": "$2,200", "priceGBP": "£1,640", "priceINR": "₹2,09,946", "desc": "End-to-end web app design system, dashboard interfaces, and interactive prototype flows." }
+      { "tier": "SaaS Brand + Foundation UI", "price": "$4,960", "priceGBP": "£3,700", "priceINR": "₹4,75,000", "desc": "Positioning, core brand identity, master design tokens, marketing site foundation, and core product shell UI." },
+      { "tier": "SaaS Brand-to-Product Suite", "price": "$6,780", "priceGBP": "£5,060", "priceINR": "₹6,50,000", "desc": "Full identity system, comprehensive design system, 6 core application flows (Web/App), and interactive prototypes." }
     ],
     "faqs": [
-      { "q": "Do you design for both mobile and desktop?", "a": "Yes, all UI/UX designs are built mobile-first with fully responsive breakpoint layouts in Figma." },
-      { "q": "Can you work directly with our internal dev team?", "a": "Absolutely. We provide clean Figma component tokens and direct dev handoff sessions." }
+      { "q": "Do you design for both web applications and mobile apps?", "a": "Yes, all design systems and workflows are engineered across responsive breakpoints with dedicated desktop and mobile application layouts." },
+      { "q": "Can you work directly with our engineering team?", "a": "Absolutely. We supply tokenized Figma components with standardized CSS/JSON variable export, state tables, and direct dev handover calls." }
     ]
   },
   {

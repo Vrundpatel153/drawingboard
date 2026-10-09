@@ -4,6 +4,8 @@ import RegistrationMarks from './RegistrationMarks';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import StickyMobileCTA from './StickyMobileCTA';
+import ArrowIcon from './ArrowIcon';
+import { DISCUSS_URL } from '../utils/siteConfig';
 
 export default function After8CaseStudyView({ nextProject, pageRef }) {
   return (
@@ -909,18 +911,17 @@ export default function After8CaseStudyView({ nextProject, pageRef }) {
       <section className="case-hero" style={{ paddingBottom: 0 }}>
         <div className="wrap">
           <div className="sheet-label">
-            <span className="tag mono">SHEET NO. 07 — CASE STUDY</span>
+            <span className="sheet-meta mono">CASE STUDY ARCHIVE // AFTER8® WELLNESS // SCALE 1:1</span>
             <span className="rule"></span>
-            <span className="mono" style={{ fontSize: '12px', color: 'var(--ink-soft)' }}>SCALE 1:1</span>
           </div>
           <h1>AFTER8® — reimagining intimacy <em>for a new generation.</em></h1>
           <p className="dek">
             AFTER8 was created as a bold rethinking of how modern intimacy brands should look, feel, and behave in culture — a full cultural repositioning, not just a packaging refresh.
           </p>
           <p style={{ marginTop: '14px' }}>
-            <a href="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" target="_blank" rel="noopener noreferrer" style={{ fontSize: '14.5px', color: 'var(--pine)', fontWeight: 600, textDecoration: 'none' }}>
-              Prefer WhatsApp for discussion →
-            </a>
+            <Link className="btn-secondary-cta" to="/brand-readiness">
+              Get Quote <ArrowIcon size={13} />
+            </Link>
           </p>
 
           <div className="meta-strip">
@@ -1354,8 +1355,8 @@ export default function After8CaseStudyView({ nextProject, pageRef }) {
         <div className="wrap">
           <h2>Building a brand in a category that needs a braver visual language?</h2>
           <p>Book a free 15-minute call. We'll tell you honestly what scope your brand actually needs.</p>
-          <a className="btn-primary" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">
-            Book a 15-min call →
+          <a className="btn-primary" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">
+            Discuss Your Project <ArrowIcon size={14} />
           </a>
         </div>
       </section>
@@ -1363,8 +1364,8 @@ export default function After8CaseStudyView({ nextProject, pageRef }) {
       <StickyMobileCTA
         title="AFTER8® Case Study"
         subtitle="8 Weeks Strategy to Shelf"
-        buttonText="Book Call →"
-        link="https://cal.com/dandelion-nrvrze"
+        buttonText="Discuss"
+        link={DISCUSS_URL}
       />
 
       <Footer />

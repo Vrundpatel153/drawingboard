@@ -6,6 +6,7 @@ import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import MoreServicesSection from '../components/MoreServicesSection';
 import ArrowIcon from '../components/ArrowIcon';
+import { DISCUSS_URL } from '../utils/siteConfig';
 
 import servicesData from '../data/servicesData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
@@ -48,7 +49,7 @@ export default function ServiceDetail() {
             </div>
 
             <div className="sheet-label">
-              <span className="tag">{service.eyebrow} // SERVICE SPECIFICATION</span>
+              <span className="sheet-meta mono">{service.eyebrow} // SERVICE SPECIFICATION</span>
               <div className="rule"></div>
             </div>
 
@@ -77,8 +78,8 @@ export default function ServiceDetail() {
               <Link to="/contact" className="btn-primary">
                 Inquire About {service.title} <ArrowIcon />
               </Link>
-              <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-link">
-                Schedule Discovery Call <ArrowIcon size={13} />
+              <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="btn-link">
+                Discuss Your Project <ArrowIcon size={13} />
               </a>
             </div>
           </div>

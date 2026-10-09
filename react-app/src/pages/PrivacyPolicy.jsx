@@ -21,7 +21,7 @@ export default function PrivacyPolicy() {
       <section className="hero-lite">
         <div className="wrap">
           <div className="sheet-label">
-            <span className="tag">LEGAL SPECIFICATION // PRIVACY</span>
+            <span className="sheet-meta mono">LEGAL SPECIFICATION // PRIVACY POLICY</span>
             <div className="rule"></div>
           </div>
           <h1>Privacy <em>Policy</em></h1>

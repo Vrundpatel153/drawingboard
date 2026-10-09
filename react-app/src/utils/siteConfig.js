@@ -39,7 +39,7 @@ export const GTM_CONTAINER_ID =
   import.meta.env.VITE_GTM_CONTAINER_ID || 'GTM-WJ3GNS9C';
 
 export const GOOGLE_SITE_VERIFICATION =
-  import.meta.env.VITE_GOOGLE_SITE_VERIFICATION || '';
+  import.meta.env.VITE_GOOGLE_SITE_VERIFICATION || 'google94656f273b2c25c5';
 
 export const TWITTER_HANDLE =
   import.meta.env.VITE_TWITTER_HANDLE || '@thedrawingboard';
@@ -50,6 +50,14 @@ export const INSTAGRAM_HANDLE =
 export const CONTACT_EMAIL = 'dandelionpa7@gmail.com';
 
 export const MAILTO_URL = `mailto:${CONTACT_EMAIL}?subject=Project%20Inquiry%20%7C%20The%20Drawing%20Board&body=Hi%20The%20Drawing%20Board%20Team%2C%0A%0AI%20would%20like%20to%20discuss%20a%20new%20project.`;
+
+export const GOOGLE_FORM_DISCUSS_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header';
+
+export const DISCUSS_URL = GOOGLE_FORM_DISCUSS_URL;
+
+export const CAL_COM_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header';
 
 export const WHATSAPP_NUMBER = '919428859768';
 
@@ -107,6 +115,24 @@ export const PAGE_META = {
       'High-code web and app development — custom React, Next.js, Shopify, and Framer builds that are fast, scalable, and visually precise.',
     keywords: 'web development India, React development, Shopify development, Framer development',
   },
+  '/brand-readiness': {
+    title: `Brand Readiness Check & Instant Quote — ${SITE_NAME}`,
+    description:
+      'Eight questions about where your brand is today and where it is going. Check your brand readiness score and get an instant strategic quote from The Drawing Board.',
+    keywords: 'brand readiness, get quote branding, brand audit, packaging quote, design studio quote',
+  },
+  '/get-quote': {
+    title: `Get a Quote — ${SITE_NAME}`,
+    description:
+      'Answer eight questions to get an instant scope recommendation and project quote from The Drawing Board.',
+    keywords: 'get quote branding, brand readiness, packaging design quote',
+  },
+  '/quote': {
+    title: `Get an Instant Quote & Brand Audit — ${SITE_NAME}`,
+    description:
+      'Answer eight questions to receive an instant scope recommendation and project quote from The Drawing Board.',
+    keywords: 'get quote branding, brand readiness, packaging design quote, brand audit',
+  },
   '/insights': {
     title: `Insights & Articles — ${SITE_NAME}`,
     description:
@@ -117,7 +143,7 @@ export const PAGE_META = {
   '/contact': {
     title: `Contact — ${SITE_NAME}`,
     description:
-      'Get in touch with The Drawing Board. Book a 15-minute discovery call or message us directly on WhatsApp to discuss your project.',
+      'Get in touch with The Drawing Board. Discuss your project via our inquiry form or get an instant quote.',
     keywords: 'contact drawing board, book design call, hire branding studio India',
   },
 };

@@ -7,6 +7,7 @@ import StickyMobileCTA from '../components/StickyMobileCTA';
 import ArrowIcon from '../components/ArrowIcon';
 import projectsData from '../data/projectsData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
+import { DISCUSS_URL } from '../utils/siteConfig';
 
 export default function Work() {
   const [filter, setFilter] = useState('all');
@@ -151,15 +152,15 @@ export default function Work() {
         <section className="hero-lite">
           <div className="wrap">
             <div className="sheet-label">
-              <span className="tag">SHEET 03 // PORTFOLIO ARCHIVE</span>
+              <span className="sheet-meta mono">SELECTED CASE STUDIES // PORTFOLIO ARCHIVE</span>
               <div className="rule"></div>
             </div>
             <h1>Proof over promises: <em>Selected Case Studies</em>.</h1>
             <p>Explore our recent work across brand positioning, digital platforms, Framer development, and physical packaging systems.</p>
             <p style={{ marginTop: '14px' }}>
-              <a className="btn-link" href="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" target="_blank" rel="noopener noreferrer" style={{ fontSize: '14.5px', color: 'var(--pine)', fontWeight: 600 }}>
-                Prefer WhatsApp for discussion <ArrowIcon size={13} />
-              </a>
+              <Link className="btn-secondary-cta" to="/brand-readiness">
+                Get Quote <ArrowIcon size={13} />
+              </Link>
             </p>
 
             {/* Stat Strip */}
@@ -271,7 +272,7 @@ export default function Work() {
           <div className="wrap">
             <h2>Have a project that requires precision design?</h2>
             <p>Let's discuss how we can engineer your brand for market leadership.</p>
-            <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-primary">Start Your Case Study <ArrowIcon /></a>
+            <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">Start Your Case Study <ArrowIcon /></a>
           </div>
         </section>
 

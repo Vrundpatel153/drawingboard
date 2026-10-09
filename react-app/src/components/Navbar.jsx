@@ -3,12 +3,14 @@ import { NavLink, Link, useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 import usePWA from '../hooks/usePWA';
 import ArrowIcon from './ArrowIcon';
+import { DISCUSS_URL } from '../utils/siteConfig';
 
 const NAV_LINKS = [
   { to: '/', label: 'Home', end: true },
   { to: '/studio', label: 'Studio' },
   { to: '/work', label: 'Work' },
   { to: '/services', label: 'Services' },
+  { to: '/brand-readiness', label: 'Get Quote' },
   { to: '/insights', label: 'Insights' },
   { to: '/contact', label: 'Contact' },
 ];
@@ -36,8 +38,16 @@ export default function Navbar() {
     }
   };
 
-  // Close on route change
-  useEffect(() => { setOpen(false); }, [location.pathname]);
+  // Close on route change and ensure header is restored to visible
+  useEffect(() => {
+    setOpen(false);
+    hidden.current = false;
+    lastY.current = 0;
+    if (headerRef.current) {
+      gsap.killTweensOf(headerRef.current);
+      gsap.set(headerRef.current, { y: '0%', opacity: 1 });
+    }
+  }, [location.pathname]);
 
   // Lock body scroll when drawer is open
   useEffect(() => {
@@ -49,9 +59,20 @@ export default function Navbar() {
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
-      setScrolled(y > 40);
+      setScrolled(y > 30);
+
+      // When near page top, always guarantee navbar is visible
+      if (y <= 60) {
+        if (hidden.current) {
+          hidden.current = false;
+          gsap.to(headerRef.current, { y: '0%', duration: 0.2, ease: 'power2.out' });
+        }
+        lastY.current = y;
+        return;
+      }
+
       if (window.innerWidth > 768) {
-        if (y > lastY.current + 8 && y > 80 && !hidden.current) {
+        if (y > lastY.current + 12 && y > 100 && !hidden.current) {
           hidden.current = true;
           gsap.to(headerRef.current, { y: '-100%', duration: 0.28, ease: 'power2.inOut' });
         } else if (y < lastY.current - 8 && hidden.current) {
@@ -67,10 +88,12 @@ export default function Navbar() {
 
   // Entrance animation
   useEffect(() => {
-    gsap.fromTo(headerRef.current,
-      { y: -24, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.55, ease: 'power2.out', delay: 0.1 }
-    );
+    if (headerRef.current) {
+      gsap.fromTo(headerRef.current,
+        { y: -16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4, ease: 'power2.out' }
+      );
+    }
   }, []);
 
   return (
@@ -98,11 +121,11 @@ export default function Navbar() {
 
           <a
             className="nav-cta"
-            href="https://cal.com/dandelion-nrvrze"
+            href={DISCUSS_URL}
             target="_blank"
             rel="noopener noreferrer"
           >
-            Book a call
+            Discuss
           </a>
 
           <button
@@ -131,8 +154,8 @@ export default function Navbar() {
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="25 138 320 56" className="nav-full-logo-svg" style={{ height: '26px', width: 'auto', display: 'block', maxWidth: '100%' }}>
               <rect x="30.445" y="142.642" fill="#A19071" width="44.42" height="25.732"/>
               <rect x="30.445" y="159.392" fill="#A19071" width="22.685" height="30.341"/>
-              <text transform="matrix(1 0 0 1 78.917 167.3428)" fill="var(--ink)" font-family="'Constantia', 'Fraunces', serif" font-size="22.8942">THE DRAWING BOARD</text>
-              <text transform="matrix(1 0 0 1 148.7827 187.6387)" fill="#A19071" font-family="'Inter', 'IBM Plex Mono', sans-serif" font-size="11.0941" letter-spacing="1px" opacity="0.9">CREATIVE AGENCY</text>
+              <text transform="matrix(1 0 0 1 78.917 167.3428)" fill="var(--ink)" fontFamily="'Constantia', 'Fraunces', serif" fontSize="22.8942">THE DRAWING BOARD</text>
+              <text transform="matrix(1 0 0 1 148.7827 187.6387)" fill="#A19071" fontFamily="'Inter', 'IBM Plex Mono', sans-serif" fontSize="11.0941" letterSpacing="1px" opacity="0.9">CREATIVE AGENCY</text>
             </svg>
           </Link>
           <button
@@ -152,8 +175,9 @@ export default function Navbar() {
           {NAV_LINKS.map(({ to, label, end }) => (
             <NavLink key={to} to={to} end={end}
               className={({ isActive }) => isActive ? 'active' : undefined}
-              onClick={() => setOpen(false)}>
-              {label}
+              onClick={() => setOpen(false)}
+              style={to === '/brand-readiness' ? { color: 'var(--pine)', fontWeight: 600 } : undefined}>
+              {label} {to === '/brand-readiness' ? '→' : ''}
             </NavLink>
           ))}
         </nav>
@@ -161,13 +185,13 @@ export default function Navbar() {
         {/* Drawer CTA */}
         <div className="mobile-nav__foot">
           <a
-            href="https://cal.com/dandelion-nrvrze"
+            href={DISCUSS_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary"
             onClick={() => setOpen(false)}
           >
-            Book a 15-min call <ArrowIcon size={14} />
+            Discuss Your Project <ArrowIcon size={14} />
           </a>
 
           {/* Mobile Burger Menu Add to Home Screen Option */}

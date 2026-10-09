@@ -1,18 +1,19 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { trackMetaCalComClick } from '../utils/metaEvents';
+import { DISCUSS_URL } from '../utils/siteConfig';
 
-export const CAL_COM_URL = 'https://cal.com/dandelion-nrvrze';
+export const CAL_COM_URL = DISCUSS_URL;
 
 /**
- * BookCallLink — reusable wrapper for Cal.com booking buttons.
- * On click: triggers Meta Pixel & Conversions API (CAPI), navigates current tab to /thank-you, then opens Cal.com in a new tab.
+ * BookCallLink — reusable wrapper for Cal.com / Discussion booking buttons.
+ * On click: triggers Meta Pixel & Conversions API (CAPI), navigates current tab to /thank-you, then opens the discussion form in a new tab.
  */
 export default function BookCallLink({
   children,
   className,
   style,
-  href = CAL_COM_URL,
+  href = DISCUSS_URL,
   ...rest
 }) {
   const navigate = useNavigate();

@@ -21,7 +21,7 @@ export default function TermsOfService() {
       <section className="hero-lite">
         <div className="wrap">
           <div className="sheet-label">
-            <span className="tag">LEGAL AGREEMENT // TERMS</span>
+            <span className="sheet-meta mono">LEGAL AGREEMENT // TERMS &amp; CONDITIONS</span>
             <div className="rule"></div>
           </div>
           <h1>Terms of <em>Service</em></h1>

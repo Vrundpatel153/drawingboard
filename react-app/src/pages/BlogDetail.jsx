@@ -49,7 +49,7 @@ export default function BlogDetail() {
             <span className="cur">{blog.title}</span>
           </div>
           <div className="sheet-label">
-            <span className="tag">{blog.tag} // ESSAY</span>
+            <span className="sheet-meta mono">{blog.tag} // ESSAY DISPATCH</span>
             <div className="rule"></div>
           </div>
           <h1>{blog.title}</h1>

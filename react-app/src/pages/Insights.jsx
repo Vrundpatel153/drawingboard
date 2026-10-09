@@ -38,7 +38,7 @@ export default function Insights() {
       <section className="hero-lite">
         <div className="wrap">
           <div className="sheet-label">
-            <span className="tag">SHEET 06 // STUDIO JOURNAL ({blogsData.length} ARTICLES)</span>
+            <span className="sheet-meta mono">STUDIO JOURNAL &amp; ESSAYS // {blogsData.length} PERSPECTIVES</span>
             <div className="rule"></div>
           </div>
           <h1>Perspectives on <em>design, strategy & craft</em>.</h1>

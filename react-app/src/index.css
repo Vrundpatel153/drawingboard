@@ -80,6 +80,12 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
+html, body, #root, #main {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+}
+
 body {
   background-color: var(--paper);
   background-image:
@@ -93,7 +99,6 @@ body {
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
 /* GPU Hardware Acceleration for Fixed Overlays to eliminate scroll lag */
@@ -246,13 +251,17 @@ header {
   display: flex;
   align-items: center;
   gap: 0;
-  padding: 18px 32px;
+  padding: 12px 32px;
   max-width: 1200px;
   margin: 0 auto;
   transition: padding 0.25s ease;
 }
 
-.nav--scrolled { padding-top: 13px; padding-bottom: 13px; }
+.nav--scrolled,
+.nav.scrolled {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
 
 /* Logo */
 .logo-mark {
@@ -282,9 +291,9 @@ header {
 .navlinks {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: clamp(16px, 1.8vw, 28px);
   font-size: 14px;
-  margin-right: 28px;
+  margin-right: 24px;
 }
 
 .navlinks a {
@@ -558,14 +567,17 @@ header {
 }
 
 
-.sheet-label {
+.sheet-label,
+.bp-sheet-label {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 28px;
+  gap: 16px;
+  margin-bottom: 26px;
+  width: 100%;
 }
 
-.sheet-label .tag {
+.sheet-label .tag,
+.bp-sheet-label .tag {
   font-size: 12px;
   padding: 6px 10px;
   border: 1px solid var(--ink);
@@ -575,11 +587,32 @@ header {
   background: var(--card);
 }
 
-.sheet-label .rule {
+.sheet-label .rule,
+.bp-sheet-label .rule {
   flex: 1;
   height: 1px;
   background: var(--ink-soft);
-  opacity: 0.4;
+  opacity: 0.35;
+}
+
+.sheet-meta,
+.bp-sheet-right {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .sheet-meta,
+  .bp-sheet-right {
+    white-space: normal;
+    font-size: 10.5px;
+    line-height: 1.4;
+  }
 }
 
 .hero h1, .hero-lite h1 {
@@ -686,6 +719,125 @@ header {
 
 .btn-secondary-card:active {
   transform: scale(0.97);
+}
+
+.bp-btn-primary {
+  background: var(--pine);
+  color: var(--paper);
+  padding: 14px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  min-height: 48px;
+  border: 1.5px solid var(--pine);
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+}
+
+.bp-btn-primary:hover {
+  background: var(--pine-deep);
+  border-color: var(--pine-deep);
+  color: var(--paper);
+}
+
+.bp-btn-primary .arrow,
+.bp-btn-primary .arrow-icon,
+.bp-btn-primary svg {
+  transition: transform 0.15s ease;
+}
+
+.bp-btn-primary:hover .arrow,
+.bp-btn-primary:hover .arrow-icon,
+.bp-btn-primary:hover svg {
+  transform: translateX(3px);
+}
+
+.bp-btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  padding: 14px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  min-height: 48px;
+  border: 1.5px solid var(--ink);
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+}
+
+.bp-btn-secondary:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.bp-btn-secondary .arrow,
+.bp-btn-secondary .arrow-icon,
+.bp-btn-secondary svg {
+  transition: transform 0.15s ease;
+}
+
+.bp-btn-secondary:hover .arrow,
+.bp-btn-secondary:hover .arrow-icon,
+.bp-btn-secondary:hover svg {
+  transform: translateX(3px);
+}
+
+.bp-btn-secondary--light {
+  color: var(--paper) !important;
+  border-color: var(--paper) !important;
+}
+
+.bp-btn-secondary--light:hover {
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+}
+
+.btn-secondary-cta {
+  background: transparent;
+  color: var(--ink);
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  border: 1.5px solid var(--ink);
+  box-sizing: border-box;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-secondary-cta:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn-secondary-cta svg,
+.btn-secondary-cta .arrow-icon {
+  transition: transform 0.15s ease;
+}
+
+.btn-secondary-cta:hover svg,
+.btn-secondary-cta:hover .arrow-icon {
+  transform: translateX(3px);
 }
 
 
@@ -1748,7 +1900,6 @@ section {
   background: #FFF;
 }
 
-/* Sticky Mobile CTA */
 .sticky-cta {
   display: none;
   position: fixed;
@@ -1757,50 +1908,75 @@ section {
   right: 0;
   z-index: 50;
   background: var(--ink);
-  padding: 9px 14px;
+  padding: 5px 12px;
+  min-height: 42px;
+  max-height: 48px;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  border-top: 1px solid #000;
+  gap: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .sticky-cta .txt {
   color: #FFF;
-  font-size: 11.5px;
-  line-height: 1.2;
+  font-size: 11px;
+  line-height: 1.15;
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
 }
 
 .sticky-cta .txt b {
   display: block;
-  font-size: 13px;
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #ffffff;
 }
 
-.sticky-cta a {
+.sticky-cta .txt span {
+  display: block;
+  font-size: 9.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #C9C3B4;
+}
+
+.sticky-cta a,
+.sticky-cta button {
   background: var(--paper);
   color: var(--ink);
-  padding: 0 14px;
-  height: 34px;
+  padding: 0 10px;
+  height: 28px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 12.5px;
+  font-size: 11px;
   font-weight: 600;
-  border-radius: var(--radius, 4px);
+  border-radius: var(--radius, 2px);
   white-space: nowrap;
   text-decoration: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: inherit;
 }
 
 .sticky-cta a.wa-btn {
   background: #25D366 !important;
   color: #ffffff !important;
   padding: 0 !important;
-  width: 34px !important;
-  height: 34px !important;
-  min-width: 34px !important;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  border-radius: 4px !important;
+  border-radius: 2px !important;
   flex-shrink: 0;
 }
 
@@ -1900,7 +2076,7 @@ footer {
   .nav-cta { display: none !important; }
   .navlinks { display: none !important; }
   .hamburger { display: flex !important; }
-  .nav { padding: 13px 24px !important; min-height: 56px; }
+  .nav { padding: 9px 20px !important; min-height: 48px; }
   .logo-mark { font-size: 15px; }
   .logo-box { width: 18px; height: 18px; }
   .logo-box::after { inset: 3px; }
@@ -2024,6 +2200,7 @@ footer {
   .deliv-grid { grid-template-columns: 1fr; gap: 0; }
   .cta-row { flex-direction: column; align-items: stretch; gap: 10px; }
   .cta-row .btn-primary,
+  .cta-row .btn-secondary-cta,
   .cta-row .btn-link { width: 100%; text-align: center; justify-content: center; }
   .faq-q { padding: 14px 16px; font-size: 15px; }
   .faq-a { padding: 0 16px; }
@@ -2033,7 +2210,7 @@ footer {
   .cap { font-size: 11px; padding: 5px 10px; }
   .proof-card .img { height: 160px; }
   .sticky-cta { display: flex; }
-  body { padding-bottom: 68px; }
+  body { padding-bottom: 50px; }
   .foot-grid { flex-direction: column; gap: 20px; }
   .foot-brand { max-width: 100%; }
   .foot-bottom { flex-direction: column; gap: 6px; text-align: center; }
@@ -2081,9 +2258,10 @@ header {
   transition: padding 0.25s ease;
 }
 
-.nav.scrolled {
-  padding-top: 12px;
-  padding-bottom: 12px;
+.nav.scrolled,
+.nav--scrolled {
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 /* Nav underline sweep */

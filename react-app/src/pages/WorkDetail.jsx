@@ -8,6 +8,7 @@ import ArrowIcon from '../components/ArrowIcon';
 import projectsData from '../data/projectsData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 import After8CaseStudyView from '../components/After8CaseStudyView';
+import { DISCUSS_URL } from '../utils/siteConfig';
 
 export default function WorkDetail() {
   const { projectId } = useParams();
@@ -156,7 +157,7 @@ export default function WorkDetail() {
       <section className="case-hero">
         <div className="wrap">
           <div className="sheet-label">
-            <span className="tag">
+            <span className="sheet-meta mono">
               {isPronto
                 ? 'CASE STUDY // SPEC 01 — RESTAURANT & PACKAGING'
                 : isMatchaClub
@@ -1593,8 +1594,8 @@ export default function WorkDetail() {
           <Link to={`/work/${nextProject.slug}`} className="btn-primary" style={{ marginRight: '14px' }}>
             {isAfter8 ? 'View Lumen & Co. Case Study' : `View ${nextProject.title}`} <ArrowIcon size={14} />
           </Link>
-          <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ background: 'transparent', border: '1px solid #FFF', color: '#FFF' }}>
-            Book Discovery Call <ArrowIcon size={14} />
+          <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ background: 'transparent', border: '1px solid #FFF', color: '#FFF' }}>
+            Discuss Your Project <ArrowIcon size={14} />
           </a>
         </div>
       </section>

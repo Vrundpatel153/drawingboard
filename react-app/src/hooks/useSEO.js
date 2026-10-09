@@ -21,6 +21,7 @@ import {
   PAGE_META,
   ORGANIZATION_SCHEMA,
   WEBSITE_SCHEMA,
+  GOOGLE_SITE_VERIFICATION,
 } from '../utils/siteConfig';
 
 // ─── helpers ─────────────────────────────────────────────────────────────────
@@ -96,6 +97,7 @@ export default function useSEO(overrides = {}) {
     setMeta('author', 'The Drawing Board');
     setMeta('robots', noindex ? 'noindex,nofollow' : 'index,follow');
     setMeta('theme-color', '#1B1B17');
+    setMeta('google-site-verification', GOOGLE_SITE_VERIFICATION);
 
     // 4. Canonical
     setLink('canonical', canonical);

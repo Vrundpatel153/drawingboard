@@ -26,15 +26,15 @@ export default function MoreServicesSection({ current = '' }) {
       linkText: 'See development →',
     },
     {
-      id: 'uiux',
-      title: 'UI/UX Design',
-      desc: 'Intuitive interface layouts, interactive prototypes, and design systems.',
-      link: '/services',
-      linkText: 'See services →',
+      id: 'saas-branding',
+      title: 'SaaS Branding & UI/UX',
+      desc: 'System-grade visual identity, Figma component tokens, and high-conversion software surfaces.',
+      link: '/services/saas-branding',
+      linkText: 'See SaaS branding →',
     },
   ];
 
-  const filtered = services.filter((s) => s.id !== current).slice(0, 3);
+  const filtered = services.filter((s) => s.id !== current && !(current === 'uiux' && s.id === 'saas-branding')).slice(0, 3);
 
   return (
     <section className="more-services-sec" style={{ borderTop: '1px solid var(--ink)', borderBottom: '1px solid var(--ink)', background: 'var(--card)', padding: '60px 0' }}>

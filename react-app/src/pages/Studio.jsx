@@ -87,7 +87,7 @@ export default function Studio() {
         <section className="hero-lite">
           <div className="wrap">
             <div className="sheet-label">
-              <span className="tag">SHEET 05 // ABOUT THE STUDIO</span>
+              <span className="sheet-meta mono">ABOUT THE STUDIO // ARCHITECTURAL DISCIPLINE &amp; PURE TYPOGRAPHY</span>
               <div className="rule"></div>
             </div>
 
@@ -123,9 +123,9 @@ export default function Studio() {
                 </div>
 
                 <p style={{ margin: 0 }}>
-                  <a className="btn-link" href="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" target="_blank" rel="noopener noreferrer" style={{ fontSize: '14.5px', color: 'var(--pine)', fontWeight: 600 }}>
-                    Prefer WhatsApp for discussion <ArrowIcon size={13} />
-                  </a>
+                  <Link className="btn-secondary-cta" to="/brand-readiness">
+                    Get Quote <ArrowIcon size={13} />
+                  </Link>
                 </p>
               </div>
 

@@ -26,7 +26,7 @@ export default function LegalDetail() {
       <section className="hero-lite">
         <div className="wrap">
           <div className="sheet-label">
-            <span className="tag">LEGAL & SPECS</span>
+            <span className="sheet-meta mono">LEGAL SPECIFICATIONS &amp; STUDIO POLICIES</span>
             <div className="rule"></div>
           </div>
           <h1>Legal Specifications & <em>Policies</em></h1>

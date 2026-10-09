@@ -156,8 +156,8 @@ function generateSemanticContent(route, metadata, projects) {
           </p>
 
           <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-            <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #1b1b17; color: #ffffff; padding: 0.85rem 1.75rem; text-decoration: none; font-weight: 600; border-radius: 2px;">
-              Book a call ${arrowSvg}
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #1b1b17; color: #ffffff; padding: 0.85rem 1.75rem; text-decoration: none; font-weight: 600; border-radius: 2px;">
+              Discuss Your Project ${arrowSvg}
             </a>
             <a href="/work" style="display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid #1b1b17; color: #1b1b17; padding: 0.85rem 1.75rem; text-decoration: none; font-weight: 600; border-radius: 2px;">
               View Selected Works ${arrowSvg}
@@ -217,8 +217,8 @@ function generateSemanticContent(route, metadata, projects) {
           Tactile structural engineering, FSC-certified sustainable substrates, and precision print finishes crafted to win the physical retail moment.
         </p>
         <div style="margin-bottom: 4rem;">
-          <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #1b1b17; color: #ffffff; padding: 0.85rem 1.75rem; text-decoration: none; font-weight: 600; border-radius: 2px;">
-            Book a call ${arrowSvg}
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #1b1b17; color: #ffffff; padding: 0.85rem 1.75rem; text-decoration: none; font-weight: 600; border-radius: 2px;">
+            Discuss Your Project ${arrowSvg}
           </a>
         </div>
         <section style="margin-bottom: 4rem;">
@@ -276,8 +276,8 @@ function generateSemanticContent(route, metadata, projects) {
           <section style="text-align: center; padding: 4rem 2rem; background: #faf9f5; border: 1px solid #e2ded5; border-radius: 2px; margin-bottom: 4rem;">
             <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">Ready to engineer your brand system?</h2>
             <p style="color: #5a5953; margin-bottom: 2rem;">Let's build the brand people choose before they compare.</p>
-            <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #1b1b17; color: #ffffff; padding: 0.85rem 1.75rem; text-decoration: none; font-weight: 600; border-radius: 2px;">
-              Book a call ${arrowSvg}
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #1b1b17; color: #ffffff; padding: 0.85rem 1.75rem; text-decoration: none; font-weight: 600; border-radius: 2px;">
+              Discuss Your Project ${arrowSvg}
             </a>
           </section>
         </main>
@@ -299,8 +299,8 @@ function generateSemanticContent(route, metadata, projects) {
     <main style="max-width: 1200px; margin: 0 auto; padding: 4rem 2rem;">
       <h1 style="font-size: 2.75rem; font-weight: 700; margin-bottom: 1.5rem;">${metadata.title}</h1>
       <p style="font-size: 1.25rem; color: #5a5953; line-height: 1.6; max-width: 800px; margin-bottom: 2.5rem;">${metadata.description}</p>
-      <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #1b1b17; color: #ffffff; padding: 0.85rem 1.75rem; text-decoration: none; font-weight: 600; border-radius: 2px;">
-        Book a call ${arrowSvg}
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #1b1b17; color: #ffffff; padding: 0.85rem 1.75rem; text-decoration: none; font-weight: 600; border-radius: 2px;">
+        Discuss Your Project ${arrowSvg}
       </a>
     </main>
   `;
@@ -403,6 +403,18 @@ async function run() {
       schemas: [buildFaqSchema(FAQ_WEB)]
     },
     {
+      route: '/saas-branding',
+      title: 'SaaS Branding & UI/UX Design System Studio | The Drawing Board',
+      description: 'System-grade visual identity, tokenized Figma component libraries, and conversion-engineered software surfaces for B2B SaaS and high-growth digital products.',
+      schemas: []
+    },
+    {
+      route: '/services/saas-branding',
+      title: 'SaaS Branding & UI/UX Design System Studio | The Drawing Board',
+      description: 'System-grade visual identity, tokenized Figma component libraries, and conversion-engineered software surfaces for B2B SaaS and high-growth digital products.',
+      schemas: []
+    },
+    {
       route: '/work',
       title: 'Selected Works & Brand Architecture Archive | The Drawing Board',
       description: 'Explore 35+ verified case studies across brand identity, luxury packaging systems, and digital engineering platforms.',
@@ -442,6 +454,24 @@ async function run() {
       route: '/terms-of-service',
       title: 'Terms of Service | The Drawing Board',
       description: 'Terms of Service and commercial client engagement agreements for The Drawing Board.',
+      schemas: []
+    },
+    {
+      route: '/brand-readiness',
+      title: 'Brand Readiness Diagnostic & Sprint Quote Calculator | The Drawing Board',
+      description: 'Audit your brand readiness across 8 key dimensions, get an architectural score breakdown, and receive an instant project scope quote.',
+      schemas: []
+    },
+    {
+      route: '/get-quote',
+      title: 'Instant Sprint Quote & Brand Audit | The Drawing Board',
+      description: 'Calculate your brand, packaging, or digital sprint quote with our interactive Brand Readiness Engine.',
+      schemas: []
+    },
+    {
+      route: '/quote',
+      title: 'Instant Sprint Quote & Brand Audit | The Drawing Board',
+      description: 'Calculate your brand, packaging, or digital sprint quote with our interactive Brand Readiness Engine.',
       schemas: []
     }
   ];

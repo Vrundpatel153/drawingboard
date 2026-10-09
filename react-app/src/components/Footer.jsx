@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { MAILTO_URL } from '../utils/siteConfig';
+import { MAILTO_URL, DISCUSS_URL } from '../utils/siteConfig';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,38 +12,57 @@ export default function Footer() {
 
   useEffect(() => {
     if (!footerRef.current) return;
+
+    const refreshTimer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 150);
+
     const ctx = gsap.context(() => {
       const cols = footerRef.current.querySelectorAll('.foot-brand, .foot-col');
-      gsap.fromTo(cols,
-        { opacity: 0, y: 24 },
-        {
-          opacity: 1, y: 0,
-          duration: 0.7, ease: 'power2.out',
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: 'top 92%',
-            toggleActions: 'play none none none',
-          }
+      gsap.from(cols, {
+        opacity: 0,
+        y: 20,
+        duration: 0.5,
+        ease: 'power2.out',
+        stagger: 0.06,
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: 'top 98%',
+          toggleActions: 'play none none none',
         }
-      );
+      });
       const bottom = footerRef.current.querySelector('.foot-bottom');
       if (bottom) {
-        gsap.fromTo(bottom,
-          { opacity: 0 },
-          {
-            opacity: 1, duration: 0.7, ease: 'power1.out', delay: 0.45,
-            scrollTrigger: {
-              trigger: footerRef.current,
-              start: 'top 92%',
-              toggleActions: 'play none none none',
-            }
+        gsap.from(bottom, {
+          opacity: 0,
+          duration: 0.5,
+          ease: 'power1.out',
+          delay: 0.2,
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: 'top 98%',
+            toggleActions: 'play none none none',
           }
-        );
+        });
       }
     }, footerRef);
 
-    return () => ctx.revert();
+    // Guaranteed visibility safety: ensure footer is never stuck in opacity 0
+    const timer = setTimeout(() => {
+      if (footerRef.current) {
+        const els = footerRef.current.querySelectorAll('.foot-brand, .foot-col, .foot-bottom');
+        els.forEach(el => {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+      }
+    }, 350);
+
+    return () => {
+      clearTimeout(refreshTimer);
+      clearTimeout(timer);
+      ctx.revert();
+    };
   }, []);
 
   return (
@@ -67,6 +86,7 @@ export default function Footer() {
             <Link to="/studio">Studio</Link>
             <Link to="/work">Work</Link>
             <Link to="/services">Services</Link>
+            <Link to="/brand-readiness">Get Quote</Link>
             <Link to="/insights">Insights</Link>
             <Link to="/contact">Contact</Link>
           </div>
@@ -84,8 +104,8 @@ export default function Footer() {
           </div>
           <div className="foot-col">
             <h5>Connect</h5>
-            <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">
-              Book a Call
+            <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">
+              Discuss Your Project
             </a>
             <a href={MAILTO_URL}>Email Studio</a>
             <a href="https://twitter.com/thedrawingboard" target="_blank" rel="noopener noreferrer">Twitter / X</a>

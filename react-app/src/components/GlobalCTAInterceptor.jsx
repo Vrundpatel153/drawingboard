@@ -31,14 +31,15 @@ export default function GlobalCTAInterceptor() {
 
       if (!rawHref) return;
 
-      const isCal  = rawHref.includes('cal.com');
+      const isGoogleForm = rawHref.includes('docs.google.com/forms') || rawHref.includes('forms.gle');
+      const isCal  = rawHref.includes('cal.com') || isGoogleForm;
       const isWA   = rawHref.includes('wa.me') || rawHref.includes('whatsapp.com') || rawHref.includes('api.whatsapp.com');
       const isMail = rawHref.startsWith('mailto:');
       const isTel  = rawHref.startsWith('tel:');
 
       if (isCal || isWA || isMail || isTel) {
         const buttonText = anchor.textContent?.trim() || (
-          isCal ? 'Book a Call' :
+          isCal ? (isGoogleForm ? 'Discuss Your Project' : 'Book a Call') :
           isWA ? 'WhatsApp Us' :
           isMail ? 'Email Us' : 'Call Us'
         );

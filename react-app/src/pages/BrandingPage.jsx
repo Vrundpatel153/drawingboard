@@ -6,7 +6,7 @@ import RegistrationMarks from '../components/RegistrationMarks';
 import MoreServicesSection from '../components/MoreServicesSection';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import ArrowIcon from '../components/ArrowIcon';
-import { WHATSAPP_URL } from '../utils/siteConfig';
+import { DISCUSS_URL } from '../utils/siteConfig';
 
 /* ─────────────────────────────────────────────────────────────────────────────
    BrandingPage — Redesign integrated with locked Testimonials, Pricing & Logos
@@ -740,9 +740,8 @@ export default function BrandingPage() {
         <section className="bp-hero">
           <div className="wrap">
             <div className="bp-sheet-label">
-              <span className="tag mono">SHEET NO. 02 — BRAND SYSTEMS</span>
-              <span className="rule"></span>
               <span className="bp-sheet-right mono">POSITION / IDENTITY / PACKAGING / DIGITAL</span>
+              <span className="rule"></span>
             </div>
 
             <div className="bp-avail">
@@ -761,8 +760,8 @@ export default function BrandingPage() {
                   From how your brand is understood to how it looks on the shelf and performs online, we build one connected system designed to earn attention, communicate value and support growth.
                 </p>
                 <div className="bp-cta-row">
-                  <a className="bp-btn-primary" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Discuss Your Project <ArrowIcon size={14} /></a>
-                  <a className="bp-btn-link" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Prefer WhatsApp for discussion <ArrowIcon size={13} /></a>
+                  <a className="bp-btn-primary" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">Discuss Your Project <ArrowIcon size={14} /></a>
+                  <Link className="bp-btn-secondary" to="/brand-readiness">Get Quote <ArrowIcon size={14} /></Link>
                 </div>
                 <p style={{ marginBottom: '14px' }}>
                   <a className="bp-btn-link" href="#case-studies">View Selected Work ↓</a>
@@ -899,7 +898,7 @@ export default function BrandingPage() {
               </div>
             </div>
             <div style={{ textAlign: 'center', marginTop: '36px' }}>
-              <a className="bp-btn-link" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">This sounds like our stage <ArrowIcon size={13} /> Discuss the project</a>
+              <a className="bp-btn-link" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">This sounds like our stage <ArrowIcon size={13} /> Discuss the project</a>
             </div>
           </div>
         </section>
@@ -1815,7 +1814,7 @@ export default function BrandingPage() {
                 </div>
 
                 <div className="bp-tier-foot">
-                  <a className="bp-tier-btn" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min call</a>
+                  <a className="bp-tier-btn" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">Discuss Your Project</a>
                   <div className="bp-tier-time">6–8 week delivery</div>
                 </div>
               </div>
@@ -1945,7 +1944,7 @@ export default function BrandingPage() {
                 </div>
 
                 <div className="bp-tier-foot">
-                  <a className="bp-tier-btn" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer">Book a 15-min call</a>
+                  <a className="bp-tier-btn" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">Discuss Your Project</a>
                   <div className="bp-tier-time">8–12 week delivery</div>
                 </div>
               </div>
@@ -2267,12 +2266,12 @@ export default function BrandingPage() {
               Tell us what you are launching, changing or preparing to scale. We will review the requirement and recommend whether you need the Brand-to-Shelf system, the complete Brand-to-Market engagement or a different scope altogether.
             </p>
             <div className="bp-cta-row" style={{ marginTop: '24px', marginBottom: '16px' }}>
-              <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="bp-btn-primary">
+              <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="bp-btn-primary">
                 Discuss Your Project <ArrowIcon size={14} />
               </a>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-outline-light">
-                Message us on WhatsApp
-              </a>
+              <Link to="/brand-readiness" className="bp-btn-secondary bp-btn-secondary--light">
+                Get Quote <ArrowIcon size={14} />
+              </Link>
             </div>
             <p className="bp-price-note" style={{ color: '#C9C3B4', fontSize: '13px', fontFamily: "'IBM Plex Mono', monospace", margin: 0 }}>
               Engagements begin at <b style={{ color: '#ffffff' }}>$4,960 (₹4,75,000)</b>.
@@ -2283,10 +2282,10 @@ export default function BrandingPage() {
 
       {/* ── STICKY MOBILE CTA ────────────────────────────────────────── */}
       <StickyMobileCTA
-        title="Brand engagements from $4,960 (₹4,75,000)"
-        subtitle="Free 15-min discovery call"
-        buttonText="Book a call"
-        link="https://cal.com/dandelion-nrvrze"
+        title="From ₹4,75,000 ($4,960)"
+        subtitle="Now Booking Q3 Sprints"
+        buttonText="Discuss"
+        link={DISCUSS_URL}
       />
 
       {/* ── LIGHTBOX MODAL OVERLAY FOR THINK GRID IMAGES ───────────── */}

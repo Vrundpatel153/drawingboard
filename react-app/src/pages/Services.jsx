@@ -6,6 +6,7 @@ import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import MoreServicesSection from '../components/MoreServicesSection';
 import ArrowIcon from '../components/ArrowIcon';
+import { DISCUSS_URL } from '../utils/siteConfig';
 
 import servicesData from '../data/servicesData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
@@ -123,7 +124,7 @@ export default function Services() {
         <section className="hero-lite">
           <div className="wrap">
             <div className="sheet-label">
-              <span className="tag">SHEET 02 // SERVICES & SCOPE</span>
+              <span className="sheet-meta mono">SERVICES &amp; PRACTICE AREAS // SCOPE &amp; CAPABILITIES</span>
               <div className="rule"></div>
             </div>
             <h1>Specialized design engineering for <em>ambitious brands</em>.</h1>
@@ -133,15 +134,12 @@ export default function Services() {
 
             <div className="hero-grid" style={{ marginTop: '40px' }}>
               <div className="cta-row">
-                <Link to="/contact" className="btn-primary">
-                  Request Proposal <ArrowIcon />
+                <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
+                  Discuss Your Project <ArrowIcon size={14} />
+                </a>
+                <Link to="/brand-readiness" className="btn-secondary-cta">
+                  Get Quote <ArrowIcon size={14} />
                 </Link>
-                <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener noreferrer" className="btn-link">
-                  Schedule Discovery Call <ArrowIcon size={13} />
-                </a>
-                <a href="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" target="_blank" rel="noopener noreferrer" className="btn-link" style={{ marginLeft: '6px' }}>
-                  Prefer WhatsApp for discussion <ArrowIcon size={13} />
-                </a>
               </div>
 
               {/* Engagement Specs Pricing Card with rock-solid tabular alignment */}
@@ -362,7 +360,7 @@ export default function Services() {
                   s.id === 'branding'
                     ? 'Branding'
                     : s.id === 'design'
-                    ? 'UI/UX'
+                    ? 'SaaS Branding'
                     : s.id === 'development'
                     ? 'Web & Dev'
                     : s.id === 'packaging-design'
