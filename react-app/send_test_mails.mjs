@@ -1,5 +1,5 @@
 // Script to dispatch 5 realistic diagnostic brief test submissions to dandelionpa7@gmail.com
-const endpoint = "https://formsubmit.co/ajax/dandelionpa7@gmail.com";
+const endpoint = "https://formsubmit.co/ajax/25c2139e28176433a33351a4cfeeac2b";
 
 const testSubmissions = [
   {

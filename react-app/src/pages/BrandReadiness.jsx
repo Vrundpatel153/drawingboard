@@ -848,7 +848,7 @@ export default function BrandReadiness() {
         "Complete Formatted Brief": buildBriefText('email')
       };
 
-      await fetch("https://formsubmit.co/ajax/dandelionpa7@gmail.com", {
+      await fetch("https://formsubmit.co/ajax/25c2139e28176433a33351a4cfeeac2b", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
