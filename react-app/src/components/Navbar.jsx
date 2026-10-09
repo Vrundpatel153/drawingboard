@@ -19,8 +19,6 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const headerRef = useRef(null);
-  const lastY = useRef(0);
-  const hidden = useRef(false);
   const location = useLocation();
   const { promptInstall } = usePWA();
 
@@ -38,15 +36,9 @@ export default function Navbar() {
     }
   };
 
-  // Close on route change and ensure header is restored to visible
+  // Close on route change
   useEffect(() => {
     setOpen(false);
-    hidden.current = false;
-    lastY.current = 0;
-    if (headerRef.current) {
-      gsap.killTweensOf(headerRef.current);
-      gsap.set(headerRef.current, { y: '0%', opacity: 1 });
-    }
   }, [location.pathname]);
 
   // Lock body scroll when drawer is open
@@ -55,32 +47,10 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ''; };
   }, [open]);
 
-  // Scroll-aware hide/show (desktop only)
+  // Track scroll state for compact backdrop styling
   useEffect(() => {
     const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 30);
-
-      // When near page top, always guarantee navbar is visible
-      if (y <= 60) {
-        if (hidden.current) {
-          hidden.current = false;
-          gsap.to(headerRef.current, { y: '0%', duration: 0.2, ease: 'power2.out' });
-        }
-        lastY.current = y;
-        return;
-      }
-
-      if (window.innerWidth > 768) {
-        if (y > lastY.current + 12 && y > 100 && !hidden.current) {
-          hidden.current = true;
-          gsap.to(headerRef.current, { y: '-100%', duration: 0.28, ease: 'power2.inOut' });
-        } else if (y < lastY.current - 8 && hidden.current) {
-          hidden.current = false;
-          gsap.to(headerRef.current, { y: '0%', duration: 0.28, ease: 'power2.out' });
-        }
-      }
-      lastY.current = y;
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -90,8 +60,8 @@ export default function Navbar() {
   useEffect(() => {
     if (headerRef.current) {
       gsap.fromTo(headerRef.current,
-        { y: -16, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.4, ease: 'power2.out' }
+        { opacity: 0 },
+        { opacity: 1, duration: 0.35, ease: 'power2.out' }
       );
     }
   }, []);

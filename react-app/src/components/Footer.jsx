@@ -1,75 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MAILTO_URL, DISCUSS_URL } from '../utils/siteConfig';
 
-gsap.registerPlugin(ScrollTrigger);
-
-
 export default function Footer() {
-  const footerRef = useRef(null);
-
-  useEffect(() => {
-    if (!footerRef.current) return;
-
-    const refreshTimer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 150);
-
-    const ctx = gsap.context(() => {
-      const cols = footerRef.current.querySelectorAll('.foot-brand, .foot-col');
-      gsap.from(cols, {
-        opacity: 0,
-        y: 20,
-        duration: 0.5,
-        ease: 'power2.out',
-        stagger: 0.06,
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: 'top 98%',
-          toggleActions: 'play none none none',
-        }
-      });
-      const bottom = footerRef.current.querySelector('.foot-bottom');
-      if (bottom) {
-        gsap.from(bottom, {
-          opacity: 0,
-          duration: 0.5,
-          ease: 'power1.out',
-          delay: 0.2,
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: 'top 98%',
-            toggleActions: 'play none none none',
-          }
-        });
-      }
-    }, footerRef);
-
-    // Guaranteed visibility safety: ensure footer is never stuck in opacity 0
-    const timer = setTimeout(() => {
-      if (footerRef.current) {
-        const els = footerRef.current.querySelectorAll('.foot-brand, .foot-col, .foot-bottom');
-        els.forEach(el => {
-          el.style.opacity = '1';
-          el.style.transform = 'none';
-        });
-      }
-    }, 350);
-
-    return () => {
-      clearTimeout(refreshTimer);
-      clearTimeout(timer);
-      ctx.revert();
-    };
-  }, []);
-
   return (
-    <footer ref={footerRef}>
+    <footer style={{ opacity: 1, visibility: 'visible', display: 'block' }}>
       <div className="wrap">
-        <div className="foot-grid">
-          <div className="foot-brand">
+        <div className="foot-grid" style={{ opacity: 1, visibility: 'visible' }}>
+          <div className="foot-brand" style={{ opacity: 1, visibility: 'visible' }}>
             <Link to="/" className="foot-logo-link" aria-label="The Drawing Board Home">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="25 138 320 56" className="foot-logo-svg" style={{ height: '34px', width: 'auto', display: 'block', maxWidth: '100%' }}>
                 <rect x="30.445" y="142.642" fill="#A19071" width="44.42" height="25.732"/>
@@ -80,7 +18,7 @@ export default function Footer() {
             </Link>
             <p>Independent Brand, Web &amp; Packaging Design Engineering Studio.</p>
           </div>
-          <div className="foot-col">
+          <div className="foot-col" style={{ opacity: 1, visibility: 'visible' }}>
             <h5>Navigation</h5>
             <Link to="/">Home</Link>
             <Link to="/studio">Studio</Link>
@@ -90,19 +28,19 @@ export default function Footer() {
             <Link to="/insights">Insights</Link>
             <Link to="/contact">Contact</Link>
           </div>
-          <div className="foot-col">
+          <div className="foot-col" style={{ opacity: 1, visibility: 'visible' }}>
             <h5>Selected Work</h5>
             <Link to="/work/after8">AFTER8® Wellness</Link>
             <Link to="/work/lumen">Lumen &amp; Co.</Link>
             <Link to="/work/alder---outdoor-essentials-built-for-slower-movement">Alder Essentials</Link>
             <Link to="/work/krona-architecture-studio">Krona Architecture</Link>
           </div>
-          <div className="foot-col">
+          <div className="foot-col" style={{ opacity: 1, visibility: 'visible' }}>
             <h5>Legal</h5>
             <Link to="/privacy-policy">Privacy Policy</Link>
             <Link to="/terms-of-service">Terms &amp; Conditions</Link>
           </div>
-          <div className="foot-col">
+          <div className="foot-col" style={{ opacity: 1, visibility: 'visible' }}>
             <h5>Connect</h5>
             <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">
               Discuss Your Project
@@ -112,7 +50,7 @@ export default function Footer() {
             <a href="https://linkedin.com/company/thedrawingboard" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
         </div>
-        <div className="foot-bottom">
+        <div className="foot-bottom" style={{ opacity: 1, visibility: 'visible' }}>
           <span>&copy; 2026 The Drawing Board Studio. All rights reserved.</span>
           <div className="foot-legal-links">
             <Link to="/privacy-policy">Privacy Policy</Link>
@@ -125,4 +63,3 @@ export default function Footer() {
     </footer>
   );
 }
-
