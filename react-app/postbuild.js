@@ -119,6 +119,62 @@ function buildBreadcrumbSchema(items) {
 function generateSemanticContent(route, metadata, projects) {
   const arrowSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>`;
 
+  const semanticFooter = `
+    <footer style="border-top: 1px solid #1b1b17; padding: 50px 2rem 30px; font-size: 13px; color: #4a473f; background: #efebe2; margin-top: 4rem;">
+      <div style="max-width: 1200px; margin: 0 auto;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; margin-bottom: 30px;">
+          <div style="max-width: 320px;">
+            <a href="/" style="font-weight: 700; text-decoration: none; color: #1b1b17; font-size: 1.1rem; display: block; margin-bottom: 12px;">THE DRAWING BOARD</a>
+            <p style="margin: 0; line-height: 1.5;">Independent Brand, Web &amp; Packaging Design Engineering Studio.</p>
+          </div>
+          <div>
+            <div style="font-family: monospace; font-size: 12px; text-transform: uppercase; color: #1b1b17; margin-bottom: 12px; font-weight: 600;">Navigation</div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <a href="/" style="color: #4a473f; text-decoration: none;">Home</a>
+              <a href="/studio" style="color: #4a473f; text-decoration: none;">Studio</a>
+              <a href="/work" style="color: #4a473f; text-decoration: none;">Work</a>
+              <a href="/services" style="color: #4a473f; text-decoration: none;">Services</a>
+              <a href="/brand-readiness" style="color: #4a473f; text-decoration: none;">Get Quote</a>
+              <a href="/insights" style="color: #4a473f; text-decoration: none;">Insights</a>
+              <a href="/contact" style="color: #4a473f; text-decoration: none;">Contact</a>
+            </div>
+          </div>
+          <div>
+            <div style="font-family: monospace; font-size: 12px; text-transform: uppercase; color: #1b1b17; margin-bottom: 12px; font-weight: 600;">Selected Work</div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <a href="/work/after8" style="color: #4a473f; text-decoration: none;">AFTER8® Wellness</a>
+              <a href="/work/lumen" style="color: #4a473f; text-decoration: none;">Lumen &amp; Co.</a>
+              <a href="/saas-branding" style="color: #4a473f; text-decoration: none;">SaaS Branding</a>
+            </div>
+          </div>
+          <div>
+            <div style="font-family: monospace; font-size: 12px; text-transform: uppercase; color: #1b1b17; margin-bottom: 12px; font-weight: 600;">Legal</div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <a href="/privacy-policy" style="color: #4a473f; text-decoration: none;">Privacy Policy</a>
+              <a href="/terms-of-service" style="color: #4a473f; text-decoration: none;">Terms &amp; Conditions</a>
+            </div>
+          </div>
+          <div>
+            <div style="font-family: monospace; font-size: 12px; text-transform: uppercase; color: #1b1b17; margin-bottom: 12px; font-weight: 600;">Connect</div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header" target="_blank" rel="noopener" style="color: #4a473f; text-decoration: none;">Discuss Your Project</a>
+              <a href="mailto:dandelionpa7@gmail.com" style="color: #4a473f; text-decoration: none;">Email Studio</a>
+              <a href="https://twitter.com/thedrawingboard" target="_blank" rel="noopener" style="color: #4a473f; text-decoration: none;">Twitter / X</a>
+              <a href="https://linkedin.com/company/thedrawingboard" target="_blank" rel="noopener" style="color: #4a473f; text-decoration: none;">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+        <div style="border-top: 1px solid #dad3c2; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 12px;">
+          <span>&copy; 2026 The Drawing Board Studio. All rights reserved.</span>
+          <div>
+            <a href="/privacy-policy" style="color: #4a473f; text-decoration: none;">Privacy Policy</a> • <a href="/terms-of-service" style="color: #4a473f; text-decoration: none;">Terms &amp; Conditions</a>
+          </div>
+          <span>Architectural Blueprint Editorial System</span>
+        </div>
+      </div>
+    </footer>
+  `;
+
   if (route === '/' || route === '/branding') {
     const faqHtml = FAQ_BRANDING.map(f => `
       <details style="border-bottom: 1px solid #e2ded5; padding: 1.25rem 0;">
@@ -190,6 +246,7 @@ function generateSemanticContent(route, metadata, projects) {
           </div>
         </section>
       </main>
+      ${semanticFooter}
     `;
   }
 
@@ -226,6 +283,7 @@ function generateSemanticContent(route, metadata, projects) {
           ${faqHtml}
         </section>
       </main>
+      ${semanticFooter}
     `;
   }
 
@@ -281,6 +339,7 @@ function generateSemanticContent(route, metadata, projects) {
             </a>
           </section>
         </main>
+        ${semanticFooter}
       `;
     }
   }
@@ -303,6 +362,7 @@ function generateSemanticContent(route, metadata, projects) {
         Discuss Your Project ${arrowSvg}
       </a>
     </main>
+    ${semanticFooter}
   `;
 }
 

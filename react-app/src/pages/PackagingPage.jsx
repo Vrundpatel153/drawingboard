@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
+import StickyMobileCTA from '../components/StickyMobileCTA';
 import MoreServicesSection from '../components/MoreServicesSection';
 import ArrowIcon from '../components/ArrowIcon';
-import { DISCUSS_URL } from '../utils/siteConfig';
+import { DISCUSS_URL, WHATSAPP_URL } from '../utils/siteConfig';
 
 
 
@@ -154,6 +155,17 @@ export default function PackagingPage() {
         .pp-page .annot-row:last-child { border-bottom: none; }
         .pp-page .annot-row span:first-child { color: var(--ink-soft); }
         .pp-page .annot-title { font-size: 12px; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 14px; }
+        @media (max-width: 700px) {
+          .pp-page .annot-row {
+            display: grid !important;
+            grid-template-columns: 110px 1fr !important;
+            align-items: start !important;
+            gap: 12px !important;
+          }
+          .pp-page .annot-row span:last-child {
+            text-align: left !important;
+          }
+        }
 
         .pp-page .stat-strip { display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); margin-top: 56px; }
         .pp-page .stat { flex: 1; min-width: 140px; padding: 22px 24px; border-right: 1px solid var(--ink); }
@@ -1123,46 +1135,12 @@ export default function PackagingPage() {
         </main>
       </div>
 
-      <div className="pp-page">
-        <div className="sticky-cta">
-          <div className="txt">Packaging from $2,500 (₹1,75,000)<b>Free 15-min call</b></div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Contact on WhatsApp"
-              className="wa-btn"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '34px',
-                height: '34px',
-                minWidth: '34px',
-                backgroundColor: '#25D366',
-                borderRadius: '4px',
-                color: '#ffffff',
-                flexShrink: 0,
-                padding: 0,
-                textDecoration: 'none'
-              }}
-            >
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="#ffffff" style={{ width: '20px', height: '20px', display: 'block', fill: '#ffffff' }}>
-
-                <path
-                  fill="#ffffff"
-                  d="M12.031 2C6.49 2 2 6.491 2 12.029c0 1.947.558 3.766 1.523 5.308L2 22l4.823-1.46c1.512.923 3.284 1.455 5.208 1.455C17.57 22 22 17.509 22 11.97 21.999 6.491 17.57 2 12.031 2zm0 18.064c-1.745 0-3.353-.489-4.717-1.332l-.337-.21-2.817.852.868-2.656-.23-.368c-.923-1.472-1.442-3.21-1.442-5.08 0-4.992 4.062-9.052 9.06-9.052 4.998 0 9.057 4.06 9.057 9.052.001 4.997-4.06 9.058-9.042 9.058zm5.086-6.666c-.28-.14-1.649-.813-1.903-.906-.254-.093-.44-.14-.627.14-.187.28-.722.906-.886 1.093-.163.186-.328.21-.608.07-.28-.14-1.18-.435-2.247-1.385-.83-.74-1.39-1.656-1.553-1.936-.163-.28-.018-.431.122-.571.127-.126.28-.327.42-.49.14-.163.187-.28.28-.466.094-.187.047-.35-.024-.49-.07-.14-.627-1.508-.859-2.07-.226-.543-.456-.468-.627-.477-.163-.008-.35-.01-.537-.01-.187 0-.49.07-.747.35-.257.28-1.028.98-1.028 2.392s1.028 2.776 1.17 2.964c.14.186 2.019 3.084 4.89 4.324.683.295 1.218.47 1.633.602.686.218 1.31.187 1.803.114.549-.08 1.65-.675 1.884-1.326.234-.65.234-1.21.164-1.325-.07-.116-.257-.186-.537-.326z"
-                />
-              </svg>
-            </a>
-            <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">Discuss <ArrowIcon size={14} /></a>
-          </div>
-
-        </div>
-      </div>
-
-
+      <StickyMobileCTA
+        title="Packaging from $2,500 (₹1,75,000)"
+        subtitle="Free 15-min discovery call"
+        buttonText="Discuss"
+        link={DISCUSS_URL}
+      />
       <Footer />
     </>
   );

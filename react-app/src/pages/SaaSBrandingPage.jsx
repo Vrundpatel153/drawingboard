@@ -6,6 +6,7 @@ import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import MoreServicesSection from '../components/MoreServicesSection';
 import ArrowIcon from '../components/ArrowIcon';
+import saasProjectsData from '../data/saasProjectsData.json';
 import { DISCUSS_URL, WHATSAPP_URL, WHATSAPP_NUMBER } from '../utils/siteConfig';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 import useSEO from '../hooks/useSEO';
@@ -267,9 +268,10 @@ export default function SaaSBrandingPage() {
 
   return (
     <>
+      <RegistrationMarks />
+      <Navbar />
+
       <div ref={pageRef} className="saas-branding-wrapper">
-        <RegistrationMarks />
-        <Navbar />
 
         {/* Embedded Scoped Style Tokens */}
         <style>{`
@@ -286,7 +288,6 @@ export default function SaaSBrandingPage() {
             --sb-line: #D8D2C2;
             background: var(--paper);
             color: var(--ink);
-            overflow-x: hidden;
             width: 100%;
             max-width: 100%;
             position: relative;
@@ -678,6 +679,57 @@ export default function SaaSBrandingPage() {
           }
           .sb-audit-grid > div { min-width: 0; }
 
+          /* Case Header and Specifications */
+          .sb-case-head {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: end;
+            margin-bottom: 28px;
+            width: 100%;
+          }
+          .sb-spec-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 13.5px;
+            width: 100%;
+          }
+          .sb-spec-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 9px 0;
+            border-top: 1px dashed var(--border);
+            gap: 16px;
+          }
+          .sb-spec-lbl {
+            color: var(--ink-soft);
+            flex-shrink: 0;
+            min-width: 95px;
+          }
+          .sb-spec-val {
+            text-align: right;
+            word-break: break-word;
+          }
+          @media (max-width: 768px) {
+            .sb-case-head {
+              grid-template-columns: 1fr !important;
+              gap: 20px !important;
+            }
+            .sb-spec-item {
+              display: grid !important;
+              grid-template-columns: 110px 1fr !important;
+              align-items: start !important;
+              text-align: left !important;
+              gap: 12px !important;
+              padding: 10px 0 !important;
+            }
+            .sb-spec-val {
+              text-align: left !important;
+            }
+          }
+
           /* Pricing Grid */
           .sb-pricing-grid {
             display: grid;
@@ -720,6 +772,137 @@ export default function SaaSBrandingPage() {
             .sb-stage { padding: 12px; }
             .sb-ctrls { padding: 8px; gap: 6px 10px; }
             .sb-cg button { padding: 4px 7px; font-size: 10px; }
+          }
+
+          /* 18 SaaS Systems Showcase in SaaSBrandingPage */
+          .sb-archive-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            width: 100%;
+          }
+          @media (max-width: 1024px) {
+            .sb-archive-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+          }
+          @media (max-width: 768px) {
+            .sb-archive-grid { grid-template-columns: 1fr !important; gap: 20px; }
+          }
+          .sb-archive-card {
+            border: 1.5px solid var(--ink);
+            background: var(--card);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 2px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+          }
+          .sb-archive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px rgba(27, 27, 23, 0.08);
+          }
+          .sb-archive-img-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/10;
+            background: #111;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .sb-archive-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.45s ease;
+          }
+          .sb-archive-card:hover .sb-archive-img-wrap img {
+            transform: scale(1.04);
+          }
+          .sb-archive-spec-pill {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--ink);
+            color: var(--paper);
+            font: 600 10.5px 'IBM Plex Mono', monospace;
+            padding: 3px 8px;
+            letter-spacing: 0.05em;
+            border: 1px solid rgba(255,255,255,0.2);
+            z-index: 2;
+          }
+          .sb-archive-body {
+            padding: 22px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+          }
+          .sb-archive-tag {
+            font: 600 10.5px 'IBM Plex Mono', monospace;
+            color: var(--pine);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+          }
+          .sb-archive-title {
+            font-size: 21px;
+            font-family: 'Fraunces', Georgia, serif;
+            color: var(--ink);
+            margin: 0 0 10px 0;
+            line-height: 1.25;
+          }
+          .sb-archive-desc {
+            font-size: 13.5px;
+            color: var(--ink-soft);
+            line-height: 1.55;
+            margin-bottom: 16px;
+            flex: 1;
+          }
+          .sb-archive-deliverables {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 18px;
+          }
+          .sb-archive-del-pill {
+            font: 500 10px 'IBM Plex Mono', monospace;
+            padding: 2px 7px;
+            background: rgba(27, 27, 23, 0.05);
+            border: 1px solid var(--sb-line);
+            color: var(--ink-soft);
+            border-radius: 2px;
+          }
+          .sb-archive-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px dashed var(--sb-line);
+            margin-top: auto;
+          }
+          .sb-archive-link {
+            font: 600 11.5px 'IBM Plex Mono', monospace;
+            color: var(--marker);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.15s;
+          }
+          .sb-archive-card:hover .sb-archive-link {
+            color: var(--pine);
+          }
+          .sb-archive-src {
+            font: 500 10.5px 'IBM Plex Mono', monospace;
+            color: var(--ink-soft);
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.15s, color 0.15s;
+          }
+          .sb-archive-src:hover {
+            opacity: 1;
+            color: var(--ink);
           }
         `}</style>
 
@@ -979,32 +1162,32 @@ export default function SaaSBrandingPage() {
 
             {/* ── FLINT CASE STUDY SHOWCASE (FULL CODEBASE ASSETS) ── */}
             <article style={{ borderTop: '2px solid var(--ink)', paddingTop: '32px', marginBottom: '80px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '24px', alignItems: 'end', marginBottom: '28px' }}>
+              <div className="sb-case-head">
                 <div>
                   <div className="sb-mono" style={{ fontSize: '12px', color: 'var(--marker)', textTransform: 'uppercase', marginBottom: '8px' }}>
                     ENTERPRISE B2B SAAS // PROCESS AUTOMATION
                   </div>
-                  <h3 style={{ fontSize: 'clamp(48px, 8vw, 110px)', lineHeight: 0.9, margin: 0, fontFamily: "'Fraunces', Georgia, serif" }}>
+                  <h3 style={{ fontSize: 'clamp(44px, 8vw, 110px)', lineHeight: 0.95, margin: 0, fontFamily: "'Fraunces', Georgia, serif" }}>
                     Flint
                   </h3>
                 </div>
 
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '13.5px' }}>
-                  <li style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px dashed var(--border)' }}>
-                    <span style={{ color: 'var(--ink-soft)' }}>Engagement</span>
-                    <b>Enterprise Brand Identity System</b>
+                <ul className="sb-spec-list">
+                  <li className="sb-spec-item">
+                    <span className="sb-spec-lbl">Engagement</span>
+                    <b className="sb-spec-val">Enterprise Brand Identity System</b>
                   </li>
-                  <li style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px dashed var(--border)' }}>
-                    <span style={{ color: 'var(--ink-soft)' }}>Visual Identity</span>
-                    <b>Custom mathematical flare mark &amp; wordmark</b>
+                  <li className="sb-spec-item">
+                    <span className="sb-spec-lbl">Visual Identity</span>
+                    <b className="sb-spec-val">Custom mathematical flare mark &amp; wordmark</b>
                   </li>
-                  <li style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px dashed var(--border)' }}>
-                    <span style={{ color: 'var(--ink-soft)' }}>Applications</span>
-                    <b>Web UI, executive decks, credentials, environmental</b>
+                  <li className="sb-spec-item">
+                    <span className="sb-spec-lbl">Applications</span>
+                    <b className="sb-spec-val">Web UI, executive decks, credentials, environmental</b>
                   </li>
-                  <li style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px dashed var(--border)' }}>
-                    <span style={{ color: 'var(--ink-soft)' }}>Outcome</span>
-                    <b style={{ color: 'var(--pine)' }}>+340% qualified enterprise inquiries</b>
+                  <li className="sb-spec-item">
+                    <span className="sb-spec-lbl">Outcome</span>
+                    <b className="sb-spec-val" style={{ color: 'var(--pine)' }}>+340% qualified enterprise inquiries</b>
                   </li>
                 </ul>
               </div>
@@ -1052,28 +1235,28 @@ export default function SaaSBrandingPage() {
 
             {/* ── RIZZA FRAMEWORK SHOWCASE ── */}
             <article style={{ borderTop: '2px solid var(--ink)', paddingTop: '32px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '24px', alignItems: 'end', marginBottom: '24px' }}>
+              <div className="sb-case-head">
                 <div>
                   <div className="sb-mono" style={{ fontSize: '12px', color: 'var(--marker)', textTransform: 'uppercase', marginBottom: '8px' }}>
                     TALENT PLATFORM // BRAND → PRODUCT UI/UX CONTINUITY
                   </div>
-                  <h3 style={{ fontSize: 'clamp(48px, 8vw, 110px)', lineHeight: 0.9, margin: 0, fontFamily: "'Fraunces', Georgia, serif" }}>
+                  <h3 style={{ fontSize: 'clamp(44px, 8vw, 110px)', lineHeight: 0.95, margin: 0, fontFamily: "'Fraunces', Georgia, serif" }}>
                     Rizza
                   </h3>
                 </div>
 
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '13.5px' }}>
-                  <li style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px dashed var(--border)' }}>
-                    <span style={{ color: 'var(--ink-soft)' }}>Engagement</span>
-                    <b>Brand Identity Redesign + Product Interface</b>
+                <ul className="sb-spec-list">
+                  <li className="sb-spec-item">
+                    <span className="sb-spec-lbl">Engagement</span>
+                    <b className="sb-spec-val">Brand Identity Redesign + Product Interface</b>
                   </li>
-                  <li style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px dashed var(--border)' }}>
-                    <span style={{ color: 'var(--ink-soft)' }}>Brand System</span>
-                    <b>Logo / symbol, expressive palette, typography</b>
+                  <li className="sb-spec-item">
+                    <span className="sb-spec-lbl">Brand System</span>
+                    <b className="sb-spec-val">Logo / symbol, expressive palette, typography</b>
                   </li>
-                  <li style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px dashed var(--border)' }}>
-                    <span style={{ color: 'var(--ink-soft)' }}>Product Interface</span>
-                    <b>UI elements, dashboard states, ~7–10 core screens</b>
+                  <li className="sb-spec-item">
+                    <span className="sb-spec-lbl">Product Interface</span>
+                    <b className="sb-spec-val">UI elements, dashboard states, ~7–10 core screens</b>
                   </li>
                 </ul>
               </div>
@@ -1111,6 +1294,76 @@ export default function SaaSBrandingPage() {
               <Link to="/work/lumen" style={{ fontWeight: 600, color: 'var(--ink)', borderBottom: '1px solid var(--marker)' }}>LUMEN &amp; CO.</Link>
               <Link to="/work" style={{ fontWeight: 600, color: 'var(--ink)', borderBottom: '1px solid var(--marker)' }}>SOUL BREW</Link>
               <span>Applied with the identical discipline: one core idea engineered cleanly across all touchpoints.</span>
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════════════════════
+            03.5 SAAS BRANDING PRODUCTION GALLERY (18 OBRAZUR CASE STUDIES)
+           ════════════════════════════════════════════════════════════════ */}
+        <section id="saas-archive" style={{ padding: '90px 0', borderTop: '2px solid var(--ink)', background: 'var(--paper)' }}>
+          <div className="wrap">
+            <div className="section-head" style={{ marginBottom: '44px' }}>
+              <div>
+                <div className="eyebrow" style={{ color: 'var(--marker)', fontFamily: "'IBM Plex Mono', monospace" }}>
+                  PRODUCTION CASE ARCHIVE // 18 VERIFIED SAAS IDENTITIES
+                </div>
+                <h2 style={{ fontSize: 'clamp(30px, 4vw, 50px)' }}>
+                  Eighteen SaaS identities, engineered end-to-end.
+                </h2>
+              </div>
+              <p style={{ color: 'var(--ink-soft)', maxWidth: '480px', fontSize: '15.5px', lineHeight: 1.6 }}>
+                Full brand identity systems extracted from the Obrazur studio archive. Each case represents complete brand positioning, token architectures, and production-ready interface systems for high-growth software companies.
+              </p>
+            </div>
+
+            {/* 18 SaaS Brand Systems Cards */}
+            <div className="sb-archive-grid">
+              {saasProjectsData.map((project, idx) => (
+                <div key={project.slug || idx} className="sb-archive-card">
+                  <div className="sb-archive-img-wrap">
+                    <img
+                      src={project.coverImage}
+                      alt={`${project.title} - ${project.shortDescription}`}
+                      loading="lazy"
+                    />
+                    <span className="sb-archive-spec-pill">
+                      SPEC {String(idx + 1).padStart(2, '0')} // {project.year}
+                    </span>
+                  </div>
+                  <div className="sb-archive-body">
+                    <div className="sb-archive-tag">{project.tag}</div>
+                    <h3 className="sb-archive-title">{project.title}</h3>
+                    <p className="sb-archive-desc">{project.description}</p>
+
+                    {project.deliverables && (
+                      <div className="sb-archive-deliverables">
+                        {project.deliverables.map((del, dIdx) => (
+                          <span key={dIdx} className="sb-archive-del-pill">{del}</span>
+                        ))}
+                      </div>
+                    )}
+
+                    <div className="sb-archive-footer">
+                      <Link to={`/work/saas-${project.slug}`} className="sb-archive-link">
+                        <span>EXPLORE SPEC</span>
+                        <ArrowIcon size={13} />
+                      </Link>
+                      {project.behanceUrl && (
+                        <a
+                          href={project.behanceUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="sb-archive-src"
+                          title="Verified Behance Portfolio"
+                        >
+                          BEHANCE ↗
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -1439,6 +1692,159 @@ motion.base:      180ms ease-out;
                   <span style={{ fontSize: '10.5px', padding: '4px 8px', border: '1px solid var(--ink)', background: 'var(--paper)' }} className="sb-mono">Full Launch Suite</span>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════════════════════
+            06.5 SAAS BRANDING ARCHIVE: 18 PRODUCTION CASE STUDIES
+           ════════════════════════════════════════════════════════════════ */}
+        <section id="saas-archive" style={{ background: 'var(--paper)', borderTop: '2px solid var(--ink)', padding: '90px 0' }}>
+          <div className="wrap">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '24px', marginBottom: '44px', borderBottom: '1px dashed var(--paper-line)', paddingBottom: '24px' }}>
+              <div>
+                <div className="sb-mono" style={{ fontSize: '12px', color: 'var(--marker)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '8px' }}>
+                  FEATURED WORK ARCHIVE // 18 IDENTITIES ENGINEERED
+                </div>
+                <h2 style={{ fontSize: 'clamp(30px, 4vw, 50px)', lineHeight: 1.1, margin: 0, fontFamily: "'Fraunces', Georgia, serif" }}>
+                  Eighteen SaaS identities, engineered end-to-end.
+                </h2>
+              </div>
+              <div style={{ maxWidth: '500px' }}>
+                <p style={{ color: 'var(--ink-soft)', fontSize: '14.5px', lineHeight: 1.6, margin: '0 0 12px 0' }}>
+                  A production portfolio of 18 high-fidelity software brand systems sourced from the Obrazur design studio archive. Engineered for AI model compute platforms, cloud infrastructure, developer tools, and workflow software.
+                </p>
+                <div style={{ display: 'flex', gap: '14px', alignItems: 'center', flexWrap: 'wrap' }}>
+                  <Link to="/work" className="sb-mono" style={{ fontSize: '12px', fontWeight: 600, color: 'var(--pine)', textDecoration: 'underline' }}>
+                    VIEW ALL WORK ARCHIVES ↗
+                  </Link>
+                  <span className="sb-mono" style={{ fontSize: '12px', color: 'var(--ink-soft)' }}>
+                    [ 18 PRODUCTION RELEASES ]
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* 18 SaaS Designs Grid */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+                gap: '28px',
+                width: '100%'
+              }}
+            >
+              {saasProjectsData.map((project, idx) => (
+                <div
+                  key={project.slug || idx}
+                  style={{
+                    background: '#FFFFFF',
+                    border: '1px solid var(--ink)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    overflow: 'hidden',
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                  }}
+                >
+                  {/* Card Image */}
+                  <div style={{ position: 'relative', width: '100%', height: '230px', background: 'var(--paper)', borderBottom: '1px solid var(--ink)', overflow: 'hidden' }}>
+                    <img
+                      src={project.coverImage}
+                      alt={`${project.title} - ${project.shortDescription}`}
+                      loading="lazy"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        display: 'block'
+                      }}
+                    />
+                    <span
+                      className="sb-mono"
+                      style={{
+                        position: 'absolute',
+                        top: '12px',
+                        right: '12px',
+                        background: 'var(--ink)',
+                        color: 'var(--paper)',
+                        fontSize: '10px',
+                        padding: '3px 8px',
+                        fontWeight: 600,
+                        border: '1px solid rgba(255,255,255,0.2)'
+                      }}
+                    >
+                      SPEC {String(idx + 1).padStart(2, '0')} // {project.year}
+                    </span>
+                  </div>
+
+                  {/* Card Content */}
+                  <div style={{ padding: '22px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                    <div className="sb-mono" style={{ fontSize: '11px', color: 'var(--pine)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '8px' }}>
+                      {project.tag}
+                    </div>
+                    <h3 style={{ fontSize: '22px', margin: '0 0 10px', fontFamily: "'Fraunces', Georgia, serif", color: 'var(--ink)' }}>
+                      {project.title}
+                    </h3>
+                    <p style={{ fontSize: '13.5px', color: 'var(--ink-soft)', lineHeight: 1.55, margin: '0 0 16px', flex: 1 }}>
+                      {project.description || project.shortDescription}
+                    </p>
+
+                    {/* Deliverables */}
+                    {project.deliverables && (
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '18px' }}>
+                        {project.deliverables.map((d, dIdx) => (
+                          <span
+                            key={dIdx}
+                            className="sb-mono"
+                            style={{
+                              fontSize: '10.5px',
+                              padding: '2px 7px',
+                              background: 'rgba(27, 27, 23, 0.05)',
+                              border: '1px solid var(--paper-line)',
+                              color: 'var(--ink-soft)'
+                            }}
+                          >
+                            {d}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Footer */}
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        paddingTop: '14px',
+                        borderTop: '1px dashed var(--paper-line)',
+                        marginTop: 'auto'
+                      }}
+                    >
+                      <a
+                        href={project.behanceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="sb-mono"
+                        style={{
+                          fontSize: '11.5px',
+                          fontWeight: 600,
+                          color: 'var(--marker)',
+                          textDecoration: 'none',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '6px'
+                        }}
+                      >
+                        VIEW ON BEHANCE <ArrowIcon size={12} />
+                      </a>
+                      <span className="sb-mono" style={{ fontSize: '11px', color: 'var(--ink-soft)', opacity: 0.7 }}>
+                        {project.client}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>

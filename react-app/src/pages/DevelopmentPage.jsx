@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
+import StickyMobileCTA from '../components/StickyMobileCTA';
 import MoreServicesSection from '../components/MoreServicesSection';
 import ArrowIcon from '../components/ArrowIcon';
 import { WHATSAPP_URL, DISCUSS_URL } from '../utils/siteConfig';
@@ -3723,6 +3724,12 @@ export default function DevelopmentPage() {
         </div>
       )}
 
+      <StickyMobileCTA
+        title="Web Development from $1,500"
+        subtitle="Starts at ₹1,43,145 (£1,120)"
+        buttonText="Discuss"
+        link={DISCUSS_URL}
+      />
       <Footer />
     </>
   );

@@ -573,9 +573,9 @@ export default function Home() {
         .bp-sp-stat-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #8B8571; letter-spacing: 0.06em; }
 
         /* Mobile Container & Viewport Containment */
-        html, body, #root, main, .bp-full-page, section {
-          max-width: 100vw;
-          overflow-x: hidden;
+        .bp-full-page {
+          max-width: 100%;
+          width: 100%;
         }
         .wrap {
           width: 100%;
@@ -636,6 +636,15 @@ export default function Home() {
           .bp-cta-row .bp-btn-primary { justify-content: center !important; width: 100% !important; text-align: center !important; }
           .bp-cta-row .bp-btn-link { width: fit-content !important; align-self: flex-start !important; }
           .bp-annot-card { padding: 20px 16px !important; }
+          .bp-annot-row {
+            display: grid !important;
+            grid-template-columns: 105px 1fr !important;
+            align-items: start !important;
+            gap: 12px !important;
+          }
+          .bp-annot-row span:last-child {
+            text-align: left !important;
+          }
           
           .bp-stat-strip { display: grid !important; grid-template-columns: 1fr 1fr !important; margin-top: 32px !important; }
           .bp-stat { padding: 16px 14px !important; border-right: 1px solid var(--ink) !important; border-bottom: 1px solid var(--ink) !important; }

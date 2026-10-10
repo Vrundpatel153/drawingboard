@@ -576,7 +576,12 @@ export default function Services() {
           </div>
         </section>
 
-        <StickyMobileCTA title="Services & Practice Areas" subtitle="5 Practice Areas Open" buttonText="WhatsApp Us" link="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" />
+        <StickyMobileCTA
+          title="Services from $1,500 (₹1,43,145)"
+          subtitle="5 Dedicated Practice Areas"
+          buttonText="Discuss"
+          link={DISCUSS_URL}
+        />
         <Footer />
       </div>
     </>

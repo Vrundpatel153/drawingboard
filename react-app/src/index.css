@@ -107,7 +107,7 @@ body {
 }
 
 /* GPU Hardware Acceleration for Fixed Overlays to eliminate scroll lag */
-header, .navbar, .sticky-cta, .bp-sticky-cta, .floating-wa-btn {
+.sticky-cta, .bp-sticky-cta, .floating-wa-btn {
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   will-change: transform;
@@ -2227,14 +2227,42 @@ footer {
   .wide-shot { height: 200px; }
   .shot .img { height: 200px; }
   .cap { font-size: 11px; padding: 5px 10px; }
-  .proof-card .img { height: 160px; }
-  .sticky-cta { display: flex; }
-  body { padding-bottom: 50px; }
-  .foot-grid { flex-direction: column; gap: 20px; }
-  .foot-brand { max-width: 100%; }
-  .foot-bottom { flex-direction: column; gap: 6px; text-align: center; }
+  .sticky-cta {
+    display: flex !important;
+    z-index: 999 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  footer {
+    padding-top: 40px !important;
+    padding-bottom: 110px !important;
+  }
+  .foot-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 28px !important;
+  }
+  .foot-brand { max-width: 100% !important; }
+  .foot-col h5 { margin-bottom: 10px !important; }
+  .foot-col a { padding: 6px 0 !important; font-size: 14px !important; }
+  .foot-bottom {
+    flex-direction: column !important;
+    gap: 12px !important;
+    text-align: center !important;
+    padding-top: 24px !important;
+  }
   .spotlight-grid { grid-template-columns: 1fr; gap: 0; }
   .crumb { font-size: 12px; }
+  .annot-row, .bp-annot-row {
+    display: grid !important;
+    grid-template-columns: 110px 1fr !important;
+    align-items: start !important;
+    gap: 12px !important;
+    text-align: left !important;
+  }
+  .annot-row span:last-child, .bp-annot-row span:last-child {
+    text-align: left !important;
+  }
 }
 
 /* ==========================================================================

@@ -2439,6 +2439,15 @@ export default function BrandReadiness() {
             .br-systems-grid {
               grid-template-columns: 1fr;
             }
+            .bp-annot-row {
+              display: grid !important;
+              grid-template-columns: 105px 1fr !important;
+              align-items: start !important;
+              gap: 12px !important;
+            }
+            .bp-annot-row span:last-child {
+              text-align: left !important;
+            }
             .bp-stat-strip {
               display: grid !important;
               grid-template-columns: 1fr 1fr !important;

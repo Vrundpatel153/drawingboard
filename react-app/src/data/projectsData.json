@@ -1,7 +1,7 @@
 [
   {
     "slug": "pronto-italian-restaurant-identity",
-    "title": "PRONTO! \u2014 Authentic Italian Restaurant & Neapolitan Pizzeria Identity",
+    "title": "PRONTO! — Authentic Italian Restaurant & Neapolitan Pizzeria Identity",
     "category": "food",
     "tag": "FOOD & RESTAURANT",
     "description": "Modern Italian restaurant brand identity, custom Neapolitan pizza packaging, custom merchandise, vibrant menu systems, and animated motion graphics.",
@@ -29,7 +29,7 @@
   },
   {
     "slug": "matcha-club-brand-identity",
-    "title": "Matcha Club \u2014 Mindful Ritual & Character-Driven Brand Identity",
+    "title": "Matcha Club — Mindful Ritual & Character-Driven Brand Identity",
     "category": "food",
     "tag": "FOOD & BEVERAGE",
     "description": "Character-driven storytelling, mindful ceremonial matcha tin packaging, custom label systems, vibrant motion reveals, and organic brand aesthetics.",
@@ -56,7 +56,7 @@
   },
   {
     "slug": "murami-character-driven-brand-identity",
-    "title": "Murami \u2014 AI-Assisted Character-Driven Brand Identity & Restaurant Art Direction",
+    "title": "Murami — AI-Assisted Character-Driven Brand Identity & Restaurant Art Direction",
     "category": "food",
     "tag": "FOOD & HOSPITALITY",
     "description": "High-energy character-driven visual identity, custom mascot illustration system, vibrant restaurant packaging, merchandise, and environmental brand collateral.",
@@ -81,7 +81,7 @@
   },
   {
     "slug": "soul-brew-branding-packaging-design",
-    "title": "Soul Brew \u2014 Artisan Coffee & Cafe Brand Identity",
+    "title": "Soul Brew — Artisan Coffee & Cafe Brand Identity",
     "category": "food",
     "tag": "FOOD & SPECIALTY CAFE",
     "description": "Artisan coffee roasters & specialty cafe brand identity system, custom hand-drawn character illustrations, packaging dielines, and animated brand identity.",
@@ -162,7 +162,7 @@
   },
   {
     "slug": "flint-business-automation-brand-identity",
-    "title": "Flint \u2014 Enterprise Automation & Digital Systems Brand Identity",
+    "title": "Flint — Enterprise Automation & Digital Systems Brand Identity",
     "category": "branding",
     "tag": "BRANDING & SAAS PLATFORM",
     "description": "Strategic enterprise brand architecture, geometric logomark construction, precision packaging dielines, and dark-mode digital UI.",
@@ -197,7 +197,7 @@
   },
   {
     "slug": "matiz-ceramic-studio-brand-identity",
-    "title": "Matiz Ceramic Studio \u2014 Artisanal Workshop & Tactile Brand Identity",
+    "title": "Matiz Ceramic Studio — Artisanal Workshop & Tactile Brand Identity",
     "category": "branding",
     "tag": "BRANDING & PACKAGING",
     "description": "Handcrafted ceramic brand identity, blind-debossed unboxing sleeves, artisan pottery stamps, and earthy editorial photography.",
@@ -224,8 +224,8 @@
     "imageCount": 17
   },
   {
-    "slug": "after8\u00ae---reimagining-intimacy-for-a-new-generation.",
-    "title": "After8\u00ae Reimagining Intimacy FOR A NEW Generation.",
+    "slug": "after8®---reimagining-intimacy-for-a-new-generation.",
+    "title": "After8® Reimagining Intimacy FOR A NEW Generation.",
     "category": "branding",
     "tag": "BRANDING",
     "description": "Strategic brand identity, packaging design, and digital engineering.",
@@ -776,5 +776,438 @@
       "https://framerusercontent.com/images/UygqVPX023tG08X3W2ctXaObA.png"
     ],
     "imageCount": 1
+  },
+  {
+    "slug": "saas-radiance",
+    "title": "Radiance — AI & Visual Compute",
+    "category": "saas",
+    "tag": "AI & Visual Compute // Brand System",
+    "client": "Radiance AI Labs",
+    "year": "2026",
+    "description": "Engineered an atmospheric, high-contrast visual identity for Radiance, an AI-powered visual generative intelligence platform. The identity system pairs rigorous geometric precision with luminous spectral gradients, reflecting sub-second compute speed and mathematical fidelity across web, application UI, and developer documentation.",
+    "shortDescription": "Full visual identity and brand architecture for next-generation visual AI model compute platform.",
+    "coverImage": "/images/saas/radiance.png",
+    "cdnImage": "https://mir-s3-cdn-cf.behance.net/projects/max_808_webp/832a2c253945001.Y3JvcCwxNjE2LDEyNjQsMCww.png",
+    "images": [
+      "/images/saas/radiance.png"
+    ],
+    "imageCount": 1,
+    "deliverables": [
+      "Brand Strategy",
+      "Logomark & Typographic System",
+      "Design Tokens",
+      "Product UI System",
+      "Marketing Surfaces"
+    ],
+    "metrics": "10.9K+ impressions · Featured in Graphic Design & UI/UX",
+    "behanceUrl": "https://www.behance.net/gallery/253945001/Radiance"
+  },
+  {
+    "slug": "saas-covalent",
+    "title": "Covalent — Cloud Infrastructure",
+    "category": "saas",
+    "tag": "Cloud Infrastructure // Enterprise Identity",
+    "client": "Covalent Data Cloud",
+    "year": "2026",
+    "description": "Architected a unified brand identity for Covalent, a distributed cloud infrastructure suite enabling real-time database synchronization across AWS, GCP, and Azure. Built on molecular structural grids, the visual identity translates complex distributed systems into an intuitive, trusted brand language that closed key enterprise pipeline deals.",
+    "shortDescription": "Enterprise brand system and design language for unified multi-cloud data orchestration platform.",
+    "coverImage": "/images/saas/covalent.png",
+    "cdnImage": "https://mir-s3-cdn-cf.behance.net/projects/max_808_webp/9d0c35250818025.Y3JvcCwyNDI0LDE4OTYsMCww.png",
+    "images": [
+      "/images/saas/covalent.png"
+    ],
+    "imageCount": 1,
+    "deliverables": [
+      "Master Visual Identity",
+      "Design System Guidelines",
+      "Figma Component Library",
+      "Developer Portal UI"
+    ],
+    "metrics": "20.8K+ views · 2.1K+ design appreciations",
+    "behanceUrl": "https://www.behance.net/gallery/250818025/Covalent"
+  },
+  {
+    "slug": "saas-flaren",
+    "title": "Flaren — Developer Tools",
+    "category": "saas",
+    "tag": "Developer Tools // Cloud Runtime Identity",
+    "client": "Flaren Technologies",
+    "year": "2025",
+    "description": "Complete brand ecosystem created for Flaren, an ultra-fast edge deployment platform for front-end engineering teams. Crafted a dynamic mathematical flare symbol and monochrome typography hierarchy that commands authority across CLI tools, developer consoles, and enterprise marketing flagships.",
+    "shortDescription": "Dynamic brand identity and digital product design system for modern developer edge runtimes.",
+    "coverImage": "/images/saas/flaren.png",
+    "cdnImage": "https://mir-s3-cdn-cf.behance.net/projects/max_808_webp/85b108242122797.Y3JvcCwxOTk5LDE1NjQsMCww.png",
+    "images": [
+      "/images/saas/flaren.png"
+    ],
+    "imageCount": 1,
+    "deliverables": [
+      "Brand Narrative",
+      "Symbol & Logotype Architecture",
+      "CLI & Console Theme System",
+      "Marketing Flagship Website"
+    ],
+    "metrics": "76.6K+ views · 4.7K+ appreciations · Top Behance Portfolio Feature",
+    "behanceUrl": "https://www.behance.net/gallery/242122797/Flaren-Brand-Identity"
+  },
+  {
+    "slug": "saas-foremark",
+    "title": "Foremark — Cybersecurity & Governance",
+    "category": "saas",
+    "tag": "Cybersecurity & Governance // Brand Architecture",
+    "client": "Foremark Security",
+    "year": "2025",
+    "description": "Positioned Foremark as the definitive standard in enterprise continuous compliance. Built around an unyielding typographic grid and architectural watermark emblems, the identity conveys cryptographic certainty, boardroom credibility, and deep engineering discipline.",
+    "shortDescription": "Institutional visual identity for enterprise zero-trust compliance and risk governance automation.",
+    "coverImage": "/images/saas/foremark.png",
+    "cdnImage": "https://mir-s3-cdn-cf.behance.net/projects/max_808_webp/919037244152659.Y3JvcCwzMDY4LDI0MDAsNDMyLDA.png",
+    "images": [
+      "/images/saas/foremark.png"
+    ],
+    "imageCount": 1,
+    "deliverables": [
+      "Strategic Positioning",
+      "Brand Guidelines",
+      "Design Tokens System",
+      "Dashboard UI Framework"
+    ],
+    "metrics": "16K+ views · 1.1K+ appreciations",
+    "behanceUrl": "https://www.behance.net/gallery/244152659/Foremark"
+  },
+  {
+    "slug": "saas-helione",
+    "title": "Helione — Enterprise SecOps",
+    "category": "saas",
+    "tag": "Enterprise SecOps // Global Brand System",
+    "client": "Helione Cyber Defense",
+    "year": "2024",
+    "description": "Crafted an internationally celebrated brand identity for Helione, an autonomous SecOps platform defending mission-critical Fortune 500 infrastructure. Designed high-impact orbital visual motifs, technical vector graphics, and a dark-mode-first aesthetic praised by top global design publications.",
+    "shortDescription": "Global brand identity system for next-generation autonomous threat detection and SOC platform.",
+    "coverImage": "/images/saas/helione.png",
+    "cdnImage": "https://mir-s3-cdn-cf.behance.net/projects/max_808_webp/b0aab4224143441.Y3JvcCwxMjc0LDk5Niw5MSwxODI.png",
+    "images": [
+      "/images/saas/helione.png"
+    ],
+    "imageCount": 1,
+    "deliverables": [
+      "Brand Identity Suite",
+      "3D Motion Tokens",
+      "Brand Book (120+ pages)",
+      "SaaS Web Experience"
+    ],
+    "metrics": "33.7K+ views · 3.0K+ appreciations · Featured on Inspiration Grid",
+    "behanceUrl": "https://www.behance.net/gallery/224143441/Helione"
+  },
+  {
+    "slug": "saas-moverunion",
+    "title": "Moverunion — Fleet Logistics",
+    "category": "saas",
+    "tag": "Fleet Logistics // Connected Telematics SaaS",
+    "client": "Moverunion Logistics OS",
+    "year": "2025",
+    "description": "Constructed a high-utility, road-ready visual system for Moverunion. Blending heavy industrial typography with sleek digital app states, the brand powers telemetry mobile apps, warehouse scanning devices, dispatch consoles, and corporate fleet vehicle liveries across North America.",
+    "shortDescription": "End-to-end brand and UI design language for cross-border logistics and autonomous fleet dispatching.",
+    "coverImage": "/images/saas/moverunion.png",
+    "cdnImage": "https://mir-s3-cdn-cf.behance.net/projects/max_808_webp/dcd6c7232192447.Y3JvcCwxNjE2LDEyNjQsMCww.png",
+    "images": [
+      "/images/saas/moverunion.png"
+    ],
+    "imageCount": 1,
+    "deliverables": [
+      "Corporate Brand Identity",
+      "Physical Collateral & Livery",
+      "Driver App UI Guidelines",
+      "Web Portal Design"
+    ],
+    "metrics": "42.8K+ views · 2.9K+ appreciations",
+    "behanceUrl": "https://www.behance.net/gallery/232192447/Moverunion-Brand-Identity"
+  },
+  {
+    "slug": "saas-leadlines",
+    "title": "Leadlines — Revenue Intelligence",
+    "category": "saas",
+    "tag": "Revenue Intelligence // Pipeline SaaS",
+    "client": "Leadlines B2B Intelligence",
+    "year": "2024",
+    "description": "Transformed an algorithmic lead qualification startup into an editorial, premium B2B software brand. Clean geometric line work, structured monospace annotations, and sophisticated financial color palettes give sales leaders immediate clarity and confidence.",
+    "shortDescription": "Editorial brand system for B2B pipeline automation, lead routing, and outbound sales analytics.",
+    "coverImage": "/images/saas/leadlines.png",
+    "cdnImage": "https://mir-s3-cdn-cf.behance.net/projects/max_808_webp/9e33c4213560413.Y3JvcCwzMjc4LDI1NjQsNTE5LDMzMg.png",
+    "images": [
+      "/images/saas/leadlines.png"
+    ],
+    "imageCount": 1,
+    "deliverables": [
+      "Brand Identity System",
+      "Figma Design System",
+      "Marketing Site",
+      "Product UI/UX Guidelines"
+    ],
+    "metrics": "51.2K+ views · 3.9K+ appreciations",
+    "behanceUrl": "https://www.behance.net/gallery/213560413/Leadlines"
+  },
+  {
+    "slug": "saas-truehuman",
+    "title": "Truehuman — Human-in-the-Loop AI",
+    "category": "saas",
+    "tag": "Human-in-the-Loop AI // Brand Identity",
+    "client": "Truehuman AI Platform",
+    "year": "2025",
+    "description": "Developed a humanist yet deeply technical identity system for Truehuman. Exploring the intersection between biological intuition and algorithmic precision, the brand features organic silhouette forms balanced against razor-sharp Swiss typography.",
+    "shortDescription": "Provocative brand language for enterprise AI automation that keeps human oversight at the center.",
+    "coverImage": "/images/saas/truehuman.png",
+    "cdnImage": "https://mir-s3-cdn-cf.behance.net/projects/max_808_webp/b5cfa7238795087.Y3JvcCw0Mzg2LDM0MzAsODU3LDE4NA.png",
+    "images": [
+      "/images/saas/truehuman.png"
+    ],
+    "imageCount": 1,
+    "deliverables": [
+      "Strategic Brand Narrative",
+      "Core Identity & Logomark",
+      "Interface Color Token Framework",
+      "Investor Deck System"
+    ],
+    "metrics": "18.7K+ views · 1.3K+ appreciations",
+    "behanceUrl": "https://www.behance.net/gallery/238795087/Truehuman-Brand-Identity"
+  },
+  {
+    "slug": "saas-financelti",
+    "title": "Financelti — Fintech Infrastructure",
+    "category": "saas",
+    "tag": "Fintech Infrastructure // Banking API Identity",
+    "client": "Financelti Global",
+    "year": "2023",
+    "description": "Engineered an uncompromising, trust-first visual system for Financelti. Combining deep corporate emerald hues with mathematical currency glyphs, this system bridges old-world sovereign private banking with modern instantaneous ledger APIs.",
+    "shortDescription": "Institutional branding and digital identity for high-frequency financial clearing and payment rails.",
+    "coverImage": "/images/saas/financelti.png",
+    "cdnImage": "https://mir-s3-cdn-cf.behance.net/projects/max_808_webp/5427de172993481.667016622493d.jpg",
+    "images": [
+      "/images/saas/financelti.png"
+    ],
+    "imageCount": 1,
+    "deliverables": [
+      "Corporate Identity Architecture",
+      "Financial Data Viz Tokens",
+      "API Documentation Theme",
+      "Executive Collateral"
+    ],
+    "metrics": "37.1K+ views · 3.9K+ appreciations",
+    "behanceUrl": "https://www.behance.net/gallery/172993481/Financelti"
+  },
+  {
+    "slug": "saas-skillshift",
+    "title": "SkillShift — Workforce Intelligence",
+    "category": "saas",
+    "tag": "Workforce Intelligence // Enterprise EdTech",
+    "client": "SkillShift Learning Platform",
+    "year": "2025",
+    "description": "Created a forward-leaning, kinetic visual identity for SkillShift. The dynamic arrow-shift geometry reflects individual and organizational career progression, applied seamlessly across mobile training apps, manager dashboards, and enterprise sales decks.",
+    "shortDescription": "Dynamic identity system for enterprise talent redeployment and AI skill matrix mapping.",
+    "coverImage": "/images/saas/skillshift.png",
+    "cdnImage": "https://mir-s3-cdn-cf.behance.net/projects/max_808_webp/7dfd6d237258979.Y3JvcCwxNTY0LDEyMjMsMCww.png",
+    "images": [
+      "/images/saas/skillshift.png"
+    ],
+    "imageCount": 1,
+    "deliverables": [
+      "Kinetic Logomark",
+      "Brand Design System",
+      "Component Library",
+      "Web Experience"
+    ],
+    "metrics": "13.2K+ views · 870+ appreciations",
+    "behanceUrl": "https://www.behance.net/gallery/237258979/SkillShift-Brand-Identity"
+  },
+  {
+    "slug": "saas-setience",
+    "title": "Setience — Deep Tech",
+    "category": "saas",
+    "tag": "Deep Tech // Neural Compute Identity",
+    "client": "Setience AI Research",
+    "year": "2024",
+    "description": "Designed a refined scientific brand system for Setience. Rooted in research lab documentation aesthetics and abstract topological diagrams, the brand establishes supreme intellectual authority for enterprise clients and PhD researchers alike.",
+    "shortDescription": "Minimalist, scientific visual identity for advanced cognitive neural compute research lab.",
+    "coverImage": "/images/saas/setience.png",
+    "cdnImage": "https://mir-s3-cdn-cf.behance.net/projects/max_808_webp/7f1651230426577.Y3JvcCwxNjE2LDEyNjQsMCww.png",
+    "images": [
+      "/images/saas/setience.png"
+    ],
+    "imageCount": 1,
+    "deliverables": [
+      "Scientific Wordmark",
+      "Research Publication Guidelines",
+      "Technical Diagrams System",
+      "Digital Presentation Theme"
+    ],
+    "metrics": "27.6K+ views · 2.0K+ appreciations",
+    "behanceUrl": "https://www.behance.net/gallery/230426577/Setience"
+  },
+  {
+    "slug": "saas-westerico",
+    "title": "Westerico — Supply Chain OS",
+    "category": "saas",
+    "tag": "Supply Chain OS // Multimodal Freight",
+    "client": "Westerico Logistics Inc.",
+    "year": "2023",
+    "description": "Developed a comprehensive brand world for Westerico. Drawing inspiration from aeronautical routing charts and shipping waybills, the identity seamlessly unites physical container freight with cloud dispatching microservices across the United States.",
+    "shortDescription": "Total visual identity and design language for nationwide multimodal freight logistics software.",
+    "coverImage": "/images/saas/westerico.png",
+    "cdnImage": "https://mir-s3-cdn-cf.behance.net/projects/max_808/9d514a170886419.Y3JvcCw4MDgsNjMyLDAsMA.jpg",
+    "images": [
+      "/images/saas/westerico.png"
+    ],
+    "imageCount": 1,
+    "deliverables": [
+      "Master Visual Identity",
+      "Fleet Liveries",
+      "Waybill & Collateral System",
+      "Operations Portal UI"
+    ],
+    "metrics": "Featured on international design inspiration platforms",
+    "behanceUrl": "https://www.behance.net/gallery/170886419/Westerico"
+  },
+  {
+    "slug": "saas-aerotech",
+    "title": "Aerotech — Aerospace Telemetry",
+    "category": "saas",
+    "tag": "Aerospace Telemetry // Mission Software",
+    "client": "Aerotech Flight Systems",
+    "year": "2024",
+    "description": "Engineered an aerodynamic visual system calibrated for high-stress telemetry environments. High-visibility contrast ratios, technical coordinate grids, and precision HUD vector markers ensure faultless data readability under all operating conditions.",
+    "shortDescription": "Precision flight telemetry and mission telemetry SaaS identity built for aerospace defense.",
+    "coverImage": "/images/saas/aerotech.png",
+    "cdnImage": "https://mir-s3-cdn-cf.behance.net/projects/max_808/6c4913186468301.Y3JvcCwxNjE2LDEyNjQsMCww.png",
+    "images": [
+      "/images/saas/aerotech.png"
+    ],
+    "imageCount": 1,
+    "deliverables": [
+      "Technical Identity Suite",
+      "HUD Design Tokens",
+      "Hardware Chassis Badging",
+      "Software Console Guidelines"
+    ],
+    "metrics": "Mission-grade aerospace design portfolio project",
+    "behanceUrl": "https://www.behance.net/gallery/186468301/Aerotech"
+  },
+  {
+    "slug": "saas-pacent",
+    "title": "Pacent — Product Analytics",
+    "category": "saas",
+    "tag": "Product Analytics // Growth Experimentation",
+    "client": "Pacent Analytics",
+    "year": "2024",
+    "description": "Built a vibrant, punchy identity for Pacent. Combining bold geometric cadence with expressive product telemetry charts, this system helped Pacent communicate complex cohort retention analytics to non-technical product managers with zero friction.",
+    "shortDescription": "High-velocity branding for self-serve product analytics and conversion optimization SaaS.",
+    "coverImage": "/images/saas/pacent.png",
+    "cdnImage": "https://mir-s3-cdn-cf.behance.net/projects/max_808/7030dc195954887.Y3JvcCwyMDE3LDE1NzgsMCww.png",
+    "images": [
+      "/images/saas/pacent.png"
+    ],
+    "imageCount": 1,
+    "deliverables": [
+      "Brand Identity System",
+      "Data Visualization Palette",
+      "Product Tour Interface",
+      "Marketing Website"
+    ],
+    "metrics": "High-velocity SaaS conversion case study",
+    "behanceUrl": "https://www.behance.net/gallery/195954887/Pacent"
+  },
+  {
+    "slug": "saas-newdestin",
+    "title": "Newdestin — Global HR Tech",
+    "category": "saas",
+    "tag": "Global HR Tech // Cross-Border Workspace",
+    "client": "Newdestin Global Workforce",
+    "year": "2024",
+    "description": "Designed a boundaryless, modern editorial brand for Newdestin. The warm terracotta and pine color scheme breaks away from generic blue HR software tropes, projecting sophisticated corporate maturity across 40+ countries.",
+    "shortDescription": "Global workforce mobility and automated payroll compliance software brand identity.",
+    "coverImage": "/images/saas/newdestin.png",
+    "cdnImage": "https://mir-s3-cdn-cf.behance.net/projects/max_808/bc95ab199486999.Y3JvcCwzNTAxLDI3MzksMTMwLDA.png",
+    "images": [
+      "/images/saas/newdestin.png"
+    ],
+    "imageCount": 1,
+    "deliverables": [
+      "Corporate Brand System",
+      "International Typography Guidelines",
+      "Product Onboarding Flow",
+      "Web Flagship"
+    ],
+    "metrics": "Global HR Tech deployment",
+    "behanceUrl": "https://www.behance.net/gallery/199486999/Newdestin"
+  },
+  {
+    "slug": "saas-melden",
+    "title": "Melden International — Industrial ERP",
+    "category": "saas",
+    "tag": "Industrial ERP // Asset Management SaaS",
+    "client": "Melden Enterprise Group",
+    "year": "2023",
+    "description": "Architected an unshakeable institutional brand system for Melden International, supporting complex plant operations, machinery diagnostics, and IoT lifecycle predictive maintenance systems worldwide.",
+    "shortDescription": "Heavy-duty industrial asset management and supply planning ERP brand system.",
+    "coverImage": "/images/saas/melden.png",
+    "cdnImage": "https://mir-s3-cdn-cf.behance.net/projects/max_808/3a1759161809857.Y3JvcCw0NzMwLDM3MDAsMCww.png",
+    "images": [
+      "/images/saas/melden.png"
+    ],
+    "imageCount": 1,
+    "deliverables": [
+      "Enterprise Brand Framework",
+      "Technical Vector Iconography",
+      "Industrial Documentation",
+      "Client Portal UI"
+    ],
+    "metrics": "Industrial ERP category benchmark",
+    "behanceUrl": "https://www.behance.net/gallery/161809857/Melden-International"
+  },
+  {
+    "slug": "saas-kelarc",
+    "title": "Kelarc — Cloud Observability",
+    "category": "saas",
+    "tag": "Cloud Observability // Kubernetes Governance",
+    "client": "Kelarc Cloud Architecture",
+    "year": "2023",
+    "description": "Formulated a structured, mathematical design architecture for Kelarc. Translating complex node graph topologies into crisp visual iconography, the brand stands apart as an indispensable instrument for DevOps architects.",
+    "shortDescription": "Architectural visual identity for real-time Kubernetes cluster topology and observability.",
+    "coverImage": "/images/saas/kelarc.png",
+    "cdnImage": "https://mir-s3-cdn-cf.behance.net/projects/max_808/9a8072159079573.Y3JvcCwxNjE2LDEyNjQsMCww.png",
+    "images": [
+      "/images/saas/kelarc.png"
+    ],
+    "imageCount": 1,
+    "deliverables": [
+      "Identity Architecture",
+      "Topological Icon Set",
+      "CLI Output Themes",
+      "Console UI Tokens"
+    ],
+    "metrics": "Recognized in engineering design communities",
+    "behanceUrl": "https://www.behance.net/gallery/159079573/Kelarc"
+  },
+  {
+    "slug": "saas-folium",
+    "title": "Folium — Knowledge Systems",
+    "category": "saas",
+    "tag": "Knowledge Systems // Collaborative Workspace",
+    "client": "Folium Workspace",
+    "year": "2024",
+    "description": "Crafted an exquisite bookish yet hyper-modern visual language for Folium. Combining paper-like warmth, disciplined baseline grids, and intuitive typography, Folium makes enterprise documentation feel calm, deliberate, and indispensable.",
+    "shortDescription": "Clean editorial brand identity for modern team documentation, wikis, and knowledge engines.",
+    "coverImage": "/images/saas/folium.png",
+    "cdnImage": "https://mir-s3-cdn-cf.behance.net/projects/max_808/ba017c202848937.Y3JvcCwyNDI0LDE4OTYsMCww.png",
+    "images": [
+      "/images/saas/folium.png"
+    ],
+    "imageCount": 1,
+    "deliverables": [
+      "Brand Identity System",
+      "Desktop & Web UI Guidelines",
+      "Document Template Suite",
+      "Web Flagship"
+    ],
+    "metrics": "Featured collaborative software brand system",
+    "behanceUrl": "https://www.behance.net/gallery/202848937/Folium"
   }
 ]

@@ -47,32 +47,31 @@ export default function StickyMobileCTA({ title = "The Drawing Board", subtitle 
 
   return (
     <div className="sticky-cta" style={{
-      padding: '5px 12px',
-      minHeight: '42px',
-      maxHeight: '48px',
-      display: 'none', // toggled by media query in CSS
+      padding: '7px 14px',
+      minHeight: '44px',
+      maxHeight: '52px',
       alignItems: 'center',
       justifyContent: 'space-between',
-      gap: '8px'
+      gap: '10px'
     }}>
-      <div className="txt" style={{ minWidth: 0, flex: 1, overflow: 'hidden' }}>
+      <div className="txt" style={{ minWidth: 0, flex: '1 1 auto', overflow: 'hidden' }}>
         <b style={{
           display: 'block',
-          fontSize: '11.5px',
+          fontSize: '12px',
           fontWeight: 600,
           whiteSpace: 'nowrap',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
-          lineHeight: 1.15,
+          lineHeight: 1.2,
           color: '#ffffff'
         }}>{title}</b>
         <span style={{
           display: 'block',
-          fontSize: '9.5px',
+          fontSize: '10px',
           whiteSpace: 'nowrap',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
-          lineHeight: 1.15,
+          lineHeight: 1.2,
           color: '#C9C3B4'
         }}>{subtitle}</span>
       </div>

@@ -12,17 +12,37 @@ export default function usePWA() {
   const deferredPromptRef = useRef(null);
 
   useEffect(() => {
-    // ── 1. Register Service Worker ─────────────────────────────────────────
+    // ── 1. Register Service Worker (Production Only) ───────────────────────
+    const isLocalhost = Boolean(
+      window.location.hostname === 'localhost' ||
+      window.location.hostname === '[::1]' ||
+      window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/)
+    );
+
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js', { scope: '/' })
-          .then((reg) => {
-            console.log('[PWA] Service Worker registered:', reg.scope);
-          })
-          .catch((err) => {
-            console.warn('[PWA] SW registration failed:', err);
+      if (isLocalhost) {
+        // Unregister service worker on localhost to avoid corrupting Vite dev server
+        navigator.serviceWorker.getRegistrations().then((registrations) => {
+          for (const reg of registrations) {
+            reg.unregister();
+          }
+        });
+        if ('caches' in window) {
+          caches.keys().then((keys) => {
+            for (const key of keys) caches.delete(key);
           });
-      });
+        }
+      } else {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js', { scope: '/' })
+            .then((reg) => {
+              console.log('[PWA] Service Worker registered:', reg.scope);
+            })
+            .catch((err) => {
+              console.warn('[PWA] SW registration failed:', err);
+            });
+        });
+      }
     }
 
     // ── 2. Capture the native install prompt ─────────────────────────────
