@@ -28,6 +28,8 @@ export default function WorkDetail() {
   const isMatiz = cleanId.includes('matiz');
   const isAfter8 = cleanId.includes('after8') || cleanId.includes('intimacy');
   const isLumen = cleanId.includes('lumen');
+  const isHenro = cleanId.includes('henro');
+  const isSeroq = cleanId.includes('seroq');
 
   // Find matching project in dataset
   const project = projectsData.find(p => {
@@ -415,7 +417,7 @@ export default function WorkDetail() {
               <div className="meta-strip">
                 <div className="meta-cell">
                   <div className="k">Client</div>
-                  <div className="v">{project.title.split(' ')[0]}</div>
+                  <div className="v">{project.client || project.title.split(' ')[0]}</div>
                 </div>
                 <div className="meta-cell">
                   <div className="k">Scope</div>
@@ -646,6 +648,50 @@ export default function WorkDetail() {
                 <div className="insight-card">
                   <div className="lbl">// MATERIAL INSIGHT</div>
                   <p>"Sustainability should never look compromise-driven. By utilizing raw tactile textures and crisp metallic foil debossing, eco-packaging becomes an undeniable selling point."</p>
+                </div>
+              </div>
+            </>
+          ) : isHenro ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE CONSULTING &amp; ANALYTICS CHALLENGE</div>
+                  <h2>Translating enterprise predictive intelligence into undeniable visual authority.</h2>
+                </div>
+                <p>Engineering a mathematical matrix brand system for executive business consulting.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>Enterprise analytics and business consulting firms frequently suffer from sterile, uninspired corporate identities</strong> that fail to communicate cutting-edge predictive capability and technological rigor.</p>
+                  <p>HeNRO required a commanding, high-contrast visual architecture centered on a mathematical 4×4 grid matrix mark, rigorous SFT Schrifted Sans typography, and striking blackout-crimson contrast spanning mobile analytics suites, executive stationery, and luxury acrylic brand manuals.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// PREDICTIVE INTELLIGENCE INSIGHT</div>
+                  <p>"Enterprise consulting brands win boardroom trust not with generic charts, but through mathematical precision, rigorous grid systems, and unyielding visual conviction."</p>
+                </div>
+              </div>
+            </>
+          ) : isSeroq ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE QUANTITATIVE FINTECH CHALLENGE</div>
+                  <h2>Conveying ultra-low latency execution and mathematical transparency.</h2>
+                </div>
+                <p>Architecting a high-voltage, sculptural brand universe for proprietary algorithmic trading.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>Proprietary quantitative trading firms operate at the cutting edge of financial mathematics and low-latency algorithmic execution,</strong> yet their brand identities are often neglected or opaque.</p>
+                  <p>SEROQ required an electrifying, ultra-modern identity that embodies high-frequency speed and structural transparency—combining harmonic dual-wave geometries, Neue Montreal typography, and sculptural 3D liquid chrome tokens across multi-monitor trading terminals, digital flagships, and institutional decks.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// QUANTITATIVE ARCHITECTURE INSIGHT</div>
+                  <p>"In algorithmic trading, brand authority is an expression of mathematical discipline. Pure geometry and high-voltage chrome tokens communicate microsecond speed and institutional trust."</p>
                 </div>
               </div>
             </>
@@ -1126,6 +1172,118 @@ export default function WorkDetail() {
                 </div>
               </div>
             </>
+          ) : isHenro ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Enterprise analytics brand architecture &amp; technical specifications.</h2>
+                </div>
+                <p>Mathematical matrix logomark system, executive acrylic brand manual, iOS analytics UI, and stationery.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Visual Identity</h4>
+                  <div className="sub">// LOGO &amp; MATRIX GRID</div>
+                  <ul>
+                    <li>4×4 precision matrix logomark</li>
+                    <li>Monogram &amp; secondary mark variations</li>
+                    <li>SFT Schrifted Sans typographic system</li>
+                    <li>Blackout, Granite, Gray &amp; Crimson palette</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Executive Collateral</h4>
+                  <div className="sub">// PRINT &amp; LUXURY MANUAL</div>
+                  <ul>
+                    <li>Edge-painted foil business cards</li>
+                    <li>Crimson acrylic luxury brand book</li>
+                    <li>Executive corporate stationery suite</li>
+                    <li>Boardroom presentation deck templates</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Digital &amp; Analytics UI</h4>
+                  <div className="sub">// MOBILE &amp; DASHBOARD</div>
+                  <ul>
+                    <li>Mobile predictive analytics iOS UI</li>
+                    <li>Real-time data visualization charts</li>
+                    <li>Dark-mode interface design tokens</li>
+                    <li>Executive KPI component library</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>17 Master High-Res Production Assets</li>
+                    <li>100% Brand Guideline Deployment</li>
+                    <li>Multi-Platform Design System Handoff</li>
+                    <li>Boardroom &amp; Enterprise Ready</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isSeroq ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Proprietary trading brand system &amp; terminal specifications.</h2>
+                </div>
+                <p>Harmonic dual-wave brandmark, 3D chrome kinetic tokens, multi-display trading terminal UI, and investor deck.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Visual Identity</h4>
+                  <div className="sub">// LOGO &amp; GEOMETRIC SYSTEM</div>
+                  <ul>
+                    <li>Harmonic dual-wave logomark</li>
+                    <li>Golden ratio waveform curvature grid</li>
+                    <li>High-voltage chrome &amp; obsidian palette</li>
+                    <li>PP Neue Montreal &amp; Algorithmic Mono type</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>3D &amp; Motion Tokens</h4>
+                  <div className="sub">// KINETIC BRAND LANGUAGE</div>
+                  <ul>
+                    <li>3D sculptural chrome wave assets</li>
+                    <li>High-frequency kinetic motion tokens</li>
+                    <li>Kinetic transition choreography</li>
+                    <li>Dynamic brandmark execution states</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Trading Terminals &amp; Web</h4>
+                  <div className="sub">// DIGITAL PLATFORMS</div>
+                  <ul>
+                    <li>Multi-display trading console UI</li>
+                    <li>Real-time performance chart suite</li>
+                    <li>Dark-mode terminal interface design</li>
+                    <li>Institutional web flagship experience</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>17 Master High-Res Production Assets</li>
+                    <li>100% Turnkey Trading Brand Guidelines</li>
+                    <li>Low-Latency Terminal UI Tokens</li>
+                    <li>Institutional Capital Ready</li>
+                  </ul>
+                </div>
+              </div>
+            </>
           ) : (
             <>
               <div className="section-head">
@@ -1403,6 +1561,46 @@ export default function WorkDetail() {
                   "Complete Soul Brew Master Asset Suite Overview"
                 ];
 
+                const henroCaptions = [
+                  "HeNRO — Master Brand Architecture & Strategic Positioning Cover",
+                  "Executive Brand Narrative & Business Analytics Philosophy",
+                  "Core Logomark & 4×4 Matrix Grid Symbol Construction",
+                  "Secondary Brand Marks & Monogram Lockup Variations",
+                  "Mathematical Grid Alignment & Geometry Construction Specs",
+                  "Clear Space Isolation & Minimum Scaling Constraints",
+                  "Primary & Supporting Color Architecture: Blackout, Granite, Gray & Crimson",
+                  "Color Hierarchy, Contrast Matrix & Background Usability Rules",
+                  "Primary Typographic Architecture: SFT Schrifted Sans Specification",
+                  "Typographic Hierarchy, Numerical Scale & Heading Guidelines",
+                  "Corporate Stationery Suite & Foil-Stamped Business Cards",
+                  "Executive Crimson Acrylic Brand Guidelines Book & Print Collateral",
+                  "Mobile Analytics UI Architecture & iOS Interface System",
+                  "Enterprise Web Dashboard & Predictive Data Visualizations",
+                  "Institutional Presentation Deck & Keynote Editorial Guidelines",
+                  "Environmental Directional Signage & Corporate Headquarters Branding",
+                  "HeNRO Master Design System & Final Guidelines Sign-Off"
+                ];
+
+                const seroqCaptions = [
+                  "SEROQ — Proprietary Quantitative Trading Identity Master Cover",
+                  "Algorithmic Precision & Low-Latency Execution Manifesto",
+                  "Harmonic Dual-Wave Logomark & Precision Brandmark Design",
+                  "Logomark Scalability States & Dynamic Responsive Lockups",
+                  "Mathematical Curvature Grid Construction & Waveform Proportions",
+                  "Clear Space Exclusion Boundary & Minimum Legibility Constraints",
+                  "High-Voltage Electric Chrome & Obsidian Color Token Architecture",
+                  "High-Contrast Terminal Usability Matrix & Dark Theme Standards",
+                  "Primary Typographic Identity: Neue Montreal Sans Specification",
+                  "High-Frequency Monospace Type System & Algorithmic Data Layouts",
+                  "3D Kinetic Motion Tokens & Sculptural Liquid Chrome Elements",
+                  "Multi-Display Trading Console & High-Frequency Terminal UI",
+                  "Web Flagship Interface & Real-Time Performance Analytics Platform",
+                  "Institutional Investor Pitch Deck & Financial Publication System",
+                  "Executive Corporate Stationery, Security Lanyards & Encrypted Keycards",
+                  "Trading Floor Environmental Branding, Neon Signage & Architectural Wayfinding",
+                  "SEROQ Master Trading Brand System & Asset Delivery Close"
+                ];
+
                 const isWebProject = (project.category === 'web') || (project.tag && (project.tag.includes('WEB') || project.tag.includes('UI UX')));
                 const isPackagingProject = (project.category === 'packaging') || (project.tag && project.tag.includes('PACKAGING'));
 
@@ -1432,6 +1630,10 @@ export default function WorkDetail() {
                   ? matizCaptions[imgIdx]
                   : isAfter8 && imgIdx < after8Captions.length
                   ? after8Captions[imgIdx]
+                  : isHenro && imgIdx < henroCaptions.length
+                  ? henroCaptions[imgIdx]
+                  : isSeroq && imgIdx < seroqCaptions.length
+                  ? seroqCaptions[imgIdx]
                   : defaultCaption(imgIdx);
 
                 const isVideo = typeof imgUrl === 'string' && imgUrl.match(/\.(mp4|webm|mov)$/i);

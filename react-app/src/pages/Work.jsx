@@ -17,9 +17,10 @@ export default function Work() {
   usePageAnimations(pageRef);
 
   const allCombinedProjects = React.useMemo(() => {
-    // Map saasProjectsData to match the projectsData item schema
+    // Exclude saas-* items from projectsData to avoid duplicate cards, then map saasProjectsData cleanly
+    const baseProjects = projectsData.filter(p => !p.slug || !p.slug.startsWith('saas-'));
     const formattedSaas = saasProjectsData.map(sp => ({
-      slug: sp.slug,
+      slug: `saas-${sp.slug}`,
       title: `${sp.title} — ${sp.tag}`,
       category: 'saas',
       tag: 'SAAS BRANDING',
@@ -30,7 +31,7 @@ export default function Work() {
       images: sp.images,
       imageCount: sp.imageCount || 1
     }));
-    return [...projectsData, ...formattedSaas];
+    return [...baseProjects, ...formattedSaas];
   }, []);
 
   const filteredProjects = allCombinedProjects.filter(p => {
@@ -399,7 +400,7 @@ export default function Work() {
             {/* Long Grid Layout */}
             <div className="work-grid">
               {filteredProjects.map((project, idx) => {
-                const targetLink = project.isSaas ? '/saas-branding' : `/work/${project.slug}`;
+                const targetLink = `/work/${project.slug}`;
                 return (
                   <Link
                     key={project.slug || idx}
@@ -453,14 +454,14 @@ export default function Work() {
               </div>
               <div style={{ maxWidth: '520px' }}>
                 <p style={{ color: 'var(--ink-soft)', fontSize: '15px', lineHeight: 1.6, margin: '0 0 12px 0' }}>
-                  A curated suite of 18 high-performance software brand architectures sourced from the Obrazur design studio portfolio. Precision identity engineering built for AI generative models, cloud infrastructure, developer tools, and enterprise workflows.
+                  A curated suite of {saasProjectsData.length} high-performance software brand architectures sourced from the Obrazur design studio portfolio. Precision identity engineering built for AI generative models, cloud infrastructure, developer tools, predictive analytics, proprietary trading, and enterprise workflows.
                 </p>
                 <div style={{ display: 'flex', gap: '14px', alignItems: 'center', flexWrap: 'wrap' }}>
                   <Link to="/saas-branding" className="mono" style={{ fontSize: '12px', fontWeight: 600, color: 'var(--pine)', textDecoration: 'underline' }}>
                     EXPLORE FULL SAAS METHODOLOGY ↗
                   </Link>
                   <span className="mono" style={{ fontSize: '12px', color: 'var(--ink-soft)' }}>
-                    [ 18 PRODUCTION DESIGNS ]
+                    [ {saasProjectsData.length} PRODUCTION DESIGNS ]
                   </span>
                 </div>
               </div>

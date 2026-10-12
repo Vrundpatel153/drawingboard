@@ -1306,10 +1306,10 @@ export default function SaaSBrandingPage() {
             <div className="section-head" style={{ marginBottom: '44px' }}>
               <div>
                 <div className="eyebrow" style={{ color: 'var(--marker)', fontFamily: "'IBM Plex Mono', monospace" }}>
-                  PRODUCTION CASE ARCHIVE // 18 VERIFIED SAAS IDENTITIES
+                  PRODUCTION CASE ARCHIVE // {saasProjectsData.length} VERIFIED SAAS IDENTITIES
                 </div>
                 <h2 style={{ fontSize: 'clamp(30px, 4vw, 50px)' }}>
-                  Eighteen SaaS identities, engineered end-to-end.
+                  Nineteen SaaS identities, engineered end-to-end.
                 </h2>
               </div>
               <p style={{ color: 'var(--ink-soft)', maxWidth: '480px', fontSize: '15.5px', lineHeight: 1.6 }}>
@@ -1704,22 +1704,22 @@ motion.base:      180ms ease-out;
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '24px', marginBottom: '44px', borderBottom: '1px dashed var(--paper-line)', paddingBottom: '24px' }}>
               <div>
                 <div className="sb-mono" style={{ fontSize: '12px', color: 'var(--marker)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '8px' }}>
-                  FEATURED WORK ARCHIVE // 18 IDENTITIES ENGINEERED
+                  FEATURED WORK ARCHIVE // {saasProjectsData.length} IDENTITIES ENGINEERED
                 </div>
                 <h2 style={{ fontSize: 'clamp(30px, 4vw, 50px)', lineHeight: 1.1, margin: 0, fontFamily: "'Fraunces', Georgia, serif" }}>
-                  Eighteen SaaS identities, engineered end-to-end.
+                  Nineteen SaaS identities, engineered end-to-end.
                 </h2>
               </div>
               <div style={{ maxWidth: '500px' }}>
                 <p style={{ color: 'var(--ink-soft)', fontSize: '14.5px', lineHeight: 1.6, margin: '0 0 12px 0' }}>
-                  A production portfolio of 18 high-fidelity software brand systems sourced from the Obrazur design studio archive. Engineered for AI model compute platforms, cloud infrastructure, developer tools, and workflow software.
+                  A production portfolio of {saasProjectsData.length} high-fidelity software brand systems sourced from the Obrazur design studio archive. Engineered for AI model compute platforms, cloud infrastructure, developer tools, predictive analytics, proprietary trading, and workflow software.
                 </p>
                 <div style={{ display: 'flex', gap: '14px', alignItems: 'center', flexWrap: 'wrap' }}>
                   <Link to="/work" className="sb-mono" style={{ fontSize: '12px', fontWeight: 600, color: 'var(--pine)', textDecoration: 'underline' }}>
                     VIEW ALL WORK ARCHIVES ↗
                   </Link>
                   <span className="sb-mono" style={{ fontSize: '12px', color: 'var(--ink-soft)' }}>
-                    [ 18 PRODUCTION RELEASES ]
+                    [ {saasProjectsData.length} PRODUCTION RELEASES ]
                   </span>
                 </div>
               </div>
