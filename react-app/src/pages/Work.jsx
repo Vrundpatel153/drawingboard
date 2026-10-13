@@ -27,7 +27,6 @@ export default function Work() {
       description: sp.shortDescription || sp.description,
       coverImage: sp.coverImage,
       isSaas: true,
-      behanceUrl: sp.behanceUrl,
       images: sp.images,
       imageCount: sp.imageCount || 1
     }));
@@ -313,19 +312,6 @@ export default function Work() {
           .saas-showcase-card:hover .saas-view-btn {
             color: var(--pine);
           }
-
-          .saas-behance-link {
-            font-size: 11px;
-            color: var(--ink-soft);
-            text-decoration: none;
-            opacity: 0.7;
-            transition: opacity 0.15s, color 0.15s;
-          }
-
-          .saas-behance-link:hover {
-            opacity: 1;
-            color: var(--ink);
-          }
         `}</style>
 
         {/* Page Hero */}
@@ -505,17 +491,6 @@ export default function Work() {
                         <span>EXPLORE CASE SPEC</span>
                         <ArrowIcon size={13} />
                       </Link>
-                      {project.behanceUrl && (
-                        <a
-                          href={project.behanceUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="saas-behance-link mono"
-                          title="Verified Behance project source"
-                        >
-                          BEHANCE ↗
-                        </a>
-                      )}
                     </div>
                   </div>
                 </div>

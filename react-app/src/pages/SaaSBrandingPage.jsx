@@ -1349,17 +1349,6 @@ export default function SaaSBrandingPage() {
                         <span>EXPLORE SPEC</span>
                         <ArrowIcon size={13} />
                       </Link>
-                      {project.behanceUrl && (
-                        <a
-                          href={project.behanceUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="sb-archive-src"
-                          title="Verified Behance Portfolio"
-                        >
-                          BEHANCE ↗
-                        </a>
-                      )}
                     </div>
                   </div>
                 </div>
@@ -1747,7 +1736,10 @@ motion.base:      180ms ease-out;
                   }}
                 >
                   {/* Card Image */}
-                  <div style={{ position: 'relative', width: '100%', height: '230px', background: 'var(--paper)', borderBottom: '1px solid var(--ink)', overflow: 'hidden' }}>
+                  <Link
+                    to={`/work/saas-${project.slug}`}
+                    style={{ position: 'relative', width: '100%', height: '230px', background: 'var(--paper)', borderBottom: '1px solid var(--ink)', overflow: 'hidden', display: 'block' }}
+                  >
                     <img
                       src={project.coverImage}
                       alt={`${project.title} - ${project.shortDescription}`}
@@ -1775,7 +1767,7 @@ motion.base:      180ms ease-out;
                     >
                       SPEC {String(idx + 1).padStart(2, '0')} // {project.year}
                     </span>
-                  </div>
+                  </Link>
 
                   {/* Card Content */}
                   <div style={{ padding: '22px', flex: 1, display: 'flex', flexDirection: 'column' }}>
@@ -1783,7 +1775,9 @@ motion.base:      180ms ease-out;
                       {project.tag}
                     </div>
                     <h3 style={{ fontSize: '22px', margin: '0 0 10px', fontFamily: "'Fraunces', Georgia, serif", color: 'var(--ink)' }}>
-                      {project.title}
+                      <Link to={`/work/saas-${project.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                        {project.title}
+                      </Link>
                     </h3>
                     <p style={{ fontSize: '13.5px', color: 'var(--ink-soft)', lineHeight: 1.55, margin: '0 0 16px', flex: 1 }}>
                       {project.description || project.shortDescription}
@@ -1821,10 +1815,8 @@ motion.base:      180ms ease-out;
                         marginTop: 'auto'
                       }}
                     >
-                      <a
-                        href={project.behanceUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <Link
+                        to={`/work/saas-${project.slug}`}
                         className="sb-mono"
                         style={{
                           fontSize: '11.5px',
@@ -1836,8 +1828,8 @@ motion.base:      180ms ease-out;
                           gap: '6px'
                         }}
                       >
-                        VIEW ON BEHANCE <ArrowIcon size={12} />
-                      </a>
+                        EXPLORE SPEC <ArrowIcon size={12} />
+                      </Link>
                       <span className="sb-mono" style={{ fontSize: '11px', color: 'var(--ink-soft)', opacity: 0.7 }}>
                         {project.client}
                       </span>
