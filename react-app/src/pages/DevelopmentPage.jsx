@@ -6,6 +6,7 @@ import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import MoreServicesSection from '../components/MoreServicesSection';
 import ArrowIcon from '../components/ArrowIcon';
+import ClientStoriesTicker from '../components/ClientStoriesTicker';
 import { WHATSAPP_URL, DISCUSS_URL } from '../utils/siteConfig';
 import { trackMetaFormSubmission } from '../utils/metaEvents';
 
@@ -1867,15 +1868,20 @@ export default function DevelopmentPage() {
         .dev-bp-page .faq-a {
           max-height: 0;
           overflow: hidden;
+          visibility: hidden;
+          opacity: 0;
           padding: 0 24px;
-          font-size: 14px;
+          font-size: 14.5px;
           color: var(--ink-soft);
           line-height: 1.6;
-          transition: max-height .3s ease, padding .3s ease;
+          transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease, opacity 0.25s ease, visibility 0.35s;
+          box-sizing: border-box;
         }
         .dev-bp-page .faq-item.open .faq-a {
-          max-height: 240px;
-          padding: 0 24px 18px;
+          max-height: 1000px;
+          visibility: visible;
+          opacity: 1;
+          padding: 0 24px 22px;
         }
         .dev-bp-page .faq-icon {
           font-size: 18px;
@@ -3150,10 +3156,10 @@ export default function DevelopmentPage() {
           <div className="wrap">
             <div className="bp-sp-head">
               <div>
-                <div className="bp-eyebrow mono">SOCIAL PROOF</div>
-                <h2>Real founders. Real results. <em>In their own words.</em></h2>
+                <div className="bp-eyebrow mono">OUR CLIENTS // SOCIAL PROOF</div>
+                <h2>Real results. Real client stories.</h2>
               </div>
-              <div className="bp-sp-head-sub">VERIFIED FEEDBACK &amp; CASE EVIDENCE</div>
+              <div className="bp-sp-head-sub">HEAR WHAT OUR CLIENTS HAVE TO SAY · VERIFIED RESULTS &amp; EXPERIENCE</div>
             </div>
 
             {/* ROW 1: WHATSAPP SCREENSHOTS HORIZONTAL SLIDER */}
@@ -3270,30 +3276,13 @@ export default function DevelopmentPage() {
               </div>
             </div>
 
-            {/* ROW 3: FOUNDER QUOTES AUTO INFINITE MARQUEE */}
+            {/* ROW 3: FOUNDER STORIES & TESTIMONIALS AUTO SCROLLING TICKER */}
             <div className="bp-sp-row">
               <div className="bp-sp-row-head">
-                <div className="bp-sp-row-title">03 // Founder Quotes</div>
+                <div className="bp-sp-row-title">03 // Real Founder Stories &amp; Testimonials</div>
               </div>
 
-              <div className="bp-sp-wa-marquee-wrap">
-                <div className="bp-sp-wa-marquee-track" style={{ animationDuration: '40s' }}>
-                  {[...founderQuotes, ...founderQuotes].map((q, idx) => (
-                    <div key={idx} className="bp-sp-card bp-sp-quote-card" style={{ flexShrink: 0 }}>
-                      <div className="bp-sp-stars">★★★★★</div>
-                      <span className="bp-sp-qs">"</span>
-                      <blockquote>{q.text}</blockquote>
-                      <div className="bp-sp-quote-who">
-                        <div className="bp-sp-quote-av">{q.av}</div>
-                        <div>
-                          <div className="bp-sp-qname">{q.name}</div>
-                          <div className="bp-sp-qrole">{q.role}</div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <ClientStoriesTicker />
             </div>
 
             {/* Stats strip */}
@@ -3462,12 +3451,23 @@ export default function DevelopmentPage() {
                   <button
                     className="faq-q"
                     onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                    aria-expanded={openFaq === idx}
                   >
-                    {faq.q}
-                    <span className="faq-icon">+</span>
+                    <span>{faq.q}</span>
+                    <span className="faq-icon" style={{ transform: openFaq === idx ? 'rotate(45deg)' : 'none' }}>+</span>
                   </button>
-                  <div className="faq-a">
-                    {faq.a}
+                  <div
+                    className="faq-a"
+                    style={{
+                      maxHeight: openFaq === idx ? '800px' : '0px',
+                      overflow: 'hidden',
+                      visibility: openFaq === idx ? 'visible' : 'hidden',
+                      opacity: openFaq === idx ? 1 : 0,
+                      paddingBottom: openFaq === idx ? '22px' : '0px',
+                      transition: 'max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease, opacity 0.25s ease, visibility 0.35s'
+                    }}
+                  >
+                    <p style={{ margin: 0 }}>{faq.a}</p>
                   </div>
                 </div>
               ))}

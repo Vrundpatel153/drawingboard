@@ -1614,12 +1614,19 @@ section {
 }
 
 .faq-a {
+  max-height: 0;
   overflow: hidden;
-  transition: max-height 0.35s ease, padding 0.35s ease;
+  visibility: hidden;
+  opacity: 0;
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease, opacity 0.25s ease, visibility 0.35s;
   padding: 0 24px;
+  box-sizing: border-box;
 }
 
 .faq-item.open .faq-a {
+  max-height: 1200px;
+  visibility: visible;
+  opacity: 1;
   padding: 0 24px 22px 24px;
 }
 

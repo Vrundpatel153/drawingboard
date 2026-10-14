@@ -348,9 +348,22 @@ export default function PackagingPage() {
         .pp-page .faq-item { border-bottom: 1px solid var(--ink-soft); opacity: 0.9; }
         .pp-page .faq-q { width: 100%; text-align: left; background: none; border: none; padding: 20px 4px; font-family: 'Fraunces', serif; font-size: 17.5px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: var(--ink); gap: 16px; }
         .pp-page .faq-q .plus { font-family: 'IBM Plex Mono', monospace; font-size: 18px; color: var(--marker); transition: transform .2s; flex-shrink: 0; }
-        .pp-page .faq-item.open .plus { transform: rotate(45deg); }
-        .pp-page .faq-a { max-height: 0; overflow: hidden; transition: max-height .25s ease; }
-        .pp-page .faq-a p { padding: 0 4px 20px; font-size: 14.5px; color: var(--ink-soft); max-width: 700px; }
+        .pp-page .faq-a {
+          max-height: 0;
+          overflow: hidden;
+          visibility: hidden;
+          opacity: 0;
+          padding: 0 4px;
+          transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease, opacity 0.25s ease, visibility 0.35s;
+          box-sizing: border-box;
+        }
+        .pp-page .faq-item.open .faq-a {
+          max-height: 1000px;
+          visibility: visible;
+          opacity: 1;
+          padding: 0 4px 20px;
+        }
+        .pp-page .faq-a p { padding: 0; font-size: 14.5px; color: var(--ink-soft); max-width: 700px; line-height: 1.6; margin: 0; }
 
         .pp-page .lead-magnet { background: var(--ink); color: var(--paper); }
         .pp-page .lead-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
@@ -1045,7 +1058,12 @@ export default function PackagingPage() {
                       role="region"
                       aria-labelledby={`faq-q-${idx}`}
                       style={{
-                        maxHeight: openFaq === idx ? `${faqRefs.current[idx]?.scrollHeight}px` : '0px'
+                        maxHeight: openFaq === idx ? `${(faqRefs.current[idx]?.scrollHeight || 260) + 40}px` : '0px',
+                        overflow: 'hidden',
+                        visibility: openFaq === idx ? 'visible' : 'hidden',
+                        opacity: openFaq === idx ? 1 : 0,
+                        paddingBottom: openFaq === idx ? '20px' : '0px',
+                        transition: 'max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease, opacity 0.25s ease, visibility 0.35s'
                       }}
                     >
                       <p>{faq.a}</p>

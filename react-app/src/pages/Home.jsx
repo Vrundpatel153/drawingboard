@@ -6,6 +6,7 @@ import RegistrationMarks from '../components/RegistrationMarks';
 import MoreServicesSection from '../components/MoreServicesSection';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import ArrowIcon from '../components/ArrowIcon';
+import ClientStoriesTicker from '../components/ClientStoriesTicker';
 import { DISCUSS_URL } from '../utils/siteConfig';
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -13,6 +14,7 @@ import { DISCUSS_URL } from '../utils/siteConfig';
    ───────────────────────────────────────────────────────────────────────────── */
 export default function Home() {
   const [openFaq, setOpenFaq] = useState(null);
+  const [openQuickFaq, setOpenQuickFaq] = useState(null);
   const faqRefs = useRef([]);
   const [currency, setCurrency] = useState('INR');
   const [growthSlide, setGrowthSlide] = useState(0);
@@ -500,7 +502,8 @@ export default function Home() {
         /* FAQ Accordion */
         .bp-faq-item { border: 1px solid var(--ink); background: var(--card); margin-bottom: 12px; }
         .bp-faq-q { width: 100%; padding: 18px 24px; background: transparent; border: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; text-align: left; font-family: 'Fraunces', serif; font-size: 17px; font-weight: 600; color: var(--ink); cursor: pointer; }
-        .bp-faq-a { padding: 0 24px 18px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+        .bp-faq-a { max-height: 0; overflow: hidden; visibility: hidden; opacity: 0; padding: 0 24px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease, opacity 0.25s ease, visibility 0.35s; box-sizing: border-box; }
+        .bp-faq-item.open .bp-faq-a { max-height: 1000px; visibility: visible; opacity: 1; padding: 0 24px 18px; }
         .bp-plus { font-size: 18px; color: var(--ink-soft); transition: transform 0.25s ease; }
         .bp-faq-item.open .bp-plus { transform: rotate(45deg); }
 
@@ -736,12 +739,13 @@ export default function Home() {
         /* FAQ Section Styles */
         .bp-faq-section { background: var(--paper); border-top: 1px solid var(--ink); padding: 80px 0; }
         .bp-faq-list { margin-top: 24px; }
-        .bp-faq-item { border-bottom: 1px solid rgba(27, 27, 23, 0.2); }
-        .bp-faq-q { width: 100%; text-align: left; background: none; border: none; padding: 22px 4px; font-family: 'Fraunces', serif; font-size: 19px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: var(--ink); gap: 16px; font-weight: 500; }
-        .bp-faq-q .plus { font-family: 'IBM Plex Mono', monospace; font-size: 20px; color: var(--marker); transition: transform .25s ease; flex-shrink: 0; }
-        .bp-faq-item.open .plus { transform: rotate(45deg); }
-        .bp-faq-a { max-height: 0; overflow: hidden; transition: max-height .3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .bp-faq-a p { padding: 0 4px 22px; font-size: 15px; color: var(--ink-soft); max-width: 760px; line-height: 1.65; margin: 0; }
+        .bp-faq-list .bp-faq-item { border-bottom: 1px solid rgba(27, 27, 23, 0.2); border-left: none; border-right: none; border-top: none; background: transparent; margin-bottom: 0; }
+        .bp-faq-list .bp-faq-q { width: 100%; text-align: left; background: none; border: none; padding: 22px 4px; font-family: 'Fraunces', serif; font-size: 19px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: var(--ink); gap: 16px; font-weight: 500; }
+        .bp-faq-list .bp-faq-q .plus { font-family: 'IBM Plex Mono', monospace; font-size: 20px; color: var(--marker); transition: transform .25s ease; flex-shrink: 0; }
+        .bp-faq-list .bp-faq-item.open .plus { transform: rotate(45deg); }
+        .bp-faq-list .bp-faq-a { max-height: 0; overflow: hidden; visibility: hidden; opacity: 0; padding: 0 4px; transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease, opacity 0.25s ease, visibility 0.35s; box-sizing: border-box; }
+        .bp-faq-list .bp-faq-item.open .bp-faq-a { max-height: 1000px; visibility: visible; opacity: 1; padding: 0 4px 22px; }
+        .bp-faq-list .bp-faq-a p { padding: 0; font-size: 15px; color: var(--ink-soft); max-width: 760px; line-height: 1.65; margin: 0; }
       `}</style>
 
       <main className="bp-full-page">
@@ -1512,10 +1516,10 @@ export default function Home() {
           <div className="wrap">
             <div className="bp-sp-head">
               <div>
-                <div className="bp-eyebrow mono">SOCIAL PROOF</div>
-                <h2>Real founders. Real results. <em>In their own words.</em></h2>
+                <div className="bp-eyebrow mono">OUR CLIENTS // SOCIAL PROOF</div>
+                <h2>Real results. Real client stories.</h2>
               </div>
-              <div className="bp-sp-head-sub">VERIFIED FEEDBACK &amp; CASE EVIDENCE</div>
+              <div className="bp-sp-head-sub">HEAR WHAT OUR CLIENTS HAVE TO SAY · VERIFIED RESULTS &amp; EXPERIENCE</div>
             </div>
 
             {/* ROW 1: WHATSAPP SCREENSHOTS HORIZONTAL SLIDER */}
@@ -1632,30 +1636,13 @@ export default function Home() {
               </div>
             </div>
 
-            {/* ROW 3: FOUNDER QUOTES AUTO INFINITE MARQUEE */}
+            {/* ROW 3: FOUNDER STORIES & TESTIMONIALS AUTO SCROLLING TICKER */}
             <div className="bp-sp-row">
               <div className="bp-sp-row-head">
-                <div className="bp-sp-row-title">03 // Founder Quotes</div>
+                <div className="bp-sp-row-title">03 // Real Founder Stories &amp; Testimonials</div>
               </div>
 
-              <div className="bp-sp-wa-marquee-wrap">
-                <div className="bp-sp-wa-marquee-track" style={{ animationDuration: '40s' }}>
-                  {[...founderQuotes, ...founderQuotes].map((q, idx) => (
-                    <div key={idx} className="bp-sp-card bp-sp-quote-card" style={{ flexShrink: 0 }}>
-                      <div className="bp-sp-stars">★★★★★</div>
-                      <span className="bp-sp-qs">"</span>
-                      <blockquote>{q.text}</blockquote>
-                      <div className="bp-sp-quote-who">
-                        <div className="bp-sp-quote-av">{q.av}</div>
-                        <div>
-                          <div className="bp-sp-qname">{q.name}</div>
-                          <div className="bp-sp-qrole">{q.role}</div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <ClientStoriesTicker />
             </div>
 
             {/* Stats strip */}
@@ -2095,16 +2082,24 @@ export default function Home() {
 
             <div>
               {faqs.map((faq, idx) => (
-                <div key={idx} className={`bp-faq-item${openFaq === idx ? ' open' : ''}`}>
-                  <button className="bp-faq-q" onClick={() => toggleFaq(idx)}>
+                <div key={idx} className={`bp-faq-item${openQuickFaq === idx ? ' open' : ''}`}>
+                  <button className="bp-faq-q" onClick={() => setOpenQuickFaq(openQuickFaq === idx ? null : idx)}>
                     <span>{faq.q}</span>
-                    <span className="bp-plus">+</span>
+                    <span className="bp-plus" style={{ transform: openQuickFaq === idx ? 'rotate(45deg)' : 'none' }}>+</span>
                   </button>
-                  {openFaq === idx && (
-                    <div className="bp-faq-a">
-                      <p>{faq.a}</p>
-                    </div>
-                  )}
+                  <div
+                    className="bp-faq-a"
+                    style={{
+                      maxHeight: openQuickFaq === idx ? '500px' : '0px',
+                      overflow: 'hidden',
+                      visibility: openQuickFaq === idx ? 'visible' : 'hidden',
+                      opacity: openQuickFaq === idx ? 1 : 0,
+                      paddingBottom: openQuickFaq === idx ? '18px' : '0px',
+                      transition: 'max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease, opacity 0.25s ease, visibility 0.35s'
+                    }}
+                  >
+                    <p>{faq.a}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -2233,7 +2228,12 @@ export default function Home() {
                     role="region"
                     aria-labelledby={`bp-faq-q-${idx}`}
                     style={{
-                      maxHeight: openFaq === idx ? `${faqRefs.current[idx]?.scrollHeight || 300}px` : '0px'
+                      maxHeight: openFaq === idx ? `${(faqRefs.current[idx]?.scrollHeight || 260) + 40}px` : '0px',
+                      overflow: 'hidden',
+                      visibility: openFaq === idx ? 'visible' : 'hidden',
+                      opacity: openFaq === idx ? 1 : 0,
+                      paddingBottom: openFaq === idx ? '22px' : '0px',
+                      transition: 'max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease, opacity 0.25s ease, visibility 0.35s'
                     }}
                   >
                     <p>{faq.a}</p>
