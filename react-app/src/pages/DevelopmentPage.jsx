@@ -3162,29 +3162,13 @@ export default function DevelopmentPage() {
               <div className="bp-sp-head-sub">HEAR WHAT OUR CLIENTS HAVE TO SAY · VERIFIED RESULTS &amp; EXPERIENCE</div>
             </div>
 
-            {/* ROW 1: WHATSAPP SCREENSHOTS HORIZONTAL SLIDER */}
+            {/* ROW 1: FOUNDER STORIES & TESTIMONIALS AUTO SCROLLING TICKER */}
             <div className="bp-sp-row">
               <div className="bp-sp-row-head">
-                <div className="bp-sp-row-title">01 // WhatsApp &amp; Client Screenshots</div>
+                <div className="bp-sp-row-title">01 // Real Founder Stories &amp; Testimonials</div>
               </div>
 
-              <div className="bp-sp-slider">
-                {whatsappScreenshots.map((imgSrc, idx) => (
-                  <div key={idx} className="bp-sp-wa-img-card bp-sp-card">
-                    <div className="bp-sp-wa-img-header">
-                      <span>WHATSAPP</span>
-                      <span>VERIFIED · {idx + 1}/8</span>
-                    </div>
-                    <div className="bp-sp-wa-img-body">
-                      <img
-                        src={imgSrc}
-                        alt={`WhatsApp Client Review ${idx + 1}`}
-                        loading="lazy"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <ClientStoriesTicker />
             </div>
 
             {/* ROW 2: VIDEO TESTIMONIALS */}
@@ -3276,13 +3260,29 @@ export default function DevelopmentPage() {
               </div>
             </div>
 
-            {/* ROW 3: FOUNDER STORIES & TESTIMONIALS AUTO SCROLLING TICKER */}
+            {/* ROW 3: WHATSAPP SCREENSHOTS HORIZONTAL SLIDER */}
             <div className="bp-sp-row">
               <div className="bp-sp-row-head">
-                <div className="bp-sp-row-title">03 // Real Founder Stories &amp; Testimonials</div>
+                <div className="bp-sp-row-title">03 // WhatsApp &amp; Client Screenshots</div>
               </div>
 
-              <ClientStoriesTicker />
+              <div className="bp-sp-slider">
+                {whatsappScreenshots.map((imgSrc, idx) => (
+                  <div key={idx} className="bp-sp-wa-img-card bp-sp-card">
+                    <div className="bp-sp-wa-img-header">
+                      <span>WHATSAPP</span>
+                      <span>VERIFIED · {idx + 1}/8</span>
+                    </div>
+                    <div className="bp-sp-wa-img-body">
+                      <img
+                        src={imgSrc}
+                        alt={`WhatsApp Client Review ${idx + 1}`}
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Stats strip */}

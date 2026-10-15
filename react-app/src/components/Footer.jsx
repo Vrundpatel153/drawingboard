@@ -46,8 +46,8 @@ export default function Footer() {
               Discuss Your Project
             </a>
             <a href={MAILTO_URL}>Email Studio</a>
-            <a href="https://twitter.com/thedrawingboard" target="_blank" rel="noopener noreferrer">Twitter / X</a>
-            <a href="https://linkedin.com/company/thedrawingboard" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://www.instagram.com/drawingboard.co/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.linkedin.com/in/vinayak-agarwal-05497a113/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
         </div>
         <div className="foot-bottom" style={{ opacity: 1, visibility: 'visible' }}>

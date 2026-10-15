@@ -228,9 +228,8 @@ export default function AdminWorkDetail({ work }) {
             </div>
             <div className="awd-footer-col">
               <h4>Connect</h4>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">Linkedin</a>
-              <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer">Dribbble</a>
+              <a href="https://www.instagram.com/drawingboard.co/" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://www.linkedin.com/in/vinayak-agarwal-05497a113/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
               <a href="mailto:dandelionpa7@gmail.com">Email Us</a>
             </div>
           </div>

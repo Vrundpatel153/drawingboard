@@ -45,7 +45,12 @@ export const TWITTER_HANDLE =
   import.meta.env.VITE_TWITTER_HANDLE || '@thedrawingboard';
 
 export const INSTAGRAM_HANDLE =
-  import.meta.env.VITE_INSTAGRAM_HANDLE || 'thedrawingboard.studio';
+  import.meta.env.VITE_INSTAGRAM_HANDLE || 'drawingboard.co';
+
+export const INSTAGRAM_URL = 'https://www.instagram.com/drawingboard.co/';
+
+export const LINKEDIN_URL =
+  'https://www.linkedin.com/in/vinayak-agarwal-05497a113/';
 
 export const CONTACT_EMAIL = 'dandelionpa7@gmail.com';
 
@@ -159,9 +164,8 @@ export const ORGANIZATION_SCHEMA = {
   logo: `${SITE_URL}/favicon.svg`,
   description: DEFAULT_DESCRIPTION,
   sameAs: [
-    // Add social profile URLs here after deployment
-    // 'https://instagram.com/thedrawingboard.studio',
-    // 'https://linkedin.com/company/thedrawingboard',
+    'https://www.instagram.com/drawingboard.co/',
+    'https://www.linkedin.com/in/vinayak-agarwal-05497a113/',
   ],
   contactPoint: {
     '@type': 'ContactPoint',

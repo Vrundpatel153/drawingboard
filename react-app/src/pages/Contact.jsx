@@ -794,14 +794,11 @@ export default function Contact() {
                   <div className="info-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 20px' }}>
                     <span style={{ fontWeight: 600, color: 'var(--ink)' }}>Follow Us</span>
                     <div className="val" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
-                      <a href="https://instagram.com/thedrawingboard.studio" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--pine)', textDecoration: 'none', fontSize: '12.5px', fontWeight: 600 }}>
+                      <a href="https://www.instagram.com/drawingboard.co/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--pine)', textDecoration: 'none', fontSize: '12.5px', fontWeight: 600 }}>
                         Instagram ↗
                       </a>
-                      <a href="https://linkedin.com/company/thedrawingboard" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--pine)', textDecoration: 'none', fontSize: '12.5px', fontWeight: 600 }}>
+                      <a href="https://www.linkedin.com/in/vinayak-agarwal-05497a113/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--pine)', textDecoration: 'none', fontSize: '12.5px', fontWeight: 600 }}>
                         LinkedIn ↗
-                      </a>
-                      <a href="https://dribbble.com/thedrawingboard" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--pine)', textDecoration: 'none', fontSize: '12.5px', fontWeight: 600 }}>
-                        Dribbble ↗
                       </a>
                     </div>
                   </div>

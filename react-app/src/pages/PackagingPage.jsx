@@ -143,8 +143,10 @@ export default function PackagingPage() {
         @media (max-width: 920px) { .pp-page .hero-grid { grid-template-columns: 1fr; } }
         .pp-page .hero-sub { font-size: 18px; color: var(--ink-soft); max-width: 520px; margin-bottom: 30px; }
         .pp-page .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-bottom: 20px; }
-        .pp-page .btn-primary { background: var(--pine); color: var(--paper); padding: 15px 26px; font-size: 14.5px; font-weight: 600; border-radius: var(--radius); display: inline-flex; align-items: center; gap: 8px; transition: background .15s; border: none; cursor: pointer; text-decoration: none; }
-        .pp-page .btn-primary:hover { background: var(--pine-deep); }
+        .pp-page .btn-primary { background: var(--pine); color: var(--paper); padding: 14px 24px; font-size: 14px; font-weight: 600; border-radius: var(--radius); display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: background .15s; border: 1.5px solid var(--pine); cursor: pointer; text-decoration: none; min-height: 48px; min-width: 220px; box-sizing: border-box; text-align: center; }
+        .pp-page .btn-primary:hover { background: var(--pine-deep); border-color: var(--pine-deep); }
+        .pp-page .btn-secondary-cta { background: transparent; color: var(--ink); padding: 14px 24px; font-size: 14px; font-weight: 600; border-radius: var(--radius); display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.15s ease; border: 1.5px solid var(--ink); cursor: pointer; text-decoration: none; min-height: 48px; min-width: 220px; box-sizing: border-box; text-align: center; }
+        .pp-page .btn-secondary-cta:hover { background: var(--ink); color: var(--paper); }
         .pp-page .btn-link { font-size: 14.5px; border-bottom: 1px solid currentColor; padding-bottom: 2px; color: var(--ink-soft); text-decoration: none; }
         .pp-page .price-note { font-size: 13px; color: var(--ink-soft); }
         .pp-page .price-note b { color: var(--ink); }

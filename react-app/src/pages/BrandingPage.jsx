@@ -255,8 +255,10 @@ export default function BrandingPage() {
         .bp-hero-sub { font-size: 17.5px; color: var(--ink-soft); max-width: 540px; margin-bottom: 14px; line-height: 1.6; }
         
         .bp-cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin: 24px 0 14px; }
-        .bp-btn-primary { background: var(--pine); color: var(--paper); padding: 14px 24px; font-size: 14px; font-weight: 600; border-radius: var(--radius); display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.15s; text-decoration: none; min-height: 48px; border: 1.5px solid var(--pine); box-sizing: border-box; text-align: center; }
+        .bp-btn-primary { background: var(--pine); color: var(--paper); padding: 14px 24px; font-size: 14px; font-weight: 600; border-radius: var(--radius); display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.15s; text-decoration: none; min-height: 48px; min-width: 220px; border: 1.5px solid var(--pine); box-sizing: border-box; text-align: center; }
         .bp-btn-primary:hover { background: var(--pine-deep); border-color: var(--pine-deep); }
+        .bp-btn-secondary { background: transparent; color: var(--ink); padding: 14px 24px; font-size: 14px; font-weight: 600; border-radius: var(--radius); display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.15s ease; text-decoration: none; min-height: 48px; min-width: 220px; border: 1.5px solid var(--ink); box-sizing: border-box; text-align: center; cursor: pointer; }
+        .bp-btn-secondary:hover { background: var(--ink); color: var(--paper); }
         .btn-outline-light { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border: 1.5px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.04); color: var(--paper); font-size: 14px; font-weight: 600; border-radius: var(--radius); transition: all 0.15s; text-decoration: none; min-height: 48px; box-sizing: border-box; text-align: center; }
         .btn-outline-light:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.6); }
         .bp-btn-link { font-size: 14.5px; border-bottom: 1px solid currentColor; padding-bottom: 2px; color: var(--ink-soft); text-decoration: none; display: inline-block; width: fit-content; max-width: 100%; transition: color 0.15s; }
@@ -636,7 +638,7 @@ export default function BrandingPage() {
           .bp-hero-sub { font-size: 15.5px !important; margin-bottom: 12px !important; }
           .bp-hero-grid { grid-template-columns: 1fr !important; gap: 24px !important; margin-top: 24px !important; }
           .bp-cta-row { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
-          .bp-cta-row .bp-btn-primary { justify-content: center !important; width: 100% !important; text-align: center !important; }
+          .bp-cta-row .bp-btn-primary, .bp-cta-row .bp-btn-secondary { justify-content: center !important; width: 100% !important; min-width: 0 !important; text-align: center !important; }
           .bp-cta-row .bp-btn-link { width: fit-content !important; align-self: flex-start !important; }
           .bp-annot-card { padding: 20px 16px !important; }
           .bp-annot-row {
@@ -669,6 +671,7 @@ export default function BrandingPage() {
           .system-sequence { display: grid !important; grid-template-columns: 1fr !important; width: 100% !important; }
           .seq-stage { min-width: 0 !important; width: 100% !important; border-right: none !important; border-bottom: 1px dashed var(--paper-line) !important; padding: 18px 16px !important; }
           .seq-stage:last-child { border-bottom: none !important; }
+          .seq-stage:not(:last-child)::after { display: none !important; content: none !important; }
           
           /* Selected Brand Systems horizontal slider on mobile */
           .case-grid {
@@ -1522,29 +1525,13 @@ export default function BrandingPage() {
               <div className="bp-sp-head-sub">HEAR WHAT OUR CLIENTS HAVE TO SAY · VERIFIED RESULTS &amp; EXPERIENCE</div>
             </div>
 
-            {/* ROW 1: WHATSAPP SCREENSHOTS HORIZONTAL SLIDER */}
+            {/* ROW 1: FOUNDER STORIES & TESTIMONIALS AUTO SCROLLING TICKER */}
             <div className="bp-sp-row">
               <div className="bp-sp-row-head">
-                <div className="bp-sp-row-title">01 // WhatsApp &amp; Client Screenshots</div>
+                <div className="bp-sp-row-title">01 // Real Founder Stories &amp; Testimonials</div>
               </div>
 
-              <div className="bp-sp-slider">
-                {whatsappScreenshots.map((imgSrc, idx) => (
-                  <div key={idx} className="bp-sp-wa-img-card bp-sp-card">
-                    <div className="bp-sp-wa-img-header">
-                      <span>WHATSAPP</span>
-                      <span>VERIFIED · {idx + 1}/8</span>
-                    </div>
-                    <div className="bp-sp-wa-img-body">
-                      <img
-                        src={imgSrc}
-                        alt={`WhatsApp Client Review ${idx + 1}`}
-                        loading="lazy"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <ClientStoriesTicker />
             </div>
 
             {/* ROW 2: VIDEO TESTIMONIALS */}
@@ -1636,13 +1623,29 @@ export default function BrandingPage() {
               </div>
             </div>
 
-            {/* ROW 3: FOUNDER STORIES & TESTIMONIALS AUTO SCROLLING TICKER */}
+            {/* ROW 3: WHATSAPP SCREENSHOTS HORIZONTAL SLIDER */}
             <div className="bp-sp-row">
               <div className="bp-sp-row-head">
-                <div className="bp-sp-row-title">03 // Real Founder Stories &amp; Testimonials</div>
+                <div className="bp-sp-row-title">03 // WhatsApp &amp; Client Screenshots</div>
               </div>
 
-              <ClientStoriesTicker />
+              <div className="bp-sp-slider">
+                {whatsappScreenshots.map((imgSrc, idx) => (
+                  <div key={idx} className="bp-sp-wa-img-card bp-sp-card">
+                    <div className="bp-sp-wa-img-header">
+                      <span>WHATSAPP</span>
+                      <span>VERIFIED · {idx + 1}/8</span>
+                    </div>
+                    <div className="bp-sp-wa-img-body">
+                      <img
+                        src={imgSrc}
+                        alt={`WhatsApp Client Review ${idx + 1}`}
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Stats strip */}
