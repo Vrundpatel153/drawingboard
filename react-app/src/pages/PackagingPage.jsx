@@ -28,7 +28,28 @@ export default function PackagingPage() {
 
   const handleChecklistSubmit = (e) => {
     e.preventDefault();
-    setSubmitMessage('Connect this form to send the checklist');
+    setSubmitMessage('Checklist request received! We will deliver the packaging readiness checklist to your inbox shortly.');
+    try {
+      fetch("https://formsubmit.co/ajax/25c2139e28176433a33351a4cfeeac2b", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `Packaging Readiness Checklist Request: ${checklistBrand || 'Brand'} (${checklistEmail})`,
+          _template: "table",
+          _captcha: "false",
+          _replyto: checklistEmail,
+          _cc: "vrundpatel153@gmail.com",
+          "Work Email": checklistEmail,
+          "Brand Name": checklistBrand || 'Not specified',
+          "Source Page": "/packaging"
+        })
+      }).catch(err => console.warn('Checklist dispatch error:', err));
+    } catch (err) {
+      console.warn('Checklist submit error:', err);
+    }
   };
 
   const faqs = [

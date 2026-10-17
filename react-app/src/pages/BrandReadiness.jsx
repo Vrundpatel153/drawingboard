@@ -782,7 +782,7 @@ export default function BrandReadiness() {
       `Step 8 (Founder Vision of Success): ${answers.outcome || 'N/A'}`,
       ``,
       `------------------------------------------------------------`,
-      `Submitted via thedrawingboard.in/brand-readiness`
+      `Submitted via drawingsboard.com/brand-readiness`
     ].filter(Boolean).join('\n');
   };
 
@@ -824,6 +824,8 @@ export default function BrandReadiness() {
         _subject: `New Project Scope Brief: ${lead.brand || 'Brand'} — ${lead.first || 'Client'} (Score: ${scoreVal}/100)`,
         _template: "table",
         _captcha: "false",
+        _replyto: lead.email,
+        _cc: "vrundpatel153@gmail.com",
         "Client Name": lead.first || 'N/A',
         "Work Email": lead.email || 'N/A',
         "Brand / Company": lead.brand || 'N/A',

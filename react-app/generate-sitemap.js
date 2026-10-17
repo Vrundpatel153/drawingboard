@@ -11,7 +11,7 @@
 import fs   from 'fs';
 import path from 'path';
 
-const SITE_URL  = process.env.VITE_SITE_URL || 'https://drawingsboards.com';
+const SITE_URL  = process.env.VITE_SITE_URL || 'https://drawingsboard.com';
 const publicDir = path.resolve('./public');
 const distDir   = path.resolve('./dist');
 

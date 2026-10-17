@@ -46,7 +46,7 @@ export default function PrivacyPolicy() {
               <div className="annot-title">01. INTRODUCTION</div>
               <h3 style={{ fontSize: '22px', marginBottom: '14px', color: 'var(--ink)' }}>Welcome to The Drawing Board</h3>
               <p style={{ fontSize: '15px', color: 'var(--ink-soft)', lineHeight: 1.7 }}>
-                Welcome to The Drawing Board! We are committed to protecting the privacy and security of your personal information. This Privacy Policy outlines how we collect, use, and safeguard your data when you use our website (<a href="https://thedrawingboard.in" style={{ color: 'var(--pine)', textDecoration: 'underline' }}>https://thedrawingboard.in</a>) or our services.
+                Welcome to The Drawing Board! We are committed to protecting the privacy and security of your personal information. This Privacy Policy outlines how we collect, use, and safeguard your data when you use our website (<a href="https://drawingsboard.com" style={{ color: 'var(--pine)', textDecoration: 'underline' }}>https://drawingsboard.com</a>) or our services.
               </p>
             </div>
 

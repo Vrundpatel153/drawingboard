@@ -43,7 +43,7 @@ export default function WorkDetail() {
   useSEO({
     title: `${project.title} — Case Study | The Drawing Board`,
     description: project.description,
-    ogImage: project.coverImage?.startsWith('http') ? project.coverImage : (project.coverImage ? `https://drawingsboards.com${project.coverImage}` : undefined),
+    ogImage: project.coverImage?.startsWith('http') ? project.coverImage : (project.coverImage ? `https://drawingsboard.com${project.coverImage}` : undefined),
     ogType: 'article'
   });
 

@@ -221,6 +221,27 @@ export default function Home() {
   const handleLeadSubmit = (e) => {
     e.preventDefault();
     setLeadSubmitted(true);
+    try {
+      fetch("https://formsubmit.co/ajax/25c2139e28176433a33351a4cfeeac2b", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `Brand Readiness Checklist Request: ${leadFormData.brand || 'Brand'} (${leadFormData.email})`,
+          _template: "table",
+          _captcha: "false",
+          _replyto: leadFormData.email,
+          _cc: "vrundpatel153@gmail.com",
+          "Work Email": leadFormData.email,
+          "Brand Name": leadFormData.brand,
+          "Source Page": "Home Page Brand Audit"
+        })
+      }).catch(err => console.warn('Lead dispatch error:', err));
+    } catch (err) {
+      console.warn('Lead submit error:', err);
+    }
   };
 
   return (
@@ -2134,7 +2155,7 @@ export default function Home() {
               <form className="lead-form" onSubmit={handleLeadSubmit}>
                 {leadSubmitted ? (
                   <div style={{ color: '#8EC4B3', fontSize: '15px', fontFamily: 'IBM Plex Mono, monospace', padding: '20px 0' }}>
-                    ✓ Thank you! Audit checklist requested. Connect your email workflow to receive it automatically.
+                    ✓ Thank you! Audit checklist requested. We will deliver the checklist directly to your inbox shortly.
                   </div>
                 ) : (
                   <>

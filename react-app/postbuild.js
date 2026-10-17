@@ -6,7 +6,7 @@ const publicDir = path.resolve('./public');
 const projectsDataPath = path.resolve('./src/data/projectsData.json');
 const blogsDataPath = path.resolve('./src/data/blogsData.json');
 
-const DOMAIN = 'https://drawingsboards.com';
+const DOMAIN = 'https://drawingsboard.com';
 
 const FAQ_BRANDING = [
   {
@@ -594,6 +594,12 @@ async function run() {
       route: '/quote',
       title: 'Instant Sprint Quote & Brand Audit | The Drawing Board',
       description: 'Calculate your brand, packaging, or digital sprint quote with our interactive Brand Readiness Engine.',
+      schemas: []
+    },
+    {
+      route: '/thank-you',
+      title: 'Inquiry Received | The Drawing Board',
+      description: 'Thank you for your project inquiry. Founder Vrund Patel reviews every brief within 24 hours.',
       schemas: []
     }
   ];

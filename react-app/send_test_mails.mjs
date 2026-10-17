@@ -60,7 +60,7 @@ Step 7 (Strategic Investment Budget): ₹4.75–7 lakh ($4,960–$7,500)
 Step 8 (Founder Vision of Success): We want to stand on luxury departmental shelves beside Aesop and Le Labo with undeniable distinction and justify our $85 price point.
 
 ------------------------------------------------------------
-Submitted via thedrawingboard.in/brand-readiness`
+Submitted via drawingsboard.com/brand-readiness`
   },
   {
     _subject: "New Project Scope Brief: Altitude Craft Roasters — Rohan Mehta (Score: 74/100)",
@@ -120,7 +120,7 @@ Step 7 (Strategic Investment Budget): ₹7–10 lakh ($7,500–$10,500)
 Step 8 (Founder Vision of Success): When a shopper scrolls quick commerce or walks a grocery aisle, our cans should register instantly at glance distance and convey premium single-origin craft.
 
 ------------------------------------------------------------
-Submitted via thedrawingboard.in/brand-readiness`
+Submitted via drawingsboard.com/brand-readiness`
   },
   {
     _subject: "New Project Scope Brief: Atelier Nouvelle — Elena Rostova (Score: 62/100)",
@@ -180,7 +180,7 @@ Step 7 (Strategic Investment Budget): ₹10 lakh+ ($10,500+)
 Step 8 (Founder Vision of Success): Transform our early DTC identity into an editorial European fashion house with sub-second digital commerce and high repeat customer retention.
 
 ------------------------------------------------------------
-Submitted via thedrawingboard.in/brand-readiness`
+Submitted via drawingsboard.com/brand-readiness`
   },
   {
     _subject: "New Project Scope Brief: Synapse Hardware — Marcus Vance (Score: 79/100)",
@@ -240,7 +240,7 @@ Step 7 (Strategic Investment Budget): ₹7–10 lakh ($7,500–$10,500)
 Step 8 (Founder Vision of Success): Establish a disciplined, Braun-inspired design language that positions us as a thoughtful computing instrument rather than a disposable gadget.
 
 ------------------------------------------------------------
-Submitted via thedrawingboard.in/brand-readiness`
+Submitted via drawingsboard.com/brand-readiness`
   },
   {
     _subject: "New Project Scope Brief: The Nilgiri Estate — Priya Nambiar (Score: 72/100)",
@@ -300,7 +300,7 @@ Step 7 (Strategic Investment Budget): ₹4.75–7 lakh ($4,960–$7,500)
 Step 8 (Founder Vision of Success): Create an enduring botanical identity that commands luxury resort ADRs and evokes timeless hillside serenity across all physical and digital touchpoints.
 
 ------------------------------------------------------------
-Submitted via thedrawingboard.in/brand-readiness`
+Submitted via drawingsboard.com/brand-readiness`
   }
 ];
 

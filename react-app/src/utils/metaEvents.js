@@ -125,7 +125,7 @@ async function sendConversionsApiEvent({
     const hashedLn = userData.lastName ? await sha256(userData.lastName) : undefined;
 
     const currentUrl =
-      eventSourceUrl || (typeof window !== 'undefined' ? window.location.href : 'https://drawingsboards.com/');
+      eventSourceUrl || (typeof window !== 'undefined' ? window.location.href : 'https://drawingsboard.com/');
 
     const userPayload = {
       client_user_agent: typeof navigator !== 'undefined' ? navigator.userAgent : undefined,
@@ -264,7 +264,7 @@ function pushToDataLayer(eventName, customData = {}, eventId) {
  */
 export async function trackMetaEvent(eventName, customData = {}, userData = {}) {
   const eventId = generateEventId(eventName.toLowerCase());
-  const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://drawingsboards.com/';
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://drawingsboard.com/';
 
   // 1. Google Tag Manager dataLayer + GA4 dispatch
   pushToDataLayer(eventName, customData, eventId);

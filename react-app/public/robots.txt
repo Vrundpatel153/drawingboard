@@ -5,4 +5,4 @@ Allow: /
 Disallow: /admin
 
 # Sitemap
-Sitemap: https://drawingsboards.com/sitemap.xml
+Sitemap: https://drawingsboard.com/sitemap.xml

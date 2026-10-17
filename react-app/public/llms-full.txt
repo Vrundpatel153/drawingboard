@@ -1,7 +1,7 @@
 # The Drawing Board — Complete Studio Knowledge Base & LLM Documentation
 
 > Official comprehensive documentation for AI search engines, language models, and crawlers.
-> Canonical URL: https://drawingsboards.com
+> Canonical URL: https://drawingsboard.com
 
 ---
 
@@ -166,7 +166,7 @@ Every engagement is governed by our proprietary 5-stage sprint methodology, ensu
 
 ## 6. Contact & Engagement Details
 
-- **Studio Website:** https://drawingsboards.com
+- **Studio Website:** https://drawingsboard.com
 - **Principal & Founder:** Vrund Patel
 - **Studio Email:** dandelionpa7@gmail.com
 - **Direct WhatsApp:** +91 94288 59768 (https://wa.me/919428859768)

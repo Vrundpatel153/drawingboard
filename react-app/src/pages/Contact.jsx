@@ -186,7 +186,7 @@ export default function Contact() {
         form.message || 'Ready to start project discussion.',
         ``,
         `---`,
-        `Sent via drawingsboards.com/contact`
+        `Sent via drawingsboard.com/contact`
       ].join('\n');
     }
 
@@ -220,13 +220,52 @@ export default function Contact() {
       form.message || 'Ready to start project discussion.',
       ``,
       `----------------------------------------`,
-      `Submitted via drawingsboards.com/contact`
+      `Submitted via drawingsboard.com/contact`
     ].join('\n');
+  };
+
+  const dispatchFormSubmitLead = (channel) => {
+    try {
+      fetch("https://formsubmit.co/ajax/25c2139e28176433a33351a4cfeeac2b", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `New Project Inquiry: ${form.name} — ${form.companyName || 'New Client'}`,
+          _template: "table",
+          _captcha: "false",
+          _replyto: form.email,
+          _cc: "vrundpatel153@gmail.com",
+          "Client Name": form.name,
+          "Client Email": form.email,
+          "Phone Number": form.phone || 'N/A',
+          "WhatsApp Number": form.whatsapp || 'N/A',
+          "Company / Brand": form.companyName || 'N/A',
+          "Role": form.role || 'N/A',
+          "Website / Social": form.website || 'N/A',
+          "Annual Revenue": form.annualRevenue || 'N/A',
+          "Team Structure": form.teamStructure || 'N/A',
+          "Primary Challenge": form.primaryChallenge || 'N/A',
+          "Services Requested": form.services.join(', '),
+          "Allocated Budget": form.budget,
+          "Project Start Timeline": form.timeline,
+          "Message / Brief": form.message || 'Ready to start project discussion.',
+          "Preferred Channel": channel
+        })
+      }).catch(err => console.warn('Background FormSubmit mail error:', err));
+    } catch (e) {
+      // non-blocking
+    }
   };
 
   const handleSendWhatsApp = () => {
     const msg = buildBriefText('whatsapp');
     const waUrl = `https://wa.me/919428859768?text=${encodeURIComponent(msg)}`;
+
+    // Dispatch background FormSubmit email to studio
+    dispatchFormSubmitLead('WhatsApp');
 
     // 1. Dispatch Meta Conversions API (CAPI) & Pixel lead event
     trackMetaFormSubmission({
@@ -258,6 +297,9 @@ export default function Contact() {
     const body = buildBriefText('mail');
     const subject = `Project Inquiry: ${form.name} — ${form.companyName || 'New Project'}`;
     const mailUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // Dispatch background FormSubmit email to studio
+    dispatchFormSubmitLead('Email');
 
     // 1. Dispatch Meta Conversions API (CAPI) & Pixel lead event
     trackMetaFormSubmission({
