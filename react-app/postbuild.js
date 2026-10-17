@@ -680,11 +680,11 @@ async function run() {
       pageHtml = pageHtml.replace('</head>', `${schemasJson}\n  </head>`);
     }
 
-    // 6. Inject semantic pre-rendered HTML into <div id="root">
+    // 6. Inject semantic crawlable HTML into <noscript> for search engines without causing initial load flash (FOUC)
     const semanticContent = generateSemanticContent(cfg.route, cfg, projects);
     pageHtml = pageHtml.replace(
       /<div id="root">[\s\S]*?<\/div>/,
-      `<div id="root">${semanticContent}</div>`
+      `<div id="root"></div>\n    <noscript>${semanticContent}</noscript>`
     );
 
     // 7. Write to output files
