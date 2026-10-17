@@ -677,6 +677,43 @@ export default function BrandReadiness() {
       primaryChallenge: report?.primaryProbLabel,
       message: `Lead from Step 8. Calculated Score: ${report?.score?.overall}/100`
     });
+
+    try {
+      fetch("https://formsubmit.co/ajax/25c2139e28176433a33351a4cfeeac2b", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `Brand Readiness Diagnostic Lead: ${lead.brand} — ${lead.first} (Score: ${report?.score?.overall ?? 0}/100)`,
+          _template: "table",
+          _captcha: "false",
+          _replyto: lead.email,
+          _cc: "vrundpatel153@gmail.com",
+          "Client Name": lead.first,
+          "Work Email": lead.email,
+          "Brand / Company": lead.brand,
+          "Website or Social": lead.website || 'Not provided',
+          "WhatsApp Phone": lead.whatsapp || 'Not provided',
+          "Calculated Readiness Score": `${report?.score?.overall ?? 0} / 100 (${report?.score?.band || 'Strategic Assessment'})`,
+          "Recommended System": report?.engagement?.name || 'Brand System',
+          "Estimated Timeline": report?.engagement?.weeks || 'Standard Sprint',
+          "Estimated Investment": report?.engagement?.price || 'Standard Sprint',
+          "Step 1 - Core Category": getQuestionOptionLabel('category', answers.category),
+          "Step 2 - Commercial Stage": getQuestionOptionLabel('stage', answers.stage),
+          "Step 3 - Critical Friction Points": getProblemsLabels(answers.problems),
+          "Step 4 - Creative Focus Area": getQuestionOptionLabel('scope', answers.scope),
+          "Step 5 - 12-Month Commercial Horizon": getQuestionOptionLabel('event', answers.event),
+          "Step 6 - Target Launch Timeline": getQuestionOptionLabel('timeline', answers.timeline),
+          "Step 7 - Planned Investment Budget": getQuestionOptionLabel('budget', answers.budget),
+          "Step 8 - Founder Vision": answers.outcome || 'N/A'
+        })
+      }).catch(err => console.warn('Lead dispatch error:', err));
+    } catch (e) {
+      // non-blocking
+    }
+
     setView('report');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
