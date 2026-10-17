@@ -184,14 +184,92 @@ async function sendConversionsApiEvent({
 }
 
 /**
+ * Google Tag Manager & GA4 DataLayer Dispatcher
+ * Pushes standard and custom events to window.dataLayer for GTM triggers and GA4.
+ */
+function pushToDataLayer(eventName, customData = {}, eventId) {
+  if (typeof window === 'undefined') return;
+  window.dataLayer = window.dataLayer || [];
+
+  const lowerName = (eventName || '').toLowerCase();
+  const isLeadEvent =
+    eventName === 'Lead' ||
+    eventName === 'Schedule' ||
+    eventName === 'Contact' ||
+    lowerName.includes('lead') ||
+    lowerName.includes('quote') ||
+    lowerName.includes('discuss');
+
+  const buttonLabel =
+    customData.button_label ||
+    customData.buttonText ||
+    customData.content_name ||
+    eventName;
+
+  const conversionType =
+    customData.conversion_type || (
+      buttonLabel.toLowerCase().includes('quote') ? 'get_quote' :
+      buttonLabel.toLowerCase().includes('discuss') ? 'discuss_your_project' :
+      (customData.destination || 'lead')
+    );
+
+  // 1. Push standard custom event for Google Tag Manager triggers
+  window.dataLayer.push({
+    event: isLeadEvent ? 'lead_conversion' : lowerName,
+    event_category: isLeadEvent ? 'Lead' : (customData.content_category || 'Engagement'),
+    event_action: 'Click',
+    event_label: buttonLabel,
+    conversion_type: conversionType,
+    button_text: buttonLabel,
+    content_name: customData.content_name || eventName,
+    value: customData.value || 175000,
+    currency: customData.currency || 'INR',
+    page_path: window.location.pathname,
+    page_location: window.location.href,
+    event_id: eventId,
+    ...customData
+  });
+
+  // 2. Push standard GA4 generate_lead / schedule event for GTM & GA4
+  if (isLeadEvent) {
+    window.dataLayer.push({
+      event: 'generate_lead',
+      currency: customData.currency || 'INR',
+      value: customData.value || 175000,
+      lead_source: buttonLabel,
+      lead_type: conversionType,
+      event_id: eventId
+    });
+
+    if (typeof window.gtag === 'function') {
+      try {
+        window.gtag('event', 'generate_lead', {
+          currency: customData.currency || 'INR',
+          value: customData.value || 175000,
+          lead_source: buttonLabel,
+          event_id: eventId
+        });
+      } catch (err) {
+        console.warn('[GA4] gtag error:', err);
+      }
+    }
+  }
+
+  console.log(`[GTM dataLayer] Dispatched "${isLeadEvent ? 'lead_conversion' : eventName}" (type: ${conversionType}) with eventID: ${eventId}`);
+}
+
+/**
  * Universal Meta Event Dispatcher
- * Dispatches to both Meta Browser Pixel and Meta Conversions API (CAPI) with shared eventID.
+ * Dispatches to Meta Browser Pixel, Meta Conversions API (CAPI), and GTM dataLayer with shared eventID.
  */
 export async function trackMetaEvent(eventName, customData = {}, userData = {}) {
   const eventId = generateEventId(eventName.toLowerCase());
   const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://drawingsboards.com/';
 
-  // 1. Meta Browser Pixel dispatch (with deduplication eventID)
+  // 1. Google Tag Manager dataLayer + GA4 dispatch
+  pushToDataLayer(eventName, customData, eventId);
+
+  // 2. Meta Browser Pixel dispatch (with deduplication eventID)
   if (typeof window !== 'undefined' && window.fbq) {
     try {
       window.fbq('track', eventName, customData, { eventID: eventId });
@@ -201,7 +279,7 @@ export async function trackMetaEvent(eventName, customData = {}, userData = {}) 
     }
   }
 
-  // 2. Meta Conversions API dispatch (server-to-server with high match quality)
+  // 3. Meta Conversions API dispatch (server-to-server with high match quality)
   await sendConversionsApiEvent({
     eventName,
     eventId,
@@ -214,16 +292,59 @@ export async function trackMetaEvent(eventName, customData = {}, userData = {}) 
 }
 
 /**
- * Specialized Trackers for WhatsApp & Cal.com Conversion Triggers
+ * Specialized Trackers for Conversion Triggers:
+ * - "Discuss Your Project"
+ * - "Get Quote"
+ * - WhatsApp Consultation
+ * - Cal.com Discovery Call
+ * - Project Brief Form Submission
+ * - Direct Email & Phone
  */
+
+export function trackDiscussProjectClick(details = {}) {
+  const eventData = {
+    content_name: 'Discuss Your Project CTA',
+    content_category: 'Lead Consultation',
+    conversion_type: 'discuss_your_project',
+    destination: details.targetUrl?.includes('cal.com') ? 'Cal.com' : details.targetUrl?.includes('wa.me') ? 'WhatsApp' : 'Calendar',
+    button_label: details.buttonText || 'Discuss Your Project',
+    source_url: typeof window !== 'undefined' ? window.location.href : '',
+    value: 175000,
+    currency: 'INR',
+    ...details
+  };
+
+  trackMetaEvent('Lead', eventData);
+  trackMetaEvent('Schedule', eventData);
+}
+
+export function trackGetQuoteClick(details = {}) {
+  const eventData = {
+    content_name: 'Get Quote CTA',
+    content_category: 'Quote Inquiry',
+    conversion_type: 'get_quote',
+    destination: details.targetUrl || '/contact',
+    button_label: details.buttonText || 'Get Quote',
+    source_url: typeof window !== 'undefined' ? window.location.href : '',
+    value: 175000,
+    currency: 'INR',
+    ...details
+  };
+
+  trackMetaEvent('Lead', eventData);
+  trackMetaEvent('Contact', eventData);
+}
 
 export function trackMetaWhatsAppClick(details = {}) {
   const eventData = {
     content_name: 'WhatsApp Consultation CTA',
     content_category: 'Lead Engagement',
+    conversion_type: 'whatsapp_lead',
     destination: 'WhatsApp',
     button_label: details.buttonText || 'WhatsApp Us',
     source_url: typeof window !== 'undefined' ? window.location.href : '',
+    value: 175000,
+    currency: 'INR',
     ...details
   };
 
@@ -233,12 +354,16 @@ export function trackMetaWhatsAppClick(details = {}) {
 }
 
 export function trackMetaCalComClick(details = {}) {
+  const isDiscuss = (details.buttonText || '').toLowerCase().includes('discuss');
   const eventData = {
-    content_name: 'Cal.com 15-Min Discovery Call',
+    content_name: isDiscuss ? 'Discuss Your Project — Cal.com' : 'Cal.com 15-Min Discovery Call',
     content_category: 'Schedule Consultation',
+    conversion_type: isDiscuss ? 'discuss_your_project' : 'cal_com_booking',
     destination: 'Cal.com',
     button_label: details.buttonText || 'Book a Call',
     source_url: typeof window !== 'undefined' ? window.location.href : '',
+    value: 175000,
+    currency: 'INR',
     ...details
   };
 
@@ -249,12 +374,15 @@ export function trackMetaCalComClick(details = {}) {
 
 export function trackMetaFormSubmission(formData = {}) {
   const eventData = {
-    content_name: 'Project Initiation Form Submission',
+    content_name: 'Project Initiation / Quote Form Submission',
     content_category: 'Direct Project Inquiry',
+    conversion_type: 'get_quote_submission',
     services: formData.services || formData.service || '',
     budget: formData.budget || '',
     timeline: formData.timeline || '',
-    source_url: typeof window !== 'undefined' ? window.location.href : ''
+    source_url: typeof window !== 'undefined' ? window.location.href : '',
+    value: 175000,
+    currency: 'INR'
   };
 
   const userData = {
@@ -271,9 +399,12 @@ export function trackMetaEmailClick(details = {}) {
   const eventData = {
     content_name: 'Email Contact Link',
     content_category: 'Direct Email Inquiry',
+    conversion_type: 'email_inquiry',
     destination: 'Email',
     button_label: details.buttonText || 'Email Us',
     source_url: typeof window !== 'undefined' ? window.location.href : '',
+    value: 175000,
+    currency: 'INR',
     ...details
   };
 
@@ -285,9 +416,12 @@ export function trackMetaPhoneClick(details = {}) {
   const eventData = {
     content_name: 'Phone Call Link',
     content_category: 'Direct Phone Inquiry',
+    conversion_type: 'phone_inquiry',
     destination: 'Phone',
     button_label: details.buttonText || 'Call Us',
     source_url: typeof window !== 'undefined' ? window.location.href : '',
+    value: 175000,
+    currency: 'INR',
     ...details
   };
 

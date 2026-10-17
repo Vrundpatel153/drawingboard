@@ -729,8 +729,8 @@ export default function Contact() {
                 </div>
 
                 {/* Submit Button */}
-                <button type="submit" className="form-submit" style={{ marginTop: '8px' }}>
-                  Submit Project Query <ArrowIcon size={13} />
+                <button type="submit" className="form-submit" id="btn-get-quote-submit" data-cta="get-quote" style={{ marginTop: '8px' }}>
+                  Get Quote / Submit Project Query <ArrowIcon size={13} />
                 </button>
 
                 {/* Terms Agreement Note */}

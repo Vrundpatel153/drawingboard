@@ -25,7 +25,6 @@ export default function WorkDetail() {
   const isSoulBrew = cleanId.includes('soul') || cleanId.includes('brew');
   const isBondwith = cleanId.includes('bondwith');
   const isFlint = cleanId.includes('flint');
-  const isMatiz = cleanId.includes('matiz');
   const isAfter8 = cleanId.includes('after8') || cleanId.includes('intimacy');
   const isLumen = cleanId.includes('lumen');
   const isHenro = cleanId.includes('henro');
@@ -35,7 +34,7 @@ export default function WorkDetail() {
   const project = projectsData.find(p => {
     const slug = (p.slug || '').toLowerCase();
     return slug === cleanId || cleanId.includes(slug) || slug.includes(cleanId);
-  }) || (isPronto ? projectsData[0] : isMatchaClub ? projectsData[1] : isMurami ? projectsData[2] : isSoulBrew ? projectsData[3] : isBondwith ? projectsData[4] : isFlint ? projectsData[5] : isMatiz ? projectsData[6] : isAfter8 ? projectsData[7] : projectsData[0]);
+  }) || (isPronto ? projectsData[0] : isMatchaClub ? projectsData[1] : isMurami ? projectsData[2] : isSoulBrew ? projectsData[3] : isBondwith ? projectsData[4] : isFlint ? projectsData[5] : isAfter8 ? projectsData[6] : projectsData[0]);
 
   const currentIndex = projectsData.indexOf(project);
   const nextProject = projectsData[(currentIndex + 1) % projectsData.length];
@@ -144,8 +143,6 @@ export default function WorkDetail() {
               ? 'Bondwith Brand Guidelines'
               : isFlint
               ? 'Flint Enterprise Case Study'
-              : isMatiz
-              ? 'Matiz Ceramic Studio Case Study'
               : isAfter8
               ? 'AFTER8® Case Study'
               : isLumen
@@ -172,12 +169,10 @@ export default function WorkDetail() {
                 ? 'CASE STUDY // SPEC 05 — BRAND GUIDELINES'
                 : isFlint
                 ? 'CASE STUDY // SPEC 06 — SAAS & AUTOMATION PLATFORM'
-                : isMatiz
-                ? 'CASE STUDY // SPEC 07 — ARTISANAL CERAMICS & BRANDING'
                 : isAfter8
-                ? 'CASE STUDY // SPEC 08'
+                ? 'CASE STUDY // SPEC 07'
                 : isLumen
-                ? 'CASE STUDY // SPEC 09'
+                ? 'CASE STUDY // SPEC 08'
                 : `CASE STUDY // SPEC ${String(currentIndex + 1).padStart(2, '0')}`}
             </span>
             <div className="rule"></div>
@@ -330,31 +325,6 @@ export default function WorkDetail() {
                 <div className="meta-cell">
                   <div className="k">Impact</div>
                   <div className="v" style={{ color: 'var(--pine)' }}>+340% Enterprise Inquiries</div>
-                </div>
-              </div>
-            </>
-          ) : isMatiz ? (
-            <>
-              <h1>Matiz — <em>Handmade Ceramic Studio</em> &amp; Tactile Brand Identity.</h1>
-              <p className="dek">
-                How we crafted an organic, artisanal visual identity, earthy colorway system, custom debossed stamps, and rigid unboxing packaging for a contemporary handmade ceramics atelier.
-              </p>
-              <div className="meta-strip">
-                <div className="meta-cell">
-                  <div className="k">Client</div>
-                  <div className="v">Matiz Ceramic Studio</div>
-                </div>
-                <div className="meta-cell">
-                  <div className="k">Scope</div>
-                  <div className="v">Brand Identity &amp; Packaging</div>
-                </div>
-                <div className="meta-cell">
-                  <div className="k">Timeline</div>
-                  <div className="v">4 Weeks Sprint</div>
-                </div>
-                <div className="meta-cell">
-                  <div className="k">Impact</div>
-                  <div className="v" style={{ color: 'var(--pine)' }}>+280% Atelier Pre-Orders</div>
                 </div>
               </div>
             </>
@@ -582,28 +552,6 @@ export default function WorkDetail() {
                 <div className="insight-card">
                   <div className="lbl">// AUTOMATION ARCHITECTURE INSIGHT</div>
                   <p>"A truly potent SaaS brand transforms complex background logic into visual tranquility, proving that enterprise software can feel as polished and covetable as luxury hardware."</p>
-                </div>
-              </div>
-            </>
-          ) : isMatiz ? (
-            <>
-              <div className="section-head">
-                <div>
-                  <div className="eyebrow">THE ARTISAN WORKSHOP CHALLENGE</div>
-                  <h2>Expressing the raw, tactile soul of clay in a digital-first world.</h2>
-                </div>
-                <p>Bridging ancient wheel-thrown craftsmanship with refined editorial simplicity.</p>
-              </div>
-
-              <div className="problem-grid">
-                <div className="problem-copy">
-                  <p><strong>Contemporary pottery brands frequently struggle with identity balance:</strong> either appearing sterile and mass-produced, or disjointed and rustic without premium design credibility.</p>
-                  <p>Matiz needed an identity that honors the tactile essence of wheel-thrown ceramics—celebrating organic imperfections, raw mineral tones, calligraphic gestures, and blind-embossed packaging seals that turn each unboxing into a collectible art experience.</p>
-                </div>
-
-                <div className="insight-card">
-                  <div className="lbl">// TACTILE CRAFTSMANSHIP INSIGHT</div>
-                  <p>"Handmade pottery is an intimate extension of touch and earth. The brand identity must echo the tactile texture of raw clay and warm kiln glazes across every ribbon, box, and mark."</p>
                 </div>
               </div>
             </>
@@ -1000,62 +948,6 @@ export default function WorkDetail() {
                     <li>24 High-Resolution Master Assets</li>
                     <li>100% Turnkey Guideline Handoff</li>
                     <li>Series-A Investor Presentation Ready</li>
-                  </ul>
-                </div>
-              </div>
-            </>
-          ) : isMatiz ? (
-            <>
-              <div className="section-head">
-                <div>
-                  <div className="eyebrow">PROJECT DELIVERABLES</div>
-                  <h2>Artisanal ceramics &amp; tactile packaging suite.</h2>
-                </div>
-                <p>Calligraphic brand marks, pottery base stamps, multi-color rigid boxes, and atelier lookbook.</p>
-              </div>
-
-              <div className="deliv-grid">
-                <div className="deliv-col">
-                  <h4>Brand Identity</h4>
-                  <div className="sub">// SCRIPT LOGO &amp; MARKS</div>
-                  <ul>
-                    <li>Custom handwritten script wordmark</li>
-                    <li>Organic pebble monogram &amp; seal</li>
-                    <li>Olive Beige &amp; Dark Brown colorway</li>
-                    <li>Refined editorial typography hierarchy</li>
-                  </ul>
-                </div>
-
-                <div className="deliv-col">
-                  <h4>Packaging Suite</h4>
-                  <div className="sub">// BOXES &amp; SEALS</div>
-                  <ul>
-                    <li>Four-color rigid square gift boxes</li>
-                    <li>Woven branded satin ribbons</li>
-                    <li>Gloss-embossed craft cardstock seals</li>
-                    <li>Eco-friendly protective pottery packaging</li>
-                  </ul>
-                </div>
-
-                <div className="deliv-col">
-                  <h4>Atelier Collateral</h4>
-                  <div className="sub">// WORKSHOP &amp; MERCH</div>
-                  <ul>
-                    <li>Pottery base debossing stamp marks</li>
-                    <li>Artisan moodboards &amp; dimension sheets</li>
-                    <li>Editorial lookbook &amp; pottery photography</li>
-                    <li>Certificates of handcrafted authenticity</li>
-                  </ul>
-                </div>
-
-                <div className="deliv-col">
-                  <h4>Verified Impact</h4>
-                  <div className="sub">// PERFORMANCE METRICS</div>
-                  <ul>
-                    <li>+280% Atelier Pre-Orders</li>
-                    <li>17 Curated System Deliverables</li>
-                    <li>4.9/5 Collector Satisfaction Rating</li>
-                    <li>Premier Gallery Boutique Placement</li>
                   </ul>
                 </div>
               </div>
@@ -1488,26 +1380,6 @@ export default function WorkDetail() {
                   "Flint Master Asset Suite & Comprehensive Brand Architecture Close"
                 ];
 
-                const matizCaptions = [
-                  "Matiz Ceramic Studio — Floating Artisanal Pottery & Script Logo Hero",
-                  "Brand Manifesto: Contemporary Simplicity Meets Traditional Craftsmanship",
-                  "Studio Artisan & Wheel-Thrown Ceramic Vase Photography",
-                  "Earth & Mineral Colorway Architecture: Olive Beige, Dark Brown, Cream Ivory & Black",
-                  "Craft Process Moodboard: Pottery Wheel, Raw Clay & Measurement Sketches",
-                  "Gloss Embossed Craft Paper Seal & Artisan Stamp Mark",
-                  "Rigid Gift Box Packaging Suite & Woven Script Ribbon Array",
-                  "Minimalist Glazed Ceramic Tumbler & Brand Stamp Detailing",
-                  "Square Kraft Packaging Unboxing Experience & Inner Protective Sleeve",
-                  "Handcrafted Ceramic Mug in Olive Beige & Organic Silhouette",
-                  "Artisan Pottery Duo & Branded Black Satin Ribbon Close-Up",
-                  "Atelier Ceramics Display & High-Fired Glazed Vessel",
-                  "Matiz Debossed Gift Box Silhouette & Woven Ribbon Detailing",
-                  "Handcrafted Ceramic Pitcher & Studio Clay Art Direction",
-                  "Editorial Studio Fashion & Artisan Sculptural Teapot Lookbook",
-                  "Minimalist Stoneware Bowl & Atelier Tableware Collection",
-                  "Matiz Master Brand Guidelines & Complete Ceramic Identity Close"
-                ];
-
                 const after8Captions = [
                   "Complete AFTER8® Packaging Architecture & Bottle Silhouettes",
                   "Rigid Box Debossing Detail & Foil Stamping",
@@ -1626,8 +1498,6 @@ export default function WorkDetail() {
                   ? bondwithCaptions[imgIdx]
                   : isFlint && imgIdx < flintCaptions.length
                   ? flintCaptions[imgIdx]
-                  : isMatiz && imgIdx < matizCaptions.length
-                  ? matizCaptions[imgIdx]
                   : isAfter8 && imgIdx < after8Captions.length
                   ? after8Captions[imgIdx]
                   : isHenro && imgIdx < henroCaptions.length
@@ -1712,38 +1582,6 @@ export default function WorkDetail() {
                   <div className="row">
                     <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>BODY SANS:</span>
                     <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>Inter / Neue Montreal for high-speed readability.</p>
-                  </div>
-                </div>
-              </div>
-            ) : isMatiz ? (
-              <div className="spec-grid">
-                <div className="swatches">
-                  <div className="swatch" style={{ background: '#A18A5B', color: '#FFF' }}>
-                    <div className="lbl">OLIVE BEIGE // #A18A5B</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#5C4A3E', color: '#FFF' }}>
-                    <div className="lbl">DARK BROWN // #5C4A3E</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#F6F1E3', color: '#1B1B17' }}>
-                    <div className="lbl">CREAM IVORY // #F6F1E3</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#0D0D0D', color: '#FFF' }}>
-                    <div className="lbl">BLACK // #0D0D0D</div>
-                  </div>
-                </div>
-
-                <div className="type-spec">
-                  <div className="row">
-                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY SCRIPT:</span>
-                    <h4 style={{ fontSize: '20px', marginTop: '4px', fontStyle: 'italic' }}>Matiz Handwritten Script &bull; Custom Calligraphy</h4>
-                  </div>
-                  <div className="row">
-                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>EDITORIAL SERIF:</span>
-                    <p style={{ fontSize: '14.5px', fontFamily: "'Fraunces', serif", fontStyle: 'italic', marginTop: '4px' }}>Hand Made Ceramic Studio &bull; Editorial Titles.</p>
-                  </div>
-                  <div className="row">
-                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
-                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for lot codes, batch stamps &amp; dimensions.</p>
                   </div>
                 </div>
               </div>

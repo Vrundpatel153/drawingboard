@@ -89,14 +89,26 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <a
-            className="nav-cta"
-            href={DISCUSS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Discuss
-          </a>
+          <div className="nav-actions">
+            <Link
+              to="/brand-readiness"
+              className="nav-cta nav-cta--quote"
+              id="btn-get-quote"
+              data-cta="get-quote"
+            >
+              Get Quote
+            </Link>
+            <a
+              className="nav-cta nav-cta--primary"
+              id="btn-discuss-project"
+              data-cta="discuss-project"
+              href={DISCUSS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Discuss Your Project
+            </a>
+          </div>
 
           <button
             className={`hamburger${open ? ' hamburger--open' : ''}`}
@@ -154,15 +166,42 @@ export default function Navbar() {
 
         {/* Drawer CTA */}
         <div className="mobile-nav__foot">
-          <a
-            href={DISCUSS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary"
-            onClick={() => setOpen(false)}
-          >
-            Discuss Your Project <ArrowIcon size={14} />
-          </a>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
+            <a
+              href={DISCUSS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+              id="mobile-btn-discuss-project"
+              data-cta="discuss-project"
+              onClick={() => setOpen(false)}
+            >
+              Discuss Your Project <ArrowIcon size={14} />
+            </a>
+            <Link
+              to="/brand-readiness"
+              className="btn-secondary"
+              id="mobile-btn-get-quote"
+              data-cta="get-quote"
+              onClick={() => setOpen(false)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                padding: '12px 20px',
+                border: '1.5px solid var(--ink)',
+                color: 'var(--ink)',
+                background: 'transparent',
+                fontWeight: 600,
+                fontSize: '13.5px',
+                textDecoration: 'none',
+                borderRadius: 'var(--radius)'
+              }}
+            >
+              Get a Quote <ArrowIcon size={14} />
+            </Link>
+          </div>
 
           {/* Mobile Burger Menu Add to Home Screen Option */}
           <div className="mobile-pwa-item" onClick={handleAddToHomeScreen} role="button" tabIndex={0}>

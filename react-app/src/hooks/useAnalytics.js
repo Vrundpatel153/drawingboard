@@ -16,6 +16,10 @@ function initGA4(id) {
   if (ga4Initialized || !id) return;
   ga4Initialized = true;
 
+  if (document.querySelector(`script[src*="googletagmanager.com/gtag/js?id=${id}"]`)) {
+    return;
+  }
+
   // Load gtag.js asynchronously
   const script = document.createElement('script');
   script.async = true;
@@ -32,6 +36,10 @@ function initGA4(id) {
 function initGTM(id) {
   if (gtmInitialized || !id) return;
   gtmInitialized = true;
+
+  if (document.querySelector(`script[src*="googletagmanager.com/gtm.js?id=${id}"]`)) {
+    return;
+  }
 
   // GTM snippet — noscript fallback added to body below
   (function (w, d, s, l, i) {

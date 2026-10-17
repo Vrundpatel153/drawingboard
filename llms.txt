@@ -6,7 +6,7 @@ The Drawing Board (drawingsboards.com) is an independent design engineering stud
 
 ## Key Facts & Positioning
 
-- **Specialization:** Consumer Brands (FMCG, Food & Beverage, Beauty & Wellness, Specialty Coffee, Ceramics & Artisanal Goods) and High-Growth B2B SaaS Platforms.
+- **Specialization:** Consumer Brands (FMCG, Food & Beverage, Beauty & Wellness, Specialty Coffee, Luxury Goods & Lifestyle) and High-Growth B2B SaaS Platforms.
 - **Location:** Ahmedabad, Gujarat, India (Operating globally across India, UAE, UK, and US).
 - **Core Philosophy:** "Build the brand people choose before they compare." Strategy precedes design; we build systems, not disconnected assets.
 - **Operating Model:** Senior boutique studio with direct founder-to-studio collaboration. Maximum 2–3 active client engagements per sprint cycle to ensure dedicated senior design direction.
@@ -49,7 +49,6 @@ We measure design by commercial impact, not superficial vanity metrics:
 - **Murami (Japanese Bistro & Hospitality):** High-energy modular mascot universe, streetwear merch, and restaurant packaging. Result: **+310% brand recall**.
 - **Soul Brew (Artisan Specialty Coffee):** Hand-drawn character illustrations, roast dielines, and animated logo reveals. Result: **+240% brand engagement**.
 - **Flint (Enterprise B2B Automation & SaaS):** Geometric squircle flare logomark, dark-mode process control UI, edge-painted stationery, and brand guidelines. Result: **+340% qualified enterprise inquiries**.
-- **Matiz Ceramic Studio (Artisanal Workshop & Ceramics):** Flowing handwritten script identity, ceramic base stamps, rigid square gift boxes, and lookbook art direction. Result: **+280% atelier pre-orders**.
 - **AFTER8® (Intimacy & Wellness):** Editorial luxury packaging and custom Shopify e-commerce engine. Result: **+340% DTC revenue growth in 90 days**.
 - **Lumen & Co. (Sustainable Luxury Skincare):** Zero-plastic biodegradable packaging dielines. Result: **+180% retail placement across 45+ premier boutiques**.
 

@@ -7,7 +7,7 @@ import MoreServicesSection from '../components/MoreServicesSection';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import ArrowIcon from '../components/ArrowIcon';
 import ClientStoriesTicker from '../components/ClientStoriesTicker';
-import { DISCUSS_URL } from '../utils/siteConfig';
+import { DISCUSS_URL, WHATSAPP_URL } from '../utils/siteConfig';
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Home — Full Branding page as site homepage
@@ -776,8 +776,9 @@ export default function Home() {
                   From how your brand is understood to how it looks on the shelf and performs online, we build one connected system designed to earn attention, communicate value and support growth.
                 </p>
                 <div className="bp-cta-row">
-                  <a className="bp-btn-primary" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">Discuss Your Project <ArrowIcon size={14} /></a>
-                  <Link className="bp-btn-secondary" to="/brand-readiness">Get Quote <ArrowIcon size={14} /></Link>
+                  <a className="bp-btn-primary" id="btn-discuss-project" data-cta="discuss-project" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">Discuss Your Project <ArrowIcon size={14} /></a>
+                  <Link to="/brand-readiness" className="bp-btn-secondary" id="btn-get-quote" data-cta="get-quote" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '12px 20px', border: '1.5px solid var(--ink)', color: 'var(--ink)', background: 'transparent', fontWeight: 600, fontSize: '14px', textDecoration: 'none', borderRadius: '2px', transition: 'all 0.2s ease' }}>Get Quote <ArrowIcon size={14} /></Link>
+                  <a className="bp-btn-link" id="btn-whatsapp" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Prefer WhatsApp for discussion <ArrowIcon size={13} /></a>
                 </div>
                 <p style={{ marginBottom: '14px' }}>
                   <a className="bp-btn-link" href="#case-studies">View Selected Work ↓</a>
@@ -2278,12 +2279,15 @@ export default function Home() {
               Tell us what you are launching, changing or preparing to scale. We will review the requirement and recommend whether you need the Brand-to-Shelf system, the complete Brand-to-Market engagement or a different scope altogether.
             </p>
             <div className="bp-cta-row" style={{ marginTop: '24px', marginBottom: '16px' }}>
-              <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="bp-btn-primary">
+              <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="bp-btn-primary" id="btn-discuss-project-final" data-cta="discuss-project">
                 Discuss Your Project <ArrowIcon size={14} />
               </a>
-              <Link to="/brand-readiness" className="bp-btn-secondary bp-btn-secondary--light">
+              <Link to="/brand-readiness" className="bp-btn-secondary bp-btn-secondary--light" id="btn-get-quote-final" data-cta="get-quote" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                 Get Quote <ArrowIcon size={14} />
               </Link>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-outline-light">
+                Message us on WhatsApp
+              </a>
             </div>
             <p className="bp-price-note" style={{ color: '#C9C3B4', fontSize: '13px', fontFamily: "'IBM Plex Mono', monospace", margin: 0 }}>
               Engagements begin at <b style={{ color: '#ffffff' }}>$4,960 (₹4,75,000)</b>.

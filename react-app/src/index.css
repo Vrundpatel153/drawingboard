@@ -348,6 +348,39 @@ header {
   transform: scale(1.02);
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-cta--primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.nav-cta--primary:hover {
+  background: var(--pine);
+  border-color: var(--pine);
+  color: var(--paper);
+}
+
+.nav-cta--quote {
+  background: transparent;
+  color: var(--ink);
+}
+
+.nav-cta--quote:hover {
+  background: var(--paper-line);
+  color: var(--ink);
+}
+
+@media (max-width: 960px) {
+  .nav-cta--quote {
+    display: none !important;
+  }
+}
+
 /* ==========================================================================
    HAMBURGER BUTTON (mobile only, hidden on desktop)
    ========================================================================== */
