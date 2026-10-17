@@ -4,6 +4,7 @@ import path from 'path';
 const distDir = path.resolve('./dist');
 const publicDir = path.resolve('./public');
 const projectsDataPath = path.resolve('./src/data/projectsData.json');
+const blogsDataPath = path.resolve('./src/data/blogsData.json');
 
 const DOMAIN = 'https://drawingsboards.com';
 
@@ -100,6 +101,34 @@ function buildProjectSchema(p) {
     'image': p.coverImage ? (p.coverImage.startsWith('http') ? p.coverImage : `${DOMAIN}${p.coverImage}`) : `${DOMAIN}/home_preview.png`,
     'url': `${DOMAIN}/work/${p.slug}`,
     'genre': p.tag || 'Brand Identity & Packaging Design'
+  };
+}
+
+function buildArticleSchema(b) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': b.title,
+    'description': b.description,
+    'image': b.coverImage,
+    'author': {
+      '@type': 'Person',
+      'name': 'Marcus Vance',
+      'jobTitle': 'Senior Design Strategist'
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'The Drawing Board',
+      'url': DOMAIN,
+      'logo': {
+        '@type': 'ImageObject',
+        'url': `${DOMAIN}/favicon.svg`
+      }
+    },
+    'mainEntityOfPage': {
+      '@type': 'WebPage',
+      '@id': `${DOMAIN}/insights/${b.slug}`
+    }
   };
 }
 
@@ -417,13 +446,22 @@ async function run() {
   fs.writeFileSync(path.join(distDir, 'vercel.json'), JSON.stringify(vercelJson, null, 2));
   console.log('✓ Successfully created optimized vercel.json with cleanUrls & filesystem handling');
 
-  // 5. Load project data
+  // 5. Load project and blog data
   let projects = [];
   if (fs.existsSync(projectsDataPath)) {
     try {
       projects = JSON.parse(fs.readFileSync(projectsDataPath, 'utf8'));
     } catch (err) {
       console.warn('Could not read projectsData.json:', err.message);
+    }
+  }
+
+  let blogs = [];
+  if (fs.existsSync(blogsDataPath)) {
+    try {
+      blogs = JSON.parse(fs.readFileSync(blogsDataPath, 'utf8'));
+    } catch (err) {
+      console.warn('Could not read blogsData.json:', err.message);
     }
   }
 
@@ -445,7 +483,19 @@ async function run() {
       schemas: [buildFaqSchema(FAQ_BRANDING)]
     },
     {
+      route: '/services/branding',
+      title: 'Brand Identity & Strategy Studio | The Drawing Board',
+      description: 'Strategic brand identity design, mathematical logomark systems, comprehensive typography hierarchies, and complete visual guidelines for ambitious brands.',
+      schemas: [buildFaqSchema(FAQ_BRANDING)]
+    },
+    {
       route: '/packaging',
+      title: 'Packaging Design & Structural Engineering | The Drawing Board',
+      description: 'Tactile packaging design, sustainable dieline engineering, and luxury print finishes for modern consumer brands and FMCG products.',
+      schemas: [buildFaqSchema(FAQ_PACKAGING)]
+    },
+    {
+      route: '/services/packaging-design',
       title: 'Packaging Design & Structural Engineering | The Drawing Board',
       description: 'Tactile packaging design, sustainable dieline engineering, and luxury print finishes for modern consumer brands and FMCG products.',
       schemas: [buildFaqSchema(FAQ_PACKAGING)]
@@ -458,6 +508,12 @@ async function run() {
     },
     {
       route: '/development',
+      title: 'Web Development & Digital Experience Engineering | The Drawing Board',
+      description: 'High-performance editorial websites, custom React/Shopify platforms, and conversion-optimized digital experiences.',
+      schemas: [buildFaqSchema(FAQ_WEB)]
+    },
+    {
+      route: '/services/development',
       title: 'Web Development & Digital Experience Engineering | The Drawing Board',
       description: 'High-performance editorial websites, custom React/Shopify platforms, and conversion-optimized digital experiences.',
       schemas: [buildFaqSchema(FAQ_WEB)]
@@ -505,6 +561,12 @@ async function run() {
       schemas: []
     },
     {
+      route: '/insights',
+      title: 'Insights & Design Strategy Journal | The Drawing Board',
+      description: 'Practical articles on branding, packaging strategy, design engineering, and founder thinking — written for ambitious product brands.',
+      schemas: []
+    },
+    {
       route: '/privacy-policy',
       title: 'Privacy Policy | The Drawing Board',
       description: 'Privacy Policy and data governance principles of The Drawing Board.',
@@ -548,6 +610,23 @@ async function run() {
           { name: 'Home', path: '/' },
           { name: 'Work', path: '/work' },
           { name: p.title, path: `/work/${p.slug}` }
+        ])
+      ]
+    });
+  }
+
+  // Add all blog routes
+  for (const b of blogs) {
+    routeConfigs.push({
+      route: `/insights/${b.slug}`,
+      title: `${b.title} | The Drawing Board Journal`,
+      description: b.description || `Read ${b.title} by The Drawing Board Studio.`,
+      schemas: [
+        buildArticleSchema(b),
+        buildBreadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Insights', path: '/insights' },
+          { name: b.title, path: `/insights/${b.slug}` }
         ])
       ]
     });
@@ -615,6 +694,59 @@ async function run() {
 
     count++;
   }
+
+  // 8. Auto-generate sitemap.xml
+  const sitemapUrls = [
+    { loc: `${DOMAIN}/`, priority: '1.0', changefreq: 'daily' },
+    { loc: `${DOMAIN}/branding`, priority: '0.9', changefreq: 'weekly' },
+    { loc: `${DOMAIN}/packaging`, priority: '0.9', changefreq: 'weekly' },
+    { loc: `${DOMAIN}/web-development`, priority: '0.9', changefreq: 'weekly' },
+    { loc: `${DOMAIN}/saas-branding`, priority: '0.9', changefreq: 'weekly' },
+    { loc: `${DOMAIN}/work`, priority: '0.9', changefreq: 'weekly' },
+    { loc: `${DOMAIN}/services`, priority: '0.9', changefreq: 'weekly' },
+    { loc: `${DOMAIN}/services/branding`, priority: '0.8', changefreq: 'weekly' },
+    { loc: `${DOMAIN}/services/packaging-design`, priority: '0.8', changefreq: 'weekly' },
+    { loc: `${DOMAIN}/services/development`, priority: '0.8', changefreq: 'weekly' },
+    { loc: `${DOMAIN}/brand-readiness`, priority: '0.8', changefreq: 'weekly' },
+    { loc: `${DOMAIN}/get-quote`, priority: '0.8', changefreq: 'weekly' },
+    { loc: `${DOMAIN}/studio`, priority: '0.8', changefreq: 'monthly' },
+    { loc: `${DOMAIN}/contact`, priority: '0.8', changefreq: 'monthly' },
+    { loc: `${DOMAIN}/insights`, priority: '0.8', changefreq: 'weekly' },
+    { loc: `${DOMAIN}/privacy-policy`, priority: '0.3', changefreq: 'yearly' },
+    { loc: `${DOMAIN}/terms-of-service`, priority: '0.3', changefreq: 'yearly' },
+  ];
+
+  for (const p of projects) {
+    sitemapUrls.push({
+      loc: `${DOMAIN}/work/${p.slug}`,
+      priority: '0.8',
+      changefreq: 'monthly'
+    });
+  }
+
+  for (const b of blogs) {
+    sitemapUrls.push({
+      loc: `${DOMAIN}/insights/${b.slug}`,
+      priority: '0.7',
+      changefreq: 'monthly'
+    });
+  }
+
+  const today = new Date().toISOString().split('T')[0];
+  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapUrls.map(u => `  <url>
+    <loc>${u.loc}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${u.changefreq}</changefreq>
+    <priority>${u.priority}</priority>
+  </url>`).join('\n')}
+</urlset>
+`;
+
+  fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemapXml, 'utf8');
+  fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemapXml, 'utf8');
+  console.log(`🗺️  Successfully generated sitemap.xml with ${sitemapUrls.length} verified URLs in dist & public!`);
 
   console.log(`🎉 Static HTML Generation complete! Pre-rendered ${count} pages with full SEO, AEO schemas, and rich crawlable content.`);
   console.log('✨ Works flawlessly on Vercel, Netlify, and all CI/CD pipelines without headless browser dependencies!\n');

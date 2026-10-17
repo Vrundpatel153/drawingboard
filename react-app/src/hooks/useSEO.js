@@ -24,6 +24,9 @@ import {
   GOOGLE_SITE_VERIFICATION,
 } from '../utils/siteConfig';
 
+import projectsData from '../data/projectsData.json';
+import blogsData from '../data/blogsData.json';
+
 // ─── helpers ─────────────────────────────────────────────────────────────────
 
 function setMeta(name, content, attribute = 'name') {
@@ -77,16 +80,49 @@ export default function useSEO(overrides = {}) {
   const path = location.pathname;
 
   useEffect(() => {
-    // 1. Resolve meta — page-specific map → override props → defaults
+    // 1. Resolve meta — page-specific map → dynamic lookup → override props → defaults
     const pageMeta = PAGE_META[path] || {};
 
-    const title        = overrides.title       || pageMeta.title       || SITE_NAME;
-    const description  = overrides.description || pageMeta.description || DEFAULT_DESCRIPTION;
-    const keywords     = overrides.keywords    || pageMeta.keywords    || DEFAULT_KEYWORDS;
-    const ogImage      = overrides.ogImage     || pageMeta.ogImage     || DEFAULT_OG_IMAGE;
-    const ogType       = overrides.ogType      || 'website';
+    let dynamicMeta = {};
+    if (path.startsWith('/work/') || path.startsWith('/works/')) {
+      const cleanSlug = decodeURIComponent(path.replace(/^\/(work|works)\//, '')).toLowerCase().trim();
+      const p = projectsData.find(item => {
+        const itemSlug = (item.slug || '').toLowerCase();
+        return itemSlug === cleanSlug || cleanSlug.includes(itemSlug) || itemSlug.includes(cleanSlug);
+      });
+      if (p) {
+        dynamicMeta = {
+          title: `${p.title} — Case Study | ${SITE_NAME}`,
+          description: p.description || DEFAULT_DESCRIPTION,
+          ogImage: p.coverImage ? (p.coverImage.startsWith('http') ? p.coverImage : `${SITE_URL}${p.coverImage}`) : DEFAULT_OG_IMAGE,
+          ogType: 'article',
+          keywords: `${p.tag || 'brand identity'}, ${p.category || 'branding'}, case study, design studio India`,
+        };
+      }
+    } else if (path.startsWith('/insights/') || path.startsWith('/blog/')) {
+      const cleanSlug = decodeURIComponent(path.replace(/^\/(insights|blog)\//, '')).toLowerCase().trim();
+      const b = blogsData.find(item => {
+        const itemSlug = (item.slug || '').toLowerCase();
+        return itemSlug === cleanSlug || cleanSlug.includes(itemSlug) || itemSlug.includes(cleanSlug);
+      });
+      if (b) {
+        dynamicMeta = {
+          title: `${b.title} — Insights & Strategy | ${SITE_NAME}`,
+          description: b.description || DEFAULT_DESCRIPTION,
+          ogImage: b.coverImage ? (b.coverImage.startsWith('http') ? b.coverImage : `${SITE_URL}${b.coverImage}`) : DEFAULT_OG_IMAGE,
+          ogType: 'article',
+          keywords: `${b.tag || 'insights'}, ${b.category || 'branding'}, design strategy, founder insights`,
+        };
+      }
+    }
+
+    const title        = overrides.title       || pageMeta.title       || dynamicMeta.title       || SITE_NAME;
+    const description  = overrides.description || pageMeta.description || dynamicMeta.description || DEFAULT_DESCRIPTION;
+    const keywords     = overrides.keywords    || pageMeta.keywords    || dynamicMeta.keywords    || DEFAULT_KEYWORDS;
+    const ogImage      = overrides.ogImage     || pageMeta.ogImage     || dynamicMeta.ogImage     || DEFAULT_OG_IMAGE;
+    const ogType       = overrides.ogType      || dynamicMeta.ogType   || 'website';
     const canonical    = `${SITE_URL}${path}`;
-    const noindex      = overrides.noindex     || false;
+    const noindex      = overrides.noindex !== undefined ? overrides.noindex : (pageMeta.noindex || false);
 
     // 2. <title>
     document.title = title;

@@ -88,7 +88,21 @@ export const PAGE_META = {
     ogImage: `${SITE_URL}/work_preview.png`,
     keywords: 'design portfolio, brand case studies, packaging design work, logo design India',
   },
+  '/works': {
+    title: `Work & Case Studies — ${SITE_NAME}`,
+    description:
+      'Explore our portfolio of branding, packaging design, and digital product projects — real work for real brands, across food, wellness, fashion, and tech.',
+    ogImage: `${SITE_URL}/work_preview.png`,
+    keywords: 'design portfolio, brand case studies, packaging design work, logo design India',
+  },
   '/studio': {
+    title: `Studio & About — ${SITE_NAME}`,
+    description:
+      'Learn about The Drawing Board — who we are, how we work, and the founders and brands we partner with to build intentional brands.',
+    ogImage: `${SITE_URL}/studio_preview.png`,
+    keywords: 'about drawing board studio, design studio team, branding studio about',
+  },
+  '/about': {
     title: `Studio & About — ${SITE_NAME}`,
     description:
       'Learn about The Drawing Board — who we are, how we work, and the founders and brands we partner with to build intentional brands.',
@@ -102,23 +116,156 @@ export const PAGE_META = {
     ogImage: `${SITE_URL}/services_preview.png`,
     keywords: 'branding services, packaging design services, UI UX services India, web development services',
   },
+  '/service': {
+    title: `Services — ${SITE_NAME}`,
+    description:
+      'Brand identity, packaging design, UI/UX design, and web development — full-stack creative services for product brands and ambitious founders.',
+    ogImage: `${SITE_URL}/services_preview.png`,
+    keywords: 'branding services, packaging design services, UI UX services India, web development services',
+  },
+  '/branding': {
+    title: `Brand Identity & Strategy — ${SITE_NAME}`,
+    description:
+      'We design brand identities that position your business clearly and scale with confidence. Strategy-led visual systems for serious founders.',
+    keywords: 'brand identity design India, logo design, visual identity, brand strategy',
+  },
   '/services/branding': {
     title: `Brand Identity & Strategy — ${SITE_NAME}`,
     description:
       'We design brand identities that position your business clearly and scale with confidence. Strategy-led visual systems for serious founders.',
     keywords: 'brand identity design India, logo design, visual identity, brand strategy',
   },
-  '/services/packaging-design': {
-    title: `Packaging Design — ${SITE_NAME}`,
+  '/service/branding': {
+    title: `Brand Identity & Strategy — ${SITE_NAME}`,
+    description:
+      'We design brand identities that position your business clearly and scale with confidence. Strategy-led visual systems for serious founders.',
+    keywords: 'brand identity design India, logo design, visual identity, brand strategy',
+  },
+  '/packaging': {
+    title: `Packaging Design & Structural Engineering — ${SITE_NAME}`,
     description:
       'Strategy-first packaging design starting at ₹1,75,000. One master direction, SKU system, and production-ready handoff for consumer product brands.',
     keywords: 'packaging design India, product packaging, label design, dieline design, FMCG packaging',
+  },
+  '/packaging-design': {
+    title: `Packaging Design & Structural Engineering — ${SITE_NAME}`,
+    description:
+      'Strategy-first packaging design starting at ₹1,75,000. One master direction, SKU system, and production-ready handoff for consumer product brands.',
+    keywords: 'packaging design India, product packaging, label design, dieline design, FMCG packaging',
+  },
+  '/services/packaging-design': {
+    title: `Packaging Design & Structural Engineering — ${SITE_NAME}`,
+    description:
+      'Strategy-first packaging design starting at ₹1,75,000. One master direction, SKU system, and production-ready handoff for consumer product brands.',
+    keywords: 'packaging design India, product packaging, label design, dieline design, FMCG packaging',
+  },
+  '/services/packaging': {
+    title: `Packaging Design & Structural Engineering — ${SITE_NAME}`,
+    description:
+      'Strategy-first packaging design starting at ₹1,75,000. One master direction, SKU system, and production-ready handoff for consumer product brands.',
+    keywords: 'packaging design India, product packaging, label design, dieline design, FMCG packaging',
+  },
+  '/service/packaging-design': {
+    title: `Packaging Design & Structural Engineering — ${SITE_NAME}`,
+    description:
+      'Strategy-first packaging design starting at ₹1,75,000. One master direction, SKU system, and production-ready handoff for consumer product brands.',
+    keywords: 'packaging design India, product packaging, label design, dieline design, FMCG packaging',
+  },
+  '/service/packaging': {
+    title: `Packaging Design & Structural Engineering — ${SITE_NAME}`,
+    description:
+      'Strategy-first packaging design starting at ₹1,75,000. One master direction, SKU system, and production-ready handoff for consumer product brands.',
+    keywords: 'packaging design India, product packaging, label design, dieline design, FMCG packaging',
+  },
+  '/web-development': {
+    title: `Website & App Development — ${SITE_NAME}`,
+    description:
+      'High-code web and app development — custom React, Next.js, Shopify, and Framer builds that are fast, scalable, and visually precise.',
+    keywords: 'web development India, React development, Shopify development, Framer development',
+  },
+  '/development': {
+    title: `Website & App Development — ${SITE_NAME}`,
+    description:
+      'High-code web and app development — custom React, Next.js, Shopify, and Framer builds that are fast, scalable, and visually precise.',
+    keywords: 'web development India, React development, Shopify development, Framer development',
   },
   '/services/development': {
     title: `Website & App Development — ${SITE_NAME}`,
     description:
       'High-code web and app development — custom React, Next.js, Shopify, and Framer builds that are fast, scalable, and visually precise.',
     keywords: 'web development India, React development, Shopify development, Framer development',
+  },
+  '/service/development': {
+    title: `Website & App Development — ${SITE_NAME}`,
+    description:
+      'High-code web and app development — custom React, Next.js, Shopify, and Framer builds that are fast, scalable, and visually precise.',
+    keywords: 'web development India, React development, Shopify development, Framer development',
+  },
+  '/services/web-development': {
+    title: `Website & App Development — ${SITE_NAME}`,
+    description:
+      'High-code web and app development — custom React, Next.js, Shopify, and Framer builds that are fast, scalable, and visually precise.',
+    keywords: 'web development India, React development, Shopify development, Framer development',
+  },
+  '/service/web-development': {
+    title: `Website & App Development — ${SITE_NAME}`,
+    description:
+      'High-code web and app development — custom React, Next.js, Shopify, and Framer builds that are fast, scalable, and visually precise.',
+    keywords: 'web development India, React development, Shopify development, Framer development',
+  },
+  '/saas-branding': {
+    title: `SaaS Branding & UI/UX Design System Studio — ${SITE_NAME}`,
+    description:
+      'System-grade visual identity, tokenized Figma component libraries, and conversion-engineered software surfaces for B2B SaaS and high-growth digital products.',
+    keywords: 'saas branding, UI UX design systems, B2B SaaS design, product design studio India',
+  },
+  '/services/saas-branding': {
+    title: `SaaS Branding & UI/UX Design System Studio — ${SITE_NAME}`,
+    description:
+      'System-grade visual identity, tokenized Figma component libraries, and conversion-engineered software surfaces for B2B SaaS and high-growth digital products.',
+    keywords: 'saas branding, UI UX design systems, B2B SaaS design, product design studio India',
+  },
+  '/service/saas-branding': {
+    title: `SaaS Branding & UI/UX Design System Studio — ${SITE_NAME}`,
+    description:
+      'System-grade visual identity, tokenized Figma component libraries, and conversion-engineered software surfaces for B2B SaaS and high-growth digital products.',
+    keywords: 'saas branding, UI UX design systems, B2B SaaS design, product design studio India',
+  },
+  '/ui-ux': {
+    title: `UI/UX & Digital Product Design — ${SITE_NAME}`,
+    description:
+      'Conversion-engineered interface design, user journey mapping, and component systems for digital products and platforms.',
+    keywords: 'UI UX design, product design, Figma design system, web app interface design',
+  },
+  '/ui-ux-design': {
+    title: `UI/UX & Digital Product Design — ${SITE_NAME}`,
+    description:
+      'Conversion-engineered interface design, user journey mapping, and component systems for digital products and platforms.',
+    keywords: 'UI UX design, product design, Figma design system, web app interface design',
+  },
+  '/services/ui-ux': {
+    title: `UI/UX & Digital Product Design — ${SITE_NAME}`,
+    description:
+      'Conversion-engineered interface design, user journey mapping, and component systems for digital products and platforms.',
+    keywords: 'UI UX design, product design, Figma design system, web app interface design',
+  },
+  '/services/ui-ux-design': {
+    title: `UI/UX & Digital Product Design — ${SITE_NAME}`,
+    description:
+      'Conversion-engineered interface design, user journey mapping, and component systems for digital products and platforms.',
+    keywords: 'UI UX design, product design, Figma design system, web app interface design',
+  },
+  '/services/design': {
+    title: `UI/UX & Digital Product Design — ${SITE_NAME}`,
+    description:
+      'Conversion-engineered interface design, user journey mapping, and component systems for digital products and platforms.',
+    keywords: 'UI UX design, product design, Figma design system, web app interface design',
+  },
+  '/service/design': {
+    title: `UI/UX & Digital Product Design — ${SITE_NAME}`,
+    description:
+      'Conversion-engineered interface design, user journey mapping, and component systems for digital products and platforms.',
+    keywords: 'UI UX design, product design, Figma design system, web app interface design',
   },
   '/brand-readiness': {
     title: `Brand Readiness Check & Instant Quote — ${SITE_NAME}`,
@@ -145,11 +292,54 @@ export const PAGE_META = {
     ogImage: `${SITE_URL}/insights_preview.png`,
     keywords: 'branding insights, packaging strategy, design thinking, founder resources',
   },
+  '/blog': {
+    title: `Insights & Articles — ${SITE_NAME}`,
+    description:
+      'Practical articles on branding, packaging strategy, and design thinking — written for founders building real brands.',
+    ogImage: `${SITE_URL}/insights_preview.png`,
+    keywords: 'branding insights, packaging strategy, design thinking, founder resources',
+  },
   '/contact': {
     title: `Contact — ${SITE_NAME}`,
     description:
       'Get in touch with The Drawing Board. Discuss your project via our inquiry form or get an instant quote.',
     keywords: 'contact drawing board, book design call, hire branding studio India',
+  },
+  '/thank-you': {
+    title: `Thank You — ${SITE_NAME}`,
+    description:
+      'Thank you for contacting The Drawing Board Studio. We will review your project brief and get back to you shortly.',
+    noindex: true,
+  },
+  '/privacy-policy': {
+    title: `Privacy Policy — ${SITE_NAME}`,
+    description:
+      'Privacy Policy and data governance principles of The Drawing Board Studio.',
+  },
+  '/privacy': {
+    title: `Privacy Policy — ${SITE_NAME}`,
+    description:
+      'Privacy Policy and data governance principles of The Drawing Board Studio.',
+  },
+  '/terms-of-service': {
+    title: `Terms of Service — ${SITE_NAME}`,
+    description:
+      'Terms of Service and commercial client engagement agreements for The Drawing Board Studio.',
+  },
+  '/terms': {
+    title: `Terms of Service — ${SITE_NAME}`,
+    description:
+      'Terms of Service and commercial client engagement agreements for The Drawing Board Studio.',
+  },
+  '/terms-and-conditions': {
+    title: `Terms of Service — ${SITE_NAME}`,
+    description:
+      'Terms of Service and commercial client engagement agreements for The Drawing Board Studio.',
+  },
+  '/admin': {
+    title: `Admin — ${SITE_NAME}`,
+    description: 'Internal project management interface.',
+    noindex: true,
   },
 };
 

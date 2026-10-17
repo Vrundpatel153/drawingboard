@@ -9,6 +9,7 @@ import projectsData from '../data/projectsData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 import After8CaseStudyView from '../components/After8CaseStudyView';
 import { DISCUSS_URL } from '../utils/siteConfig';
+import useSEO from '../hooks/useSEO';
 
 export default function WorkDetail() {
   const { projectId } = useParams();
@@ -38,6 +39,13 @@ export default function WorkDetail() {
 
   const currentIndex = projectsData.indexOf(project);
   const nextProject = projectsData[(currentIndex + 1) % projectsData.length];
+
+  useSEO({
+    title: `${project.title} — Case Study | The Drawing Board`,
+    description: project.description,
+    ogImage: project.coverImage?.startsWith('http') ? project.coverImage : (project.coverImage ? `https://drawingsboards.com${project.coverImage}` : undefined),
+    ogType: 'article'
+  });
 
   if (isAfter8) {
     return <After8CaseStudyView nextProject={nextProject} pageRef={pageRef} />;

@@ -6,6 +6,7 @@ import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import blogsData from '../data/blogsData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
+import useSEO from '../hooks/useSEO';
 
 export default function BlogDetail() {
   const { blogId } = useParams();
@@ -21,6 +22,13 @@ export default function BlogDetail() {
 
   const currentIndex = blogsData.indexOf(blog);
   const nextBlog = blogsData[(currentIndex + 1) % blogsData.length];
+
+  useSEO({
+    title: `${blog.title} — Insights & Strategy | The Drawing Board`,
+    description: blog.description,
+    ogImage: blog.coverImage,
+    ogType: 'article'
+  });
 
   useEffect(() => {
     const handleScroll = () => {

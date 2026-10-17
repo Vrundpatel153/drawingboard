@@ -6,11 +6,17 @@ import RegistrationMarks from '../components/RegistrationMarks';
 import ArrowIcon from '../components/ArrowIcon';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 import { trackMetaEvent } from '../utils/metaEvents';
+import useSEO from '../hooks/useSEO';
 
 export default function ThankYou() {
   const pageRef   = useRef(null);
   const canvasRef = useRef(null);
   usePageAnimations(pageRef);
+  useSEO({
+    title: 'Thank You — The Drawing Board',
+    description: 'Thank you for contacting The Drawing Board Studio. We will review your project brief and get back to you shortly.',
+    noindex: true
+  });
 
   // ── Track Meta Lead Conversion on arrival ─────────────────────────────────
   useEffect(() => {

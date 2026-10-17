@@ -10,6 +10,7 @@ import { DISCUSS_URL } from '../utils/siteConfig';
 
 import servicesData from '../data/servicesData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
+import useSEO from '../hooks/useSEO';
 
 export default function ServiceDetail() {
   const { serviceId } = useParams();
@@ -32,6 +33,11 @@ export default function ServiceDetail() {
 
   const currentIndex = servicesData.indexOf(service);
   const nextService = servicesData[(currentIndex + 1) % servicesData.length];
+
+  useSEO({
+    title: `${service.title} — Creative Services | The Drawing Board`,
+    description: service.description
+  });
 
   return (
     <>

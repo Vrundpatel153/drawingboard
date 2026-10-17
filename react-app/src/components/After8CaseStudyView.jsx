@@ -6,8 +6,15 @@ import Footer from './Footer';
 import StickyMobileCTA from './StickyMobileCTA';
 import ArrowIcon from './ArrowIcon';
 import { DISCUSS_URL } from '../utils/siteConfig';
+import useSEO from '../hooks/useSEO';
 
 export default function After8CaseStudyView({ nextProject, pageRef }) {
+  useSEO({
+    title: 'AFTER8® Reimagining Intimacy — Brand & Packaging Case Study | The Drawing Board',
+    description: 'Strategic brand identity, packaging design, and tactile unboxing experience for After8® sexual wellness by The Drawing Board.',
+    ogImage: 'https://framerusercontent.com/images/GI9hs6gABp4QhAbVBk1Ej9TVE0.png',
+    ogType: 'article'
+  });
   return (
     <div ref={pageRef} className="after8-case-study-page">
       <style>{`

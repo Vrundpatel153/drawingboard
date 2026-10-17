@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useSEO from '../hooks/useSEO';
 
 const STORAGE_KEY = 'admin_works';
 
@@ -52,13 +53,11 @@ const emptyWork = {
 
 export default function Admin() {
   const navigate = useNavigate();
+  useSEO({ title: 'Admin — The Drawing Board', noindex: true });
   const [works, setWorks] = useState(loadWorks);
   const [editing, setEditing] = useState(null); // null = list view, object = form
   const [toast, setToast] = useState('');
 
-  useEffect(() => {
-    document.title = 'Admin — The Drawing Board';
-  }, []);
 
   function showToast(msg) {
     setToast(msg);
