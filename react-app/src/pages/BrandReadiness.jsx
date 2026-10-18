@@ -552,16 +552,16 @@ export default function BrandReadiness() {
   useSEO();
   usePageAnimations(pageRef);
 
-  const [view, setView] = useState('landing'); // 'landing' | 'quiz' | 'capture' | 'report' | 'project' | 'success'
+  const [view, setView] = useState('landing'); // 'landing' | 'form' | 'success'
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({
-    category: '',
-    stage: '',
-    problems: [],
-    scope: '',
-    event: '',
-    timeline: '',
-    budget: '',
+    category: 'fnb',
+    stage: 'launch',
+    problems: ['interchangeable'],
+    scope: 'identity',
+    event: 'launching',
+    timeline: '1-3',
+    budget: '475-7',
     outcome: ''
   });
   const [lead, setLead] = useState({ first: '', email: '', brand: '', website: '', whatsapp: '' });
@@ -569,6 +569,9 @@ export default function BrandReadiness() {
   const [report, setReport] = useState(null);
   const [animatedScore, setAnimatedScore] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const currentScore = scoreModel(answers);
+  const currentEngagement = recommendEngagement(answers);
 
   // Animated shelf demo state
   const [demoStage, setDemoStage] = useState(0);
@@ -601,123 +604,6 @@ export default function BrandReadiness() {
     return () => clearTimeout(timerId);
   }, [view, isAutoPlaying, demoShape]);
 
-  const finishQuiz = (finalAnswers) => {
-    const score = scoreModel(finalAnswers);
-    const engagement = recommendEngagement(finalAnswers);
-    const frags = diagnoseReport(finalAnswers);
-    const primaryProb = (finalAnswers.problems && finalAnswers.problems[0]) || 'unsure';
-    const rep = {
-      score,
-      engagement,
-      frags,
-      opp: OPP[primaryProb] || OPP.unsure,
-      risk: RISK[primaryProb] || RISK.unsure,
-      primaryProbLabel: PRESSURE_LABEL[primaryProb] || 'Clarity'
-    };
-    setReport(rep);
-    setView('capture');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleSelectOption = (value) => {
-    const q = QUESTIONS[step];
-    if (q.type === 'single') {
-      const updated = { ...answers, [q.id]: value };
-      setAnswers(updated);
-      if (step < QUESTIONS.length - 1) {
-        setStep(step + 1);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        finishQuiz(updated);
-      }
-    } else if (q.type === 'multi') {
-      const current = answers[q.id] || [];
-      const exists = current.includes(value);
-      let nextList = exists ? current.filter(x => x !== value) : [...current, value];
-      if (!exists && nextList.length > q.max) {
-        return;
-      }
-      setAnswers({ ...answers, [q.id]: nextList });
-    }
-  };
-
-  const handleNextStep = () => {
-    if (step < QUESTIONS.length - 1) {
-      setStep(step + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      finishQuiz(answers);
-    }
-  };
-
-  const handlePrevStep = () => {
-    if (step > 0) {
-      setStep(step - 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      setView('landing');
-    }
-  };
-
-  const handleLeadSubmit = (e) => {
-    e.preventDefault();
-    if (!lead.first || !lead.email || !lead.brand) {
-      alert('Please provide your name, work email, and brand name.');
-      return;
-    }
-    trackMetaFormSubmission({
-      name: lead.first,
-      email: lead.email,
-      phone: lead.whatsapp,
-      company: lead.brand,
-      website: lead.website,
-      services: report?.engagement?.name || 'Brand Readiness Diagnostic',
-      budget: answers.budget,
-      timeline: answers.timeline,
-      primaryChallenge: report?.primaryProbLabel,
-      message: `Lead from Step 8. Calculated Score: ${report?.score?.overall}/100`
-    });
-
-    try {
-      fetch("https://formsubmit.co/ajax/25c2139e28176433a33351a4cfeeac2b", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          _subject: `Brand Readiness Diagnostic Lead: ${lead.brand} — ${lead.first} (Score: ${report?.score?.overall ?? 0}/100)`,
-          _template: "table",
-          _captcha: "false",
-          _replyto: lead.email,
-          _cc: "vrundpatel153@gmail.com",
-          "Client Name": lead.first,
-          "Work Email": lead.email,
-          "Brand / Company": lead.brand,
-          "Website or Social": lead.website || 'Not provided',
-          "WhatsApp Phone": lead.whatsapp || 'Not provided',
-          "Calculated Readiness Score": `${report?.score?.overall ?? 0} / 100 (${report?.score?.band || 'Strategic Assessment'})`,
-          "Recommended System": report?.engagement?.name || 'Brand System',
-          "Estimated Timeline": report?.engagement?.weeks || 'Standard Sprint',
-          "Estimated Investment": report?.engagement?.price || 'Standard Sprint',
-          "Step 1 - Core Category": getQuestionOptionLabel('category', answers.category),
-          "Step 2 - Commercial Stage": getQuestionOptionLabel('stage', answers.stage),
-          "Step 3 - Critical Friction Points": getProblemsLabels(answers.problems),
-          "Step 4 - Creative Focus Area": getQuestionOptionLabel('scope', answers.scope),
-          "Step 5 - 12-Month Commercial Horizon": getQuestionOptionLabel('event', answers.event),
-          "Step 6 - Target Launch Timeline": getQuestionOptionLabel('timeline', answers.timeline),
-          "Step 7 - Planned Investment Budget": getQuestionOptionLabel('budget', answers.budget),
-          "Step 8 - Founder Vision": answers.outcome || 'N/A'
-        })
-      }).catch(err => console.warn('Lead dispatch error:', err));
-    } catch (e) {
-      // non-blocking
-    }
-
-    setView('report');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const getQuestionOptionLabel = (questionId, value) => {
     const q = QUESTIONS.find(item => item.id === questionId);
     if (!q || !q.options) return value || 'N/A';
@@ -738,12 +624,10 @@ export default function BrandReadiness() {
   };
 
   const buildBriefText = (channel = 'whatsapp') => {
-    const primaryProb = (answers.problems && answers.problems[0]) || 'unsure';
-    const probLabel = PRESSURE_LABEL[primaryProb] || 'Strategic Alignment';
-    const scoreVal = report?.score?.overall ?? animatedScore;
-    const bandText = report?.score?.band || 'Strategic Assessment Complete';
-    const engagementName = report?.engagement?.name || 'Brand System';
-    const investment = report?.engagement?.price || 'Standard Sprint';
+    const scoreVal = currentScore.overall;
+    const bandText = currentScore.band;
+    const engagementName = currentEngagement.name;
+    const investment = currentEngagement.price;
     const timelineVal = getQuestionOptionLabel('timeline', answers.timeline);
     const categoryVal = getQuestionOptionLabel('category', answers.category);
     const stageVal = getQuestionOptionLabel('stage', answers.stage);
@@ -758,9 +642,9 @@ export default function BrandReadiness() {
         ``,
         `*BRAND READINESS & STRATEGIC SCOPE INQUIRY*`,
         ``,
-        `*Client Contact:* ${lead.first}`,
-        `*Work Email:* ${lead.email}`,
-        `*Brand / Company:* ${lead.brand}`,
+        `*Client Contact:* ${lead.first || 'N/A'}`,
+        `*Work Email:* ${lead.email || 'N/A'}`,
+        `*Brand / Company:* ${lead.brand || 'N/A'}`,
         `*Website / Social:* ${lead.website || 'N/A'}`,
         `*WhatsApp:* ${lead.whatsapp || 'N/A'}`,
         ``,
@@ -790,9 +674,9 @@ export default function BrandReadiness() {
       `============================================================`,
       ``,
       `[01. CLIENT CONTACT]`,
-      `Name: ${lead.first}`,
-      `Work Email: ${lead.email}`,
-      `Brand / Company: ${lead.brand}`,
+      `Name: ${lead.first || 'N/A'}`,
+      `Work Email: ${lead.email || 'N/A'}`,
+      `Brand / Company: ${lead.brand || 'N/A'}`,
       `Website / Social: ${lead.website || 'N/A'}`,
       `WhatsApp Phone: ${lead.whatsapp || 'N/A'}`,
       ``,
@@ -804,9 +688,9 @@ export default function BrandReadiness() {
       `Overall Readiness Score: ${scoreVal}/100`,
       `Strategic Band: ${bandText}`,
       `Recommended System: ${engagementName} (${investment})`,
-      `Clarity & Strategic Narrative: ${report?.score?.clarity ?? 0}/100`,
-      `Visual & Brand Distinctiveness: ${report?.score?.distinct ?? 0}/100`,
-      `Design System Architecture: ${report?.score?.system ?? 0}/100`,
+      `Clarity & Strategic Narrative: ${currentScore.clarity}/100`,
+      `Visual & Brand Distinctiveness: ${currentScore.distinct}/100`,
+      `Design System Architecture: ${currentScore.system}/100`,
       ``,
       `[04. STEP-BY-STEP DIAGNOSTIC RESPONSES]`,
       `Step 1 (Category / Offering): ${categoryVal}`,
@@ -823,10 +707,28 @@ export default function BrandReadiness() {
     ].filter(Boolean).join('\n');
   };
 
-  const handleProjectSubmit = async (e) => {
+  const handleUnifiedSubmit = async (e) => {
     e.preventDefault();
+    if (!lead.first?.trim() || !lead.email?.trim() || !lead.brand?.trim()) {
+      alert('Please provide your name, work email, and brand or company name.');
+      return;
+    }
+
     setIsSubmitting(true);
 
+    const scoreVal = currentScore.overall;
+    const bandText = currentScore.band;
+    const engagementName = currentEngagement.name;
+    const investment = currentEngagement.price;
+    const timelineVal = getQuestionOptionLabel('timeline', answers.timeline);
+    const categoryVal = getQuestionOptionLabel('category', answers.category);
+    const stageVal = getQuestionOptionLabel('stage', answers.stage);
+    const problemsVal = getProblemsLabels(answers.problems);
+    const scopeVal = getQuestionOptionLabel('scope', answers.scope);
+    const eventVal = getQuestionOptionLabel('event', answers.event);
+    const budgetVal = getQuestionOptionLabel('budget', answers.budget);
+
+    // Meta Pixel & Conversions API lead tracking
     try {
       trackMetaFormSubmission({
         name: lead.first,
@@ -834,48 +736,37 @@ export default function BrandReadiness() {
         phone: lead.whatsapp,
         company: lead.brand,
         website: lead.website,
-        services: report?.engagement?.name || 'Brand Readiness Diagnostic',
-        budget: answers.budget,
-        timeline: answers.timeline,
-        primaryChallenge: report?.primaryProbLabel,
-        message: `[Project Scope Request]\nScore: ${report?.score?.overall}/100 (${report?.score?.band})\nDesired Launch: ${projectData.launchDate || 'N/A'}\nNotes: ${projectData.notes || 'N/A'}\nFounder Vision: ${answers.outcome || 'N/A'}`
+        services: engagementName,
+        budget: budgetVal,
+        timeline: timelineVal,
+        primaryChallenge: problemsVal,
+        message: `[Unified Strategic Scope Intake]\nScore: ${scoreVal}/100 (${bandText})\nCategory: ${categoryVal}\nStage: ${stageVal}\nLaunch: ${projectData.launchDate || 'N/A'}\nNotes: ${projectData.notes || 'N/A'}\nFounder Vision: ${answers.outcome || 'N/A'}`
       });
     } catch (err) {
       console.warn('Meta tracking error:', err);
     }
 
+    // FormSubmit POST dispatch (exact confirmed payload schema)
     try {
-      const scoreVal = report?.score?.overall ?? animatedScore;
-      const bandText = report?.score?.band || 'Strategic Assessment Complete';
-      const engagementName = report?.engagement?.name || 'Brand System';
-      const investment = report?.engagement?.price || 'Standard Sprint';
-      const timelineVal = getQuestionOptionLabel('timeline', answers.timeline);
-      const categoryVal = getQuestionOptionLabel('category', answers.category);
-      const stageVal = getQuestionOptionLabel('stage', answers.stage);
-      const problemsVal = getProblemsLabels(answers.problems);
-      const scopeVal = getQuestionOptionLabel('scope', answers.scope);
-      const eventVal = getQuestionOptionLabel('event', answers.event);
-      const budgetVal = getQuestionOptionLabel('budget', answers.budget);
-
       const payload = {
-        _subject: `New Project Scope Brief: ${lead.brand || 'Brand'} — ${lead.first || 'Client'} (Score: ${scoreVal}/100)`,
+        _subject: `New Project Scope Brief: ${lead.brand} — ${lead.first} (Score: ${scoreVal}/100)`,
         _template: "table",
         _captcha: "false",
         _replyto: lead.email,
         _cc: "vrundpatel153@gmail.com",
-        "Client Name": lead.first || 'N/A',
-        "Work Email": lead.email || 'N/A',
-        "Brand / Company": lead.brand || 'N/A',
+        "Client Name": lead.first,
+        "Work Email": lead.email,
+        "Brand / Company": lead.brand,
         "Website or Social": lead.website || 'Not provided',
         "WhatsApp Phone": lead.whatsapp || 'Not provided',
         "Desired Launch Date": projectData.launchDate || 'Not specified',
         "Project Notes / Context": projectData.notes || 'None provided',
         "Overall Readiness Score": `${scoreVal} / 100 (${bandText})`,
         "Recommended Engagement": `${engagementName} — ${investment}`,
-        "Estimated Timeline": report?.engagement?.weeks || 'Standard Sprint',
-        "Clarity & Strategic Narrative": `${report?.score?.clarity ?? 0} / 100`,
-        "Visual & Brand Distinctiveness": `${report?.score?.distinct ?? 0} / 100`,
-        "Design System Architecture": `${report?.score?.system ?? 0} / 100`,
+        "Estimated Timeline": currentEngagement.weeks || 'Standard Sprint',
+        "Clarity & Strategic Narrative": `${currentScore.clarity} / 100`,
+        "Visual & Brand Distinctiveness": `${currentScore.distinct} / 100`,
+        "Design System Architecture": `${currentScore.system} / 100`,
         "Step 1 - Core Category": categoryVal,
         "Step 2 - Commercial Stage": stageVal,
         "Step 3 - Critical Friction Points": problemsVal,
@@ -904,47 +795,74 @@ export default function BrandReadiness() {
     }
   };
 
-  // Keyboard shortcut listener for questions (1-9)
-  useEffect(() => {
-    if (view !== 'quiz') return;
-    const handleKeyDown = (e) => {
-      const activeTag = document.activeElement?.tagName?.toLowerCase();
-      if (activeTag === 'input' || activeTag === 'textarea' || activeTag === 'select') return;
-      const num = parseInt(e.key, 10);
-      const q = QUESTIONS[step];
-      if (q && q.type === 'single' && num >= 1 && num <= q.options.length) {
-        e.preventDefault();
-        handleSelectOption(q.options[num - 1][0]);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [view, step, answers, handleSelectOption]);
-
-  // Animated score counter on report view
-  useEffect(() => {
-    if (view === 'report' && report) {
-      const target = report.score.overall;
-      let start = 0;
-      const stepTime = 16;
-      const totalSteps = 45;
-      const increment = target / totalSteps;
-      const timer = setInterval(() => {
-        start += increment;
-        if (start >= target) {
-          setAnimatedScore(target);
-          clearInterval(timer);
-        } else {
-          setAnimatedScore(Math.floor(start));
-        }
-      }, stepTime);
-      return () => clearInterval(timer);
+  const handleWhatsAppSend = () => {
+    if (!lead.first?.trim() || !lead.email?.trim() || !lead.brand?.trim()) {
+      alert('Please provide your name, work email, and brand or company name.');
+      return;
     }
-  }, [view, report]);
+    const msg = buildBriefText('whatsapp');
+    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+
+    const scoreVal = currentScore.overall;
+    const bandText = currentScore.band;
+    const engagementName = currentEngagement.name;
+    const investment = currentEngagement.price;
+    const timelineVal = getQuestionOptionLabel('timeline', answers.timeline);
+    const categoryVal = getQuestionOptionLabel('category', answers.category);
+    const stageVal = getQuestionOptionLabel('stage', answers.stage);
+    const problemsVal = getProblemsLabels(answers.problems);
+    const scopeVal = getQuestionOptionLabel('scope', answers.scope);
+    const eventVal = getQuestionOptionLabel('event', answers.event);
+    const budgetVal = getQuestionOptionLabel('budget', answers.budget);
+
+    // Background FormSubmit email dispatch for studio archive
+    try {
+      fetch("https://formsubmit.co/ajax/25c2139e28176433a33351a4cfeeac2b", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `New Project Scope Brief (WhatsApp): ${lead.brand} — ${lead.first} (Score: ${scoreVal}/100)`,
+          _template: "table",
+          _captcha: "false",
+          _replyto: lead.email,
+          _cc: "vrundpatel153@gmail.com",
+          "Client Name": lead.first,
+          "Work Email": lead.email,
+          "Brand / Company": lead.brand,
+          "Website or Social": lead.website || 'Not provided',
+          "WhatsApp Phone": lead.whatsapp || 'Not provided',
+          "Desired Launch Date": projectData.launchDate || 'Not specified',
+          "Project Notes / Context": projectData.notes || 'None provided',
+          "Overall Readiness Score": `${scoreVal} / 100 (${bandText})`,
+          "Recommended Engagement": `${engagementName} — ${investment}`,
+          "Estimated Timeline": currentEngagement.weeks || 'Standard Sprint',
+          "Clarity & Strategic Narrative": `${currentScore.clarity} / 100`,
+          "Visual & Brand Distinctiveness": `${currentScore.distinct} / 100`,
+          "Design System Architecture": `${currentScore.system} / 100`,
+          "Step 1 - Core Category": categoryVal,
+          "Step 2 - Commercial Stage": stageVal,
+          "Step 3 - Critical Friction Points": problemsVal,
+          "Step 4 - Creative Focus Area": scopeVal,
+          "Step 5 - 12-Month Commercial Horizon": eventVal,
+          "Step 6 - Target Launch Timeline": timelineVal,
+          "Step 7 - Planned Investment Budget": budgetVal,
+          "Step 8 - Founder Vision of Success": answers.outcome || 'N/A',
+          "Preferred Channel": "WhatsApp",
+          "Complete Formatted Brief": buildBriefText('email')
+        })
+      }).catch(err => console.warn(err));
+    } catch (e) {}
+
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
+    setView('success');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleStartQuiz = () => {
-    setView('quiz');
-    setStep(0);
+    setView('form');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -953,40 +871,19 @@ export default function BrandReadiness() {
       case 'landing':
         return {
           title: "Brand Readiness",
-          subtitle: "8-Step Diagnostic",
+          subtitle: "Get Project Quote",
           buttonText: "Start",
           onClick: handleStartQuiz
         };
-      case 'quiz':
+      case 'form':
         return {
-          title: `Step 0${step + 1} of 08`,
-          subtitle: "Diagnostic",
-          buttonText: "WhatsApp",
-          link: WHATSAPP_URL
-        };
-      case 'capture':
-        return {
-          title: "Diagnostic Complete",
-          subtitle: "Scope Request",
-          buttonText: "WhatsApp",
-          link: WHATSAPP_URL
-        };
-      case 'report':
-        return {
-          title: `Score: ${report?.score?.overall ?? 0}/100`,
-          subtitle: "From ₹4,75,000",
-          buttonText: "Get Scope",
+          title: `Diagnostic: ${currentScore.overall}/100`,
+          subtitle: currentEngagement.name,
+          buttonText: "Submit Brief",
           onClick: () => {
-            setView('project');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const btn = document.getElementById('br-submit-btn');
+            if (btn) btn.click();
           }
-        };
-      case 'project':
-        return {
-          title: "Project Scope",
-          subtitle: "Custom Sprints",
-          buttonText: "Discuss",
-          link: DISCUSS_URL
         };
       case 'success':
         return {
@@ -1007,9 +904,18 @@ export default function BrandReadiness() {
 
   const stickyConfig = getStickyCTAConfig();
 
-  const currentQ = QUESTIONS[step];
-  const isMulti = currentQ?.type === 'multi';
-  const currentMultiSelected = (answers[currentQ?.id] || []);
+  const handleProblemToggle = (probKey) => {
+    const current = answers.problems || [];
+    if (current.includes(probKey)) {
+      setAnswers(prev => ({ ...prev, problems: current.filter(k => k !== probKey) }));
+    } else {
+      if (current.length >= 2) {
+        setAnswers(prev => ({ ...prev, problems: [current[1], probKey] }));
+      } else {
+        setAnswers(prev => ({ ...prev, problems: [...current, probKey] }));
+      }
+    }
+  };
 
   return (
     <>
@@ -1190,535 +1096,459 @@ export default function BrandReadiness() {
               </section>
             )}
 
-            {/* ════════════════════════════════════════════════════════════════
-                VIEW 2: QUIZ
+                        {/* ════════════════════════════════════════════════════════════════
+                VIEW 2: UNIFIED OPTIMIZED STRATEGIC QUOTE & DIAGNOSTIC FORM
                ════════════════════════════════════════════════════════════════ */}
-            {view === 'quiz' && currentQ && (
-              <section className="br-quiz-section">
+            {view === 'form' && (
+              <section className="br-form-section">
                 <div className="bp-sheet-label">
-                  <span className="bp-sheet-right mono">DIAGNOSTIC IN PROGRESS // QUESTION {String(step + 1).padStart(2, '0')} OF 08</span>
-                  <span className="rule"></span>
-                </div>
-
-                {/* Progress bar */}
-                <div className="br-progress-header">
-                  <div className="mono br-progress-count">
-                    PROGRESS // STEP {String(step + 1).padStart(2, '0')} / 08
-                  </div>
-                  <div className="br-progress-ticks">
-                    {QUESTIONS.map((_, i) => (
-                      <span
-                        key={i}
-                        className={`br-tick ${i < step ? 'done' : i === step ? 'now' : ''}`}
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                <div className="br-quiz-card">
-                  <div className="corner" aria-hidden="true"></div>
-                  <div className="br-qgrid">
-                    <div className="br-qnum mono">
-                      {String(step + 1).padStart(2, '0')}
-                      <small>/ 08</small>
-                    </div>
-
-                    <div className="br-qcontent">
-                      <h2 className="br-qtitle">{currentQ.title}</h2>
-                      {currentQ.help && <p className="br-qhelp">{currentQ.help}</p>}
-
-                      {/* Options or Textarea */}
-                      {currentQ.type === 'text' ? (
-                        <div className="br-text-block">
-                          <textarea
-                            className="br-outcome-textarea"
-                            rows={5}
-                            placeholder={currentQ.placeholder}
-                            value={answers.outcome}
-                            onChange={(e) => setAnswers({ ...answers, outcome: e.target.value })}
-                          />
-                          <div className="bp-cta-row" style={{ marginTop: '24px' }}>
-                            <button
-                              type="button"
-                              className="bp-btn-primary"
-                              onClick={handleNextStep}
-                            >
-                              Build My Readout <ArrowIcon size={14} />
-                            </button>
-                            <button
-                              type="button"
-                              className="btn-secondary-cta"
-                              onClick={handlePrevStep}
-                            >
-                              ← Back
-                            </button>
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="br-options-block">
-                          <ul className="br-opts-list">
-                            {currentQ.options.map(([optVal, optLabel], i) => {
-                              const isSelected = isMulti
-                                ? currentMultiSelected.includes(optVal)
-                                : answers[currentQ.id] === optVal;
-                              return (
-                                <li key={optVal}>
-                                  <button
-                                    type="button"
-                                    className={`br-opt-btn ${isSelected ? 'selected' : ''}`}
-                                    onClick={() => handleSelectOption(optVal)}
-                                  >
-                                    <span className="mono br-opt-key">
-                                      [{String(i + 1).padStart(2, '0')}]
-                                    </span>
-                                    <span className="br-opt-label">{optLabel}</span>
-                                    <span className="br-opt-marker">
-                                      {isSelected ? '✓' : '—'}
-                                    </span>
-                                  </button>
-                                </li>
-                              );
-                            })}
-                          </ul>
-
-                          {isMulti && (
-                            <div className="br-multi-note mono">
-                              {currentMultiSelected.length} of {currentQ.max} selected
-                            </div>
-                          )}
-
-                          <div className="bp-cta-row" style={{ marginTop: '28px' }}>
-                            {isMulti && (
-                              <button
-                                type="button"
-                                className="bp-btn-primary"
-                                disabled={currentMultiSelected.length === 0}
-                                onClick={handleNextStep}
-                              >
-                                Continue <ArrowIcon size={14} />
-                              </button>
-                            )}
-                            <button
-                              type="button"
-                              className="btn-secondary-cta"
-                              onClick={handlePrevStep}
-                            >
-                              ← Back
-                            </button>
-                          </div>
-
-                          <p className="mono br-tip-note">
-                            Tip: You can use your keyboard numbers (1–{currentQ.options.length}) to pick an option.
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Live System Specification & Packaging Shelf */}
-                <div className="br-quiz-shelf-container">
-                  <div className="mono br-quiz-shelf-tag">
-                    LIVE SYSTEM SPEC // STAGE {String(step + 1).padStart(2, '0')} OF 08 — {SHAPE_FOR[answers.category] || 'bottle'}.svg
-                  </div>
-                  <ShelfGraphic
-                    stage={step + 1}
-                    shape={SHAPE_FOR[answers.category] || 'bottle'}
-                    uid="quiz"
-                  />
-                  <div className="mono br-quiz-shelf-caption">
-                    <strong>{STAGE_DESCRIPTIONS[step + 1]?.title}:</strong> {STAGE_DESCRIPTIONS[step + 1]?.desc}
-                  </div>
-                </div>
-              </section>
-            )}
-
-            {/* ════════════════════════════════════════════════════════════════
-                VIEW 3: LEAD CAPTURE
-               ════════════════════════════════════════════════════════════════ */}
-            {view === 'capture' && (
-              <section className="br-capture-section">
-                <div className="bp-sheet-label">
-                  <span className="bp-sheet-right mono">DIAGNOSTIC CALCULATION // SCORES COMPILED // FINAL STEP</span>
-                  <span className="rule"></span>
-                </div>
-
-                <div className="br-capture-card">
-                  <div className="corner" aria-hidden="true"></div>
-                  <span className="mono br-card-tag">
-                    08 / 08 QUESTIONS COMPLETE // SYSTEM SCORING READY
+                  <span className="bp-sheet-right mono">
+                    THE DRAWING BOARD // STRATEGIC SCOPE INTAKE &amp; READOUT // ALL-IN-ONE SYSTEM
                   </span>
-                  <h2 className="br-card-title">
-                    Your strategic brand readout is calculated.
-                  </h2>
-                  <p className="br-card-desc">
-                    Enter your details to generate your tailored readiness score, field diagnosis notes, and custom project scope recommendations immediately.
-                  </p>
-
-                  <form onSubmit={handleLeadSubmit} className="br-capture-form">
-                    <div className="br-fields-grid">
-                      <div className="field-group">
-                        <label className="mono" htmlFor="first">Founder / Lead Name *</label>
-                        <input
-                          id="first"
-                          type="text"
-                          required
-                          placeholder="e.g. Maya Sharma"
-                          value={lead.first}
-                          onChange={(e) => setLead({ ...lead, first: e.target.value })}
-                        />
-                      </div>
-
-                      <div className="field-group">
-                        <label className="mono" htmlFor="email">Work Email *</label>
-                        <input
-                          id="email"
-                          type="email"
-                          required
-                          placeholder="e.g. maya@yourbrand.com"
-                          value={lead.email}
-                          onChange={(e) => setLead({ ...lead, email: e.target.value })}
-                        />
-                      </div>
-
-                      <div className="field-group">
-                        <label className="mono" htmlFor="brand">Brand / Company Name *</label>
-                        <input
-                          id="brand"
-                          type="text"
-                          required
-                          placeholder="e.g. Lumien Botanical"
-                          value={lead.brand}
-                          onChange={(e) => setLead({ ...lead, brand: e.target.value })}
-                        />
-                      </div>
-
-                      <div className="field-group">
-                        <label className="mono" htmlFor="website">Website or Instagram (optional)</label>
-                        <input
-                          id="website"
-                          type="text"
-                          placeholder="e.g. @yourbrand or website.com"
-                          value={lead.website}
-                          onChange={(e) => setLead({ ...lead, website: e.target.value })}
-                        />
-                      </div>
-
-                      <div className="field-group full-width">
-                        <label className="mono" htmlFor="whatsapp">WhatsApp Number (optional)</label>
-                        <input
-                          id="whatsapp"
-                          type="tel"
-                          placeholder="+91 98765 43210"
-                          value={lead.whatsapp}
-                          onChange={(e) => setLead({ ...lead, whatsapp: e.target.value })}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="bp-cta-row" style={{ marginTop: '28px' }}>
-                      <button type="submit" className="bp-btn-primary">
-                        Show My Brand Readout <ArrowIcon size={14} />
-                      </button>
-                      <button
-                        type="button"
-                        className="btn-secondary-cta"
-                        onClick={() => { setView('quiz'); setStep(7); }}
-                      >
-                        ← Back to questions
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </section>
-            )}
-
-            {/* ════════════════════════════════════════════════════════════════
-                VIEW 4: REPORT / DIAGNOSIS
-               ════════════════════════════════════════════════════════════════ */}
-            {view === 'report' && report && (
-              <section className="br-report-section">
-                <div className="bp-sheet-label">
-                  <span className="bp-sheet-right mono">{lead.brand?.toUpperCase() || 'BRAND'} // STRATEGIC READOUT // SCORE: {animatedScore}/100</span>
                   <span className="rule"></span>
                 </div>
 
-                <div className="br-report-header">
-                  <div>
-                    <span className="mono" style={{ fontSize: '11px', color: 'var(--pine)', fontWeight: 700, letterSpacing: '1px' }}>
-                      THE DRAWING BOARD // STRATEGIC READOUT // {new Date().getFullYear()}
+                <div className="br-form-intro">
+                  <div className="br-intro-top-row">
+                    <span className="mono br-card-tag" style={{ margin: 0 }}>
+                      SYSTEM INTAKE // LIVE ARCHITECTURAL CALCULATION
                     </span>
-                    <h2 className="br-report-title">
-                      Brand Readout: <em>{lead.brand || 'Your Brand'}</em>
-                    </h2>
-                  </div>
-                  <button
-                    type="button"
-                    className="btn-secondary-cta"
-                    onClick={() => window.print()}
-                  >
-                    Save as PDF ⤓
-                  </button>
-                </div>
-
-                {/* Facts Strip */}
-                <dl className="br-facts-grid">
-                  <div className="br-fact"><dt className="mono">Brand</dt><dd>{lead.brand || '—'}</dd></div>
-                  <div className="br-fact"><dt className="mono">Current Stage</dt><dd>{STAGE_SHORT[answers.stage] || '—'}</dd></div>
-                  <div className="br-fact"><dt className="mono">Primary Pressure</dt><dd>{report.primaryProbLabel}</dd></div>
-                  <div className="br-fact"><dt className="mono">Current Focus</dt><dd>{SCOPE_SHORT[answers.scope] || '—'}</dd></div>
-                  <div className="br-fact"><dt className="mono">12-Mo Catalyst</dt><dd>{EVENT_SHORT[answers.event] || '—'}</dd></div>
-                  <div className="br-fact"><dt className="mono">Timeline</dt><dd>{TIME_SHORT[answers.timeline] || '—'}</dd></div>
-                </dl>
-
-                {/* Score Block */}
-                <div className="br-score-card">
-                  <div className="corner" aria-hidden="true"></div>
-                  <div className="br-score-left">
-                    <span className="mono" style={{ fontSize: '12px', color: 'var(--ink-soft)' }}>
-                      OVERALL READINESS SCORE
-                    </span>
-                    <div className="br-score-display">
-                      <span className="br-score-num">{animatedScore}</span>
-                      <span className="br-score-max mono">/ 100</span>
-                    </div>
-                    <div className="br-score-band">{report.score.band}</div>
-                    <p style={{ color: 'var(--ink-soft)', fontSize: '13.5px', marginTop: '8px' }}>
-                      Calculated from clarity, distinctiveness, and systematic scalability.
-                    </p>
-                  </div>
-
-                  <div className="br-score-right">
-                    <div className="br-dim-group">
-                      <div className="mono br-dim-head">SCORED DIMENSIONS</div>
-                      <div className="br-dim-row">
-                        <span>Clarity &amp; Positioning</span>
-                        <div className="br-dim-bar"><i style={{ width: `${report.score.clarity}%` }}></i></div>
-                        <span className="mono">{report.score.clarity}%</span>
-                      </div>
-                      <div className="br-dim-row">
-                        <span>Distinctiveness</span>
-                        <div className="br-dim-bar"><i style={{ width: `${report.score.distinct}%` }}></i></div>
-                        <span className="mono">{report.score.distinct}%</span>
-                      </div>
-                      <div className="br-dim-row">
-                        <span>System Readiness</span>
-                        <div className="br-dim-bar"><i style={{ width: `${report.score.system}%` }}></i></div>
-                        <span className="mono">{report.score.system}%</span>
-                      </div>
-                    </div>
-
-                    <div className="br-dim-group" style={{ marginTop: '18px' }}>
-                      <div className="mono br-dim-head">CONTEXTUAL METRICS</div>
-                      <div className="br-dim-row">
-                        <span>Growth Pressure</span>
-                        <div className="br-dim-bar bar-accent"><i style={{ width: `${report.score.pressure}%` }}></i></div>
-                        <span className="mono">{report.score.pressure}%</span>
-                      </div>
-                      <div className="br-dim-row">
-                        <span>Project Preparedness</span>
-                        <div className="br-dim-bar bar-accent"><i style={{ width: `${report.score.project}%` }}></i></div>
-                        <span className="mono">{report.score.project}%</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Founder Vision Outcome Quote */}
-                {answers.outcome && (
-                  <div className="br-outcome-quote">
-                    <span className="mono" style={{ fontSize: '11px', color: 'var(--pine)', fontWeight: 700 }}>
-                      FOUNDER’S DEFINITION OF SUCCESS
-                    </span>
-                    <blockquote>“{answers.outcome}”</blockquote>
-                  </div>
-                )}
-
-                {/* Strategic Field Notes */}
-                <div className="br-field-notes">
-                  <div className="bp-sheet-label">
-                    <span className="tag mono">STRATEGIC FIELD NOTES // WHERE WE’D START</span>
-                    <span className="rule"></span>
-                    <span className="bp-sheet-right mono">OBSERVATIONS &amp; RECOMMENDATIONS</span>
-                  </div>
-
-                  <div className="br-frags-list">
-                    {report.frags.map((frag, idx) => (
-                      <div key={idx} className="br-frag-card">
-                        <div className="br-frag-num mono">0{idx + 1}</div>
-                        <div className="br-frag-body">
-                          <h3>{frag.title}</h3>
-                          <p>{frag.body}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Opportunity vs Risk */}
-                <div className="br-opp-risk-grid">
-                  <div className="br-opp-card">
-                    <div className="mono" style={{ fontSize: '11px', color: 'var(--pine)', fontWeight: 700 }}>
-                      // THE UPSIDE OPPORTUNITY
-                    </div>
-                    <p>{report.opp}</p>
-                  </div>
-                  <div className="br-risk-card">
-                    <div className="mono" style={{ fontSize: '11px', color: 'var(--marker)', fontWeight: 700 }}>
-                      // IF LEFT UNADDRESSED
-                    </div>
-                    <p>{report.risk}</p>
-                  </div>
-                </div>
-
-                {/* Recommended Engagement Card */}
-                <div className="br-recommended-card">
-                  <div className="corner"></div>
-                  <div className="mono" style={{ fontSize: '11px', color: '#8EC4B3', fontWeight: 700, letterSpacing: '1px' }}>
-                    RECOMMENDED STUDIO ENGAGEMENT FOR {lead.brand?.toUpperCase() || 'YOUR BRAND'}
-                  </div>
-                  <h3 className="br-rec-title">{report.engagement.name}</h3>
-
-                  <div className="br-rec-grid">
-                    <ul className="br-rec-deliverables">
-                      {report.engagement.scope.map((item, i) => (
-                        <li key={i}>
-                          <span className="mono" style={{ color: '#8EC4B3', marginRight: '8px' }}>✓</span>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="br-rec-meta">
-                      <div className="br-rec-stat">
-                        <span className="mono">Investment</span>
-                        <b>{report.engagement.price}</b>
-                      </div>
-                      <div className="br-rec-stat">
-                        <span className="mono">Typical Sprint Schedule</span>
-                        <b>{report.engagement.weeks}</b>
-                      </div>
-                      <div className="br-rec-stat">
-                        <span className="mono">Deliverable Standards</span>
-                        <b>100% vector IP ownership</b>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="bp-cta-row" style={{ marginTop: '32px' }}>
                     <button
                       type="button"
-                      className="bp-btn-primary"
-                      onClick={() => setView('project')}
+                      className="btn-secondary-cta br-back-btn"
+                      onClick={() => {
+                        setView('landing');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
                     >
-                      Request Project Scope <ArrowIcon size={14} />
+                      ← Back to Overview
                     </button>
-                    <a
-                      href={DISCUSS_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bp-btn-secondary bp-btn-secondary--light"
-                    >
-                      Discuss Your Project (Google Form) <ArrowIcon size={14} />
-                    </a>
                   </div>
-                </div>
-              </section>
-            )}
-
-            {/* ════════════════════════════════════════════════════════════════
-                VIEW 5: PROJECT SCOPE REQUEST
-               ════════════════════════════════════════════════════════════════ */}
-            {view === 'project' && (
-              <section className="br-project-section">
-                <div className="bp-sheet-label">
-                  <span className="bp-sheet-right mono">FORMAL ENGAGEMENT INQUIRY // DIRECT PRINCIPAL REVIEW</span>
-                  <span className="rule"></span>
-                </div>
-
-                <div className="br-capture-card">
-                  <div className="corner"></div>
-                  <span className="mono br-card-tag">
-                    FORMAL STUDIO ENGAGEMENT INQUIRY
-                  </span>
-                  <h2 className="br-card-title">
-                    Request project scope for {lead.brand || 'your brand'}.
-                  </h2>
-                  <p className="br-card-desc">
-                    Your diagnostic answers and recommended engagement ({report?.engagement?.name}) will be directly reviewed by our studio team.
+                  <h1 className="br-form-main-title">
+                    Strategic Project Scope &amp; Diagnostic Intake
+                  </h1>
+                  <p className="br-form-main-sub">
+                    Select your parameters below to calculate your real-time brand readiness score (0–100) and identify the ideal studio engagement sprint. Submit your brief for direct senior review.
                   </p>
-
-                  <form onSubmit={handleProjectSubmit} className="br-capture-form">
-                    <div className="br-fields-grid">
-                      <div className="field-group">
-                        <label className="mono">Name *</label>
-                        <input
-                          type="text"
-                          required
-                          value={lead.first}
-                          onChange={(e) => setLead({ ...lead, first: e.target.value })}
-                        />
-                      </div>
-
-                      <div className="field-group">
-                        <label className="mono">Work Email *</label>
-                        <input
-                          type="email"
-                          required
-                          value={lead.email}
-                          onChange={(e) => setLead({ ...lead, email: e.target.value })}
-                        />
-                      </div>
-
-                      <div className="field-group">
-                        <label className="mono">Brand or Company *</label>
-                        <input
-                          type="text"
-                          required
-                          value={lead.brand}
-                          onChange={(e) => setLead({ ...lead, brand: e.target.value })}
-                        />
-                      </div>
-
-                      <div className="field-group">
-                        <label className="mono">Desired Launch Date</label>
-                        <input
-                          type="text"
-                          placeholder="e.g. Q3 2026 or October"
-                          value={projectData.launchDate}
-                          onChange={(e) => setProjectData({ ...projectData, launchDate: e.target.value })}
-                        />
-                      </div>
-
-                      <div className="field-group full-width">
-                        <label className="mono">Additional Context or Specific Notes</label>
-                        <textarea
-                          rows={4}
-                          placeholder="Anything specific we should know regarding SKUs, existing brand history, or manufacturer deadlines?"
-                          value={projectData.notes}
-                          onChange={(e) => setProjectData({ ...projectData, notes: e.target.value })}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="bp-cta-row" style={{ marginTop: '28px' }}>
-                      <button type="submit" className="bp-btn-primary" disabled={isSubmitting}>
-                        {isSubmitting ? (
-                          <>Transmitting Scope... <ArrowIcon size={14} /></>
-                        ) : (
-                          <>Request Project Scope <ArrowIcon size={14} /></>
-                        )}
-                      </button>
-                      <button
-                        type="button"
-                        className="btn-secondary-cta"
-                        onClick={() => setView('report')}
-                      >
-                        ← Back to report
-                      </button>
-                    </div>
-                  </form>
                 </div>
+
+                <form onSubmit={handleUnifiedSubmit} className="br-unified-grid-layout">
+                  {/* Left Column: Intake Sections */}
+                  <div className="br-form-left-col">
+                    {/* SECTION 01: CORE OFFERING & COMMERCIAL STAGE */}
+                    <div className="br-form-card">
+                      <div className="corner" aria-hidden="true"></div>
+                      <div className="br-card-header">
+                        <span className="mono br-card-sec-num">01 // BRAND FOUNDATION</span>
+                        <h2 className="br-card-heading">Category &amp; Commercial Milestone</h2>
+                        <p className="br-card-explainer">Define what you are building and where the business stands today.</p>
+                      </div>
+
+                      {/* Question 1: Category */}
+                      <div className="br-field-block">
+                        <label className="mono br-field-label">
+                          What are you building? <span className="br-label-required">*</span>
+                        </label>
+                        <div className="br-pills-wrap">
+                          {QUESTIONS[0].options.map(([val, label]) => {
+                            const isSelected = answers.category === val;
+                            return (
+                              <button
+                                key={val}
+                                type="button"
+                                className={`br-option-pill ${isSelected ? 'active' : ''}`}
+                                onClick={() => setAnswers({ ...answers, category: val })}
+                              >
+                                {isSelected && <span className="br-pill-check">✓</span>}
+                                {label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* Question 2: Commercial Stage */}
+                      <div className="br-field-block" style={{ marginTop: '26px' }}>
+                        <label className="mono br-field-label">
+                          Where is the business today? <span className="br-label-required">*</span>
+                        </label>
+                        <div className="br-pills-wrap">
+                          {QUESTIONS[1].options.map(([val, label]) => {
+                            const isSelected = answers.stage === val;
+                            return (
+                              <button
+                                key={val}
+                                type="button"
+                                className={`br-option-pill ${isSelected ? 'active' : ''}`}
+                                onClick={() => setAnswers({ ...answers, stage: val })}
+                              >
+                                {isSelected && <span className="br-pill-check">✓</span>}
+                                {label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* SECTION 02: SCOPE & CORE FRICTION POINTS */}
+                    <div className="br-form-card">
+                      <div className="corner" aria-hidden="true"></div>
+                      <div className="br-card-header">
+                        <span className="mono br-card-sec-num">02 // SCOPE &amp; PRESSURES</span>
+                        <h2 className="br-card-heading">Creative Focus &amp; Tension Points</h2>
+                        <p className="br-card-explainer">Identify where current brand friction occurs and where studio effort should focus.</p>
+                      </div>
+
+                      {/* Question 3: Problems / Frictions (Multi-select, max 2) */}
+                      <div className="br-field-block">
+                        <div className="br-field-label-row">
+                          <label className="mono br-field-label">
+                            What is holding the brand back?
+                          </label>
+                          <span className="mono br-helper-tag">
+                            {(answers.problems || []).length} of 2 selected
+                          </span>
+                        </div>
+                        <div className="br-pills-wrap">
+                          {QUESTIONS[2].options.map(([val, label]) => {
+                            const isSelected = (answers.problems || []).includes(val);
+                            return (
+                              <button
+                                key={val}
+                                type="button"
+                                className={`br-option-pill ${isSelected ? 'active' : ''}`}
+                                onClick={() => handleProblemToggle(val)}
+                              >
+                                {isSelected && <span className="br-pill-check">✓</span>}
+                                {label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* Question 4: Scope / Focus Area */}
+                      <div className="br-field-block" style={{ marginTop: '26px' }}>
+                        <label className="mono br-field-label">
+                          What needs to change first? <span className="br-label-required">*</span>
+                        </label>
+                        <div className="br-pills-wrap">
+                          {QUESTIONS[3].options.map(([val, label]) => {
+                            const isSelected = answers.scope === val;
+                            return (
+                              <button
+                                key={val}
+                                type="button"
+                                className={`br-option-pill ${isSelected ? 'active' : ''}`}
+                                onClick={() => setAnswers({ ...answers, scope: val })}
+                              >
+                                {isSelected && <span className="br-pill-check">✓</span>}
+                                {label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* Question 5: 12-Month Horizon */}
+                      <div className="br-field-block" style={{ marginTop: '26px' }}>
+                        <label className="mono br-field-label">
+                          What is happening in the next 12 months? <span className="br-label-required">*</span>
+                        </label>
+                        <div className="br-pills-wrap">
+                          {QUESTIONS[4].options.map(([val, label]) => {
+                            const isSelected = answers.event === val;
+                            return (
+                              <button
+                                key={val}
+                                type="button"
+                                className={`br-option-pill ${isSelected ? 'active' : ''}`}
+                                onClick={() => setAnswers({ ...answers, event: val })}
+                              >
+                                {isSelected && <span className="br-pill-check">✓</span>}
+                                {label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* SECTION 03: TIMELINE, BUDGET & FOUNDER VISION */}
+                    <div className="br-form-card">
+                      <div className="corner" aria-hidden="true"></div>
+                      <div className="br-card-header">
+                        <span className="mono br-card-sec-num">03 // TIMELINE &amp; VISION</span>
+                        <h2 className="br-card-heading">Schedule, Budget &amp; Desired Impact</h2>
+                        <p className="br-card-explainer">Ensure deliverables align with your launch runway and strategic investment.</p>
+                      </div>
+
+                      {/* Question 6: Timeline */}
+                      <div className="br-field-block">
+                        <label className="mono br-field-label">
+                          When does this need to go live? <span className="br-label-required">*</span>
+                        </label>
+                        <div className="br-pills-wrap">
+                          {QUESTIONS[5].options.map(([val, label]) => {
+                            const isSelected = answers.timeline === val;
+                            return (
+                              <button
+                                key={val}
+                                type="button"
+                                className={`br-option-pill ${isSelected ? 'active' : ''}`}
+                                onClick={() => setAnswers({ ...answers, timeline: val })}
+                              >
+                                {isSelected && <span className="br-pill-check">✓</span>}
+                                {label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* Question 7: Budget */}
+                      <div className="br-field-block" style={{ marginTop: '26px' }}>
+                        <div className="br-field-label-row">
+                          <label className="mono br-field-label">
+                            Planned Brand Investment Level <span className="br-label-required">*</span>
+                          </label>
+                          <span className="mono br-helper-tag">
+                            From ₹4,75,000 ($4,960)
+                          </span>
+                        </div>
+                        <div className="br-pills-wrap">
+                          {QUESTIONS[6].options.map(([val, label]) => {
+                            const isSelected = answers.budget === val;
+                            return (
+                              <button
+                                key={val}
+                                type="button"
+                                className={`br-option-pill ${isSelected ? 'active' : ''}`}
+                                onClick={() => setAnswers({ ...answers, budget: val })}
+                              >
+                                {isSelected && <span className="br-pill-check">✓</span>}
+                                {label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* Question 8: Founder Vision Outcome */}
+                      <div className="br-field-block" style={{ marginTop: '26px' }}>
+                        <label className="mono br-field-label" htmlFor="br-outcome-input">
+                          If this project goes brilliantly, what changes for the business?
+                        </label>
+                        <p className="br-input-subtext">
+                          In your own words — one or two sentences describing what commercial success looks like.
+                        </p>
+                        <textarea
+                          id="br-outcome-input"
+                          rows={3}
+                          className="br-form-textarea"
+                          placeholder={QUESTIONS[7].placeholder}
+                          value={answers.outcome}
+                          onChange={(e) => setAnswers({ ...answers, outcome: e.target.value })}
+                        />
+                      </div>
+                    </div>
+
+                    {/* SECTION 04: FOUNDER & PROJECT CONTACT INTAKE */}
+                    <div className="br-form-card">
+                      <div className="corner" aria-hidden="true"></div>
+                      <div className="br-card-header">
+                        <span className="mono br-card-sec-num">04 // FOUNDER &amp; INQUIRY DETAILS</span>
+                        <h2 className="br-card-heading">Project Contact Information</h2>
+                        <p className="br-card-explainer">Where should we deliver the strategic scope proposal and project timeline?</p>
+                      </div>
+
+                      <div className="br-fields-grid">
+                        <div className="field-group">
+                          <label className="mono" htmlFor="first">
+                            Founder / Lead Name <span className="br-label-required">*</span>
+                          </label>
+                          <input
+                            id="first"
+                            type="text"
+                            required
+                            placeholder="e.g. Maya Sharma"
+                            value={lead.first}
+                            onChange={(e) => setLead({ ...lead, first: e.target.value })}
+                          />
+                        </div>
+
+                        <div className="field-group">
+                          <label className="mono" htmlFor="email">
+                            Work Email <span className="br-label-required">*</span>
+                          </label>
+                          <input
+                            id="email"
+                            type="email"
+                            required
+                            placeholder="e.g. maya@yourbrand.com"
+                            value={lead.email}
+                            onChange={(e) => setLead({ ...lead, email: e.target.value })}
+                          />
+                        </div>
+
+                        <div className="field-group">
+                          <label className="mono" htmlFor="brand">
+                            Brand / Company Name <span className="br-label-required">*</span>
+                          </label>
+                          <input
+                            id="brand"
+                            type="text"
+                            required
+                            placeholder="e.g. Lumien Botanical"
+                            value={lead.brand}
+                            onChange={(e) => setLead({ ...lead, brand: e.target.value })}
+                          />
+                        </div>
+
+                        <div className="field-group">
+                          <label className="mono" htmlFor="website">
+                            Website or Instagram (optional)
+                          </label>
+                          <input
+                            id="website"
+                            type="text"
+                            placeholder="e.g. @yourbrand or website.com"
+                            value={lead.website}
+                            onChange={(e) => setLead({ ...lead, website: e.target.value })}
+                          />
+                        </div>
+
+                        <div className="field-group">
+                          <label className="mono" htmlFor="whatsapp">
+                            WhatsApp Phone (optional)
+                          </label>
+                          <input
+                            id="whatsapp"
+                            type="tel"
+                            placeholder="+91 98765 43210"
+                            value={lead.whatsapp}
+                            onChange={(e) => setLead({ ...lead, whatsapp: e.target.value })}
+                          />
+                        </div>
+
+                        <div className="field-group">
+                          <label className="mono" htmlFor="launchDate">
+                            Desired Launch Date (optional)
+                          </label>
+                          <input
+                            id="launchDate"
+                            type="text"
+                            placeholder="e.g. Q4 2026 or November"
+                            value={projectData.launchDate}
+                            onChange={(e) => setProjectData({ ...projectData, launchDate: e.target.value })}
+                          />
+                        </div>
+
+                        <div className="field-group full-width">
+                          <label className="mono" htmlFor="notes">
+                            Additional Context or Specific Notes (optional)
+                          </label>
+                          <textarea
+                            id="notes"
+                            rows={3}
+                            placeholder="Anything specific we should know regarding SKUs, existing brand history, or manufacturer deadlines?"
+                            value={projectData.notes}
+                            onChange={(e) => setProjectData({ ...projectData, notes: e.target.value })}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Live Sticky Readout & Submit Panel */}
+                  <div className="br-form-right-col">
+                    <div className="br-side-sticky-card">
+                      <div className="corner" aria-hidden="true"></div>
+
+                      <div className="mono br-side-head-tag">
+                        LIVE SYSTEM SPECIFICATION
+                      </div>
+
+                      {/* Score Module */}
+                      <div className="br-side-score-box">
+                        <div className="br-side-score-val">
+                          <span className="br-side-num">{currentScore.overall}</span>
+                          <span className="br-side-denom mono">/ 100</span>
+                        </div>
+                        <div className="br-side-band">{currentScore.band}</div>
+                      </div>
+
+                      {/* Dimension Progress Bars */}
+                      <div className="br-side-bars">
+                        <div className="br-side-bar-row">
+                          <span className="mono">Clarity &amp; Positioning</span>
+                          <div className="br-side-track"><div className="br-side-fill" style={{ width: `${currentScore.clarity}%` }}></div></div>
+                          <span className="mono">{currentScore.clarity}%</span>
+                        </div>
+                        <div className="br-side-bar-row">
+                          <span className="mono">Brand Distinctiveness</span>
+                          <div className="br-side-track"><div className="br-side-fill" style={{ width: `${currentScore.distinct}%` }}></div></div>
+                          <span className="mono">{currentScore.distinct}%</span>
+                        </div>
+                        <div className="br-side-bar-row">
+                          <span className="mono">System Readiness</span>
+                          <div className="br-side-track"><div className="br-side-fill" style={{ width: `${currentScore.system}%` }}></div></div>
+                          <span className="mono">{currentScore.system}%</span>
+                        </div>
+                      </div>
+
+                      {/* Recommended Sprint System */}
+                      <div className="br-side-rec-block">
+                        <span className="mono br-side-rec-label">RECOMMENDED STUDIO ENGAGEMENT</span>
+                        <h3 className="br-side-rec-title">{currentEngagement.name}</h3>
+                        <div className="br-side-rec-price-row">
+                          <span className="br-side-rec-price">{currentEngagement.price}</span>
+                          <span className="mono br-side-rec-weeks">{currentEngagement.weeks}</span>
+                        </div>
+
+                        <ul className="br-side-deliverables">
+                          {currentEngagement.scope.map((item, idx) => (
+                            <li key={idx}>
+                              <span className="mono" style={{ color: 'var(--pine)', fontWeight: 700, marginRight: '6px' }}>✓</span>
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Actions */}
+                      <div className="br-side-actions">
+                        <button
+                          type="submit"
+                          id="br-submit-btn"
+                          className="bp-btn-primary"
+                          disabled={isSubmitting}
+                          style={{ width: '100%', justifyContent: 'center' }}
+                        >
+                          {isSubmitting ? (
+                            <>Transmitting Brief... <ArrowIcon size={14} /></>
+                          ) : (
+                            <>Submit Project Brief &amp; Scope <ArrowIcon size={14} /></>
+                          )}
+                        </button>
+
+                        <button
+                          type="button"
+                          className="btn-secondary-cta"
+                          onClick={handleWhatsAppSend}
+                          style={{ width: '100%', justifyContent: 'center', marginTop: '10px' }}
+                        >
+                          Send Instantly via WhatsApp <ArrowIcon size={14} />
+                        </button>
+
+                        <div className="br-side-guarantee mono">
+                          🔒 Direct Senior Review • 100% Vector IP Ownership • No Spam Relay
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
               </section>
             )}
 
@@ -2562,6 +2392,442 @@ export default function BrandReadiness() {
               font-size: 16px;
             }
           }
+
+          /* ── Unified Strategic Scope Form Layout ── */
+          .br-form-section {
+            padding: 10px 0 60px;
+          }
+          .br-form-intro {
+            margin-bottom: 36px;
+            border-bottom: 1px solid var(--ink);
+            padding-bottom: 28px;
+          }
+          .br-intro-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 16px;
+          }
+          .br-back-btn {
+            padding: 6px 14px;
+            font-size: 12px;
+          }
+          .br-form-main-title {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: clamp(28px, 4.2vw, 48px);
+            font-weight: 500;
+            line-height: 1.15;
+            color: var(--ink);
+            margin: 0 0 12px;
+            letter-spacing: -0.02em;
+          }
+          .br-form-main-sub {
+            font-size: 16px;
+            color: var(--ink-soft);
+            max-width: 680px;
+            line-height: 1.6;
+            margin: 0;
+          }
+
+          /* 2-Column Responsive Grid */
+          .br-unified-grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 36px;
+            align-items: start;
+          }
+
+          .br-form-left-col {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+          }
+
+          /* Individual Form Cards */
+          .br-form-card {
+            background: var(--card);
+            border: 1px solid var(--ink);
+            padding: clamp(22px, 3.5vw, 36px);
+            position: relative;
+            box-shadow: 2px 2px 0px rgba(27, 27, 23, 0.06);
+          }
+          .br-form-card .corner {
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            width: 26px;
+            height: 26px;
+            background: var(--marker);
+            clip-path: polygon(0 0, 100% 0, 100% 100%);
+          }
+
+          .br-card-header {
+            border-bottom: 1px dashed var(--paper-line);
+            padding-bottom: 18px;
+            margin-bottom: 24px;
+          }
+          .br-card-sec-num {
+            font-size: 11px;
+            color: var(--pine);
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            display: block;
+            margin-bottom: 6px;
+          }
+          .br-card-heading {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: clamp(20px, 2.6vw, 26px);
+            font-weight: 500;
+            color: var(--ink);
+            margin: 0 0 6px;
+            line-height: 1.25;
+          }
+          .br-card-explainer {
+            font-size: 13.5px;
+            color: var(--ink-soft);
+            margin: 0;
+            line-height: 1.5;
+          }
+
+          /* Field Block & Labels */
+          .br-field-block {
+            margin-bottom: 6px;
+          }
+          .br-field-label-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+          }
+          .br-field-label {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--ink);
+            font-weight: 600;
+            margin-bottom: 12px;
+          }
+          .br-label-required {
+            color: var(--marker);
+          }
+          .br-helper-tag {
+            font-size: 11px;
+            color: var(--ink-soft);
+            background: var(--paper);
+            border: 1px solid var(--paper-line);
+            padding: 3px 8px;
+            border-radius: 2px;
+          }
+          .br-input-subtext {
+            font-size: 12.5px;
+            color: var(--ink-soft);
+            margin: -6px 0 12px;
+            line-height: 1.5;
+          }
+
+          /* Interactive Option Pills */
+          .br-pills-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+          }
+          .br-option-pill {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 0.03em;
+            padding: 10px 15px;
+            min-height: 42px;
+            border: 1px solid var(--paper-line);
+            background: var(--paper);
+            color: var(--ink);
+            cursor: pointer;
+            transition: all 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
+            border-radius: 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-align: left;
+            line-height: 1.35;
+          }
+          .br-option-pill:hover {
+            border-color: var(--ink);
+            transform: translateY(-1px);
+            box-shadow: 1px 1px 0px rgba(27, 27, 23, 0.12);
+          }
+          .br-option-pill.active {
+            border-color: var(--pine);
+            background: var(--pine);
+            color: #ffffff;
+            font-weight: 600;
+            box-shadow: 2px 2px 0px rgba(36, 70, 59, 0.3);
+          }
+          .br-pill-check {
+            font-weight: 700;
+            font-size: 12px;
+            color: #8EC4B3;
+          }
+
+          /* Outcome Textarea */
+          .br-form-textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--paper);
+            border: 1px solid var(--ink);
+            color: var(--ink);
+            font-family: inherit;
+            font-size: 14.5px;
+            line-height: 1.6;
+            resize: vertical;
+            border-radius: 2px;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+          }
+          .br-form-textarea:focus {
+            outline: none;
+            border-color: var(--pine);
+            box-shadow: 0 0 0 2px rgba(36, 70, 59, 0.15);
+          }
+
+          /* Contact Inputs Grid */
+          .br-fields-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+          }
+          .br-fields-grid .field-group.full-width {
+            grid-column: 1 / -1;
+          }
+          .br-fields-grid label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ink-soft);
+            margin-bottom: 6px;
+          }
+          .br-fields-grid input,
+          .br-fields-grid textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid var(--ink);
+            background: var(--paper);
+            font-family: inherit;
+            font-size: 14px;
+            color: var(--ink);
+            box-sizing: border-box;
+            border-radius: 2px;
+            transition: border-color 0.2s;
+          }
+          .br-fields-grid input:focus,
+          .br-fields-grid textarea:focus {
+            outline: none;
+            border-color: var(--pine);
+            box-shadow: 0 0 0 2px rgba(36, 70, 59, 0.15);
+          }
+
+          /* Right Sticky Sidebar Card */
+          .br-form-right-col {
+            position: relative;
+          }
+          .br-side-sticky-card {
+            position: sticky;
+            top: 92px;
+            background: var(--card);
+            border: 1px solid var(--ink);
+            padding: 24px;
+            box-shadow: 3px 3px 0px rgba(27, 27, 23, 0.1);
+          }
+          .br-side-sticky-card .corner {
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            width: 22px;
+            height: 22px;
+            background: var(--pine);
+            clip-path: polygon(0 0, 100% 0, 100% 100%);
+          }
+          .br-side-head-tag {
+            font-size: 10.5px;
+            letter-spacing: 0.08em;
+            color: var(--ink-soft);
+            margin-bottom: 14px;
+            text-transform: uppercase;
+          }
+
+          /* Score Block in Sidebar */
+          .br-side-score-box {
+            background: var(--paper);
+            border: 1px solid var(--paper-line);
+            padding: 16px;
+            margin-bottom: 18px;
+            text-align: center;
+          }
+          .br-side-score-val {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 6px;
+          }
+          .br-side-num {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 44px;
+            font-weight: 600;
+            color: var(--pine);
+            line-height: 1;
+          }
+          .br-side-denom {
+            font-size: 13px;
+            color: var(--ink-soft);
+          }
+          .br-side-band {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-top: 6px;
+            font-family: 'IBM Plex Mono', monospace;
+          }
+
+          /* Dimension Progress Bars */
+          .br-side-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 22px;
+            border-bottom: 1px dashed var(--paper-line);
+            padding-bottom: 18px;
+          }
+          .br-side-bar-row {
+            display: grid;
+            grid-template-columns: 110px 1fr 34px;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+          }
+          .br-side-bar-row span:first-child {
+            color: var(--ink-soft);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          .br-side-bar-row span:last-child {
+            color: var(--ink);
+            text-align: right;
+            font-weight: 600;
+          }
+          .br-side-track {
+            height: 6px;
+            background: var(--paper);
+            border: 1px solid var(--paper-line);
+            border-radius: 1px;
+            overflow: hidden;
+          }
+          .br-side-fill {
+            height: 100%;
+            background: var(--pine);
+            transition: width 0.3s ease;
+          }
+
+          /* Recommended Engagement Block */
+          .br-side-rec-block {
+            margin-bottom: 22px;
+            border-bottom: 1px dashed var(--paper-line);
+            padding-bottom: 20px;
+          }
+          .br-side-rec-label {
+            font-size: 10.5px;
+            color: var(--pine);
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            display: block;
+            margin-bottom: 6px;
+          }
+          .br-side-rec-title {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 18px;
+            color: var(--ink);
+            margin: 0 0 8px;
+            font-weight: 500;
+            line-height: 1.3;
+          }
+          .br-side-rec-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 14px;
+          }
+          .br-side-rec-price {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--pine);
+          }
+          .br-side-rec-weeks {
+            font-size: 11.5px;
+            color: var(--ink-soft);
+          }
+          .br-side-deliverables {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+          }
+          .br-side-deliverables li {
+            font-size: 12px;
+            color: var(--ink-soft);
+            line-height: 1.4;
+            display: flex;
+            align-items: flex-start;
+          }
+
+          .br-side-actions {
+            display: flex;
+            flex-direction: column;
+          }
+          .br-side-guarantee {
+            font-size: 10.5px;
+            color: var(--ink-soft);
+            text-align: center;
+            margin-top: 14px;
+            line-height: 1.45;
+          }
+
+          /* Responsive Breakpoints */
+          @media (max-width: 992px) {
+            .br-unified-grid-layout {
+              grid-template-columns: 1fr;
+              gap: 28px;
+            }
+            .br-side-sticky-card {
+              position: static;
+              top: auto;
+              margin-top: 12px;
+            }
+          }
+
+          @media (max-width: 600px) {
+            .br-fields-grid {
+              grid-template-columns: 1fr;
+            }
+            .br-option-pill {
+              width: 100%;
+              justify-content: space-between;
+            }
+            .br-form-card {
+              padding: 20px 16px;
+            }
+            .br-side-sticky-card {
+              padding: 20px 16px;
+            }
+          }
+
         `}</style>
       </div>
     </>
