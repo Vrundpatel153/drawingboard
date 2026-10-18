@@ -1135,7 +1135,7 @@ export default function BrandReadiness() {
                   <div className="br-form-tag-wrap">
                     <span className="bp-dot" aria-hidden="true" />
                     <span className="mono br-form-tag">
-                      SYSTEM INTAKE // LIVE ARCHITECTURAL CALCULATION
+                      SYSTEM INTAKE // SCOPE &amp; DIAGNOSTIC
                     </span>
                   </div>
                   <button
