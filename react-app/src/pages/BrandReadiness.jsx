@@ -957,7 +957,7 @@ export default function BrandReadiness() {
                       <button
                         type="button"
                         className="bp-btn-primary"
-                        onClick={() => { setView('quiz'); setStep(0); }}
+                        onClick={handleStartQuiz}
                       >
                         Check My Brand <ArrowIcon size={14} />
                       </button>
