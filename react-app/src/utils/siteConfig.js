@@ -144,37 +144,37 @@ export const PAGE_META = {
   '/packaging': {
     title: `Packaging Design & Structural Engineering — ${SITE_NAME}`,
     description:
-      'Strategy-first packaging design starting at ₹2,75,000 ($2,880). One master direction, SKU system, and production-ready handoff for consumer product brands.',
+      'Strategy-first packaging design starting at ₹3,25,000 ($3,400 / £2,520). One master direction, SKU system, and production-ready handoff for consumer product brands.',
     keywords: 'packaging design India, product packaging, label design, dieline design, FMCG packaging',
   },
   '/packaging-design': {
     title: `Packaging Design & Structural Engineering — ${SITE_NAME}`,
     description:
-      'Strategy-first packaging design starting at ₹2,75,000 ($2,880). One master direction, SKU system, and production-ready handoff for consumer product brands.',
+      'Strategy-first packaging design starting at ₹3,25,000 ($3,400 / £2,520). One master direction, SKU system, and production-ready handoff for consumer product brands.',
     keywords: 'packaging design India, product packaging, label design, dieline design, FMCG packaging',
   },
   '/services/packaging-design': {
     title: `Packaging Design & Structural Engineering — ${SITE_NAME}`,
     description:
-      'Strategy-first packaging design starting at ₹2,75,000 ($2,880). One master direction, SKU system, and production-ready handoff for consumer product brands.',
+      'Strategy-first packaging design starting at ₹3,25,000 ($3,400 / £2,520). One master direction, SKU system, and production-ready handoff for consumer product brands.',
     keywords: 'packaging design India, product packaging, label design, dieline design, FMCG packaging',
   },
   '/services/packaging': {
     title: `Packaging Design & Structural Engineering — ${SITE_NAME}`,
     description:
-      'Strategy-first packaging design starting at ₹2,75,000 ($2,880). One master direction, SKU system, and production-ready handoff for consumer product brands.',
+      'Strategy-first packaging design starting at ₹3,25,000 ($3,400 / £2,520). One master direction, SKU system, and production-ready handoff for consumer product brands.',
     keywords: 'packaging design India, product packaging, label design, dieline design, FMCG packaging',
   },
   '/service/packaging-design': {
     title: `Packaging Design & Structural Engineering — ${SITE_NAME}`,
     description:
-      'Strategy-first packaging design starting at ₹2,75,000 ($2,880). One master direction, SKU system, and production-ready handoff for consumer product brands.',
+      'Strategy-first packaging design starting at ₹3,25,000 ($3,400 / £2,520). One master direction, SKU system, and production-ready handoff for consumer product brands.',
     keywords: 'packaging design India, product packaging, label design, dieline design, FMCG packaging',
   },
   '/service/packaging': {
     title: `Packaging Design & Structural Engineering — ${SITE_NAME}`,
     description:
-      'Strategy-first packaging design starting at ₹2,75,000 ($2,880). One master direction, SKU system, and production-ready handoff for consumer product brands.',
+      'Strategy-first packaging design starting at ₹3,25,000 ($3,400 / £2,520). One master direction, SKU system, and production-ready handoff for consumer product brands.',
     keywords: 'packaging design India, product packaging, label design, dieline design, FMCG packaging',
   },
   '/web-development': {

@@ -135,9 +135,9 @@
     "headline": "Unboxing Experiences Built for Tangible Authority",
     "eyebrow": "04 // STRUCTURAL PACKAGING",
     "tagline": "UNBOXING & PRINT SPECS",
-    "startingPrice": "$2,880",
-    "startingPriceGBP": "£2,130",
-    "startingPriceINR": "₹2,75,000",
+    "startingPrice": "$3,400",
+    "startingPriceGBP": "£2,520",
+    "startingPriceINR": "₹3,25,000",
     "duration": "3-5 Weeks Sprint",
     "heroImage": "https://framerusercontent.com/images/RQJI69utdAxFprNWe2HKz94CqO0.webp?width=2100&height=1183",
     "secondaryImage": "https://framerusercontent.com/images/Ib87ABhofKAGBqiaHLBLqQsc.png?width=1290&height=1602",
@@ -163,7 +163,7 @@
       "https://framerusercontent.com/images/TW8nh45W2f0jJxIXkfCtK2I9qo.webp?width=1876&height=1821"
     ],
     "pricingModels": [
-      { "tier": "Master Packaging System", "price": "$2,880", "priceGBP": "£2,130", "priceINR": "₹2,75,000", "desc": "Custom structural dieline application, master box/label artwork, up to 5 SKU adaptations, and print-ready handoff." },
+      { "tier": "Master Packaging System", "price": "$3,400", "priceGBP": "£2,520", "priceINR": "₹3,25,000", "desc": "Custom structural dieline application, master box/label artwork, up to 5 SKU adaptations, and print-ready handoff." },
       { "tier": "Multi-SKU Brand Suite", "price": "$5,750", "priceGBP": "£4,250", "priceINR": "₹5,50,000", "desc": "Complete packaging family design across multiple SKUs with manufacturer print coordination." }
     ],
     "faqs": [
