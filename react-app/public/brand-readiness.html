@@ -989,7 +989,7 @@ function questionHTML(){
   let body = '';
   if (q.type === 'text') {
     body = '<textarea id="outcome" class="free" rows="5" maxlength="600" aria-labelledby="qtitle" aria-describedby="qhelp" placeholder="' + esc(q.placeholder) + '">' + esc(a.outcome || '') + '</textarea>' +
-      '<div class="qactions"><button class="btn" type="button" data-action="build">Build my readout ' + ARROW + '</button>' + backBtn() + '</div>';
+      '<div class="qactions"><button class="btn" type="button" data-action="build">Submit &amp; Get Quote ' + ARROW + '</button>' + backBtn() + '</div>';
   } else {
     const multi = q.type === 'multi', sel = multi ? (a[q.id] || []) : [a[q.id]];
     const opts = q.options.map((o, i) =>
@@ -1051,7 +1051,7 @@ function viewCapture(){
         field({id:'l-wa', name:'whatsapp', label:'WhatsApp', type:'tel', inputmode:'tel', autocomplete:'tel', maxlength:20, value:L.whatsapp}) +
       '</div>' + honeypot +
       '<p id="formerr" class="form-error" role="alert"></p>' +
-      '<div class="cta-row"><button class="btn" type="submit" id="leadbtn">Show my brand readout ' + ARROW + '</button>' + backBtn() + '</div>' +
+      '<div class="cta-row"><button class="btn" type="submit" id="leadbtn">Submit &amp; Get Quote ' + ARROW + '</button>' + backBtn() + '</div>' +
     '</form></section>';
 }
 

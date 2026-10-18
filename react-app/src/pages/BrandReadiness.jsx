@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
@@ -552,16 +552,33 @@ export default function BrandReadiness() {
   useSEO();
   usePageAnimations(pageRef);
 
-  const [view, setView] = useState('landing'); // 'landing' | 'form' | 'success'
+  const location = useLocation();
+  const [view, setView] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('view') === 'landing') return 'landing';
+    }
+    return 'form'; // Directly show form intake by default on Get Quote
+  });
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('view') === 'landing') {
+      setView('landing');
+    } else {
+      setView('form');
+    }
+  }, [location.search]);
+
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({
-    category: 'fnb',
-    stage: 'launch',
-    problems: ['interchangeable'],
-    scope: 'identity',
-    event: 'launching',
-    timeline: '1-3',
-    budget: '475-7',
+    category: '',
+    stage: '',
+    problems: [],
+    scope: '',
+    event: '',
+    timeline: '',
+    budget: '',
     outcome: ''
   });
   const [lead, setLead] = useState({ first: '', email: '', brand: '', website: '', whatsapp: '' });
@@ -569,42 +586,87 @@ export default function BrandReadiness() {
   const [report, setReport] = useState(null);
   const [animatedScore, setAnimatedScore] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [pulseGuidance, setPulseGuidance] = useState(false);
+  const [isSubmitBtnInView, setIsSubmitBtnInView] = useState(false);
 
-  const currentScore = scoreModel(answers);
-  const currentEngagement = recommendEngagement(answers);
-
-  // Animated shelf demo state
+  // Animated shelf demo state (for landing overview view)
   const [demoStage, setDemoStage] = useState(0);
   const [demoShape, setDemoShape] = useState('bottle');
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  // Floating scroll down indicator state for step-by-step questions form
-  const [hasScrolledPastTop, setHasScrolledPastTop] = useState(false);
+  const currentScore = scoreModel(answers);
+  const currentEngagement = recommendEngagement(answers);
 
+  const answeredCount = [
+    answers.category,
+    answers.stage,
+    (answers.problems || []).length > 0 ? 'yes' : '',
+    answers.scope,
+    answers.event,
+    answers.timeline,
+    answers.budget
+  ].filter(Boolean).length;
+
+  // Observe when the final submit button enters viewport
   useEffect(() => {
-    if (view !== 'form') {
-      setHasScrolledPastTop(false);
-      return;
-    }
+    if (view !== 'form') return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          setIsSubmitBtnInView(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.15 }
+    );
 
-    const handleScroll = () => {
-      if (window.scrollY > 70) {
-        setHasScrolledPastTop(true);
-      } else {
-        setHasScrolledPastTop(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    const submitBtn = document.getElementById('br-submit-btn');
+    if (submitBtn) observer.observe(submitBtn);
+    return () => observer.disconnect();
   }, [view]);
 
-  const scrollToFirstQuestion = () => {
-    const el = document.getElementById('br-first-question') || document.querySelector('.br-form-card');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Dynamic next target calculation for step-by-step guidance
+  const getNextTarget = () => {
+    if (!answers.category) return { id: 'q-category', label: 'Scroll to Step 01 Questions ↓' };
+    if (!answers.stage) return { id: 'q-stage', label: 'Scroll to Commercial Stage ↓' };
+    if (!answers.problems || answers.problems.length === 0) return { id: 'br-step-2', label: 'Scroll to Step 02: Creative Focus ↓' };
+    if (!answers.scope) return { id: 'q-scope', label: 'Scroll to Creative Scope ↓' };
+    if (!answers.event) return { id: 'q-event', label: 'Scroll to 12-Month Commercial Horizon ↓' };
+    if (!answers.timeline) return { id: 'br-step-3', label: 'Scroll to Step 03: Timeline & Budget ↓' };
+    if (!answers.budget) return { id: 'q-budget', label: 'Scroll to Planned Investment Level ↓' };
+    if (!lead.first?.trim() || !lead.email?.trim() || !lead.brand?.trim()) {
+      return { id: 'br-step-4', label: 'Scroll to Step 04: Project Details ↓' };
     }
+    return { id: 'br-submit-btn', label: 'Scroll to Submit & Get Quote ↓' };
+  };
+
+  const nextTarget = getNextTarget();
+
+  const scrollToTarget = (targetId) => {
+    const id = targetId || nextTarget.id;
+    const el = document.getElementById(id);
+    if (el) {
+      const navOffset = 85;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth'
+      });
+      if (id === 'first' || id === 'br-step-4') {
+        const firstInput = document.getElementById('first');
+        if (firstInput) setTimeout(() => firstInput.focus(), 350);
+      }
+    }
+  };
+
+  const handleSelectOption = (key, val) => {
+    setAnswers(prev => ({ ...prev, [key]: val }));
+    setPulseGuidance(true);
+    setTimeout(() => setPulseGuidance(false), 1400);
+  };
+
+  const scrollToFirstQuestion = () => {
+    scrollToTarget('br-step-1');
   };
 
   // Auto-play demo evolution on landing page
@@ -906,12 +968,16 @@ export default function BrandReadiness() {
         };
       case 'form':
         return {
-          title: `Diagnostic: ${currentScore.overall}/100`,
-          subtitle: currentEngagement.name,
-          buttonText: "Submit Brief",
+          title: answeredCount > 0 ? `Diagnostic: ${currentScore.overall}/100` : "Brand Diagnostic",
+          subtitle: answeredCount > 0 ? currentEngagement.name : "Select your parameters",
+          buttonText: "Submit & Get Quote",
           onClick: () => {
             const btn = document.getElementById('br-submit-btn');
-            if (btn) btn.click();
+            if (btn) {
+              btn.click();
+            } else {
+              scrollToTarget('br-step-4');
+            }
           }
         };
       case 'success':
@@ -935,15 +1001,19 @@ export default function BrandReadiness() {
 
   const handleProblemToggle = (probKey) => {
     const current = answers.problems || [];
+    let updated;
     if (current.includes(probKey)) {
-      setAnswers(prev => ({ ...prev, problems: current.filter(k => k !== probKey) }));
+      updated = current.filter(k => k !== probKey);
     } else {
       if (current.length >= 2) {
-        setAnswers(prev => ({ ...prev, problems: [current[1], probKey] }));
+        updated = [current[1], probKey];
       } else {
-        setAnswers(prev => ({ ...prev, problems: [...current, probKey] }));
+        updated = [...current, probKey];
       }
     }
+    setAnswers(prev => ({ ...prev, problems: updated }));
+    setPulseGuidance(true);
+    setTimeout(() => setPulseGuidance(false), 1400);
   };
 
   return (
@@ -1176,7 +1246,7 @@ export default function BrandReadiness() {
                   {/* Left Column: Intake Sections */}
                   <div className="br-form-left-col">
                     {/* SECTION 01: CORE OFFERING & COMMERCIAL STAGE */}
-                    <div id="br-first-question" className="br-form-card">
+                    <div id="br-step-1" className="br-form-card">
                       <div className="corner" aria-hidden="true"></div>
                       <div className="br-card-header">
                         <span className="mono br-card-sec-num">01 // BRAND FOUNDATION</span>
@@ -1185,7 +1255,7 @@ export default function BrandReadiness() {
                       </div>
 
                       {/* Question 1: Category */}
-                      <div className="br-field-block">
+                      <div id="q-category" className="br-field-block">
                         <label className="mono br-field-label">
                           What are you building? <span className="br-label-required">*</span>
                         </label>
@@ -1197,7 +1267,7 @@ export default function BrandReadiness() {
                                 key={val}
                                 type="button"
                                 className={`br-option-pill ${isSelected ? 'active' : ''}`}
-                                onClick={() => setAnswers({ ...answers, category: val })}
+                                onClick={() => handleSelectOption('category', val)}
                               >
                                 {isSelected && <span className="br-pill-check">✓</span>}
                                 {label}
@@ -1208,7 +1278,7 @@ export default function BrandReadiness() {
                       </div>
 
                       {/* Question 2: Commercial Stage */}
-                      <div className="br-field-block" style={{ marginTop: '26px' }}>
+                      <div id="q-stage" className="br-field-block" style={{ marginTop: '26px' }}>
                         <label className="mono br-field-label">
                           Where is the business today? <span className="br-label-required">*</span>
                         </label>
@@ -1220,7 +1290,7 @@ export default function BrandReadiness() {
                                 key={val}
                                 type="button"
                                 className={`br-option-pill ${isSelected ? 'active' : ''}`}
-                                onClick={() => setAnswers({ ...answers, stage: val })}
+                                onClick={() => handleSelectOption('stage', val)}
                               >
                                 {isSelected && <span className="br-pill-check">✓</span>}
                                 {label}
@@ -1229,10 +1299,22 @@ export default function BrandReadiness() {
                           })}
                         </div>
                       </div>
+
+                      {/* Step 1 Footer Action */}
+                      <div className="br-step-footer">
+                        <button
+                          type="button"
+                          className="br-step-btn"
+                          onClick={() => scrollToTarget('br-step-2')}
+                        >
+                          <span>Continue to Step 02 // Scope &amp; Tension Points</span>
+                          <span className="arrow" aria-hidden="true">↓</span>
+                        </button>
+                      </div>
                     </div>
 
                     {/* SECTION 02: SCOPE & CORE FRICTION POINTS */}
-                    <div className="br-form-card">
+                    <div id="br-step-2" className="br-form-card">
                       <div className="corner" aria-hidden="true"></div>
                       <div className="br-card-header">
                         <span className="mono br-card-sec-num">02 // SCOPE &amp; PRESSURES</span>
@@ -1241,7 +1323,7 @@ export default function BrandReadiness() {
                       </div>
 
                       {/* Question 3: Problems / Frictions (Multi-select, max 2) */}
-                      <div className="br-field-block">
+                      <div id="q-problems" className="br-field-block">
                         <div className="br-field-label-row">
                           <label className="mono br-field-label">
                             What is holding the brand back?
@@ -1269,7 +1351,7 @@ export default function BrandReadiness() {
                       </div>
 
                       {/* Question 4: Scope / Focus Area */}
-                      <div className="br-field-block" style={{ marginTop: '26px' }}>
+                      <div id="q-scope" className="br-field-block" style={{ marginTop: '26px' }}>
                         <label className="mono br-field-label">
                           What needs to change first? <span className="br-label-required">*</span>
                         </label>
@@ -1281,7 +1363,7 @@ export default function BrandReadiness() {
                                 key={val}
                                 type="button"
                                 className={`br-option-pill ${isSelected ? 'active' : ''}`}
-                                onClick={() => setAnswers({ ...answers, scope: val })}
+                                onClick={() => handleSelectOption('scope', val)}
                               >
                                 {isSelected && <span className="br-pill-check">✓</span>}
                                 {label}
@@ -1292,7 +1374,7 @@ export default function BrandReadiness() {
                       </div>
 
                       {/* Question 5: 12-Month Horizon */}
-                      <div className="br-field-block" style={{ marginTop: '26px' }}>
+                      <div id="q-event" className="br-field-block" style={{ marginTop: '26px' }}>
                         <label className="mono br-field-label">
                           What is happening in the next 12 months? <span className="br-label-required">*</span>
                         </label>
@@ -1304,7 +1386,7 @@ export default function BrandReadiness() {
                                 key={val}
                                 type="button"
                                 className={`br-option-pill ${isSelected ? 'active' : ''}`}
-                                onClick={() => setAnswers({ ...answers, event: val })}
+                                onClick={() => handleSelectOption('event', val)}
                               >
                                 {isSelected && <span className="br-pill-check">✓</span>}
                                 {label}
@@ -1313,10 +1395,22 @@ export default function BrandReadiness() {
                           })}
                         </div>
                       </div>
+
+                      {/* Step 2 Footer Action */}
+                      <div className="br-step-footer">
+                        <button
+                          type="button"
+                          className="br-step-btn"
+                          onClick={() => scrollToTarget('br-step-3')}
+                        >
+                          <span>Continue to Step 03 // Timeline &amp; Vision</span>
+                          <span className="arrow" aria-hidden="true">↓</span>
+                        </button>
+                      </div>
                     </div>
 
                     {/* SECTION 03: TIMELINE, BUDGET & FOUNDER VISION */}
-                    <div className="br-form-card">
+                    <div id="br-step-3" className="br-form-card">
                       <div className="corner" aria-hidden="true"></div>
                       <div className="br-card-header">
                         <span className="mono br-card-sec-num">03 // TIMELINE &amp; VISION</span>
@@ -1325,7 +1419,7 @@ export default function BrandReadiness() {
                       </div>
 
                       {/* Question 6: Timeline */}
-                      <div className="br-field-block">
+                      <div id="q-timeline" className="br-field-block">
                         <label className="mono br-field-label">
                           When does this need to go live? <span className="br-label-required">*</span>
                         </label>
@@ -1337,7 +1431,7 @@ export default function BrandReadiness() {
                                 key={val}
                                 type="button"
                                 className={`br-option-pill ${isSelected ? 'active' : ''}`}
-                                onClick={() => setAnswers({ ...answers, timeline: val })}
+                                onClick={() => handleSelectOption('timeline', val)}
                               >
                                 {isSelected && <span className="br-pill-check">✓</span>}
                                 {label}
@@ -1348,7 +1442,7 @@ export default function BrandReadiness() {
                       </div>
 
                       {/* Question 7: Budget */}
-                      <div className="br-field-block" style={{ marginTop: '26px' }}>
+                      <div id="q-budget" className="br-field-block" style={{ marginTop: '26px' }}>
                         <div className="br-field-label-row">
                           <label className="mono br-field-label">
                             Planned Brand Investment Level <span className="br-label-required">*</span>
@@ -1365,7 +1459,7 @@ export default function BrandReadiness() {
                                 key={val}
                                 type="button"
                                 className={`br-option-pill ${isSelected ? 'active' : ''}`}
-                                onClick={() => setAnswers({ ...answers, budget: val })}
+                                onClick={() => handleSelectOption('budget', val)}
                               >
                                 {isSelected && <span className="br-pill-check">✓</span>}
                                 {label}
@@ -1376,7 +1470,7 @@ export default function BrandReadiness() {
                       </div>
 
                       {/* Question 8: Founder Vision Outcome */}
-                      <div className="br-field-block" style={{ marginTop: '26px' }}>
+                      <div id="q-outcome" className="br-field-block" style={{ marginTop: '26px' }}>
                         <label className="mono br-field-label" htmlFor="br-outcome-input">
                           If this project goes brilliantly, what changes for the business?
                         </label>
@@ -1392,10 +1486,22 @@ export default function BrandReadiness() {
                           onChange={(e) => setAnswers({ ...answers, outcome: e.target.value })}
                         />
                       </div>
+
+                      {/* Step 3 Footer Action */}
+                      <div className="br-step-footer">
+                        <button
+                          type="button"
+                          className="br-step-btn"
+                          onClick={() => scrollToTarget('br-step-4')}
+                        >
+                          <span>Continue to Step 04 // Contact Details</span>
+                          <span className="arrow" aria-hidden="true">↓</span>
+                        </button>
+                      </div>
                     </div>
 
                     {/* SECTION 04: FOUNDER & PROJECT CONTACT INTAKE */}
-                    <div className="br-form-card">
+                    <div id="br-step-4" className="br-form-card">
                       <div className="corner" aria-hidden="true"></div>
                       <div className="br-card-header">
                         <span className="mono br-card-sec-num">04 // FOUNDER &amp; INQUIRY DETAILS</span>
@@ -1498,6 +1604,18 @@ export default function BrandReadiness() {
                           />
                         </div>
                       </div>
+
+                      {/* Step 4 Footer Action */}
+                      <div className="br-step-footer">
+                        <button
+                          type="button"
+                          className="br-step-btn br-step-submit-btn"
+                          onClick={() => scrollToTarget('br-submit-btn')}
+                        >
+                          <span>Scroll to Final Submit &amp; Get Quote Button</span>
+                          <span className="arrow" aria-hidden="true">↓</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
 
@@ -1513,28 +1631,28 @@ export default function BrandReadiness() {
                       {/* Score Module */}
                       <div className="br-side-score-box">
                         <div className="br-side-score-val">
-                          <span className="br-side-num">{currentScore.overall}</span>
+                          <span className="br-side-num">{answeredCount > 0 ? currentScore.overall : '--'}</span>
                           <span className="br-side-denom mono">/ 100</span>
                         </div>
-                        <div className="br-side-band">{currentScore.band}</div>
+                        <div className="br-side-band">{answeredCount > 0 ? currentScore.band : 'Select parameters below'}</div>
                       </div>
 
                       {/* Dimension Progress Bars */}
                       <div className="br-side-bars">
                         <div className="br-side-bar-row">
                           <span className="mono">Clarity &amp; Positioning</span>
-                          <div className="br-side-track"><div className="br-side-fill" style={{ width: `${currentScore.clarity}%` }}></div></div>
-                          <span className="mono">{currentScore.clarity}%</span>
+                          <div className="br-side-track"><div className="br-side-fill" style={{ width: answeredCount > 0 ? `${currentScore.clarity}%` : '0%' }}></div></div>
+                          <span className="mono">{answeredCount > 0 ? `${currentScore.clarity}%` : '--'}</span>
                         </div>
                         <div className="br-side-bar-row">
                           <span className="mono">Brand Distinctiveness</span>
-                          <div className="br-side-track"><div className="br-side-fill" style={{ width: `${currentScore.distinct}%` }}></div></div>
-                          <span className="mono">{currentScore.distinct}%</span>
+                          <div className="br-side-track"><div className="br-side-fill" style={{ width: answeredCount > 0 ? `${currentScore.distinct}%` : '0%' }}></div></div>
+                          <span className="mono">{answeredCount > 0 ? `${currentScore.distinct}%` : '--'}</span>
                         </div>
                         <div className="br-side-bar-row">
                           <span className="mono">System Readiness</span>
-                          <div className="br-side-track"><div className="br-side-fill" style={{ width: `${currentScore.system}%` }}></div></div>
-                          <span className="mono">{currentScore.system}%</span>
+                          <div className="br-side-track"><div className="br-side-fill" style={{ width: answeredCount > 0 ? `${currentScore.system}%` : '0%' }}></div></div>
+                          <span className="mono">{answeredCount > 0 ? `${currentScore.system}%` : '--'}</span>
                         </div>
                       </div>
 
@@ -1569,7 +1687,7 @@ export default function BrandReadiness() {
                           {isSubmitting ? (
                             <>Transmitting Brief... <ArrowIcon size={14} /></>
                           ) : (
-                            <>Submit Project Brief &amp; Scope <ArrowIcon size={14} /></>
+                            <>Submit &amp; Get Quote <ArrowIcon size={14} /></>
                           )}
                         </button>
 
@@ -1681,17 +1799,18 @@ export default function BrandReadiness() {
         {view === 'form' && (
           <button
             type="button"
-            className={`br-scroll-hint ${hasScrolledPastTop ? 'is-hidden' : ''}`}
-            onClick={scrollToFirstQuestion}
-            aria-label="Scroll down to begin questions"
-            title="Scroll down to begin questions"
+            className={`br-scroll-hint ${pulseGuidance ? 'is-pulsing' : ''} ${isSubmitBtnInView ? 'is-hidden' : ''}`}
+            onClick={() => scrollToTarget(nextTarget.id)}
+            aria-label={nextTarget.label}
+            title={nextTarget.label}
           >
             <span className="br-scroll-hint-icon" aria-hidden="true">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 5v14M19 12l-7 7-7-7" />
               </svg>
             </span>
-            <span className="br-scroll-hint-label">Scroll to Questions</span>
+            <span className="br-scroll-hint-label">{nextTarget.label}</span>
+            {pulseGuidance && <span className="br-pulse-dot" aria-hidden="true" />}
           </button>
         )}
 
@@ -2890,29 +3009,29 @@ export default function BrandReadiness() {
           .br-scroll-hint {
             position: fixed;
             left: 50%;
-            bottom: 28px;
+            bottom: 24px;
             transform: translateX(-50%);
             z-index: 1000;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(27, 27, 23, 0.94);
+            background: rgba(27, 27, 23, 0.95);
             color: #EFEBDE;
-            border: 1px solid rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.22);
             border-radius: 999px;
-            padding: 7px 16px 7px 12px;
+            padding: 8px 16px 8px 12px;
             font-family: 'IBM Plex Mono', monospace;
             font-size: 11px;
             font-weight: 600;
             letter-spacing: 0.05em;
             text-transform: uppercase;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.32);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             cursor: pointer;
             outline: none;
-            transition: opacity 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
-                        transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+            transition: opacity 0.25s ease,
+                        transform 0.25s ease,
                         background 0.2s ease,
                         border-color 0.2s ease,
                         box-shadow 0.2s ease;
@@ -2921,12 +3040,29 @@ export default function BrandReadiness() {
 
           .br-scroll-hint:hover {
             background: #0D0D0A;
-            border-color: rgba(255, 255, 255, 0.35);
+            border-color: rgba(255, 255, 255, 0.4);
             box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
           }
 
           .br-scroll-hint:active {
             transform: translateX(-50%) scale(0.96);
+          }
+
+          .br-scroll-hint.is-pulsing {
+            background: #0F1714;
+            border-color: #8EC4B3;
+            box-shadow: 0 0 0 4px rgba(36, 70, 59, 0.45), 0 8px 24px rgba(0, 0, 0, 0.5);
+            transform: translateX(-50%) translateY(-2px) scale(1.03);
+          }
+
+          .br-pulse-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #8EC4B3;
+            display: inline-block;
+            animation: bp-pulse 1s infinite;
+            margin-left: 2px;
           }
 
           .br-scroll-hint.is-hidden {
@@ -2943,7 +3079,7 @@ export default function BrandReadiness() {
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.14);
+            background: rgba(255, 255, 255, 0.16);
             color: #ffffff;
             flex-shrink: 0;
             animation: brArrowBob 1.5s ease-in-out infinite;
@@ -2952,6 +3088,55 @@ export default function BrandReadiness() {
           .br-scroll-hint-label {
             white-space: nowrap;
             line-height: 1;
+          }
+
+          /* In-card step navigation footers */
+          .br-step-footer {
+            margin-top: 26px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--paper-line);
+            display: flex;
+            justify-content: flex-end;
+          }
+          .br-step-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: var(--paper);
+            border: 1px solid var(--ink);
+            color: var(--ink);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11.5px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+          }
+          .br-step-btn:hover {
+            background: var(--ink);
+            color: var(--paper);
+            transform: translateY(-1px);
+            box-shadow: 2px 2px 0 rgba(27, 27, 23, 0.15);
+          }
+          .br-step-btn .arrow {
+            font-size: 14px;
+            transition: transform 0.2s ease;
+          }
+          .br-step-btn:hover .arrow {
+            transform: translateY(2px);
+          }
+          .br-step-submit-btn {
+            background: var(--pine);
+            border-color: var(--pine);
+            color: #ffffff;
+          }
+          .br-step-submit-btn:hover {
+            background: #172F27;
+            border-color: #172F27;
+            color: #ffffff;
           }
 
           @keyframes brScrollPillFloat {
@@ -2975,24 +3160,36 @@ export default function BrandReadiness() {
           /* Mobile placement above sticky mobile CTA */
           @media (max-width: 768px) {
             .br-scroll-hint {
-              bottom: 68px;
+              bottom: 64px;
               padding: 6px 14px 6px 10px;
               font-size: 10.5px;
-              box-shadow: 0 4px 16px rgba(0, 0, 0, 0.38);
+              max-width: calc(100vw - 32px);
+              box-shadow: 0 4px 18px rgba(0, 0, 0, 0.42);
+            }
+            .br-scroll-hint-label {
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
             .br-scroll-hint-icon {
               width: 18px;
               height: 18px;
+            }
+            .br-step-btn {
+              width: 100%;
+              justify-content: center;
+              font-size: 11px;
+              padding: 10px 14px;
             }
           }
 
           /* Small screens (<= 360px) */
           @media (max-width: 360px) {
             .br-scroll-hint {
-              bottom: 66px;
-              padding: 5px 12px 5px 8px;
+              bottom: 64px;
+              padding: 5px 10px 5px 8px;
               font-size: 10px;
-              gap: 6px;
+              gap: 5px;
+              max-width: calc(100vw - 20px);
             }
           }
 
