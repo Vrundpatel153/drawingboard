@@ -578,6 +578,35 @@ export default function BrandReadiness() {
   const [demoShape, setDemoShape] = useState('bottle');
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
+  // Floating scroll down indicator state for step-by-step questions form
+  const [hasScrolledPastTop, setHasScrolledPastTop] = useState(false);
+
+  useEffect(() => {
+    if (view !== 'form') {
+      setHasScrolledPastTop(false);
+      return;
+    }
+
+    const handleScroll = () => {
+      if (window.scrollY > 70) {
+        setHasScrolledPastTop(true);
+      } else {
+        setHasScrolledPastTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [view]);
+
+  const scrollToFirstQuestion = () => {
+    const el = document.getElementById('br-first-question') || document.querySelector('.br-form-card');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   // Auto-play demo evolution on landing page
   useEffect(() => {
     if (view !== 'landing' || !isAutoPlaying) return;
@@ -1130,13 +1159,21 @@ export default function BrandReadiness() {
                   <p className="br-form-main-sub">
                     Select your parameters below to calculate your real-time brand readiness score (0–100) and identify the ideal studio engagement sprint. Submit your brief for direct senior review.
                   </p>
+                  <button
+                    type="button"
+                    onClick={scrollToFirstQuestion}
+                    className="br-intro-scroll-prompt"
+                  >
+                    <span>Begin Step 01 // Brand Foundation</span>
+                    <span className="br-scroll-prompt-arrow" aria-hidden="true">↓</span>
+                  </button>
                 </div>
 
                 <form onSubmit={handleUnifiedSubmit} className="br-unified-grid-layout">
                   {/* Left Column: Intake Sections */}
                   <div className="br-form-left-col">
                     {/* SECTION 01: CORE OFFERING & COMMERCIAL STAGE */}
-                    <div className="br-form-card">
+                    <div id="br-first-question" className="br-form-card">
                       <div className="corner" aria-hidden="true"></div>
                       <div className="br-card-header">
                         <span className="mono br-card-sec-num">01 // BRAND FOUNDATION</span>
@@ -1636,6 +1673,24 @@ export default function BrandReadiness() {
             </>
           )}
         </main>
+
+        {/* ── Floating Middle-Bottom Scroll Down Icon Animation ── */}
+        {view === 'form' && (
+          <button
+            type="button"
+            className={`br-scroll-hint ${hasScrolledPastTop ? 'is-hidden' : ''}`}
+            onClick={scrollToFirstQuestion}
+            aria-label="Scroll down to begin questions"
+            title="Scroll down to begin questions"
+          >
+            <span className="br-scroll-hint-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 5v14M19 12l-7 7-7-7" />
+              </svg>
+            </span>
+            <span className="br-scroll-hint-label">Scroll to Questions</span>
+          </button>
+        )}
 
         {/* ── Dynamic Contextual Sticky Mobile CTA Bar ── */}
         <StickyMobileCTA
@@ -2826,6 +2881,148 @@ export default function BrandReadiness() {
             .br-side-sticky-card {
               padding: 20px 16px;
             }
+          }
+
+          /* ── Floating Middle-Bottom Scroll Down Indicator ── */
+          .br-scroll-hint {
+            position: fixed;
+            left: 50%;
+            bottom: 28px;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(27, 27, 23, 0.94);
+            color: #EFEBDE;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 999px;
+            padding: 7px 16px 7px 12px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.32);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            cursor: pointer;
+            outline: none;
+            transition: opacity 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+                        transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+                        background 0.2s ease,
+                        border-color 0.2s ease,
+                        box-shadow 0.2s ease;
+            animation: brScrollPillFloat 2.4s ease-in-out infinite;
+          }
+
+          .br-scroll-hint:hover {
+            background: #0D0D0A;
+            border-color: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+          }
+
+          .br-scroll-hint:active {
+            transform: translateX(-50%) scale(0.96);
+          }
+
+          .br-scroll-hint.is-hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(-50%) translateY(14px);
+            animation: none;
+          }
+
+          .br-scroll-hint-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.14);
+            color: #ffffff;
+            flex-shrink: 0;
+            animation: brArrowBob 1.5s ease-in-out infinite;
+          }
+
+          .br-scroll-hint-label {
+            white-space: nowrap;
+            line-height: 1;
+          }
+
+          @keyframes brScrollPillFloat {
+            0%, 100% {
+              transform: translateX(-50%) translateY(0);
+            }
+            50% {
+              transform: translateX(-50%) translateY(-3px);
+            }
+          }
+
+          @keyframes brArrowBob {
+            0%, 100% {
+              transform: translateY(-2px);
+            }
+            50% {
+              transform: translateY(2px);
+            }
+          }
+
+          /* Mobile placement above sticky mobile CTA */
+          @media (max-width: 768px) {
+            .br-scroll-hint {
+              bottom: 68px;
+              padding: 6px 14px 6px 10px;
+              font-size: 10.5px;
+              box-shadow: 0 4px 16px rgba(0, 0, 0, 0.38);
+            }
+            .br-scroll-hint-icon {
+              width: 18px;
+              height: 18px;
+            }
+          }
+
+          /* Small screens (<= 360px) */
+          @media (max-width: 360px) {
+            .br-scroll-hint {
+              bottom: 66px;
+              padding: 5px 12px 5px 8px;
+              font-size: 10px;
+              gap: 6px;
+            }
+          }
+
+          /* Inline scroll prompt under intro */
+          .br-intro-scroll-prompt {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: 1px dashed var(--ink);
+            color: var(--pine);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11.5px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 8px 14px;
+            border-radius: 2px;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: all 0.2s ease;
+          }
+          .br-intro-scroll-prompt:hover {
+            background: var(--pine);
+            color: var(--paper);
+            border-color: var(--pine);
+            border-style: solid;
+            transform: translateY(-1px);
+          }
+          .br-scroll-prompt-arrow {
+            display: inline-block;
+            font-size: 13px;
+            animation: brArrowBob 1.5s ease-in-out infinite;
           }
 
         `}</style>
