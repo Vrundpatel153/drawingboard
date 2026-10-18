@@ -4,7 +4,7 @@ import ArrowIcon from './ArrowIcon';
 import { WHATSAPP_URL } from '../utils/siteConfig';
 import { trackMetaWhatsAppClick, trackMetaCalComClick } from '../utils/metaEvents';
 
-export default function StickyMobileCTA({ title = "The Drawing Board", subtitle = "Now Booking Q3 Sprints", buttonText = "WhatsApp Us", link = WHATSAPP_URL, onClick }) {
+export default function StickyMobileCTA({ title = "The Drawing Board", subtitle = "", buttonText = "WhatsApp Us", link = WHATSAPP_URL, onClick }) {
   const cleanBtnText = (buttonText || '').replace(/(&rarr;|->|→)/g, '').trim();
   const isExternal = link?.startsWith('http');
   const isWhatsApp = link?.includes('wa.me') || link?.includes('whatsapp');
@@ -45,35 +45,50 @@ export default function StickyMobileCTA({ title = "The Drawing Board", subtitle 
     }
   };
 
+  const hasSubtitle = Boolean(subtitle && subtitle.trim());
+
   return (
     <div className="sticky-cta" style={{
-      padding: '7px 14px',
-      minHeight: '44px',
-      maxHeight: '52px',
+      padding: '8px 14px',
+      minHeight: '48px',
+      maxHeight: '54px',
       alignItems: 'center',
       justifyContent: 'space-between',
-      gap: '10px'
+      gap: '10px',
+      boxSizing: 'border-box'
     }}>
-      <div className="txt" style={{ minWidth: 0, flex: '1 1 auto', overflow: 'hidden' }}>
+      <div className="txt" style={{
+        minWidth: 0,
+        flex: '1 1 auto',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: hasSubtitle ? 'column' : 'row',
+        alignItems: hasSubtitle ? 'flex-start' : 'center',
+        justifyContent: 'flex-start'
+      }}>
         <b style={{
           display: 'block',
-          fontSize: '12px',
+          fontSize: hasSubtitle ? '12px' : '13.5px',
           fontWeight: 600,
           whiteSpace: 'nowrap',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
-          lineHeight: 1.2,
+          lineHeight: hasSubtitle ? 1.2 : 1,
+          letterSpacing: '-0.01em',
           color: '#ffffff'
         }}>{title}</b>
-        <span style={{
-          display: 'block',
-          fontSize: '10px',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          lineHeight: 1.2,
-          color: '#C9C3B4'
-        }}>{subtitle}</span>
+        {hasSubtitle && (
+          <span style={{
+            display: 'block',
+            fontSize: '10px',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            lineHeight: 1.2,
+            marginTop: '2px',
+            color: '#C9C3B4'
+          }}>{subtitle}</span>
+        )}
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '5px', flexShrink: 0 }}>
         {/* WhatsApp icon button */}

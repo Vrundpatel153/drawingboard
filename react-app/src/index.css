@@ -1990,30 +1990,35 @@ section {
 
 .sticky-cta .txt {
   color: #FFF;
-  font-size: 11px;
-  line-height: 1.15;
+  font-size: 13px;
+  line-height: 1.2;
   min-width: 0;
   flex: 1;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .sticky-cta .txt b {
   display: block;
-  font-size: 11.5px;
+  font-size: 13.5px;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color: #ffffff;
+  letter-spacing: -0.01em;
 }
 
 .sticky-cta .txt span {
   display: block;
-  font-size: 9.5px;
+  font-size: 10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color: #C9C3B4;
+  margin-top: 2px;
 }
 
 .sticky-cta a,
