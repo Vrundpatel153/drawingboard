@@ -135,9 +135,9 @@
     "headline": "Unboxing Experiences Built for Tangible Authority",
     "eyebrow": "04 // STRUCTURAL PACKAGING",
     "tagline": "UNBOXING & PRINT SPECS",
-    "startingPrice": "$6,500",
-    "startingPriceGBP": "£4,850",
-    "startingPriceINR": "₹6,20,295",
+    "startingPrice": "$2,880",
+    "startingPriceGBP": "£2,130",
+    "startingPriceINR": "₹2,75,000",
     "duration": "3-5 Weeks Sprint",
     "heroImage": "https://framerusercontent.com/images/RQJI69utdAxFprNWe2HKz94CqO0.webp?width=2100&height=1183",
     "secondaryImage": "https://framerusercontent.com/images/Ib87ABhofKAGBqiaHLBLqQsc.png?width=1290&height=1602",
@@ -163,8 +163,8 @@
       "https://framerusercontent.com/images/TW8nh45W2f0jJxIXkfCtK2I9qo.webp?width=1876&height=1821"
     ],
     "pricingModels": [
-      { "tier": "Single Product Line Packaging", "price": "$6,500", "priceGBP": "£4,850", "priceINR": "₹6,20,295", "desc": "Custom structural dieline, box artwork, label specs, and 3D renders for one SKU." },
-      { "tier": "Multi-SKU Brand Suite", "price": "$12,500", "priceGBP": "£9,320", "priceINR": "₹11,92,875", "desc": "Complete packaging family design across multiple SKUs with manufacturer print coordination." }
+      { "tier": "Master Packaging System", "price": "$2,880", "priceGBP": "£2,130", "priceINR": "₹2,75,000", "desc": "Custom structural dieline application, master box/label artwork, up to 5 SKU adaptations, and print-ready handoff." },
+      { "tier": "Multi-SKU Brand Suite", "price": "$5,750", "priceGBP": "£4,250", "priceINR": "₹5,50,000", "desc": "Complete packaging family design across multiple SKUs with manufacturer print coordination." }
     ],
     "faqs": [
       { "q": "Do you provide print-ready dielines?", "a": "Yes, we deliver CMYK pre-press vector PDFs with exact dieline layers and spot color calls." },

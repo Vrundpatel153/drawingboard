@@ -80,6 +80,7 @@ const BUDGET_OPTIONS = [
   {
     group: 'USD ($)',
     options: [
+      '$2,880 (Master Packaging System)',
       '$4,960 (Growth Brand-to-Shelf)',
       '$6,780 (Scale Brand-to-Market)',
       '$8,000 – $12,000',
@@ -90,6 +91,7 @@ const BUDGET_OPTIONS = [
   {
     group: 'INR (₹)',
     options: [
+      '₹2,75,000 (Master Packaging System)',
       '₹4,75,000 (Growth Brand-to-Shelf)',
       '₹6,50,000 (Scale Brand-to-Market)',
       '₹8,00,000 – ₹12,00,000',
@@ -733,7 +735,7 @@ export default function Contact() {
                 <div className="field-row">
                   <div className="field">
                     <label htmlFor="budget">What budget have you allocated for this work? *</label>
-                    <div className="field-note">(Our strategy-led projects typically start at $2,500 and scale based on scope.)</div>
+                    <div className="field-note">(Our strategy-led projects typically start at $2,880 (₹2,75,000) and scale based on scope.)</div>
                     <select id="budget" required value={form.budget} onChange={handleChange} style={{ marginTop: '6px' }}>
                       {BUDGET_OPTIONS.map((grp) => (
                         <optgroup key={grp.group} label={`— ${grp.group} —`}>

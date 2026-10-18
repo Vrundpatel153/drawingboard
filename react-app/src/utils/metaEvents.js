@@ -149,7 +149,7 @@ async function sendConversionsApiEvent({
           user_data: userPayload,
           custom_data: {
             currency: 'INR',
-            value: 175000,
+            value: 275000,
             ...customData
           }
         }
@@ -222,7 +222,7 @@ function pushToDataLayer(eventName, customData = {}, eventId) {
     conversion_type: conversionType,
     button_text: buttonLabel,
     content_name: customData.content_name || eventName,
-    value: customData.value || 175000,
+    value: customData.value || 275000,
     currency: customData.currency || 'INR',
     page_path: window.location.pathname,
     page_location: window.location.href,
@@ -235,7 +235,7 @@ function pushToDataLayer(eventName, customData = {}, eventId) {
     window.dataLayer.push({
       event: 'generate_lead',
       currency: customData.currency || 'INR',
-      value: customData.value || 175000,
+      value: customData.value || 275000,
       lead_source: buttonLabel,
       lead_type: conversionType,
       event_id: eventId
@@ -245,7 +245,7 @@ function pushToDataLayer(eventName, customData = {}, eventId) {
       try {
         window.gtag('event', 'generate_lead', {
           currency: customData.currency || 'INR',
-          value: customData.value || 175000,
+          value: customData.value || 275000,
           lead_source: buttonLabel,
           event_id: eventId
         });
@@ -309,7 +309,7 @@ export function trackDiscussProjectClick(details = {}) {
     destination: details.targetUrl?.includes('cal.com') ? 'Cal.com' : details.targetUrl?.includes('wa.me') ? 'WhatsApp' : 'Calendar',
     button_label: details.buttonText || 'Discuss Your Project',
     source_url: typeof window !== 'undefined' ? window.location.href : '',
-    value: 175000,
+    value: 275000,
     currency: 'INR',
     ...details
   };
@@ -326,7 +326,7 @@ export function trackGetQuoteClick(details = {}) {
     destination: details.targetUrl || '/contact',
     button_label: details.buttonText || 'Get Quote',
     source_url: typeof window !== 'undefined' ? window.location.href : '',
-    value: 175000,
+    value: 275000,
     currency: 'INR',
     ...details
   };
@@ -343,7 +343,7 @@ export function trackMetaWhatsAppClick(details = {}) {
     destination: 'WhatsApp',
     button_label: details.buttonText || 'WhatsApp Us',
     source_url: typeof window !== 'undefined' ? window.location.href : '',
-    value: 175000,
+    value: 275000,
     currency: 'INR',
     ...details
   };
@@ -362,7 +362,7 @@ export function trackMetaCalComClick(details = {}) {
     destination: 'Cal.com',
     button_label: details.buttonText || 'Book a Call',
     source_url: typeof window !== 'undefined' ? window.location.href : '',
-    value: 175000,
+    value: 275000,
     currency: 'INR',
     ...details
   };
@@ -381,7 +381,7 @@ export function trackMetaFormSubmission(formData = {}) {
     budget: formData.budget || '',
     timeline: formData.timeline || '',
     source_url: typeof window !== 'undefined' ? window.location.href : '',
-    value: 175000,
+    value: 275000,
     currency: 'INR'
   };
 
@@ -403,7 +403,7 @@ export function trackMetaEmailClick(details = {}) {
     destination: 'Email',
     button_label: details.buttonText || 'Email Us',
     source_url: typeof window !== 'undefined' ? window.location.href : '',
-    value: 175000,
+    value: 275000,
     currency: 'INR',
     ...details
   };
@@ -420,7 +420,7 @@ export function trackMetaPhoneClick(details = {}) {
     destination: 'Phone',
     button_label: details.buttonText || 'Call Us',
     source_url: typeof window !== 'undefined' ? window.location.href : '',
-    value: 175000,
+    value: 275000,
     currency: 'INR',
     ...details
   };

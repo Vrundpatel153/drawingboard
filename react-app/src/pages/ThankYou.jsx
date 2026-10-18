@@ -22,7 +22,7 @@ export default function ThankYou() {
   useEffect(() => {
     trackMetaEvent('Lead', {
       content_name: 'Thank You Page Confirmation',
-      value: 175000,
+      value: 275000,
       currency: 'INR'
     });
   }, []);
