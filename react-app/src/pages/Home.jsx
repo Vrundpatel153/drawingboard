@@ -2320,6 +2320,7 @@ export default function Home() {
       {/* ── STICKY MOBILE CTA ────────────────────────────────────────── */}
       <StickyMobileCTA
         title="From ₹4,75,000 ($4,960)"
+        subtitle="Free 15-min discovery call"
         buttonText="Discuss"
         link={DISCUSS_URL}
       />

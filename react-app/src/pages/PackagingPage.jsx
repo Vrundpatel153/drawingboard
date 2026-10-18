@@ -445,14 +445,6 @@ export default function PackagingPage() {
         .pp-page .final .btn-primary { background: var(--paper); color: var(--pine); }
         .pp-page .final .btn-primary:hover { background: #fff; }
 
-        .pp-page .sticky-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; background: var(--ink); padding: 5px 12px; min-height: 42px; max-height: 48px; align-items: center; justify-content: space-between; gap: 8px; border-top: 1px solid rgba(255,255,255,0.14); }
-        .pp-page .sticky-cta .txt { color: #fff; font-size: 11px; line-height: 1.15; min-width: 0; flex: 1; overflow: hidden; }
-        .pp-page .sticky-cta .txt b { display: block; font-size: 11.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .pp-page .sticky-cta .txt span { display: block; font-size: 9.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #C9C3B4; }
-        .pp-page .sticky-cta a { background: var(--paper); color: var(--ink); padding: 0 10px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; border-radius: var(--radius, 2px); white-space: nowrap; text-decoration: none; }
-        .pp-page .sticky-cta a.wa-btn { background: #25D366 !important; color: #ffffff !important; padding: 0 !important; width: 28px !important; height: 28px !important; min-width: 28px !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; border-radius: 2px !important; flex-shrink: 0; }
-        @media (max-width: 700px) { .pp-page .sticky-cta { display: flex; } }
-
 
       
         /* Complete Work Grid inside Packaging Page */
@@ -1354,8 +1346,8 @@ export default function PackagingPage() {
       </div>
 
       <StickyMobileCTA
-        title="Packaging from ₹3,25,000 ($3,400 / £2,520)"
-        subtitle="Free 15-min discovery call"
+        title="Packaging from ₹3,25,000"
+        subtitle="$3,400 / £2,520 · Free 15-min call"
         buttonText="Discuss"
         link={DISCUSS_URL}
       />

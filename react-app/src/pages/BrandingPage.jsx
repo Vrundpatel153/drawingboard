@@ -2319,7 +2319,8 @@ export default function BrandingPage() {
 
       {/* ── STICKY MOBILE CTA ────────────────────────────────────────── */}
       <StickyMobileCTA
-        title="From ₹4,75,000 ($4,960)"
+        title="Branding from ₹4,75,000"
+        subtitle="$4,960 / £3,700 · Free 15-min call"
         buttonText="Discuss"
         link={DISCUSS_URL}
       />

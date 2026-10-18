@@ -937,7 +937,7 @@ export default function Contact() {
 
         <StickyMobileCTA
           title="Contact Studio"
-          subtitle="Q3 Slot Availability"
+          subtitle="Direct Studio Enquiry"
           buttonText="WhatsApp Us"
           link="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!"
         />

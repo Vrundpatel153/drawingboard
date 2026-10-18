@@ -2248,83 +2248,6 @@ export default function DevelopmentPage() {
           cursor: default;
         }
 
-        /* Sticky CTA Bottom Bar Mobile */
-        .dev-bp-page .sticky-cta {
-          display: none;
-          position: fixed;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          z-index: 500;
-          background: var(--ink);
-          padding: 5px 12px;
-          min-height: 42px;
-          max-height: 48px;
-          align-items: center;
-          justify-content: space-between;
-          gap: 8px;
-          border-top: 1px solid rgba(255,255,255,0.14);
-        }
-        .dev-bp-page .sticky-cta .txt {
-          color: #fff;
-          font-size: 11px;
-          line-height: 1.15;
-          min-width: 0;
-          flex: 1;
-          overflow: hidden;
-        }
-        .dev-bp-page .sticky-cta .txt b {
-          display: block;
-          font-size: 11.5px;
-          font-weight: 600;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-        .dev-bp-page .sticky-cta .txt span {
-          display: block;
-          font-size: 9.5px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          color: #C9C3B4;
-        }
-        .dev-bp-page .sticky-cta a {
-          background: var(--paper);
-          color: var(--ink);
-          padding: 0 10px;
-          height: 28px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 11px;
-          font-weight: 600;
-          border-radius: var(--radius, 2px);
-          white-space: nowrap;
-          text-decoration: none;
-        }
-        .dev-bp-page .sticky-cta a.wa-btn {
-          background: #25D366 !important;
-          color: #ffffff !important;
-          padding: 0 !important;
-          width: 28px !important;
-          height: 28px !important;
-          min-width: 28px !important;
-          display: inline-flex !important;
-          align-items: center !important;
-          justify-content: center !important;
-          border-radius: 2px !important;
-          flex-shrink: 0;
-        }
-        @media (max-width: 700px) {
-          .dev-bp-page .sticky-cta {
-            display: flex;
-          }
-          body {
-            padding-bottom: 50px;
-          }
-        }
-
         /* Lead Modal Overlay */
         .dev-bp-modal-overlay {
           position: fixed;
@@ -3725,8 +3648,8 @@ export default function DevelopmentPage() {
       )}
 
       <StickyMobileCTA
-        title="Web Development from $1,500"
-        subtitle="Starts at ₹1,43,145 (£1,120)"
+        title="Web Dev from $1,500"
+        subtitle="₹1,43,145 / £1,120 · Custom Code"
         buttonText="Discuss"
         link={DISCUSS_URL}
       />

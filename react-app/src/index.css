@@ -1976,24 +1976,27 @@ section {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 50;
-  background: var(--ink);
-  padding: 5px 12px;
-  min-height: 42px;
-  max-height: 48px;
+  z-index: 9999;
+  background: rgba(27, 27, 23, 0.96);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  padding: 8px 12px;
+  padding-bottom: max(8px, env(safe-area-inset-bottom, 8px));
+  min-height: 52px;
+  box-sizing: border-box;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
   border-top: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35);
 }
 
 .sticky-cta .txt {
   color: #FFF;
   font-size: 13px;
-  line-height: 1.2;
+  line-height: 1.25;
   min-width: 0;
-  flex: 1;
+  flex: 1 1 auto;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -2002,59 +2005,70 @@ section {
 
 .sticky-cta .txt b {
   display: block;
-  font-size: 13.5px;
+  font-size: clamp(11.5px, 3.2vw, 13.5px);
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color: #ffffff;
   letter-spacing: -0.01em;
+  line-height: 1.25;
+  max-width: 100%;
 }
 
 .sticky-cta .txt span {
   display: block;
-  font-size: 10px;
+  font-size: clamp(9.5px, 2.5vw, 10.5px);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color: #C9C3B4;
+  line-height: 1.2;
   margin-top: 2px;
+  max-width: 100%;
 }
 
 .sticky-cta a,
 .sticky-cta button {
-  background: var(--paper);
-  color: var(--ink);
-  padding: 0 10px;
-  height: 28px;
+  background: var(--paper, #EFEBDE);
+  color: var(--ink, #1B1B17);
+  padding: 0 11px;
+  height: 32px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 600;
-  border-radius: var(--radius, 2px);
+  border-radius: 4px;
   white-space: nowrap;
   text-decoration: none;
   border: none;
   cursor: pointer;
   flex-shrink: 0;
   font-family: inherit;
+  gap: 4px;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.sticky-cta a:active,
+.sticky-cta button:active {
+  transform: scale(0.97);
 }
 
 .sticky-cta a.wa-btn {
   background: #25D366 !important;
   color: #ffffff !important;
   padding: 0 !important;
-  width: 28px !important;
-  height: 28px !important;
-  min-width: 28px !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  border-radius: 2px !important;
-  flex-shrink: 0;
+  border-radius: 4px !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 2px 6px rgba(37, 211, 102, 0.3);
 }
-
 
 /* Footer */
 footer {

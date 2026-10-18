@@ -301,7 +301,12 @@ export default function ServiceDetail() {
           </div>
         </section>
 
-        <StickyMobileCTA title={service.title} subtitle={`From ${service.startingPrice}`} buttonText="Next Service →" link={`/services/${nextService.slug}`} />
+        <StickyMobileCTA
+          title={service.title ? service.title.split('&')[0].trim() : 'Design Service'}
+          subtitle={`From ${service.startingPriceINR || service.startingPrice}`}
+          buttonText="Next →"
+          link={`/services/${nextService.slug}`}
+        />
         <Footer />
       </div>
     </>

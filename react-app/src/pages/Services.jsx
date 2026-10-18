@@ -577,8 +577,8 @@ export default function Services() {
         </section>
 
         <StickyMobileCTA
-          title="Services from $1,500 (₹1,43,145)"
-          subtitle="5 Dedicated Practice Areas"
+          title="Services from $1,500"
+          subtitle="From ₹1,43,145 · 5 Studio Practices"
           buttonText="Discuss"
           link={DISCUSS_URL}
         />

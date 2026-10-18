@@ -49,12 +49,12 @@ export default function StickyMobileCTA({ title = "The Drawing Board", subtitle 
 
   return (
     <div className="sticky-cta" style={{
-      padding: '8px 14px',
-      minHeight: '48px',
-      maxHeight: '54px',
+      padding: '8px 12px',
+      paddingBottom: 'max(8px, env(safe-area-inset-bottom, 8px))',
+      minHeight: '52px',
       alignItems: 'center',
       justifyContent: 'space-between',
-      gap: '10px',
+      gap: '8px',
       boxSizing: 'border-box'
     }}>
       <div className="txt" style={{
@@ -62,35 +62,37 @@ export default function StickyMobileCTA({ title = "The Drawing Board", subtitle 
         flex: '1 1 auto',
         overflow: 'hidden',
         display: 'flex',
-        flexDirection: hasSubtitle ? 'column' : 'row',
-        alignItems: hasSubtitle ? 'flex-start' : 'center',
-        justifyContent: 'flex-start'
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        justifyContent: 'center'
       }}>
         <b style={{
           display: 'block',
-          fontSize: hasSubtitle ? '12px' : '13.5px',
+          fontSize: hasSubtitle ? 'clamp(11.5px, 3.2vw, 13px)' : 'clamp(12.5px, 3.6vw, 14px)',
           fontWeight: 600,
           whiteSpace: 'nowrap',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
-          lineHeight: hasSubtitle ? 1.2 : 1,
+          lineHeight: 1.25,
           letterSpacing: '-0.01em',
-          color: '#ffffff'
+          color: '#ffffff',
+          maxWidth: '100%'
         }}>{title}</b>
         {hasSubtitle && (
           <span style={{
             display: 'block',
-            fontSize: '10px',
+            fontSize: 'clamp(9.5px, 2.5vw, 10.5px)',
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             lineHeight: 1.2,
             marginTop: '2px',
-            color: '#C9C3B4'
+            color: '#C9C3B4',
+            maxWidth: '100%'
           }}>{subtitle}</span>
         )}
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '5px', flexShrink: 0 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
         {/* WhatsApp icon button */}
         <a
           href={WHATSAPP_URL}
@@ -103,18 +105,18 @@ export default function StickyMobileCTA({ title = "The Drawing Board", subtitle 
             display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '28px',
-            height: '28px',
-            minWidth: '28px',
+            width: '32px',
+            height: '32px',
+            minWidth: '32px',
             backgroundColor: '#25D366',
-            borderRadius: '2px',
+            borderRadius: '4px',
             color: '#ffffff',
             flexShrink: 0,
             padding: 0,
             textDecoration: 'none'
           }}
         >
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="#ffffff" style={{ width: '16px', height: '16px', display: 'block', fill: '#ffffff' }}>
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="#ffffff" style={{ width: '17px', height: '17px', display: 'block', fill: '#ffffff' }}>
             <path
               fill="#ffffff"
               d="M12.031 2C6.49 2 2 6.491 2 12.029c0 1.947.558 3.766 1.523 5.308L2 22l4.823-1.46c1.512.923 3.284 1.455 5.208 1.455C17.57 22 22 17.509 22 11.97 21.999 6.491 17.57 2 12.031 2zm0 18.064c-1.745 0-3.353-.489-4.717-1.332l-.337-.21-2.817.852.868-2.656-.23-.368c-.923-1.472-1.442-3.21-1.442-5.08 0-4.992 4.062-9.052 9.06-9.052 4.998 0 9.057 4.06 9.057 9.052.001 4.997-4.06 9.058-9.042 9.058zm5.086-6.666c-.28-.14-1.649-.813-1.903-.906-.254-.093-.44-.14-.627.14-.187.28-.722.906-.886 1.093-.163.186-.328.21-.608.07-.28-.14-1.18-.435-2.247-1.385-.83-.74-1.39-1.656-1.553-1.936-.163-.28-.018-.431.122-.571.127-.126.28-.327.42-.49.14-.163.187-.28.28-.466.094-.187.047-.35-.024-.49-.07-.14-.627-1.508-.859-2.07-.226-.543-.456-.468-.627-.477-.163-.008-.35-.01-.537-.01-.187 0-.49.07-.747.35-.257.28-1.028.98-1.028 2.392s1.028 2.776 1.17 2.964c.14.186 2.019 3.084 4.89 4.324.683.295 1.218.47 1.633.602.686.218 1.31.187 1.803.114.549-.08 1.65-.675 1.884-1.326.234-.65.234-1.21.164-1.325-.07-.116-.257-.186-.537-.326z"
@@ -130,20 +132,21 @@ export default function StickyMobileCTA({ title = "The Drawing Board", subtitle 
             style={{
               background: 'var(--paper, #EFEBDE)',
               color: 'var(--ink, #1B1B17)',
-              padding: '0 10px',
-              height: '28px',
+              padding: '0 11px',
+              height: '32px',
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '11px',
+              fontSize: '11.5px',
               fontWeight: 600,
-              borderRadius: '2px',
+              borderRadius: '4px',
               whiteSpace: 'nowrap',
               textDecoration: 'none',
               border: 'none',
               cursor: 'pointer',
               fontFamily: 'inherit',
-              gap: '4px'
+              gap: '4px',
+              flexShrink: 0
             }}
           >
             {cleanBtnText} <ArrowIcon size={10} />
@@ -157,17 +160,18 @@ export default function StickyMobileCTA({ title = "The Drawing Board", subtitle 
             style={{
               background: 'var(--paper, #EFEBDE)',
               color: 'var(--ink, #1B1B17)',
-              padding: '0 10px',
-              height: '28px',
+              padding: '0 11px',
+              height: '32px',
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '11px',
+              fontSize: '11.5px',
               fontWeight: 600,
-              borderRadius: '2px',
+              borderRadius: '4px',
               whiteSpace: 'nowrap',
               textDecoration: 'none',
-              gap: '4px'
+              gap: '4px',
+              flexShrink: 0
             }}
           >
             {cleanBtnText} <ArrowIcon size={10} />
@@ -178,17 +182,18 @@ export default function StickyMobileCTA({ title = "The Drawing Board", subtitle 
             style={{
               background: 'var(--paper, #EFEBDE)',
               color: 'var(--ink, #1B1B17)',
-              padding: '0 10px',
-              height: '28px',
+              padding: '0 11px',
+              height: '32px',
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '11px',
+              fontSize: '11.5px',
               fontWeight: 600,
-              borderRadius: '2px',
+              borderRadius: '4px',
               whiteSpace: 'nowrap',
               textDecoration: 'none',
-              gap: '4px'
+              gap: '4px',
+              flexShrink: 0
             }}
           >
             {cleanBtnText} <ArrowIcon size={10} />

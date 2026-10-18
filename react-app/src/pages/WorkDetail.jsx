@@ -1651,7 +1651,7 @@ export default function WorkDetail() {
       <StickyMobileCTA
         title={isAfter8 ? 'AFTER8® Case Study' : project.title}
         subtitle={isAfter8 ? '+340% DTC Revenue' : `${project.images ? project.images.length : 1} High-Res Assets`}
-        buttonText="Next Project →"
+        buttonText="Next →"
         link={`/work/${nextProject.slug}`}
       />
       <Footer />
