@@ -7,6 +7,8 @@ import StickyMobileCTA from '../components/StickyMobileCTA';
 import MoreServicesSection from '../components/MoreServicesSection';
 import ArrowIcon from '../components/ArrowIcon';
 import { DISCUSS_URL, WHATSAPP_URL } from '../utils/siteConfig';
+import projectsData from '../data/projectsData.json';
+import saasProjectsData from '../data/saasProjectsData.json';
 
 
 
@@ -15,6 +17,35 @@ import { DISCUSS_URL, WHATSAPP_URL } from '../utils/siteConfig';
    ───────────────────────────────────────────────────────────────────────────── */
 export default function PackagingPage() {
   const [openFaq, setOpenFaq] = useState(null);
+  const [workFilter, setWorkFilter] = useState('all');
+
+  const allCombinedProjects = React.useMemo(() => {
+    // Exclude saas-* items from projectsData to avoid duplicate cards, then map saasProjectsData cleanly
+    const baseProjects = projectsData.filter(p => !p.slug || !p.slug.startsWith('saas-'));
+    const formattedSaas = saasProjectsData.map(sp => ({
+      slug: `saas-${sp.slug}`,
+      title: `${sp.title} — ${sp.tag}`,
+      category: 'saas',
+      tag: 'SAAS BRANDING',
+      description: sp.shortDescription || sp.description,
+      coverImage: sp.coverImage,
+      isSaas: true,
+      images: sp.images,
+      imageCount: sp.imageCount || 1
+    }));
+    return [...baseProjects, ...formattedSaas];
+  }, []);
+
+  const filteredProjects = allCombinedProjects.filter(p => {
+    if (workFilter === 'all') return true;
+    if (workFilter === 'saas') return p.category === 'saas' || (p.tag && p.tag.toUpperCase().includes('SAAS'));
+    if (workFilter === 'branding') return p.category === 'branding' || (p.tag && p.tag.includes('BRANDING'));
+    if (workFilter === 'food') return p.category === 'food' || (p.tag && (p.tag.includes('FOOD') || p.tag.includes('BEVERAGE') || p.tag.includes('RESTAURANT') || p.tag.includes('CAFE'))) || ['pronto', 'matcha', 'murami', 'soul-brew'].some(s => (p.slug || '').includes(s));
+    if (workFilter === 'packaging') return p.category === 'packaging' || (p.tag && p.tag.includes('PACKAGING'));
+    if (workFilter === 'web') return p.category === 'web' || (p.tag && (p.tag.includes('WEB') || p.tag.includes('UI UX')));
+    if (workFilter === 'photography') return p.category === 'photography' || (p.tag && p.tag.includes('PHOTO'));
+    return true;
+  });
   const [checklistEmail, setChecklistEmail] = useState('');
   const [checklistBrand, setChecklistBrand] = useState('');
   const [checklistCategory, setChecklistCategory] = useState('');
@@ -422,6 +453,116 @@ export default function PackagingPage() {
         .pp-page .sticky-cta a.wa-btn { background: #25D366 !important; color: #ffffff !important; padding: 0 !important; width: 28px !important; height: 28px !important; min-width: 28px !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; border-radius: 2px !important; flex-shrink: 0; }
         @media (max-width: 700px) { .pp-page .sticky-cta { display: flex; } }
 
+
+      
+        /* Complete Work Grid inside Packaging Page */
+        .pp-work-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 32px;
+          width: 100%;
+        }
+        @media (max-width: 1024px) {
+          .pp-work-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+          }
+        }
+        @media (max-width: 768px) {
+          .pp-work-grid {
+            grid-template-columns: 1fr !important;
+            gap: 24px;
+          }
+        }
+
+        .pp-page .work-case-card {
+          border: 1.5px solid var(--ink);
+          background: var(--card);
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          text-decoration: none;
+          border-radius: 2px;
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+        }
+
+        .pp-page .work-case-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 28px rgba(27, 27, 23, 0.08);
+        }
+
+        .pp-page .work-case-card .img-box {
+          width: 100%;
+          aspect-ratio: 16/10;
+          overflow: hidden;
+          background: var(--card);
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .pp-page .work-case-card .img-box img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          transition: transform 0.45s ease;
+          display: block;
+        }
+
+        .pp-page .work-case-card:hover .img-box img {
+          transform: scale(1.04);
+        }
+
+        .pp-page .work-card-body {
+          padding: 24px;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+
+        .pp-page .work-card-tag {
+          font-family: 'IBM Plex Mono', monospace;
+          font-size: 11px;
+          color: var(--pine);
+          font-weight: 600;
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+          margin-bottom: 8px;
+        }
+
+        .pp-page .work-card-title {
+          font-size: 22px;
+          font-family: 'Fraunces', serif;
+          color: var(--ink);
+          margin-bottom: 10px;
+          line-height: 1.25;
+        }
+
+        .pp-page .work-card-desc {
+          font-size: 14px;
+          color: var(--ink-soft);
+          line-height: 1.55;
+          margin-bottom: 20px;
+        }
+
+        .pp-page .work-card-link {
+          font-family: 'IBM Plex Mono', monospace;
+          font-size: 11.5px;
+          font-weight: 600;
+          color: var(--marker);
+          letter-spacing: 0.04em;
+          margin-top: auto;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          transition: color 0.15s;
+        }
+
+        .pp-page .work-case-card:hover .work-card-link {
+          color: var(--pine);
+        }
 
       `}</style>
 
@@ -842,45 +983,81 @@ export default function PackagingPage() {
             </div>
           </section>
 
-          {/* ============ SECTION 12 — CASE STUDIES ============ */}
-          <section style={{ paddingTop: 0 }}>
+                    {/* ============ SECTION 12 — COMPLETE WORK PORTFOLIO ============ */}
+          <section id="work" style={{ paddingTop: 0 }}>
             <div className="wrap">
               <div className="section-head">
                 <div>
-                  <div className="eyebrow mono">SELECTED PACKAGING WORK</div>
+                  <div className="eyebrow mono">SELECTED STUDIO WORK // PORTFOLIO ARCHIVE</div>
                   <h2>Systems designed to live beyond a single mockup.</h2>
                 </div>
-                <p><Link className="btn-link" to="/work">View all packaging work <ArrowIcon size={13} /></Link></p>
+                <p><Link className="btn-link" to="/work">Dedicated Work Archive <ArrowIcon size={13} /></Link></p>
               </div>
-              <div className="proof-grid">
-                <Link className="proof-card" to="/work">
-                  <div className="img"></div>
-                  <div className="proof-body">
-                    <div className="tag mono">TEA &amp; COFFEE</div>
-                    <h4>Cardamom</h4>
-                    <p>A calm, premium packaging system designed to distinguish tea, coffee and matcha while retaining one recognisable house language.</p>
-                  </div>
-                </Link>
-                <Link className="proof-card" to="/work/lumen---visual-identity-for-lumen-fine-jewellery">
-                  <div className="img">
-                    <img src="https://framerusercontent.com/images/TW8nh45W2f0jJxIXkfCtK2I9qo.webp" alt="Lumen Packaging" />
-                  </div>
-                  <div className="proof-body">
-                    <div className="tag mono">FINE JEWELLERY</div>
-                    <h4>Lumen</h4>
-                    <p>A refined gifting and retail packaging system built around tactility, restraint and premium unboxing.</p>
-                  </div>
-                </Link>
-                <Link className="proof-card" to="/work/after8r---reimagining-intimacy-for-a-new-generation.">
-                  <div className="img">
-                    <img src="https://framerusercontent.com/images/GI9hs6gABp4QhAbVBk1Ej9TVE0.png" alt="AFTER8 Packaging" />
-                  </div>
-                  <div className="proof-body">
-                    <div className="tag mono">PERSONAL WELLNESS</div>
-                    <h4>AFTER8</h4>
-                    <p>A direct, modern packaging identity designed for digital thumbnails, retail clarity and easy variant expansion.</p>
-                  </div>
-                </Link>
+
+              {/* Filter Tabs & Case Studies Counter */}
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginBottom: '32px',
+                  flexWrap: 'wrap',
+                  gap: '16px',
+                  borderBottom: '1px dashed var(--paper-line)',
+                  paddingBottom: '20px'
+                }}
+              >
+                <div className="filter-tabs" style={{ margin: 0, padding: 0 }}>
+                  <button className={`ftab ${workFilter === 'all' ? 'on' : ''}`} onClick={() => setWorkFilter('all')}>[ ALL PROJECTS ]</button>
+                  <button className={`ftab ${workFilter === 'packaging' ? 'on' : ''}`} onClick={() => setWorkFilter('packaging')}>[ PACKAGING ]</button>
+                  <button className={`ftab ${workFilter === 'branding' ? 'on' : ''}`} onClick={() => setWorkFilter('branding')}>[ BRANDING ]</button>
+                  <button className={`ftab ${workFilter === 'food' ? 'on' : ''}`} onClick={() => setWorkFilter('food')}>[ FOOD ]</button>
+                  <button className={`ftab ${workFilter === 'saas' ? 'on' : ''}`} onClick={() => setWorkFilter('saas')}>[ SAAS BRANDING ]</button>
+                  <button className={`ftab ${workFilter === 'web' ? 'on' : ''}`} onClick={() => setWorkFilter('web')}>[ WEB &amp; DIGITAL ]</button>
+                </div>
+
+                <span className="mono" style={{ fontSize: '12.5px', fontWeight: 600, color: 'var(--ink-soft)', letterSpacing: '0.05em' }}>
+                  [ {filteredProjects.length} CASE {filteredProjects.length === 1 ? 'STUDY' : 'STUDIES'} ]
+                </span>
+              </div>
+
+              {/* All Work Grid */}
+              <div className="pp-work-grid">
+                {filteredProjects.map((project, idx) => {
+                  const targetLink = `/work/${project.slug}`;
+                  return (
+                    <Link
+                      key={project.slug || idx}
+                      to={targetLink}
+                      className="work-case-card"
+                    >
+                      <div className="img-box">
+                        <img
+                          src={project.coverImage}
+                          alt={project.title}
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="work-card-body">
+                        <div>
+                          <div className="work-card-tag">
+                            {project.tag}
+                          </div>
+                          <h3 className="work-card-title">
+                            {project.title}
+                          </h3>
+                          <p className="work-card-desc">
+                            {project.description || 'Strategic brand identity, packaging design, and digital build.'}
+                          </p>
+                        </div>
+                        <div className="work-card-link">
+                          <span>{project.imageCount > 0 ? `${project.imageCount} REAL ASSETS` : 'EXPLORE CASE STUDY'}</span>
+                          <ArrowIcon size={14} />
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </section>
