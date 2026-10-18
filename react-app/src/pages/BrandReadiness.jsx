@@ -1130,29 +1130,32 @@ export default function BrandReadiness() {
                ════════════════════════════════════════════════════════════════ */}
             {view === 'form' && (
               <section className="br-form-section">
-                <div className="bp-sheet-label">
-                  <span className="bp-sheet-right mono">
-                    THE DRAWING BOARD // STRATEGIC SCOPE INTAKE &amp; READOUT // ALL-IN-ONE SYSTEM
-                  </span>
-                  <span className="rule"></span>
+                {/* Unified Form Top Bar: Single Eyebrow + Modernized Back Button */}
+                <div className="br-form-top-bar">
+                  <div className="br-form-tag-wrap">
+                    <span className="bp-dot" aria-hidden="true" />
+                    <span className="mono br-form-tag">
+                      SYSTEM INTAKE // LIVE ARCHITECTURAL CALCULATION
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    className="br-back-overview-btn"
+                    onClick={() => {
+                      setView('landing');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    aria-label="Back to Overview"
+                  >
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <line x1="19" y1="12" x2="5" y2="12"></line>
+                      <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    <span>Back to Overview</span>
+                  </button>
                 </div>
 
                 <div className="br-form-intro">
-                  <div className="br-intro-top-row">
-                    <span className="mono br-card-tag" style={{ margin: 0 }}>
-                      SYSTEM INTAKE // LIVE ARCHITECTURAL CALCULATION
-                    </span>
-                    <button
-                      type="button"
-                      className="btn-secondary-cta br-back-btn"
-                      onClick={() => {
-                        setView('landing');
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}
-                    >
-                      ← Back to Overview
-                    </button>
-                  </div>
                   <h1 className="br-form-main-title">
                     Strategic Project Scope &amp; Diagnostic Intake
                   </h1>
@@ -3023,6 +3026,110 @@ export default function BrandReadiness() {
             display: inline-block;
             font-size: 13px;
             animation: brArrowBob 1.5s ease-in-out infinite;
+          }
+
+          /* ── Form Top Navigation Bar & Sleek Back Button ── */
+          .br-form-top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding-bottom: 18px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--paper-line);
+          }
+
+          .br-form-tag-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+          }
+
+          .br-form-tag-wrap .bp-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--pine);
+            display: inline-block;
+            flex-shrink: 0;
+            box-shadow: 0 0 0 3px rgba(36, 70, 59, 0.18);
+          }
+
+          .br-form-tag {
+            font-size: 11.5px;
+            color: var(--ink-soft);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .br-back-overview-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: var(--card, #F6F3EC);
+            color: var(--ink);
+            border: 1px solid var(--ink);
+            padding: 7px 13px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            border-radius: 2px;
+            cursor: pointer;
+            flex-shrink: 0;
+            text-decoration: none;
+            box-shadow: 2px 2px 0px rgba(27, 27, 23, 0.08);
+            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            line-height: 1;
+          }
+
+          .br-back-overview-btn svg {
+            stroke: currentColor;
+            display: block;
+            transition: transform 0.2s ease;
+          }
+
+          .br-back-overview-btn:hover {
+            background: var(--ink);
+            color: var(--paper);
+            border-color: var(--ink);
+            box-shadow: 3px 3px 0px rgba(27, 27, 23, 0.18);
+            transform: translateY(-1px);
+          }
+
+          .br-back-overview-btn:hover svg {
+            transform: translateX(-3px);
+          }
+
+          .br-back-overview-btn:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 1px 1px 0px rgba(27, 27, 23, 0.1);
+          }
+
+          @media (max-width: 600px) {
+            .br-form-top-bar {
+              flex-direction: row;
+              align-items: center;
+              justify-content: space-between;
+              padding-bottom: 14px;
+              margin-bottom: 18px;
+              gap: 8px;
+            }
+            .br-form-tag {
+              font-size: 10px;
+              letter-spacing: 0.02em;
+            }
+            .br-back-overview-btn {
+              padding: 6px 10px;
+              font-size: 10px;
+              gap: 5px;
+            }
           }
 
         `}</style>
