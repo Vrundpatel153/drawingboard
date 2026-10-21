@@ -619,7 +619,7 @@ export default function BrandReadiness() {
       { threshold: 0.15 }
     );
 
-    const submitBtn = document.getElementById('br-submit-btn');
+    const submitBtn = document.getElementById('br-card-submit-btn') || document.getElementById('br-submit-btn');
     if (submitBtn) observer.observe(submitBtn);
     return () => observer.disconnect();
   }, [view]);
@@ -636,7 +636,7 @@ export default function BrandReadiness() {
     if (!lead.first?.trim() || !lead.email?.trim() || !lead.brand?.trim()) {
       return { id: 'br-step-4', label: 'Scroll to Step 04: Project Details ↓' };
     }
-    return { id: 'br-submit-btn', label: 'Scroll to Submit & Get Quote ↓' };
+    return { id: 'br-card-submit-btn', label: 'Submit & Get Quote ↓' };
   };
 
   const nextTarget = getNextTarget();
@@ -972,7 +972,7 @@ export default function BrandReadiness() {
           subtitle: answeredCount > 0 ? currentEngagement.name : "Select your parameters",
           buttonText: "Submit & Get Quote",
           onClick: () => {
-            const btn = document.getElementById('br-submit-btn');
+            const btn = document.getElementById('br-card-submit-btn') || document.getElementById('br-submit-btn');
             if (btn) {
               btn.click();
             } else {
@@ -1605,16 +1605,34 @@ export default function BrandReadiness() {
                         </div>
                       </div>
 
-                      {/* Step 4 Footer Action */}
-                      <div className="br-step-footer">
+                      {/* Direct Final Submit Action */}
+                      <div className="br-step-footer" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                        <button
+                          type="submit"
+                          id="br-card-submit-btn"
+                          className="bp-btn-primary"
+                          disabled={isSubmitting}
+                          style={{ width: '100%', justifyContent: 'center', padding: '16px 24px', fontSize: '15px' }}
+                        >
+                          {isSubmitting ? (
+                            <>Transmitting Brief... <ArrowIcon size={14} /></>
+                          ) : (
+                            <>Submit &amp; Get Quote <ArrowIcon size={14} /></>
+                          )}
+                        </button>
+
                         <button
                           type="button"
-                          className="br-step-btn br-step-submit-btn"
-                          onClick={() => scrollToTarget('br-submit-btn')}
+                          className="btn-secondary-cta"
+                          onClick={handleWhatsAppSend}
+                          style={{ width: '100%', justifyContent: 'center', padding: '12px 20px', fontSize: '13.5px' }}
                         >
-                          <span>Scroll to Final Submit &amp; Get Quote Button</span>
-                          <span className="arrow" aria-hidden="true">↓</span>
+                          Send Instantly via WhatsApp <ArrowIcon size={14} />
                         </button>
+
+                        <div className="br-side-guarantee mono" style={{ marginTop: '2px', textAlign: 'center' }}>
+                          🔒 Direct Senior Review • 100% Vector IP Ownership • No Spam Relay
+                        </div>
                       </div>
                     </div>
                   </div>
