@@ -633,7 +633,7 @@ export default function BrandReadiness() {
     if (!answers.event) return { id: 'q-event', label: 'Scroll to 12-Month Commercial Horizon ↓' };
     if (!answers.timeline) return { id: 'br-step-3', label: 'Scroll to Step 03: Timeline & Budget ↓' };
     if (!answers.budget) return { id: 'q-budget', label: 'Scroll to Planned Investment Level ↓' };
-    if (!lead.first?.trim() || !lead.email?.trim() || !lead.brand?.trim()) {
+    if (!lead.first?.trim() || !lead.email?.trim() || !lead.brand?.trim() || !lead.whatsapp?.trim() || !projectData.launchDate?.trim()) {
       return { id: 'br-step-4', label: 'Scroll to Step 04: Project Details ↓' };
     }
     return { id: 'br-card-submit-btn', label: 'Submit & Get Quote ↓' };
@@ -800,8 +800,29 @@ export default function BrandReadiness() {
 
   const handleUnifiedSubmit = async (e) => {
     e.preventDefault();
-    if (!lead.first?.trim() || !lead.email?.trim() || !lead.brand?.trim()) {
-      alert('Please provide your name, work email, and brand or company name.');
+    if (!lead.first?.trim()) {
+      alert('Please enter your Founder / Full Name.');
+      document.getElementById('first')?.focus();
+      return;
+    }
+    if (!lead.email?.trim()) {
+      alert('Please enter your Work Email.');
+      document.getElementById('email')?.focus();
+      return;
+    }
+    if (!lead.brand?.trim()) {
+      alert('Please enter your Brand / Company Name.');
+      document.getElementById('brand')?.focus();
+      return;
+    }
+    if (!lead.whatsapp?.trim()) {
+      alert('Please enter your WhatsApp Number (Mandatory for quote delivery).');
+      document.getElementById('whatsapp')?.focus();
+      return;
+    }
+    if (!projectData.launchDate?.trim()) {
+      alert('Please enter your Desired Launch Date (Mandatory for scheduling).');
+      document.getElementById('launchDate')?.focus();
       return;
     }
 
@@ -831,64 +852,103 @@ export default function BrandReadiness() {
         budget: budgetVal,
         timeline: timelineVal,
         primaryChallenge: problemsVal,
-        message: `[Unified Strategic Scope Intake]\nScore: ${scoreVal}/100 (${bandText})\nCategory: ${categoryVal}\nStage: ${stageVal}\nLaunch: ${projectData.launchDate || 'N/A'}\nNotes: ${projectData.notes || 'N/A'}\nFounder Vision: ${answers.outcome || 'N/A'}`
+        message: `[Unified Strategic Scope Intake]\nScore: ${scoreVal}/100 (${bandText})\nCategory: ${categoryVal}\nStage: ${stageVal}\nLaunch: ${projectData.launchDate}\nWhatsApp: ${lead.whatsapp}\nNotes: ${projectData.notes || 'N/A'}\nFounder Vision: ${answers.outcome || 'N/A'}`
       });
     } catch (err) {
       console.warn('Meta tracking error:', err);
     }
 
-    // FormSubmit POST dispatch (exact confirmed payload schema)
+    // Save offline backup in localStorage so user brief is never lost
     try {
-      const payload = {
-        _subject: `New Project Scope Brief: ${lead.brand} — ${lead.first} (Score: ${scoreVal}/100)`,
-        _template: "table",
-        _captcha: "false",
-        _replyto: lead.email,
-        _cc: "vrundpatel153@gmail.com",
-        "Client Name": lead.first,
-        "Work Email": lead.email,
-        "Brand / Company": lead.brand,
-        "Website or Social": lead.website || 'Not provided',
-        "WhatsApp Phone": lead.whatsapp || 'Not provided',
-        "Desired Launch Date": projectData.launchDate || 'Not specified',
-        "Project Notes / Context": projectData.notes || 'None provided',
-        "Overall Readiness Score": `${scoreVal} / 100 (${bandText})`,
-        "Recommended Engagement": `${engagementName} — ${investment}`,
-        "Estimated Timeline": currentEngagement.weeks || 'Standard Sprint',
-        "Clarity & Strategic Narrative": `${currentScore.clarity} / 100`,
-        "Visual & Brand Distinctiveness": `${currentScore.distinct} / 100`,
-        "Design System Architecture": `${currentScore.system} / 100`,
-        "Step 1 - Core Category": categoryVal,
-        "Step 2 - Commercial Stage": stageVal,
-        "Step 3 - Critical Friction Points": problemsVal,
-        "Step 4 - Creative Focus Area": scopeVal,
-        "Step 5 - 12-Month Commercial Horizon": eventVal,
-        "Step 6 - Target Launch Timeline": timelineVal,
-        "Step 7 - Planned Investment Budget": budgetVal,
-        "Step 8 - Founder Vision of Success": answers.outcome || 'N/A',
-        "Complete Formatted Brief": buildBriefText('email')
-      };
+      localStorage.setItem('tdb_last_quote_brief', JSON.stringify({
+        timestamp: new Date().toISOString(),
+        brand: lead.brand,
+        founder: lead.first,
+        email: lead.email,
+        whatsapp: lead.whatsapp,
+        launchDate: projectData.launchDate,
+        notes: projectData.notes,
+        score: scoreVal,
+        engagement: engagementName,
+        investment: investment
+      }));
+    } catch (_) {}
 
-      await fetch("https://formsubmit.co/ajax/25c2139e28176433a33351a4cfeeac2b", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
-    } catch (err) {
-      console.error('Email dispatch error:', err);
-    } finally {
-      setIsSubmitting(false);
-      setView('success');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    // Prepare complete brief payload
+    const payload = {
+      _subject: `New Project Scope Brief: ${lead.brand} — ${lead.first} (Score: ${scoreVal}/100)`,
+      _template: "table",
+      _captcha: "false",
+      _replyto: lead.email,
+      _cc: "vrundpatel153@gmail.com",
+      "Client Name": lead.first,
+      "Work Email": lead.email,
+      "Brand / Company": lead.brand,
+      "Website or Social": lead.website || 'Not provided',
+      "WhatsApp Phone": lead.whatsapp,
+      "Desired Launch Date": projectData.launchDate,
+      "Project Notes / Context": projectData.notes || 'None provided',
+      "Overall Readiness Score": `${scoreVal} / 100 (${bandText})`,
+      "Recommended Engagement": `${engagementName} — ${investment}`,
+      "Estimated Timeline": currentEngagement.weeks || 'Standard Sprint',
+      "Clarity & Strategic Narrative": `${currentScore.clarity} / 100`,
+      "Visual & Brand Distinctiveness": `${currentScore.distinct} / 100`,
+      "Design System Architecture": `${currentScore.system} / 100`,
+      "Step 1 - Core Category": categoryVal,
+      "Step 2 - Commercial Stage": stageVal,
+      "Step 3 - Critical Friction Points": problemsVal,
+      "Step 4 - Creative Focus Area": scopeVal,
+      "Step 5 - 12-Month Commercial Horizon": eventVal,
+      "Step 6 - Target Launch Timeline": timelineVal,
+      "Step 7 - Planned Investment Budget": budgetVal,
+      "Step 8 - Founder Vision of Success": answers.outcome || 'N/A',
+      "Complete Formatted Brief": buildBriefText('email')
+    };
+
+    // Non-blocking background dispatch with keepalive so page transition doesn't hang on slow external SMTP relays
+    fetch("https://formsubmit.co/ajax/25c2139e28176433a33351a4cfeeac2b", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload),
+      keepalive: true
+    }).catch(err => {
+      console.warn('Background email dispatch notice:', err);
+    });
+
+    // Snappy, instant micro-transition (350ms) so user sees button feedback, then lands immediately on confirmation
+    await new Promise(resolve => setTimeout(resolve, 350));
+    setIsSubmitting(false);
+    setView('success');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleWhatsAppSend = () => {
-    if (!lead.first?.trim() || !lead.email?.trim() || !lead.brand?.trim()) {
-      alert('Please provide your name, work email, and brand or company name.');
+    if (!lead.first?.trim()) {
+      alert('Please enter your Founder / Full Name.');
+      document.getElementById('first')?.focus();
+      return;
+    }
+    if (!lead.email?.trim()) {
+      alert('Please enter your Work Email.');
+      document.getElementById('email')?.focus();
+      return;
+    }
+    if (!lead.brand?.trim()) {
+      alert('Please enter your Brand / Company Name.');
+      document.getElementById('brand')?.focus();
+      return;
+    }
+    if (!lead.whatsapp?.trim()) {
+      alert('Please enter your WhatsApp Number (Mandatory).');
+      document.getElementById('whatsapp')?.focus();
+      return;
+    }
+    if (!projectData.launchDate?.trim()) {
+      alert('Please enter your Desired Launch Date (Mandatory).');
+      document.getElementById('launchDate')?.focus();
       return;
     }
     const msg = buildBriefText('whatsapp');
@@ -1559,12 +1619,13 @@ export default function BrandReadiness() {
 
                         <div className="field-group">
                           <label className="mono" htmlFor="whatsapp">
-                            WhatsApp Phone (optional)
+                            WhatsApp Phone <span className="br-label-required">*</span>
                           </label>
                           <input
                             id="whatsapp"
                             type="tel"
-                            placeholder="+91 98765 43210"
+                            required
+                            placeholder="+91 98765 43210 (country code + number)"
                             value={lead.whatsapp}
                             onChange={(e) => setLead({ ...lead, whatsapp: e.target.value })}
                           />
@@ -1572,12 +1633,13 @@ export default function BrandReadiness() {
 
                         <div className="field-group">
                           <label className="mono" htmlFor="launchDate">
-                            Desired Launch Date (optional)
+                            Desired Launch Date <span className="br-label-required">*</span>
                           </label>
                           <input
                             id="launchDate"
                             type="text"
-                            placeholder="e.g. Q4 2026 or November"
+                            required
+                            placeholder="e.g. November 2026 or 4 Weeks Sprint"
                             value={projectData.launchDate}
                             onChange={(e) => setProjectData({ ...projectData, launchDate: e.target.value })}
                           />
@@ -2777,6 +2839,11 @@ export default function BrandReadiness() {
           }
           .br-fields-grid .field-group.full-width {
             grid-column: 1 / -1;
+          }
+          .br-label-required {
+            color: var(--marker);
+            font-weight: 700;
+            margin-left: 3px;
           }
           .br-fields-grid label {
             display: block;
