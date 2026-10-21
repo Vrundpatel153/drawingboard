@@ -36,6 +36,10 @@ export default function WorkDetail() {
   const isKame = cleanId.includes('kame');
   const isBanam = cleanId.includes('banam');
   const isMorningGrain = cleanId.includes('morning') || cleanId.includes('grain');
+  const isBlankBody = cleanId.includes('blank-body') || cleanId.includes('blank');
+  const isCrystal = cleanId.includes('crystal') || cleanId.includes('nail');
+  const isBraveRx = cleanId.includes('brave') || cleanId.includes('rx');
+  const isRestReligion = cleanId.includes('rest') || cleanId.includes('religion');
 
   // Find matching project in dataset
   const project = projectsData.find(p => {
@@ -159,6 +163,14 @@ export default function WorkDetail() {
               ? 'Banam Banana Water Packaging'
               : isMorningGrain
               ? 'Morning Grain Snack Packaging'
+              : isBlankBody
+              ? 'Blank Body Skincare Packaging'
+              : isCrystal
+              ? 'Crystal Nail Care Packaging'
+              : isBraveRx
+              ? 'Brave RX Telehealth Wellness'
+              : isRestReligion
+              ? 'Rest Religion Skincare Ritual'
               : isMatchaClub
               ? 'Matcha Club Case Study'
               : isMurami
@@ -199,6 +211,14 @@ export default function WorkDetail() {
                 ? 'CASE STUDY // SPEC 07'
                 : isLumen
                 ? 'CASE STUDY // SPEC 08'
+                : isBlankBody
+                ? 'CASE STUDY // SPEC 09 — FRAGRANCE & BODY CARE'
+                : isCrystal
+                ? 'CASE STUDY // SPEC 10 — NEXT-GEN NAIL CARE'
+                : isBraveRx
+                ? 'CASE STUDY // SPEC 11 — TELEHEALTH MEN\'S WELLNESS'
+                : isRestReligion
+                ? 'CASE STUDY // SPEC 12 — PSYCHODERMATOLOGY SKINCARE'
                 : `CASE STUDY // SPEC ${String(currentIndex + 1).padStart(2, '0')}`}
             </span>
             <div className="rule"></div>
@@ -1595,6 +1615,82 @@ export default function WorkDetail() {
                   "Morning Grain Complete Breakfast System & Packaging Guidelines"
                 ];
 
+                const blankBodyCaptions = [
+                  "Blank Body — Fragrance-Forward Body Care Master Cover & Bottle Silhouette",
+                  "African Textile Graphic Tradition & Geometric Pattern Art Direction",
+                  "Sweet Plantain Signature Scent Bottle & Organic Rounded Contours",
+                  "Primary Bottle & Secondary Outer Paper Box Hierarchy",
+                  "Warm Golden Hour Tone-on-Tone Colorway System",
+                  "Graphic Logotype Construction with Body-Contour Symmetry",
+                  "Perforated B & A Anatomical Letterform Typography Layout",
+                  "Custom Tissue Paper Packaging & Repeated Brand Pattern Wrap",
+                  "Complete Body Care Product Suite: Sculpt Creams & Body Oils",
+                  "Tactile Bottle Unboxing Experience & Foil Accent Detailing",
+                  "High-Conversion Mobile-Responsive E-Commerce Platform Architecture",
+                  "Brand Campaign Photography: Diversity, Plasticity & Real Skin",
+                  "Sweet Plantain Bubble Sticker Label & Information Architecture",
+                  "Inner Box Pattern Reveal & Unexpected Unboxing Texture",
+                  "Secondary Packaging Dieline & FSC-Certified Uncoated Cardboard",
+                  "Tone-on-Tone Screen Printing & Minimalist Ingredient Transparency",
+                  "Curved Digital UI/UX Interface & Interactive Product Display",
+                  "Founder Princess Ebi Quote & Creative Direction Testimonial",
+                  "Golden Hour Sculpt Campaign: Warm Earth-Tone Art Direction",
+                  "Blank Body Complete Master Brand Architecture & Retail Specifications"
+                ];
+
+                const crystalCaptions = [
+                  "Crystal — Next-Gen Futuristic Nail Care System & Angled Bottle Architecture",
+                  "Frosted Glass Finish & Semi-Transparent Gloss Printing Detailing",
+                  "Signature Diagonal Bottom Line & Structural Packaging Consistency",
+                  "Essential 3-Step Care Kit: Growth Serum, Strength Polish & Nourish Butter",
+                  "Futuristic Augmented Reality Vision & Health-First Product Concept",
+                  "Monochrome Editorial Typography & Angled Construction Layout",
+                  "Custom Paper Box Dielines with Diagonal Precision Silhouette",
+                  "Frosted Glass Bottle Dropper & Tactile Pipette Applicator Specs",
+                  "High-Resolution 3D Visualization & Studio Light Simulation",
+                  "Futuristic Beauty Packaging Suite on Minimalist Concrete Plinths",
+                  "Crystal Logotype Construction: Precision Diagonal Stem Terminals",
+                  "Clean Clinical Ingredient Transparency & Formulation Badges",
+                  "Secondary Retail Folding Carton Unboxing Experience",
+                  "Crystal Master Nail Care Brand Identity & Industrial Design Specs"
+                ];
+
+                const braveRxCaptions = [
+                  "Brave RX — US Telehealth Men's Sexual Health & Performance Packaging Cover",
+                  "Monumental Logotype & Heavy Structural Typography Hierarchy",
+                  "The Knight Chess Symbol — Agility, Strategy & Composed Male Power",
+                  "Custom-Compounded Medication Bottle & Child-Resistant Cap Architecture",
+                  "High-End Wellness Aesthetic Replacing Stigmatized Clinical Packaging",
+                  "Tactile Matte Charcoal Bottle Finish with Minimalist White Print",
+                  "Daily Dose Pill Dispenser Packaging & Discrete Pocket Mailer",
+                  "Telehealth Digital Platform UI & Subscription Onboarding Flow",
+                  "Editorial Art Direction for High-Performing Men's Lifestyle",
+                  "Ingredient Transparency & Clinical Efficacy Dosage Hierarchy",
+                  "Brave RX Master Brand Guidelines, Packaging & Digital Design Sign-Off"
+                ];
+
+                const restReligionCaptions = [
+                  "Rest Religion — 2-Step Psychodermatology Skincare Routine Cover",
+                  "The Holy Halo Gradient Metaphor — Radiating Glow from Product to Skin",
+                  "Soothing Stress & Rebuilding the Skin Barrier: Product Duo System",
+                  "Pastel Celestial Gradient Palette & Tactile Soft-Touch Bottle Finish",
+                  "Custom Dropper Serum & Barrier Moisture Cream Structural Dielines",
+                  "High-Conversion Mobile E-Commerce Storefront & Shopify Architecture",
+                  "Warm Earth & Halo Gradient Unboxing Box with Precision Trays",
+                  "Editorial Brand Posters: 'Chicken Soup for the Skin'",
+                  "Psychodermatology Scientific Research & Mind-Skin Connection Copy",
+                  "Mobile UI/UX Design & High-Engagement DTC Subscription Funnel",
+                  "Desktop E-Commerce Flagship Store & Conversion Layout",
+                  "Brand Guidelines & Typographic Rules: Elegant Serif Meets Functional Sans",
+                  "Clean Clinical Ingredient Hierarchy & Stress-Relief Formulation Seals",
+                  "Packaging Foil Details & Holographic Halo Tamper-Evident Seal",
+                  "Social Media Visual Identity Kit & Instagram Carousel Templates",
+                  "Lifestyle Art Direction: Calming Rituals & Mindful Daily Rest",
+                  "Customer Retention Email Template Suite & Unboxing Journey",
+                  "Founder Anastasiya Van Elswyk Testimonial & Market Launch Results",
+                  "Rest Religion Master Brand Architecture & Holistic Skincare Sign-Off"
+                ];
+
                 const isWebProject = (project.category === 'web') || (project.tag && (project.tag.includes('WEB') || project.tag.includes('UI UX')));
                 const isPackagingProject = (project.category === 'packaging') || (project.tag && project.tag.includes('PACKAGING'));
 
@@ -1638,6 +1734,14 @@ export default function WorkDetail() {
                   ? banamCaptions[imgIdx]
                   : isMorningGrain && imgIdx < morningGrainCaptions.length
                   ? morningGrainCaptions[imgIdx]
+                  : isBlankBody && imgIdx < blankBodyCaptions.length
+                  ? blankBodyCaptions[imgIdx]
+                  : isCrystal && imgIdx < crystalCaptions.length
+                  ? crystalCaptions[imgIdx]
+                  : isBraveRx && imgIdx < braveRxCaptions.length
+                  ? braveRxCaptions[imgIdx]
+                  : isRestReligion && imgIdx < restReligionCaptions.length
+                  ? restReligionCaptions[imgIdx]
                   : defaultCaption(imgIdx);
 
                 const isVideo = typeof imgUrl === 'string' && imgUrl.match(/\.(mp4|webm|mov)$/i);

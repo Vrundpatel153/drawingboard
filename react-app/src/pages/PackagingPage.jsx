@@ -41,7 +41,8 @@ export default function PackagingPage() {
     if (workFilter === 'saas') return p.category === 'saas' || (p.tag && p.tag.toUpperCase().includes('SAAS'));
     if (workFilter === 'branding') return p.category === 'branding' || (p.tag && p.tag.includes('BRANDING'));
     if (workFilter === 'food') return p.category === 'food' || (p.tag && (p.tag.includes('FOOD') || p.tag.includes('BEVERAGE') || p.tag.includes('RESTAURANT') || p.tag.includes('CAFE'))) || ['pronto', 'matcha', 'murami', 'soul-brew'].some(s => (p.slug || '').includes(s));
-    if (workFilter === 'packaging') return p.category === 'packaging' || (p.tag && p.tag.includes('PACKAGING'));
+    if (workFilter === 'packaging') return p.category === 'packaging' || (p.tag && p.tag.includes('PACKAGING')) || (p.slug || '').includes('crystal');
+    if (workFilter === 'skincare') return p.category === 'skincare' || p.category === 'skin care' || (p.tag && (p.tag.includes('SKIN') || p.tag.includes('NAIL') || p.tag.includes('BEAUTY') || p.tag.includes('BODY'))) || ['blank-body', 'crystal-nail-care-brand', 'rest-religion'].some(s => (p.slug || '').includes(s));
     if (workFilter === 'web') return p.category === 'web' || (p.tag && (p.tag.includes('WEB') || p.tag.includes('UI UX')));
     if (workFilter === 'photography') return p.category === 'photography' || (p.tag && p.tag.includes('PHOTO'));
     return true;
@@ -1001,6 +1002,7 @@ export default function PackagingPage() {
                 <div className="filter-tabs" style={{ margin: 0, padding: 0 }}>
                   <button className={`ftab ${workFilter === 'all' ? 'on' : ''}`} onClick={() => setWorkFilter('all')}>[ ALL PROJECTS ]</button>
                   <button className={`ftab ${workFilter === 'packaging' ? 'on' : ''}`} onClick={() => setWorkFilter('packaging')}>[ PACKAGING ]</button>
+                  <button className={`ftab ${workFilter === 'skincare' ? 'on' : ''}`} onClick={() => setWorkFilter('skincare')}>[ SKIN CARE ]</button>
                   <button className={`ftab ${workFilter === 'branding' ? 'on' : ''}`} onClick={() => setWorkFilter('branding')}>[ BRANDING ]</button>
                   <button className={`ftab ${workFilter === 'food' ? 'on' : ''}`} onClick={() => setWorkFilter('food')}>[ FOOD ]</button>
                   <button className={`ftab ${workFilter === 'saas' ? 'on' : ''}`} onClick={() => setWorkFilter('saas')}>[ SAAS BRANDING ]</button>
