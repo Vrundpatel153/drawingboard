@@ -30,6 +30,12 @@ export default function WorkDetail() {
   const isLumen = cleanId.includes('lumen');
   const isHenro = cleanId.includes('henro');
   const isSeroq = cleanId.includes('seroq');
+  const isToodaloo = cleanId.includes('toodaloo');
+  const isYala = cleanId.includes('yala');
+  const isReel = cleanId.includes('reel');
+  const isKame = cleanId.includes('kame');
+  const isBanam = cleanId.includes('banam');
+  const isMorningGrain = cleanId.includes('morning') || cleanId.includes('grain');
 
   // Find matching project in dataset
   const project = projectsData.find(p => {
@@ -141,6 +147,18 @@ export default function WorkDetail() {
           <span className="cur">
             {isPronto
               ? 'PRONTO! Case Study'
+              : isToodaloo
+              ? 'Toodaloo Superfood Packaging'
+              : isYala
+              ? 'YALA Greek Ice Cream Packaging'
+              : isReel
+              ? 'REEL Bamboo Paper Packaging'
+              : isKame
+              ? 'KA-ME Hot Sauce Packaging'
+              : isBanam
+              ? 'Banam Banana Water Packaging'
+              : isMorningGrain
+              ? 'Morning Grain Snack Packaging'
               : isMatchaClub
               ? 'Matcha Club Case Study'
               : isMurami
@@ -1481,6 +1499,102 @@ export default function WorkDetail() {
                   "SEROQ Master Trading Brand System & Asset Delivery Close"
                 ];
 
+                const toodalooCaptions = [
+                  "Toodaloo — Whimsical Adaptogenic Snacking & Master Stand-Up Pouch Architecture",
+                  "Slow Your Roll & Hot To Trot Pouch Variant Color Coding",
+                  "Animated Superfood Ingredient Motion & Botanical Characters",
+                  "100% Plastic-Neutral & Regenerative Agriculture Certification Seals",
+                  "Whimsical Front-of-Pack Typography & Flavor Color Palette",
+                  "Character-Driven Kinetic Logo & Mascot Animation",
+                  "Custom Mascot Illustrations (Hummingbirds, Flamingos & Cosmic Flora)",
+                  "Sustainable Stand-Up Pouch Dieline & Foil Seal Details",
+                  "Micro-Macro Contrast: Ingredient Callouts & Adaptogen Badges",
+                  "Complete 5-SKU Range Unboxing & Retail Display Presentation",
+                  "Animated Flavor Wave Motion & Product Reveal",
+                  "Tactile Matte Soft-Touch Pouch Finish with Gloss UV Spot Accents",
+                  "Nutritional Architecture & Clean-Label Back Panel Hierarchy",
+                  "E-Commerce Product Imagery & Hero Digital Placement",
+                  "Brand Merchandising, Apparel & Lifestyle Collateral",
+                  "Retail Shelf Stacking & Point-of-Sale Merchandising System",
+                  "Toodaloo Master Asset Suite & Final Brand Architecture"
+                ];
+
+                const yalaCaptions = [
+                  "YALA Greek — Authentic Mediterranean Artisanal Gelato Identity",
+                  "Animated Brand Mark Reveal & Sun-Drenched Greek Waveform",
+                  "Tactile Ice Cream Pint Packaging & Aegean Blue Color Architecture",
+                  "Handcrafted Greek Crest Seal & Letterpress Quality Stamp",
+                  "Full Gelato Flavor Matrix & Color-Coded Pint Lids",
+                  "Classic Olive Oil, Pistachio & Honey Fig Variant Specifications",
+                  "Artisan Pint Packaging Dielines & Food-Grade Moisture Barriers",
+                  "Warm Mediterranean Typography: Custom Greek-Inspired Serif",
+                  "Retail Freezer Display Visibility & High-Contrast Shelf Presence",
+                  "Gelato Scoop Shop Packaging: Insulated Takeout Bags & Cups",
+                  "Custom Wood & Embossed Paper Merchandising Spoons",
+                  "Brand Manifesto: 'Ice Cold Scoops, Served Warmly'",
+                  "Tactile Unboxing Experience & Foil-Stamped Pint Tamper Seals",
+                  "Lifestyle Editorial Photography & Summer Coastal Direction",
+                  "Animated Pint Rotation & Flavor Reveal Motion",
+                  "Kinetic Typography & Social Video Campaign Asset",
+                  "YALA Greek Master Packaging Architecture & Brand Standards"
+                ];
+
+                const reelCaptions = [
+                  "REEL — 100% Bamboo Paper Sustainable Packaging Architecture",
+                  "Leave Trees Out of This — Bold Typographic Brand Manifesto",
+                  "Zero-Plastic Kraft Corrugated Bulk Shipping Box Dielines",
+                  "Individual Roll Wrapping: Recycled Newsprint & Soy-Based Inks",
+                  "High-Contrast Monochrome Typography & Black Tape Details",
+                  "Paper Towel & Bathroom Tissue SKU Hierarchy",
+                  "Sustainable Subscription Delivery Box & Direct-to-Consumer Unboxing",
+                  "Humorous Eco-Copywriting & Environmental Education Badges",
+                  "Recyclable Heavyweight Core Tubes & Embossed Bamboo Icon",
+                  "Household Pantry Display & Modern Architectural Aesthetics",
+                  "Supply Chain Transparency & FSC Bamboo Forestry Verification",
+                  "Minimalist Bathroom Countertop Aesthetics & Clean Styling",
+                  "Custom Shipping Tape & Tamper-Evident Paper Strip",
+                  "Digital Subscription Unboxing Kit & Welcome Booklet",
+                  "E-Commerce Lifestyle Campaign & Retail Merchandising",
+                  "REEL Master Sustainable Packaging System & Brand Sign-Off"
+                ];
+
+                const kameCaptions = [
+                  "KA-ME Hot Sauce — Face the Flame Animated Sub-Brand Launch Film",
+                  "Dragon's Breath Hot Sauce — Flame Character Battle Motion",
+                  "Ghost Pepper Heat Level — Dynamic Anime Mascot Animation",
+                  "Szechuan Chili Crisp & Fermented Pepper Sauce Motion Reveal",
+                  "Smoked Habanero — High-Octane Heat Simulation Video",
+                  "Anime Battle Royale Kinetic Typography & Brand Trailer",
+                  "KA-ME Master Glass Bottle Packaging Matrix & Foil-Stamped Neck Seals"
+                ];
+
+                const banamCaptions = [
+                  "Banam — Europe's First 100% Pure Banana Water Can Architecture",
+                  "Vibrant Thai Street-Culture Art Direction & Can Graphics",
+                  "Yellow Gold & Botanical Green Aluminium Can Silhouette",
+                  "Functional Electrolyte Hydration Hierarchy & Front-of-Pack Claims",
+                  "Complete 3-Can Trio Display & Retail Shelf Simulation",
+                  "Recyclable Aluminium Dielines & Spot Metallic Sheen Finishes",
+                  "Natural Potassium & Sugar-Free Nutritional Grid Standards",
+                  "Tropical Street-Market Photography & Brand Atmosphere",
+                  "Bangkok Tuk-Tuk Brand Activation & Experiential Graphics",
+                  "Songkran Festival Editorial Inspiration & Water Splashes",
+                  "Banam Master Botanical Hydration System & Final Packaging Sign-Off"
+                ];
+
+                const morningGrainCaptions = [
+                  "Morning Grain — Wholesome Oat Snack & Beverage Master Cover",
+                  "Artisanal Oat Milk & Snack Pouch Packaging Architecture",
+                  "Organic Earth-Tone Color Palette & Natural Textured Backgrounds",
+                  "Modern Editorial Serif Typography & Clean Nutritional Grid",
+                  "Recyclable Stand-Up Pouch Dieline with Resealable Ziplock",
+                  "Slimline Beverage Can Design for Cold-Pressed Oat Lattes",
+                  "Wholesome Breakfast Cereal Box & Structural Packaging",
+                  "Ingredient Callouts: Gluten-Free, High-Fiber & Single-Origin Oats",
+                  "Lifestyle Morning Table Editorial Photography & Art Direction",
+                  "Morning Grain Complete Breakfast System & Packaging Guidelines"
+                ];
+
                 const isWebProject = (project.category === 'web') || (project.tag && (project.tag.includes('WEB') || project.tag.includes('UI UX')));
                 const isPackagingProject = (project.category === 'packaging') || (project.tag && project.tag.includes('PACKAGING'));
 
@@ -1512,6 +1626,18 @@ export default function WorkDetail() {
                   ? henroCaptions[imgIdx]
                   : isSeroq && imgIdx < seroqCaptions.length
                   ? seroqCaptions[imgIdx]
+                  : isToodaloo && imgIdx < toodalooCaptions.length
+                  ? toodalooCaptions[imgIdx]
+                  : isYala && imgIdx < yalaCaptions.length
+                  ? yalaCaptions[imgIdx]
+                  : isReel && imgIdx < reelCaptions.length
+                  ? reelCaptions[imgIdx]
+                  : isKame && imgIdx < kameCaptions.length
+                  ? kameCaptions[imgIdx]
+                  : isBanam && imgIdx < banamCaptions.length
+                  ? banamCaptions[imgIdx]
+                  : isMorningGrain && imgIdx < morningGrainCaptions.length
+                  ? morningGrainCaptions[imgIdx]
                   : defaultCaption(imgIdx);
 
                 const isVideo = typeof imgUrl === 'string' && imgUrl.match(/\.(mp4|webm|mov)$/i);
