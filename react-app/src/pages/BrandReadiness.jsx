@@ -991,8 +991,8 @@ export default function BrandReadiness() {
         return {
           title: "From ₹4,75,000",
           subtitle: "Brand Diagnostic",
-          buttonText: "Discuss",
-          link: DISCUSS_URL
+          buttonText: "Get Quote",
+          onClick: handleStartQuiz
         };
     }
   };
@@ -1060,14 +1060,6 @@ export default function BrandReadiness() {
                       >
                         Check My Brand <ArrowIcon size={14} />
                       </button>
-                      <a
-                        href={DISCUSS_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bp-btn-secondary"
-                      >
-                        Discuss a Project <ArrowIcon size={14} />
-                      </a>
                     </div>
                     <p className="bp-price-note">
                       Free 2-minute diagnostic · Instant calculated readout · Engagements begin at <b>$4,960 (₹4,75,000)</b>
@@ -1512,7 +1504,7 @@ export default function BrandReadiness() {
                       <div className="br-fields-grid">
                         <div className="field-group">
                           <label className="mono" htmlFor="first">
-                            Founder / Lead Name <span className="br-label-required">*</span>
+                            Founder / Full Name <span className="br-label-required">*</span>
                           </label>
                           <input
                             id="first"
@@ -1761,14 +1753,6 @@ export default function BrandReadiness() {
                     >
                       Send Brief via WhatsApp <ArrowIcon size={14} />
                     </a>
-                    <a
-                      href={DISCUSS_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-secondary-cta"
-                    >
-                      Google Inquiry Form <ArrowIcon size={14} />
-                    </a>
                     <Link to="/" className="btn-secondary-cta">
                       Return Home
                     </Link>
@@ -1800,9 +1784,6 @@ export default function BrandReadiness() {
                     >
                       Start Brand Diagnostic <ArrowIcon size={14} />
                     </button>
-                    <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="bp-btn-secondary bp-btn-secondary--light">
-                      Discuss Your Project <ArrowIcon size={14} />
-                    </a>
                   </div>
                   <p className="bp-price-note" style={{ color: '#C9C3B4', fontSize: '13px', fontFamily: "'IBM Plex Mono', monospace", margin: 0 }}>
                     Engagements begin at <b style={{ color: '#ffffff' }}>$4,960 (₹4,75,000)</b>.

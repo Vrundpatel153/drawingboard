@@ -3,7 +3,6 @@ import { NavLink, Link, useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 import usePWA from '../hooks/usePWA';
 import ArrowIcon from './ArrowIcon';
-import { DISCUSS_URL } from '../utils/siteConfig';
 
 const NAV_LINKS = [
   { to: '/', label: 'Home', end: true },
@@ -92,22 +91,12 @@ export default function Navbar() {
           <div className="nav-actions">
             <Link
               to="/brand-readiness"
-              className="nav-cta nav-cta--quote"
+              className="nav-cta nav-cta--primary nav-cta--quote"
               id="btn-get-quote"
               data-cta="get-quote"
             >
               Get Quote
             </Link>
-            <a
-              className="nav-cta nav-cta--primary"
-              id="btn-discuss-project"
-              data-cta="discuss-project"
-              href={DISCUSS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Discuss Your Project
-            </a>
           </div>
 
           <button
@@ -167,20 +156,9 @@ export default function Navbar() {
         {/* Drawer CTA */}
         <div className="mobile-nav__foot">
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
-            <a
-              href={DISCUSS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-              id="mobile-btn-discuss-project"
-              data-cta="discuss-project"
-              onClick={() => setOpen(false)}
-            >
-              Discuss Your Project <ArrowIcon size={14} />
-            </a>
             <Link
               to="/brand-readiness"
-              className="btn-secondary"
+              className="btn-primary"
               id="mobile-btn-get-quote"
               data-cta="get-quote"
               onClick={() => setOpen(false)}
@@ -190,16 +168,12 @@ export default function Navbar() {
                 justifyContent: 'center',
                 gap: '8px',
                 padding: '12px 20px',
-                border: '1.5px solid var(--ink)',
-                color: 'var(--ink)',
-                background: 'transparent',
                 fontWeight: 600,
-                fontSize: '13.5px',
-                textDecoration: 'none',
-                borderRadius: 'var(--radius)'
+                fontSize: '14px',
+                textDecoration: 'none'
               }}
             >
-              Get a Quote <ArrowIcon size={14} />
+              Get Quote <ArrowIcon size={14} />
             </Link>
           </div>
 

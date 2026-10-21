@@ -7,7 +7,7 @@ import StickyMobileCTA from '../components/StickyMobileCTA';
 import MoreServicesSection from '../components/MoreServicesSection';
 import ArrowIcon from '../components/ArrowIcon';
 import ClientStoriesTicker from '../components/ClientStoriesTicker';
-import { WHATSAPP_URL, DISCUSS_URL } from '../utils/siteConfig';
+import { WHATSAPP_URL } from '../utils/siteConfig';
 import { trackMetaFormSubmission } from '../utils/metaEvents';
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -3450,9 +3450,9 @@ export default function DevelopmentPage() {
                 />
               </svg>
             </a>
-            <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">
-              Discuss <ArrowIcon size={14} />
-            </a>
+            <Link to="/brand-readiness">
+              Get Quote <ArrowIcon size={14} />
+            </Link>
           </div>
         </div>
       </main>
@@ -3599,14 +3599,12 @@ export default function DevelopmentPage() {
                   <p style={{ color: 'var(--ink-soft)', fontSize: '14px', marginBottom: '22px' }}>
                     We'll review what you've shared and follow up to schedule a discovery call.
                   </p>
-                  <a
+                  <Link
                     className="btn-primary"
-                    href={DISCUSS_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    to="/brand-readiness"
                   >
-                    Discuss Your Project <ArrowIcon size={14} />
-                  </a>
+                    Get Quote <ArrowIcon size={14} />
+                  </Link>
                 </div>
               </div>
             )}
@@ -3650,8 +3648,8 @@ export default function DevelopmentPage() {
       <StickyMobileCTA
         title="Web Dev from $1,500"
         subtitle="₹1,43,145 / £1,120 · Custom Code"
-        buttonText="Discuss"
-        link={DISCUSS_URL}
+        buttonText="Get Quote"
+        link="/brand-readiness"
       />
       <Footer />
     </>

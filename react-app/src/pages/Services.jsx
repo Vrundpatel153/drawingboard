@@ -6,7 +6,7 @@ import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import MoreServicesSection from '../components/MoreServicesSection';
 import ArrowIcon from '../components/ArrowIcon';
-import { DISCUSS_URL } from '../utils/siteConfig';
+
 
 import servicesData from '../data/servicesData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
@@ -134,10 +134,7 @@ export default function Services() {
 
             <div className="hero-grid" style={{ marginTop: '40px' }}>
               <div className="cta-row">
-                <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                  Discuss Your Project <ArrowIcon size={14} />
-                </a>
-                <Link to="/brand-readiness" className="btn-secondary-cta">
+                <Link to="/brand-readiness" className="btn-primary">
                   Get Quote <ArrowIcon size={14} />
                 </Link>
               </div>
@@ -579,8 +576,8 @@ export default function Services() {
         <StickyMobileCTA
           title="Services from $1,500"
           subtitle="From ₹1,43,145 · 5 Studio Practices"
-          buttonText="Discuss"
-          link={DISCUSS_URL}
+          buttonText="Get Quote"
+          link="/brand-readiness"
         />
         <Footer />
       </div>

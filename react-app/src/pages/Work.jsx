@@ -8,7 +8,7 @@ import ArrowIcon from '../components/ArrowIcon';
 import projectsData from '../data/projectsData.json';
 import saasProjectsData from '../data/saasProjectsData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
-import { DISCUSS_URL } from '../utils/siteConfig';
+
 
 export default function Work() {
   const [filter, setFilter] = useState('all');
@@ -517,7 +517,7 @@ export default function Work() {
           <div className="wrap">
             <h2>Have a project that requires precision design?</h2>
             <p>Let's discuss how we can engineer your brand for market leadership.</p>
-            <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">Start Your Case Study <ArrowIcon /></a>
+            <Link to="/brand-readiness" className="btn-primary">Get Quote <ArrowIcon /></Link>
           </div>
         </section>
 

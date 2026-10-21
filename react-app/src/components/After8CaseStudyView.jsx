@@ -1362,17 +1362,17 @@ export default function After8CaseStudyView({ nextProject, pageRef }) {
         <div className="wrap">
           <h2>Building a brand in a category that needs a braver visual language?</h2>
           <p>Book a free 15-minute call. We'll tell you honestly what scope your brand actually needs.</p>
-          <a className="btn-primary" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">
-            Discuss Your Project <ArrowIcon size={14} />
-          </a>
+          <Link className="btn-primary" to="/brand-readiness">
+            Get Quote <ArrowIcon size={14} />
+          </Link>
         </div>
       </section>
 
       <StickyMobileCTA
         title="AFTER8® Case Study"
         subtitle="8 Weeks Strategy to Shelf"
-        buttonText="Discuss"
-        link={DISCUSS_URL}
+        buttonText="Get Quote"
+        link="/brand-readiness"
       />
 
       <Footer />

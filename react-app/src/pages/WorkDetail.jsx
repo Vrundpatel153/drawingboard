@@ -8,7 +8,7 @@ import ArrowIcon from '../components/ArrowIcon';
 import projectsData from '../data/projectsData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 import After8CaseStudyView from '../components/After8CaseStudyView';
-import { DISCUSS_URL } from '../utils/siteConfig';
+
 import useSEO from '../hooks/useSEO';
 
 export default function WorkDetail() {
@@ -1642,9 +1642,9 @@ export default function WorkDetail() {
           <Link to={`/work/${nextProject.slug}`} className="btn-primary" style={{ marginRight: '14px' }}>
             {isAfter8 ? 'View Lumen & Co. Case Study' : `View ${nextProject.title}`} <ArrowIcon size={14} />
           </Link>
-          <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ background: 'transparent', border: '1px solid #FFF', color: '#FFF' }}>
-            Discuss Your Project <ArrowIcon size={14} />
-          </a>
+          <Link to="/brand-readiness" className="btn-primary" style={{ background: 'transparent', border: '1px solid #FFF', color: '#FFF' }}>
+            Get Quote <ArrowIcon size={14} />
+          </Link>
         </div>
       </section>
 

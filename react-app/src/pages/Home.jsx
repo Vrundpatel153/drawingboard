@@ -7,7 +7,7 @@ import MoreServicesSection from '../components/MoreServicesSection';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import ArrowIcon from '../components/ArrowIcon';
 import ClientStoriesTicker from '../components/ClientStoriesTicker';
-import { DISCUSS_URL, WHATSAPP_URL } from '../utils/siteConfig';
+import { WHATSAPP_URL } from '../utils/siteConfig';
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Home — Full Branding page as site homepage
@@ -797,8 +797,7 @@ export default function Home() {
                   From how your brand is understood to how it looks on the shelf and performs online, we build one connected system designed to earn attention, communicate value and support growth.
                 </p>
                 <div className="bp-cta-row">
-                  <a className="bp-btn-primary" id="btn-discuss-project" data-cta="discuss-project" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">Discuss Your Project <ArrowIcon size={14} /></a>
-                  <Link to="/brand-readiness" className="bp-btn-secondary" id="btn-get-quote" data-cta="get-quote" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '12px 20px', border: '1.5px solid var(--ink)', color: 'var(--ink)', background: 'transparent', fontWeight: 600, fontSize: '14px', textDecoration: 'none', borderRadius: '2px', transition: 'all 0.2s ease' }}>Get Quote <ArrowIcon size={14} /></Link>
+                  <Link to="/brand-readiness" className="bp-btn-primary" id="btn-get-quote" data-cta="get-quote">Get Quote <ArrowIcon size={14} /></Link>
                   <a className="bp-btn-link" id="btn-whatsapp" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Prefer WhatsApp for discussion <ArrowIcon size={13} /></a>
                 </div>
                 <p style={{ marginBottom: '14px' }}>
@@ -1144,7 +1143,7 @@ export default function Home() {
               </div>
             </div>
             <div style={{ textAlign: 'center', marginTop: '36px' }}>
-              <a className="bp-btn-link" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">This sounds like our stage <ArrowIcon size={13} /> Discuss the project</a>
+              <Link className="bp-btn-link" to="/brand-readiness">This sounds like our stage <ArrowIcon size={13} /> Get Quote</Link>
             </div>
           </div>
         </section>
@@ -1835,7 +1834,7 @@ export default function Home() {
                 </div>
 
                 <div className="bp-tier-foot">
-                  <a className="bp-tier-btn" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">Discuss Your Project</a>
+                  <Link className="bp-tier-btn" to="/brand-readiness">Get Quote</Link>
                   <div className="bp-tier-time">6–8 week delivery</div>
                 </div>
               </div>
@@ -1965,7 +1964,7 @@ export default function Home() {
                 </div>
 
                 <div className="bp-tier-foot">
-                  <a className="bp-tier-btn" href={DISCUSS_URL} target="_blank" rel="noopener noreferrer">Discuss Your Project</a>
+                  <Link className="bp-tier-btn" to="/brand-readiness">Get Quote</Link>
                   <div className="bp-tier-time">8–12 week delivery</div>
                 </div>
               </div>
@@ -2300,10 +2299,7 @@ export default function Home() {
               Tell us what you are launching, changing or preparing to scale. We will review the requirement and recommend whether you need the Brand-to-Shelf system, the complete Brand-to-Market engagement or a different scope altogether.
             </p>
             <div className="bp-cta-row" style={{ marginTop: '24px', marginBottom: '16px' }}>
-              <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="bp-btn-primary" id="btn-discuss-project-final" data-cta="discuss-project">
-                Discuss Your Project <ArrowIcon size={14} />
-              </a>
-              <Link to="/brand-readiness" className="bp-btn-secondary bp-btn-secondary--light" id="btn-get-quote-final" data-cta="get-quote" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <Link to="/brand-readiness" className="bp-btn-primary" id="btn-get-quote-final" data-cta="get-quote" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                 Get Quote <ArrowIcon size={14} />
               </Link>
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-outline-light">
@@ -2320,9 +2316,9 @@ export default function Home() {
       {/* ── STICKY MOBILE CTA ────────────────────────────────────────── */}
       <StickyMobileCTA
         title="From ₹4,75,000 ($4,960)"
-        subtitle="Free 15-min discovery call"
-        buttonText="Discuss"
-        link={DISCUSS_URL}
+        subtitle="Strategic Brand Engineering"
+        buttonText="Get Quote"
+        link="/brand-readiness"
       />
 
       {/* ── LIGHTBOX MODAL OVERLAY FOR THINK GRID IMAGES ───────────── */}

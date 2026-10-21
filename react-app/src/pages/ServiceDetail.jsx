@@ -6,7 +6,7 @@ import RegistrationMarks from '../components/RegistrationMarks';
 import StickyMobileCTA from '../components/StickyMobileCTA';
 import MoreServicesSection from '../components/MoreServicesSection';
 import ArrowIcon from '../components/ArrowIcon';
-import { DISCUSS_URL } from '../utils/siteConfig';
+
 
 import servicesData from '../data/servicesData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
@@ -81,12 +81,9 @@ export default function ServiceDetail() {
             </div>
 
             <div className="cta-row" style={{ marginTop: '36px' }}>
-              <Link to="/contact" className="btn-primary">
-                Inquire About {service.title} <ArrowIcon />
+              <Link to="/brand-readiness" className="btn-primary">
+                Get Quote <ArrowIcon />
               </Link>
-              <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="btn-link">
-                Discuss Your Project <ArrowIcon size={13} />
-              </a>
             </div>
           </div>
         </section>

@@ -7,7 +7,7 @@ import StickyMobileCTA from '../components/StickyMobileCTA';
 import MoreServicesSection from '../components/MoreServicesSection';
 import ArrowIcon from '../components/ArrowIcon';
 import saasProjectsData from '../data/saasProjectsData.json';
-import { DISCUSS_URL, WHATSAPP_URL, WHATSAPP_NUMBER } from '../utils/siteConfig';
+import { WHATSAPP_URL, WHATSAPP_NUMBER } from '../utils/siteConfig';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 import useSEO from '../hooks/useSEO';
 
@@ -935,9 +935,9 @@ export default function SaaSBrandingPage() {
                 </div>
 
                 <div className="cta-row" style={{ marginBottom: '28px' }}>
-                  <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                    Discuss Your Product <ArrowIcon size={14} />
-                  </a>
+                  <Link to="/brand-readiness" className="btn-primary">
+                    Get Quote <ArrowIcon size={14} />
+                  </Link>
                   <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-secondary-cta">
                     Chat on WhatsApp <ArrowIcon size={14} />
                   </a>
@@ -1104,11 +1104,8 @@ export default function SaaSBrandingPage() {
 
                   {checkedCount >= 3 && (
                     <div className="cta-row" style={{ marginTop: '16px' }}>
-                      <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                        Discuss Your Product <ArrowIcon size={14} />
-                      </a>
-                      <Link to="/brand-readiness" className="btn-secondary-cta">
-                        Take Brand Readiness Check <ArrowIcon size={14} />
+                      <Link to="/brand-readiness" className="btn-primary">
+                        Get Quote <ArrowIcon size={14} />
                       </Link>
                     </div>
                   )}
@@ -1877,9 +1874,9 @@ motion.base:      180ms ease-out;
                 </ul>
 
                 <div className="sb-mono" style={{ fontSize: '12px', color: 'var(--pine)', marginBottom: '16px' }}>Sprint timeline: 5–7 weeks</div>
-                <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="btn-secondary-cta" style={{ textAlign: 'center', justifyContent: 'center' }}>
-                  Discuss Brand Identity <ArrowIcon size={14} />
-                </a>
+                <Link to="/brand-readiness" className="btn-secondary-cta" style={{ textAlign: 'center', justifyContent: 'center' }}>
+                  Get Quote <ArrowIcon size={14} />
+                </Link>
               </div>
 
               {/* Tier 2 (Featured) */}
@@ -1950,9 +1947,9 @@ motion.base:      180ms ease-out;
                 </ul>
 
                 <div className="sb-mono" style={{ fontSize: '12px', color: 'var(--pine)', marginBottom: '16px' }}>Sprint timeline: 8–10 weeks</div>
-                <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ textAlign: 'center', justifyContent: 'center' }}>
-                  Discuss Brand + UI/UX <ArrowIcon size={14} />
-                </a>
+                <Link to="/brand-readiness" className="btn-primary" style={{ textAlign: 'center', justifyContent: 'center' }}>
+                  Get Quote <ArrowIcon size={14} />
+                </Link>
               </div>
 
               {/* Tier 3 */}
@@ -1973,9 +1970,9 @@ motion.base:      180ms ease-out;
                 </ul>
 
                 <div className="sb-mono" style={{ fontSize: '12px', color: 'var(--pine)', marginBottom: '16px' }}>Sprint timeline: 10–14 weeks</div>
-                <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="btn-secondary-cta" style={{ textAlign: 'center', justifyContent: 'center' }}>
-                  Discuss Full Launch <ArrowIcon size={14} />
-                </a>
+                <Link to="/brand-readiness" className="btn-secondary-cta" style={{ textAlign: 'center', justifyContent: 'center' }}>
+                  Get Quote <ArrowIcon size={14} />
+                </Link>
               </div>
             </div>
 
@@ -2065,11 +2062,8 @@ motion.base:      180ms ease-out;
               Book a direct 15-minute call to discuss your product requirements, or take the two-minute Brand Readiness Diagnostic to evaluate where your system stands.
             </p>
             <div className="cta-row" style={{ gap: '16px' }}>
-              <a href={DISCUSS_URL} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ background: 'var(--paper)', color: 'var(--ink)' }}>
-                Discuss Your Product <ArrowIcon size={14} />
-              </a>
-              <Link to="/brand-readiness" className="btn-secondary-cta" style={{ border: '1px solid rgba(255,255,255,0.4)', color: 'var(--paper)' }}>
-                Take Brand Readiness Check <ArrowIcon size={14} />
+              <Link to="/brand-readiness" className="btn-primary" style={{ background: 'var(--paper)', color: 'var(--ink)' }}>
+                Get Quote <ArrowIcon size={14} />
               </Link>
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-secondary-cta" style={{ border: '1px solid rgba(255,255,255,0.4)', color: 'var(--paper)' }}>
                 Prefer WhatsApp <ArrowIcon size={14} />
@@ -2088,8 +2082,8 @@ motion.base:      180ms ease-out;
         <StickyMobileCTA
           title="SaaS Branding"
           subtitle="From ₹4,75,000 ($4,960)"
-          buttonText="Discuss"
-          link={DISCUSS_URL}
+          buttonText="Get Quote"
+          link="/brand-readiness"
         />
       </div>
     </>

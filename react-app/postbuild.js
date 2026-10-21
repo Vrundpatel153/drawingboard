@@ -186,7 +186,7 @@ function generateSemanticContent(route, metadata, projects) {
           <div>
             <div style="font-family: monospace; font-size: 12px; text-transform: uppercase; color: #1b1b17; margin-bottom: 12px; font-weight: 600;">Connect</div>
             <div style="display: flex; flex-direction: column; gap: 6px;">
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header" target="_blank" rel="noopener" style="color: #4a473f; text-decoration: none;">Discuss Your Project</a>
+              <a href="/brand-readiness" style="color: #4a473f; text-decoration: none;">Get Quote</a>
               <a href="mailto:dandelionpa7@gmail.com" style="color: #4a473f; text-decoration: none;">Email Studio</a>
               <a href="https://twitter.com/thedrawingboard" target="_blank" rel="noopener" style="color: #4a473f; text-decoration: none;">Twitter / X</a>
               <a href="https://linkedin.com/company/thedrawingboard" target="_blank" rel="noopener" style="color: #4a473f; text-decoration: none;">LinkedIn</a>
@@ -241,8 +241,8 @@ function generateSemanticContent(route, metadata, projects) {
           </p>
 
           <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #1b1b17; color: #ffffff; padding: 0.85rem 1.75rem; text-decoration: none; font-weight: 600; border-radius: 2px;">
-              Discuss Your Project ${arrowSvg}
+            <a href="/brand-readiness" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #1b1b17; color: #ffffff; padding: 0.85rem 1.75rem; text-decoration: none; font-weight: 600; border-radius: 2px;">
+              Get Quote ${arrowSvg}
             </a>
             <a href="/work" style="display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid #1b1b17; color: #1b1b17; padding: 0.85rem 1.75rem; text-decoration: none; font-weight: 600; border-radius: 2px;">
               View Selected Works ${arrowSvg}
@@ -303,8 +303,8 @@ function generateSemanticContent(route, metadata, projects) {
           Tactile structural engineering, FSC-certified sustainable substrates, and precision print finishes crafted to win the physical retail moment.
         </p>
         <div style="margin-bottom: 4rem;">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #1b1b17; color: #ffffff; padding: 0.85rem 1.75rem; text-decoration: none; font-weight: 600; border-radius: 2px;">
-            Discuss Your Project ${arrowSvg}
+          <a href="/brand-readiness" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #1b1b17; color: #ffffff; padding: 0.85rem 1.75rem; text-decoration: none; font-weight: 600; border-radius: 2px;">
+            Get Quote ${arrowSvg}
           </a>
         </div>
         <section style="margin-bottom: 4rem;">
@@ -363,8 +363,8 @@ function generateSemanticContent(route, metadata, projects) {
           <section style="text-align: center; padding: 4rem 2rem; background: #faf9f5; border: 1px solid #e2ded5; border-radius: 2px; margin-bottom: 4rem;">
             <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">Ready to engineer your brand system?</h2>
             <p style="color: #5a5953; margin-bottom: 2rem;">Let's build the brand people choose before they compare.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #1b1b17; color: #ffffff; padding: 0.85rem 1.75rem; text-decoration: none; font-weight: 600; border-radius: 2px;">
-              Discuss Your Project ${arrowSvg}
+            <a href="/brand-readiness" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #1b1b17; color: #ffffff; padding: 0.85rem 1.75rem; text-decoration: none; font-weight: 600; border-radius: 2px;">
+              Get Quote ${arrowSvg}
             </a>
           </section>
         </main>
@@ -387,8 +387,8 @@ function generateSemanticContent(route, metadata, projects) {
     <main style="max-width: 1200px; margin: 0 auto; padding: 4rem 2rem;">
       <h1 style="font-size: 2.75rem; font-weight: 700; margin-bottom: 1.5rem;">${metadata.title}</h1>
       <p style="font-size: 1.25rem; color: #5a5953; line-height: 1.6; max-width: 800px; margin-bottom: 2.5rem;">${metadata.description}</p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #1b1b17; color: #ffffff; padding: 0.85rem 1.75rem; text-decoration: none; font-weight: 600; border-radius: 2px;">
-        Discuss Your Project ${arrowSvg}
+      <a href="/brand-readiness" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #1b1b17; color: #ffffff; padding: 0.85rem 1.75rem; text-decoration: none; font-weight: 600; border-radius: 2px;">
+        Get Quote ${arrowSvg}
       </a>
     </main>
     ${semanticFooter}
