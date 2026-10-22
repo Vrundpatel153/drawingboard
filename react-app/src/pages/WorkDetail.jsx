@@ -45,7 +45,17 @@ export default function WorkDetail() {
   const project = projectsData.find(p => {
     const slug = (p.slug || '').toLowerCase();
     return slug === cleanId || cleanId.includes(slug) || slug.includes(cleanId);
-  }) || (isPronto ? projectsData[0] : isMatchaClub ? projectsData[1] : isMurami ? projectsData[2] : isSoulBrew ? projectsData[3] : isBondwith ? projectsData[4] : isFlint ? projectsData[5] : isAfter8 ? projectsData[6] : projectsData[0]);
+  }) || projectsData.find(p => {
+    const s = (p.slug || '').toLowerCase();
+    return (isPronto && s.includes('pronto')) ||
+      (isMatchaClub && s.includes('matcha')) ||
+      (isMurami && s.includes('murami')) ||
+      (isSoulBrew && s.includes('soul-brew')) ||
+      (isBondwith && s.includes('bondwith')) ||
+      (isFlint && s.includes('flint')) ||
+      (isAfter8 && s.includes('after8')) ||
+      (cleanId && s.includes(cleanId));
+  }) || projectsData[0];
 
   const currentIndex = projectsData.indexOf(project);
   const nextProject = projectsData[(currentIndex + 1) % projectsData.length];
