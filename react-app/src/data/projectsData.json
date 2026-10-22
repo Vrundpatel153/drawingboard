@@ -172,7 +172,7 @@
     "tag": "PACKAGING & ART DIRECTION",
     "client": "KA-ME Specialty Foods / Panos Brands",
     "description": "Anime-inspired sub-brand universe, custom character illustrations, tactile glass bottle label dielines, and high-heat packaging designed to command grocery hot sauce shelves.",
-    "coverImage": "/images/kame/kame_01.mp4",
+    "coverImage": "/images/kame/kame_07.webp",
     "images": [
       "/images/kame/kame_01.mp4",
       "/images/kame/kame_02.mp4",
@@ -562,9 +562,13 @@
     "coverImage": "https://framerusercontent.com/images/n9CkCAEGlgqHTqkdve5j83DLCNQ.png",
     "images": [
       "https://framerusercontent.com/images/n9CkCAEGlgqHTqkdve5j83DLCNQ.png",
-      "https://framerusercontent.com/images/hZTQyOxTaG1hxdER5jRfnDfsRA.webp"
+      "/images/daisy/daisy_02_hero_dashboard.webp",
+      "/images/daisy/daisy_03_mobile_flows.webp",
+      "/images/daisy/daisy_04_component_system.webp",
+      "/images/daisy/daisy_05_data_viz_tables.webp",
+      "/images/daisy/daisy_06_tokens_and_type.webp"
     ],
-    "imageCount": 2
+    "imageCount": 6
   },
   {
     "slug": "friti-sja10",
@@ -613,9 +617,10 @@
       "https://framerusercontent.com/images/40VvTTDq4rVNNoV1HAHJaOg9lCE.webp",
       "https://framerusercontent.com/images/TFbAyctA4SwEqH7L8x5kudsVrw.webp",
       "https://framerusercontent.com/images/mEcmpBszcpChmbmL6QupajmiZU0.webp",
-      "https://framerusercontent.com/images/LMLNF0vU5ySMfVRIW3JtFu5iB78.jpg"
+      "https://framerusercontent.com/images/LMLNF0vU5ySMfVRIW3JtFu5iB78.jpg",
+      "https://framerusercontent.com/images/WN9A5aMD5JSjSJAWzVEDOKvX4.jpg"
     ],
-    "imageCount": 7
+    "imageCount": 8
   },
   {
     "slug": "krona-architecture-studio",
@@ -625,9 +630,16 @@
     "description": "Strategic brand identity, packaging design, and digital engineering.",
     "coverImage": "https://framerusercontent.com/images/JUgN5ECm4HnK6pp1E3Igc5Vibc.jpeg",
     "images": [
-      "https://framerusercontent.com/images/JUgN5ECm4HnK6pp1E3Igc5Vibc.jpeg"
+      "https://framerusercontent.com/images/JUgN5ECm4HnK6pp1E3Igc5Vibc.jpeg",
+      "https://framerusercontent.com/images/2rhhH7tUmkMmGsBGU8ECMCSQjDo.jpg",
+      "https://framerusercontent.com/images/CI3tml4iwxr7KGNY5t6otbsElE.jpg",
+      "https://framerusercontent.com/images/pUbiQtLC56oCg8gGNkdR0JyI7Q.jpg",
+      "https://framerusercontent.com/images/xOjVPE3dwXU8KL8r63UGP6fc9g.jpg",
+      "https://framerusercontent.com/images/tOlKfRWRxmEQHB97FpYVf7fQ.jpg",
+      "https://framerusercontent.com/images/XC5bZO6Fn8qouoTN1ZUIjZ5js0.jpg",
+      "https://framerusercontent.com/images/WN9A5aMD5JSjSJAWzVEDOKvX4.jpg"
     ],
-    "imageCount": 1
+    "imageCount": 8
   },
   {
     "slug": "lumen-fine-jewellery",
@@ -664,9 +676,12 @@
     "images": [
       "https://framerusercontent.com/images/SNYmExINZNDXw6Hqf7SdebGbe9I.jpeg",
       "https://framerusercontent.com/images/La3rRW9tvWfNcgjXpFX6EswzGXQ.jpeg",
-      "https://framerusercontent.com/images/UxpXLmBYvgi6f2VtXXhvSEh4LTo.jpeg"
+      "https://framerusercontent.com/images/UxpXLmBYvgi6f2VtXXhvSEh4LTo.jpeg",
+      "/images/banam/banam_03.jpg",
+      "/images/banam/banam_06.jpg",
+      "/images/banam/banam_07.jpg"
     ],
-    "imageCount": 3
+    "imageCount": 6
   },
   {
     "slug": "non-nom-sj11",
@@ -679,9 +694,11 @@
       "https://framerusercontent.com/images/JUgN5ECm4HnK6pp1E3Igc5Vibc.jpeg",
       "https://framerusercontent.com/images/t4Zpz2ARcYimzUx6HKn24ySOygY.jpeg",
       "https://framerusercontent.com/images/sPIN2dHGpMTdlcHFv5MMCd6JCdw.jpeg",
-      "https://framerusercontent.com/images/EZkVssYJJDYn8ZIjUEFUla9iw0.jpeg"
+      "https://framerusercontent.com/images/EZkVssYJJDYn8ZIjUEFUla9iw0.jpeg",
+      "https://framerusercontent.com/images/aae0iL5mH9y7e8r0t1y2u3i4o5p.jpeg",
+      "https://framerusercontent.com/images/kmEZvhIBRTidcctQbeSpwTC9gC8.jpeg"
     ],
-    "imageCount": 4
+    "imageCount": 6
   },
   {
     "slug": "one-seul-sj7",
@@ -693,9 +710,11 @@
     "images": [
       "https://framerusercontent.com/images/0HAMkSbUgCpD6NBTyclarCW790.jpeg",
       "https://framerusercontent.com/images/JoEmO6aUCTsgg1vWvHtVfSdkM.jpeg",
-      "https://framerusercontent.com/images/9XKyl7WG5wSDi2bVUz81fsTPY.jpeg"
+      "https://framerusercontent.com/images/9XKyl7WG5wSDi2bVUz81fsTPY.jpeg",
+      "https://framerusercontent.com/images/BbIj26r9hU14e9H0Qn4bK6q8l1w.jpeg",
+      "https://framerusercontent.com/images/nvBwP5n3QYd9b6k7v8a1c2d3e4f.jpeg"
     ],
-    "imageCount": 3
+    "imageCount": 5
   },
   {
     "slug": "one-sol-sj8",
@@ -741,9 +760,14 @@
     "coverImage": "https://framerusercontent.com/images/cYvKtkgBQZ9BOFI5j8LSipd9c8.jpeg",
     "images": [
       "https://framerusercontent.com/images/cYvKtkgBQZ9BOFI5j8LSipd9c8.jpeg",
-      "https://framerusercontent.com/images/VKW7AWRna4bKkm72oWIthi8UmI0.jpg"
+      "https://framerusercontent.com/images/kmEZvhIBRTidcctQbeSpwTC9gC8.jpeg",
+      "https://framerusercontent.com/images/VKW7AWRna4bKkm72oWIthi8UmI0.jpg",
+      "https://framerusercontent.com/images/sjcK487xChH82Pkvfiba0MOJdmw.jpeg",
+      "https://framerusercontent.com/images/WN9A5aMD5JSjSJAWzVEDOKvX4.jpg",
+      "/images/yala/yala_04.jpg",
+      "/images/yala/yala_07.jpg"
     ],
-    "imageCount": 2
+    "imageCount": 7
   },
   {
     "slug": "picco-sj12",
@@ -753,11 +777,15 @@
     "description": "Strategic brand identity, packaging design, and digital engineering.",
     "coverImage": "https://framerusercontent.com/images/kmEZvhIBRTidcctQbeSpwTC9gC8.jpeg",
     "images": [
+      "https://framerusercontent.com/images/cYvKtkgBQZ9BOFI5j8LSipd9c8.jpeg",
       "https://framerusercontent.com/images/kmEZvhIBRTidcctQbeSpwTC9gC8.jpeg",
+      "https://framerusercontent.com/images/VKW7AWRna4bKkm72oWIthi8UmI0.jpg",
       "https://framerusercontent.com/images/sjcK487xChH82Pkvfiba0MOJdmw.jpeg",
-      "https://framerusercontent.com/images/cYvKtkgBQZ9BOFI5j8LSipd9c8.jpeg"
+      "https://framerusercontent.com/images/WN9A5aMD5JSjSJAWzVEDOKvX4.jpg",
+      "/images/yala/yala_04.jpg",
+      "/images/yala/yala_07.jpg"
     ],
-    "imageCount": 3
+    "imageCount": 7
   },
   {
     "slug": "raj-foods-ready-to-eat",
@@ -773,9 +801,10 @@
       "https://framerusercontent.com/images/j8LRMII38poTPBdmWcJLgEIk4c.jpg",
       "https://framerusercontent.com/images/ljAByAx2Ui9jUMyENGgbxVJH0.jpg",
       "https://framerusercontent.com/images/i7otdCLTf67LJCLPk2ZyyVrCzvc.jpg",
-      "https://framerusercontent.com/images/4bOcANXkLvuv2IZNjOZruPTFVTA.jpg"
+      "https://framerusercontent.com/images/4bOcANXkLvuv2IZNjOZruPTFVTA.jpg",
+      "https://framerusercontent.com/images/WN9A5aMD5JSjSJAWzVEDOKvX4.jpg"
     ],
-    "imageCount": 7
+    "imageCount": 8
   },
   {
     "slug": "seneca-shopify-development",
@@ -785,9 +814,15 @@
     "description": "Strategic brand identity, packaging design, and digital engineering.",
     "coverImage": "https://framerusercontent.com/images/sQv0uvXak8LA1sPwDRwTpfU.webp",
     "images": [
-      "https://framerusercontent.com/images/sQv0uvXak8LA1sPwDRwTpfU.webp"
+      "https://framerusercontent.com/images/sQv0uvXak8LA1sPwDRwTpfU.webp",
+      "/images/development/shopify_store_01.png",
+      "/images/development/shopify_store_02.png",
+      "/images/live-stores/arata_mobile.png",
+      "/images/live-stores/shaktimat_mobile.png",
+      "/images/live-stores/suta_mobile.png",
+      "/images/development/immersive_ui_01.jpeg"
     ],
-    "imageCount": 1
+    "imageCount": 7
   },
   {
     "slug": "shiba-s-bar-kitchen-and-bar",
@@ -1007,9 +1042,14 @@
     "description": "Strategic brand identity, packaging design, and digital engineering.",
     "coverImage": "https://framerusercontent.com/images/UygqVPX023tG08X3W2ctXaObA.png",
     "images": [
-      "https://framerusercontent.com/images/UygqVPX023tG08X3W2ctXaObA.png"
+      "https://framerusercontent.com/images/Gj0gd8TaOnBqjox9iFb1KV8EbY.jpeg",
+      "/images/pronto/pronto_03.png",
+      "/images/pronto/pronto_04.png",
+      "/images/pronto/pronto_07.png",
+      "/images/pronto/pronto_10.png",
+      "/images/pronto/pronto_12.png"
     ],
-    "imageCount": 1
+    "imageCount": 6
   },
   {
     "slug": "saas-radiance",

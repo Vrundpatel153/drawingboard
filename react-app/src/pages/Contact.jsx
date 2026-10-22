@@ -239,7 +239,7 @@ export default function Contact() {
           _template: "table",
           _captcha: "false",
           _replyto: form.email,
-          _cc: "vrundpatel153@gmail.com",
+          _cc: "dandelionpa7@gmail.com",
           "Client Name": form.name,
           "Client Email": form.email,
           "Phone Number": form.phone || 'N/A',

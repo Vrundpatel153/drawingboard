@@ -1361,10 +1361,21 @@ export default function After8CaseStudyView({ nextProject, pageRef }) {
       <section className="final">
         <div className="wrap">
           <h2>Building a brand in a category that needs a braver visual language?</h2>
-          <p>Book a free 15-minute call. We'll tell you honestly what scope your brand actually needs.</p>
-          <Link className="btn-primary" to="/brand-readiness">
-            Get Quote <ArrowIcon size={14} />
-          </Link>
+          <p>
+            Connect directly with The Drawing Board at{' '}
+            <a href="mailto:dandelionpa7@gmail.com" style={{ color: '#FFF', textDecoration: 'underline' }}>
+              dandelionpa7@gmail.com
+            </a>
+            , or request an instant architectural quote.
+          </p>
+          <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap', marginTop: '16px' }}>
+            <Link className="btn-primary" to="/brand-readiness">
+              Get Quote <ArrowIcon size={14} />
+            </Link>
+            <a href="mailto:dandelionpa7@gmail.com" className="btn-primary" style={{ background: 'transparent', border: '1px solid #FFF', color: '#FFF' }}>
+              Email Studio: dandelionpa7@gmail.com
+            </a>
+          </div>
         </div>
       </section>
 

@@ -11,7 +11,7 @@ const DOMAIN = 'https://drawingsboard.com';
 const FAQ_BRANDING = [
   {
     q: 'What makes The Drawing Board different from traditional agencies?',
-    a: 'Traditional legacy agencies operate with account managers, bloated overheads, and opaque 8–14 week timelines. The Drawing Board is a senior design engineering studio where you work directly with founder Vrund Patel. We cap active client sprints at 2–3 per cycle, ensuring every brand receives senior-level architectural thinking, custom mathematical marks, and rapid turnaround without junior dilution.'
+    a: 'Traditional legacy agencies operate with account managers, bloated overheads, and opaque 8–14 week timelines. The Drawing Board is a senior design engineering studio where you work directly with The Drawing Board senior design team. We cap active client sprints at 2–3 per cycle, ensuring every brand receives senior-level architectural thinking, custom mathematical marks, and rapid turnaround without junior dilution.'
   },
   {
     q: 'How long does a brand identity project take?',
@@ -348,7 +348,7 @@ function generateSemanticContent(route, metadata, projects) {
             </div>
             <div>
               <div style="font-family: monospace; font-size: 11px; color: #8a8880;">STUDIO LEAD</div>
-              <div style="font-weight: 600; margin-top: 0.25rem;">Vrund Patel</div>
+              <div style="font-weight: 600; margin-top: 0.25rem;">The Drawing Board</div>
             </div>
           </div>
 
@@ -551,7 +551,7 @@ async function run() {
     {
       route: '/contact',
       title: 'Initiate a Project Sprint | The Drawing Board',
-      description: 'Book a 15-minute discovery call or submit your project brief directly to founder Vrund Patel.',
+      description: 'Book a 15-minute discovery call or submit your project brief directly to The Drawing Board.',
       schemas: []
     },
     {
@@ -599,7 +599,7 @@ async function run() {
     {
       route: '/thank-you',
       title: 'Inquiry Received | The Drawing Board',
-      description: 'Thank you for your project inquiry. Founder Vrund Patel reviews every brief within 24 hours.',
+      description: 'Thank you for your project inquiry. The Drawing Board team reviews every brief within 24 hours.',
       schemas: []
     }
   ];

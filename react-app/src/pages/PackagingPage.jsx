@@ -73,7 +73,7 @@ export default function PackagingPage() {
           _template: "table",
           _captcha: "false",
           _replyto: checklistEmail,
-          _cc: "vrundpatel153@gmail.com",
+          _cc: "dandelionpa7@gmail.com",
           "Work Email": checklistEmail,
           "Brand Name": checklistBrand || 'Not specified',
           "Source Page": "/packaging"

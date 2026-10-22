@@ -43,7 +43,7 @@ export default function Footer() {
           <div className="foot-col" style={{ opacity: 1, visibility: 'visible' }}>
             <h5>Connect</h5>
             <Link to="/brand-readiness">Get Quote</Link>
-            <a href={MAILTO_URL}>Email Studio</a>
+            <a href={MAILTO_URL}>dandelionpa7@gmail.com</a>
             <a href="https://www.instagram.com/drawingboard.co/" target="_blank" rel="noopener noreferrer">Instagram</a>
             <a href="https://www.linkedin.com/in/vinayak-agarwal-05497a113/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>

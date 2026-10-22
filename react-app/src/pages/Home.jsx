@@ -233,7 +233,7 @@ export default function Home() {
           _template: "table",
           _captcha: "false",
           _replyto: leadFormData.email,
-          _cc: "vrundpatel153@gmail.com",
+          _cc: "dandelionpa7@gmail.com",
           "Work Email": leadFormData.email,
           "Brand Name": leadFormData.brand,
           "Source Page": "Home Page Brand Audit"

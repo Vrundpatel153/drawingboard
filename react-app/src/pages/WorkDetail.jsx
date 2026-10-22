@@ -456,11 +456,23 @@ export default function WorkDetail() {
           {/* Hero Cover Visual Container */}
           {project.coverImage && (
             <div className="hero-visual" style={{ marginTop: '40px' }}>
-              <img
-                src={project.coverImage}
-                alt={project.title}
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-              />
+              {typeof project.coverImage === 'string' && project.coverImage.match(/\.(mp4|webm|mov)$/i) ? (
+                <video
+                  src={project.coverImage}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  controls
+                  style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '4px' }}
+                />
+              ) : (
+                <img
+                  src={project.coverImage}
+                  alt={project.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                />
+              )}
             </div>
           )}
         </div>
@@ -1863,18 +1875,29 @@ export default function WorkDetail() {
       {/* Next Case Study Link & Final CTA */}
       <section className="final">
         <div className="wrap">
-          <h2>Explore the next case study</h2>
+          <h2>Ready to engineer your brand with The Drawing Board?</h2>
           <p>
             {isAfter8
-              ? 'Discover how we engineered eco-luxe packaging and Shopify architecture for Lumen & Co.'
-              : `Discover how we engineered strategy and design for ${nextProject.title}.`}
+              ? 'Discover how we engineered eco-luxe packaging and Shopify architecture for Lumen & Co., or collaborate with The Drawing Board on your upcoming brand sprint.'
+              : `Discover how we engineered strategy and design for ${nextProject.title}, or reach out directly to begin your project.`}
           </p>
-          <Link to={`/work/${nextProject.slug}`} className="btn-primary" style={{ marginRight: '14px' }}>
-            {isAfter8 ? 'View Lumen & Co. Case Study' : `View ${nextProject.title}`} <ArrowIcon size={14} />
-          </Link>
-          <Link to="/brand-readiness" className="btn-primary" style={{ background: 'transparent', border: '1px solid #FFF', color: '#FFF' }}>
-            Get Quote <ArrowIcon size={14} />
-          </Link>
+          <div style={{ margin: '14px 0 28px', fontSize: '15px', color: 'rgba(255,255,255,0.85)' }}>
+            Direct Studio Inquiry:{' '}
+            <a href="mailto:dandelionpa7@gmail.com" style={{ color: '#FFF', fontWeight: 600, textDecoration: 'underline' }}>
+              dandelionpa7@gmail.com
+            </a>
+          </div>
+          <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link to={`/work/${nextProject.slug}`} className="btn-primary">
+              {isAfter8 ? 'View Lumen & Co. Case Study' : `View ${nextProject.title}`} <ArrowIcon size={14} />
+            </Link>
+            <a href="mailto:dandelionpa7@gmail.com" className="btn-primary" style={{ background: 'transparent', border: '1px solid #FFF', color: '#FFF' }}>
+              Email Studio: dandelionpa7@gmail.com
+            </a>
+            <Link to="/brand-readiness" className="btn-primary" style={{ background: 'var(--marker)', border: '1px solid var(--marker)', color: '#FFF' }}>
+              Get Quote <ArrowIcon size={14} />
+            </Link>
+          </div>
         </div>
       </section>
 
