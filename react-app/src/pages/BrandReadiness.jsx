@@ -840,7 +840,19 @@ export default function BrandReadiness() {
     const eventVal = getQuestionOptionLabel('event', answers.event);
     const budgetVal = getQuestionOptionLabel('budget', answers.budget);
 
-    // Meta Pixel & Conversions API lead tracking
+    // Compute exact dynamic lead value based on budget & engagement tier
+    let dynamicLeadValue = 475000;
+    if (answers.budget === 'u3') dynamicLeadValue = 250000;
+    else if (answers.budget === '3-475') dynamicLeadValue = 387500;
+    else if (answers.budget === '475-7') dynamicLeadValue = 587500;
+    else if (answers.budget === '7-10') dynamicLeadValue = 850000;
+    else if (answers.budget === '10+') dynamicLeadValue = 1200000;
+    else {
+      if (currentEngagement.key === 'brand_to_market') dynamicLeadValue = 825000;
+      else dynamicLeadValue = 475000;
+    }
+
+    // Meta Pixel & Conversions API lead tracking with dynamic price
     try {
       trackMetaFormSubmission({
         name: lead.first,
@@ -852,6 +864,8 @@ export default function BrandReadiness() {
         budget: budgetVal,
         timeline: timelineVal,
         primaryChallenge: problemsVal,
+        value: dynamicLeadValue,
+        currency: 'INR',
         message: `[Unified Strategic Scope Intake]\nScore: ${scoreVal}/100 (${bandText})\nCategory: ${categoryVal}\nStage: ${stageVal}\nLaunch: ${projectData.launchDate}\nWhatsApp: ${lead.whatsapp}\nNotes: ${projectData.notes || 'N/A'}\nFounder Vision: ${answers.outcome || 'N/A'}`
       });
     } catch (err) {
@@ -860,6 +874,9 @@ export default function BrandReadiness() {
 
     // Save offline backup in localStorage so user brief is never lost
     try {
+      localStorage.setItem('tdb_last_lead_value', String(dynamicLeadValue));
+      localStorage.setItem('tdb_last_lead_currency', 'INR');
+      localStorage.setItem('tdb_last_lead_time', String(Date.now()));
       localStorage.setItem('tdb_last_quote_brief', JSON.stringify({
         timestamp: new Date().toISOString(),
         brand: lead.brand,
@@ -870,7 +887,8 @@ export default function BrandReadiness() {
         notes: projectData.notes,
         score: scoreVal,
         engagement: engagementName,
-        investment: investment
+        investment: investment,
+        value: dynamicLeadValue
       }));
     } catch (_) {}
 

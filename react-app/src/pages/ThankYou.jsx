@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import ArrowIcon from '../components/ArrowIcon';
 import { usePageAnimations } from '../hooks/usePageAnimations';
-import { trackMetaEvent } from '../utils/metaEvents';
+import { trackMetaEvent, calculateDynamicLeadValue } from '../utils/metaEvents';
 import useSEO from '../hooks/useSEO';
 
 export default function ThankYou() {
@@ -18,12 +18,34 @@ export default function ThankYou() {
     noindex: true
   });
 
-  // ── Track Meta Lead Conversion on arrival ─────────────────────────────────
+  // ── Track Meta Lead Conversion on arrival with dynamic value ─────────────────
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    let leadValue = 475000;
+    let leadCurrency = 'INR';
+
+    try {
+      const storedVal = parseFloat(localStorage.getItem('tdb_last_lead_value') || '0');
+      const storedCurr = localStorage.getItem('tdb_last_lead_currency');
+      if (storedVal > 0) {
+        leadValue = storedVal;
+        leadCurrency = storedCurr || 'INR';
+      } else {
+        const fallback = calculateDynamicLeadValue({ path: document.referrer || window.location.pathname });
+        leadValue = fallback.value;
+        leadCurrency = fallback.currency;
+      }
+    } catch (_) {
+      const fallback = calculateDynamicLeadValue({ path: window.location.pathname });
+      leadValue = fallback.value;
+      leadCurrency = fallback.currency;
+    }
+
     trackMetaEvent('Lead', {
       content_name: 'Thank You Page Confirmation',
-      value: 275000,
-      currency: 'INR'
+      value: leadValue,
+      currency: leadCurrency
     });
   }, []);
 

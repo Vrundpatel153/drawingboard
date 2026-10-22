@@ -3630,6 +3630,8 @@ export default function DevelopmentPage() {
                           phone: modalData.phone,
                           website: modalData.website,
                           build: modalData.build,
+                          budget: modalData.budget,
+                          timeline: modalData.timeline,
                           service: 'Development Brief'
                         });
                       }
