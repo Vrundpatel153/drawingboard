@@ -110,7 +110,7 @@ function calculateEstimateValue(services, budgetRange) {
   return 475000;
 }
 
-const ORDER = ['fullName', 'email', 'phoneCountryCode', 'phoneNumber', 'services', 'category', 'budgetRange', 'projectDescription'];
+const ORDER = ['fullName', 'email', 'whatsappCountryCode', 'whatsappNumber', 'phoneCountryCode', 'phoneNumber', 'services', 'category', 'budgetRange', 'projectDescription'];
 
 export default function BrandReadiness() {
   const pageRef = useRef(null);
@@ -129,6 +129,8 @@ export default function BrandReadiness() {
   const [state, setState] = useState({
     fullName: '',
     email: '',
+    whatsappCountryCode: '+91',
+    whatsappNumber: '',
     phoneCountryCode: '+91',
     phoneNumber: '',
     brandOrWebsite: '',
@@ -166,6 +168,7 @@ export default function BrandReadiness() {
     const { name, value } = e.target;
     setState((prev) => ({ ...prev, [name]: value }));
     clearError(name);
+    if (name === 'whatsappNumber') clearError('whatsappCountryCode');
     if (name === 'phoneNumber') clearError('phoneCountryCode');
   };
 
@@ -224,6 +227,7 @@ export default function BrandReadiness() {
   // Validation
   const validateForm = () => {
     const errs = {};
+    const wn = state.whatsappNumber.replace(/[\s\-().]/g, '');
     const pn = state.phoneNumber.replace(/[\s\-().]/g, '');
 
     if (!state.fullName.trim()) errs.fullName = 'Please tell us your name.';
@@ -233,6 +237,19 @@ export default function BrandReadiness() {
       errs.email = 'That email doesn’t look quite right. Try something like name@example.com.';
     }
 
+    // WhatsApp number is required (not optional)
+    if (!wn) {
+      errs.whatsappNumber = 'Please enter your WhatsApp number.';
+    } else {
+      if (!/^\+?\d{1,4}$/.test(state.whatsappCountryCode.trim())) {
+        errs.whatsappCountryCode = 'Use a country code such as +91.';
+      }
+      if (!/^\d{6,14}$/.test(wn)) {
+        errs.whatsappNumber = 'Enter 6 to 14 digits, without the country code.';
+      }
+    }
+
+    // Phone number is optional, but validated if provided
     if (pn) {
       if (!/^\+?\d{1,4}$/.test(state.phoneCountryCode.trim())) {
         errs.phoneCountryCode = 'Use a country code such as +91.';
@@ -281,6 +298,8 @@ export default function BrandReadiness() {
     const catLabel = CATEGORIES.find((c) => c.value === state.category)?.label || state.category;
     const budgetLabel = budgetOptions.find((b) => b.value === state.budgetRange)?.label || state.budgetRange;
     const timelineLabel = TIMELINES.find((t) => t.value === state.timeline)?.label || state.timeline || 'Not specified';
+    const hasWhatsApp = Boolean(state.whatsappNumber.trim());
+    const fullWhatsApp = hasWhatsApp ? `${state.whatsappCountryCode.trim()} ${state.whatsappNumber.trim()}` : '';
     const hasPhone = Boolean(state.phoneNumber.trim());
     const fullPhone = hasPhone ? `${state.phoneCountryCode.trim()} ${state.phoneNumber.trim()}` : '';
     const calculatedValue = calculateEstimateValue(state.services, state.budgetRange);
@@ -292,7 +311,8 @@ export default function BrandReadiness() {
         trackMetaFormSubmission({
           name: state.fullName.trim(),
           email: state.email.trim(),
-          phone: fullPhone.replace(/[^0-9]/g, ''),
+          phone: (fullPhone || fullWhatsApp).replace(/[^0-9]/g, ''),
+          whatsapp: fullWhatsApp.replace(/[^0-9]/g, ''),
           company: state.brandOrWebsite.trim(),
           services: serviceLabels.join(', '),
           category: catLabel + (state.otherCategory ? ` (${state.otherCategory})` : ''),
@@ -319,7 +339,9 @@ export default function BrandReadiness() {
           _cc: 'dandelionpa7@gmail.com',
           'Client Name': state.fullName.trim(),
           'Email Address': state.email.trim(),
-          'WhatsApp / Phone': fullPhone || 'Not provided',
+          'WhatsApp Number': fullWhatsApp,
+          'Phone Number': fullPhone || 'Not provided',
+          'WhatsApp / Phone': fullPhone ? `${fullWhatsApp} / ${fullPhone}` : fullWhatsApp,
           'Brand Name or Website': state.brandOrWebsite.trim() || 'Not provided',
           'Services Requested': serviceLabels.join(', '),
           'Business Category': catLabel + (state.otherCategory ? ` (${state.otherCategory})` : ''),
@@ -338,6 +360,7 @@ export default function BrandReadiness() {
             timestamp: new Date().toISOString(),
             fullName: state.fullName,
             email: state.email,
+            whatsapp: fullWhatsApp,
             phone: fullPhone,
             brand: state.brandOrWebsite,
             services: serviceLabels,
@@ -365,6 +388,8 @@ export default function BrandReadiness() {
     setState({
       fullName: '',
       email: '',
+      whatsappCountryCode: '+91',
+      whatsappNumber: '',
       phoneCountryCode: '+91',
       phoneNumber: '',
       brandOrWebsite: '',
@@ -394,6 +419,7 @@ export default function BrandReadiness() {
       `*PROJECT QUOTE BRIEF*`,
       `*Client:* ${state.fullName}`,
       `*Email:* ${state.email}`,
+      state.whatsappNumber ? `*WhatsApp:* ${state.whatsappCountryCode} ${state.whatsappNumber}` : '',
       state.phoneNumber ? `*Phone:* ${state.phoneCountryCode} ${state.phoneNumber}` : '',
       state.brandOrWebsite ? `*Brand:* ${state.brandOrWebsite}` : '',
       `*Services:* ${serviceLabels.join(', ')}`,
@@ -871,10 +897,55 @@ export default function BrandReadiness() {
                   </div>
                 </div>
 
-                {/* ── WhatsApp Phone ── */}
+                {/* ── WhatsApp Number (Required) ── */}
+                <div className="tdb-field">
+                  <label className="tdb-q" htmlFor="whatsappNumber">
+                    WhatsApp number<span className="tdb-star" aria-hidden="true">*</span>
+                  </label>
+                  <div className="tdb-phone">
+                    <input
+                      className="tdb-in"
+                      id="whatsappCountryCode"
+                      name="whatsappCountryCode"
+                      type="text"
+                      inputMode="tel"
+                      autoComplete="tel-country-code"
+                      aria-label="WhatsApp country calling code"
+                      aria-invalid={errors.whatsappCountryCode ? 'true' : undefined}
+                      aria-describedby={errors.whatsappCountryCode ? 'err-whatsappCountryCode' : undefined}
+                      value={state.whatsappCountryCode}
+                      onChange={handleInputChange}
+                    />
+                    <input
+                      className="tdb-in"
+                      id="whatsappNumber"
+                      name="whatsappNumber"
+                      type="tel"
+                      autoComplete="tel-national"
+                      placeholder="98765 43210"
+                      aria-required="true"
+                      aria-invalid={errors.whatsappNumber ? 'true' : undefined}
+                      aria-describedby={errors.whatsappNumber ? 'err-whatsappNumber' : undefined}
+                      value={state.whatsappNumber}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  {errors.whatsappCountryCode && (
+                    <p className="tdb-err" id="err-whatsappCountryCode">
+                      {errors.whatsappCountryCode}
+                    </p>
+                  )}
+                  {errors.whatsappNumber && (
+                    <p className="tdb-err" id="err-whatsappNumber">
+                      {errors.whatsappNumber}
+                    </p>
+                  )}
+                </div>
+
+                {/* ── Phone Number (Optional) ── */}
                 <div className="tdb-field">
                   <label className="tdb-q" htmlFor="phoneNumber">
-                    WhatsApp number <span className="tdb-opt">(optional)</span>
+                    Phone number <span className="tdb-opt">(optional)</span>
                   </label>
                   <div className="tdb-phone">
                     <input
@@ -884,7 +955,7 @@ export default function BrandReadiness() {
                       type="text"
                       inputMode="tel"
                       autoComplete="tel-country-code"
-                      aria-label="Country calling code"
+                      aria-label="Phone country calling code"
                       aria-invalid={errors.phoneCountryCode ? 'true' : undefined}
                       aria-describedby={errors.phoneCountryCode ? 'err-phoneCountryCode' : undefined}
                       value={state.phoneCountryCode}
