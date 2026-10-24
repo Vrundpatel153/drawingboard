@@ -222,6 +222,13 @@ async function sendConversionsApiEvent({
     const resolvedValue = customData.value !== undefined ? customData.value : dynamicPrice.value;
     const resolvedCurrency = customData.currency || dynamicPrice.currency;
 
+    // Support Meta Events Manager Test Event Code from URL param, localStorage, or customData
+    const urlParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+    const testEventCode =
+      customData.test_event_code ||
+      (urlParams ? urlParams.get('test_event_code') : null) ||
+      (typeof localStorage !== 'undefined' ? localStorage.getItem('meta_test_event_code') : null);
+
     const payload = {
       data: [
         {
@@ -237,7 +244,8 @@ async function sendConversionsApiEvent({
             ...customData
           }
         }
-      ]
+      ],
+      ...(testEventCode && { test_event_code: testEventCode })
     };
 
     const endpoint = `https://graph.facebook.com/v19.0/${META_PIXEL_ID}/events?access_token=${encodeURIComponent(
@@ -270,19 +278,14 @@ async function sendConversionsApiEvent({
 /**
  * Google Tag Manager & GA4 DataLayer Dispatcher
  * Pushes standard and custom events to window.dataLayer for GTM triggers and GA4.
+ * Strictly reserves 'generate_lead' for genuine completed form submissions.
  */
 function pushToDataLayer(eventName, customData = {}, eventId) {
   if (typeof window === 'undefined') return;
   window.dataLayer = window.dataLayer || [];
 
   const lowerName = (eventName || '').toLowerCase();
-  const isLeadEvent =
-    eventName === 'Lead' ||
-    eventName === 'Schedule' ||
-    eventName === 'Contact' ||
-    lowerName.includes('lead') ||
-    lowerName.includes('quote') ||
-    lowerName.includes('discuss');
+  const isQualifiedLead = eventName === 'Lead';
 
   const buttonLabel =
     customData.button_label ||
@@ -292,9 +295,10 @@ function pushToDataLayer(eventName, customData = {}, eventId) {
 
   const conversionType =
     customData.conversion_type || (
-      buttonLabel.toLowerCase().includes('quote') ? 'get_quote' :
-      buttonLabel.toLowerCase().includes('discuss') ? 'discuss_your_project' :
-      (customData.destination || 'lead')
+      isQualifiedLead ? 'qualified_lead_submission' :
+      buttonLabel.toLowerCase().includes('quote') ? 'get_quote_click' :
+      buttonLabel.toLowerCase().includes('discuss') ? 'discuss_click' :
+      (customData.destination ? `${customData.destination.toLowerCase()}_click` : lowerName)
     );
 
   const dynamicPrice = calculateDynamicLeadValue(customData);
@@ -303,9 +307,9 @@ function pushToDataLayer(eventName, customData = {}, eventId) {
 
   // 1. Push standard custom event for Google Tag Manager triggers
   window.dataLayer.push({
-    event: isLeadEvent ? 'lead_conversion' : lowerName,
-    event_category: isLeadEvent ? 'Lead' : (customData.content_category || 'Engagement'),
-    event_action: 'Click',
+    event: isQualifiedLead ? 'lead_submission' : `cta_${lowerName}`,
+    event_category: isQualifiedLead ? 'Lead' : (customData.content_category || 'Engagement'),
+    event_action: isQualifiedLead ? 'Submit' : 'Click',
     event_label: buttonLabel,
     conversion_type: conversionType,
     button_text: buttonLabel,
@@ -318,8 +322,8 @@ function pushToDataLayer(eventName, customData = {}, eventId) {
     ...customData
   });
 
-  // 2. Push standard GA4 generate_lead / schedule event for GTM & GA4
-  if (isLeadEvent) {
+  // 2. Push standard GA4 generate_lead ONLY FOR GENUINE QUALIFIED FORM SUBMISSIONS
+  if (isQualifiedLead) {
     window.dataLayer.push({
       event: 'generate_lead',
       currency: resolvedCurrency,
@@ -341,9 +345,29 @@ function pushToDataLayer(eventName, customData = {}, eventId) {
         console.warn('[GA4] gtag error:', err);
       }
     }
+  } else if (eventName === 'Contact') {
+    if (typeof window.gtag === 'function') {
+      try {
+        window.gtag('event', 'contact_click', {
+          event_category: 'Engagement',
+          event_label: buttonLabel,
+          event_id: eventId
+        });
+      } catch (err) {}
+    }
+  } else if (eventName === 'Schedule') {
+    if (typeof window.gtag === 'function') {
+      try {
+        window.gtag('event', 'schedule_click', {
+          event_category: 'Engagement',
+          event_label: buttonLabel,
+          event_id: eventId
+        });
+      } catch (err) {}
+    }
   }
 
-  console.log(`[GTM dataLayer] Dispatched "${isLeadEvent ? 'lead_conversion' : eventName}" (type: ${conversionType}) with eventID: ${eventId}`);
+  console.log(`[GTM dataLayer] Dispatched "${isQualifiedLead ? 'lead_submission' : eventName}" (type: ${conversionType}) with eventID: ${eventId}`);
 }
 
 /**
@@ -380,22 +404,23 @@ export async function trackMetaEvent(eventName, customData = {}, userData = {}) 
 }
 
 /**
- * Specialized Trackers for Conversion Triggers:
- * - "Discuss Your Project"
- * - "Get Quote"
- * - WhatsApp Consultation
- * - Cal.com Discovery Call
- * - Project Brief Form Submission
- * - Direct Email & Phone
+ * Specialized Trackers for Interaction & Conversion Triggers:
+ * - "Discuss Your Project" -> Contact / Schedule (Engagement)
+ * - "Get Quote" -> Contact (Inquiry)
+ * - WhatsApp Consultation -> Contact (Engagement)
+ * - Cal.com Discovery Call -> Schedule (Consultation)
+ * - Project Brief Form Submission -> LEAD (Qualified Lead Conversion)
+ * - Direct Email & Phone -> Contact (Inquiry)
  */
 
 export function trackDiscussProjectClick(details = {}) {
+  const isCal = details.targetUrl?.includes('cal.com');
   const dynamicPrice = calculateDynamicLeadValue(details);
   const eventData = {
     content_name: 'Discuss Your Project CTA',
     content_category: 'Lead Consultation',
-    conversion_type: 'discuss_your_project',
-    destination: details.targetUrl?.includes('cal.com') ? 'Cal.com' : details.targetUrl?.includes('wa.me') ? 'WhatsApp' : 'Calendar',
+    conversion_type: isCal ? 'discuss_cal_com_click' : 'discuss_cta_click',
+    destination: isCal ? 'Cal.com' : details.targetUrl?.includes('wa.me') ? 'WhatsApp' : 'Contact',
     button_label: details.buttonText || 'Discuss Your Project',
     source_url: typeof window !== 'undefined' ? window.location.href : '',
     value: dynamicPrice.value,
@@ -403,16 +428,12 @@ export function trackDiscussProjectClick(details = {}) {
     ...details
   };
 
-  if (typeof window !== 'undefined') {
-    try {
-      localStorage.setItem('tdb_last_lead_value', String(dynamicPrice.value));
-      localStorage.setItem('tdb_last_lead_currency', dynamicPrice.currency);
-      localStorage.setItem('tdb_last_lead_time', String(Date.now()));
-    } catch (_) {}
+  // Dispatch standard engagement events (Contact or Schedule) - NEVER Lead
+  if (isCal) {
+    trackMetaEvent('Schedule', eventData);
+  } else {
+    trackMetaEvent('Contact', eventData);
   }
-
-  trackMetaEvent('Lead', eventData);
-  trackMetaEvent('Schedule', eventData);
 }
 
 export function trackGetQuoteClick(details = {}) {
@@ -420,7 +441,7 @@ export function trackGetQuoteClick(details = {}) {
   const eventData = {
     content_name: 'Get Quote CTA',
     content_category: 'Quote Inquiry',
-    conversion_type: 'get_quote',
+    conversion_type: 'get_quote_click',
     destination: details.targetUrl || '/contact',
     button_label: details.buttonText || 'Get Quote',
     source_url: typeof window !== 'undefined' ? window.location.href : '',
@@ -437,7 +458,7 @@ export function trackMetaWhatsAppClick(details = {}) {
   const eventData = {
     content_name: 'WhatsApp Consultation CTA',
     content_category: 'Lead Engagement',
-    conversion_type: 'whatsapp_lead',
+    conversion_type: 'whatsapp_click',
     destination: 'WhatsApp',
     button_label: details.buttonText || 'WhatsApp Us',
     source_url: typeof window !== 'undefined' ? window.location.href : '',
@@ -446,15 +467,7 @@ export function trackMetaWhatsAppClick(details = {}) {
     ...details
   };
 
-  if (typeof window !== 'undefined') {
-    try {
-      localStorage.setItem('tdb_last_lead_value', String(dynamicPrice.value));
-      localStorage.setItem('tdb_last_lead_currency', dynamicPrice.currency);
-      localStorage.setItem('tdb_last_lead_time', String(Date.now()));
-    } catch (_) {}
-  }
-
-  trackMetaEvent('Lead', eventData);
+  // WhatsApp click is a Contact engagement event, NOT a completed qualified Lead
   trackMetaEvent('Contact', eventData);
 }
 
@@ -464,7 +477,7 @@ export function trackMetaCalComClick(details = {}) {
   const eventData = {
     content_name: isDiscuss ? 'Discuss Your Project — Cal.com' : 'Cal.com 15-Min Discovery Call',
     content_category: 'Schedule Consultation',
-    conversion_type: isDiscuss ? 'discuss_your_project' : 'cal_com_booking',
+    conversion_type: isDiscuss ? 'discuss_cal_click' : 'cal_com_booking_click',
     destination: 'Cal.com',
     button_label: details.buttonText || 'Book a Call',
     source_url: typeof window !== 'undefined' ? window.location.href : '',
@@ -473,18 +486,19 @@ export function trackMetaCalComClick(details = {}) {
     ...details
   };
 
-  if (typeof window !== 'undefined') {
-    try {
-      localStorage.setItem('tdb_last_lead_value', String(dynamicPrice.value));
-      localStorage.setItem('tdb_last_lead_currency', dynamicPrice.currency);
-      localStorage.setItem('tdb_last_lead_time', String(Date.now()));
-    } catch (_) {}
-  }
-
+  // Booking click is a Schedule event, NOT a completed qualified Lead
   trackMetaEvent('Schedule', eventData);
-  trackMetaEvent('Lead', eventData);
 }
 
+/**
+ * trackMetaFormSubmission
+ * ─────────────────────────────────────────────────────────────────────────────
+ * THE SOLE AUTHORITATIVE PIPELINE FOR META 'LEAD' CONVERSION DISPATCH.
+ * Only fires when a genuine enquiry form is successfully validated and submitted.
+ * Dispatches identical eventID across Meta Browser Pixel (fbq) and Meta Conversions API (CAPI)
+ * with rich SHA-256 hashed customer parameters for 100% deduplication & high match quality.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
 export function trackMetaFormSubmission(formData = {}) {
   const dynamicPrice = calculateDynamicLeadValue(formData);
   const eventValue = formData.value !== undefined ? formData.value : dynamicPrice.value;
@@ -493,20 +507,37 @@ export function trackMetaFormSubmission(formData = {}) {
   const eventData = {
     content_name: formData.content_name || 'Project Initiation / Quote Form Submission',
     content_category: formData.content_category || 'Direct Project Inquiry',
-    conversion_type: formData.conversion_type || 'get_quote_submission',
+    conversion_type: formData.conversion_type || 'qualified_lead_submission',
     services: formData.services || formData.service || '',
     budget: formData.budget || '',
     timeline: formData.timeline || '',
+    company: formData.company || formData.brand || '',
     source_url: typeof window !== 'undefined' ? window.location.href : '',
     value: eventValue,
     currency: eventCurrency
   };
 
+  // Clean and normalize phone number (e.g. ensure India country code 91 if 10 digits)
+  let cleanPhone = formData.phone || formData.whatsapp || '';
+  if (cleanPhone) {
+    cleanPhone = cleanPhone.replace(/[^0-9]/g, '');
+    if (cleanPhone.length === 10) cleanPhone = '91' + cleanPhone;
+  }
+
+  // Clean first and last names
+  let firstName = (formData.name || formData.fname || formData.first || '').trim();
+  let lastName = (formData.lname || formData.last || '').trim();
+  if (!lastName && firstName.includes(' ')) {
+    const parts = firstName.split(/\s+/);
+    firstName = parts[0];
+    lastName = parts.slice(1).join(' ');
+  }
+
   const userData = {
-    email: formData.email,
-    firstName: formData.name || formData.fname,
-    lastName: formData.lname,
-    phone: formData.phone || formData.whatsapp
+    email: formData.email ? formData.email.trim() : undefined,
+    firstName: firstName || undefined,
+    lastName: lastName || undefined,
+    phone: cleanPhone || undefined
   };
 
   if (typeof window !== 'undefined') {
@@ -517,7 +548,8 @@ export function trackMetaFormSubmission(formData = {}) {
     } catch (_) {}
   }
 
-  trackMetaEvent('Lead', eventData, userData);
+  // Dispatches single deduplicated Meta 'Lead' event (Browser + CAPI)
+  return trackMetaEvent('Lead', eventData, userData);
 }
 
 export function trackMetaEmailClick(details = {}) {

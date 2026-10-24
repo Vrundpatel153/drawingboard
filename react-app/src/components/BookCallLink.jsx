@@ -18,23 +18,12 @@ export default function BookCallLink({
 }) {
   const navigate = useNavigate();
 
-  const handleClick = (e) => {
-    e.preventDefault();
-
-    // 1. Dispatch Meta Conversions API + Pixel tracking
+  const handleClick = () => {
     trackMetaCalComClick({
       buttonText: typeof children === 'string' ? children : 'Book a Call',
       targetUrl: href,
       page: window.location.pathname
     });
-
-    // 2. Navigate current tab to /thank-you immediately
-    navigate('/thank-you');
-
-    // 3. Open Cal.com in new tab / app
-    setTimeout(() => {
-      window.open(href, '_blank', 'noopener,noreferrer');
-    }, 20);
   };
 
   return (

@@ -20,7 +20,6 @@ export default function StickyMobileCTA({ title = "The Drawing Board", subtitle 
       page: window.location.pathname
     });
     window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer');
-    navigate('/thank-you');
   };
 
   const handleCtaBtnClick = (e) => {
@@ -32,7 +31,6 @@ export default function StickyMobileCTA({ title = "The Drawing Board", subtitle 
         page: window.location.pathname
       });
       window.open(link, '_blank', 'noopener,noreferrer');
-      navigate('/thank-you');
     } else if (isCal) {
       e.preventDefault();
       trackMetaCalComClick({
@@ -41,7 +39,6 @@ export default function StickyMobileCTA({ title = "The Drawing Board", subtitle 
         page: window.location.pathname
       });
       window.open(link, '_blank', 'noopener,noreferrer');
-      navigate('/thank-you');
     }
   };
 

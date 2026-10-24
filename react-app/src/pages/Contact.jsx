@@ -110,6 +110,7 @@ export default function Contact() {
   const [openFaq, setOpenFaq] = useState(null);
   const [showChannelModal, setShowChannelModal] = useState(false);
   const pageRef = useRef(null);
+  const leadTrackedRef = useRef(false);
   const navigate = useNavigate();
 
   // Controlled form state containing all questionnaire fields
@@ -125,7 +126,7 @@ export default function Contact() {
     teamStructure: '',
     primaryChallenge: '',
     services: ['Branding'],
-    budget: '$4,960 (Growth Brand-to-Shelf)',
+    budget: '₹4,75,000 (Growth Brand-to-Shelf)',
     timeline: 'Immediately',
     message: ''
   });
@@ -155,6 +156,18 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!form.name?.trim()) {
+      alert('Please enter your name.');
+      return;
+    }
+    if (!form.email?.trim()) {
+      alert('Please enter your work email.');
+      return;
+    }
+    if (!form.phone?.trim() && !form.whatsapp?.trim()) {
+      alert('Please enter your phone or WhatsApp number.');
+      return;
+    }
     setShowChannelModal(true);
   };
 
@@ -269,22 +282,25 @@ export default function Contact() {
     // Dispatch background FormSubmit email to studio
     dispatchFormSubmitLead('WhatsApp');
 
-    // 1. Dispatch Meta Conversions API (CAPI) & Pixel lead event
-    trackMetaFormSubmission({
-      name: form.name,
-      phone: form.phone || form.whatsapp,
-      email: form.email,
-      channel: 'WhatsApp',
-      services: form.services.join(', '),
-      budget: form.budget,
-      timeline: form.timeline,
-      company: form.companyName,
-      role: form.role,
-      annualRevenue: form.annualRevenue,
-      teamStructure: form.teamStructure,
-      primaryChallenge: form.primaryChallenge,
-      message: form.message
-    });
+    // 1. Dispatch Meta Conversions API (CAPI) & Pixel lead event (strictly once per submission)
+    if (!leadTrackedRef.current) {
+      leadTrackedRef.current = true;
+      trackMetaFormSubmission({
+        name: form.name,
+        phone: form.phone || form.whatsapp,
+        email: form.email,
+        channel: 'WhatsApp',
+        services: form.services.join(', '),
+        budget: form.budget,
+        timeline: form.timeline,
+        company: form.companyName,
+        role: form.role,
+        annualRevenue: form.annualRevenue,
+        teamStructure: form.teamStructure,
+        primaryChallenge: form.primaryChallenge,
+        message: form.message
+      });
+    }
 
     setShowChannelModal(false);
 
@@ -303,22 +319,25 @@ export default function Contact() {
     // Dispatch background FormSubmit email to studio
     dispatchFormSubmitLead('Email');
 
-    // 1. Dispatch Meta Conversions API (CAPI) & Pixel lead event
-    trackMetaFormSubmission({
-      name: form.name,
-      phone: form.phone || form.whatsapp,
-      email: form.email,
-      channel: 'Email',
-      services: form.services.join(', '),
-      budget: form.budget,
-      timeline: form.timeline,
-      company: form.companyName,
-      role: form.role,
-      annualRevenue: form.annualRevenue,
-      teamStructure: form.teamStructure,
-      primaryChallenge: form.primaryChallenge,
-      message: form.message
-    });
+    // 1. Dispatch Meta Conversions API (CAPI) & Pixel lead event (strictly once per submission)
+    if (!leadTrackedRef.current) {
+      leadTrackedRef.current = true;
+      trackMetaFormSubmission({
+        name: form.name,
+        phone: form.phone || form.whatsapp,
+        email: form.email,
+        channel: 'Email',
+        services: form.services.join(', '),
+        budget: form.budget,
+        timeline: form.timeline,
+        company: form.companyName,
+        role: form.role,
+        annualRevenue: form.annualRevenue,
+        teamStructure: form.teamStructure,
+        primaryChallenge: form.primaryChallenge,
+        message: form.message
+      });
+    }
 
     setShowChannelModal(false);
 

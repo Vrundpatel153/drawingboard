@@ -18,24 +18,12 @@ export default function WhatsAppCTALink({
   const navigate = useNavigate();
   const waUrl = href || WHATSAPP_URL;
 
-  const handleClick = (e) => {
-    if (skipThankYou) return;
-    e.preventDefault();
-
-    // 1. Dispatch Meta Conversions API + Pixel tracking
+  const handleClick = () => {
     trackMetaWhatsAppClick({
       buttonText: typeof children === 'string' ? children : 'WhatsApp Us',
       targetUrl: waUrl,
       page: window.location.pathname
     });
-
-    // 2. Navigate current tab to /thank-you immediately
-    navigate('/thank-you');
-
-    // 3. Open WhatsApp in new tab / app
-    setTimeout(() => {
-      window.open(waUrl, '_blank', 'noopener,noreferrer');
-    }, 20);
   };
 
   return (

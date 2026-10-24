@@ -19,11 +19,10 @@ import {
  * - Direct Email (mailto:) and Phone (tel:) links
  *
  * Actions triggered:
- * 1. Meta Browser Pixel (fbq) tracking with standard 'Lead' & 'Schedule'/'Contact' events.
+ * 1. Meta Browser Pixel (fbq) tracking with standard 'Contact' & 'Schedule' engagement events (never unsubmitted Lead).
  * 2. Meta Conversions API (Graph API v19.0) with deduplicated eventIDs & rich user matching data.
- * 3. Google Tag Manager (GTM) dataLayer push with 'lead_conversion' & 'generate_lead' events.
- * 4. Google Analytics 4 (gtag) 'generate_lead' event.
- * 5. Automatic navigation to /thank-you page for appointment bookings & chat initiations.
+ * 3. Google Tag Manager (GTM) dataLayer push with engagement tracking.
+ * 4. Google Analytics 4 (gtag) 'contact_click' / 'schedule_click' events (leaving 'generate_lead' strictly for form submissions).
  */
 export default function GlobalCTAInterceptor() {
   const navigate = useNavigate();
@@ -84,26 +83,9 @@ export default function GlobalCTAInterceptor() {
 
         if (isDiscuss) {
           trackDiscussProjectClick(details);
-          if (isCal) {
-            e.preventDefault();
-            e.stopPropagation();
-            navigate('/thank-you');
-            setTimeout(() => {
-              window.open(rawHref, '_blank', 'noopener,noreferrer');
-            }, 10);
-            return;
-          } else if (isWA) {
-            e.preventDefault();
-            e.stopPropagation();
-            navigate('/thank-you');
-            setTimeout(() => {
-              window.open(rawHref, '_blank', 'noopener,noreferrer');
-            }, 10);
-            return;
-          }
         } else if (isQuote) {
           trackGetQuoteClick(details);
-          // If it's a link to contact or pricing, let router handle or navigate
+          // If it's a link to contact or brand-readiness, navigate smoothly
           if (rawHref.includes('/contact')) {
             e.preventDefault();
             e.stopPropagation();
@@ -112,22 +94,8 @@ export default function GlobalCTAInterceptor() {
           }
         } else if (isCal) {
           trackMetaCalComClick(details);
-          e.preventDefault();
-          e.stopPropagation();
-          navigate('/thank-you');
-          setTimeout(() => {
-            window.open(rawHref, '_blank', 'noopener,noreferrer');
-          }, 10);
-          return;
         } else if (isWA) {
           trackMetaWhatsAppClick(details);
-          e.preventDefault();
-          e.stopPropagation();
-          navigate('/thank-you');
-          setTimeout(() => {
-            window.open(rawHref, '_blank', 'noopener,noreferrer');
-          }, 10);
-          return;
         } else if (isMail) {
           trackMetaEmailClick(details);
         } else if (isTel) {

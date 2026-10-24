@@ -549,6 +549,7 @@ function ShelfGraphic({ stage = 8, shape = 'bottle', uid = 'demo' }) {
    ───────────────────────────────────────────────────────────────────────────── */
 export default function BrandReadiness() {
   const pageRef = useRef(null);
+  const leadTrackedRef = useRef(false);
   useSEO();
   usePageAnimations(pageRef);
 
@@ -852,24 +853,27 @@ export default function BrandReadiness() {
       else dynamicLeadValue = 475000;
     }
 
-    // Meta Pixel & Conversions API lead tracking with dynamic price
-    try {
-      trackMetaFormSubmission({
-        name: lead.first,
-        email: lead.email,
-        phone: lead.whatsapp,
-        company: lead.brand,
-        website: lead.website,
-        services: engagementName,
-        budget: budgetVal,
-        timeline: timelineVal,
-        primaryChallenge: problemsVal,
-        value: dynamicLeadValue,
-        currency: 'INR',
-        message: `[Unified Strategic Scope Intake]\nScore: ${scoreVal}/100 (${bandText})\nCategory: ${categoryVal}\nStage: ${stageVal}\nLaunch: ${projectData.launchDate}\nWhatsApp: ${lead.whatsapp}\nNotes: ${projectData.notes || 'N/A'}\nFounder Vision: ${answers.outcome || 'N/A'}`
-      });
-    } catch (err) {
-      console.warn('Meta tracking error:', err);
+    // Meta Pixel & Conversions API lead tracking with dynamic price (strictly once per submission)
+    if (!leadTrackedRef.current) {
+      leadTrackedRef.current = true;
+      try {
+        trackMetaFormSubmission({
+          name: lead.first,
+          email: lead.email,
+          phone: lead.whatsapp,
+          company: lead.brand,
+          website: lead.website,
+          services: engagementName,
+          budget: budgetVal,
+          timeline: timelineVal,
+          primaryChallenge: problemsVal,
+          value: dynamicLeadValue,
+          currency: 'INR',
+          message: `[Unified Strategic Scope Intake]\nScore: ${scoreVal}/100 (${bandText})\nCategory: ${categoryVal}\nStage: ${stageVal}\nLaunch: ${projectData.launchDate}\nWhatsApp: ${lead.whatsapp}\nNotes: ${projectData.notes || 'N/A'}\nFounder Vision: ${answers.outcome || 'N/A'}`
+        });
+      } catch (err) {
+        console.warn('Meta tracking error:', err);
+      }
     }
 
     // Save offline backup in localStorage so user brief is never lost
@@ -1024,6 +1028,41 @@ export default function BrandReadiness() {
         })
       }).catch(err => console.warn(err));
     } catch (e) {}
+
+    // Compute exact dynamic lead value based on budget & engagement tier
+    let dynamicLeadValue = 475000;
+    if (answers.budget === 'u3') dynamicLeadValue = 250000;
+    else if (answers.budget === '3-475') dynamicLeadValue = 387500;
+    else if (answers.budget === '475-7') dynamicLeadValue = 587500;
+    else if (answers.budget === '7-10') dynamicLeadValue = 850000;
+    else if (answers.budget === '10+') dynamicLeadValue = 1200000;
+    else {
+      if (currentEngagement.key === 'brand_to_market') dynamicLeadValue = 825000;
+      else dynamicLeadValue = 475000;
+    }
+
+    // Meta Pixel & Conversions API lead tracking with dynamic price (strictly once per submission)
+    if (!leadTrackedRef.current) {
+      leadTrackedRef.current = true;
+      try {
+        trackMetaFormSubmission({
+          name: lead.first,
+          email: lead.email,
+          phone: lead.whatsapp,
+          company: lead.brand,
+          website: lead.website,
+          services: engagementName,
+          budget: budgetVal,
+          timeline: timelineVal,
+          primaryChallenge: problemsVal,
+          value: dynamicLeadValue,
+          currency: 'INR',
+          message: `[Unified Strategic Scope Intake (WhatsApp)]\nScore: ${scoreVal}/100 (${bandText})\nCategory: ${categoryVal}\nStage: ${stageVal}\nLaunch: ${projectData.launchDate}\nWhatsApp: ${lead.whatsapp}\nNotes: ${projectData.notes || 'N/A'}\nFounder Vision: ${answers.outcome || 'N/A'}`
+        });
+      } catch (err) {
+        console.warn('Meta tracking error:', err);
+      }
+    }
 
     window.open(waUrl, '_blank', 'noopener,noreferrer');
     setView('success');
