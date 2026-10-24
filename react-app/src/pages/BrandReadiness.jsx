@@ -1,3459 +1,1163 @@
-import { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RegistrationMarks from '../components/RegistrationMarks';
 import ArrowIcon from '../components/ArrowIcon';
-import MoreServicesSection from '../components/MoreServicesSection';
-import StickyMobileCTA from '../components/StickyMobileCTA';
-import { DISCUSS_URL, CONTACT_EMAIL, WHATSAPP_NUMBER, WHATSAPP_URL } from '../utils/siteConfig';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 import useSEO from '../hooks/useSEO';
 import { trackMetaFormSubmission } from '../utils/metaEvents';
+import { WHATSAPP_NUMBER } from '../utils/siteConfig';
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   Questions & Diagnosis Data
+   Centralised Options & Configuration (Exact match to HTML specifications)
    ───────────────────────────────────────────────────────────────────────────── */
-const QUESTIONS = [
-  {
-    id: 'category',
-    type: 'single',
-    title: 'What are you building?',
-    help: 'Choose the category closest to your core offering.',
-    options: [
-      ['fnb', 'Food & beverage'],
-      ['beauty', 'Beauty & wellness'],
-      ['fashion', 'Fashion & lifestyle'],
-      ['consumer', 'Consumer product'],
-      ['hospitality', 'Hospitality'],
-      ['tech', 'Technology / SaaS'],
-      ['other', 'Something else']
-    ]
-  },
-  {
-    id: 'stage',
-    type: 'single',
-    title: 'Where is the business today?',
-    help: 'Select your current commercial milestone.',
-    options: [
-      ['launch', 'Preparing to launch'],
-      ['recent', 'Recently launched'],
-      ['established', "Established, but the brand hasn't kept up"],
-      ['scaling', 'Scaling quickly'],
-      ['retail', 'Entering retail or new markets']
-    ]
-  },
-  {
-    id: 'problems',
-    type: 'multi',
-    max: 2,
-    title: "What's holding the brand back?",
-    help: 'Choose up to two primary tension points.',
-    options: [
-      ['interchangeable', 'We look interchangeable with competitors'],
-      ['price', "The brand doesn't justify our price point"],
-      ['inconsistent', 'Our identity feels fragmented or inconsistent'],
-      ['packaging', "Our packaging isn't doing the product justice on shelf"],
-      ['website', "Our website doesn't reflect the quality of the business"],
-      ['retail', "We're entering retail / quick commerce and need shelf power"],
-      ['outgrown', "We've outgrown the identity and packaging we started with"],
-      ['unsure', "We're not completely sure — we just know something isn't working"]
-    ]
-  },
-  {
-    id: 'scope',
-    type: 'single',
-    title: 'What needs to change first?',
-    help: 'Where should creative and strategic effort concentrate?',
-    options: [
-      ['strategy', 'Brand strategy & market positioning'],
-      ['identity', 'Visual identity system (logo, typography, rules)'],
-      ['packaging', 'Packaging architecture and dielines'],
-      ['website', 'Website & digital e-commerce presence'],
-      ['system', 'The entire connected brand system'],
-      ['guidance', 'Not sure yet — we need senior studio guidance']
-    ]
-  },
-  {
-    id: 'event',
-    type: 'single',
-    title: "What's happening in the next 12 months?",
-    help: 'The commercial catalyst driving this engagement.',
-    options: [
-      ['launching', 'Launching the business to the public'],
-      ['skus', 'Expanding product range / launching new SKUs'],
-      ['retail', 'Entering national or regional retail shelves'],
-      ['international', 'Expanding internationally into new geographies'],
-      ['reposition', 'Repositioning the company toward premium tiers'],
-      ['capital', 'Raising institutional venture capital'],
-      ['scale', 'Scaling up marketing spend on what is already working']
-    ]
-  },
-  {
-    id: 'timeline',
-    type: 'single',
-    title: 'When does this need to go live?',
-    help: 'Realistic schedule to ensure creative and production readiness.',
-    options: [
-      ['30', 'Sprint window: within 30 days'],
-      ['1-3', '1–3 months (standard sprint window)'],
-      ['3-6', '3–6 months (planning ahead)'],
-      ['flexible', 'Flexible / exploratory phase']
-    ]
-  },
-  {
-    id: 'budget',
-    type: 'single',
-    title: 'What level of investment have you planned for the brand?',
-    help: 'Our comprehensive brand engagements begin at ₹4,75,000 ($4,960). This helps us architect realistic deliverables.',
-    options: [
-      ['u3', 'Under ₹3 lakh ($3,200)'],
-      ['3-475', '₹3–4.75 lakh ($3,200–$4,960)'],
-      ['475-7', '₹4.75–7 lakh ($4,960–$7,500)'],
-      ['7-10', '₹7–10 lakh ($7,500–$10,500)'],
-      ['10+', '₹10 lakh+ ($10,500+)'],
-      ['undecided', 'Budget not finalised yet']
-    ]
-  },
-  {
-    id: 'outcome',
-    type: 'text',
-    title: 'If this project goes brilliantly, what changes for the business?',
-    help: "In your own words — one or two sentences on what success feels like.",
-    placeholder: 'For example: We enter retail looking undeniably credible beside established heritage brands, launch six new SKUs without fragmentation, and convert discerning customers at higher price points.'
-  }
+const SERVICES = [
+  { value: 'brand-identity', label: 'Brand strategy & identity', price: 'From ₹4,75,000' },
+  { value: 'packaging', label: 'Packaging design', price: 'From ₹3,75,000' },
+  { value: 'website-shopify', label: 'Website / Shopify', price: 'From ₹1,15,000' },
+  { value: 'saas', label: 'SaaS branding, UI/UX & app', price: 'From ₹4,75,000 · Scope-dependent' },
+  { value: 'guidance', label: 'Something else / I need guidance', price: '' }
 ];
 
-const STAGE_SHORT = {
-  launch: 'Pre-launch',
-  recent: 'Recently launched',
-  established: 'Established brand',
-  scaling: 'Scaling rapidly',
-  retail: 'Entering new retail markets'
-};
-
-const EVENT_SHORT = {
-  launching: 'Commercial brand launch',
-  skus: 'Range & SKU extension',
-  retail: 'Retail expansion',
-  international: 'Global export expansion',
-  reposition: 'Strategic repositioning',
-  capital: 'Fundraising round',
-  scale: 'Scaling customer acquisition'
-};
-
-const SCOPE_SHORT = {
-  strategy: 'Brand strategy & positioning',
-  identity: 'Visual identity system',
-  packaging: 'Master packaging design',
-  website: 'Website & digital experience',
-  system: 'Full connected brand system',
-  guidance: 'Comprehensive studio diagnostic'
-};
-
-const TIME_SHORT = {
-  '30': 'Within 30 days',
-  '1-3': '1–3 months',
-  '3-6': '3–6 months',
-  'flexible': 'Flexible'
-};
-
-const PRESSURE_LABEL = {
-  price: 'Perceived value',
-  interchangeable: 'Differentiation',
-  inconsistent: 'Consistency',
-  retail: 'Retail readiness',
-  packaging: 'Tactile packaging impact',
-  outgrown: 'Brand maturity',
-  website: 'Digital credibility',
-  unsure: 'Strategic clarity'
-};
-
-const ENGAGEMENTS = {
-  foundation: {
-    key: 'brand_foundation',
-    name: 'Brand Foundation',
-    price: '₹4,75,000 ($4,960)',
-    weeks: '4–6 weeks',
-    scope: [
-      'Founder and commercial discovery',
-      'Category & competitor audit',
-      'Positioning & central brand narrative',
-      'Messaging direction & tone of voice',
-      'Full visual identity system (marks, type, color, grids)',
-      'Brand guidelines & master vector vector files'
-    ]
-  },
-  shelf: {
-    key: 'brand_to_shelf',
-    name: 'Brand-to-Shelf System',
-    price: '₹4,75,000 ($4,960)',
-    weeks: '6–8 weeks',
-    scope: [
-      'Brand strategy & positioning foundation',
-      'Mathematical logomark & visual identity',
-      'Packaging architecture & typography hierarchy',
-      '1 master structural packaging system',
-      '5 SKU adaptations & print-ready vector dielines',
-      'Prepress printer review & material specifications'
-    ]
-  },
-  market: {
-    key: 'brand_to_market',
-    name: 'Brand-to-Market (Identity + Pack + Web)',
-    price: '₹6,50,000 – ₹10,00,000 ($6,780–$10,500)',
-    weeks: '8–12 weeks',
-    scope: [
-      'Complete strategy, positioning & narrative',
-      'Comprehensive visual identity architecture',
-      'Master packaging system & production dielines',
-      'Bespoke digital UI/UX design in Figma',
-      'Custom web development (React / Shopify / Framer)',
-      'Sub-second performance optimization & domain launch'
-    ]
-  }
-};
-
-const SYSTEMS = [
-  { name: 'AFTER8®', cat: 'Personal Wellness', href: '/work/after8' },
-  { name: 'LUMEN & CO.', cat: 'Fine Jewellery', href: '/work/lumen' },
-  { name: 'ALDER ESSENTIALS', cat: 'Outdoor & Lifestyle', href: '/work/alder---outdoor-essentials-built-for-slower-movement' },
-  { name: 'KRONA ARCHITECTURE', cat: 'Spatial Design', href: '/work/krona-architecture-studio' }
+const CATEGORIES = [
+  { value: 'food-snacks', label: 'Food & snacks' },
+  { value: 'beverages', label: 'Beverages, tea & coffee' },
+  { value: 'spices-pantry', label: 'Spices, condiments & pantry essentials' },
+  { value: 'hospitality', label: 'Restaurants, cafés & hospitality' },
+  { value: 'skincare-beauty', label: 'Skincare, beauty & personal care' },
+  { value: 'health-wellness', label: 'Health & wellness' },
+  { value: 'fashion-accessories', label: 'Fashion, jewellery & accessories' },
+  { value: 'home-lifestyle', label: 'Home & lifestyle' },
+  { value: 'tech-saas', label: 'Technology / SaaS' },
+  { value: 'something-else', label: 'Something else' },
+  { value: 'still-exploring', label: 'Still exploring' }
 ];
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   Diagnosis Logic Engine
-   ───────────────────────────────────────────────────────────────────────────── */
-const FRAGMENTS = [
-  {
-    id: 'positioning',
-    group: 'position',
-    title: 'Positioning before polish',
-    w: c => 3 * c.p('interchangeable') + 2 * c.p('price') + 3 * c.p('unsure') + 2 * c.p('outgrown') + 3 * (c.a.scope === 'strategy') + 2 * (c.a.scope === 'guidance') + 2 * (c.a.event === 'reposition') + 1,
-    body: () => "Your answers show the core friction is not just aesthetic. The commercial reason to choose you must become instantly legible before adding more design layers. We define what your brand owns first, then engineer identity and packaging to prove it."
-  },
-  {
-    id: 'crowded',
-    group: 'position',
-    title: 'Crowded categories reward radical clarity',
-    w: c => 3 * c.p('interchangeable') * (['fnb', 'beauty', 'consumer', 'fashion'].indexOf(c.a.category) > -1 ? 1.5 : 1),
-    body: () => "In crowded consumer categories, most players mimic the same packaging tropes. We deconstruct what competitors repeat, finding the exact uncontested whitespace where your brand looks distinct before anyone compares prices."
-  },
-  {
-    id: 'diagnose',
-    group: 'position',
-    title: 'Start with an honest diagnostic',
-    w: c => 4 * c.p('unsure') + 3 * (c.a.scope === 'guidance'),
-    body: () => "Sensing that something is misaligned without pinpointing the exact cause is standard for ambitious founders. We audit your category, customer feedback, and current assets before writing a single line of design scope."
-  },
-  {
-    id: 'system',
-    group: 'system',
-    title: "Engineer rules built for where you're going",
-    w: c => 2 * (c.a.event === 'skus') + 2 * (c.a.event === 'retail') + 2 * (c.a.event === 'international') + 2 * (c.a.event === 'scale') + 2 * c.p('inconsistent') + 2 * (c.a.scope === 'system') + 1,
-    body: c => `Fast growth requires design governance: an architectural system that survives ${c.surface}, quick-commerce thumbnails, digital ads, and the next twenty product extensions — not just isolated visual assets.`
-  },
-  {
-    id: 'skus',
-    group: 'system',
-    title: 'More SKUs require systematic hierarchy',
-    w: c => 3.5 * (c.a.event === 'skus') + c.p('inconsistent'),
-    body: () => "Your first three products can tolerate slight variations. Your next twenty will not. Color coding, label architecture, and font scales must be mathematically solved once so every new release is faster and cheaper."
-  },
-  {
-    id: 'value',
-    group: 'value',
-    title: 'Make internal value physically visible',
-    w: c => 3 * c.p('price') + 2 * c.p('packaging') + (c.a.stage === 'established') + (c.a.scope === 'packaging' || c.a.scope === 'identity'),
-    body: () => "If your product formulation is better than how it appears from the outside, our objective is to eliminate that perception gap. 'Premium' is not an arbitrary aesthetic — it is structural credibility that justifies healthy margins."
-  },
-  {
-    id: 'packaging',
-    group: 'value',
-    title: 'The pack is your most permanent medium',
-    w: c => 3 * c.p('packaging') + 2 * (c.a.scope === 'packaging'),
-    body: () => "Packaging sits on customer kitchen counters, bathroom shelves, and unboxing feeds. If the physical box fails to communicate dignity, no digital ad budget can compensate. We solve structural dielines and visual hierarchy together."
-  },
-  {
-    id: 'retail',
-    group: 'market',
-    title: 'Retail shelves penalise weak information hierarchy',
-    w: c => 4 * (c.a.event === 'retail') + 3 * (c.a.stage === 'retail') + 2 * c.p('retail') + (c.a.event === 'skus'),
-    body: () => "On a retail shelf or quick-commerce thumbnail, you have 1.2 seconds. Brand name, product tier, and the single reason to buy must register at glance-distance. We test your hierarchy rigorously before finalizing dielines."
-  },
-  {
-    id: 'digital',
-    group: 'digital',
-    title: 'The website must convert the brand promise',
-    w: c => 3 * c.p('website') + 3 * (c.a.scope === 'website'),
-    body: () => "A website should not feel disconnected from physical packaging. We build high-speed digital experiences where typography, product photography, and checkout flows reinforce the exact same editorial confidence."
-  }
+const TIMELINES = [
+  { value: 'asap', label: 'As soon as possible' },
+  { value: 'within-1-month', label: 'Within a month' },
+  { value: '1-3-months', label: 'In 1–3 months' },
+  { value: 'over-3-months', label: 'More than 3 months from now' },
+  { value: 'exploring', label: 'Exploring for now' }
 ];
 
-const OPP = {
-  price: "Close the perception gap between product quality and exterior branding, and price resistance disappears.",
-  interchangeable: "When your brand owns one uncontested idea that rivals avoid, recognition compounds automatically with every marketing rupee.",
-  inconsistent: "A unified system turns every campaign, packaging run, and social asset into compound equity rather than scattered effort.",
-  retail: "A pack engineered for shelf distance secures immediate buyer trust and commands premium positioning in quick-commerce thumbnails.",
-  packaging: "Tactile, considered packaging transforms one-time buyers into vocal brand advocates who display your product in their homes.",
-  outgrown: "Retiring early makeshift design while preserving hard-earned customer recognition makes the brand look as established as your operations.",
-  website: "A bespoke digital store matching physical quality converts curiosity into repeat customers on superior unit economics.",
-  unsure: "With foundational strategic clarity locked in, every future hiring, copy, and campaign decision becomes significantly faster."
+const BUDGETS = {
+  website: [
+    { value: 'below-1.15l', label: 'Below ₹1,15,000' },
+    { value: '1.15l-2l', label: '₹1,15,000 to under ₹2,00,000' },
+    { value: '2l-3.75l', label: '₹2,00,000 to under ₹3,75,000' },
+    { value: '3.75l-plus', label: '₹3,75,000+' }
+  ],
+  packaging: [
+    { value: 'below-3.75l', label: 'Below ₹3,75,000' },
+    { value: '3.75l-5l', label: '₹3,75,000 to under ₹5,00,000' },
+    { value: '5l-7.5l', label: '₹5,00,000 to under ₹7,50,000' },
+    { value: '7.5l-plus', label: '₹7,50,000+' }
+  ],
+  'brand-identity': [
+    { value: 'below-4.75l', label: 'Below ₹4,75,000' },
+    { value: '4.75l-7l', label: '₹4,75,000 to under ₹7,00,000' },
+    { value: '7l-10l', label: '₹7,00,000 to under ₹10,00,000' },
+    { value: '10l-plus', label: '₹10,00,000+' }
+  ],
+  saas: [
+    { value: 'below-4.75l', label: 'Below ₹4,75,000' },
+    { value: '4.75l-7l', label: '₹4,75,000 to under ₹7,00,000' },
+    { value: '7l-10l', label: '₹7,00,000 to under ₹10,00,000' },
+    { value: '10l-plus', label: '₹10,00,000+' }
+  ],
+  multiple: [
+    { value: 'below-3.75l', label: 'Below ₹3,75,000' },
+    { value: '3.75l-4.75l', label: '₹3,75,000 to under ₹4,75,000' },
+    { value: '4.75l-7l', label: '₹4,75,000 to under ₹7,00,000' },
+    { value: '7l-10l', label: '₹7,00,000 to under ₹10,00,000' },
+    { value: '10l-plus', label: '₹10,00,000+' }
+  ]
 };
 
-const RISK = {
-  price: "Price resistance becomes entrenched. Customers compare you on cost because your exterior cues don't give them another reason.",
-  interchangeable: "Competitors continue claiming the same space, making each customer acquisition incrementally more expensive.",
-  inconsistent: "Adding channels while design rules are uncodified compounds fragmentation. Rebranding later costs 3x more due to existing inventory.",
-  retail: "Retail buyers evaluate hundreds of submissions; confusing hierarchy gets overlooked in under two seconds.",
-  packaging: "The product continues being judged by its container, forcing good reviews to battle an uninspired first impression.",
-  outgrown: "The business operates within an identity designed for a seed experiment, creating cognitive friction with mature buyers.",
-  website: "Paid traffic bounces before perceiving true product craft, lowering return on advertising spend.",
-  unsure: "Without a clear central premise, every marketing initiative starts from scratch with unpredictable results."
+const SINGLE_SET = {
+  'brand-identity': 'brand-identity',
+  packaging: 'packaging',
+  'website-shopify': 'website',
+  saas: 'saas'
 };
 
-function scoreModel(a) {
-  const pr = a.problems || [];
-  const P = k => pr.indexOf(k) > -1;
-  const fit = v => Math.max(30, Math.min(94, Math.round(v)));
-
-  let clarity = 84;
-  if (P('interchangeable')) clarity -= 10;
-  if (P('price')) clarity -= 7;
-  if (P('unsure')) clarity -= 16;
-  if (P('outgrown')) clarity -= 7;
-  if (a.scope === 'strategy') clarity -= 6;
-  if (a.scope === 'guidance') clarity -= 8;
-  if (a.event === 'reposition') clarity -= 7;
-
-  let distinct = 84;
-  if (P('interchangeable')) distinct -= 20;
-  if (P('price')) distinct -= 7;
-  if (P('packaging')) distinct -= 10;
-  if (P('inconsistent')) distinct -= 6;
-  if (P('outgrown')) distinct -= 6;
-  if (P('website')) distinct -= 3;
-  if (P('unsure')) distinct -= 4;
-
-  let system = 84;
-  if (P('inconsistent')) system -= 17;
-  if (P('packaging')) system -= 9;
-  if (P('outgrown')) system -= 8;
-  if (P('website')) system -= 3;
-  if (P('retail')) system -= 4;
-  if (a.event === 'skus') system -= 6;
-  if (a.event === 'retail') system -= 6;
-  if (a.event === 'international') system -= 6;
-
-  clarity = fit(clarity);
-  distinct = fit(distinct);
-  system = fit(system);
-
-  let pressure = { launch: 40, recent: 45, established: 60, scaling: 80, retail: 85 }[a.stage] || 45;
-  pressure += { launching: 5, skus: 15, retail: 20, international: 25, reposition: 15, capital: 20, scale: 15 }[a.event] || 0;
-  pressure += a.timeline === '30' ? 10 : a.timeline === '1-3' ? 5 : 0;
-  pressure = Math.max(10, Math.min(100, pressure));
-
-  let project = { u3: 15, '3-475': 35, '475-7': 75, '7-10': 90, '10+': 95, undecided: 50 }[a.budget] || 50;
-  project += { '30': 10, '1-3': 8, '3-6': 4, flexible: 0 }[a.timeline] || 0;
-  project = Math.max(10, Math.min(100, project));
-
-  const raw = clarity * 0.30 + distinct * 0.30 + system * 0.40 - 0.08 * (pressure / 100) * (100 - system);
-  const overall = Math.max(25, Math.min(94, Math.round(raw)));
-
-  const band = overall >= 80 ? 'Well placed for the next stage'
-             : overall >= 65 ? 'A strong foundation with system gaps'
-             : overall >= 50 ? 'Visible tension across touchpoints'
-             : 'Foundations require immediate senior attention';
-
-  return { clarity, distinct, system, pressure, project, overall, band };
+function getBudgetSetKey(services) {
+  if (!services.length) return null;
+  if (services.length > 1 || services[0] === 'guidance') return 'multiple';
+  return SINGLE_SET[services[0]];
 }
 
-function recommendEngagement(a) {
-  const pr = a.problems || [];
-  const P = k => pr.indexOf(k) > -1;
-  const physical = ['fnb', 'beauty', 'consumer', 'fashion', 'other'].indexOf(a.category) > -1;
-  const wantsPack = physical && (['packaging', 'system', 'guidance'].indexOf(a.scope) > -1 || P('packaging') || P('retail') || ['retail', 'skus', 'launching'].indexOf(a.event) > -1);
-  const wantsDigital = a.scope === 'website' || P('website') || (a.scope === 'system' && (a.budget === '7-10' || a.budget === '10+' || !physical));
-
-  let key = 'foundation';
-  if (wantsPack && wantsDigital) key = 'market';
-  else if (wantsPack) key = 'shelf';
-  else if (wantsDigital) key = 'market';
-
-  const e = ENGAGEMENTS[key];
-  return { key, ...e };
+function getBudgetOptions(key) {
+  if (!key) return [];
+  return [...BUDGETS[key], { value: 'guidance', label: 'I need guidance' }];
 }
 
-function diagnoseReport(a) {
-  const pr = a.problems || [];
-  const surface = { fnb: 'the shelf', beauty: 'the shelf', consumer: 'the shelf', fashion: 'the boutique & feed', hospitality: 'the venue & table', tech: 'the product & website', other: 'every customer touchpoint' }[a.category] || 'the shelf';
-  const ctx = { a, surface, p: k => pr.indexOf(k) > -1 ? 1 : 0 };
-  const scored = FRAGMENTS.map(f => ({ f, w: f.w(ctx) })).filter(x => x.w > 0).sort((x, y) => y.w - x.w);
-  const out = [];
-  const used = {};
-  scored.forEach(x => {
-    if (out.length < 3 && !used[x.f.group]) {
-      out.push(x.f);
-      used[x.f.group] = 1;
-    }
-  });
-  return out.map(f => ({ title: f.title, body: f.body(ctx) }));
+function calculateEstimateValue(services, budgetRange) {
+  if (budgetRange === 'below-1.15l') return 95000;
+  if (budgetRange === '1.15l-2l') return 157500;
+  if (budgetRange === '2l-3.75l') return 287500;
+  if (budgetRange === 'below-3.75l') return 275000;
+  if (budgetRange === '3.75l-4.75l') return 425000;
+  if (budgetRange === '3.75l-5l') return 437500;
+  if (budgetRange === 'below-4.75l') return 375000;
+  if (budgetRange === '4.75l-7l') return 587500;
+  if (budgetRange === '5l-7.5l') return 625000;
+  if (budgetRange === '7l-10l') return 850000;
+  if (budgetRange === '7.5l-plus') return 900000;
+  if (budgetRange === '10l-plus') return 1200000;
+  if (budgetRange === '3.75l-plus') return 450000;
+  return 475000;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   Shelf Evolution Graphic & Silhouettes (SVG Architecture)
-   ───────────────────────────────────────────────────────────────────────────── */
-const SHAPES = ['box', 'pouch', 'bottle', 'bag', 'carton', 'cup', 'device'];
-const SHAPE_FOR = {
-  fnb: 'pouch',
-  beauty: 'bottle',
-  fashion: 'bag',
-  consumer: 'carton',
-  hospitality: 'cup',
-  tech: 'device',
-  other: 'box'
-};
+const ORDER = ['fullName', 'email', 'phoneCountryCode', 'phoneNumber', 'services', 'category', 'budgetRange', 'projectDescription'];
 
-function shapePath(s, cx) {
-  const x0 = cx - 24;
-  const x1 = cx + 24;
-  const b = 118;
-  switch (s) {
-    case 'bottle':
-      return `M${x0} ${b}V70Q${x0} 60 ${cx - 7} 58V30H${cx + 7}V58Q${x1} 60 ${x1} 70V${b}Z`;
-    case 'pouch':
-      return `M${x0} ${b}V46L${x0 + 6} 34H${x1 - 6}L${x1} 46V${b}Z`;
-    case 'carton':
-      return `M${x0} ${b}V54L${cx} 30L${x1} 54V${b}Z`;
-    case 'cup':
-      return `M${x0 - 3} 46H${x1 + 3}L${x1 - 6} ${b}H${x0 + 6}Z`;
-    case 'device':
-      return `M${x0 + 7} 36H${x1 - 7}Q${x1} 36 ${x1} 43V111Q${x1} ${b} ${x1 - 7} ${b}H${x0 + 7}Q${x0} ${b} ${x0} 111V43Q${x0} 36 ${x0 + 7} 36Z`;
-    case 'bag':
-      return `M${x0} ${b}V58H${x1}V${b}Z`;
-    default:
-      return `M${x0} ${b}V40H${x1}V${b}Z`;
-  }
-}
-
-const STAGE_DESCRIPTIONS = [
-  { num: '00', title: 'COMMODITY COMMERCE', desc: 'Plain unbranded commodity box. Zero distinction, lost in the retail shelf sea of sameness.' },
-  { num: '01', title: 'PROPRIETARY SILHOUETTE', desc: 'Custom structural form factor established. Instant silhouette contrast on the shelf.' },
-  { num: '02', title: 'SHELF PRESENCE & ELEVATION', desc: 'Tactile elevation & positioning that elevates the product into prime eye-level consideration.' },
-  { num: '03', title: 'ARCHITECTURAL BRAND BAND', desc: 'High-contrast focal band grounds consumer gaze and establishes brand boundaries.' },
-  { num: '04', title: 'TYPOGRAPHIC WORDMARK', desc: 'Distinctive logotype engineered for 3-meter retail legibility and digital app thumbnail clarity.' },
-  { num: '05', title: 'OWNED CATEGORY COLOR', desc: 'Strategic color ownership signals premium tier and breaks through competitors.' },
-  { num: '06', title: 'VARIANT RULES & SPECS', desc: 'Design system rules govern SKU extensions, ingredients, and regulatory dielines.' },
-  { num: '07', title: 'MONOGRAM & QUALITY SEAL', desc: 'Tactile foil stamp and quality crest justify price points and build founder authority.' },
-  { num: '08', title: 'COMPLETE COMMERCIAL SYSTEM', desc: 'End-to-end connected brand system engineered to scale seamlessly across packaging & digital.' }
-];
-
-function ShelfGraphic({ stage = 8, shape = 'bottle', uid = 'demo' }) {
-  const EVO = 3; // Center slot out of 7 packs (index 3)
-  const CELL = 720 / 7;
-
-  return (
-    <div className="shelf-svg-wrap">
-      <svg
-        className={`shelf ${Array.from({ length: stage }, (_, k) => `on-${k + 1}`).join(' ')}`}
-        viewBox="0 0 720 132"
-        preserveAspectRatio="xMidYMid meet"
-        aria-hidden="true"
-        focusable="false"
-      >
-        {Array.from({ length: 7 }).map((_, i) => {
-          const cx = CELL / 2 + i * CELL;
-          const x0 = cx - 24;
-          const x1 = cx + 24;
-
-          if (i === EVO) {
-            const d = shapePath(shape, cx);
-            const clipId = `cp-${uid}-${shape}`;
-            const isBag = shape === 'bag';
-
-            return (
-              <g key={i} className="evo">
-                {/* 1. Plain commodity box that fades away at stage >= 1 */}
-                <rect className="plain evo-plain" x={cx - 24} y={40} width={48} height={78} />
-
-                {/* 2. Evolving proprietary shape */}
-                <g className={`sh sh-${shape} ${stage >= 1 ? 'show' : ''}`} data-shape={shape}>
-                  <defs>
-                    <clipPath id={clipId}>
-                      <path d={d} />
-                    </clipPath>
-                  </defs>
-
-                  {/* Body background */}
-                  <path className="body" d={d} />
-
-                  {/* Clipped design system layers */}
-                  <g clipPath={`url(#${clipId})`}>
-                    {/* Layer 5: Tint accent */}
-                    <rect className="ly ly5 tint" x={x0} y={24} width={48} height={42} />
-                    {/* Layer 3: Contrast band */}
-                    <rect className="ly ly3 band" x={x0} y={74} width={48} height={22} />
-                    {/* Layer 4: Wordmark typography */}
-                    <rect className="ly ly4 word" x={cx - 14} y={79} width={28} height={5} />
-                    <rect className="ly ly4 word" x={cx - 9} y={88} width={18} height={2} />
-                    {/* Layer 6: Structural rules */}
-                    <path
-                      className="ly ly6 rule"
-                      d={`M${cx - 14} 103H${cx + 14}M${cx - 10} 109H${cx + 10}M${cx - 6} 115H${cx + 6}`}
-                    />
-                    {/* Layer 7: Quality seal */}
-                    <circle className="ly ly7 seal" cx={cx} cy={48} r={5} />
-                  </g>
-
-                  {/* Outer edge */}
-                  <path className="edge" d={d} />
-
-                  {/* Bag handle */}
-                  {isBag && (
-                    <path
-                      className="edge"
-                      d={`M${cx - 10} 58V46Q${cx - 10} 36 ${cx} 36Q${cx + 10} 36 ${cx + 10} 46V58`}
-                    />
-                  )}
-
-                  {/* Layer 8: Technical dimension marks */}
-                  <path className="ly ly8 dim" d={`M${x0} 14H${cx + 24}M${x0} 8V20M${cx + 24} 8V20`} />
-                  <text className="ly ly8 dim-txt" x={cx} y={11} textAnchor="middle">48mm</text>
-                </g>
-              </g>
-            );
-          }
-
-          return (
-            <rect
-              key={i}
-              className="plain"
-              x={cx - 24}
-              y={40}
-              width={48}
-              height={78}
-            />
-          );
-        })}
-
-        {/* Shelf floor line */}
-        <line className="floor" x1="0" y1="121" x2="720" y2="121" />
-      </svg>
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   Main Component
-   ───────────────────────────────────────────────────────────────────────────── */
 export default function BrandReadiness() {
   const pageRef = useRef(null);
+  const resultHeadingRef = useRef(null);
   const leadTrackedRef = useRef(false);
-  useSEO();
+
+  useSEO({
+    title: 'Get a Quote · The Drawing Board — Strategy-First Design Studio',
+    description: 'Tell us what you’re building. Share a few details about your project to get an estimated quote for brand strategy, packaging design, website development, or SaaS branding.',
+    keywords: 'get quote branding, brand strategy quote, packaging design quote, web development quote'
+  });
+
   usePageAnimations(pageRef);
 
-  const location = useLocation();
-  const [view, setView] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get('view') === 'landing') return 'landing';
-    }
-    return 'form'; // Directly show form intake by default on Get Quote
-  });
-
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    if (params.get('view') === 'landing') {
-      setView('landing');
-    } else {
-      setView('form');
-    }
-  }, [location.search]);
-
-  const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState({
+  // Controlled Form State
+  const [state, setState] = useState({
+    fullName: '',
+    email: '',
+    phoneCountryCode: '+91',
+    phoneNumber: '',
+    brandOrWebsite: '',
+    services: [],
     category: '',
-    stage: '',
-    problems: [],
-    scope: '',
-    event: '',
+    otherCategory: '',
+    budgetRange: '',
     timeline: '',
-    budget: '',
-    outcome: ''
+    projectDescription: ''
   });
-  const [lead, setLead] = useState({ first: '', email: '', brand: '', website: '', whatsapp: '' });
-  const [projectData, setProjectData] = useState({ launchDate: '', notes: '' });
-  const [report, setReport] = useState(null);
-  const [animatedScore, setAnimatedScore] = useState(0);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [pulseGuidance, setPulseGuidance] = useState(false);
-  const [isSubmitBtnInView, setIsSubmitBtnInView] = useState(false);
 
-  // Animated shelf demo state (for landing overview view)
-  const [demoStage, setDemoStage] = useState(0);
-  const [demoShape, setDemoShape] = useState('bottle');
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
+  const [submissionSuccess, setSubmissionSuccess] = useState(false);
+  const [alertMessage, setAlertMessage] = useState(false);
+  const [liveAnnouncement, setLiveAnnouncement] = useState('');
 
-  const currentScore = scoreModel(answers);
-  const currentEngagement = recommendEngagement(answers);
+  const announce = (msg) => {
+    setLiveAnnouncement('');
+    setTimeout(() => setLiveAnnouncement(msg), 30);
+  };
 
-  const answeredCount = [
-    answers.category,
-    answers.stage,
-    (answers.problems || []).length > 0 ? 'yes' : '',
-    answers.scope,
-    answers.event,
-    answers.timeline,
-    answers.budget
-  ].filter(Boolean).length;
+  const budgetSetKey = getBudgetSetKey(state.services);
+  const budgetOptions = getBudgetOptions(budgetSetKey);
 
-  // Observe when the final submit button enters viewport
+  // Focus result heading on confirmation view
   useEffect(() => {
-    if (view !== 'form') return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          setIsSubmitBtnInView(entry.isIntersecting);
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    const submitBtn = document.getElementById('br-card-submit-btn') || document.getElementById('br-submit-btn');
-    if (submitBtn) observer.observe(submitBtn);
-    return () => observer.disconnect();
-  }, [view]);
-
-  // Dynamic next target calculation for step-by-step guidance
-  const getNextTarget = () => {
-    if (!answers.category) return { id: 'q-category', label: 'Scroll to Step 01 Questions ↓' };
-    if (!answers.stage) return { id: 'q-stage', label: 'Scroll to Commercial Stage ↓' };
-    if (!answers.problems || answers.problems.length === 0) return { id: 'br-step-2', label: 'Scroll to Step 02: Creative Focus ↓' };
-    if (!answers.scope) return { id: 'q-scope', label: 'Scroll to Creative Scope ↓' };
-    if (!answers.event) return { id: 'q-event', label: 'Scroll to 12-Month Commercial Horizon ↓' };
-    if (!answers.timeline) return { id: 'br-step-3', label: 'Scroll to Step 03: Timeline & Budget ↓' };
-    if (!answers.budget) return { id: 'q-budget', label: 'Scroll to Planned Investment Level ↓' };
-    if (!lead.first?.trim() || !lead.email?.trim() || !lead.brand?.trim() || !lead.whatsapp?.trim() || !projectData.launchDate?.trim()) {
-      return { id: 'br-step-4', label: 'Scroll to Step 04: Project Details ↓' };
+    if (submissionSuccess && resultHeadingRef.current) {
+      resultHeadingRef.current.focus();
     }
-    return { id: 'br-card-submit-btn', label: 'Submit & Get Quote ↓' };
+  }, [submissionSuccess]);
+
+  // Handle Input Changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setState((prev) => ({ ...prev, [name]: value }));
+    clearError(name);
+    if (name === 'phoneNumber') clearError('phoneCountryCode');
   };
 
-  const nextTarget = getNextTarget();
+  // Handle Service Chip Toggle with Exclusive Guidance Logic
+  const handleServiceToggle = (val) => {
+    setState((prev) => {
+      let nextServices;
+      const isAlreadyChecked = prev.services.includes(val);
 
-  const scrollToTarget = (targetId) => {
-    const id = targetId || nextTarget.id;
-    const el = document.getElementById(id);
-    if (el) {
-      const navOffset = 85;
-      const elementPosition = el.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
-      window.scrollTo({
-        top: Math.max(0, offsetPosition),
-        behavior: 'smooth'
-      });
-      if (id === 'first' || id === 'br-step-4') {
-        const firstInput = document.getElementById('first');
-        if (firstInput) setTimeout(() => firstInput.focus(), 350);
-      }
-    }
-  };
-
-  const handleSelectOption = (key, val) => {
-    setAnswers(prev => ({ ...prev, [key]: val }));
-    setPulseGuidance(true);
-    setTimeout(() => setPulseGuidance(false), 1400);
-  };
-
-  const scrollToFirstQuestion = () => {
-    scrollToTarget('br-step-1');
-  };
-
-  // Auto-play demo evolution on landing page
-  useEffect(() => {
-    if (view !== 'landing' || !isAutoPlaying) return;
-
-    let timerId;
-    let stepCount = demoStage;
-
-    const tick = () => {
-      if (stepCount < 8) {
-        stepCount += 1;
-        setDemoStage(stepCount);
-        timerId = setTimeout(tick, 450);
+      if (val === 'guidance') {
+        // Guidance is exclusive
+        nextServices = isAlreadyChecked ? [] : ['guidance'];
       } else {
-        // Pause at stage 8 for 4 seconds, then loop smoothly
-        timerId = setTimeout(() => {
-          stepCount = 0;
-          setDemoStage(0);
-          timerId = setTimeout(tick, 900);
-        }, 4000);
+        // Uncheck guidance if any other service is selected
+        const withoutGuidance = prev.services.filter((s) => s !== 'guidance');
+        if (isAlreadyChecked) {
+          nextServices = withoutGuidance.filter((s) => s !== val);
+        } else {
+          nextServices = [...withoutGuidance, val];
+        }
       }
-    };
 
-    timerId = setTimeout(tick, 600);
-    return () => clearTimeout(timerId);
-  }, [view, isAutoPlaying, demoShape]);
-
-  const getQuestionOptionLabel = (questionId, value) => {
-    const q = QUESTIONS.find(item => item.id === questionId);
-    if (!q || !q.options) return value || 'N/A';
-    const found = q.options.find(opt => opt[0] === value);
-    return found ? found[1] : (value || 'N/A');
-  };
-
-  const getProblemsLabels = (problemKeys = []) => {
-    if (!problemKeys || !problemKeys.length) return 'None specified';
-    const q = QUESTIONS.find(item => item.id === 'problems');
-    if (!q) return problemKeys.join(', ');
-    return problemKeys
-      .map(key => {
-        const found = q.options.find(opt => opt[0] === key);
-        return found ? found[1] : key;
-      })
-      .join('; ');
-  };
-
-  const buildBriefText = (channel = 'whatsapp') => {
-    const scoreVal = currentScore.overall;
-    const bandText = currentScore.band;
-    const engagementName = currentEngagement.name;
-    const investment = currentEngagement.price;
-    const timelineVal = getQuestionOptionLabel('timeline', answers.timeline);
-    const categoryVal = getQuestionOptionLabel('category', answers.category);
-    const stageVal = getQuestionOptionLabel('stage', answers.stage);
-    const problemsVal = getProblemsLabels(answers.problems);
-    const scopeVal = getQuestionOptionLabel('scope', answers.scope);
-    const eventVal = getQuestionOptionLabel('event', answers.event);
-    const budgetVal = getQuestionOptionLabel('budget', answers.budget);
-
-    if (channel === 'whatsapp') {
-      return [
-        `Hello The Drawing Board!`,
-        ``,
-        `*BRAND READINESS & STRATEGIC SCOPE INQUIRY*`,
-        ``,
-        `*Client Contact:* ${lead.first || 'N/A'}`,
-        `*Work Email:* ${lead.email || 'N/A'}`,
-        `*Brand / Company:* ${lead.brand || 'N/A'}`,
-        `*Website / Social:* ${lead.website || 'N/A'}`,
-        `*WhatsApp:* ${lead.whatsapp || 'N/A'}`,
-        ``,
-        `*DIAGNOSTIC READOUT*`,
-        `*Overall Readiness Score:* ${scoreVal}/100 (${bandText})`,
-        `*Category:* ${categoryVal}`,
-        `*Current Stage:* ${stageVal}`,
-        `*Critical Friction:* ${problemsVal}`,
-        `*Creative Focus:* ${scopeVal}`,
-        `*12-Month Horizon:* ${eventVal}`,
-        `*Target Timeline:* ${timelineVal}`,
-        `*Investment Budget:* ${budgetVal}`,
-        answers.outcome ? `*Founder Vision:* "${answers.outcome}"` : '',
-        ``,
-        `*PROJECT SCOPE REQUEST*`,
-        `*Recommended System:* ${engagementName} (${investment})`,
-        `*Desired Launch Date:* ${projectData.launchDate || 'To be scheduled'}`,
-        projectData.notes ? `*Project Notes:* ${projectData.notes}` : '',
-        ``,
-        `---`,
-        `Submitted via The Drawing Board (Brand Readiness Diagnostic)`
-      ].filter(Boolean).join('\n');
-    }
-
-    return [
-      `BRAND READINESS & STRATEGIC SCOPE BRIEF — THE DRAWING BOARD`,
-      `============================================================`,
-      ``,
-      `[01. CLIENT CONTACT]`,
-      `Name: ${lead.first || 'N/A'}`,
-      `Work Email: ${lead.email || 'N/A'}`,
-      `Brand / Company: ${lead.brand || 'N/A'}`,
-      `Website / Social: ${lead.website || 'N/A'}`,
-      `WhatsApp Phone: ${lead.whatsapp || 'N/A'}`,
-      ``,
-      `[02. PROJECT SCOPE REQUIREMENTS]`,
-      `Desired Launch Date: ${projectData.launchDate || 'Not specified'}`,
-      `Additional Notes / Context: ${projectData.notes || 'None provided'}`,
-      ``,
-      `[03. DIAGNOSTIC READOUT & SCORE]`,
-      `Overall Readiness Score: ${scoreVal}/100`,
-      `Strategic Band: ${bandText}`,
-      `Recommended System: ${engagementName} (${investment})`,
-      `Clarity & Strategic Narrative: ${currentScore.clarity}/100`,
-      `Visual & Brand Distinctiveness: ${currentScore.distinct}/100`,
-      `Design System Architecture: ${currentScore.system}/100`,
-      ``,
-      `[04. STEP-BY-STEP DIAGNOSTIC RESPONSES]`,
-      `Step 1 (Category / Offering): ${categoryVal}`,
-      `Step 2 (Commercial Stage): ${stageVal}`,
-      `Step 3 (Critical Friction Points): ${problemsVal}`,
-      `Step 4 (Creative Focus): ${scopeVal}`,
-      `Step 5 (12-Month Commercial Horizon): ${eventVal}`,
-      `Step 6 (Target Launch Timeline): ${timelineVal}`,
-      `Step 7 (Strategic Investment Budget): ${budgetVal}`,
-      `Step 8 (Founder Vision of Success): ${answers.outcome || 'N/A'}`,
-      ``,
-      `------------------------------------------------------------`,
-      `Submitted via drawingsboard.com/brand-readiness`
-    ].filter(Boolean).join('\n');
-  };
-
-  const handleUnifiedSubmit = async (e) => {
-    e.preventDefault();
-    if (!lead.first?.trim()) {
-      alert('Please enter your Founder / Full Name.');
-      document.getElementById('first')?.focus();
-      return;
-    }
-    if (!lead.email?.trim()) {
-      alert('Please enter your Work Email.');
-      document.getElementById('email')?.focus();
-      return;
-    }
-    if (!lead.brand?.trim()) {
-      alert('Please enter your Brand / Company Name.');
-      document.getElementById('brand')?.focus();
-      return;
-    }
-    if (!lead.whatsapp?.trim()) {
-      alert('Please enter your WhatsApp Number (Mandatory for quote delivery).');
-      document.getElementById('whatsapp')?.focus();
-      return;
-    }
-    if (!projectData.launchDate?.trim()) {
-      alert('Please enter your Desired Launch Date (Mandatory for scheduling).');
-      document.getElementById('launchDate')?.focus();
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    const scoreVal = currentScore.overall;
-    const bandText = currentScore.band;
-    const engagementName = currentEngagement.name;
-    const investment = currentEngagement.price;
-    const timelineVal = getQuestionOptionLabel('timeline', answers.timeline);
-    const categoryVal = getQuestionOptionLabel('category', answers.category);
-    const stageVal = getQuestionOptionLabel('stage', answers.stage);
-    const problemsVal = getProblemsLabels(answers.problems);
-    const scopeVal = getQuestionOptionLabel('scope', answers.scope);
-    const eventVal = getQuestionOptionLabel('event', answers.event);
-    const budgetVal = getQuestionOptionLabel('budget', answers.budget);
-
-    // Compute exact dynamic lead value based on budget & engagement tier
-    let dynamicLeadValue = 475000;
-    if (answers.budget === 'u3') dynamicLeadValue = 250000;
-    else if (answers.budget === '3-475') dynamicLeadValue = 387500;
-    else if (answers.budget === '475-7') dynamicLeadValue = 587500;
-    else if (answers.budget === '7-10') dynamicLeadValue = 850000;
-    else if (answers.budget === '10+') dynamicLeadValue = 1200000;
-    else {
-      if (currentEngagement.key === 'brand_to_market') dynamicLeadValue = 825000;
-      else dynamicLeadValue = 475000;
-    }
-
-    // Meta Pixel & Conversions API lead tracking with dynamic price (strictly once per submission)
-    if (!leadTrackedRef.current) {
-      leadTrackedRef.current = true;
-      try {
-        trackMetaFormSubmission({
-          name: lead.first,
-          email: lead.email,
-          phone: lead.whatsapp,
-          company: lead.brand,
-          website: lead.website,
-          services: engagementName,
-          budget: budgetVal,
-          timeline: timelineVal,
-          primaryChallenge: problemsVal,
-          value: dynamicLeadValue,
-          currency: 'INR',
-          message: `[Unified Strategic Scope Intake]\nScore: ${scoreVal}/100 (${bandText})\nCategory: ${categoryVal}\nStage: ${stageVal}\nLaunch: ${projectData.launchDate}\nWhatsApp: ${lead.whatsapp}\nNotes: ${projectData.notes || 'N/A'}\nFounder Vision: ${answers.outcome || 'N/A'}`
-        });
-      } catch (err) {
-        console.warn('Meta tracking error:', err);
-      }
-    }
-
-    // Save offline backup in localStorage so user brief is never lost
-    try {
-      localStorage.setItem('tdb_last_lead_value', String(dynamicLeadValue));
-      localStorage.setItem('tdb_last_lead_currency', 'INR');
-      localStorage.setItem('tdb_last_lead_time', String(Date.now()));
-      localStorage.setItem('tdb_last_quote_brief', JSON.stringify({
-        timestamp: new Date().toISOString(),
-        brand: lead.brand,
-        founder: lead.first,
-        email: lead.email,
-        whatsapp: lead.whatsapp,
-        launchDate: projectData.launchDate,
-        notes: projectData.notes,
-        score: scoreVal,
-        engagement: engagementName,
-        investment: investment,
-        value: dynamicLeadValue
-      }));
-    } catch (_) {}
-
-    // Prepare complete brief payload
-    const payload = {
-      _subject: `New Project Scope Brief: ${lead.brand} — ${lead.first} (Score: ${scoreVal}/100)`,
-      _template: "table",
-      _captcha: "false",
-      _replyto: lead.email,
-      _cc: "dandelionpa7@gmail.com",
-      "Client Name": lead.first,
-      "Work Email": lead.email,
-      "Brand / Company": lead.brand,
-      "Website or Social": lead.website || 'Not provided',
-      "WhatsApp Phone": lead.whatsapp,
-      "Desired Launch Date": projectData.launchDate,
-      "Project Notes / Context": projectData.notes || 'None provided',
-      "Overall Readiness Score": `${scoreVal} / 100 (${bandText})`,
-      "Recommended Engagement": `${engagementName} — ${investment}`,
-      "Estimated Timeline": currentEngagement.weeks || 'Standard Sprint',
-      "Clarity & Strategic Narrative": `${currentScore.clarity} / 100`,
-      "Visual & Brand Distinctiveness": `${currentScore.distinct} / 100`,
-      "Design System Architecture": `${currentScore.system} / 100`,
-      "Step 1 - Core Category": categoryVal,
-      "Step 2 - Commercial Stage": stageVal,
-      "Step 3 - Critical Friction Points": problemsVal,
-      "Step 4 - Creative Focus Area": scopeVal,
-      "Step 5 - 12-Month Commercial Horizon": eventVal,
-      "Step 6 - Target Launch Timeline": timelineVal,
-      "Step 7 - Planned Investment Budget": budgetVal,
-      "Step 8 - Founder Vision of Success": answers.outcome || 'N/A',
-      "Complete Formatted Brief": buildBriefText('email')
-    };
-
-    // Non-blocking background dispatch with keepalive so page transition doesn't hang on slow external SMTP relays
-    fetch("https://formsubmit.co/ajax/25c2139e28176433a33351a4cfeeac2b", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(payload),
-      keepalive: true
-    }).catch(err => {
-      console.warn('Background email dispatch notice:', err);
+      // If budget set changes, reset budget selection
+      const newKey = getBudgetSetKey(nextServices);
+      const oldKey = getBudgetSetKey(prev.services);
+      return {
+        ...prev,
+        services: nextServices,
+        budgetRange: newKey !== oldKey ? '' : prev.budgetRange
+      };
     });
 
-    // Snappy, instant micro-transition (350ms) so user sees button feedback, then lands immediately on confirmation
-    await new Promise(resolve => setTimeout(resolve, 350));
-    setIsSubmitting(false);
-    setView('success');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    clearError('services');
   };
 
-  const handleWhatsAppSend = () => {
-    if (!lead.first?.trim()) {
-      alert('Please enter your Founder / Full Name.');
-      document.getElementById('first')?.focus();
-      return;
-    }
-    if (!lead.email?.trim()) {
-      alert('Please enter your Work Email.');
-      document.getElementById('email')?.focus();
-      return;
-    }
-    if (!lead.brand?.trim()) {
-      alert('Please enter your Brand / Company Name.');
-      document.getElementById('brand')?.focus();
-      return;
-    }
-    if (!lead.whatsapp?.trim()) {
-      alert('Please enter your WhatsApp Number (Mandatory).');
-      document.getElementById('whatsapp')?.focus();
-      return;
-    }
-    if (!projectData.launchDate?.trim()) {
-      alert('Please enter your Desired Launch Date (Mandatory).');
-      document.getElementById('launchDate')?.focus();
-      return;
-    }
-    const msg = buildBriefText('whatsapp');
-    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  // Category Change
+  const handleCategoryChange = (e) => {
+    const val = e.target.value;
+    setState((prev) => ({
+      ...prev,
+      category: val,
+      otherCategory: val === 'something-else' ? prev.otherCategory : ''
+    }));
+    clearError('category');
+  };
 
-    const scoreVal = currentScore.overall;
-    const bandText = currentScore.band;
-    const engagementName = currentEngagement.name;
-    const investment = currentEngagement.price;
-    const timelineVal = getQuestionOptionLabel('timeline', answers.timeline);
-    const categoryVal = getQuestionOptionLabel('category', answers.category);
-    const stageVal = getQuestionOptionLabel('stage', answers.stage);
-    const problemsVal = getProblemsLabels(answers.problems);
-    const scopeVal = getQuestionOptionLabel('scope', answers.scope);
-    const eventVal = getQuestionOptionLabel('event', answers.event);
-    const budgetVal = getQuestionOptionLabel('budget', answers.budget);
+  const clearError = (name) => {
+    setErrors((prev) => {
+      if (!prev[name]) return prev;
+      const copy = { ...prev };
+      delete copy[name];
+      return copy;
+    });
+  };
 
-    // Background FormSubmit email dispatch for studio archive
+  // Validation
+  const validateForm = () => {
+    const errs = {};
+    const pn = state.phoneNumber.replace(/[\s\-().]/g, '');
+
+    if (!state.fullName.trim()) errs.fullName = 'Please tell us your name.';
+    if (!state.email.trim()) {
+      errs.email = 'Please enter your email address.';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(state.email.trim())) {
+      errs.email = 'That email doesn’t look quite right. Try something like name@example.com.';
+    }
+
+    if (pn) {
+      if (!/^\+?\d{1,4}$/.test(state.phoneCountryCode.trim())) {
+        errs.phoneCountryCode = 'Use a country code such as +91.';
+      }
+      if (!/^\d{6,14}$/.test(pn)) {
+        errs.phoneNumber = 'Enter 6 to 14 digits, without the country code.';
+      }
+    }
+
+    if (!state.services.length) errs.services = 'Please select at least one option.';
+    if (!state.category) errs.category = 'Please choose a category.';
+    if (!state.budgetRange) {
+      errs.budgetRange = state.services.length
+        ? 'Please choose an approximate budget, or “I need guidance”.'
+        : 'Choose a service first, then pick a budget.';
+    }
+    if (!state.projectDescription.trim()) {
+      errs.projectDescription = 'Please share a sentence or two about your project.';
+    }
+
+    return errs;
+  };
+
+  // Form Submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (submitting) return;
+
+    const validationErrors = validateForm();
+    setErrors(validationErrors);
+
+    const errorKeys = ORDER.filter((k) => validationErrors[k]);
+    if (errorKeys.length) {
+      const firstKey = errorKeys[0];
+      const targetEl = document.getElementById(firstKey) || document.querySelector(`input[name="services"]`);
+      if (targetEl) targetEl.focus();
+      announce(`Please fix ${errorKeys.length} ${errorKeys.length > 1 ? 'fields' : 'field'} before sending.`);
+      return;
+    }
+
+    setSubmitting(true);
+    setAlertMessage(false);
+    announce('Sending…');
+
+    const serviceLabels = state.services.map((s) => SERVICES.find((x) => x.value === s)?.label || s);
+    const catLabel = CATEGORIES.find((c) => c.value === state.category)?.label || state.category;
+    const budgetLabel = budgetOptions.find((b) => b.value === state.budgetRange)?.label || state.budgetRange;
+    const timelineLabel = TIMELINES.find((t) => t.value === state.timeline)?.label || state.timeline || 'Not specified';
+    const hasPhone = Boolean(state.phoneNumber.trim());
+    const fullPhone = hasPhone ? `${state.phoneCountryCode.trim()} ${state.phoneNumber.trim()}` : '';
+    const calculatedValue = calculateEstimateValue(state.services, state.budgetRange);
+
     try {
-      fetch("https://formsubmit.co/ajax/25c2139e28176433a33351a4cfeeac2b", {
-        method: "POST",
+      // 1. Meta Pixel & Conversions API Lead Dispatch (strictly once per submission)
+      if (!leadTrackedRef.current) {
+        leadTrackedRef.current = true;
+        trackMetaFormSubmission({
+          name: state.fullName.trim(),
+          email: state.email.trim(),
+          phone: fullPhone.replace(/[^0-9]/g, ''),
+          company: state.brandOrWebsite.trim(),
+          services: serviceLabels.join(', '),
+          category: catLabel + (state.otherCategory ? ` (${state.otherCategory})` : ''),
+          budget: budgetLabel,
+          timeline: timelineLabel,
+          message: state.projectDescription.trim(),
+          value: calculatedValue,
+          currency: 'INR'
+        });
+      }
+
+      // 2. Background FormSubmit email dispatch directly to studio inbox
+      await fetch('https://formsubmit.co/ajax/25c2139e28176433a33351a4cfeeac2b', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          Accept: 'application/json'
         },
         body: JSON.stringify({
-          _subject: `New Project Scope Brief (WhatsApp): ${lead.brand} — ${lead.first} (Score: ${scoreVal}/100)`,
-          _template: "table",
-          _captcha: "false",
-          _replyto: lead.email,
-          _cc: "dandelionpa7@gmail.com",
-          "Client Name": lead.first,
-          "Work Email": lead.email,
-          "Brand / Company": lead.brand,
-          "Website or Social": lead.website || 'Not provided',
-          "WhatsApp Phone": lead.whatsapp || 'Not provided',
-          "Desired Launch Date": projectData.launchDate || 'Not specified',
-          "Project Notes / Context": projectData.notes || 'None provided',
-          "Overall Readiness Score": `${scoreVal} / 100 (${bandText})`,
-          "Recommended Engagement": `${engagementName} — ${investment}`,
-          "Estimated Timeline": currentEngagement.weeks || 'Standard Sprint',
-          "Clarity & Strategic Narrative": `${currentScore.clarity} / 100`,
-          "Visual & Brand Distinctiveness": `${currentScore.distinct} / 100`,
-          "Design System Architecture": `${currentScore.system} / 100`,
-          "Step 1 - Core Category": categoryVal,
-          "Step 2 - Commercial Stage": stageVal,
-          "Step 3 - Critical Friction Points": problemsVal,
-          "Step 4 - Creative Focus Area": scopeVal,
-          "Step 5 - 12-Month Commercial Horizon": eventVal,
-          "Step 6 - Target Launch Timeline": timelineVal,
-          "Step 7 - Planned Investment Budget": budgetVal,
-          "Step 8 - Founder Vision of Success": answers.outcome || 'N/A',
-          "Preferred Channel": "WhatsApp",
-          "Complete Formatted Brief": buildBriefText('email')
-        })
-      }).catch(err => console.warn(err));
-    } catch (e) {}
+          _subject: `New Project Quote Enquiry: ${state.brandOrWebsite || 'Brand'} — ${state.fullName}`,
+          _template: 'table',
+          _captcha: 'false',
+          _replyto: state.email.trim(),
+          _cc: 'dandelionpa7@gmail.com',
+          'Client Name': state.fullName.trim(),
+          'Email Address': state.email.trim(),
+          'WhatsApp / Phone': fullPhone || 'Not provided',
+          'Brand Name or Website': state.brandOrWebsite.trim() || 'Not provided',
+          'Services Requested': serviceLabels.join(', '),
+          'Business Category': catLabel + (state.otherCategory ? ` (${state.otherCategory})` : ''),
+          'Approximate Budget': budgetLabel,
+          'Target Timeline': timelineLabel,
+          'Project Overview': state.projectDescription.trim()
+        }),
+        keepalive: true
+      });
 
-    // Compute exact dynamic lead value based on budget & engagement tier
-    let dynamicLeadValue = 475000;
-    if (answers.budget === 'u3') dynamicLeadValue = 250000;
-    else if (answers.budget === '3-475') dynamicLeadValue = 387500;
-    else if (answers.budget === '475-7') dynamicLeadValue = 587500;
-    else if (answers.budget === '7-10') dynamicLeadValue = 850000;
-    else if (answers.budget === '10+') dynamicLeadValue = 1200000;
-    else {
-      if (currentEngagement.key === 'brand_to_market') dynamicLeadValue = 825000;
-      else dynamicLeadValue = 475000;
-    }
-
-    // Meta Pixel & Conversions API lead tracking with dynamic price (strictly once per submission)
-    if (!leadTrackedRef.current) {
-      leadTrackedRef.current = true;
+      // Save offline backup
       try {
-        trackMetaFormSubmission({
-          name: lead.first,
-          email: lead.email,
-          phone: lead.whatsapp,
-          company: lead.brand,
-          website: lead.website,
-          services: engagementName,
-          budget: budgetVal,
-          timeline: timelineVal,
-          primaryChallenge: problemsVal,
-          value: dynamicLeadValue,
-          currency: 'INR',
-          message: `[Unified Strategic Scope Intake (WhatsApp)]\nScore: ${scoreVal}/100 (${bandText})\nCategory: ${categoryVal}\nStage: ${stageVal}\nLaunch: ${projectData.launchDate}\nWhatsApp: ${lead.whatsapp}\nNotes: ${projectData.notes || 'N/A'}\nFounder Vision: ${answers.outcome || 'N/A'}`
-        });
-      } catch (err) {
-        console.warn('Meta tracking error:', err);
-      }
-    }
+        localStorage.setItem(
+          'tdb_last_quote_brief',
+          JSON.stringify({
+            timestamp: new Date().toISOString(),
+            fullName: state.fullName,
+            email: state.email,
+            phone: fullPhone,
+            brand: state.brandOrWebsite,
+            services: serviceLabels,
+            category: catLabel,
+            budget: budgetLabel,
+            value: calculatedValue
+          })
+        );
+      } catch (_) {}
 
-    window.open(waUrl, '_blank', 'noopener,noreferrer');
-    setView('success');
+      setSubmissionSuccess(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      announce('Thank you for sharing your project. We’ve received your enquiry.');
+    } catch (err) {
+      console.warn('Submission notice:', err);
+      // Fallback: still show success to client if email send failed silently but brief was recorded
+      setSubmissionSuccess(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleResetForm = () => {
+    setState({
+      fullName: '',
+      email: '',
+      phoneCountryCode: '+91',
+      phoneNumber: '',
+      brandOrWebsite: '',
+      services: [],
+      category: '',
+      otherCategory: '',
+      budgetRange: '',
+      timeline: '',
+      projectDescription: ''
+    });
+    setErrors({});
+    setSubmissionSuccess(false);
+    leadTrackedRef.current = false;
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    announce('Form reset. You can submit another enquiry.');
   };
 
-  const handleStartQuiz = () => {
-    setView('form');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  // WhatsApp quick brief builder for confirmation screen
+  const buildWhatsAppBrief = () => {
+    const serviceLabels = state.services.map((s) => SERVICES.find((x) => x.value === s)?.label || s);
+    const catLabel = CATEGORIES.find((c) => c.value === state.category)?.label || state.category;
+    const budgetLabel = budgetOptions.find((b) => b.value === state.budgetRange)?.label || state.budgetRange;
+
+    return [
+      `Hello The Drawing Board!`,
+      ``,
+      `*PROJECT QUOTE BRIEF*`,
+      `*Client:* ${state.fullName}`,
+      `*Email:* ${state.email}`,
+      state.phoneNumber ? `*Phone:* ${state.phoneCountryCode} ${state.phoneNumber}` : '',
+      state.brandOrWebsite ? `*Brand:* ${state.brandOrWebsite}` : '',
+      `*Services:* ${serviceLabels.join(', ')}`,
+      `*Category:* ${catLabel}${state.otherCategory ? ` (${state.otherCategory})` : ''}`,
+      `*Budget:* ${budgetLabel}`,
+      state.timeline ? `*Timeline:* ${TIMELINES.find((t) => t.value === state.timeline)?.label || state.timeline}` : '',
+      ``,
+      `*Project Overview:*`,
+      state.projectDescription,
+      ``,
+      `---`,
+      `Submitted via drawingsboard.com/get-quote`
+    ]
+      .filter(Boolean)
+      .join('\n');
   };
 
-  const getStickyCTAConfig = () => {
-    switch (view) {
-      case 'landing':
-        return {
-          title: "Brand Readiness",
-          subtitle: "Get Project Quote",
-          buttonText: "Start",
-          onClick: handleStartQuiz
-        };
-      case 'form':
-        return {
-          title: answeredCount > 0 ? `Diagnostic: ${currentScore.overall}/100` : "Brand Diagnostic",
-          subtitle: answeredCount > 0 ? currentEngagement.name : "Select your parameters",
-          buttonText: "Submit & Get Quote",
-          onClick: () => {
-            const btn = document.getElementById('br-card-submit-btn') || document.getElementById('br-submit-btn');
-            if (btn) {
-              btn.click();
-            } else {
-              scrollToTarget('br-step-4');
-            }
-          }
-        };
-      case 'success':
-        return {
-          title: "Brief Received",
-          subtitle: "Studio Review",
-          buttonText: "WhatsApp",
-          link: WHATSAPP_URL
-        };
-      default:
-        return {
-          title: "From ₹4,75,000",
-          subtitle: "Brand Diagnostic",
-          buttonText: "Get Quote",
-          onClick: handleStartQuiz
-        };
-    }
-  };
-
-  const stickyConfig = getStickyCTAConfig();
-
-  const handleProblemToggle = (probKey) => {
-    const current = answers.problems || [];
-    let updated;
-    if (current.includes(probKey)) {
-      updated = current.filter(k => k !== probKey);
-    } else {
-      if (current.length >= 2) {
-        updated = [current[1], probKey];
-      } else {
-        updated = [...current, probKey];
-      }
-    }
-    setAnswers(prev => ({ ...prev, problems: updated }));
-    setPulseGuidance(true);
-    setTimeout(() => setPulseGuidance(false), 1400);
-  };
+  const isMultiService = state.services.length > 1;
+  const showSaasHint = state.services.includes('saas');
+  const showBudgetHint = Boolean(budgetSetKey && budgetSetKey !== 'multiple' && state.budgetRange.startsWith('below-'));
 
   return (
-    <>
+    <div ref={pageRef} style={{ background: 'var(--paper, #F3EDE3)', minHeight: '100vh' }}>
       <RegistrationMarks />
       <Navbar />
 
-      <div ref={pageRef} className="brand-readiness-page">
-        <main className="br-main">
-          <div className="wrap">
-            {/* ════════════════════════════════════════════════════════════════
-                VIEW 1: LANDING
-               ════════════════════════════════════════════════════════════════ */}
-            {view === 'landing' && (
-              <section className="bp-hero br-landing-hero">
-                {/* Header Sheet Label */}
-                <div className="bp-sheet-label">
-                  <span className="bp-sheet-right mono">SENIOR STUDIO DIAGNOSTIC // 0–100 READOUT</span>
-                  <span className="rule"></span>
-                </div>
-
-                <div className="bp-avail">
-                  <span className="bp-dot" aria-hidden="true" />
-                  <span>8 strategic questions · Real-time readiness scoring · Senior studio diagnostic</span>
-                </div>
-
-                <h1>
-                  Is your brand ready for its <em>next stage of growth?</em>
-                </h1>
-
-                <div className="bp-hero-grid">
-                  <div>
-                    <p className="bp-hero-sub">
-                      Eight strategic questions about where your brand is today, where it’s going, and what’s causing friction. We calculate your readiness score and recommend where our studio would focus first.
-                    </p>
-                    <p className="bp-hero-sub">
-                      Benchmarked against real consumer brand deployments across food &amp; beverage, beauty, fashion, and lifestyle.
-                    </p>
-                    <div className="bp-cta-row">
-                      <button
-                        type="button"
-                        className="bp-btn-primary"
-                        onClick={handleStartQuiz}
-                      >
-                        Check My Brand <ArrowIcon size={14} />
-                      </button>
-                    </div>
-                    <p className="bp-price-note">
-                      Free 2-minute diagnostic · Instant calculated readout · Engagements begin at <b>$4,960 (₹4,75,000)</b>
-                    </p>
-                  </div>
-
-                  <div className="bp-annot-card">
-                    <div className="corner" aria-hidden="true"></div>
-                    <div className="bp-annot-title mono">Diagnostic Specification // Studio Model</div>
-                    <div className="bp-annot-row"><span>Time Required</span><span>~2 Minutes</span></div>
-                    <div className="bp-annot-row"><span>Diagnostic Steps</span><span>08 Questions</span></div>
-                    <div className="bp-annot-row"><span>Readout Model</span><span>Scored 0–100 + Fit</span></div>
-                    <div className="bp-annot-row"><span>Senior Review</span><span>Partner Level</span></div>
-                    <div className="bp-annot-row"><span>Starting Scope</span><span>₹4.75L+ ($4,960)</span></div>
-                    <div className="bp-annot-row"><span>Instant Deliverable</span><span>Custom Scope Plan</span></div>
-                  </div>
-                </div>
-
-                {/* Architectural Stat Strip */}
-                <div className="bp-stat-strip">
-                  <div className="bp-stat"><div className="num">08</div><div className="lbl mono">Strategic Questions</div></div>
-                  <div className="bp-stat"><div className="num">02m</div><div className="lbl mono">Estimated Duration</div></div>
-                  <div className="bp-stat"><div className="num">100</div><div className="lbl mono">Point Precision Scoring</div></div>
-                  <div className="bp-stat"><div className="num">₹4.75L</div><div className="lbl mono">Starting Scope ($4,960)</div></div>
-                </div>
-
-                {/* Category & Silhouette Selector Strip */}
-                <div className="category-strip" style={{ marginTop: '48px', marginBottom: '28px' }}>
-                  <div className="wrap" style={{ padding: 0 }}>
-                    <span className="lbl2 mono">CALIBRATED FOR AMBITIOUS CONSUMER BRANDS // CLICK TO PREVIEW FORMAT</span>
-                    <div className="category-row">
-                      {[
-                        { cat: 'beauty', label: 'Beauty & Skincare (Bottle)', shape: 'bottle' },
-                        { cat: 'fnb', label: 'Food & Beverage (Pouch)', shape: 'pouch' },
-                        { cat: 'consumer', label: 'Consumer Goods (Carton)', shape: 'carton' },
-                        { cat: 'hospitality', label: 'Hospitality (Cup)', shape: 'cup' },
-                        { cat: 'fashion', label: 'Fashion & Luxury (Bag)', shape: 'bag' },
-                        { cat: 'tech', label: 'Hardware & Tech (Device)', shape: 'device' },
-                        { cat: 'other', label: 'Artisanal & Gifting (Box)', shape: 'box' },
-                      ].map(item => (
-                        <button
-                          key={item.cat}
-                          type="button"
-                          className={`cat-pill mono ${demoShape === item.shape ? 'active' : ''}`}
-                          onClick={() => {
-                            setDemoShape(item.shape);
-                            setDemoStage(0);
-                            setIsAutoPlaying(true);
-                          }}
-                        >
-                          {item.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Animated Editorial Shelf Graphic (Real SVG Bottle/Pack Architecture) */}
-                <div className="br-shelf-container">
-                  <div className="br-shelf-header">
-                    <div>
-                      <div className="mono br-shelf-tag">FIG 01. / SHELF STANDOUT EVOLUTION — FROM COMMODITY TO SYSTEM</div>
-                      <h3 className="br-shelf-sub">Seven packs on the retail shelf. One of them knows what it is.</h3>
-                    </div>
-                    <div className="br-shelf-controls">
-                      <span className="mono br-shelf-stage-counter">
-                        STAGE {String(demoStage).padStart(2, '0')} / 08
-                      </span>
-                      <button
-                        type="button"
-                        className="shelf-btn mono"
-                        onClick={() => {
-                          setDemoStage(0);
-                          setIsAutoPlaying(true);
-                        }}
-                        title="Replay evolution sequence"
-                      >
-                        ↺ Replay Evolution
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Real Animated SVG Shelf Graphic */}
-                  <ShelfGraphic stage={demoStage} shape={demoShape} uid="landing" />
-
-                  {/* Interactive Evolution Stepper & Stage Description */}
-                  <div className="br-shelf-status">
-                    <div className="br-stage-bar">
-                      {Array.from({ length: 9 }).map((_, i) => (
-                        <button
-                          key={i}
-                          type="button"
-                          className={`br-stage-step ${demoStage >= i ? 'active' : ''} ${demoStage === i ? 'current' : ''}`}
-                          onClick={() => {
-                            setIsAutoPlaying(false);
-                            setDemoStage(i);
-                          }}
-                          title={`Jump to Stage ${i}`}
-                        >
-                          <span className="mono">0{i}</span>
-                        </button>
-                      ))}
-                    </div>
-                    <div className="br-stage-desc mono">
-                      <strong>{STAGE_DESCRIPTIONS[demoStage]?.title}:</strong> {STAGE_DESCRIPTIONS[demoStage]?.desc}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Selected Systems */}
-                <div className="br-systems-strip">
-                  <div className="bp-sheet-label" style={{ marginBottom: '16px' }}>
-                    <span className="bp-sheet-right mono">BENCHMARKED CLIENT SYSTEMS // REAL PROVEN COMMERCIAL OUTCOMES</span>
-                    <span className="rule"></span>
-                  </div>
-                  <div className="br-systems-grid">
-                    {SYSTEMS.map((s, idx) => (
-                      <Link key={idx} to={s.href} className="br-system-card">
-                        <span className="br-sys-name">{s.name}</span>
-                        <span className="mono br-sys-cat">{s.cat} →</span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </section>
-            )}
-
-                        {/* ════════════════════════════════════════════════════════════════
-                VIEW 2: UNIFIED OPTIMIZED STRATEGIC QUOTE & DIAGNOSTIC FORM
-               ════════════════════════════════════════════════════════════════ */}
-            {view === 'form' && (
-              <section className="br-form-section">
-                {/* Unified Form Top Bar: Single Eyebrow + Modernized Back Button */}
-                <div className="br-form-top-bar">
-                  <div className="br-form-tag-wrap">
-                    <span className="bp-dot" aria-hidden="true" />
-                    <span className="mono br-form-tag">
-                      SYSTEM INTAKE // SCOPE &amp; DIAGNOSTIC
-                    </span>
-                  </div>
-                  <button
-                    type="button"
-                    className="br-back-overview-btn"
-                    onClick={() => {
-                      setView('landing');
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    aria-label="Back to Overview"
-                  >
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <line x1="19" y1="12" x2="5" y2="12"></line>
-                      <polyline points="12 19 5 12 12 5"></polyline>
-                    </svg>
-                    <span>Back to Overview</span>
-                  </button>
-                </div>
-
-                <div className="br-form-intro">
-                  <h1 className="br-form-main-title">
-                    Strategic Project Scope &amp; Diagnostic Intake
-                  </h1>
-                  <p className="br-form-main-sub">
-                    Select your parameters below to calculate your real-time brand readiness score (0–100) and identify the ideal studio engagement sprint. Submit your brief for direct senior review.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={scrollToFirstQuestion}
-                    className="br-intro-scroll-prompt"
-                  >
-                    <span>Begin Step 01 // Brand Foundation</span>
-                    <span className="br-scroll-prompt-arrow" aria-hidden="true">↓</span>
-                  </button>
-                </div>
-
-                <form onSubmit={handleUnifiedSubmit} className="br-unified-grid-layout">
-                  {/* Left Column: Intake Sections */}
-                  <div className="br-form-left-col">
-                    {/* SECTION 01: CORE OFFERING & COMMERCIAL STAGE */}
-                    <div id="br-step-1" className="br-form-card">
-                      <div className="corner" aria-hidden="true"></div>
-                      <div className="br-card-header">
-                        <span className="mono br-card-sec-num">01 // BRAND FOUNDATION</span>
-                        <h2 className="br-card-heading">Category &amp; Commercial Milestone</h2>
-                        <p className="br-card-explainer">Define what you are building and where the business stands today.</p>
-                      </div>
-
-                      {/* Question 1: Category */}
-                      <div id="q-category" className="br-field-block">
-                        <label className="mono br-field-label">
-                          What are you building? <span className="br-label-required">*</span>
-                        </label>
-                        <div className="br-pills-wrap">
-                          {QUESTIONS[0].options.map(([val, label]) => {
-                            const isSelected = answers.category === val;
-                            return (
-                              <button
-                                key={val}
-                                type="button"
-                                className={`br-option-pill ${isSelected ? 'active' : ''}`}
-                                onClick={() => handleSelectOption('category', val)}
-                              >
-                                {isSelected && <span className="br-pill-check">✓</span>}
-                                {label}
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      {/* Question 2: Commercial Stage */}
-                      <div id="q-stage" className="br-field-block" style={{ marginTop: '26px' }}>
-                        <label className="mono br-field-label">
-                          Where is the business today? <span className="br-label-required">*</span>
-                        </label>
-                        <div className="br-pills-wrap">
-                          {QUESTIONS[1].options.map(([val, label]) => {
-                            const isSelected = answers.stage === val;
-                            return (
-                              <button
-                                key={val}
-                                type="button"
-                                className={`br-option-pill ${isSelected ? 'active' : ''}`}
-                                onClick={() => handleSelectOption('stage', val)}
-                              >
-                                {isSelected && <span className="br-pill-check">✓</span>}
-                                {label}
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      {/* Step 1 Footer Action */}
-                      <div className="br-step-footer">
-                        <button
-                          type="button"
-                          className="br-step-btn"
-                          onClick={() => scrollToTarget('br-step-2')}
-                        >
-                          <span>Continue to Step 02 // Scope &amp; Tension Points</span>
-                          <span className="arrow" aria-hidden="true">↓</span>
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* SECTION 02: SCOPE & CORE FRICTION POINTS */}
-                    <div id="br-step-2" className="br-form-card">
-                      <div className="corner" aria-hidden="true"></div>
-                      <div className="br-card-header">
-                        <span className="mono br-card-sec-num">02 // SCOPE &amp; PRESSURES</span>
-                        <h2 className="br-card-heading">Creative Focus &amp; Tension Points</h2>
-                        <p className="br-card-explainer">Identify where current brand friction occurs and where studio effort should focus.</p>
-                      </div>
-
-                      {/* Question 3: Problems / Frictions (Multi-select, max 2) */}
-                      <div id="q-problems" className="br-field-block">
-                        <div className="br-field-label-row">
-                          <label className="mono br-field-label">
-                            What is holding the brand back?
-                          </label>
-                          <span className="mono br-helper-tag">
-                            {(answers.problems || []).length} of 2 selected
-                          </span>
-                        </div>
-                        <div className="br-pills-wrap">
-                          {QUESTIONS[2].options.map(([val, label]) => {
-                            const isSelected = (answers.problems || []).includes(val);
-                            return (
-                              <button
-                                key={val}
-                                type="button"
-                                className={`br-option-pill ${isSelected ? 'active' : ''}`}
-                                onClick={() => handleProblemToggle(val)}
-                              >
-                                {isSelected && <span className="br-pill-check">✓</span>}
-                                {label}
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      {/* Question 4: Scope / Focus Area */}
-                      <div id="q-scope" className="br-field-block" style={{ marginTop: '26px' }}>
-                        <label className="mono br-field-label">
-                          What needs to change first? <span className="br-label-required">*</span>
-                        </label>
-                        <div className="br-pills-wrap">
-                          {QUESTIONS[3].options.map(([val, label]) => {
-                            const isSelected = answers.scope === val;
-                            return (
-                              <button
-                                key={val}
-                                type="button"
-                                className={`br-option-pill ${isSelected ? 'active' : ''}`}
-                                onClick={() => handleSelectOption('scope', val)}
-                              >
-                                {isSelected && <span className="br-pill-check">✓</span>}
-                                {label}
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      {/* Question 5: 12-Month Horizon */}
-                      <div id="q-event" className="br-field-block" style={{ marginTop: '26px' }}>
-                        <label className="mono br-field-label">
-                          What is happening in the next 12 months? <span className="br-label-required">*</span>
-                        </label>
-                        <div className="br-pills-wrap">
-                          {QUESTIONS[4].options.map(([val, label]) => {
-                            const isSelected = answers.event === val;
-                            return (
-                              <button
-                                key={val}
-                                type="button"
-                                className={`br-option-pill ${isSelected ? 'active' : ''}`}
-                                onClick={() => handleSelectOption('event', val)}
-                              >
-                                {isSelected && <span className="br-pill-check">✓</span>}
-                                {label}
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      {/* Step 2 Footer Action */}
-                      <div className="br-step-footer">
-                        <button
-                          type="button"
-                          className="br-step-btn"
-                          onClick={() => scrollToTarget('br-step-3')}
-                        >
-                          <span>Continue to Step 03 // Timeline &amp; Vision</span>
-                          <span className="arrow" aria-hidden="true">↓</span>
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* SECTION 03: TIMELINE, BUDGET & FOUNDER VISION */}
-                    <div id="br-step-3" className="br-form-card">
-                      <div className="corner" aria-hidden="true"></div>
-                      <div className="br-card-header">
-                        <span className="mono br-card-sec-num">03 // TIMELINE &amp; VISION</span>
-                        <h2 className="br-card-heading">Schedule, Budget &amp; Desired Impact</h2>
-                        <p className="br-card-explainer">Ensure deliverables align with your launch runway and strategic investment.</p>
-                      </div>
-
-                      {/* Question 6: Timeline */}
-                      <div id="q-timeline" className="br-field-block">
-                        <label className="mono br-field-label">
-                          When does this need to go live? <span className="br-label-required">*</span>
-                        </label>
-                        <div className="br-pills-wrap">
-                          {QUESTIONS[5].options.map(([val, label]) => {
-                            const isSelected = answers.timeline === val;
-                            return (
-                              <button
-                                key={val}
-                                type="button"
-                                className={`br-option-pill ${isSelected ? 'active' : ''}`}
-                                onClick={() => handleSelectOption('timeline', val)}
-                              >
-                                {isSelected && <span className="br-pill-check">✓</span>}
-                                {label}
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      {/* Question 7: Budget */}
-                      <div id="q-budget" className="br-field-block" style={{ marginTop: '26px' }}>
-                        <div className="br-field-label-row">
-                          <label className="mono br-field-label">
-                            Planned Brand Investment Level <span className="br-label-required">*</span>
-                          </label>
-                          <span className="mono br-helper-tag">
-                            From ₹4,75,000 ($4,960)
-                          </span>
-                        </div>
-                        <div className="br-pills-wrap">
-                          {QUESTIONS[6].options.map(([val, label]) => {
-                            const isSelected = answers.budget === val;
-                            return (
-                              <button
-                                key={val}
-                                type="button"
-                                className={`br-option-pill ${isSelected ? 'active' : ''}`}
-                                onClick={() => handleSelectOption('budget', val)}
-                              >
-                                {isSelected && <span className="br-pill-check">✓</span>}
-                                {label}
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      {/* Question 8: Founder Vision Outcome */}
-                      <div id="q-outcome" className="br-field-block" style={{ marginTop: '26px' }}>
-                        <label className="mono br-field-label" htmlFor="br-outcome-input">
-                          If this project goes brilliantly, what changes for the business?
-                        </label>
-                        <p className="br-input-subtext">
-                          In your own words — one or two sentences describing what commercial success looks like.
-                        </p>
-                        <textarea
-                          id="br-outcome-input"
-                          rows={3}
-                          className="br-form-textarea"
-                          placeholder={QUESTIONS[7].placeholder}
-                          value={answers.outcome}
-                          onChange={(e) => setAnswers({ ...answers, outcome: e.target.value })}
-                        />
-                      </div>
-
-                      {/* Step 3 Footer Action */}
-                      <div className="br-step-footer">
-                        <button
-                          type="button"
-                          className="br-step-btn"
-                          onClick={() => scrollToTarget('br-step-4')}
-                        >
-                          <span>Continue to Step 04 // Contact Details</span>
-                          <span className="arrow" aria-hidden="true">↓</span>
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* SECTION 04: FOUNDER & PROJECT CONTACT INTAKE */}
-                    <div id="br-step-4" className="br-form-card">
-                      <div className="corner" aria-hidden="true"></div>
-                      <div className="br-card-header">
-                        <span className="mono br-card-sec-num">04 // FOUNDER &amp; INQUIRY DETAILS</span>
-                        <h2 className="br-card-heading">Project Contact Information</h2>
-                        <p className="br-card-explainer">Where should we deliver the strategic scope proposal and project timeline?</p>
-                      </div>
-
-                      <div className="br-fields-grid">
-                        <div className="field-group">
-                          <label className="mono" htmlFor="first">
-                            Founder / Full Name <span className="br-label-required">*</span>
-                          </label>
-                          <input
-                            id="first"
-                            type="text"
-                            required
-                            placeholder="e.g. Maya Sharma"
-                            value={lead.first}
-                            onChange={(e) => setLead({ ...lead, first: e.target.value })}
-                          />
-                        </div>
-
-                        <div className="field-group">
-                          <label className="mono" htmlFor="email">
-                            Work Email <span className="br-label-required">*</span>
-                          </label>
-                          <input
-                            id="email"
-                            type="email"
-                            required
-                            placeholder="e.g. maya@yourbrand.com"
-                            value={lead.email}
-                            onChange={(e) => setLead({ ...lead, email: e.target.value })}
-                          />
-                        </div>
-
-                        <div className="field-group">
-                          <label className="mono" htmlFor="brand">
-                            Brand / Company Name <span className="br-label-required">*</span>
-                          </label>
-                          <input
-                            id="brand"
-                            type="text"
-                            required
-                            placeholder="e.g. Lumien Botanical"
-                            value={lead.brand}
-                            onChange={(e) => setLead({ ...lead, brand: e.target.value })}
-                          />
-                        </div>
-
-                        <div className="field-group">
-                          <label className="mono" htmlFor="website">
-                            Website or Instagram (optional)
-                          </label>
-                          <input
-                            id="website"
-                            type="text"
-                            placeholder="e.g. @yourbrand or website.com"
-                            value={lead.website}
-                            onChange={(e) => setLead({ ...lead, website: e.target.value })}
-                          />
-                        </div>
-
-                        <div className="field-group">
-                          <label className="mono" htmlFor="whatsapp">
-                            WhatsApp Phone <span className="br-label-required">*</span>
-                          </label>
-                          <input
-                            id="whatsapp"
-                            type="tel"
-                            required
-                            placeholder="+91 98765 43210 (country code + number)"
-                            value={lead.whatsapp}
-                            onChange={(e) => setLead({ ...lead, whatsapp: e.target.value })}
-                          />
-                        </div>
-
-                        <div className="field-group">
-                          <label className="mono" htmlFor="launchDate">
-                            Desired Launch Date <span className="br-label-required">*</span>
-                          </label>
-                          <input
-                            id="launchDate"
-                            type="text"
-                            required
-                            placeholder="e.g. November 2026 or 4 Weeks Sprint"
-                            value={projectData.launchDate}
-                            onChange={(e) => setProjectData({ ...projectData, launchDate: e.target.value })}
-                          />
-                        </div>
-
-                        <div className="field-group full-width">
-                          <label className="mono" htmlFor="notes">
-                            Additional Context or Specific Notes (optional)
-                          </label>
-                          <textarea
-                            id="notes"
-                            rows={3}
-                            placeholder="Anything specific we should know regarding SKUs, existing brand history, or manufacturer deadlines?"
-                            value={projectData.notes}
-                            onChange={(e) => setProjectData({ ...projectData, notes: e.target.value })}
-                          />
-                        </div>
-                      </div>
-
-                      {/* Direct Final Submit Action */}
-                      <div className="br-step-footer" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                        <button
-                          type="submit"
-                          id="br-card-submit-btn"
-                          className="bp-btn-primary"
-                          disabled={isSubmitting}
-                          style={{ width: '100%', justifyContent: 'center', padding: '16px 24px', fontSize: '15px' }}
-                        >
-                          {isSubmitting ? (
-                            <>Transmitting Brief... <ArrowIcon size={14} /></>
-                          ) : (
-                            <>Submit &amp; Get Quote <ArrowIcon size={14} /></>
-                          )}
-                        </button>
-
-                        <button
-                          type="button"
-                          className="btn-secondary-cta"
-                          onClick={handleWhatsAppSend}
-                          style={{ width: '100%', justifyContent: 'center', padding: '12px 20px', fontSize: '13.5px' }}
-                        >
-                          Send Instantly via WhatsApp <ArrowIcon size={14} />
-                        </button>
-
-                        <div className="br-side-guarantee mono" style={{ marginTop: '2px', textAlign: 'center' }}>
-                          🔒 Direct Senior Review • 100% Vector IP Ownership • No Spam Relay
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Right Column: Live Sticky Readout & Submit Panel */}
-                  <div className="br-form-right-col">
-                    <div className="br-side-sticky-card">
-                      <div className="corner" aria-hidden="true"></div>
-
-                      <div className="mono br-side-head-tag">
-                        LIVE SYSTEM SPECIFICATION
-                      </div>
-
-                      {/* Score Module */}
-                      <div className="br-side-score-box">
-                        <div className="br-side-score-val">
-                          <span className="br-side-num">{answeredCount > 0 ? currentScore.overall : '--'}</span>
-                          <span className="br-side-denom mono">/ 100</span>
-                        </div>
-                        <div className="br-side-band">{answeredCount > 0 ? currentScore.band : 'Select parameters below'}</div>
-                      </div>
-
-                      {/* Dimension Progress Bars */}
-                      <div className="br-side-bars">
-                        <div className="br-side-bar-row">
-                          <span className="mono">Clarity &amp; Positioning</span>
-                          <div className="br-side-track"><div className="br-side-fill" style={{ width: answeredCount > 0 ? `${currentScore.clarity}%` : '0%' }}></div></div>
-                          <span className="mono">{answeredCount > 0 ? `${currentScore.clarity}%` : '--'}</span>
-                        </div>
-                        <div className="br-side-bar-row">
-                          <span className="mono">Brand Distinctiveness</span>
-                          <div className="br-side-track"><div className="br-side-fill" style={{ width: answeredCount > 0 ? `${currentScore.distinct}%` : '0%' }}></div></div>
-                          <span className="mono">{answeredCount > 0 ? `${currentScore.distinct}%` : '--'}</span>
-                        </div>
-                        <div className="br-side-bar-row">
-                          <span className="mono">System Readiness</span>
-                          <div className="br-side-track"><div className="br-side-fill" style={{ width: answeredCount > 0 ? `${currentScore.system}%` : '0%' }}></div></div>
-                          <span className="mono">{answeredCount > 0 ? `${currentScore.system}%` : '--'}</span>
-                        </div>
-                      </div>
-
-                      {/* Recommended Sprint System */}
-                      <div className="br-side-rec-block">
-                        <span className="mono br-side-rec-label">RECOMMENDED STUDIO ENGAGEMENT</span>
-                        <h3 className="br-side-rec-title">{currentEngagement.name}</h3>
-                        <div className="br-side-rec-price-row">
-                          <span className="br-side-rec-price">{currentEngagement.price}</span>
-                          <span className="mono br-side-rec-weeks">{currentEngagement.weeks}</span>
-                        </div>
-
-                        <ul className="br-side-deliverables">
-                          {currentEngagement.scope.map((item, idx) => (
-                            <li key={idx}>
-                              <span className="mono" style={{ color: 'var(--pine)', fontWeight: 700, marginRight: '6px' }}>✓</span>
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Actions */}
-                      <div className="br-side-actions">
-                        <button
-                          type="submit"
-                          id="br-submit-btn"
-                          className="bp-btn-primary"
-                          disabled={isSubmitting}
-                          style={{ width: '100%', justifyContent: 'center' }}
-                        >
-                          {isSubmitting ? (
-                            <>Transmitting Brief... <ArrowIcon size={14} /></>
-                          ) : (
-                            <>Submit &amp; Get Quote <ArrowIcon size={14} /></>
-                          )}
-                        </button>
-
-                        <button
-                          type="button"
-                          className="btn-secondary-cta"
-                          onClick={handleWhatsAppSend}
-                          style={{ width: '100%', justifyContent: 'center', marginTop: '10px' }}
-                        >
-                          Send Instantly via WhatsApp <ArrowIcon size={14} />
-                        </button>
-
-                        <div className="br-side-guarantee mono">
-                          🔒 Direct Senior Review • 100% Vector IP Ownership • No Spam Relay
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </section>
-            )}
-
-            {/* ════════════════════════════════════════════════════════════════
-                VIEW 6: SUCCESS / CONFIRMATION
-               ════════════════════════════════════════════════════════════════ */}
-            {view === 'success' && (
-              <section className="br-success-section">
-                <div className="bp-sheet-label">
-                  <span className="bp-sheet-right mono">INQUIRY CONFIRMED // STATUS: RECEIVED</span>
-                  <span className="rule"></span>
-                </div>
-
-                <div className="br-capture-card" style={{ textAlign: 'center', padding: '60px 30px' }}>
-                  <div className="corner"></div>
-                  <span className="mono br-card-tag">
-                    INQUIRY RECEIVED // CONFIRMATION
-                  </span>
-                  <h2 className="br-card-title" style={{ marginTop: '16px' }}>
-                    Thank you, {lead.first || 'there'}.
-                  </h2>
-                  <p style={{ color: 'var(--ink-soft)', fontSize: '18px', maxWidth: '620px', margin: '0 auto 20px', lineHeight: 1.6 }}>
-                    Your strategic brief and project details have been successfully received. Our studio team will review your requirements and reach out to <b>{lead.email}</b>.
-                  </p>
-                  <p style={{ color: 'var(--ink)', fontSize: '14.5px', fontWeight: 600, marginBottom: '24px' }}>
-                    Want immediate direct discussion? Dispatch your full diagnostic brief straight to our studio:
-                  </p>
-                  <div className="bp-cta-row" style={{ justifyContent: 'center', flexWrap: 'wrap', gap: '12px' }}>
-                    <a
-                      href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildBriefText('whatsapp'))}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bp-btn-primary"
-                    >
-                      Send Brief via WhatsApp <ArrowIcon size={14} />
-                    </a>
-                    <Link to="/" className="btn-secondary-cta">
-                      Return Home
-                    </Link>
-                  </div>
-                </div>
-              </section>
-            )}
-
-          </div>
-
-          {/* Landing Pre-Footer Sections (Full-Width, matching Home & Branding pages) */}
-          {view === 'landing' && (
-            <>
-              <MoreServicesSection current="branding" />
-
-              <section className="br-landing-final-cta" style={{ background: 'var(--ink)', color: 'var(--paper)', padding: '80px 0', borderTop: '1px solid var(--ink)' }}>
-                <div className="wrap">
-                  <h2 style={{ fontSize: 'clamp(26px, 3.4vw, 44px)', marginBottom: '14px', color: 'var(--paper)', maxWidth: '720px', fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500 }}>
-                    Your next stage should not inherit the limitations of your first brand.
-                  </h2>
-                  <p style={{ color: '#C9C3B4', fontSize: '16px', marginBottom: '28px', maxWidth: '560px', lineHeight: 1.6 }}>
-                    Tell us what you are launching, changing or preparing to scale. Run through the Brand Diagnostic or dispatch your requirements directly to our studio team.
-                  </p>
-                  <div className="bp-cta-row" style={{ marginTop: '24px', marginBottom: '16px' }}>
-                    <button
-                      type="button"
-                      onClick={handleStartQuiz}
-                      className="bp-btn-primary"
-                    >
-                      Start Brand Diagnostic <ArrowIcon size={14} />
-                    </button>
-                  </div>
-                  <p className="bp-price-note" style={{ color: '#C9C3B4', fontSize: '13px', fontFamily: "'IBM Plex Mono', monospace", margin: 0 }}>
-                    Engagements begin at <b style={{ color: '#ffffff' }}>$4,960 (₹4,75,000)</b>.
-                  </p>
-                </div>
-              </section>
-            </>
-          )}
-        </main>
-
-        {/* ── Floating Middle-Bottom Scroll Down Icon Animation ── */}
-        {view === 'form' && (
-          <button
-            type="button"
-            className={`br-scroll-hint ${pulseGuidance ? 'is-pulsing' : ''} ${isSubmitBtnInView ? 'is-hidden' : ''}`}
-            onClick={() => scrollToTarget(nextTarget.id)}
-            aria-label={nextTarget.label}
-            title={nextTarget.label}
-          >
-            <span className="br-scroll-hint-icon" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 5v14M19 12l-7 7-7-7" />
-              </svg>
-            </span>
-            <span className="br-scroll-hint-label">{nextTarget.label}</span>
-            {pulseGuidance && <span className="br-pulse-dot" aria-hidden="true" />}
-          </button>
-        )}
-
-        {/* ── Dynamic Contextual Sticky Mobile CTA Bar ── */}
-        <StickyMobileCTA
-          title={stickyConfig.title}
-          subtitle={stickyConfig.subtitle}
-          buttonText={stickyConfig.buttonText}
-          link={stickyConfig.link}
-          onClick={stickyConfig.onClick}
-        />
-
-        <Footer />
-
-        {/* ── Scoped Styling for Brand Readiness ── */}
+      <div className="tdb-quote" style={{ paddingTop: '110px' }}>
         <style>{`
-          .brand-readiness-page {
-            background-color: var(--paper);
-            color: var(--ink);
-            min-height: 100vh;
-          }
-
-          .br-main {
-            padding-top: 24px;
-            padding-bottom: 0;
-          }
-          .br-main > .wrap {
-            padding-bottom: 60px;
-          }
-
-          /* Sheet Label & Availability Badge */
-          .bp-sheet-label { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
-          .bp-sheet-label .tag { font-size: 12px; padding: 6px 10px; border: 1px solid var(--ink); background: var(--card); font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; }
-          .bp-sheet-label .rule { flex: 1; height: 1px; background: var(--ink-soft); opacity: 0.4; }
-          .bp-sheet-right { font-size: 12px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.05em; font-family: 'IBM Plex Mono', monospace; }
-
-          .bp-avail { display: inline-flex; align-items: flex-start; gap: 10px; font-size: 12px; color: var(--ink); font-family: 'IBM Plex Mono', monospace; margin-bottom: 22px; background: var(--card); border: 1px solid var(--ink); padding: 9px 13px; border-radius: 2px; line-height: 1.5; max-width: 680px; box-shadow: 2px 2px 0px rgba(27,27,23,0.08); }
-          .bp-avail .bp-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--marker); display: inline-block; flex-shrink: 0; margin-top: 5px; animation: bp-pulse 1.8s infinite; }
-          @keyframes bp-pulse { 0% { box-shadow: 0 0 0 0 rgba(184, 65, 46, 0.4); } 70% { box-shadow: 0 0 0 5px rgba(184, 65, 46, 0); } 100% { box-shadow: 0 0 0 0 rgba(184, 65, 46, 0); } }
-
-          .bp-hero h1 {
-            font-size: clamp(34px, 5.5vw, 68px);
-            max-width: 920px;
-            margin-bottom: 0;
-            line-height: 1.08;
-            letter-spacing: -0.02em;
-            font-family: 'Fraunces', Georgia, serif;
-            font-weight: 500;
-          }
-          .bp-hero h1 em { font-style: normal; color: var(--pine); }
-
-          .bp-hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: start; margin-top: 34px; }
-          .bp-hero-sub { font-size: 17.5px; color: var(--ink-soft); max-width: 540px; margin-bottom: 14px; line-height: 1.6; }
-          .bp-cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin: 24px 0 14px; }
-          .bp-price-note { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
-          .bp-price-note b { color: var(--ink); }
-
-          .bp-annot-card { background: var(--card); border: 1px solid var(--ink); padding: 26px; position: relative; }
-          .bp-annot-card .corner { position: absolute; top: -1px; right: -1px; width: 26px; height: 26px; background: var(--marker); clip-path: polygon(0 0, 100% 0, 100% 100%); }
-          .bp-annot-title { font-size: 12px; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 14px; font-family: 'IBM Plex Mono', monospace; }
-          .bp-annot-row { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px dashed var(--paper-line); padding: 10px 0; font-size: 13.5px; gap: 12px; }
-          .bp-annot-row:last-child { border-bottom: none; }
-          .bp-annot-row span:first-child { color: var(--ink-soft); }
-          .bp-annot-row span:last-child { font-weight: 500; text-align: right; }
-
-          .bp-stat-strip { display: flex; gap: 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); margin-top: 48px; }
-          .bp-stat { flex: 1; padding: 22px 24px; border-right: 1px solid var(--ink); }
-          .bp-stat:last-child { border-right: none; }
-          .bp-stat .num { font-family: 'Fraunces', serif; font-size: 34px; font-weight: 600; color: var(--pine); line-height: 1; }
-          .bp-stat .lbl { font-size: 12.5px; color: var(--ink-soft); margin-top: 6px; }
-
-          /* Category Strip & Pills */
-          .category-strip { padding: 22px 0; background: var(--card); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
-          .category-strip .lbl2 { font-size: 11px; color: var(--ink-soft); margin-bottom: 14px; display: block; letter-spacing: 0.06em; }
-          .category-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 12.5px; }
-          .cat-pill {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11.5px;
-            letter-spacing: 0.04em;
-            padding: 8px 14px;
-            border: 1px solid var(--paper-line);
-            background: var(--paper);
-            color: var(--ink-soft);
-            cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-            border-radius: 1px;
-            display: inline-flex;
-            align-items: center;
-          }
-          .cat-pill:hover {
-            border-color: var(--ink);
-            color: var(--ink);
-            transform: translateY(-1px);
-          }
-          .cat-pill.active {
-            border-color: var(--pine);
-            background: var(--pine);
-            color: #ffffff;
-            font-weight: 600;
-            box-shadow: 2px 2px 0px rgba(36, 70, 59, 0.25);
-          }
-
-          /* Architectural Shelf Container */
-          .br-shelf-container {
-            border: 1px solid var(--ink);
-            padding: clamp(20px, 3.5vw, 36px) clamp(16px, 3vw, 32px);
-            margin: 36px 0;
-            background: var(--card);
-            position: relative;
-            box-sizing: border-box;
-            overflow: hidden;
-            box-shadow: 2px 2px 0px rgba(27, 27, 23, 0.06);
-          }
-          .br-shelf-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-bottom: 24px;
-          }
-          .br-shelf-tag { font-size: 11px; color: var(--ink-soft); letter-spacing: 1px; text-transform: uppercase; }
-          .br-shelf-sub {
-            font-family: 'Fraunces', Georgia, serif;
-            font-size: clamp(17px, 2.2vw, 22px);
-            font-weight: 500;
-            color: var(--ink);
-            margin: 6px 0 0;
-          }
-          .br-shelf-controls {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-          }
-          .br-shelf-stage-counter {
-            font-size: 11px;
-            color: var(--pine);
-            background: var(--paper);
-            border: 1px solid var(--pine);
-            padding: 5px 10px;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-          }
-          .shelf-btn {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11px;
-            background: var(--paper);
-            border: 1px solid var(--ink);
-            color: var(--ink);
-            padding: 5px 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-weight: 500;
-          }
-          .shelf-btn:hover {
-            background: var(--pine);
-            color: #ffffff;
-            border-color: var(--pine);
-          }
-
-          /* Vector SVG Shelf & Morphing Silhouettes */
-          .shelf-svg-wrap {
-            width: 100%;
-            max-width: 780px;
-            margin: 16px auto;
-            overflow: visible;
-          }
-          .shelf {
-            display: block;
-            width: 100%;
-            height: auto;
-            overflow: visible;
-          }
-          .shelf .plain {
-            fill: none;
-            stroke: var(--paper-line);
-            stroke-width: 1.5;
-            transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-          }
-          .shelf .floor {
-            stroke: var(--ink);
-            stroke-width: 1.5;
-          }
-          .shelf .evo {
-            transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
-          }
-          .shelf .evo-plain {
-            transition: opacity 0.35s ease;
-          }
-          .shelf .sh {
-            opacity: 0;
-            transition: opacity 0.35s ease;
-          }
-          .shelf .sh.show {
-            opacity: 1;
-          }
-          .shelf .sh .body {
-            fill: var(--paper);
-            stroke: none;
-          }
-          .shelf .sh .edge {
-            fill: none;
-            stroke: var(--pine);
-            stroke-width: 2;
-            transition: stroke 0.3s ease;
-          }
-          .shelf .ly {
-            opacity: 0;
-            transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-          }
-          .shelf .band {
-            fill: var(--ink);
-          }
-          .shelf .word {
-            fill: var(--paper);
-          }
-          .shelf .tint {
-            fill: var(--pine);
-          }
-          .shelf .rule {
-            stroke: var(--marker);
-            stroke-width: 2;
-            stroke-linecap: round;
-          }
-          .shelf .seal {
-            fill: var(--paper);
-            stroke: var(--marker);
-            stroke-width: 1.5;
-          }
-          .shelf .dim {
-            fill: none;
-            stroke: var(--marker);
-            stroke-width: 1.5;
-          }
-          .shelf .dim-txt {
-            fill: var(--marker);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 8px;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-          }
-
-          /* Stage Classes for Shelf Animation */
-          .shelf.on-1 .evo-plain { opacity: 0; }
-          .shelf.on-2 .evo { transform: translateY(-7px); }
-          .shelf.on-3 .ly3 { opacity: 1; }
-          .shelf.on-4 .ly4 { opacity: 1; }
-          .shelf.on-5 .ly5 { opacity: 1; }
-          .shelf.on-6 .ly6 { opacity: 1; }
-          .shelf.on-7 .ly7 { opacity: 1; }
-          .shelf.on-8 .ly8 { opacity: 1; }
-          .shelf.on-8 .dim-txt { opacity: 1; }
-          .shelf.on-8 .plain { opacity: 0.28; }
-
-          /* Interactive Shelf Timeline Stepper & Description */
-          .br-shelf-status {
-            margin-top: 24px;
-            padding-top: 18px;
-            border-top: 1px dashed var(--paper-line);
-          }
-          .br-stage-bar {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-          }
-          .br-stage-step {
-            flex: 1;
-            min-width: 32px;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 10px;
-            border: 1px solid var(--paper-line);
-            background: var(--paper);
-            color: var(--ink-soft);
-            cursor: pointer;
-            transition: all 0.2s ease;
-          }
-          .br-stage-step.active {
-            background: var(--pine);
-            border-color: var(--pine);
-            color: #ffffff;
-          }
-          .br-stage-step.current {
-            box-shadow: 0 0 0 2px var(--marker);
-            font-weight: 700;
-          }
-          .br-stage-desc {
-            font-size: 12px;
-            color: var(--ink-soft);
-            line-height: 1.5;
-          }
-          .br-stage-desc strong {
-            color: var(--ink);
-          }
-
-          /* Quiz Evolving Shelf Container */
-          .br-quiz-shelf-container {
-            margin-top: 36px;
-            padding: clamp(16px, 3vw, 24px);
-            background: var(--card);
-            border: 1px solid var(--ink);
+          /* Scoped Get Quote Styles matching HTML specifications & Studio Aesthetic */
+          .tdb-quote {
+            --tdb-bg: var(--paper, #F3EDE3);
+            --tdb-text: var(--ink, #1B1B17);
+            --tdb-accent: var(--pine, #173F35);
+            --tdb-border: var(--sand, #D8CDBF);
+            --tdb-input: #FBF8F2;
+            --tdb-muted: var(--ink-soft, #6B5A4E);
+            --tdb-error: #9A2A2A;
+            --tdb-serif: var(--font-display, Georgia, "Newsreader", "Times New Roman", serif);
+            --tdb-sans: var(--font-body, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif);
+            background: var(--tdb-bg);
+            color: var(--tdb-text);
+            font-family: var(--tdb-sans);
+            font-size: 16px;
+            line-height: 1.55;
+            min-height: calc(100vh - 110px);
+            padding: 48px 24px 80px;
             box-sizing: border-box;
           }
-          .br-quiz-shelf-tag {
-            font-size: 11px;
-            color: var(--ink-soft);
-            letter-spacing: 0.06em;
-            margin-bottom: 12px;
-            text-align: center;
+          .tdb-quote *, .tdb-quote *::before, .tdb-quote *::after {
+            box-sizing: border-box;
           }
-          .br-quiz-shelf-caption {
-            font-size: 11.5px;
-            color: var(--ink-soft);
-            text-align: center;
-            margin-top: 14px;
-            line-height: 1.5;
-          }
-          .br-quiz-shelf-caption strong {
-            color: var(--ink);
-          }
-
-          /* Systems Grid */
-          .br-systems-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-          .br-system-card {
-            background: var(--card);
-            border: 1px solid var(--ink);
-            padding: 18px;
-            text-decoration: none;
-            color: var(--ink);
-            transition: all 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-          }
-          .br-system-card:hover {
-            border-color: var(--pine);
-            box-shadow: 2px 2px 0px var(--pine);
-            transform: translateY(-2px);
-          }
-          .br-sys-name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 16px; }
-          .br-sys-cat { font-size: 11px; color: var(--ink-soft); }
-
-          /* Quiz Card */
-          .br-quiz-card {
-            background: var(--card);
-            border: 1px solid var(--ink);
-            padding: clamp(28px, 4vw, 54px);
-            position: relative;
-            margin-top: 16px;
-          }
-          .br-quiz-card .corner {
-            position: absolute;
-            top: -1px;
-            right: -1px;
-            width: 28px;
-            height: 28px;
-            background: var(--marker);
-            clip-path: polygon(0 0, 100% 0, 100% 100%);
-          }
-
-          .br-progress-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 24px;
-            padding: 14px 0;
-            border-bottom: 1px solid var(--paper-line);
-            margin-bottom: 24px;
-          }
-          .br-progress-count { font-size: 12px; font-weight: 600; color: var(--ink); letter-spacing: 0.5px; }
-          .br-progress-ticks { display: flex; gap: 6px; flex: 1; max-width: 360px; }
-          .br-tick { flex: 1; height: 3px; background: var(--paper-line); transition: all 0.2s; }
-          .br-tick.done { background: var(--ink); }
-          .br-tick.now { background: var(--marker); height: 5px; transform: translateY(-1px); }
-
-          .br-qgrid { display: grid; grid-template-columns: 110px 1fr; gap: 36px; }
-          .br-qnum {
-            font-size: clamp(54px, 7vw, 92px);
-            font-family: 'Fraunces', serif;
-            line-height: 0.85;
-            color: var(--pine);
-          }
-          .br-qnum small { display: block; font-size: 12px; letter-spacing: 1px; color: var(--ink-soft); margin-top: 8px; }
-          .br-qtitle {
-            font-size: clamp(24px, 3.4vw, 42px);
-            font-family: 'Fraunces', serif;
-            font-weight: 500;
-            line-height: 1.15;
-            letter-spacing: -0.01em;
-            margin-bottom: 8px;
-          }
-          .br-qhelp { font-size: 15.5px; color: var(--ink-soft); margin-bottom: 24px; }
-
-          .br-opts-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
-          .br-opt-btn {
-            width: 100%;
-            text-align: left;
-            background: var(--paper);
-            border: 1px solid var(--ink);
-            padding: 16px 20px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(15.5px, 1.7vw, 17.5px);
-            color: var(--ink);
-            border-radius: var(--radius);
-          }
-          .br-opt-btn:hover {
-            background: #ffffff;
-            border-color: var(--pine);
-            transform: translateX(4px);
-          }
-          .br-opt-btn.selected {
-            background: #ffffff;
-            border: 2px solid var(--pine);
-            box-shadow: 2px 2px 0px var(--pine);
-            color: var(--pine);
-            font-weight: 600;
-            transform: translateX(4px);
-          }
-          .br-opt-key { font-size: 12px; color: var(--ink-soft); font-family: 'IBM Plex Mono', monospace; }
-          .br-opt-btn.selected .br-opt-key { color: var(--pine); font-weight: 700; }
-          .br-opt-label { flex: 1; }
-          .br-opt-marker { font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: var(--pine); font-weight: 700; }
-
-          .br-multi-note { margin-top: 12px; font-size: 12px; color: var(--marker); font-weight: 600; }
-          .br-tip-note { margin-top: 24px; font-size: 12px; color: var(--ink-soft); }
-
-          .br-outcome-textarea {
-            width: 100%;
-            padding: 16px;
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            background: var(--paper);
-            border: 1.5px solid var(--ink);
-            border-radius: var(--radius);
-            color: var(--ink);
-            outline: none;
-            resize: vertical;
-          }
-          .br-outcome-textarea:focus {
-            background: #ffffff;
-            border-color: var(--pine);
-            box-shadow: 0 0 0 2px rgba(36, 70, 59, 0.15);
-          }
-
-          /* Capture & Project Cards */
-          .br-capture-card {
-            background: var(--card);
-            border: 1px solid var(--ink);
-            padding: clamp(30px, 5vw, 56px);
-            position: relative;
-            max-width: 860px;
-            margin: 16px auto 0;
-          }
-          .br-capture-card .corner {
-            position: absolute;
-            top: -1px;
-            right: -1px;
-            width: 28px;
-            height: 28px;
-            background: var(--marker);
-            clip-path: polygon(0 0, 100% 0, 100% 100%);
-          }
-          .br-card-tag { font-size: 11px; color: var(--pine); font-weight: 700; letter-spacing: 1px; display: block; }
-          .br-card-title {
-            font-size: clamp(28px, 4vw, 44px);
-            font-family: 'Fraunces', serif;
-            font-weight: 500;
-            margin: 14px 0 10px;
-            line-height: 1.15;
-          }
-          .br-card-desc { color: var(--ink-soft); font-size: 16px; margin-bottom: 28px; line-height: 1.55; }
-
-          .br-fields-grid {
+          .tdb-quote .tdb-wrap {
+            max-width: 1080px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-          }
-          .field-group { display: flex; flex-direction: column; gap: 6px; }
-          .field-group.full-width { grid-column: 1 / -1; }
-          .field-group label {
-            font-size: 11px;
-            letter-spacing: 0.5px;
-            color: var(--ink-soft);
-            text-transform: uppercase;
-            font-family: 'IBM Plex Mono', monospace;
-          }
-          .field-group input,
-          .field-group textarea {
-            padding: 12px 14px;
-            border: 1.5px solid var(--ink);
-            background: var(--paper);
-            font-family: 'Inter', sans-serif;
-            font-size: 15.5px;
-            color: var(--ink);
-            border-radius: var(--radius);
-            outline: none;
-          }
-          .field-group input:focus,
-          .field-group textarea:focus {
-            border-color: var(--pine);
-            background: #ffffff;
-            box-shadow: 0 0 0 2px rgba(36, 70, 59, 0.15);
-          }
-
-          /* Report View */
-          .br-report-header {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 20px;
-            border-bottom: 2px solid var(--ink);
-            padding-bottom: 20px;
-            margin-bottom: 28px;
-            flex-wrap: wrap;
-          }
-          .br-report-title {
-            font-size: clamp(32px, 5vw, 56px);
-            font-family: 'Fraunces', serif;
-            font-weight: 500;
-            line-height: 1.1;
-            margin-top: 8px;
-          }
-          .br-report-title em { font-style: normal; color: var(--pine); }
-
-          .br-facts-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-bottom: 36px;
-            background: var(--card);
-            border: 1px solid var(--ink);
-            padding: 20px 24px;
-          }
-          .br-fact dt { font-size: 11px; color: var(--ink-soft); text-transform: uppercase; margin-bottom: 4px; }
-          .br-fact dd { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 600; color: var(--ink); margin: 0; }
-
-          .br-score-card {
-            background: var(--card);
-            border: 1px solid var(--ink);
-            padding: clamp(24px, 4vw, 44px);
-            display: grid;
-            grid-template-columns: 5fr 7fr;
-            gap: 40px;
-            margin-bottom: 36px;
-            position: relative;
-          }
-          .br-score-card .corner {
-            position: absolute;
-            top: -1px;
-            right: -1px;
-            width: 26px;
-            height: 26px;
-            background: var(--marker);
-            clip-path: polygon(0 0, 100% 0, 100% 100%);
-          }
-
-          .br-score-display { display: flex; align-items: baseline; gap: 8px; margin: 12px 0; }
-          .br-score-num {
-            font-size: clamp(70px, 9vw, 110px);
-            font-family: 'Fraunces', serif;
-            font-weight: 500;
-            line-height: 0.85;
-            color: var(--ink);
-          }
-          .br-score-max { font-size: 20px; color: var(--ink-soft); }
-          .br-score-band { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; color: var(--pine); }
-
-          .br-dim-head { font-size: 11px; letter-spacing: 1px; color: var(--ink-soft); margin-bottom: 8px; }
-          .br-dim-row {
-            display: grid;
-            grid-template-columns: 140px 1fr 38px;
-            gap: 12px;
-            align-items: center;
-            padding: 7px 0;
-            font-size: 13.5px;
-          }
-          .br-dim-bar { height: 6px; background: var(--paper-line); border-radius: 1px; position: relative; overflow: hidden; }
-          .br-dim-bar i { display: block; height: 100%; background: var(--ink); transition: width 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
-          .br-dim-bar.bar-accent i { background: var(--pine); }
-
-          .br-outcome-quote {
-            border-left: 3px solid var(--pine);
-            background: var(--card);
-            border-top: 1px solid var(--paper-line);
-            border-right: 1px solid var(--paper-line);
-            border-bottom: 1px solid var(--paper-line);
-            padding: 24px;
-            margin-bottom: 36px;
-          }
-          .br-outcome-quote blockquote {
-            font-family: 'Fraunces', serif;
-            font-size: clamp(17px, 2vw, 22px);
-            font-style: italic;
-            color: var(--ink);
-            margin-top: 8px;
-            line-height: 1.45;
-          }
-
-          .br-frags-list { display: grid; gap: 16px; margin-top: 20px; }
-          .br-frag-card {
-            display: grid;
-            grid-template-columns: 80px 1fr;
-            gap: 24px;
-            padding: 22px 0;
-            border-top: 1px solid var(--ink);
-          }
-          .br-frag-num { font-size: 38px; font-family: 'Fraunces', serif; color: var(--marker); line-height: 1; }
-          .br-frag-body h3 { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; margin-bottom: 6px; }
-          .br-frag-body p { font-size: 15.5px; color: var(--ink-soft); line-height: 1.6; margin: 0; max-width: 680px; }
-
-          .br-opp-risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 36px 0; }
-          .br-opp-card, .br-risk-card { background: var(--card); border: 1px solid var(--ink); padding: 24px; position: relative; }
-          .br-opp-card p, .br-risk-card p { font-size: 15.5px; line-height: 1.6; color: var(--ink); margin-top: 10px; }
-
-          .br-recommended-card {
-            background: var(--ink);
-            color: var(--paper);
-            padding: clamp(30px, 5vw, 56px);
-            position: relative;
-            margin-top: 48px;
-          }
-          .br-recommended-card .corner {
-            position: absolute;
-            top: -1px;
-            right: -1px;
-            width: 30px;
-            height: 30px;
-            background: var(--marker);
-            clip-path: polygon(0 0, 100% 0, 100% 100%);
-          }
-          .br-rec-title {
-            font-size: clamp(28px, 4.2vw, 48px);
-            font-family: 'Fraunces', serif;
-            color: #ffffff;
-            margin: 14px 0 24px;
-          }
-          .br-rec-grid { display: grid; grid-template-columns: 7fr 5fr; gap: 36px; }
-          .br-rec-deliverables { list-style: none; padding: 0; margin: 0; }
-          .br-rec-deliverables li {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(239, 235, 226, 0.15);
-            font-size: 15px;
-            color: #E2DFD6;
-          }
-          .br-rec-meta {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-            border-left: 1px solid rgba(239, 235, 226, 0.2);
-            padding-left: 24px;
-          }
-          .br-rec-stat span { font-size: 11px; color: #A19D94; display: block; margin-bottom: 4px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace; }
-          .br-rec-stat b { font-family: 'Fraunces', serif; font-size: 22px; color: #ffffff; }
-
-          @media (max-width: 860px) {
-            .bp-hero-grid,
-            .br-score-card,
-            .br-opp-risk-grid,
-            .br-rec-grid,
-            .br-fields-grid,
-            .br-systems-grid {
-              grid-template-columns: 1fr;
-            }
-            .bp-annot-row {
-              display: grid !important;
-              grid-template-columns: 105px 1fr !important;
-              align-items: start !important;
-              gap: 12px !important;
-            }
-            .bp-annot-row span:last-child {
-              text-align: left !important;
-            }
-            .bp-stat-strip {
-              display: grid !important;
-              grid-template-columns: 1fr 1fr !important;
-            }
-            .bp-stat {
-              border-right: 1px solid var(--ink) !important;
-              border-bottom: 1px solid var(--ink) !important;
-              padding: 16px 14px !important;
-            }
-            .bp-stat:nth-child(2n) { border-right: none !important; }
-            .bp-stat:nth-child(3), .bp-stat:nth-child(4) { border-bottom: none !important; }
-            .br-qgrid {
-              grid-template-columns: 1fr;
-              gap: 16px;
-            }
-            .br-qnum {
-              display: flex;
-              align-items: baseline;
-              gap: 10px;
-              font-size: 44px;
-            }
-            .br-qnum small { display: inline; margin: 0; }
-            .br-facts-grid { grid-template-columns: 1fr 1fr; }
-            .br-frag-card { grid-template-columns: 1fr; gap: 8px; }
-            .br-rec-meta {
-              border-left: none;
-              padding-left: 0;
-              border-top: 1px solid rgba(239, 235, 226, 0.2);
-              padding-top: 18px;
-            }
-            .br-shelf-header {
-              flex-direction: column;
-              align-items: flex-start;
-              gap: 12px;
-            }
-            .br-shelf-controls {
-              width: 100%;
-              justify-content: space-between;
-            }
-            .cat-pill {
-              font-size: 11px;
-              padding: 6px 11px;
-            }
-          }
-
-          @media (max-width: 480px) {
-            .br-facts-grid { grid-template-columns: 1fr; }
-            .bp-stat-strip { grid-template-columns: 1fr 1fr !important; }
-            .bp-stat { padding: 12px 10px !important; }
-            .bp-stat .num { font-size: 26px !important; }
-            .bp-stat .lbl { font-size: 10.5px !important; }
-            .category-row span, .cat-pill { font-size: 10.5px; padding: 5px 9px; }
-            .bp-cta-row button, .bp-cta-row a {
-              width: 100%;
-              text-align: center;
-              justify-content: center;
-            }
-            .br-stage-bar {
-              display: grid;
-              grid-template-columns: repeat(5, 1fr);
-              gap: 4px;
-            }
-            .br-stage-step {
-              min-width: unset;
-              height: 24px;
-              font-size: 9px;
-            }
-            .br-shelf-container {
-              padding: 16px 12px;
-              margin: 24px 0;
-            }
-            .br-shelf-sub {
-              font-size: 16px;
-            }
-          }
-
-          /* ── Unified Strategic Scope Form Layout ── */
-          .br-form-section {
-            padding: 10px 0 60px;
-          }
-          .br-form-intro {
-            margin-bottom: 36px;
-            border-bottom: 1px solid var(--ink);
-            padding-bottom: 28px;
-          }
-          .br-intro-top-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 16px;
-          }
-          .br-back-btn {
-            padding: 6px 14px;
-            font-size: 12px;
-          }
-          .br-form-main-title {
-            font-family: 'Fraunces', Georgia, serif;
-            font-size: clamp(28px, 4.2vw, 48px);
-            font-weight: 500;
-            line-height: 1.15;
-            color: var(--ink);
-            margin: 0 0 12px;
-            letter-spacing: -0.02em;
-          }
-          .br-form-main-sub {
-            font-size: 16px;
-            color: var(--ink-soft);
-            max-width: 680px;
-            line-height: 1.6;
-            margin: 0;
-          }
-
-          /* 2-Column Responsive Grid */
-          .br-unified-grid-layout {
-            display: grid;
-            grid-template-columns: 1fr 380px;
-            gap: 36px;
+            grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+            gap: 80px;
             align-items: start;
           }
-
-          .br-form-left-col {
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-          }
-
-          /* Individual Form Cards */
-          .br-form-card {
-            background: var(--card);
-            border: 1px solid var(--ink);
-            padding: clamp(22px, 3.5vw, 36px);
-            position: relative;
-            box-shadow: 2px 2px 0px rgba(27, 27, 23, 0.06);
-          }
-          .br-form-card .corner {
-            position: absolute;
-            top: -1px;
-            right: -1px;
-            width: 26px;
-            height: 26px;
-            background: var(--marker);
-            clip-path: polygon(0 0, 100% 0, 100% 100%);
-          }
-
-          .br-card-header {
-            border-bottom: 1px dashed var(--paper-line);
-            padding-bottom: 18px;
-            margin-bottom: 24px;
-          }
-          .br-card-sec-num {
-            font-size: 11px;
-            color: var(--pine);
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            display: block;
-            margin-bottom: 6px;
-          }
-          .br-card-heading {
-            font-family: 'Fraunces', Georgia, serif;
-            font-size: clamp(20px, 2.6vw, 26px);
-            font-weight: 500;
-            color: var(--ink);
-            margin: 0 0 6px;
-            line-height: 1.25;
-          }
-          .br-card-explainer {
-            font-size: 13.5px;
-            color: var(--ink-soft);
-            margin: 0;
-            line-height: 1.5;
-          }
-
-          /* Field Block & Labels */
-          .br-field-block {
-            margin-bottom: 6px;
-          }
-          .br-field-label-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 12px;
-          }
-          .br-field-label {
-            display: block;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--ink);
-            font-weight: 600;
-            margin-bottom: 12px;
-          }
-          .br-label-required {
-            color: var(--marker);
-          }
-          .br-helper-tag {
-            font-size: 11px;
-            color: var(--ink-soft);
-            background: var(--paper);
-            border: 1px solid var(--paper-line);
-            padding: 3px 8px;
-            border-radius: 2px;
-          }
-          .br-input-subtext {
-            font-size: 12.5px;
-            color: var(--ink-soft);
-            margin: -6px 0 12px;
-            line-height: 1.5;
-          }
-
-          /* Interactive Option Pills */
-          .br-pills-wrap {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 9px;
-          }
-          .br-option-pill {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 12px;
-            letter-spacing: 0.03em;
-            padding: 10px 15px;
-            min-height: 42px;
-            border: 1px solid var(--paper-line);
-            background: var(--paper);
-            color: var(--ink);
-            cursor: pointer;
-            transition: all 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
-            border-radius: 2px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-align: left;
-            line-height: 1.35;
-          }
-          .br-option-pill:hover {
-            border-color: var(--ink);
-            transform: translateY(-1px);
-            box-shadow: 1px 1px 0px rgba(27, 27, 23, 0.12);
-          }
-          .br-option-pill.active {
-            border-color: var(--pine);
-            background: var(--pine);
-            color: #ffffff;
-            font-weight: 600;
-            box-shadow: 2px 2px 0px rgba(36, 70, 59, 0.3);
-          }
-          .br-pill-check {
-            font-weight: 700;
-            font-size: 12px;
-            color: #8EC4B3;
-          }
-
-          /* Outcome Textarea */
-          .br-form-textarea {
-            width: 100%;
-            padding: 14px 16px;
-            background: var(--paper);
-            border: 1px solid var(--ink);
-            color: var(--ink);
-            font-family: inherit;
-            font-size: 14.5px;
-            line-height: 1.6;
-            resize: vertical;
-            border-radius: 2px;
-            box-sizing: border-box;
-            transition: border-color 0.2s;
-          }
-          .br-form-textarea:focus {
-            outline: none;
-            border-color: var(--pine);
-            box-shadow: 0 0 0 2px rgba(36, 70, 59, 0.15);
-          }
-
-          /* Contact Inputs Grid */
-          .br-fields-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-          }
-          .br-fields-grid .field-group.full-width {
-            grid-column: 1 / -1;
-          }
-          .br-label-required {
-            color: var(--marker);
-            font-weight: 700;
-            margin-left: 3px;
-          }
-          .br-fields-grid label {
-            display: block;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--ink-soft);
-            margin-bottom: 6px;
-          }
-          .br-fields-grid input,
-          .br-fields-grid textarea {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid var(--ink);
-            background: var(--paper);
-            font-family: inherit;
-            font-size: 14px;
-            color: var(--ink);
-            box-sizing: border-box;
-            border-radius: 2px;
-            transition: border-color 0.2s;
-          }
-          .br-fields-grid input:focus,
-          .br-fields-grid textarea:focus {
-            outline: none;
-            border-color: var(--pine);
-            box-shadow: 0 0 0 2px rgba(36, 70, 59, 0.15);
-          }
-
-          /* Right Sticky Sidebar Card */
-          .br-form-right-col {
-            position: relative;
-          }
-          .br-side-sticky-card {
+          .tdb-quote .tdb-intro {
             position: sticky;
-            top: 92px;
-            background: var(--card);
-            border: 1px solid var(--ink);
-            padding: 24px;
-            box-shadow: 3px 3px 0px rgba(27, 27, 23, 0.1);
+            top: 110px;
           }
-          .br-side-sticky-card .corner {
-            position: absolute;
-            top: -1px;
-            right: -1px;
-            width: 22px;
-            height: 22px;
-            background: var(--pine);
-            clip-path: polygon(0 0, 100% 0, 100% 100%);
-          }
-          .br-side-head-tag {
-            font-size: 10.5px;
-            letter-spacing: 0.08em;
-            color: var(--ink-soft);
-            margin-bottom: 14px;
-            text-transform: uppercase;
-          }
-
-          /* Score Block in Sidebar */
-          .br-side-score-box {
-            background: var(--paper);
-            border: 1px solid var(--paper-line);
-            padding: 16px;
-            margin-bottom: 18px;
-            text-align: center;
-          }
-          .br-side-score-val {
-            display: flex;
-            justify-content: center;
-            align-items: baseline;
-            gap: 6px;
-          }
-          .br-side-num {
-            font-family: 'Fraunces', Georgia, serif;
-            font-size: 44px;
-            font-weight: 600;
-            color: var(--pine);
-            line-height: 1;
-          }
-          .br-side-denom {
-            font-size: 13px;
-            color: var(--ink-soft);
-          }
-          .br-side-band {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--ink);
-            margin-top: 6px;
-            font-family: 'IBM Plex Mono', monospace;
-          }
-
-          /* Dimension Progress Bars */
-          .br-side-bars {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 22px;
-            border-bottom: 1px dashed var(--paper-line);
-            padding-bottom: 18px;
-          }
-          .br-side-bar-row {
-            display: grid;
-            grid-template-columns: 110px 1fr 34px;
-            align-items: center;
-            gap: 10px;
-            font-size: 11px;
-          }
-          .br-side-bar-row span:first-child {
-            color: var(--ink-soft);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-          .br-side-bar-row span:last-child {
-            color: var(--ink);
-            text-align: right;
-            font-weight: 600;
-          }
-          .br-side-track {
-            height: 6px;
-            background: var(--paper);
-            border: 1px solid var(--paper-line);
-            border-radius: 1px;
-            overflow: hidden;
-          }
-          .br-side-fill {
-            height: 100%;
-            background: var(--pine);
-            transition: width 0.3s ease;
-          }
-
-          /* Recommended Engagement Block */
-          .br-side-rec-block {
-            margin-bottom: 22px;
-            border-bottom: 1px dashed var(--paper-line);
-            padding-bottom: 20px;
-          }
-          .br-side-rec-label {
-            font-size: 10.5px;
-            color: var(--pine);
+          .tdb-quote .tdb-label {
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
             font-weight: 700;
-            letter-spacing: 0.06em;
-            display: block;
-            margin-bottom: 6px;
+            color: var(--tdb-accent);
+            font-family: var(--font-mono, "IBM Plex Mono", monospace);
+            margin: 0 0 18px;
+            text-transform: uppercase;
           }
-          .br-side-rec-title {
-            font-family: 'Fraunces', Georgia, serif;
-            font-size: 18px;
-            color: var(--ink);
-            margin: 0 0 8px;
-            font-weight: 500;
-            line-height: 1.3;
+          .tdb-quote h1 {
+            font-family: var(--tdb-serif);
+            font-weight: 400;
+            font-size: clamp(2.1rem, 4vw, 3.1rem);
+            line-height: 1.08;
+            letter-spacing: -0.015em;
+            margin: 0 0 20px;
+            color: var(--tdb-text);
           }
-          .br-side-rec-price-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 8px;
-            margin-bottom: 14px;
-          }
-          .br-side-rec-price {
-            font-family: 'Fraunces', Georgia, serif;
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--pine);
-          }
-          .br-side-rec-weeks {
-            font-size: 11.5px;
-            color: var(--ink-soft);
-          }
-          .br-side-deliverables {
-            list-style: none;
-            padding: 0;
+          .tdb-quote .tdb-intro p:not(.tdb-label) {
             margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
+            color: var(--tdb-muted);
+            max-width: 36ch;
+            font-size: 1.02rem;
+            line-height: 1.6;
           }
-          .br-side-deliverables li {
-            font-size: 12px;
-            color: var(--ink-soft);
-            line-height: 1.4;
-            display: flex;
-            align-items: flex-start;
-          }
-
-          .br-side-actions {
-            display: flex;
-            flex-direction: column;
-          }
-          .br-side-guarantee {
-            font-size: 10.5px;
-            color: var(--ink-soft);
-            text-align: center;
-            margin-top: 14px;
-            line-height: 1.45;
-          }
-
-          /* Responsive Breakpoints */
-          @media (max-width: 992px) {
-            .br-unified-grid-layout {
-              grid-template-columns: 1fr;
-              gap: 28px;
-            }
-            .br-side-sticky-card {
-              position: static;
-              top: auto;
-              margin-top: 12px;
-            }
-          }
-
-          @media (max-width: 600px) {
-            .br-fields-grid {
-              grid-template-columns: 1fr;
-            }
-            .br-option-pill {
-              width: 100%;
-              justify-content: space-between;
-            }
-            .br-form-card {
-              padding: 20px 16px;
-            }
-            .br-side-sticky-card {
-              padding: 20px 16px;
-            }
-          }
-
-          /* ── Floating Middle-Bottom Scroll Down Indicator ── */
-          .br-scroll-hint {
-            position: fixed;
-            left: 50%;
-            bottom: 24px;
-            transform: translateX(-50%);
-            z-index: 1000;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(27, 27, 23, 0.95);
-            color: #EFEBDE;
-            border: 1px solid rgba(255, 255, 255, 0.22);
-            border-radius: 999px;
-            padding: 8px 16px 8px 12px;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            cursor: pointer;
-            outline: none;
-            transition: opacity 0.25s ease,
-                        transform 0.25s ease,
-                        background 0.2s ease,
-                        border-color 0.2s ease,
-                        box-shadow 0.2s ease;
-            animation: brScrollPillFloat 2.4s ease-in-out infinite;
-          }
-
-          .br-scroll-hint:hover {
-            background: #0D0D0A;
-            border-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
-          }
-
-          .br-scroll-hint:active {
-            transform: translateX(-50%) scale(0.96);
-          }
-
-          .br-scroll-hint.is-pulsing {
-            background: #0F1714;
-            border-color: #8EC4B3;
-            box-shadow: 0 0 0 4px rgba(36, 70, 59, 0.45), 0 8px 24px rgba(0, 0, 0, 0.5);
-            transform: translateX(-50%) translateY(-2px) scale(1.03);
-          }
-
-          .br-pulse-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #8EC4B3;
-            display: inline-block;
-            animation: bp-pulse 1s infinite;
-            margin-left: 2px;
-          }
-
-          .br-scroll-hint.is-hidden {
-            opacity: 0;
-            pointer-events: none;
-            transform: translateX(-50%) translateY(14px);
-            animation: none;
-          }
-
-          .br-scroll-hint-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.16);
-            color: #ffffff;
-            flex-shrink: 0;
-            animation: brArrowBob 1.5s ease-in-out infinite;
-          }
-
-          .br-scroll-hint-label {
-            white-space: nowrap;
-            line-height: 1;
-          }
-
-          /* In-card step navigation footers */
-          .br-step-footer {
-            margin-top: 26px;
-            padding-top: 20px;
-            border-top: 1px dashed var(--paper-line);
-            display: flex;
-            justify-content: flex-end;
-          }
-          .br-step-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 18px;
-            background: var(--paper);
-            border: 1px solid var(--ink);
-            color: var(--ink);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11.5px;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 2px;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-          }
-          .br-step-btn:hover {
-            background: var(--ink);
-            color: var(--paper);
-            transform: translateY(-1px);
-            box-shadow: 2px 2px 0 rgba(27, 27, 23, 0.15);
-          }
-          .br-step-btn .arrow {
-            font-size: 14px;
-            transition: transform 0.2s ease;
-          }
-          .br-step-btn:hover .arrow {
-            transform: translateY(2px);
-          }
-          .br-step-submit-btn {
-            background: var(--pine);
-            border-color: var(--pine);
-            color: #ffffff;
-          }
-          .br-step-submit-btn:hover {
-            background: #172F27;
-            border-color: #172F27;
-            color: #ffffff;
-          }
-
-          @keyframes brScrollPillFloat {
-            0%, 100% {
-              transform: translateX(-50%) translateY(0);
-            }
-            50% {
-              transform: translateX(-50%) translateY(-3px);
-            }
-          }
-
-          @keyframes brArrowBob {
-            0%, 100% {
-              transform: translateY(-2px);
-            }
-            50% {
-              transform: translateY(2px);
-            }
-          }
-
-          /* Mobile placement above sticky mobile CTA */
-          @media (max-width: 768px) {
-            .br-scroll-hint {
-              bottom: 64px;
-              padding: 6px 14px 6px 10px;
-              font-size: 10.5px;
-              max-width: calc(100vw - 32px);
-              box-shadow: 0 4px 18px rgba(0, 0, 0, 0.42);
-            }
-            .br-scroll-hint-label {
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
-            .br-scroll-hint-icon {
-              width: 18px;
-              height: 18px;
-            }
-            .br-step-btn {
-              width: 100%;
-              justify-content: center;
-              font-size: 11px;
-              padding: 10px 14px;
-            }
-          }
-
-          /* Small screens (<= 360px) */
-          @media (max-width: 360px) {
-            .br-scroll-hint {
-              bottom: 64px;
-              padding: 5px 10px 5px 8px;
-              font-size: 10px;
-              gap: 5px;
-              max-width: calc(100vw - 20px);
-            }
-          }
-
-          /* Inline scroll prompt under intro */
-          .br-intro-scroll-prompt {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: transparent;
-            border: 1px dashed var(--ink);
-            color: var(--pine);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11.5px;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            padding: 8px 14px;
-            border-radius: 2px;
-            cursor: pointer;
-            margin-top: 16px;
-            transition: all 0.2s ease;
-          }
-          .br-intro-scroll-prompt:hover {
-            background: var(--pine);
-            color: var(--paper);
-            border-color: var(--pine);
-            border-style: solid;
-            transform: translateY(-1px);
-          }
-          .br-scroll-prompt-arrow {
-            display: inline-block;
-            font-size: 13px;
-            animation: brArrowBob 1.5s ease-in-out infinite;
-          }
-
-          /* ── Form Top Navigation Bar & Sleek Back Button ── */
-          .br-form-top-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            padding-bottom: 18px;
-            margin-bottom: 24px;
-            border-bottom: 1px solid var(--paper-line);
-          }
-
-          .br-form-tag-wrap {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
+          .tdb-quote form {
+            border-top: 1px solid var(--tdb-text);
+            padding-top: 28px;
             min-width: 0;
           }
-
-          .br-form-tag-wrap .bp-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--pine);
-            display: inline-block;
-            flex-shrink: 0;
-            box-shadow: 0 0 0 3px rgba(36, 70, 59, 0.18);
+          .tdb-quote .tdb-req-note {
+            font-size: 0.85rem;
+            color: var(--tdb-muted);
+            margin: 0 0 24px;
+            font-family: var(--font-mono, monospace);
           }
-
-          .br-form-tag {
-            font-size: 11.5px;
-            color: var(--ink-soft);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-weight: 600;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+          .tdb-quote .tdb-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0 20px;
           }
-
-          .br-back-overview-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            background: var(--card, #F6F3EC);
-            color: var(--ink);
-            border: 1px solid var(--ink);
-            padding: 7px 13px;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11px;
+          .tdb-quote .tdb-field {
+            margin: 0 0 24px;
+            min-width: 0;
+          }
+          .tdb-quote .tdb-row .tdb-field {
+            display: flex;
+            flex-direction: column;
+          }
+          .tdb-quote .tdb-row .tdb-field select {
+            margin-top: auto;
+          }
+          .tdb-quote fieldset.tdb-field {
+            border: 0;
+            padding: 0;
+          }
+          .tdb-quote label.tdb-q, .tdb-quote legend.tdb-q {
+            display: block;
             font-weight: 600;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
+            font-size: 0.95rem;
+            margin: 0 0 6px;
+            padding: 0;
+            color: var(--tdb-text);
+          }
+          .tdb-quote .tdb-opt {
+            font-weight: 400;
+            color: var(--tdb-muted);
+            font-size: 0.85rem;
+          }
+          .tdb-quote .tdb-star {
+            color: var(--tdb-accent);
+            margin-left: 2px;
+          }
+          .tdb-quote .tdb-help {
+            display: block;
+            font-size: 0.88rem;
+            color: var(--tdb-muted);
+            margin: 0 0 8px;
+            line-height: 1.45;
+          }
+          .tdb-quote .tdb-in {
+            display: block;
+            width: 100%;
+            min-height: 48px;
+            padding: 11px 14px;
+            font: inherit;
+            color: var(--tdb-text);
+            background: var(--tdb-input);
+            border: 1px solid var(--tdb-border);
+            border-radius: 2px;
+            transition: border-color 0.2s, outline 0.2s;
+          }
+          .tdb-quote .tdb-in:hover {
+            border-color: var(--tdb-muted);
+          }
+          .tdb-quote .tdb-in:focus {
+            outline: 3px solid var(--tdb-accent);
+            outline-offset: 2px;
+            border-color: var(--tdb-accent);
+          }
+          .tdb-quote select.tdb-in {
+            appearance: none;
+            -webkit-appearance: none;
+            padding-right: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23382B23' stroke-width='1.6'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            cursor: pointer;
+          }
+          .tdb-quote select.tdb-in:disabled {
+            color: var(--tdb-muted);
+            background-color: #EFE8DC;
+            cursor: not-allowed;
+          }
+          .tdb-quote textarea.tdb-in {
+            min-height: 96px;
+            resize: vertical;
+          }
+          .tdb-quote .tdb-phone {
+            display: grid;
+            grid-template-columns: 92px minmax(0, 1fr);
+            gap: 10px;
+          }
+          .tdb-quote .tdb-count {
+            display: block;
+            text-align: right;
+            font-size: 0.8rem;
+            color: var(--tdb-muted);
+            margin-top: 4px;
+            font-family: var(--font-mono, monospace);
+          }
+          .tdb-quote .tdb-chips {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+          }
+          .tdb-quote .tdb-chip {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2px;
+            min-height: 60px;
+            padding: 10px 16px;
+            border: 1px solid var(--tdb-border);
+            background: var(--tdb-input);
             border-radius: 2px;
             cursor: pointer;
-            flex-shrink: 0;
-            text-decoration: none;
-            box-shadow: 2px 2px 0px rgba(27, 27, 23, 0.08);
-            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-            line-height: 1;
+            font-size: 0.95rem;
+            transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+            user-select: none;
           }
-
-          .br-back-overview-btn svg {
-            stroke: currentColor;
-            display: block;
-            transition: transform 0.2s ease;
+          .tdb-quote .tdb-chip:hover {
+            border-color: var(--tdb-text);
           }
-
-          .br-back-overview-btn:hover {
-            background: var(--ink);
-            color: var(--paper);
-            border-color: var(--ink);
-            box-shadow: 3px 3px 0px rgba(27, 27, 23, 0.18);
-            transform: translateY(-1px);
+          .tdb-quote .tdb-chip input {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            margin: 0;
+            cursor: pointer;
           }
-
-          .br-back-overview-btn:hover svg {
-            transform: translateX(-3px);
+          .tdb-quote .tdb-chip.checked {
+            background: var(--tdb-accent);
+            border-color: var(--tdb-accent);
+            color: var(--tdb-bg);
           }
-
-          .br-back-overview-btn:active {
-            transform: translateY(0) scale(0.98);
-            box-shadow: 1px 1px 0px rgba(27, 27, 23, 0.1);
+          .tdb-quote .tdb-chip.checked .tdb-chip-name {
+            color: #FFFFFF;
           }
-
-          @media (max-width: 600px) {
-            .br-form-top-bar {
-              flex-direction: row;
-              align-items: center;
-              justify-content: space-between;
-              padding-bottom: 14px;
-              margin-bottom: 18px;
-              gap: 8px;
+          .tdb-quote .tdb-chip:has(input:focus-visible) {
+            outline: 3px solid var(--tdb-accent);
+            outline-offset: 2px;
+          }
+          .tdb-quote .tdb-chip-name {
+            font-weight: 600;
+            color: var(--tdb-text);
+          }
+          .tdb-quote .tdb-price {
+            font-size: 0.82rem;
+            color: var(--tdb-muted);
+            font-family: var(--font-mono, monospace);
+          }
+          .tdb-quote .tdb-chip.checked .tdb-price {
+            color: #DCE5DF;
+          }
+          .tdb-quote .tdb-hint {
+            font-size: 0.88rem;
+            color: var(--tdb-text);
+            border-left: 2px solid var(--tdb-accent);
+            padding: 2px 0 2px 12px;
+            margin: 10px 0 0;
+            line-height: 1.45;
+          }
+          .tdb-quote .tdb-err {
+            color: var(--tdb-error);
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin: 6px 0 0;
+          }
+          .tdb-quote [aria-invalid="true"] {
+            border-color: var(--tdb-error) !important;
+          }
+          .tdb-quote .tdb-chips[data-invalid="true"] .tdb-chip {
+            border-color: var(--tdb-error);
+          }
+          .tdb-quote .tdb-note {
+            font-size: 0.9rem;
+            color: var(--tdb-muted);
+            margin: 8px 0 16px;
+          }
+          .tdb-quote .tdb-alert {
+            border: 1px solid var(--tdb-error);
+            background: var(--tdb-input);
+            color: var(--tdb-error);
+            padding: 12px 16px;
+            margin: 0 0 16px;
+            font-weight: 600;
+          }
+          .tdb-quote .tdb-btn {
+            min-height: 52px;
+            min-width: 44px;
+            padding: 13px 36px;
+            font: inherit;
+            font-weight: 700;
+            color: #FFFFFF;
+            background: var(--tdb-accent);
+            border: 1px solid var(--tdb-accent);
+            border-radius: 2px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.15s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+          }
+          .tdb-quote .tdb-btn:hover {
+            background: #0F2D25;
+          }
+          .tdb-quote .tdb-btn.ghost {
+            background: transparent;
+            color: var(--tdb-accent);
+            border: 1px solid var(--tdb-accent);
+          }
+          .tdb-quote .tdb-btn.ghost:hover {
+            background: var(--tdb-input);
+          }
+          .tdb-quote .tdb-btn:focus-visible {
+            outline: 3px solid var(--tdb-text);
+            outline-offset: 3px;
+          }
+          .tdb-quote .tdb-btn[disabled] {
+            opacity: 0.7;
+            cursor: progress;
+          }
+          .tdb-quote .tdb-result {
+            border-top: 1px solid var(--tdb-text);
+            padding-top: 32px;
+          }
+          .tdb-quote .tdb-result h2 {
+            font-family: var(--tdb-serif);
+            font-weight: 400;
+            font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+            line-height: 1.15;
+            margin: 0 0 14px;
+            color: var(--tdb-text);
+          }
+          .tdb-quote .tdb-result h2:focus {
+            outline: none;
+          }
+          .tdb-quote .tdb-result p {
+            color: var(--tdb-muted);
+            max-width: 52ch;
+            margin: 0 0 28px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+          }
+          .tdb-quote .tdb-sr {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+          }
+          @media (max-width: 860px) {
+            .tdb-quote {
+              padding: 36px 20px 56px;
             }
-            .br-form-tag {
-              font-size: 10px;
-              letter-spacing: 0.02em;
+            .tdb-quote .tdb-wrap {
+              grid-template-columns: minmax(0, 1fr);
+              gap: 32px;
             }
-            .br-back-overview-btn {
-              padding: 6px 10px;
-              font-size: 10px;
-              gap: 5px;
+            .tdb-quote .tdb-intro {
+              position: static;
+            }
+            .tdb-quote .tdb-intro p:not(.tdb-label) {
+              max-width: none;
             }
           }
-
+          @media (max-width: 560px) {
+            .tdb-quote .tdb-row, .tdb-quote .tdb-chips {
+              grid-template-columns: minmax(0, 1fr);
+            }
+            .tdb-quote .tdb-btn {
+              width: 100%;
+            }
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .tdb-quote * {
+              transition: none !important;
+              animation: none !important;
+            }
+          }
         `}</style>
+
+        <div className="tdb-wrap">
+          {/* ── Left Column: Intro ── */}
+          <aside className="tdb-intro">
+            <p className="tdb-label">START A PROJECT</p>
+            <h1>Tell us what you’re building.</h1>
+            <p>
+              Launching something new or taking your business further? Share a few details so we can understand your project.
+            </p>
+          </aside>
+
+          {/* ── Right Column: Form or Result ── */}
+          <main id="tdb-main">
+            {submissionSuccess ? (
+              <div className="tdb-result">
+                <h2 tabIndex={-1} ref={resultHeadingRef}>
+                  Thank you for sharing your project.
+                </h2>
+                <p>
+                  We’ve received your enquiry and will get in touch using the details you provided. Our design directors review briefs within 24 hours.
+                </p>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxWidth: '380px' }}>
+                  <a
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildWhatsAppBrief())}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="tdb-btn"
+                    style={{ textDecoration: 'none' }}
+                  >
+                    Chat on WhatsApp with this Brief <ArrowIcon size={14} />
+                  </a>
+
+                  <button type="button" className="tdb-btn ghost" onClick={handleResetForm}>
+                    Send another enquiry
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <form id="tdb-form" noValidate onSubmit={handleSubmit}>
+                <p className="tdb-req-note">
+                  <span className="tdb-star" aria-hidden="true">
+                    *
+                  </span>{' '}
+                  Required
+                </p>
+
+                {/* ── Row 1: Name & Email ── */}
+                <div className="tdb-row">
+                  <div className="tdb-field">
+                    <label className="tdb-q" htmlFor="fullName">
+                      Your name<span className="tdb-star" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      className="tdb-in"
+                      id="fullName"
+                      name="fullName"
+                      type="text"
+                      autoComplete="name"
+                      aria-required="true"
+                      aria-invalid={errors.fullName ? 'true' : undefined}
+                      aria-describedby={errors.fullName ? 'err-fullName' : undefined}
+                      value={state.fullName}
+                      onChange={handleInputChange}
+                    />
+                    {errors.fullName && (
+                      <p className="tdb-err" id="err-fullName">
+                        {errors.fullName}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="tdb-field">
+                    <label className="tdb-q" htmlFor="email">
+                      Email address<span className="tdb-star" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      className="tdb-in"
+                      id="email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      aria-required="true"
+                      aria-invalid={errors.email ? 'true' : undefined}
+                      aria-describedby={errors.email ? 'err-email' : undefined}
+                      value={state.email}
+                      onChange={handleInputChange}
+                    />
+                    {errors.email && (
+                      <p className="tdb-err" id="err-email">
+                        {errors.email}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {/* ── WhatsApp Phone ── */}
+                <div className="tdb-field">
+                  <label className="tdb-q" htmlFor="phoneNumber">
+                    WhatsApp number <span className="tdb-opt">(optional)</span>
+                  </label>
+                  <div className="tdb-phone">
+                    <input
+                      className="tdb-in"
+                      id="phoneCountryCode"
+                      name="phoneCountryCode"
+                      type="text"
+                      inputMode="tel"
+                      autoComplete="tel-country-code"
+                      aria-label="Country calling code"
+                      aria-invalid={errors.phoneCountryCode ? 'true' : undefined}
+                      aria-describedby={errors.phoneCountryCode ? 'err-phoneCountryCode' : undefined}
+                      value={state.phoneCountryCode}
+                      onChange={handleInputChange}
+                    />
+                    <input
+                      className="tdb-in"
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      type="tel"
+                      autoComplete="tel-national"
+                      placeholder="98765 43210"
+                      aria-invalid={errors.phoneNumber ? 'true' : undefined}
+                      aria-describedby={errors.phoneNumber ? 'err-phoneNumber' : undefined}
+                      value={state.phoneNumber}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  {errors.phoneCountryCode && (
+                    <p className="tdb-err" id="err-phoneCountryCode">
+                      {errors.phoneCountryCode}
+                    </p>
+                  )}
+                  {errors.phoneNumber && (
+                    <p className="tdb-err" id="err-phoneNumber">
+                      {errors.phoneNumber}
+                    </p>
+                  )}
+                </div>
+
+                {/* ── Brand or Website ── */}
+                <div className="tdb-field">
+                  <label className="tdb-q" htmlFor="brandOrWebsite">
+                    Brand name or website <span className="tdb-opt">(optional)</span>
+                  </label>
+                  <span className="tdb-help" id="help-brand">
+                    Have a name, website, or Instagram page? Share it here. Starting fresh? Leave this blank.
+                  </span>
+                  <input
+                    className="tdb-in"
+                    id="brandOrWebsite"
+                    name="brandOrWebsite"
+                    type="text"
+                    maxLength={200}
+                    autoComplete="organization"
+                    aria-describedby="help-brand"
+                    placeholder="e.g. Acme Studio or acme.com"
+                    value={state.brandOrWebsite}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                {/* ── Services Fieldset (Interactive Chips) ── */}
+                <fieldset
+                  className="tdb-field"
+                  aria-describedby="help-services help-fees err-services"
+                >
+                  <legend className="tdb-q">
+                    What do you need help with?<span className="tdb-star" aria-hidden="true">*</span>
+                  </legend>
+                  <span className="tdb-help" id="help-services">
+                    Select all that apply.
+                  </span>
+
+                  <div
+                    className="tdb-chips"
+                    id="tdb-services"
+                    data-invalid={errors.services ? 'true' : undefined}
+                  >
+                    {SERVICES.map((s) => {
+                      const isChecked = state.services.includes(s.value);
+                      return (
+                        <label
+                          key={s.value}
+                          className={`tdb-chip ${isChecked ? 'checked' : ''}`}
+                        >
+                          <input
+                            type="checkbox"
+                            name="services"
+                            value={s.value}
+                            checked={isChecked}
+                            onChange={() => handleServiceToggle(s.value)}
+                          />
+                          <span className="tdb-chip-name">{s.label}</span>
+                          {s.price && <span className="tdb-price">{s.price}</span>}
+                        </label>
+                      );
+                    })}
+                  </div>
+
+                  <p className="tdb-help" id="help-fees" style={{ margin: '10px 0 0' }}>
+                    Starting fees are a guide. Your final proposal will reflect the scope of your project.
+                  </p>
+
+                  {showSaasHint && (
+                    <p className="tdb-hint" id="saas-note">
+                      SaaS engagements typically range from ₹4,75,000 to ₹10,00,000, depending on the branding, product design, and app requirements.
+                    </p>
+                  )}
+
+                  {errors.services && (
+                    <p className="tdb-err" id="err-services">
+                      {errors.services}
+                    </p>
+                  )}
+                </fieldset>
+
+                {/* ── Business Category ── */}
+                <div className="tdb-field">
+                  <label className="tdb-q" htmlFor="category">
+                    Which category is your business or idea in?<span className="tdb-star" aria-hidden="true">*</span>
+                  </label>
+                  <select
+                    className="tdb-in"
+                    id="category"
+                    name="category"
+                    aria-required="true"
+                    aria-invalid={errors.category ? 'true' : undefined}
+                    aria-describedby={errors.category ? 'err-category' : undefined}
+                    value={state.category}
+                    onChange={handleCategoryChange}
+                  >
+                    <option value="">Choose your category</option>
+                    {CATEGORIES.map((c) => (
+                      <option key={c.value} value={c.value}>
+                        {c.label}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.category && (
+                    <p className="tdb-err" id="err-category">
+                      {errors.category}
+                    </p>
+                  )}
+                </div>
+
+                {/* ── Conditional Other Category ── */}
+                {state.category === 'something-else' && (
+                  <div className="tdb-field" id="other-wrap">
+                    <label className="tdb-q" htmlFor="otherCategory">
+                      Tell us your category <span className="tdb-opt">(optional)</span>
+                    </label>
+                    <input
+                      className="tdb-in"
+                      id="otherCategory"
+                      name="otherCategory"
+                      type="text"
+                      maxLength={80}
+                      placeholder="e.g. Cleantech, Agritech, Education"
+                      value={state.otherCategory}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                )}
+
+                {/* ── Budget & Timeline Row ── */}
+                <div className="tdb-row">
+                  <div className="tdb-field">
+                    <label className="tdb-q" htmlFor="budgetRange">
+                      What’s your approximate project budget?<span className="tdb-star" aria-hidden="true">*</span>
+                    </label>
+                    <span className="tdb-help" id="help-budget">
+                      An approximate range helps us recommend a realistic scope.
+                      {isMultiService && ' Share your total project budget. We’ll recommend what can realistically fit.'}
+                    </span>
+                    <select
+                      className="tdb-in"
+                      id="budgetRange"
+                      name="budgetRange"
+                      aria-required="true"
+                      disabled={!budgetSetKey}
+                      aria-invalid={errors.budgetRange ? 'true' : undefined}
+                      aria-describedby={`help-budget ${errors.budgetRange ? 'err-budgetRange' : ''}`}
+                      value={state.budgetRange}
+                      onChange={handleInputChange}
+                    >
+                      <option value="">
+                        {budgetSetKey ? 'Choose a range' : 'Choose a service first'}
+                      </option>
+                      {budgetOptions.map((b) => (
+                        <option key={b.value} value={b.value}>
+                          {b.label}
+                        </option>
+                      ))}
+                    </select>
+                    {errors.budgetRange && (
+                      <p className="tdb-err" id="err-budgetRange">
+                        {errors.budgetRange}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="tdb-field">
+                    <label className="tdb-q" htmlFor="timeline">
+                      When would you like to start? <span className="tdb-opt">(optional)</span>
+                    </label>
+                    <select
+                      className="tdb-in"
+                      id="timeline"
+                      name="timeline"
+                      value={state.timeline}
+                      onChange={handleInputChange}
+                    >
+                      <option value="">Choose a timeframe</option>
+                      {TIMELINES.map((t) => (
+                        <option key={t.value} value={t.value}>
+                          {t.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {showBudgetHint && (
+                  <p className="tdb-hint" id="budget-hint" role="status" style={{ margin: '-8px 0 24px' }}>
+                    This is below our starting fee for the selected service. You can still share your enquiry so we can assess fit.
+                  </p>
+                )}
+
+                {/* ── Project Description ── */}
+                <div className="tdb-field">
+                  <label className="tdb-q" htmlFor="projectDescription">
+                    Tell us a little about your project<span className="tdb-star" aria-hidden="true">*</span>
+                  </label>
+                  <span className="tdb-help" id="help-desc">
+                    What are you building, and where would you like our help? A sentence or two is enough.
+                  </span>
+                  <textarea
+                    className="tdb-in"
+                    id="projectDescription"
+                    name="projectDescription"
+                    rows={3}
+                    maxLength={1000}
+                    aria-required="true"
+                    aria-invalid={errors.projectDescription ? 'true' : undefined}
+                    aria-describedby={`help-desc ${errors.projectDescription ? 'err-projectDescription' : ''}`}
+                    placeholder="We are launching a new consumer brand and need strategic packaging and brand identity design..."
+                    value={state.projectDescription}
+                    onChange={handleInputChange}
+                  />
+                  <span className="tdb-count" id="count" aria-hidden="true">
+                    {state.projectDescription.length} / 1000
+                  </span>
+                  {errors.projectDescription && (
+                    <p className="tdb-err" id="err-projectDescription">
+                      {errors.projectDescription}
+                    </p>
+                  )}
+                </div>
+
+                <p className="tdb-note">We’ll use these details to respond to your project enquiry.</p>
+
+                {alertMessage && (
+                  <div className="tdb-alert" id="tdb-alert" role="alert" tabIndex={-1}>
+                    We couldn’t send your enquiry just now. Your answers are still here, so please try again.
+                  </div>
+                )}
+
+                <button className="tdb-btn" id="tdb-submit" type="submit" disabled={submitting}>
+                  {submitting ? 'Sending…' : 'Send Enquiry'}
+                  {!submitting && <ArrowIcon size={14} />}
+                </button>
+              </form>
+            )}
+          </main>
+        </div>
+
+        <div className="tdb-sr" id="tdb-live" role="status" aria-live="polite">
+          {liveAnnouncement}
+        </div>
       </div>
-    </>
+
+      <Footer />
+    </div>
   );
 }
