@@ -8,6 +8,7 @@ import ArrowIcon from '../components/ArrowIcon';
 import projectsData from '../data/projectsData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 import After8CaseStudyView from '../components/After8CaseStudyView';
+import { SAAS_PROJECT_DETAILS } from '../data/saasProjectDetails';
 
 import useSEO from '../hooks/useSEO';
 
@@ -56,6 +57,13 @@ export default function WorkDetail() {
       (isAfter8 && s.includes('after8')) ||
       (cleanId && s.includes(cleanId));
   }) || projectsData[0];
+
+  // Match SaaS Project Architectural Detail Specifications
+  const saasSlug = Object.keys(SAAS_PROJECT_DETAILS).find(k => {
+    const pSlug = (project?.slug || '').toLowerCase();
+    return cleanId === k || cleanId === `saas-${k}` || cleanId.includes(k) || pSlug === k || pSlug === `saas-${k}` || pSlug.includes(k);
+  });
+  const saasDetail = saasSlug ? SAAS_PROJECT_DETAILS[saasSlug] : null;
 
   const currentIndex = projectsData.indexOf(project);
   const nextProject = projectsData[(currentIndex + 1) % projectsData.length];
@@ -456,7 +464,7 @@ export default function WorkDetail() {
                 <div className="meta-cell">
                   <div className="k">Impact</div>
                   <div className="v" style={{ color: 'var(--pine)' }}>
-                    {project.imageCount > 0 ? `${project.imageCount} Verified Assets` : 'High Authority'}
+                    {project.images?.length > 0 ? `${project.images.length} Production Assets` : (project.imageCount > 0 ? `${project.imageCount} Verified Assets` : 'High Authority')}
                   </div>
                 </div>
               </div>
@@ -708,6 +716,28 @@ export default function WorkDetail() {
                 <div className="insight-card">
                   <div className="lbl">// QUANTITATIVE ARCHITECTURE INSIGHT</div>
                   <p>"In algorithmic trading, brand authority is an expression of mathematical discipline. Pure geometry and high-voltage chrome tokens communicate microsecond speed and institutional trust."</p>
+                </div>
+              </div>
+            </>
+          ) : saasDetail ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">{saasDetail.challenge.eyebrow}</div>
+                  <h2>{saasDetail.challenge.title}</h2>
+                </div>
+                <p>{saasDetail.challenge.lead}</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>{saasDetail.challenge.problem1}</strong></p>
+                  <p>{saasDetail.challenge.problem2}</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">{saasDetail.challenge.quoteLabel}</div>
+                  <p>{saasDetail.challenge.quote}</p>
                 </div>
               </div>
             </>
@@ -1244,6 +1274,30 @@ export default function WorkDetail() {
                 </div>
               </div>
             </>
+          ) : saasDetail ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>{project.title.split('—')[0].trim()} Brand Architecture &amp; System Specifications</h2>
+                </div>
+                <p>Engineered design token system, responsive UI components, and complete identity guidelines.</p>
+              </div>
+
+              <div className="deliv-grid">
+                {saasDetail.deliverables.map((col, cIdx) => (
+                  <div key={cIdx} className="deliv-col">
+                    <h4>{col.title}</h4>
+                    <div className="sub">{col.sub}</div>
+                    <ul>
+                      {col.items.map((it, iIdx) => (
+                        <li key={iIdx}>{it}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </>
           ) : (
             <>
               <div className="section-head">
@@ -1321,10 +1375,16 @@ export default function WorkDetail() {
                   ? 'Bondwith — 31 Master System Figures & Guideline Architecture'
                   : isAfter8
                   ? 'Visual system & product showcase.'
+                  : saasDetail
+                  ? `${project.title.split('—')[0].trim()} — ${project.images?.length || 16} Master Production Assets & System Figures`
                   : `${project.title} — Visual System & Renders`}
               </h2>
             </div>
-            <p>Detailed breakdown of typographic pairings, color swatches, and packaging renders.</p>
+            <p>
+              {saasDetail
+                ? `Comprehensive production archive spanning ${project.images?.length || 16} architectural assets: logomark geometry, design token specs, UI components, and brand applications.`
+                : 'Detailed breakdown of typographic pairings, color swatches, and packaging renders.'}
+            </p>
           </div>
 
           <div className="gallery">
@@ -1764,6 +1824,8 @@ export default function WorkDetail() {
                   ? braveRxCaptions[imgIdx]
                   : isRestReligion && imgIdx < restReligionCaptions.length
                   ? restReligionCaptions[imgIdx]
+                  : saasDetail && imgIdx < saasDetail.captions.length
+                  ? saasDetail.captions[imgIdx]
                   : defaultCaption(imgIdx);
 
                 const isVideo = typeof imgUrl === 'string' && imgUrl.match(/\.(mp4|webm|mov)$/i);
@@ -1842,6 +1904,31 @@ export default function WorkDetail() {
                   <div className="row">
                     <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>BODY SANS:</span>
                     <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>Inter / Neue Montreal for high-speed readability.</p>
+                  </div>
+                </div>
+              </div>
+            ) : saasDetail ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  {saasDetail.swatches.map((sw, sIdx) => (
+                    <div key={sIdx} className="swatch" style={{ background: sw.bg, color: sw.color }}>
+                      <div className="lbl">{sw.lbl}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>{saasDetail.typography.primary}</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'IBM Plex Mono', monospace", marginTop: '4px' }}>{saasDetail.typography.mono}</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>BODY SANS:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>{saasDetail.typography.body}</p>
                   </div>
                 </div>
               </div>

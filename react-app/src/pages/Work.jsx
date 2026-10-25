@@ -8,11 +8,19 @@ import ArrowIcon from '../components/ArrowIcon';
 import projectsData from '../data/projectsData.json';
 import saasProjectsData from '../data/saasProjectsData.json';
 import { usePageAnimations } from '../hooks/usePageAnimations';
+import ProjectAssetModal from '../components/ProjectAssetModal';
 
 
 export default function Work() {
   const [filter, setFilter] = useState('all');
+  const [modalProject, setModalProject] = useState(null);
+  const [modalIndex, setModalIndex] = useState(0);
   const pageRef = useRef(null);
+
+  const openAssetModal = (proj, idx = 0) => {
+    setModalProject(proj);
+    setModalIndex(idx);
+  };
 
   usePageAnimations(pageRef);
 
@@ -397,12 +405,33 @@ export default function Work() {
                     to={targetLink}
                     className="work-case-card"
                   >
-                    <div className="img-box">
+                    <div className="img-box" style={{ position: 'relative' }}>
                       <img
                         src={project.coverImage}
                         alt={project.title}
                         loading="lazy"
                       />
+                      {(project.images?.length > 1 || project.imageCount > 1) && (
+                        <span
+                          className="mono"
+                          style={{
+                            position: 'absolute',
+                            bottom: '8px',
+                            left: '8px',
+                            background: 'rgba(27,27,23,0.88)',
+                            backdropFilter: 'blur(4px)',
+                            color: '#FFF',
+                            fontSize: '10px',
+                            padding: '2px 7px',
+                            letterSpacing: '0.04em',
+                            border: '1px solid rgba(255,255,255,0.2)',
+                            zIndex: 2,
+                            borderRadius: '2px'
+                          }}
+                        >
+                          {project.images?.length || project.imageCount} ASSETS
+                        </span>
+                      )}
                     </div>
                   <div className="work-card-body">
                     <div>
@@ -457,11 +486,11 @@ export default function Work() {
               </div>
             </div>
 
-            {/* 18 SaaS Branding Designs Showcase */}
+            {/* 19 SaaS Branding Designs Showcase */}
             <div className="saas-showcase-grid">
               {saasProjectsData.map((project, idx) => (
                 <div key={project.slug || idx} className="saas-showcase-card">
-                  <div className="saas-card-img-wrap">
+                  <div className="saas-card-img-wrap" style={{ cursor: 'pointer' }} onClick={() => openAssetModal(project, 0)}>
                     <img
                       src={project.coverImage}
                       alt={`${project.title} - ${project.shortDescription}`}
@@ -470,13 +499,84 @@ export default function Work() {
                     <span className="saas-spec-pill mono">
                       SPEC {String(idx + 1).padStart(2, '0')} // {project.year}
                     </span>
+                    <span
+                      className="mono"
+                      style={{
+                        position: 'absolute',
+                        bottom: '10px',
+                        left: '10px',
+                        background: 'rgba(27, 27, 23, 0.9)',
+                        color: '#FFF',
+                        fontSize: '10px',
+                        padding: '3px 8px',
+                        letterSpacing: '0.04em',
+                        border: '1px solid rgba(255, 255, 255, 0.25)',
+                        backdropFilter: 'blur(4px)',
+                        zIndex: 2,
+                        borderRadius: '2px'
+                      }}
+                    >
+                      {project.images?.length || project.imageCount || 16} ASSETS ↗
+                    </span>
                   </div>
+
+                  {/* Mini Preview Strip */}
+                  {project.images && project.images.length > 1 && (
+                    <div style={{ display: 'flex', gap: '6px', padding: '8px 12px', background: '#141410', borderBottom: '1px solid var(--paper-line)', overflowX: 'auto' }}>
+                      {project.images.slice(1, 5).map((img, tIdx) => (
+                        <button
+                          key={tIdx}
+                          type="button"
+                          onClick={() => openAssetModal(project, tIdx + 1)}
+                          title={`View figure ${tIdx + 2}`}
+                          aria-label={`View figure ${tIdx + 2} of ${project.title}`}
+                          style={{
+                            flex: '0 0 44px',
+                            height: '30px',
+                            border: '1px solid rgba(255,255,255,0.15)',
+                            background: '#000',
+                            padding: 0,
+                            cursor: 'pointer',
+                            overflow: 'hidden',
+                            borderRadius: '2px'
+                          }}
+                        >
+                          <img src={img} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                        </button>
+                      ))}
+                      {project.images.length > 5 && (
+                        <button
+                          type="button"
+                          onClick={() => openAssetModal(project, 5)}
+                          title={`Browse all ${project.images.length} assets`}
+                          style={{
+                            flex: '0 0 36px',
+                            height: '30px',
+                            border: '1px dashed rgba(255,255,255,0.3)',
+                            background: 'rgba(255,255,255,0.05)',
+                            color: '#FFF',
+                            font: "600 10px 'IBM Plex Mono', monospace",
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            cursor: 'pointer',
+                            borderRadius: '2px'
+                          }}
+                        >
+                          +{project.images.length - 5}
+                        </button>
+                      )}
+                    </div>
+                  )}
+
                   <div className="saas-card-content">
                     <div className="saas-card-tag mono">
                       {project.tag}
                     </div>
                     <h3 className="saas-card-title">
-                      {project.title}
+                      <Link to={`/work/saas-${project.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                        {project.title}
+                      </Link>
                     </h3>
                     <p className="saas-card-desc">
                       {project.description}
@@ -491,8 +591,24 @@ export default function Work() {
                     )}
 
                     <div className="saas-card-footer">
+                      <button
+                        type="button"
+                        onClick={() => openAssetModal(project, 0)}
+                        style={{
+                          background: 'transparent',
+                          border: '1px solid var(--ink)',
+                          color: 'var(--ink)',
+                          font: "600 11px 'IBM Plex Mono', monospace",
+                          padding: '5px 10px',
+                          cursor: 'pointer',
+                          borderRadius: '2px',
+                          letterSpacing: '0.04em'
+                        }}
+                      >
+                        BROWSE {project.images?.length || 16} ASSETS
+                      </button>
                       <Link to={`/work/saas-${project.slug}`} className="saas-view-btn mono">
-                        <span>EXPLORE CASE SPEC</span>
+                        <span>EXPLORE SPEC</span>
                         <ArrowIcon size={13} />
                       </Link>
                     </div>
@@ -525,6 +641,12 @@ export default function Work() {
           </div>
         </section>
 
+        <ProjectAssetModal
+          project={modalProject}
+          isOpen={!!modalProject}
+          onClose={() => setModalProject(null)}
+          initialIndex={modalIndex}
+        />
         <StickyMobileCTA title="Work Archive" subtitle={`${projectsData.length} Selected Projects`} buttonText="WhatsApp Us" link="https://wa.me/919428859768?text=Hello%20The%20Drawing%20Board%2C%20I%20am%20interested%20in%20discussing%20a%20project!" />
         <Footer />
       </div>

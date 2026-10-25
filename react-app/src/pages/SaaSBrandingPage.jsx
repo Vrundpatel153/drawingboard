@@ -10,6 +10,7 @@ import saasProjectsData from '../data/saasProjectsData.json';
 import { WHATSAPP_URL, WHATSAPP_NUMBER } from '../utils/siteConfig';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 import useSEO from '../hooks/useSEO';
+import ProjectAssetModal from '../components/ProjectAssetModal';
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Brand-to-Product Data Rules
@@ -212,6 +213,15 @@ export default function SaaSBrandingPage() {
 
   // Diagnostic checklist state
   const [checkedItems, setCheckedItems] = useState([]);
+
+  // Multi-asset preview modal state
+  const [modalProject, setModalProject] = useState(null);
+  const [modalIndex, setModalIndex] = useState(0);
+
+  const openAssetModal = (proj, idx = 0) => {
+    setModalProject(proj);
+    setModalIndex(idx);
+  };
 
   // Brand -> Product active pair
   const [bpIndex, setBpIndex] = useState(0);
@@ -832,6 +842,83 @@ export default function SaaSBrandingPage() {
             border: 1px solid rgba(255,255,255,0.2);
             z-index: 2;
           }
+          .sb-archive-asset-pill {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(27, 27, 23, 0.9);
+            color: #FFF;
+            font: 600 10.5px 'IBM Plex Mono', monospace;
+            padding: 3px 8px;
+            letter-spacing: 0.05em;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(4px);
+            z-index: 2;
+            border-radius: 2px;
+          }
+          .sb-archive-thumbs-strip {
+            display: flex;
+            gap: 6px;
+            padding: 8px 12px;
+            background: #141410;
+            border-bottom: 1px solid var(--sb-line);
+            overflow-x: auto;
+          }
+          .sb-archive-thumb-btn {
+            flex: 0 0 46px;
+            height: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: #000;
+            padding: 0;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 2px;
+            transition: border-color 0.15s ease, transform 0.15s ease;
+          }
+          .sb-archive-thumb-btn:hover {
+            border-color: var(--marker);
+            transform: translateY(-1px);
+          }
+          .sb-archive-thumb-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+          }
+          .sb-archive-thumb-more {
+            flex: 0 0 38px;
+            height: 32px;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            color: #FFF;
+            font: 600 10.5px 'IBM Plex Mono', monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all 0.15s ease;
+          }
+          .sb-archive-thumb-more:hover {
+            background: var(--marker);
+            border-color: var(--marker);
+            color: #FFF;
+          }
+          .sb-archive-browse-btn {
+            background: transparent;
+            border: 1px solid var(--ink);
+            color: var(--ink);
+            font: 600 11px 'IBM Plex Mono', monospace;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 2px;
+            letter-spacing: 0.04em;
+            transition: all 0.2s ease;
+          }
+          .sb-archive-browse-btn:hover {
+            background: var(--ink);
+            color: #FFF;
+          }
           .sb-archive-body {
             padding: 22px;
             flex: 1;
@@ -1314,11 +1401,11 @@ export default function SaaSBrandingPage() {
               </p>
             </div>
 
-            {/* 18 SaaS Brand Systems Cards */}
+            {/* 19 SaaS Brand Systems Cards */}
             <div className="sb-archive-grid">
               {saasProjectsData.map((project, idx) => (
                 <div key={project.slug || idx} className="sb-archive-card">
-                  <div className="sb-archive-img-wrap">
+                  <div className="sb-archive-img-wrap" style={{ cursor: 'pointer' }} onClick={() => openAssetModal(project, 0)}>
                     <img
                       src={project.coverImage}
                       alt={`${project.title} - ${project.shortDescription}`}
@@ -1327,10 +1414,46 @@ export default function SaaSBrandingPage() {
                     <span className="sb-archive-spec-pill">
                       SPEC {String(idx + 1).padStart(2, '0')} // {project.year}
                     </span>
+                    <span className="sb-archive-asset-pill">
+                      {project.images?.length || 16} ASSETS ↗
+                    </span>
                   </div>
+
+                  {/* Mini Preview Strip */}
+                  {project.images && project.images.length > 1 && (
+                    <div className="sb-archive-thumbs-strip">
+                      {project.images.slice(1, 5).map((img, tIdx) => (
+                        <button
+                          key={tIdx}
+                          type="button"
+                          className="sb-archive-thumb-btn"
+                          onClick={() => openAssetModal(project, tIdx + 1)}
+                          title={`View figure ${tIdx + 2}`}
+                          aria-label={`View figure ${tIdx + 2} of ${project.title}`}
+                        >
+                          <img src={img} alt="" loading="lazy" />
+                        </button>
+                      ))}
+                      {project.images.length > 5 && (
+                        <button
+                          type="button"
+                          className="sb-archive-thumb-more"
+                          onClick={() => openAssetModal(project, 5)}
+                          title={`Browse all ${project.images.length} assets`}
+                        >
+                          +{project.images.length - 5}
+                        </button>
+                      )}
+                    </div>
+                  )}
+
                   <div className="sb-archive-body">
                     <div className="sb-archive-tag">{project.tag}</div>
-                    <h3 className="sb-archive-title">{project.title}</h3>
+                    <h3 className="sb-archive-title">
+                      <Link to={`/work/saas-${project.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                        {project.title}
+                      </Link>
+                    </h3>
                     <p className="sb-archive-desc">{project.description}</p>
 
                     {project.deliverables && (
@@ -1342,6 +1465,13 @@ export default function SaaSBrandingPage() {
                     )}
 
                     <div className="sb-archive-footer">
+                      <button
+                        type="button"
+                        className="sb-archive-browse-btn"
+                        onClick={() => openAssetModal(project, 0)}
+                      >
+                        BROWSE {project.images?.length || 16} ASSETS
+                      </button>
                       <Link to={`/work/saas-${project.slug}`} className="sb-archive-link">
                         <span>EXPLORE SPEC</span>
                         <ArrowIcon size={13} />
@@ -1682,161 +1812,7 @@ motion.base:      180ms ease-out;
           </div>
         </section>
 
-        {/* ════════════════════════════════════════════════════════════════
-            06.5 SAAS BRANDING ARCHIVE: 18 PRODUCTION CASE STUDIES
-           ════════════════════════════════════════════════════════════════ */}
-        <section id="saas-archive" style={{ background: 'var(--paper)', borderTop: '2px solid var(--ink)', padding: '90px 0' }}>
-          <div className="wrap">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '24px', marginBottom: '44px', borderBottom: '1px dashed var(--paper-line)', paddingBottom: '24px' }}>
-              <div>
-                <div className="sb-mono" style={{ fontSize: '12px', color: 'var(--marker)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '8px' }}>
-                  FEATURED WORK ARCHIVE // {saasProjectsData.length} IDENTITIES ENGINEERED
-                </div>
-                <h2 style={{ fontSize: 'clamp(30px, 4vw, 50px)', lineHeight: 1.1, margin: 0, fontFamily: "'Fraunces', Georgia, serif" }}>
-                  Nineteen SaaS identities, engineered end-to-end.
-                </h2>
-              </div>
-              <div style={{ maxWidth: '500px' }}>
-                <p style={{ color: 'var(--ink-soft)', fontSize: '14.5px', lineHeight: 1.6, margin: '0 0 12px 0' }}>
-                  A production portfolio of {saasProjectsData.length} high-fidelity software brand systems sourced from the Obrazur design studio archive. Engineered for AI model compute platforms, cloud infrastructure, developer tools, predictive analytics, proprietary trading, and workflow software.
-                </p>
-                <div style={{ display: 'flex', gap: '14px', alignItems: 'center', flexWrap: 'wrap' }}>
-                  <Link to="/work" className="sb-mono" style={{ fontSize: '12px', fontWeight: 600, color: 'var(--pine)', textDecoration: 'underline' }}>
-                    VIEW ALL WORK ARCHIVES ↗
-                  </Link>
-                  <span className="sb-mono" style={{ fontSize: '12px', color: 'var(--ink-soft)' }}>
-                    [ {saasProjectsData.length} PRODUCTION RELEASES ]
-                  </span>
-                </div>
-              </div>
-            </div>
 
-            {/* 18 SaaS Designs Grid */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-                gap: '28px',
-                width: '100%'
-              }}
-            >
-              {saasProjectsData.map((project, idx) => (
-                <div
-                  key={project.slug || idx}
-                  style={{
-                    background: '#FFFFFF',
-                    border: '1px solid var(--ink)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    overflow: 'hidden',
-                    transition: 'transform 0.2s ease, box-shadow 0.2s ease'
-                  }}
-                >
-                  {/* Card Image */}
-                  <Link
-                    to={`/work/saas-${project.slug}`}
-                    style={{ position: 'relative', width: '100%', height: '230px', background: 'var(--paper)', borderBottom: '1px solid var(--ink)', overflow: 'hidden', display: 'block' }}
-                  >
-                    <img
-                      src={project.coverImage}
-                      alt={`${project.title} - ${project.shortDescription}`}
-                      loading="lazy"
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        display: 'block'
-                      }}
-                    />
-                    <span
-                      className="sb-mono"
-                      style={{
-                        position: 'absolute',
-                        top: '12px',
-                        right: '12px',
-                        background: 'var(--ink)',
-                        color: 'var(--paper)',
-                        fontSize: '10px',
-                        padding: '3px 8px',
-                        fontWeight: 600,
-                        border: '1px solid rgba(255,255,255,0.2)'
-                      }}
-                    >
-                      SPEC {String(idx + 1).padStart(2, '0')} // {project.year}
-                    </span>
-                  </Link>
-
-                  {/* Card Content */}
-                  <div style={{ padding: '22px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                    <div className="sb-mono" style={{ fontSize: '11px', color: 'var(--pine)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '8px' }}>
-                      {project.tag}
-                    </div>
-                    <h3 style={{ fontSize: '22px', margin: '0 0 10px', fontFamily: "'Fraunces', Georgia, serif", color: 'var(--ink)' }}>
-                      <Link to={`/work/saas-${project.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
-                        {project.title}
-                      </Link>
-                    </h3>
-                    <p style={{ fontSize: '13.5px', color: 'var(--ink-soft)', lineHeight: 1.55, margin: '0 0 16px', flex: 1 }}>
-                      {project.description || project.shortDescription}
-                    </p>
-
-                    {/* Deliverables */}
-                    {project.deliverables && (
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '18px' }}>
-                        {project.deliverables.map((d, dIdx) => (
-                          <span
-                            key={dIdx}
-                            className="sb-mono"
-                            style={{
-                              fontSize: '10.5px',
-                              padding: '2px 7px',
-                              background: 'rgba(27, 27, 23, 0.05)',
-                              border: '1px solid var(--paper-line)',
-                              color: 'var(--ink-soft)'
-                            }}
-                          >
-                            {d}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Footer */}
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        paddingTop: '14px',
-                        borderTop: '1px dashed var(--paper-line)',
-                        marginTop: 'auto'
-                      }}
-                    >
-                      <Link
-                        to={`/work/saas-${project.slug}`}
-                        className="sb-mono"
-                        style={{
-                          fontSize: '11.5px',
-                          fontWeight: 600,
-                          color: 'var(--marker)',
-                          textDecoration: 'none',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '6px'
-                        }}
-                      >
-                        EXPLORE SPEC <ArrowIcon size={12} />
-                      </Link>
-                      <span className="sb-mono" style={{ fontSize: '11px', color: 'var(--ink-soft)', opacity: 0.7 }}>
-                        {project.client}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* ════════════════════════════════════════════════════════════════
             07 TRANSPARENT INVESTMENT & SPRINT MODELS
@@ -2074,6 +2050,14 @@ motion.base:      180ms ease-out;
 
         {/* More Services Section */}
         <MoreServicesSection current="saas-branding" />
+
+        {/* Global Multi-Asset Lightbox Modal */}
+        <ProjectAssetModal
+          project={modalProject}
+          isOpen={!!modalProject}
+          onClose={() => setModalProject(null)}
+          initialIndex={modalIndex}
+        />
 
         {/* Global Footer */}
         <Footer />
