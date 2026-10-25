@@ -1383,7 +1383,7 @@ export default function SaaSBrandingPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            03.5 SAAS BRANDING PRODUCTION GALLERY (18 OBRAZUR CASE STUDIES)
+            03.5 SAAS BRANDING PRODUCTION GALLERY (19 PRODUCTION CASE STUDIES)
            ════════════════════════════════════════════════════════════════ */}
         <section id="saas-archive" style={{ padding: '90px 0', borderTop: '2px solid var(--ink)', background: 'var(--paper)' }}>
           <div className="wrap">
@@ -1397,7 +1397,7 @@ export default function SaaSBrandingPage() {
                 </h2>
               </div>
               <p style={{ color: 'var(--ink-soft)', maxWidth: '480px', fontSize: '15.5px', lineHeight: 1.6 }}>
-                Full brand identity systems extracted from the Obrazur studio archive. Each case represents complete brand positioning, token architectures, and production-ready interface systems for high-growth software companies.
+                Full brand identity systems engineered by The Drawing Board. Each case represents complete brand positioning, token architectures, and production-ready interface systems for high-growth software companies.
               </p>
             </div>
 
