@@ -36,6 +36,22 @@ const BRAND_SYSTEMS = [
     demo: 'How high-velocity cultural packaging and character-led branding create magnetic retail demand and franchisable hospitality presence.'
   },
   {
+    slug: 'yaad-sacred-memories-sensory-rituals',
+    tag: 'Sensory Rituals & Packaging',
+    name: 'YAAD',
+    image: '/images/yaad/yaad_cover.png',
+    challenge: 'Elevate traditional incense, soaps, and candles from low-margin commodities into an emotional, nostalgic luxury ritual.',
+    direction: 'Incense-stand geometry typography, timestamped memory storytelling, architectural dielines, and monochromatic packaging suites.',
+    systems: [
+      'Incense-stand logo geometry',
+      'Incense stick box dielines',
+      'Architectural candle packaging',
+      'Monochromatic cone SKU matrix',
+      'Artisanal Ayurvedic soap cartons'
+    ],
+    demo: 'How nostalgic place-memory storytelling and architectural dielines transform cultural commodities into coveted luxury staples.'
+  },
+  {
     slug: 'lumen-fine-jewellery',
     tag: 'Fine Jewellery',
     name: 'LUMIEN',

@@ -44,11 +44,11 @@ export default function Work() {
   const filteredProjects = allCombinedProjects.filter(p => {
     if (filter === 'all') return true;
     if (filter === 'saas') return p.category === 'saas' || (p.tag && p.tag.toUpperCase().includes('SAAS'));
-    if (filter === 'branding') return p.category === 'branding' || (p.tag && p.tag.includes('BRANDING'));
+    if (filter === 'branding') return p.category === 'branding' || (p.tag && p.tag.includes('BRANDING')) || (p.slug || '').includes('yaad');
     if (filter === 'food') return p.category === 'food' || (p.tag && (p.tag.includes('FOOD') || p.tag.includes('BEVERAGE') || p.tag.includes('RESTAURANT') || p.tag.includes('CAFE'))) || ['pronto', 'matcha', 'murami', 'soul-brew'].some(s => (p.slug || '').includes(s));
     if (filter === 'skincare') return p.category === 'skincare' || p.category === 'skin care' || (p.tag && (p.tag.includes('SKIN') || p.tag.includes('NAIL') || p.tag.includes('BEAUTY') || p.tag.includes('BODY'))) || ['blank-body', 'crystal-nail-care-brand', 'rest-religion'].some(s => (p.slug || '').includes(s));
-    if (filter === 'wellness') return p.category === 'wellness' || p.category === 'health' || (p.tag && (p.tag.includes('HEALTH') || p.tag.includes('WELLNESS') || p.tag.includes('TELEHEALTH'))) || ['brave-rx'].some(s => (p.slug || '').includes(s));
-    if (filter === 'packaging') return p.category === 'packaging' || (p.tag && p.tag.includes('PACKAGING')) || ['crystal-nail-care-brand', 'blank-body', 'rest-religion'].some(s => (p.slug || '').includes(s));
+    if (filter === 'wellness') return p.category === 'wellness' || p.category === 'health' || (p.tag && (p.tag.includes('HEALTH') || p.tag.includes('WELLNESS') || p.tag.includes('TELEHEALTH'))) || ['brave-rx', 'yaad'].some(s => (p.slug || '').includes(s));
+    if (filter === 'packaging') return p.category === 'packaging' || (p.tag && p.tag.includes('PACKAGING')) || ['crystal-nail-care-brand', 'blank-body', 'rest-religion', 'yaad'].some(s => (p.slug || '').includes(s));
     if (filter === 'web') return p.category === 'web' || (p.tag && (p.tag.includes('WEB') || p.tag.includes('UI UX')));
     if (filter === 'photography') return p.category === 'photography' || (p.tag && p.tag.includes('PHOTO'));
     return true;

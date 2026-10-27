@@ -41,6 +41,7 @@ export default function WorkDetail() {
   const isCrystal = cleanId.includes('crystal') || cleanId.includes('nail');
   const isBraveRx = cleanId.includes('brave') || cleanId.includes('rx');
   const isRestReligion = cleanId.includes('rest') || cleanId.includes('religion');
+  const isYaad = cleanId.includes('yaad');
 
   // Find matching project in dataset
   const project = projectsData.find(p => {
@@ -48,7 +49,8 @@ export default function WorkDetail() {
     return slug === cleanId || cleanId.includes(slug) || slug.includes(cleanId);
   }) || projectsData.find(p => {
     const s = (p.slug || '').toLowerCase();
-    return (isPronto && s.includes('pronto')) ||
+    return (isYaad && s.includes('yaad')) ||
+      (isPronto && s.includes('pronto')) ||
       (isMatchaClub && s.includes('matcha')) ||
       (isMurami && s.includes('murami')) ||
       (isSoulBrew && s.includes('soul-brew')) ||
@@ -167,7 +169,9 @@ export default function WorkDetail() {
           <Link to="/work">Work</Link>
           <span className="sep">/</span>
           <span className="cur">
-            {isPronto
+            {isYaad
+              ? 'YAAD Sensory Rituals & Packaging'
+              : isPronto
               ? 'PRONTO! Case Study'
               : isToodaloo
               ? 'Toodaloo Superfood Packaging'
@@ -213,7 +217,9 @@ export default function WorkDetail() {
         <div className="wrap">
           <div className="sheet-label">
             <span className="sheet-meta mono">
-              {isPronto
+              {isYaad
+                ? 'CASE STUDY // SPEC 13 — SENSORY RITUALS & HERITAGE PACKAGING'
+                : isPronto
                 ? 'CASE STUDY // SPEC 01 — RESTAURANT & PACKAGING'
                 : isMatchaClub
                 ? 'CASE STUDY // SPEC 02 — CPG & RITUAL BRANDING'
@@ -439,6 +445,31 @@ export default function WorkDetail() {
                 <div className="meta-cell">
                   <div className="k">Impact</div>
                   <div className="v" style={{ color: 'var(--pine)' }}>+180% Retail Placement</div>
+                </div>
+              </div>
+            </>
+          ) : isYaad ? (
+            <>
+              <h1>YAAD — <em>Sacred memories</em> &amp; sensory fragrance rituals.</h1>
+              <p className="dek">
+                How we engineered an emotional fragrance identity, custom incense-stand geometry typography, structural architectural dielines, and monochromatic packaging systems across luxury incense, candles, and soaps.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">YAAD Fragrance &amp; Incense Co.</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Brand Identity, Packaging Suite &amp; Strategy</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">6 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>+280% Pre-Order Velocity</div>
                 </div>
               </div>
             </>
@@ -738,6 +769,28 @@ export default function WorkDetail() {
                 <div className="insight-card">
                   <div className="lbl">{saasDetail.challenge.quoteLabel}</div>
                   <p>{saasDetail.challenge.quote}</p>
+                </div>
+              </div>
+            </>
+          ) : isYaad ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE BRAND CHALLENGE</div>
+                  <h2>Elevating sacred fragrance from commodity to emotional memory.</h2>
+                </div>
+                <p>Repositioning traditional Indian olfactory craft for discerning contemporary global consumers.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>In an oversaturated market dominated by commercial incense and generic temple brands,</strong> sacred fragrance is often sold in cluttered, disposable packaging that diminishes its cultural and sensory depth.</p>
+                  <p>YAAD identified a profound whitespace: celebrating <em>Yaad</em> (the Urdu/Hindi word for memory and remembrance). Scent is the most powerful catalyst of memory. YAAD transforms daily burning into timestamped place memories — Jodhpur at 5:50 PM, Kolkata monsoon rains, or the serene temple ghats of Pushkar.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// THE SENSORY NOSTALGIA INSIGHT</div>
+                  <p>"Scent is the invisible thread that connects us to our memories. When packaging materiality and typography honour cultural heritage with restraint, daily burning becomes a transformative sacred ritual."</p>
                 </div>
               </div>
             </>
@@ -1298,6 +1351,51 @@ export default function WorkDetail() {
                 ))}
               </div>
             </>
+          ) : isYaad ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Holistic identity, packaging suite &amp; market strategy.</h2>
+                </div>
+                <p>35 master assets spanning wordmark geometry, structural dielines across 4 categories, and category audit mappings.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Identity &amp; Typography</h4>
+                  <div className="sub">// LOGO &amp; GEOMETRIC SYSTEM</div>
+                  <ul>
+                    <li>Custom wordmark with incense-stand geometry</li>
+                    <li>Timestamped vertical story scripts</li>
+                    <li>Warm mineral &amp; monochromatic palettes</li>
+                    <li>Hand-drawn heritage line art illustrations</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Packaging Architecture</h4>
+                  <div className="sub">// 4 PRODUCT CATEGORIES</div>
+                  <ul>
+                    <li>Incense stick slide box dielines &amp; burn specs</li>
+                    <li>Architectural candle carton silhouettes</li>
+                    <li>Monochromatic cone box colorway system</li>
+                    <li>Artisanal Ayurvedic soap carton architecture</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Strategic Market Audit</h4>
+                  <div className="sub">// RESEARCH &amp; POSITIONING</div>
+                  <ul>
+                    <li>Competitive benchmark across India &amp; global CPG</li>
+                    <li>Position mapping: Nostalgia vs Luxury</li>
+                    <li>Audience psychographics across wellness &amp; gifting</li>
+                    <li>Sustainable, charcoal-free ingredient trust</li>
+                  </ul>
+                </div>
+              </div>
+            </>
           ) : (
             <>
               <div className="section-head">
@@ -1365,7 +1463,9 @@ export default function WorkDetail() {
             <div>
               <div className="eyebrow">DESIGN SYSTEM GALLERY</div>
               <h2>
-                {isPronto
+                {isYaad
+                  ? 'YAAD — 35 Master System Figures, Packaging Dielines & Strategic Audits'
+                  : isPronto
                   ? 'PRONTO! — 17 Master System Figures & Motion Assets'
                   : isMatchaClub
                   ? 'Matcha Club — 16 Ceremonial Packaging Figures & Loops'
@@ -1773,6 +1873,44 @@ export default function WorkDetail() {
                   "Rest Religion Master Brand Architecture & Holistic Skincare Sign-Off"
                 ];
 
+                const yaadCaptions = [
+                  "YAAD — Brand Moodboard: Nostalgic Scent Memory, Cultural Tactility & Architectural Heritage",
+                  "Logo Exploration & 'Why YAAD?': Connecting Olfactory Scent to Personal Memory & Nostalgia",
+                  "Master Logo Construction: Incense Stand Negative-Space Geometry & Bespoke Letterforms",
+                  "Brand Color Palette Matrix: Earthy Mineral & Monochromatic Variant Hierarchy",
+                  "Incense Sticks Packaging — Jodhpur 5:50 PM Sandalwood Rose & Camel Heritage Landscape",
+                  "Incense Sticks Structural Layout Flat: Vertical Story Script, Ingredient Trust & Burn Specs",
+                  "Incense Sticks Packaging — Kolkata 4:50 PM Monsoon Adda Tramway Edition",
+                  "Incense Sticks Packaging — Botanical Green Forest & Wet Earth Scent Packaging Flat",
+                  "Incense Sticks Packaging — Urban Heritage & Sacred Midnight Blue Smoke Edition",
+                  "Luxury Aromatic Candles — Indian Architectural Silhouettes & Symmetrical Camel Motif",
+                  "Luxury Aromatic Candles — Vintage Street Taxi & Architectural Dieline Architecture",
+                  "Luxury Aromatic Candles — Royal Elephant Heritage Dieline & Ceramic Pot Vignettes",
+                  "Luxury Aromatic Candles — Urban Streetscape & Historic Fort Architectural Layout",
+                  "Aromatic Candle Packaging — Monochromatic Pushkar Red Palette & Ghats Silhouettes",
+                  "Aromatic Candle Packaging — Monochromatic Botanical Green Palette & Forest Canopy",
+                  "Aromatic Candle Packaging — Monochromatic Regal Purple Palette & Palace Architecture",
+                  "Aromatic Candle Packaging — Architectural Silhouettes & Memory Fragment Detailing",
+                  "Artisanal Ayurvedic Soap — Monochromatic Ocean Blue Palette & Bath Ritual Packaging",
+                  "Incense Cones Packaging — Monochromatic Crimson Red Palette & Layered Desert Landscape",
+                  "Incense Cones Packaging — Monochromatic Sage Green Palette & Forest Sanctuary Landscape",
+                  "Incense Cones Packaging — Monochromatic Royal Violet Palette & Twilight Sky Silhouette",
+                  "Incense Cones Packaging — Monochromatic Saffron Yellow Palette & Desert Dawn Landscape",
+                  "Incense Cones Packaging — Monochromatic Indigo Blue Palette & Midnight Starry Sky",
+                  "Incense Sticks Category Audit: Global Incense Landscape, Market Patterns & Unmet Needs",
+                  "Incense Sticks Competitor Analysis: Benchmarking Indian & Global Natural Brands",
+                  "Incense Sticks Scope & Position Mapping: Establishing Emotional Contemporary Indian Luxury",
+                  "Incense Sticks Target Audience: Demographics, Mindful Rituals & Consumer Personas",
+                  "Artisanal Soaps Category Audit: Luxury Botanical CPG Opportunity Analysis",
+                  "Artisanal Soaps Competitor Landscape: Kama Ayurveda, Forest Essentials & Global Brands",
+                  "Artisanal Soaps Scope & Strategic Mapping: Nostalgic Bath Rituals Positioning",
+                  "Artisanal Soaps Target Audience: Sensory Wellness & Clean Beauty Consumer Profiles",
+                  "Luxury Scented Candles Category Audit: Identifying Premium Home Fragrance Whitespace",
+                  "Luxury Scented Candles Competitor Landscape: Clean Minimal Aesthetics vs Heritage Gifting",
+                  "Luxury Scented Candles Scope & Mapping: Bridging Contemporary Elegance & Nostalgia",
+                  "Luxury Scented Candles Target Audience: Gifting Behaviors, Interior Design & Olfactory Taste"
+                ];
+
                 const isWebProject = (project.category === 'web') || (project.tag && (project.tag.includes('WEB') || project.tag.includes('UI UX')));
                 const isPackagingProject = (project.category === 'packaging') || (project.tag && project.tag.includes('PACKAGING'));
 
@@ -1786,7 +1924,9 @@ export default function WorkDetail() {
                   return `${project.title} — ${idx === 0 ? 'Brand Identity System & Logomark Construction' : idx === 1 ? 'Typographic Hierarchy & Color Usability' : 'Collateral Applications & Design Guidelines'}`;
                 };
 
-                const captionText = isPronto && imgIdx < prontoCaptions.length
+                const captionText = isYaad && imgIdx < yaadCaptions.length
+                  ? yaadCaptions[imgIdx]
+                  : isPronto && imgIdx < prontoCaptions.length
                   ? prontoCaptions[imgIdx]
                   : isMatchaClub && imgIdx < matchaClubCaptions.length
                   ? matchaClubCaptions[imgIdx]
@@ -1875,7 +2015,42 @@ export default function WorkDetail() {
               <div className="eyebrow">BRAND SYSTEM SPECIFICATIONS</div>
             </div>
 
-            {isFlint ? (
+            {isYaad ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#5A2E1F', color: '#FFF' }}>
+                    <div className="lbl">BARK // #5A2E1F</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#A15032', color: '#FFF' }}>
+                    <div className="lbl">SPICE // #A15032</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#D7B38A', color: '#1B1B17' }}>
+                    <div className="lbl">SAND // #D7B38A</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#F5EFE9', color: '#1B1B17' }}>
+                    <div className="lbl">IVORY // #F5EFE9</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#4B521E', color: '#FFF' }}>
+                    <div className="lbl">FOREST // #4B521E</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>Bespoke YAAD Wordmark &bull; Incense-Stand Geometry</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>STORY SCRIPT &amp; ACCENTS:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Georgia', serif", marginTop: '4px' }}>Classic Heritage Serif &bull; Timestamped Memory Scripts &bull; Jodhpur, Kolkata, Pushkar</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>SYSTEM LABELS:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for burn specifications, coordinates &amp; ingredients.</p>
+                  </div>
+                </div>
+              </div>
+            ) : isFlint ? (
               <div className="spec-grid">
                 <div className="swatches">
                   <div className="swatch" style={{ background: '#8A38F5', color: '#FFF' }}>
