@@ -1943,31 +1943,85 @@ section {
   background: var(--pine);
   color: var(--paper);
   text-align: center;
-  padding: 80px 0;
+  padding: 80px 24px 100px;
+  position: relative;
 }
 
 .final h2 {
-  font-size: clamp(30px, 4.5vw, 48px);
+  font-size: clamp(28px, 4vw, 44px);
   max-width: 720px;
-  margin: 0 auto 18px;
+  margin: 0 auto 16px;
   color: var(--paper);
+  line-height: 1.25;
 }
 
 .final p {
   color: #CFE0DA;
-  max-width: 520px;
-  margin: 0 auto 32px;
-  font-size: 16px;
-  line-height: 1.5;
+  max-width: 540px;
+  margin: 0 auto 28px;
+  font-size: 15.5px;
+  line-height: 1.6;
 }
 
-.final .btn-primary {
+.final .cta-button-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 auto 26px;
+}
+
+.final .cta-button-group .btn-quote {
   background: var(--paper);
   color: var(--pine);
+  font-weight: 600;
+  padding: 12px 24px;
 }
 
-.final .btn-primary:hover {
+.final .cta-button-group .btn-quote:hover {
   background: #FFF;
+}
+
+.final .cta-button-group .btn-contact {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #FFF;
+  padding: 12px 22px;
+}
+
+.final .cta-button-group .btn-contact:hover {
+  border-color: #FFF;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.final .cta-button-group .btn-wa {
+  background: rgba(37, 211, 102, 0.16);
+  border: 1px solid #25D366;
+  color: #25D366;
+  padding: 12px 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.final .cta-button-group .btn-wa:hover {
+  background: rgba(37, 211, 102, 0.28);
+}
+
+.final-studio-sub {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.72);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 18px;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+.final-studio-sub a {
+  color: #FFF;
+  text-decoration: underline;
+  font-weight: 500;
 }
 
 .sticky-cta {
@@ -2190,7 +2244,49 @@ footer {
   .hero-lite { padding: 16px 0 24px; }
   .case-hero { padding: 18px 0 28px; }
 
-  .final { padding: 48px 0; }
+  .final {
+    padding: 44px 16px 110px !important;
+  }
+  .final h2 {
+    font-size: clamp(22px, 5.5vw, 28px) !important;
+    margin-bottom: 12px !important;
+    line-height: 1.25 !important;
+  }
+  .final p {
+    font-size: 14px !important;
+    margin-bottom: 22px !important;
+    line-height: 1.5 !important;
+  }
+  .final .cta-button-group {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto 20px !important;
+    gap: 10px !important;
+  }
+  .final .cta-button-group .btn-primary {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 12px 18px !important;
+  }
+  .final-studio-sub {
+    font-size: 12px !important;
+    padding-top: 14px !important;
+  }
+  .next-project-strip {
+    padding: 20px 0 !important;
+  }
+  .next-project-strip .wrap {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+  }
+  .next-project-strip .btn-primary {
+    width: 100% !important;
+    justify-content: center !important;
+  }
   .work-carousel-track::-webkit-scrollbar { display: none; }
   .work-top-nav-btn {
     background: var(--card);

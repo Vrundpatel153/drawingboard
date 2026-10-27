@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MAILTO_URL } from '../utils/siteConfig';
+import { MAILTO_URL, CONTACT_EMAIL } from '../utils/siteConfig';
 
 export default function Footer() {
   return (
@@ -43,7 +43,7 @@ export default function Footer() {
           <div className="foot-col" style={{ opacity: 1, visibility: 'visible' }}>
             <h5>Connect</h5>
             <Link to="/brand-readiness">Get Quote</Link>
-            <a href={MAILTO_URL}>dandelionpa7@gmail.com</a>
+            <a href={MAILTO_URL}>{CONTACT_EMAIL}</a>
             <a href="https://www.instagram.com/drawingboard.co/" target="_blank" rel="noopener noreferrer">Instagram</a>
             <a href="https://www.linkedin.com/in/vinayak-agarwal-05497a113/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>

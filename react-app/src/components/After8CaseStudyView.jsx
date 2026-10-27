@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import StickyMobileCTA from './StickyMobileCTA';
 import ArrowIcon from './ArrowIcon';
-import { DISCUSS_URL } from '../utils/siteConfig';
+import { DISCUSS_URL, WHATSAPP_URL } from '../utils/siteConfig';
 import useSEO from '../hooks/useSEO';
 
 export default function After8CaseStudyView({ nextProject, pageRef }) {
@@ -1359,22 +1359,27 @@ export default function After8CaseStudyView({ nextProject, pageRef }) {
 
       {/* Final Call to Action */}
       <section className="final">
-        <div className="wrap">
+        <div className="wrap" style={{ maxWidth: '780px', margin: '0 auto' }}>
+          <div className="mono" style={{ fontSize: '11px', letterSpacing: '0.14em', color: '#CFE0DA', textTransform: 'uppercase', marginBottom: '14px', opacity: 0.9 }}>
+            THE DRAWING BOARD STUDIO // ENGAGEMENTS
+          </div>
           <h2>Building a brand in a category that needs a braver visual language?</h2>
           <p>
-            Connect directly with The Drawing Board at{' '}
-            <a href="mailto:dandelionpa7@gmail.com" style={{ color: '#FFF', textDecoration: 'underline' }}>
-              dandelionpa7@gmail.com
-            </a>
-            , or request an instant architectural quote.
+            We collaborate with ambitious founders to build category-defining brand systems, luxury packaging suites, and high-conversion digital experiences.
           </p>
-          <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap', marginTop: '16px' }}>
-            <Link className="btn-primary" to="/brand-readiness">
-              Get Quote <ArrowIcon size={14} />
+          <div className="cta-button-group">
+            <Link className="btn-primary btn-quote" to="/brand-readiness">
+              Get Architectural Quote <ArrowIcon size={14} />
             </Link>
-            <a href="mailto:dandelionpa7@gmail.com" className="btn-primary" style={{ background: 'transparent', border: '1px solid #FFF', color: '#FFF' }}>
-              Email Studio: dandelionpa7@gmail.com
+            <Link className="btn-primary btn-contact" to="/contact">
+              Discuss Your Brief
+            </Link>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary btn-wa">
+              <span>💬</span> WhatsApp Consultation
             </a>
+          </div>
+          <div className="final-studio-sub">
+            Studio Inquiries: <a href="mailto:theedrawingboard@gmail.com">theedrawingboard@gmail.com</a> · Mumbai &amp; Worldwide
           </div>
         </div>
       </section>

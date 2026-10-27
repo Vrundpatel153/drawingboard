@@ -52,7 +52,7 @@ export const INSTAGRAM_URL = 'https://www.instagram.com/drawingboard.co/';
 export const LINKEDIN_URL =
   'https://www.linkedin.com/in/vinayak-agarwal-05497a113/';
 
-export const CONTACT_EMAIL = 'dandelionpa7@gmail.com';
+export const CONTACT_EMAIL = 'theedrawingboard@gmail.com';
 
 export const MAILTO_URL = `mailto:${CONTACT_EMAIL}?subject=Project%20Inquiry%20%7C%20The%20Drawing%20Board&body=Hi%20The%20Drawing%20Board%20Team%2C%0A%0AI%20would%20like%20to%20discuss%20a%20new%20project.`;
 

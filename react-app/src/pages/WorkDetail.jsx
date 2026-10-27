@@ -11,6 +11,7 @@ import After8CaseStudyView from '../components/After8CaseStudyView';
 import { SAAS_PROJECT_DETAILS } from '../data/saasProjectDetails';
 
 import useSEO from '../hooks/useSEO';
+import { WHATSAPP_URL } from '../utils/siteConfig';
 
 export default function WorkDetail() {
   const { projectId } = useParams();
@@ -2144,31 +2145,57 @@ export default function WorkDetail() {
         </div>
       </section>
 
-      {/* Next Case Study Link & Final CTA */}
+      {/* Next Project Navigation Strip */}
+      {nextProject && (
+        <div className="next-project-strip" style={{
+          background: 'var(--card)',
+          borderTop: '1px solid var(--ink)',
+          borderBottom: '1px solid var(--ink)',
+          padding: '24px 0'
+        }}>
+          <div className="wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
+            <div>
+              <div className="mono" style={{ fontSize: '11px', letterSpacing: '0.12em', color: 'var(--marker)', textTransform: 'uppercase', marginBottom: '4px' }}>
+                NEXT CASE STUDY // SPEC {String((currentIndex + 2) > projectsData.length ? 1 : currentIndex + 2).padStart(2, '0')}
+              </div>
+              <div style={{ fontFamily: "'Fraunces', serif", fontSize: 'clamp(18px, 3.5vw, 24px)', fontWeight: 600, color: 'var(--ink)' }}>
+                {nextProject.title?.split('—')[0]?.trim() || nextProject.title}
+              </div>
+            </div>
+            <Link to={`/work/${nextProject.slug}`} className="btn-primary" style={{ padding: '10px 22px', fontSize: '13px' }}>
+              Explore Next Project <ArrowIcon size={14} />
+            </Link>
+          </div>
+        </div>
+      )}
+
+      {/* Final Studio Call to Action */}
       <section className="final">
-        <div className="wrap">
-          <h2>Ready to engineer your brand with The Drawing Board?</h2>
+        <div className="wrap" style={{ maxWidth: '780px', margin: '0 auto' }}>
+          <div className="mono" style={{ fontSize: '11px', letterSpacing: '0.14em', color: '#CFE0DA', textTransform: 'uppercase', marginBottom: '14px', opacity: 0.9 }}>
+            THE DRAWING BOARD STUDIO // ENGAGEMENTS
+          </div>
+          <h2>
+            Ready to engineer your brand with The Drawing Board?
+          </h2>
           <p>
-            {isAfter8
-              ? 'Discover how we engineered eco-luxe packaging and Shopify architecture for Lumen & Co., or collaborate with The Drawing Board on your upcoming brand sprint.'
-              : `Discover how we engineered strategy and design for ${nextProject.title}, or reach out directly to begin your project.`}
+            We collaborate with ambitious founders to build category-defining brand systems, luxury packaging suites, and high-conversion digital experiences.
           </p>
-          <div style={{ margin: '14px 0 28px', fontSize: '15px', color: 'rgba(255,255,255,0.85)' }}>
-            Direct Studio Inquiry:{' '}
-            <a href="mailto:dandelionpa7@gmail.com" style={{ color: '#FFF', fontWeight: 600, textDecoration: 'underline' }}>
-              dandelionpa7@gmail.com
+
+          <div className="cta-button-group">
+            <Link to="/brand-readiness" className="btn-primary btn-quote">
+              Get Architectural Quote <ArrowIcon size={14} />
+            </Link>
+            <Link to="/contact" className="btn-primary btn-contact">
+              Discuss Your Brief
+            </Link>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary btn-wa">
+              <span>💬</span> WhatsApp Consultation
             </a>
           </div>
-          <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to={`/work/${nextProject.slug}`} className="btn-primary">
-              {isAfter8 ? 'View Lumen & Co. Case Study' : `View ${nextProject.title}`} <ArrowIcon size={14} />
-            </Link>
-            <a href="mailto:dandelionpa7@gmail.com" className="btn-primary" style={{ background: 'transparent', border: '1px solid #FFF', color: '#FFF' }}>
-              Email Studio: dandelionpa7@gmail.com
-            </a>
-            <Link to="/brand-readiness" className="btn-primary" style={{ background: 'var(--marker)', border: '1px solid var(--marker)', color: '#FFF' }}>
-              Get Quote <ArrowIcon size={14} />
-            </Link>
+
+          <div className="final-studio-sub">
+            Studio Inquiries: <a href="mailto:theedrawingboard@gmail.com">theedrawingboard@gmail.com</a> · Mumbai &amp; Worldwide
           </div>
         </div>
       </section>

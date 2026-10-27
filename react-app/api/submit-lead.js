@@ -14,7 +14,7 @@
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const PRIMARY_INBOX = 'vrundvrundvrund15@gmail.com';
-const STUDIO_FALLBACK_INBOX = 'dandelionpa7@gmail.com';
+const STUDIO_FALLBACK_INBOX = 'theedrawingboard@gmail.com';
 const GOOGLE_SHEET_WEBHOOK_URL = process.env.GOOGLE_SHEET_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbzY_hG_Nk46adEnP155Z82TYjxL0ZxzDKF20JLFLlG4wIm7Jvc-Cvr-1oF-kbeRhUOK/exec';
 
 function parseBody(req) {

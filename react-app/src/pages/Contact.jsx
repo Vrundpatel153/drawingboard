@@ -476,7 +476,7 @@ export default function Contact() {
                       Continue with Mail
                     </div>
                     <div style={{ fontSize: '12px', color: 'var(--ink-soft)', marginTop: '2px', fontFamily: "'IBM Plex Mono', monospace" }}>
-                      Open pre-filled draft to Dandelionpa7@gmail.com
+                      Open pre-filled draft to {CONTACT_EMAIL}
                     </div>
                   </div>
                   <span style={{ fontSize: '18px', fontWeight: 700 }}>→</span>
