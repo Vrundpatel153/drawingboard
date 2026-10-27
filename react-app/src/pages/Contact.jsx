@@ -241,7 +241,7 @@ export default function Contact() {
 
   const dispatchFormSubmitLead = (channel) => {
     try {
-      fetch("https://formsubmit.co/ajax/25c2139e28176433a33351a4cfeeac2b", {
+      fetch("/api/submit-lead", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
@@ -250,9 +250,7 @@ export default function Contact() {
         body: JSON.stringify({
           _subject: `New Project Inquiry: ${form.name} — ${form.companyName || 'New Client'}`,
           _template: "table",
-          _captcha: "false",
           _replyto: form.email,
-          _cc: "dandelionpa7@gmail.com",
           "Client Name": form.name,
           "Client Email": form.email,
           "Phone Number": form.phone || 'N/A',
@@ -267,9 +265,10 @@ export default function Contact() {
           "Allocated Budget": form.budget,
           "Project Start Timeline": form.timeline,
           "Message / Brief": form.message || 'Ready to start project discussion.',
-          "Preferred Channel": channel
+          "Preferred Channel": channel,
+          "Source Page": "/contact"
         })
-      }).catch(err => console.warn('Background FormSubmit mail error:', err));
+      }).catch(err => console.warn('Background pipeline dispatch error:', err));
     } catch (e) {
       // non-blocking
     }

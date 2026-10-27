@@ -1,0 +1,3325 @@
+[
+  {
+    "folder": "aerotech",
+    "image": "aerotech_06.png",
+    "rel_path": "react-app/public/images/aerotech/aerotech_06.png",
+    "dimensions": [
+      1400,
+      875
+    ],
+    "hits": [
+      {
+        "text": "hello@aerotech.no",
+        "score": 0.8770162198278639,
+        "box": [
+          [
+            512.0,
+            189.0
+          ],
+          [
+            636.0,
+            189.0
+          ],
+          [
+            636.0,
+            207.0
+          ],
+          [
+            512.0,
+            207.0
+          ]
+        ],
+        "clean_urls": [],
+        "clean_emails": [
+          "hello@aerotech.no"
+        ],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "aerotech",
+    "image": "aerotech_13.png",
+    "rel_path": "react-app/public/images/aerotech/aerotech_13.png",
+    "dimensions": [
+      1400,
+      2545
+    ],
+    "hits": [
+      {
+        "text": "aerotech.com",
+        "score": 0.8975048065185547,
+        "box": [
+          [
+            494.0,
+            2290.0
+          ],
+          [
+            653.0,
+            2226.0
+          ],
+          [
+            664.0,
+            2253.0
+          ],
+          [
+            505.0,
+            2317.0
+          ]
+        ],
+        "clean_urls": [
+          "aerotech.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "aerotech",
+    "image": "aerotech_14.png",
+    "rel_path": "react-app/public/images/aerotech/aerotech_14.png",
+    "dimensions": [
+      1400,
+      1334
+    ],
+    "hits": [
+      {
+        "text": "aerotech.com",
+        "score": 0.8997669953566331,
+        "box": [
+          [
+            772.0,
+            967.0
+          ],
+          [
+            846.0,
+            944.0
+          ],
+          [
+            852.0,
+            961.0
+          ],
+          [
+            777.0,
+            984.0
+          ]
+        ],
+        "clean_urls": [
+          "aerotech.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "aerotech",
+    "image": "aerotech_16.png",
+    "rel_path": "react-app/public/images/aerotech/aerotech_16.png",
+    "dimensions": [
+      1400,
+      875
+    ],
+    "hits": [
+      {
+        "text": "hello@aerotech.no",
+        "score": 0.9237640764978197,
+        "box": [
+          [
+            723.0,
+            304.0
+          ],
+          [
+            835.0,
+            304.0
+          ],
+          [
+            835.0,
+            321.0
+          ],
+          [
+            723.0,
+            321.0
+          ]
+        ],
+        "clean_urls": [],
+        "clean_emails": [
+          "hello@aerotech.no"
+        ],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "covalent",
+    "image": "covalent_02.png",
+    "rel_path": "react-app/public/images/covalent/covalent_02.png",
+    "dimensions": [
+      1400,
+      875
+    ],
+    "hits": [
+      {
+        "text": "BY OBRAZUR BRANDS",
+        "score": 0.8531398673852285,
+        "box": [
+          [
+            874.0,
+            282.0
+          ],
+          [
+            975.0,
+            282.0
+          ],
+          [
+            975.0,
+            298.0
+          ],
+          [
+            874.0,
+            298.0
+          ]
+        ],
+        "clean_urls": [],
+        "clean_emails": [],
+        "credits": [
+          "OBRAZUR"
+        ]
+      }
+    ]
+  },
+  {
+    "folder": "covalent",
+    "image": "covalent_03.png",
+    "rel_path": "react-app/public/images/covalent/covalent_03.png",
+    "dimensions": [
+      1400,
+      875
+    ],
+    "hits": [
+      {
+        "text": "BY OBRAZUR BRANDS",
+        "score": 0.9116780989699893,
+        "box": [
+          [
+            19.0,
+            445.0
+          ],
+          [
+            121.0,
+            445.0
+          ],
+          [
+            121.0,
+            461.0
+          ],
+          [
+            19.0,
+            461.0
+          ]
+        ],
+        "clean_urls": [],
+        "clean_emails": [],
+        "credits": [
+          "OBRAZUR"
+        ]
+      }
+    ]
+  },
+  {
+    "folder": "daisy",
+    "image": "daisy_06_tokens_and_type.webp",
+    "rel_path": "react-app/public/images/daisy/daisy_06_tokens_and_type.webp",
+    "dimensions": [
+      2500,
+      1852
+    ],
+    "hits": [
+      {
+        "text": "info@hidaisy.ai",
+        "score": 0.8786299265921116,
+        "box": [
+          [
+            1164.0,
+            1621.0
+          ],
+          [
+            1337.0,
+            1624.0
+          ],
+          [
+            1337.0,
+            1647.0
+          ],
+          [
+            1164.0,
+            1644.0
+          ]
+        ],
+        "clean_urls": [],
+        "clean_emails": [
+          "info@hidaisy.ai"
+        ],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "financelti",
+    "image": "financelti_06.png",
+    "rel_path": "react-app/public/images/financelti/financelti_06.png",
+    "dimensions": [
+      1400,
+      933
+    ],
+    "hits": [
+      {
+        "text": "financelti.com",
+        "score": 0.897123110294342,
+        "box": [
+          [
+            320.0,
+            499.0
+          ],
+          [
+            396.0,
+            499.0
+          ],
+          [
+            396.0,
+            513.0
+          ],
+          [
+            320.0,
+            513.0
+          ]
+        ],
+        "clean_urls": [
+          "financelti.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "flint",
+    "image": "flint_10.png",
+    "rel_path": "react-app/public/images/flint/flint_10.png",
+    "dimensions": [
+      5334,
+      3000
+    ],
+    "hits": [
+      {
+        "text": "HELLOOFLIHUT.COM",
+        "score": 0.8301067176987144,
+        "box": [
+          [
+            2488.0,
+            1298.0
+          ],
+          [
+            2838.0,
+            1118.0
+          ],
+          [
+            2857.0,
+            1155.0
+          ],
+          [
+            2507.0,
+            1335.0
+          ]
+        ],
+        "clean_urls": [
+          "HELLOOFLIHUT.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "flint",
+    "image": "flint_11.png",
+    "rel_path": "react-app/public/images/flint/flint_11.png",
+    "dimensions": [
+      5334,
+      3000
+    ],
+    "hits": [
+      {
+        "text": "FLINT.COM",
+        "score": 0.8467236399650574,
+        "box": [
+          [
+            2124.0,
+            1457.0
+          ],
+          [
+            2349.0,
+            1344.0
+          ],
+          [
+            2374.0,
+            1394.0
+          ],
+          [
+            2149.0,
+            1506.0
+          ]
+        ],
+        "clean_urls": [
+          "FLINT.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "FLINT.CON",
+        "score": 0.7773562669754028,
+        "box": [
+          [
+            2188.0,
+            2387.0
+          ],
+          [
+            2416.0,
+            2265.0
+          ],
+          [
+            2441.0,
+            2313.0
+          ],
+          [
+            2214.0,
+            2435.0
+          ]
+        ],
+        "clean_urls": [
+          "FLINT.CO"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "FLINT.COM",
+        "score": 0.8142803490161896,
+        "box": [
+          [
+            3984.0,
+            2473.0
+          ],
+          [
+            4199.0,
+            2364.0
+          ],
+          [
+            4223.0,
+            2411.0
+          ],
+          [
+            4009.0,
+            2520.0
+          ]
+        ],
+        "clean_urls": [
+          "FLINT.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "FLINT.COM",
+        "score": 0.8571865797042847,
+        "box": [
+          [
+            1493.0,
+            2755.0
+          ],
+          [
+            1709.0,
+            2639.0
+          ],
+          [
+            1732.0,
+            2683.0
+          ],
+          [
+            1516.0,
+            2799.0
+          ]
+        ],
+        "clean_urls": [
+          "FLINT.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "flint",
+    "image": "flint_18.png",
+    "rel_path": "react-app/public/images/flint/flint_18.png",
+    "dimensions": [
+      5334,
+      3000
+    ],
+    "hits": [
+      {
+        "text": "FLINT.COH",
+        "score": 0.8394520580768585,
+        "box": [
+          [
+            4026.0,
+            704.0
+          ],
+          [
+            4224.0,
+            704.0
+          ],
+          [
+            4224.0,
+            744.0
+          ],
+          [
+            4026.0,
+            744.0
+          ]
+        ],
+        "clean_urls": [
+          "FLINT.CO"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "HELLOFLINT.COH",
+        "score": 0.8668667594591777,
+        "box": [
+          [
+            4025.0,
+            750.0
+          ],
+          [
+            4348.0,
+            750.0
+          ],
+          [
+            4348.0,
+            786.0
+          ],
+          [
+            4025.0,
+            786.0
+          ]
+        ],
+        "clean_urls": [
+          "HELLOFLINT.CO"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "flint",
+    "image": "flint_19.png",
+    "rel_path": "react-app/public/images/flint/flint_19.png",
+    "dimensions": [
+      5334,
+      3000
+    ],
+    "hits": [
+      {
+        "text": "FLINT.COM",
+        "score": 0.8400574743747711,
+        "box": [
+          [
+            2004.0,
+            616.0
+          ],
+          [
+            2173.0,
+            586.0
+          ],
+          [
+            2180.0,
+            630.0
+          ],
+          [
+            2012.0,
+            659.0
+          ]
+        ],
+        "clean_urls": [
+          "FLINT.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "HELLOBFLINT.COM",
+        "score": 0.8701557740569115,
+        "box": [
+          [
+            1503.0,
+            713.0
+          ],
+          [
+            1762.0,
+            668.0
+          ],
+          [
+            1769.0,
+            707.0
+          ],
+          [
+            1510.0,
+            752.0
+          ]
+        ],
+        "clean_urls": [
+          "HELLOBFLINT.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "flint",
+    "image": "flint_21.png",
+    "rel_path": "react-app/public/images/flint/flint_21.png",
+    "dimensions": [
+      5334,
+      3000
+    ],
+    "hits": [
+      {
+        "text": "Flaren.com",
+        "score": 0.9016030972654169,
+        "box": [
+          [
+            1811.0,
+            2689.0
+          ],
+          [
+            2179.0,
+            2698.0
+          ],
+          [
+            2178.0,
+            2762.0
+          ],
+          [
+            1809.0,
+            2753.0
+          ]
+        ],
+        "clean_urls": [
+          "Flaren.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "folium",
+    "image": "folium_09.png",
+    "rel_path": "react-app/public/images/folium/folium_09.png",
+    "dimensions": [
+      1400,
+      1021
+    ],
+    "hits": [
+      {
+        "text": "folum.com",
+        "score": 0.7701868712902069,
+        "box": [
+          [
+            1031.0,
+            672.0
+          ],
+          [
+            1075.0,
+            672.0
+          ],
+          [
+            1075.0,
+            686.0
+          ],
+          [
+            1031.0,
+            686.0
+          ]
+        ],
+        "clean_urls": [
+          "folum.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "folium",
+    "image": "folium_15.png",
+    "rel_path": "react-app/public/images/folium/folium_15.png",
+    "dimensions": [
+      1400,
+      1021
+    ],
+    "hits": [
+      {
+        "text": "foliun.com",
+        "score": 0.7692614143544977,
+        "box": [
+          [
+            399.0,
+            167.0
+          ],
+          [
+            471.0,
+            129.0
+          ],
+          [
+            482.0,
+            149.0
+          ],
+          [
+            410.0,
+            187.0
+          ]
+        ],
+        "clean_urls": [
+          "foliun.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "folium.com",
+        "score": 0.7616778747601942,
+        "box": [
+          [
+            1277.0,
+            591.0
+          ],
+          [
+            1346.0,
+            633.0
+          ],
+          [
+            1334.0,
+            654.0
+          ],
+          [
+            1265.0,
+            613.0
+          ]
+        ],
+        "clean_urls": [
+          "folium.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "foremark",
+    "image": "foremark_11.png",
+    "rel_path": "react-app/public/images/foremark/foremark_11.png",
+    "dimensions": [
+      1400,
+      1750
+    ],
+    "hits": [
+      {
+        "text": "foremark.net",
+        "score": 0.8604737474368169,
+        "box": [
+          [
+            478.0,
+            1232.0
+          ],
+          [
+            604.0,
+            1234.0
+          ],
+          [
+            603.0,
+            1258.0
+          ],
+          [
+            477.0,
+            1256.0
+          ]
+        ],
+        "clean_urls": [
+          "foremark.net"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "helione",
+    "image": "helione_02.png",
+    "rel_path": "react-app/public/images/helione/helione_02.png",
+    "dimensions": [
+      1400,
+      875
+    ],
+    "hits": [
+      {
+        "text": "OBRAZUR@ICLOUD.COM",
+        "score": 0.9157610378767315,
+        "box": [
+          [
+            642.0,
+            781.0
+          ],
+          [
+            760.0,
+            781.0
+          ],
+          [
+            760.0,
+            797.0
+          ],
+          [
+            642.0,
+            797.0
+          ]
+        ],
+        "clean_urls": [
+          "ICLOUD.COM"
+        ],
+        "clean_emails": [
+          "OBRAZUR@ICLOUD.COM"
+        ],
+        "credits": [
+          "OBRAZUR"
+        ]
+      }
+    ]
+  },
+  {
+    "folder": "helione",
+    "image": "helione_12.png",
+    "rel_path": "react-app/public/images/helione/helione_12.png",
+    "dimensions": [
+      1400,
+      875
+    ],
+    "hits": [
+      {
+        "text": "HELIONE.COM",
+        "score": 0.8656325191259384,
+        "box": [
+          [
+            542.0,
+            554.0
+          ],
+          [
+            606.0,
+            554.0
+          ],
+          [
+            606.0,
+            568.0
+          ],
+          [
+            542.0,
+            568.0
+          ]
+        ],
+        "clean_urls": [
+          "HELIONE.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "helione",
+    "image": "helione_13.png",
+    "rel_path": "react-app/public/images/helione/helione_13.png",
+    "dimensions": [
+      1400,
+      875
+    ],
+    "hits": [
+      {
+        "text": "HELIONE.COM",
+        "score": 0.9134733925263087,
+        "box": [
+          [
+            1291.0,
+            832.0
+          ],
+          [
+            1371.0,
+            832.0
+          ],
+          [
+            1371.0,
+            847.0
+          ],
+          [
+            1291.0,
+            847.0
+          ]
+        ],
+        "clean_urls": [
+          "HELIONE.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "henro",
+    "image": "henro_04.png",
+    "rel_path": "react-app/public/images/henro/henro_04.png",
+    "dimensions": [
+      4000,
+      2250
+    ],
+    "hits": [
+      {
+        "text": "HeNRO.NET",
+        "score": 0.8632012248039246,
+        "box": [
+          [
+            2064.0,
+            1727.0
+          ],
+          [
+            2257.0,
+            1727.0
+          ],
+          [
+            2257.0,
+            1757.0
+          ],
+          [
+            2064.0,
+            1757.0
+          ]
+        ],
+        "clean_urls": [
+          "HeNRO.NET"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "henro",
+    "image": "henro_09.png",
+    "rel_path": "react-app/public/images/henro/henro_09.png",
+    "dimensions": [
+      4000,
+      2250
+    ],
+    "hits": [
+      {
+        "text": "HENRO.NET",
+        "score": 0.8549143970012665,
+        "box": [
+          [
+            292.0,
+            510.0
+          ],
+          [
+            481.0,
+            510.0
+          ],
+          [
+            481.0,
+            543.0
+          ],
+          [
+            292.0,
+            543.0
+          ]
+        ],
+        "clean_urls": [
+          "HENRO.NET"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "@HENRO.CO",
+        "score": 0.8609583079814911,
+        "box": [
+          [
+            295.0,
+            551.0
+          ],
+          [
+            500.0,
+            551.0
+          ],
+          [
+            500.0,
+            585.0
+          ],
+          [
+            295.0,
+            585.0
+          ]
+        ],
+        "clean_urls": [
+          "HENRO.CO"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "INFOOHENRO.COM",
+        "score": 0.8061048150062561,
+        "box": [
+          [
+            295.0,
+            634.0
+          ],
+          [
+            607.0,
+            634.0
+          ],
+          [
+            607.0,
+            664.0
+          ],
+          [
+            295.0,
+            664.0
+          ]
+        ],
+        "clean_urls": [
+          "INFOOHENRO.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "HENRO.NET",
+        "score": 0.8537701725959778,
+        "box": [
+          [
+            1365.0,
+            1245.0
+          ],
+          [
+            1561.0,
+            1245.0
+          ],
+          [
+            1561.0,
+            1278.0
+          ],
+          [
+            1365.0,
+            1278.0
+          ]
+        ],
+        "clean_urls": [
+          "HENRO.NET"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "@HENRO.CO",
+        "score": 0.8380662560462951,
+        "box": [
+          [
+            1368.0,
+            1287.0
+          ],
+          [
+            1579.0,
+            1287.0
+          ],
+          [
+            1579.0,
+            1321.0
+          ],
+          [
+            1368.0,
+            1321.0
+          ]
+        ],
+        "clean_urls": [
+          "HENRO.CO"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "INFOOHENRO.COM",
+        "score": 0.8248487869898479,
+        "box": [
+          [
+            1368.0,
+            1371.0
+          ],
+          [
+            1688.0,
+            1371.0
+          ],
+          [
+            1688.0,
+            1401.0
+          ],
+          [
+            1368.0,
+            1401.0
+          ]
+        ],
+        "clean_urls": [
+          "INFOOHENRO.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "henro",
+    "image": "henro_11.png",
+    "rel_path": "react-app/public/images/henro/henro_11.png",
+    "dimensions": [
+      4000,
+      2250
+    ],
+    "hits": [
+      {
+        "text": "HENSOR.NET",
+        "score": 0.7862522818825461,
+        "box": [
+          [
+            2821.0,
+            978.0
+          ],
+          [
+            2990.0,
+            978.0
+          ],
+          [
+            2990.0,
+            1005.0
+          ],
+          [
+            2821.0,
+            1005.0
+          ]
+        ],
+        "clean_urls": [
+          "HENSOR.NET"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "QIHENSOR.CO",
+        "score": 0.8242312222719193,
+        "box": [
+          [
+            2823.0,
+            1012.0
+          ],
+          [
+            3004.0,
+            1009.0
+          ],
+          [
+            3004.0,
+            1040.0
+          ],
+          [
+            2823.0,
+            1042.0
+          ]
+        ],
+        "clean_urls": [
+          "QIHENSOR.CO"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "henro",
+    "image": "henro_12.png",
+    "rel_path": "react-app/public/images/henro/henro_12.png",
+    "dimensions": [
+      4000,
+      2250
+    ],
+    "hits": [
+      {
+        "text": "HeNRO.Co",
+        "score": 0.8479873339335123,
+        "box": [
+          [
+            2615.0,
+            1288.0
+          ],
+          [
+            2929.0,
+            1291.0
+          ],
+          [
+            2929.0,
+            1345.0
+          ],
+          [
+            2615.0,
+            1342.0
+          ]
+        ],
+        "clean_urls": [
+          "HeNRO.Co"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "?henro.net",
+        "score": 0.833964851769534,
+        "box": [
+          [
+            2618.0,
+            1666.0
+          ],
+          [
+            2865.0,
+            1670.0
+          ],
+          [
+            2865.0,
+            1713.0
+          ],
+          [
+            2618.0,
+            1709.0
+          ]
+        ],
+        "clean_urls": [
+          "henro.net"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "henro",
+    "image": "henro_13.png",
+    "rel_path": "react-app/public/images/henro/henro_13.png",
+    "dimensions": [
+      4000,
+      2250
+    ],
+    "hits": [
+      {
+        "text": "HENRO.NET",
+        "score": 0.8299593567848206,
+        "box": [
+          [
+            2643.0,
+            745.0
+          ],
+          [
+            2876.0,
+            745.0
+          ],
+          [
+            2876.0,
+            781.0
+          ],
+          [
+            2643.0,
+            781.0
+          ]
+        ],
+        "clean_urls": [
+          "HENRO.NET"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "@HENRO.CO",
+        "score": 0.8053865075111389,
+        "box": [
+          [
+            2644.0,
+            793.0
+          ],
+          [
+            2883.0,
+            789.0
+          ],
+          [
+            2883.0,
+            827.0
+          ],
+          [
+            2644.0,
+            830.0
+          ]
+        ],
+        "clean_urls": [
+          "HENRO.CO"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "INFO@HENRO.COM",
+        "score": 0.8674163699150086,
+        "box": [
+          [
+            2643.0,
+            854.0
+          ],
+          [
+            3012.0,
+            854.0
+          ],
+          [
+            3012.0,
+            890.0
+          ],
+          [
+            2643.0,
+            890.0
+          ]
+        ],
+        "clean_urls": [
+          "HENRO.COM"
+        ],
+        "clean_emails": [
+          "INFO@HENRO.COM"
+        ],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "henro",
+    "image": "henro_14.png",
+    "rel_path": "react-app/public/images/henro/henro_14.png",
+    "dimensions": [
+      4000,
+      2250
+    ],
+    "hits": [
+      {
+        "text": "HeNRO.NET",
+        "score": 0.8817936301231384,
+        "box": [
+          [
+            1636.0,
+            417.0
+          ],
+          [
+            1877.0,
+            417.0
+          ],
+          [
+            1877.0,
+            454.0
+          ],
+          [
+            1636.0,
+            454.0
+          ]
+        ],
+        "clean_urls": [
+          "HeNRO.NET"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "@HENRO.CO",
+        "score": 0.8624395549297332,
+        "box": [
+          [
+            1637.0,
+            465.0
+          ],
+          [
+            1898.0,
+            463.0
+          ],
+          [
+            1898.0,
+            503.0
+          ],
+          [
+            1637.0,
+            505.0
+          ]
+        ],
+        "clean_urls": [
+          "HENRO.CO"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "INFO@HENRO.COM",
+        "score": 0.8994455456733703,
+        "box": [
+          [
+            1636.0,
+            561.0
+          ],
+          [
+            2028.0,
+            561.0
+          ],
+          [
+            2028.0,
+            598.0
+          ],
+          [
+            1636.0,
+            598.0
+          ]
+        ],
+        "clean_urls": [
+          "HENRO.COM"
+        ],
+        "clean_emails": [
+          "INFO@HENRO.COM"
+        ],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "henro",
+    "image": "henro_15.png",
+    "rel_path": "react-app/public/images/henro/henro_15.png",
+    "dimensions": [
+      4000,
+      2250
+    ],
+    "hits": [
+      {
+        "text": "HENRO.NET",
+        "score": 0.811602520942688,
+        "box": [
+          [
+            2483.0,
+            1565.0
+          ],
+          [
+            2737.0,
+            1565.0
+          ],
+          [
+            2737.0,
+            1602.0
+          ],
+          [
+            2483.0,
+            1602.0
+          ]
+        ],
+        "clean_urls": [
+          "HENRO.NET"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "@HENRO.CO",
+        "score": 0.887543362379074,
+        "box": [
+          [
+            2486.0,
+            1614.0
+          ],
+          [
+            2753.0,
+            1612.0
+          ],
+          [
+            2753.0,
+            1650.0
+          ],
+          [
+            2486.0,
+            1652.0
+          ]
+        ],
+        "clean_urls": [
+          "HENRO.CO"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "INFO@NENRO.COM",
+        "score": 0.9167801300684612,
+        "box": [
+          [
+            2484.0,
+            1708.0
+          ],
+          [
+            2883.0,
+            1708.0
+          ],
+          [
+            2883.0,
+            1744.0
+          ],
+          [
+            2484.0,
+            1744.0
+          ]
+        ],
+        "clean_urls": [
+          "NENRO.COM"
+        ],
+        "clean_emails": [
+          "INFO@NENRO.COM"
+        ],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "henro",
+    "image": "henro_16.png",
+    "rel_path": "react-app/public/images/henro/henro_16.png",
+    "dimensions": [
+      4000,
+      2250
+    ],
+    "hits": [
+      {
+        "text": "HENRO.NET",
+        "score": 0.813726270198822,
+        "box": [
+          [
+            3127.0,
+            1531.0
+          ],
+          [
+            3283.0,
+            1531.0
+          ],
+          [
+            3283.0,
+            1555.0
+          ],
+          [
+            3127.0,
+            1555.0
+          ]
+        ],
+        "clean_urls": [
+          "HENRO.NET"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "OHENRO.CO",
+        "score": 0.8124373257160187,
+        "box": [
+          [
+            3125.0,
+            1560.0
+          ],
+          [
+            3294.0,
+            1558.0
+          ],
+          [
+            3294.0,
+            1589.0
+          ],
+          [
+            3125.0,
+            1591.0
+          ]
+        ],
+        "clean_urls": [
+          "OHENRO.CO"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "INFOOHENRO.COM",
+        "score": 0.9065323829650879,
+        "box": [
+          [
+            3126.0,
+            1616.0
+          ],
+          [
+            3372.0,
+            1616.0
+          ],
+          [
+            3372.0,
+            1642.0
+          ],
+          [
+            3126.0,
+            1642.0
+          ]
+        ],
+        "clean_urls": [
+          "INFOOHENRO.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "leadlines",
+    "image": "leadlines_07.png",
+    "rel_path": "react-app/public/images/leadlines/leadlines_07.png",
+    "dimensions": [
+      1400,
+      1400
+    ],
+    "hits": [
+      {
+        "text": "leadlines.com",
+        "score": 0.8436789427484784,
+        "box": [
+          [
+            1004.0,
+            539.0
+          ],
+          [
+            1070.0,
+            539.0
+          ],
+          [
+            1070.0,
+            553.0
+          ],
+          [
+            1004.0,
+            553.0
+          ]
+        ],
+        "clean_urls": [
+          "leadlines.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "leadlines",
+    "image": "leadlines_16.png",
+    "rel_path": "react-app/public/images/leadlines/leadlines_16.png",
+    "dimensions": [
+      1400,
+      875
+    ],
+    "hits": [
+      {
+        "text": "leadlines.com",
+        "score": 0.8813471155507224,
+        "box": [
+          [
+            304.0,
+            766.0
+          ],
+          [
+            397.0,
+            766.0
+          ],
+          [
+            397.0,
+            783.0
+          ],
+          [
+            304.0,
+            783.0
+          ]
+        ],
+        "clean_urls": [
+          "leadlines.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "matcha-club",
+    "image": "matcha-club_16.png",
+    "rel_path": "react-app/public/images/matcha-club/matcha-club_16.png",
+    "dimensions": [
+      3778,
+      3229
+    ],
+    "hits": [
+      {
+        "text": "dandelionpa7@gmail.com",
+        "score": 0.8877811224564262,
+        "box": [
+          [
+            1520.0,
+            2935.0
+          ],
+          [
+            2260.0,
+            2938.0
+          ],
+          [
+            2260.0,
+            3001.0
+          ],
+          [
+            1520.0,
+            2998.0
+          ]
+        ],
+        "clean_urls": [
+          "gmail.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "melden",
+    "image": "melden_11.png",
+    "rel_path": "react-app/public/images/melden/melden_11.png",
+    "dimensions": [
+      1400,
+      788
+    ],
+    "hits": [
+      {
+        "text": "Design Created by - Obrazur Brands",
+        "score": 0.8749659538269043,
+        "box": [
+          [
+            1179.0,
+            722.0
+          ],
+          [
+            1346.0,
+            722.0
+          ],
+          [
+            1346.0,
+            738.0
+          ],
+          [
+            1179.0,
+            738.0
+          ]
+        ],
+        "clean_urls": [],
+        "clean_emails": [],
+        "credits": [
+          "Obrazur"
+        ]
+      }
+    ]
+  },
+  {
+    "folder": "moverunion",
+    "image": "moverunion_04.png",
+    "rel_path": "react-app/public/images/moverunion/moverunion_04.png",
+    "dimensions": [
+      1400,
+      875
+    ],
+    "hits": [
+      {
+        "text": "ROVERUNTON.COM",
+        "score": 0.8289775669574737,
+        "box": [
+          [
+            314.0,
+            430.0
+          ],
+          [
+            367.0,
+            430.0
+          ],
+          [
+            367.0,
+            441.0
+          ],
+          [
+            314.0,
+            441.0
+          ]
+        ],
+        "clean_urls": [
+          "ROVERUNTON.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "CONTACTOMOVERUNTON.CON",
+        "score": 0.8731750198032545,
+        "box": [
+          [
+            1031.0,
+            719.0
+          ],
+          [
+            1114.0,
+            719.0
+          ],
+          [
+            1114.0,
+            729.0
+          ],
+          [
+            1031.0,
+            729.0
+          ]
+        ],
+        "clean_urls": [
+          "CONTACTOMOVERUNTON.CO"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "moverunion",
+    "image": "moverunion_08.png",
+    "rel_path": "react-app/public/images/moverunion/moverunion_08.png",
+    "dimensions": [
+      1400,
+      875
+    ],
+    "hits": [
+      {
+        "text": "ROVERNTO.CO",
+        "score": 0.648904837667942,
+        "box": [
+          [
+            369.0,
+            552.0
+          ],
+          [
+            424.0,
+            560.0
+          ],
+          [
+            422.0,
+            577.0
+          ],
+          [
+            367.0,
+            569.0
+          ]
+        ],
+        "clean_urls": [
+          "ROVERNTO.CO"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "moverunion",
+    "image": "moverunion_09.png",
+    "rel_path": "react-app/public/images/moverunion/moverunion_09.png",
+    "dimensions": [
+      1400,
+      875
+    ],
+    "hits": [
+      {
+        "text": "MOVERUNION.COM",
+        "score": 0.8695013244946798,
+        "box": [
+          [
+            293.0,
+            351.0
+          ],
+          [
+            376.0,
+            322.0
+          ],
+          [
+            382.0,
+            340.0
+          ],
+          [
+            299.0,
+            369.0
+          ]
+        ],
+        "clean_urls": [
+          "MOVERUNION.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "LON.COM",
+        "score": 0.8448181599378586,
+        "box": [
+          [
+            0.0,
+            463.0
+          ],
+          [
+            37.0,
+            450.0
+          ],
+          [
+            42.0,
+            468.0
+          ],
+          [
+            1.0,
+            482.0
+          ]
+        ],
+        "clean_urls": [
+          "LON.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "murami",
+    "image": "murami_01.png",
+    "rel_path": "react-app/public/images/murami/murami_01.png",
+    "dimensions": [
+      5760,
+      3600
+    ],
+    "hits": [
+      {
+        "text": "visual art direction",
+        "score": 0.9156645139058431,
+        "box": [
+          [
+            310.0,
+            3197.0
+          ],
+          [
+            902.0,
+            3197.0
+          ],
+          [
+            902.0,
+            3260.0
+          ],
+          [
+            310.0,
+            3260.0
+          ]
+        ],
+        "clean_urls": [],
+        "clean_emails": [],
+        "credits": [
+          "art direction"
+        ]
+      }
+    ]
+  },
+  {
+    "folder": "murami",
+    "image": "murami_14.png",
+    "rel_path": "react-app/public/images/murami/murami_14.png",
+    "dimensions": [
+      5760,
+      3273
+    ],
+    "hits": [
+      {
+        "text": "FOR COLLABORATION: dandelionpa7@gmail.com  THE DRAWING BOARD",
+        "score": 0.9194513393230126,
+        "box": [
+          [
+            1928.0,
+            3051.0
+          ],
+          [
+            3831.0,
+            3048.0
+          ],
+          [
+            3831.0,
+            3105.0
+          ],
+          [
+            1928.0,
+            3108.0
+          ]
+        ],
+        "clean_urls": [
+          "gmail.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "newdestin",
+    "image": "newdestin_02.png",
+    "rel_path": "react-app/public/images/newdestin/newdestin_02.png",
+    "dimensions": [
+      1400,
+      1021
+    ],
+    "hits": [
+      {
+        "text": "www.newdestin.com",
+        "score": 0.8922453191545274,
+        "box": [
+          [
+            212.0,
+            55.0
+          ],
+          [
+            334.0,
+            94.0
+          ],
+          [
+            328.0,
+            111.0
+          ],
+          [
+            206.0,
+            72.0
+          ]
+        ],
+        "clean_urls": [
+          "www.newdestin.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "hello@newdestin.com",
+        "score": 0.9289204478263855,
+        "box": [
+          [
+            964.0,
+            175.0
+          ],
+          [
+            1095.0,
+            217.0
+          ],
+          [
+            1089.0,
+            234.0
+          ],
+          [
+            959.0,
+            192.0
+          ]
+        ],
+        "clean_urls": [
+          "newdestin.com"
+        ],
+        "clean_emails": [
+          "hello@newdestin.com"
+        ],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "newdestin",
+    "image": "newdestin_06.png",
+    "rel_path": "react-app/public/images/newdestin/newdestin_06.png",
+    "dimensions": [
+      1400,
+      1021
+    ],
+    "hits": [
+      {
+        "text": "www.newdestin.com",
+        "score": 0.8735062546200223,
+        "box": [
+          [
+            336.0,
+            508.0
+          ],
+          [
+            477.0,
+            508.0
+          ],
+          [
+            477.0,
+            523.0
+          ],
+          [
+            336.0,
+            523.0
+          ]
+        ],
+        "clean_urls": [
+          "www.newdestin.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "newdestin",
+    "image": "newdestin_13.png",
+    "rel_path": "react-app/public/images/newdestin/newdestin_13.png",
+    "dimensions": [
+      1400,
+      1021
+    ],
+    "hits": [
+      {
+        "text": "www.newdestin.com",
+        "score": 0.8463453749815623,
+        "box": [
+          [
+            575.0,
+            768.0
+          ],
+          [
+            646.0,
+            768.0
+          ],
+          [
+            646.0,
+            782.0
+          ],
+          [
+            575.0,
+            782.0
+          ]
+        ],
+        "clean_urls": [
+          "www.newdestin.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "www.newdostin.com",
+        "score": 0.8129914535416497,
+        "box": [
+          [
+            1042.0,
+            768.0
+          ],
+          [
+            1115.0,
+            768.0
+          ],
+          [
+            1115.0,
+            781.0
+          ],
+          [
+            1042.0,
+            781.0
+          ]
+        ],
+        "clean_urls": [
+          "www.newdostin.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "helloGnewdestin.com",
+        "score": 0.8776513814926148,
+        "box": [
+          [
+            573.0,
+            779.0
+          ],
+          [
+            646.0,
+            779.0
+          ],
+          [
+            646.0,
+            789.0
+          ],
+          [
+            573.0,
+            789.0
+          ]
+        ],
+        "clean_urls": [
+          "helloGnewdestin.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "helio@newdestin.com",
+        "score": 0.8355686366558075,
+        "box": [
+          [
+            1041.0,
+            779.0
+          ],
+          [
+            1114.0,
+            779.0
+          ],
+          [
+            1114.0,
+            789.0
+          ],
+          [
+            1041.0,
+            789.0
+          ]
+        ],
+        "clean_urls": [
+          "newdestin.com"
+        ],
+        "clean_emails": [
+          "helio@newdestin.com"
+        ],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "newdestin",
+    "image": "newdestin_15.png",
+    "rel_path": "react-app/public/images/newdestin/newdestin_15.png",
+    "dimensions": [
+      1400,
+      1021
+    ],
+    "hits": [
+      {
+        "text": "www.newdestin.com",
+        "score": 0.9009459184275733,
+        "box": [
+          [
+            314.0,
+            448.0
+          ],
+          [
+            462.0,
+            448.0
+          ],
+          [
+            462.0,
+            464.0
+          ],
+          [
+            314.0,
+            464.0
+          ]
+        ],
+        "clean_urls": [
+          "www.newdestin.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "hello@newdestin.com",
+        "score": 0.9090650796890258,
+        "box": [
+          [
+            621.0,
+            447.0
+          ],
+          [
+            776.0,
+            447.0
+          ],
+          [
+            776.0,
+            464.0
+          ],
+          [
+            621.0,
+            464.0
+          ]
+        ],
+        "clean_urls": [
+          "newdestin.com"
+        ],
+        "clean_emails": [
+          "hello@newdestin.com"
+        ],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "pronto",
+    "image": "pronto_09.png",
+    "rel_path": "react-app/public/images/pronto/pronto_09.png",
+    "dimensions": [
+      5834,
+      3334
+    ],
+    "hits": [
+      {
+        "text": "prontopizza.com",
+        "score": 0.8827214539051056,
+        "box": [
+          [
+            627.0,
+            2018.0
+          ],
+          [
+            896.0,
+            1951.0
+          ],
+          [
+            903.0,
+            1979.0
+          ],
+          [
+            634.0,
+            2045.0
+          ]
+        ],
+        "clean_urls": [
+          "prontopizza.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "pronto",
+    "image": "pronto_10.png",
+    "rel_path": "react-app/public/images/pronto/pronto_10.png",
+    "dimensions": [
+      5834,
+      4098
+    ],
+    "hits": [
+      {
+        "text": "prontopiaza.com",
+        "score": 0.9093437418341637,
+        "box": [
+          [
+            2539.0,
+            1245.0
+          ],
+          [
+            2608.0,
+            1390.0
+          ],
+          [
+            2577.0,
+            1404.0
+          ],
+          [
+            2509.0,
+            1259.0
+          ]
+        ],
+        "clean_urls": [
+          "prontopiaza.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "pronto",
+    "image": "pronto_11.png",
+    "rel_path": "react-app/public/images/pronto/pronto_11.png",
+    "dimensions": [
+      5834,
+      3334
+    ],
+    "hits": [
+      {
+        "text": "prontopizza.com",
+        "score": 0.8534397259354591,
+        "box": [
+          [
+            4458.0,
+            2633.0
+          ],
+          [
+            4762.0,
+            2524.0
+          ],
+          [
+            4775.0,
+            2562.0
+          ],
+          [
+            4472.0,
+            2671.0
+          ]
+        ],
+        "clean_urls": [
+          "prontopizza.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "pronto",
+    "image": "pronto_12.png",
+    "rel_path": "react-app/public/images/pronto/pronto_12.png",
+    "dimensions": [
+      5834,
+      3334
+    ],
+    "hits": [
+      {
+        "text": "prontopizza.com",
+        "score": 0.8804541677236557,
+        "box": [
+          [
+            2493.0,
+            2489.0
+          ],
+          [
+            2815.0,
+            2544.0
+          ],
+          [
+            2808.0,
+            2584.0
+          ],
+          [
+            2486.0,
+            2530.0
+          ]
+        ],
+        "clean_urls": [
+          "prontopizza.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "pronto",
+    "image": "pronto_15.png",
+    "rel_path": "react-app/public/images/pronto/pronto_15.png",
+    "dimensions": [
+      5834,
+      3334
+    ],
+    "hits": [
+      {
+        "text": "prontopizza.com",
+        "score": 0.8835577256977558,
+        "box": [
+          [
+            1381.0,
+            2865.0
+          ],
+          [
+            1736.0,
+            2833.0
+          ],
+          [
+            1739.0,
+            2872.0
+          ],
+          [
+            1384.0,
+            2904.0
+          ]
+        ],
+        "clean_urls": [
+          "prontopizza.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "radiance",
+    "image": "radiance_04.png",
+    "rel_path": "react-app/public/images/radiance/radiance_04.png",
+    "dimensions": [
+      1400,
+      875
+    ],
+    "hits": [
+      {
+        "text": "OBRAZUR BRANDS",
+        "score": 0.8929892301559448,
+        "box": [
+          [
+            1289.0,
+            432.0
+          ],
+          [
+            1385.0,
+            432.0
+          ],
+          [
+            1385.0,
+            447.0
+          ],
+          [
+            1289.0,
+            447.0
+          ]
+        ],
+        "clean_urls": [],
+        "clean_emails": [],
+        "credits": [
+          "OBRAZUR"
+        ]
+      }
+    ]
+  },
+  {
+    "folder": "reel",
+    "image": "reel_06.jpg",
+    "rel_path": "react-app/public/images/reel/reel_06.jpg",
+    "dimensions": [
+      1500,
+      2000
+    ],
+    "hits": [
+      {
+        "text": "reelpaper.com",
+        "score": 0.921990339245115,
+        "box": [
+          [
+            731.0,
+            1488.0
+          ],
+          [
+            844.0,
+            1488.0
+          ],
+          [
+            844.0,
+            1505.0
+          ],
+          [
+            731.0,
+            1505.0
+          ]
+        ],
+        "clean_urls": [
+          "reelpaper.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "reel",
+    "image": "reel_12.jpg",
+    "rel_path": "react-app/public/images/reel/reel_12.jpg",
+    "dimensions": [
+      3000,
+      2000
+    ],
+    "hits": [
+      {
+        "text": "Learnmoreat ReelPaper.com/trees",
+        "score": 0.9288984667509794,
+        "box": [
+          [
+            285.0,
+            1393.0
+          ],
+          [
+            496.0,
+            1406.0
+          ],
+          [
+            495.0,
+            1430.0
+          ],
+          [
+            284.0,
+            1417.0
+          ]
+        ],
+        "clean_urls": [
+          "ReelPaper.com/trees"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "rest-religion",
+    "image": "rest-religion_08.jpg",
+    "rel_path": "react-app/public/images/rest-religion/rest-religion_08.jpg",
+    "dimensions": [
+      3240,
+      2160
+    ],
+    "hits": [
+      {
+        "text": "FINDOUTMORE.ATRESTRELIGION.COM",
+        "score": 0.9083516886157375,
+        "box": [
+          [
+            1363.0,
+            1623.0
+          ],
+          [
+            1842.0,
+            1623.0
+          ],
+          [
+            1842.0,
+            1646.0
+          ],
+          [
+            1363.0,
+            1646.0
+          ]
+        ],
+        "clean_urls": [
+          "ATRESTRELIGION.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "rest-religion",
+    "image": "rest-religion_10.jpg",
+    "rel_path": "react-app/public/images/rest-religion/rest-religion_10.jpg",
+    "dimensions": [
+      1080,
+      1350
+    ],
+    "hits": [
+      {
+        "text": "restreligion.com",
+        "score": 0.8680304534295026,
+        "box": [
+          [
+            525.0,
+            972.0
+          ],
+          [
+            668.0,
+            926.0
+          ],
+          [
+            675.0,
+            950.0
+          ],
+          [
+            532.0,
+            996.0
+          ]
+        ],
+        "clean_urls": [
+          "restreligion.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "rest-religion",
+    "image": "rest-religion_11.jpg",
+    "rel_path": "react-app/public/images/rest-religion/rest-religion_11.jpg",
+    "dimensions": [
+      3000,
+      2000
+    ],
+    "hits": [
+      {
+        "text": "restreligion.com",
+        "score": 0.9184328843565548,
+        "box": [
+          [
+            1271.0,
+            271.0
+          ],
+          [
+            1382.0,
+            259.0
+          ],
+          [
+            1384.0,
+            280.0
+          ],
+          [
+            1273.0,
+            291.0
+          ]
+        ],
+        "clean_urls": [
+          "restreligion.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "rest-religion",
+    "image": "rest-religion_14.jpg",
+    "rel_path": "react-app/public/images/rest-religion/rest-religion_14.jpg",
+    "dimensions": [
+      2160,
+      2700
+    ],
+    "hits": [
+      {
+        "text": "restreiqon.com",
+        "score": 0.7757146497567494,
+        "box": [
+          [
+            1773.0,
+            2033.0
+          ],
+          [
+            1885.0,
+            2050.0
+          ],
+          [
+            1879.0,
+            2089.0
+          ],
+          [
+            1767.0,
+            2073.0
+          ]
+        ],
+        "clean_urls": [
+          "restreiqon.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "rest-religion",
+    "image": "rest-religion_15.png",
+    "rel_path": "react-app/public/images/rest-religion/rest-religion_15.png",
+    "dimensions": [
+      2549,
+      1593
+    ],
+    "hits": [
+      {
+        "text": "RESTRELIGION.COM",
+        "score": 0.8755876982913298,
+        "box": [
+          [
+            707.0,
+            493.0
+          ],
+          [
+            893.0,
+            493.0
+          ],
+          [
+            893.0,
+            513.0
+          ],
+          [
+            707.0,
+            513.0
+          ]
+        ],
+        "clean_urls": [
+          "RESTRELIGION.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "saas",
+    "image": "moverunion.png",
+    "rel_path": "react-app/public/images/saas/moverunion.png",
+    "dimensions": [
+      808,
+      632
+    ],
+    "hits": [
+      {
+        "text": "MOVERUNTON.COM",
+        "score": 0.8555336594581604,
+        "box": [
+          [
+            51.0,
+            304.0
+          ],
+          [
+            120.0,
+            278.0
+          ],
+          [
+            125.0,
+            293.0
+          ],
+          [
+            56.0,
+            318.0
+          ]
+        ],
+        "clean_urls": [
+          "MOVERUNTON.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "seroq",
+    "image": "seroq_07.png",
+    "rel_path": "react-app/public/images/seroq/seroq_07.png",
+    "dimensions": [
+      4000,
+      2250
+    ],
+    "hits": [
+      {
+        "text": "dandelionpa7@gmail.com",
+        "score": 0.8789021269134853,
+        "box": [
+          [
+            2578.0,
+            1560.0
+          ],
+          [
+            2833.0,
+            1560.0
+          ],
+          [
+            2833.0,
+            1586.0
+          ],
+          [
+            2578.0,
+            1586.0
+          ]
+        ],
+        "clean_urls": [
+          "gmail.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "seroq",
+    "image": "seroq_11.png",
+    "rel_path": "react-app/public/images/seroq/seroq_11.png",
+    "dimensions": [
+      4000,
+      2250
+    ],
+    "hits": [
+      {
+        "text": "geroa.com",
+        "score": 0.7316602408885956,
+        "box": [
+          [
+            3744.0,
+            1016.0
+          ],
+          [
+            3891.0,
+            954.0
+          ],
+          [
+            3903.0,
+            983.0
+          ],
+          [
+            3756.0,
+            1044.0
+          ]
+        ],
+        "clean_urls": [
+          "geroa.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "seroq",
+    "image": "seroq_14.png",
+    "rel_path": "react-app/public/images/seroq/seroq_14.png",
+    "dimensions": [
+      4000,
+      2250
+    ],
+    "hits": [
+      {
+        "text": "dandelionpa7@gmail.com",
+        "score": 0.9034811336061229,
+        "box": [
+          [
+            1753.0,
+            447.0
+          ],
+          [
+            2007.0,
+            447.0
+          ],
+          [
+            2007.0,
+            473.0
+          ],
+          [
+            1753.0,
+            473.0
+          ]
+        ],
+        "clean_urls": [
+          "gmail.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "setience",
+    "image": "setience_03.png",
+    "rel_path": "react-app/public/images/setience/setience_03.png",
+    "dimensions": [
+      1400,
+      875
+    ],
+    "hits": [
+      {
+        "text": "SETIENCE.COM",
+        "score": 0.8725787630447974,
+        "box": [
+          [
+            598.0,
+            431.0
+          ],
+          [
+            677.0,
+            431.0
+          ],
+          [
+            677.0,
+            446.0
+          ],
+          [
+            598.0,
+            446.0
+          ]
+        ],
+        "clean_urls": [
+          "SETIENCE.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "setience",
+    "image": "setience_06.png",
+    "rel_path": "react-app/public/images/setience/setience_06.png",
+    "dimensions": [
+      1400,
+      875
+    ],
+    "hits": [
+      {
+        "text": "setience.com",
+        "score": 0.9121600527029771,
+        "box": [
+          [
+            1043.0,
+            556.0
+          ],
+          [
+            1098.0,
+            556.0
+          ],
+          [
+            1098.0,
+            570.0
+          ],
+          [
+            1043.0,
+            570.0
+          ]
+        ],
+        "clean_urls": [
+          "setience.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "setience",
+    "image": "setience_12.png",
+    "rel_path": "react-app/public/images/setience/setience_12.png",
+    "dimensions": [
+      1400,
+      875
+    ],
+    "hits": [
+      {
+        "text": "setience.com",
+        "score": 0.8470502266517053,
+        "box": [
+          [
+            461.0,
+            596.0
+          ],
+          [
+            511.0,
+            596.0
+          ],
+          [
+            511.0,
+            607.0
+          ],
+          [
+            461.0,
+            607.0
+          ]
+        ],
+        "clean_urls": [
+          "setience.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "9setienco.com",
+        "score": 0.8510757173810687,
+        "box": [
+          [
+            617.0,
+            596.0
+          ],
+          [
+            669.0,
+            596.0
+          ],
+          [
+            669.0,
+            607.0
+          ],
+          [
+            617.0,
+            607.0
+          ]
+        ],
+        "clean_urls": [
+          "9setienco.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "setience",
+    "image": "setience_16.png",
+    "rel_path": "react-app/public/images/setience/setience_16.png",
+    "dimensions": [
+      1400,
+      875
+    ],
+    "hits": [
+      {
+        "text": "(SETIENCE.COM",
+        "score": 0.8085694355624062,
+        "box": [
+          [
+            552.0,
+            629.0
+          ],
+          [
+            623.0,
+            629.0
+          ],
+          [
+            623.0,
+            643.0
+          ],
+          [
+            552.0,
+            643.0
+          ]
+        ],
+        "clean_urls": [
+          "SETIENCE.COM"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "soul-brew",
+    "image": "10.png",
+    "rel_path": "react-app/public/images/soul-brew/10.png",
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "hits": [
+      {
+        "text": "soul.brewolnstagran.com",
+        "score": 0.7760665938258171,
+        "box": [
+          [
+            388.0,
+            492.0
+          ],
+          [
+            560.0,
+            495.0
+          ],
+          [
+            560.0,
+            514.0
+          ],
+          [
+            388.0,
+            511.0
+          ]
+        ],
+        "clean_urls": [
+          "brewolnstagran.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "think",
+    "image": "heatmap2.jpeg",
+    "rel_path": "react-app/public/images/think/heatmap2.jpeg",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "hits": [
+      {
+        "text": "it'saritualolcomfor.connectinandculture",
+        "score": 0.8468705147504807,
+        "box": [
+          [
+            877.0,
+            242.0
+          ],
+          [
+            1053.0,
+            240.0
+          ],
+          [
+            1053.0,
+            256.0
+          ],
+          [
+            877.0,
+            258.0
+          ]
+        ],
+        "clean_urls": [
+          "saritualolcomfor.co"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "It's clear.Honest.Memorable.",
+        "score": 0.9093102545573793,
+        "box": [
+          [
+            1343.0,
+            929.0
+          ],
+          [
+            1487.0,
+            929.0
+          ],
+          [
+            1487.0,
+            945.0
+          ],
+          [
+            1343.0,
+            945.0
+          ]
+        ],
+        "clean_urls": [
+          "Honest.Me"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "toodaloo",
+    "image": "toodaloo_08.jpg",
+    "rel_path": "react-app/public/images/toodaloo/toodaloo_08.jpg",
+    "dimensions": [
+      3000,
+      1480
+    ],
+    "hits": [
+      {
+        "text": "Toodaloo.com",
+        "score": 0.9029141435256371,
+        "box": [
+          [
+            1157.0,
+            1088.0
+          ],
+          [
+            1306.0,
+            1088.0
+          ],
+          [
+            1306.0,
+            1111.0
+          ],
+          [
+            1157.0,
+            1111.0
+          ]
+        ],
+        "clean_urls": [
+          "Toodaloo.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  },
+  {
+    "folder": "westerico",
+    "image": "westerico_14.png",
+    "rel_path": "react-app/public/images/westerico/westerico_14.png",
+    "dimensions": [
+      1400,
+      934
+    ],
+    "hits": [
+      {
+        "text": "www.westerico.com",
+        "score": 0.9124276340007782,
+        "box": [
+          [
+            812.0,
+            499.0
+          ],
+          [
+            998.0,
+            515.0
+          ],
+          [
+            996.0,
+            535.0
+          ],
+          [
+            810.0,
+            519.0
+          ]
+        ],
+        "clean_urls": [
+          "www.westerico.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      },
+      {
+        "text": "wwwwesterico.com",
+        "score": 0.8142613856231465,
+        "box": [
+          [
+            355.0,
+            532.0
+          ],
+          [
+            436.0,
+            510.0
+          ],
+          [
+            441.0,
+            527.0
+          ],
+          [
+            359.0,
+            549.0
+          ]
+        ],
+        "clean_urls": [
+          "wwwwesterico.com"
+        ],
+        "clean_emails": [],
+        "credits": []
+      }
+    ]
+  }
+]

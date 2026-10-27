@@ -71,6 +71,7 @@ fs.writeFileSync(path.join(distDir, '_redirects'), '/* /index.html 200\n');
 const vercelConfig = {
   cleanUrls: true,
   rewrites: [
+    { source: '/api/(.*)', destination: '/api/$1' },
     { source: '/(.*)', destination: '/index.html' }
   ]
 };

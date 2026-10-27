@@ -324,33 +324,41 @@ export default function BrandReadiness() {
         });
       }
 
-      // 2. Background FormSubmit email dispatch directly to studio inbox
-      await fetch('https://formsubmit.co/ajax/25c2139e28176433a33351a4cfeeac2b', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        },
-        body: JSON.stringify({
-          _subject: `New Project Quote Enquiry: ${state.brandOrWebsite || 'Brand'} — ${state.fullName}`,
-          _template: 'table',
-          _captcha: 'false',
-          _replyto: state.email.trim(),
-          _cc: 'dandelionpa7@gmail.com',
-          'Client Name': state.fullName.trim(),
-          'Email Address': state.email.trim(),
-          'WhatsApp Number': fullWhatsApp,
-          'Phone Number': fullPhone || 'Not provided',
-          'WhatsApp / Phone': fullPhone ? `${fullWhatsApp} / ${fullPhone}` : fullWhatsApp,
-          'Brand Name or Website': state.brandOrWebsite.trim() || 'Not provided',
-          'Services Requested': serviceLabels.join(', '),
-          'Business Category': catLabel + (state.otherCategory ? ` (${state.otherCategory})` : ''),
-          'Approximate Budget': budgetLabel,
-          'Target Timeline': timelineLabel,
-          'Project Overview': state.projectDescription.trim()
-        }),
-        keepalive: true
-      });
+      // 2. High-speed Serverless Resend + Sheet dispatch directly to studio pipeline
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000);
+
+      try {
+        await fetch('/api/submit-lead', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: `New Project Quote Enquiry: ${state.brandOrWebsite || 'Brand'} — ${state.fullName}`,
+            _template: 'table',
+            _replyto: state.email.trim(),
+            'Client Name': state.fullName.trim(),
+            'Email Address': state.email.trim(),
+            'WhatsApp Number': fullWhatsApp,
+            'Phone Number': fullPhone || 'Not provided',
+            'WhatsApp / Phone': fullPhone ? `${fullWhatsApp} / ${fullPhone}` : fullWhatsApp,
+            'Brand Name or Website': state.brandOrWebsite.trim() || 'Not provided',
+            'Services Requested': serviceLabels.join(', '),
+            'Business Category': catLabel + (state.otherCategory ? ` (${state.otherCategory})` : ''),
+            'Approximate Budget': budgetLabel,
+            'Target Timeline': timelineLabel,
+            'Project Overview': state.projectDescription.trim(),
+            'Source Page': 'Brand Readiness / Get a Quote Calculator'
+          }),
+          signal: controller.signal
+        });
+      } catch (postErr) {
+        console.warn('Pipeline notice (proceeding with local backup):', postErr);
+      } finally {
+        clearTimeout(timeoutId);
+      }
 
       // Save offline backup
       try {

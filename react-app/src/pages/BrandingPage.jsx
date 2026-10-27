@@ -222,7 +222,7 @@ export default function BrandingPage() {
     e.preventDefault();
     setLeadSubmitted(true);
     try {
-      fetch("https://formsubmit.co/ajax/25c2139e28176433a33351a4cfeeac2b", {
+      fetch("/api/submit-lead", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
@@ -231,9 +231,7 @@ export default function BrandingPage() {
         body: JSON.stringify({
           _subject: `Brand Readiness Checklist Request: ${leadFormData.brand || 'Brand'} (${leadFormData.email})`,
           _template: "table",
-          _captcha: "false",
           _replyto: leadFormData.email,
-          _cc: "dandelionpa7@gmail.com",
           "Work Email": leadFormData.email,
           "Brand Name": leadFormData.brand,
           "Source Page": "Branding Page Brand Audit"
