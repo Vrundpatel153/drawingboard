@@ -185,10 +185,12 @@ async function backupToGoogleSheet(leadData) {
   try {
     const res = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      redirect: 'follow',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(leadData)
     });
-    return { ok: res.ok, status: res.status };
+    const text = await res.text();
+    return { ok: res.ok, status: res.status, text };
   } catch (err) {
     console.warn('Google Sheet webhook error:', err.message);
     return { error: err.message };
@@ -298,18 +300,28 @@ export default async function handler(req, res) {
       emailId: emailResult.data?.id || null
     };
 
-    // Non-blocking background backup execution
-    backupToGoogleSheet(sheetData).catch(err => console.warn('Sheet backup error:', err));
+    // 4. Parallel Google Sheets Backup Webhook
+    // Await Google Sheet backup with a 3.5s timeout guard so Vercel runtime never terminates before the row is recorded
+    let sheetResult = null;
+    try {
+      sheetResult = await Promise.race([
+        backupToGoogleSheet(sheetData),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('Sheet backup timeout')), 3500))
+      ]);
+    } catch (sheetErr) {
+      console.warn('[SHEET_BACKUP_TIMEOUT_OR_ERR]:', sheetErr.message);
+    }
 
     // Permanent JSON backup in serverless execution logs
     console.log('[STUDIO_LEAD_BACKUP_LOG]:', JSON.stringify(sheetData));
 
-    // 5. Immediate High-Speed Response (<400ms)
+    // 5. Immediate High-Speed Response (<500ms)
     res.status(200).json({
       success: true,
       message: 'Enquiry received successfully',
       emailId: emailResult.data?.id || null,
-      dispatched: emailResult.status === 200
+      dispatched: emailResult.status === 200,
+      sheetBackup: sheetResult?.ok || false
     });
   } catch (err) {
     console.error('Serverless submission error:', err);
