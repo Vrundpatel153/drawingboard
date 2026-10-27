@@ -15,7 +15,7 @@
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const PRIMARY_INBOX = 'vrundvrundvrund15@gmail.com';
 const STUDIO_FALLBACK_INBOX = 'dandelionpa7@gmail.com';
-const GOOGLE_SHEET_WEBHOOK_URL = process.env.GOOGLE_SHEET_WEBHOOK_URL || '';
+const GOOGLE_SHEET_WEBHOOK_URL = process.env.GOOGLE_SHEET_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbzY_hG_Nk46adEnP155Z82TYjxL0ZxzDKF20JLFLlG4wIm7Jvc-Cvr-1oF-kbeRhUOK/exec';
 
 function parseBody(req) {
   if (!req.body) return {};
@@ -287,8 +287,8 @@ export default async function handler(req, res) {
       source: sourcePage,
       name: clientName,
       email: clientEmail,
-      whatsapp: whatsapp || phone,
-      phone: phone || whatsapp,
+      whatsapp: (whatsapp || phone) ? (String(whatsapp || phone).startsWith('+') ? `'${whatsapp || phone}` : String(whatsapp || phone)) : '',
+      phone: (phone || whatsapp) ? (String(phone || whatsapp).startsWith('+') ? `'${phone || whatsapp}` : String(phone || whatsapp)) : '',
       company: company,
       services: services,
       budget: budget,
