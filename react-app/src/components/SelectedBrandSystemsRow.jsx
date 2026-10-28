@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ArrowIcon from './ArrowIcon';
 
@@ -47,7 +47,8 @@ const BRAND_SYSTEMS = [
       'Incense stick box dielines',
       'Architectural candle packaging',
       'Monochromatic cone SKU matrix',
-      'Artisanal Ayurvedic soap cartons'
+      'Artisanal Ayurvedic soap cartons',
+      'Bombay dusk & diffuser suites'
     ],
     demo: 'How nostalgic place-memory storytelling and architectural dielines transform cultural commodities into coveted luxury staples.'
   },
@@ -441,6 +442,12 @@ export default function SelectedBrandSystemsRow() {
         .case-card-interactive:hover .case-hover-arrow {
           transform: translateX(4px);
         }
+        .case-card-interactive .case-img-inner {
+          transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .case-card-interactive:hover .case-img-inner {
+          transform: scale(1.04);
+        }
       `}</style>
 
       <div
@@ -478,27 +485,31 @@ export default function SelectedBrandSystemsRow() {
             }}
           >
             <div
-              className="img"
+              className="img case-img-container"
               style={{
-                background: 'var(--paper)',
+                background: 'var(--card)',
                 width: '100%',
-                height: '250px',
+                aspectRatio: '16 / 9',
                 overflow: 'hidden',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderBottom: '1px solid var(--paper-line)'
+                position: 'relative',
+                display: 'block',
+                borderBottom: '1px solid var(--paper-line)',
+                padding: 0,
+                margin: 0
               }}
             >
               <img
                 src={item.image}
                 alt={`${item.name} Brand System`}
                 loading="lazy"
+                className="case-img-inner"
                 style={{
                   width: '100%',
                   height: '100%',
-                  objectFit: 'contain',
-                  padding: '12px'
+                  objectFit: 'cover',
+                  display: 'block',
+                  padding: 0,
+                  margin: 0
                 }}
               />
             </div>

@@ -413,7 +413,7 @@ export default function Home() {
             min-width: 280px !important;
           }
         }
-        .case-card .img { aspect-ratio: 4/3; background: linear-gradient(135deg, #d8d2c1, #c3bda9); position: relative; overflow: hidden; width: 100%; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(27,27,23,0.4); text-align: center; padding: 12px; }
+        .case-card .img { aspect-ratio: 16/9; background: var(--card); position: relative; overflow: hidden; width: 100%; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(27,27,23,0.4); text-align: center; padding: 0; }
         .case-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
         .case-body .tag { font-size: 11px; color: var(--marker); margin-bottom: 6px; font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; }
         .case-body h4 { font-size: 19px; margin-bottom: 6px; }

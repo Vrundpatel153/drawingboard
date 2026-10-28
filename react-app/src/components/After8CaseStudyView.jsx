@@ -1,11 +1,10 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import RegistrationMarks from './RegistrationMarks';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import StickyMobileCTA from './StickyMobileCTA';
 import ArrowIcon from './ArrowIcon';
-import { DISCUSS_URL, WHATSAPP_URL } from '../utils/siteConfig';
+import { WHATSAPP_URL } from '../utils/siteConfig';
 import useSEO from '../hooks/useSEO';
 
 export default function After8CaseStudyView({ nextProject, pageRef }) {
@@ -733,24 +732,6 @@ export default function After8CaseStudyView({ nextProject, pageRef }) {
           .after8-case-study-page .stat { flex: 1 1 50%; border-bottom: 1px solid var(--ink); }
         }
 
-        /* Reserved Testimonial */
-        .after8-case-study-page .testi-empty {
-          border: 1.5px dashed var(--ink-soft);
-          padding: 34px;
-          text-align: center;
-          color: var(--ink-soft);
-          font-size: 13.5px;
-          background: rgba(255, 255, 255, 0.3);
-        }
-        .after8-case-study-page .testi-empty b {
-          display: block;
-          color: var(--ink);
-          font-family: 'Fraunces', serif;
-          font-size: 17px;
-          margin-bottom: 8px;
-          font-weight: 600;
-        }
-
         /* Colophon */
         .after8-case-study-page .colophon {
           display: flex;
@@ -1303,13 +1284,6 @@ export default function After8CaseStudyView({ nextProject, pageRef }) {
             <div className="stat"><div className="num">4</div><div className="lbl mono">disciplines — brand, packaging, web, photography</div></div>
             <div className="stat"><div className="num">6</div><div className="lbl mono">flavour SKUs, each with its own system</div></div>
             <div className="stat"><div className="num">1</div><div className="lbl mono">idea, taken to full cultural repositioning</div></div>
-          </div>
-
-          <div style={{ marginTop: '32px' }}>
-            <div className="testi-empty">
-              <b>Client testimonial — reserved</b>
-              Drop AFTER8's verbatim quote here once approved. A short line on how the rebrand changed how the team or retail partners see the product lands harder than any stat above.
-            </div>
           </div>
 
           <div className="colophon" style={{ marginTop: '40px' }}>

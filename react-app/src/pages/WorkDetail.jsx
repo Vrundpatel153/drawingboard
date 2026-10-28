@@ -39,7 +39,11 @@ export default function WorkDetail() {
   const isBanam = cleanId.includes('banam');
   const isMorningGrain = cleanId.includes('morning') || cleanId.includes('grain');
   const isBlankBody = cleanId.includes('blank-body') || cleanId.includes('blank');
-  const isCrystal = cleanId.includes('crystal') || cleanId.includes('nail');
+  const isCrystal = cleanId.includes('crystal');
+  const isBarely = cleanId.includes('barely');
+  const isSageBeauty = cleanId.includes('sage') || cleanId.includes('beauty-club');
+  const isIva = cleanId.includes('iva') || cleanId.includes('nail-care');
+  const isCoastalBuns = cleanId.includes('coastal') || cleanId.includes('buns');
   const isBraveRx = cleanId.includes('brave') || cleanId.includes('rx');
   const isRestReligion = cleanId.includes('rest') || cleanId.includes('religion');
   const isYaad = cleanId.includes('yaad');
@@ -50,7 +54,11 @@ export default function WorkDetail() {
     return slug === cleanId || cleanId.includes(slug) || slug.includes(cleanId);
   }) || projectsData.find(p => {
     const s = (p.slug || '').toLowerCase();
-    return (isYaad && s.includes('yaad')) ||
+    return (isBarely && s.includes('barely')) ||
+      (isSageBeauty && s.includes('sage')) ||
+      (isIva && s.includes('iva')) ||
+      (isCoastalBuns && s.includes('coastal')) ||
+      (isYaad && s.includes('yaad')) ||
       (isPronto && s.includes('pronto')) ||
       (isMatchaClub && s.includes('matcha')) ||
       (isMurami && s.includes('murami')) ||
@@ -170,7 +178,15 @@ export default function WorkDetail() {
           <Link to="/work">Work</Link>
           <span className="sep">/</span>
           <span className="cur">
-            {isYaad
+            {isBarely
+              ? 'Barely Clean Intimate Skincare'
+              : isSageBeauty
+              ? 'Sage Beauty Club Holistic Skincare'
+              : isIva
+              ? 'IVA Professional Nail Care'
+              : isCoastalBuns
+              ? 'Coastal Buns Artisan Bakery'
+              : isYaad
               ? 'YAAD Sensory Rituals & Packaging'
               : isPronto
               ? 'PRONTO! Case Study'
@@ -218,7 +234,15 @@ export default function WorkDetail() {
         <div className="wrap">
           <div className="sheet-label">
             <span className="sheet-meta mono">
-              {isYaad
+              {isBarely
+                ? 'CASE STUDY // SPEC 14 — CLEAN INTIMATE SKINCARE & PACKAGING'
+                : isSageBeauty
+                ? 'CASE STUDY // SPEC 15 — HOLISTIC SKINCARE & BRAND IDENTITY'
+                : isIva
+                ? 'CASE STUDY // SPEC 16 — PROFESSIONAL NAIL CARE ARCHITECTURE'
+                : isCoastalBuns
+                ? 'CASE STUDY // SPEC 17 — ARTISAN BAKERY & BREAD PACKAGING'
+                : isYaad
                 ? 'CASE STUDY // SPEC 13 — SENSORY RITUALS & HERITAGE PACKAGING'
                 : isPronto
                 ? 'CASE STUDY // SPEC 01 — RESTAURANT & PACKAGING'
@@ -249,7 +273,107 @@ export default function WorkDetail() {
             <div className="rule"></div>
           </div>
 
-          {isPronto ? (
+          {isBarely ? (
+            <>
+              <h1>Barely — <em>Clean Intimate Skincare</em> &amp; Packaging Identity.</h1>
+              <p className="dek">
+                How we engineered an authentic brand identity, tactile packaging architecture, structural bottle dielines, and clean wellness aesthetics for Australian intimate skincare pioneer Barely.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Barely Skincare Australia</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Brand Identity, Packaging Suite &amp; Dielines</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">4 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>+260% DTC Retail Velocity</div>
+                </div>
+              </div>
+            </>
+          ) : isSageBeauty ? (
+            <>
+              <h1>Sage Beauty Club — <em>Holistic Skincare</em> &amp; Brand Identity System.</h1>
+              <p className="dek">
+                A comprehensive visual identity, custom botanical dropper bottle dielines, unboxing packaging architecture, social media art direction, and digital brand collateral for Sage Beauty Club.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Sage Beauty Club</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Brand Identity, Packaging Architecture &amp; Art Direction</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">6 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>+310% Brand Engagement</div>
+                </div>
+              </div>
+            </>
+          ) : isIva ? (
+            <>
+              <h1>IVA — <em>Professional European Nail Care</em> &amp; Skincare Packaging Identity.</h1>
+              <p className="dek">
+                Architectural packaging dielines, proportion-led European typographic identity, hand cream cartons, and salon formulation suites engineered for professional nail technicians and discerning consumers.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">IVA Professional Nail Care</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Packaging Architecture, Brand Identity &amp; Dielines</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">4 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>+220% Salon Distribution</div>
+                </div>
+              </div>
+            </>
+          ) : isCoastalBuns ? (
+            <>
+              <h1>Coastal Buns — <em>Mediterranean Artisan Bakery</em> &amp; Bread Packaging.</h1>
+              <p className="dek">
+                Retro-Mediterranean bakery identity, sourdough wrapper dielines, craft bread bags, takeout boxes, and dynamic coastal Spanish visual system.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Coastal Buns Bakery (Spain)</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Brand Identity, Custom Packaging &amp; Motion</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">4 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>+190% Foot Traffic &amp; Takeout</div>
+                </div>
+              </div>
+            </>
+          ) : isPronto ? (
             <>
               <h1>PRONTO! — <em>Authentic Italian</em> Restaurant &amp; Neapolitan Pizzeria Identity.</h1>
               <p className="dek">
@@ -531,7 +655,95 @@ export default function WorkDetail() {
       {/* Dark Contrast Problem / Insight Block */}
       <section className="problem">
         <div className="wrap">
-          {isPronto ? (
+          {isBarely ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE INTIMATE CARE CHALLENGE</div>
+                  <h2>De-stigmatizing feminine intimate care into daily mindful wellness.</h2>
+                </div>
+                <p>Moving from clinical medicinal awkwardness to an empowering, shelf-worthy self-care ritual.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>Most intimate care products suffer from either clinical, overly medicinal packaging or embarrassing novelty tropes that consumers hide away.</strong></p>
+                  <p>Barely required a modern, empowering visual language that sits proudly on the bathroom shelf—balancing clean probiotic formulations, refined typography, and tactile unboxing.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// CLEAN WELLNESS INSIGHT</div>
+                  <p>"By treating intimate skincare with the aesthetic rigor of high-end botanical cosmetics, packaging shifts from clinical necessity to an empowering daily ritual."</p>
+                </div>
+              </div>
+            </>
+          ) : isSageBeauty ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE HOLISTIC SKINCARE CHALLENGE</div>
+                  <h2>Elevating botanical purity into an unforgettable luxury club identity.</h2>
+                </div>
+                <p>Gentle care beyond glamour — merging organic botanical formulations with vibrant editorial energy.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>In an oversaturated skincare market, botanical brands often blur into generic earthy pastels and repetitive serif typography.</strong></p>
+                  <p>Sage Beauty Club required a multifaceted identity that unifies organic botanical purity with vibrant modern club energy across dropper bottles, bespoke outer cartons, and lifestyle social storytelling.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// BOTANICAL LUXURY INSIGHT</div>
+                  <p>"Holistic beauty thrives when organic ingredients are framed by razor-sharp packaging geometry and confident editorial art direction."</p>
+                </div>
+              </div>
+            </>
+          ) : isIva ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE PROFESSIONAL NAIL CARE CHALLENGE</div>
+                  <h2>Bridging salon-grade performance with European editorial minimalism.</h2>
+                </div>
+                <p>Composition before convention — proportion-led architectural packaging that commands authority.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>Professional nail and hand care products frequently look either strictly industrial-chemical or cheaply commercial.</strong></p>
+                  <p>IVA demanded a bespoke, proportion-led packaging system with clinical clarity, premium tactile cartons, and precise typographic hierarchy tailored for both elite salon pros and luxury retail.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// ARCHITECTURAL PACKAGING INSIGHT</div>
+                  <p>"Precision typography and architectural dieline restraint communicate dermatological authority far more effectively than loud claims."</p>
+                </div>
+              </div>
+            </>
+          ) : isCoastalBuns ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE ARTISAN BAKERY CHALLENGE</div>
+                  <h2>Capturing sun-drenched Mediterranean warmth in daily bread packaging.</h2>
+                </div>
+                <p>Move like buns, live with ease — bringing joy, craft sourdough heritage, and beachside culture to life.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>Modern bakeries often rely on standard generic kraft bags and cookie-cutter stamps that fade into the background.</strong></p>
+                  <p>Coastal Buns needed an unmistakable retro-coastal Spanish identity that celebrates slow sourdough fermentation, artisanal flour craft, and joyful sun-soaked beachside culture across takeout boxes, bread wrappers, and dynamic motion.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// MEDITERRANEAN CULINARY INSIGHT</div>
+                  <p>"Artisan bakery packaging is tactile storytelling: the texture of paper, bold Mediterranean typography, and warm sun-kissed illustrations make the bread taste even better before the first bite."</p>
+                </div>
+              </div>
+            </>
+          ) : isPronto ? (
             <>
               <div className="section-head">
                 <div>
@@ -824,7 +1036,231 @@ export default function WorkDetail() {
       {/* Deliverables / Execution Architecture */}
       <section>
         <div className="wrap">
-          {isPronto ? (
+          {isBarely ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Clean intimate skincare &amp; packaging architecture.</h2>
+                </div>
+                <p>15 master assets spanning custom wordmark, structural bottle dielines, and unboxing suites.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Brand System</h4>
+                  <div className="sub">// IDENTITY &amp; TYPOGRAPHY</div>
+                  <ul>
+                    <li>Minimalist lowercase wordmark</li>
+                    <li>Warm nude &amp; blush color palette</li>
+                    <li>Clean formulation certification seals</li>
+                    <li>Editorial typography guidelines</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Packaging Architecture</h4>
+                  <div className="sub">// BOTTLES &amp; CARTONS</div>
+                  <ul>
+                    <li>Intimate Foam Wash pump bottle dieline</li>
+                    <li>Renew Moisturiser dropper bottle specs</li>
+                    <li>Secondary folding box dielines</li>
+                    <li>FSC-certified uncoated paper stocks</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Brand Collateral</h4>
+                  <div className="sub">// DTC &amp; UNBOXING</div>
+                  <ul>
+                    <li>Direct-to-consumer unboxing trays</li>
+                    <li>Tamper-evident product seal strips</li>
+                    <li>Product informational booklet</li>
+                    <li>Social media educational carousels</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>+260% DTC Retail Velocity</li>
+                    <li>15 Master High-Res Assets</li>
+                    <li>100% Recyclable Packaging</li>
+                    <li>Shelf-Ready Architecture</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isSageBeauty ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Holistic skincare brand architecture &amp; packaging.</h2>
+                </div>
+                <p>43 master assets spanning botanical cleansers, dropper bottles, handmade soaps, and art direction.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Brand System</h4>
+                  <div className="sub">// IDENTITY &amp; MARKS</div>
+                  <ul>
+                    <li>Master Sage Beauty Club logotype</li>
+                    <li>Botanical emblem &amp; circular seals</li>
+                    <li>Forest green, lavender &amp; ocean palette</li>
+                    <li>Editorial serif &amp; sans typography</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Packaging Architecture</h4>
+                  <div className="sub">// CLEANSERS &amp; DROPPERS</div>
+                  <ul>
+                    <li>Lavender Care foaming cleanser bottle</li>
+                    <li>Ocean Care &amp; Purifying cleanser suite</li>
+                    <li>Custom amber glass dropper bottles</li>
+                    <li>Embossed secondary folding cartons</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Product Collections</h4>
+                  <div className="sub">// SOAPS &amp; ART DIRECTION</div>
+                  <ul>
+                    <li>Artisanal herbal &amp; olive oil soap wrappers</li>
+                    <li>Fruit care cedarwood soap packaging</li>
+                    <li>High-fashion editorial campaign renders</li>
+                    <li>Social media launch design system</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>+310% Brand Engagement</li>
+                    <li>43 Master High-Res Assets</li>
+                    <li>Turnkey Global DTC Suite</li>
+                    <li>Dermatologically Validated</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isIva ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Professional European nail care packaging specifications.</h2>
+                </div>
+                <p>15 master assets spanning proportion-led bottles, hand cream cartons, and salon formulation suites.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Visual Identity</h4>
+                  <div className="sub">// LOGO &amp; GEOMETRIC SYSTEM</div>
+                  <ul>
+                    <li>Proportion-led European logotype</li>
+                    <li>Bleed-edge asymmetrical composition</li>
+                    <li>High-contrast monochrome palette</li>
+                    <li>Clinical technical typography</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Bottle Architecture</h4>
+                  <div className="sub">// GEL POLISH &amp; BASES</div>
+                  <ul>
+                    <li>Dual-tone matte &amp; gloss 15ml bottles</li>
+                    <li>Camouflage base &amp; top coat specifications</li>
+                    <li>Color-coded cap identifying system</li>
+                    <li>Tactile silk-screen direct print</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Skincare &amp; Salon</h4>
+                  <div className="sub">// CREAMS &amp; MASKS</div>
+                  <ul>
+                    <li>Hand cream 30ml folding carton dielines</li>
+                    <li>Niacinamide hand mask packaging</li>
+                    <li>Professional UV builder gel containers</li>
+                    <li>Salon counter display packaging</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>+220% Salon Distribution</li>
+                    <li>15 Master High-Res Assets</li>
+                    <li>Salon-Grade Certified</li>
+                    <li>Turnkey European Production</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isCoastalBuns ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Mediterranean artisan bakery &amp; bread packaging system.</h2>
+                </div>
+                <p>22 master assets spanning sourdough wrappers, craft bread bags, takeout boxes, and dynamic motion.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Brand System</h4>
+                  <div className="sub">// LOGO &amp; MOTION</div>
+                  <ul>
+                    <li>Retro-Mediterranean display wordmark</li>
+                    <li>'Move Like Buns' mascot illustration</li>
+                    <li>Sun-kissed terracotta &amp; azure blue palette</li>
+                    <li>Kinetic animated motion loops</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Bread Packaging</h4>
+                  <div className="sub">// WRAPPERS &amp; BAGS</div>
+                  <ul>
+                    <li>Sourdough craft paper bread wrappers</li>
+                    <li>Perforated baguette sleeve dielines</li>
+                    <li>Greaseproof artisan sandwich paper</li>
+                    <li>Tamper-evident branded paper stickers</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Bakery Collateral</h4>
+                  <div className="sub">// BOXES &amp; MERCH</div>
+                  <ul>
+                    <li>Corrugated pastry takeout boxes</li>
+                    <li>Specialty coffee cup sleeves</li>
+                    <li>Embroidered staff baker aprons</li>
+                    <li>Beachside cafe storefront signage</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>+190% Foot Traffic &amp; Takeout</li>
+                    <li>22 Master High-Res Assets</li>
+                    <li>100% Compostable Packaging</li>
+                    <li>Iconic Coastal Brand Equity</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isPronto ? (
             <>
               <div className="section-head">
                 <div>
@@ -1359,7 +1795,7 @@ export default function WorkDetail() {
                   <div className="eyebrow">PROJECT DELIVERABLES</div>
                   <h2>Holistic identity, packaging suite &amp; market strategy.</h2>
                 </div>
-                <p>35 master assets spanning wordmark geometry, structural dielines across 4 categories, and category audit mappings.</p>
+                <p>43 master assets spanning wordmark geometry, Bombay monsoon editions, structural dielines across 5 categories, and category audit mappings.</p>
               </div>
 
               <div className="deliv-grid">
@@ -1464,8 +1900,16 @@ export default function WorkDetail() {
             <div>
               <div className="eyebrow">DESIGN SYSTEM GALLERY</div>
               <h2>
-                {isYaad
-                  ? 'YAAD — 35 Master System Figures, Packaging Dielines & Strategic Audits'
+                {isBarely
+                  ? 'Barely — 15 Master System Figures, Intimate Care Dielines & Brand Architecture'
+                  : isSageBeauty
+                  ? 'Sage Beauty Club — 43 Master System Figures, Holistic Skincare Dielines & Art Direction'
+                  : isIva
+                  ? 'IVA — 15 Master System Figures, Professional Nail Care Packaging & Geometric Identity'
+                  : isCoastalBuns
+                  ? 'Coastal Buns — 22 Master System Figures, Mediterranean Bakery Branding & Bread Packaging'
+                  : isYaad
+                  ? 'YAAD — 43 Master System Figures, Packaging Dielines & Strategic Audits'
                   : isPronto
                   ? 'PRONTO! — 17 Master System Figures & Motion Assets'
                   : isMatchaClub
@@ -1491,6 +1935,113 @@ export default function WorkDetail() {
           <div className="gallery">
             {project.images && project.images.length > 0 ? (
               project.images.map((imgUrl, imgIdx) => {
+                const barelyCaptions = [
+                  "Barely — Minimalist Wordmark & Clean Intimate Care Brand Cover",
+                  "Tactile Pastel Packaging & Clean Skincare Bottle Architecture",
+                  "'Take Care Down There' — Intimate Renew Moisturiser with Niacinamide & Evening Primrose Oil",
+                  "Intimate Foam Wash — Clean Ingredients & Pastel Pump Bottle Architecture",
+                  "Animated Brand Reveal & Kinetic Wordmark Typography Loop",
+                  "Brand Philosophy: 'Empowering All Generations to Be Confident & Open About Their Bodies'",
+                  "Clean Formulation Architecture: Probiotic Wash, SLES-Free, Paraben-Free",
+                  "Certification Seals: pH-Friendly, Vegan & Cruelty-Free, Female Developed, Water Based",
+                  "Mobile DTC Experience & Social Media 'Do Not Disturb' Daily Care Reminders",
+                  "Minimalist Dropper Bottle & Clean Formulation Transparency",
+                  "Intimate Renew Moisturiser Bottle & Secondary Packaging Box Architecture",
+                  "Social Engagement Campaign & 'On the Go' Daily Intimate Wellness Prompts",
+                  "Tactile Paper Box Dielines & FSC-Certified Uncoated Packaging Specs",
+                  "Tone-on-Tone Embossed Wordmark & Secondary Packaging Unboxing",
+                  "Barely Complete Master Product Suite & Clean Skincare System Sign-Off"
+                ];
+
+                const sageBeautyCaptions = [
+                  "Sage Beauty Club — Debut Collection Master Editorial Cover & Art Direction",
+                  "Brand Manifesto: Gentle Care Beyond Glamour — The Purp Collection",
+                  "Lavender Care Foaming Cleanser — 200ml Structural Bottle with Lavender & Geranium Extract",
+                  "Botanical Active Formulation Architecture: Alpine Herbs, Red Apple & Geranium Extracts",
+                  "Sage Green & Minimalist Frosted Pump Bottle Packaging Architecture",
+                  "Alpine Herb Purifying Cleanser for Combination to Oily Skin",
+                  "Sage Beauty Club — Architectural Logo Geometry & Negative Space Proportion Grid",
+                  "Secondary Monogram Mark & Embossed Botanical Stamp Variants",
+                  "Colorway Usability Matrix: Forest Green, Muted Lavender & Soft Ivory",
+                  "Typographic Hierarchy: Editorial Serif Meets Swiss Sans Information Architecture",
+                  "Nature's Beauty Advertising Campaign — High-Fashion Editorial Art Direction",
+                  "Duo Product Set: Purifying Cleanser & Lavender Gentle Foaming Cleanser",
+                  "The Purple Collection Launch Visual — Dynamic Bottle Staging & Liquid Dynamics",
+                  "Nature's Beauty Botanical Extract Palette & Ingredient Storytelling",
+                  "Studio Product Staging: Soft Diffused Lighting & Tactile Ceramic Surfaces",
+                  "Cosmopolitan Beauty Editorial Feature & Brand Presentation Layout",
+                  "Complete Nature's Beauty Collection Overview & Retail Shelf Simulation",
+                  "Limited Edition Unboxing Presentation & Direct-to-Consumer Packaging",
+                  "Advertising Campaign Hero Poster: 'Gentle Care Beyond Glamour'",
+                  "Duo Collection Display: Lavender & Alpine Herb Dual Cleanser Treatment",
+                  "Lavender Care 200ml Bottle Direct Screen Printing & Typographic Alignment",
+                  "Sage Beauty Club Cosmetics Lab Address & Formulation Regulatory Compliance Marks",
+                  "The Purple Collection Box Flat Dieline & Precision Fold Specifications",
+                  "Side-by-Side Dual Cleanser Packaging Comparison & SKU Hierarchy",
+                  "200ml Cleanser Pump Dispenser Engineering & Volume Measurement System",
+                  "Purifying Care 125ml Travel SKU Bottle Architecture & Compact Form Factor",
+                  "Ocean Care Foaming Cleanser — The Blue Collection 125ml Travel Edition",
+                  "Manufacturing Regulatory Specifications & Batch Number Layout Grid",
+                  "Lavender Care Master Retail Carton Flat Layout with Tamper Seal Strip",
+                  "Ocean Care Blue Collection Master Packaging Box Dieline Architecture",
+                  "Tactile Uncoated Paper Folding Carton with Spot UV Embossed Details",
+                  "Sage Beauty Club Logotype Alignment on Primary Product Packaging",
+                  "Campaign Poster Art Direction: Nature's Beauty Editorial Model Staging",
+                  "Classic Collection 125ml Compact Dropper Bottle Suite & Carton Dieline",
+                  "Amber Glass Dropper Pipette Engineering & Serum Dispensing Precision",
+                  "Lavender Care Limited Edition Gift Box Unboxing Experience",
+                  "Fruit Care Artisanal Soap Packaging with Sweet Orange & Cedarwood Extracts",
+                  "Herbal Care Olive Oil & Fresh Sage Botanical Handmade Soap Packaging",
+                  "Artisanal Soap Wrapper Duo: Natural Botanical Ingredients & Paper Wrap",
+                  "Handmade Soap Unboxing Tray & FSC-Certified Textured Kraft Band",
+                  "Natural Hands Cleanser 500ml Large Pump Bottle & Everyday Botanical Care",
+                  "Complete 43-Asset Production Suite: Cleansers, Droppers, Soaps & Cartons",
+                  "Sage Beauty Club Master Brand Identity Guidelines & Studio Sign-Off"
+                ];
+
+                const ivaCaptions = [
+                  "IVA — Professional Gel Polish Dual-Tone Bottle Architecture",
+                  "A European Approach to Nail Care Packaging — Proportions Over Loud Graphics",
+                  "Composition Before Convention — Asymmetrical Logotype Extension Past Packaging Boundaries",
+                  "Bespoke Hand Cream 30ml Carton Architecture & Technical Specification Hierarchy",
+                  "Architectural Typography & Proportion-Led Layout Principles",
+                  "A Flexible Packaging System — Scaling Flawlessly Across Salon Lines & Retail SKUs",
+                  "Minimalist Black & Ivory Paper Box Hierarchy with Clinical Grid Formats",
+                  "Complete Formulation Suite: Camouflage Base, Top Coat, Base Coat & Gel Polish 15ml",
+                  "IVA Geometric Monogram & High-Contrast European Wordmark",
+                  "Tactile Uncoated Paper Folding Cartons & Razor-Sharp Fold Lines",
+                  "Studio Light Renders: Clean Minimal Bottles on Architectural Concrete Bases",
+                  "Professional UV-Gel Lineup: Spider Gel, Builder UV-Gel & Neon Gel Paint Systems",
+                  "Niacinamide Hand Mask & Intensive Salon Manicure Treatment Packaging",
+                  "European Salon Display & Editorial Shelf Architecture",
+                  "IVA Master Packaging Identity Guidelines & Drawing Board Studio Sign-Off"
+                ];
+
+                const coastalBunsCaptions = [
+                  "Coastal Buns — Mediterranean Artisan Bakery Master Cover & Beachside Staging",
+                  "'Move Like Buns, Live With Ease' — Retro Mediterranean Slogan & Brand Seal",
+                  "Animated Bakery Mascot & Dynamic Sourdough Kinetic Motion Graphic",
+                  "Sun-Drenched Terracotta & Azure Blue Color Palette Architecture",
+                  "Artisan Sourdough Loaf Craft Paper Wrapper & Custom Packaging Dieline",
+                  "Perforated Baguette Sleeve & Greaseproof Paper Deli Wrap Architecture",
+                  "Freshly Baked Artisanal Pastries in Custom Branded Takeout Boxes",
+                  "Beachside Cafe Storefront Signage, Window Decals & A-Frame Board Specs",
+                  "Takeout Coffee Cup Sleeves & Illustrated Sourdough Bun Motif",
+                  "Coastal Mediterranean Table Setting: Olive Oil, Sea Salt & Fresh Bread",
+                  "Embroidered Linen Baker Aprons, Caps & Staff Hospitality Apparel",
+                  "Takeout Kraft Paper Bags with Twisted Handles & Tamper-Proof Paper Tape",
+                  "Corrugated Pastry Box with Interlocking Flaps & Ventilation Dieline",
+                  "Kinetic Social Media Animation: Fresh Buns Rising & Oven Motion",
+                  "Mediterranean Lifestyle Photography: Sunlit Terraces & Morning Sourdough",
+                  "Takeaway Sandwich Kraft Wrapper & Stamp Label System",
+                  "Dine-In Bread Basket Liners & Editorial Menu Architecture",
+                  "Beachside Bakery Flagship Store Exterior & Terracotta Tile Murals",
+                  "Limited Edition Artisan Sourdough Tote Bag & Organic Cotton Merch",
+                  "Mediterranean Sea Breeze Campaign Poster: 'Live With Ease'",
+                  "Kinetic Flour Dusting Motion Reveal & Bakery Trailer Loop",
+                  "Coastal Buns Master Brand System, Packaging Suite & Studio Sign-Off"
+                ];
+
                 const prontoCaptions = [
                   "PRONTO! — Primary Bold Wordmark & Brand Seal Cover",
                   "Brand Positioning Statement & Authentic Italian Heritage",
@@ -1909,7 +2460,15 @@ export default function WorkDetail() {
                   "Luxury Scented Candles Category Audit: Identifying Premium Home Fragrance Whitespace",
                   "Luxury Scented Candles Competitor Landscape: Clean Minimal Aesthetics vs Heritage Gifting",
                   "Luxury Scented Candles Scope & Mapping: Bridging Contemporary Elegance & Nostalgia",
-                  "Luxury Scented Candles Target Audience: Gifting Behaviors, Interior Design & Olfactory Taste"
+                  "Luxury Scented Candles Target Audience: Gifting Behaviors, Interior Design & Olfactory Taste",
+                  "YAAD Reed Diffuser 120ml Packaging Architecture Flat — Bombay Dusk 4:50 PM Monsoon Edition",
+                  "Luxury Incense Sticks Slide Box Structural Layout & Gold Foil Burn Specifications",
+                  "Bombay Monsoon 4:50 PM Packaging Story Script: Notes of Sea Salt, Concrete & Rain",
+                  "Enhanced Terracotta Color Palette Specifications: Terracotta Clay, Sunset Sand & Earthen Brown",
+                  "Architectural Unboxing Slide Box with Gold Foil Hot Stamping & Inner Tray",
+                  "Bombay 4:50 PM Atmospheric Monsoon Heritage Art & Luxury Incense Box Pairing",
+                  "Charcoal-Free Clean Burn Formulation Hierarchy & 100% Recyclable Packaging Certification",
+                  "Luxury Incense Packaging Suite & Hand-Dipped Incense Stick Bundle Presentation"
                 ];
 
                 const isWebProject = (project.category === 'web') || (project.tag && (project.tag.includes('WEB') || project.tag.includes('UI UX')));
@@ -1925,7 +2484,15 @@ export default function WorkDetail() {
                   return `${project.title} — ${idx === 0 ? 'Brand Identity System & Logomark Construction' : idx === 1 ? 'Typographic Hierarchy & Color Usability' : 'Collateral Applications & Design Guidelines'}`;
                 };
 
-                const captionText = isYaad && imgIdx < yaadCaptions.length
+                const captionText = isBarely && imgIdx < barelyCaptions.length
+                  ? barelyCaptions[imgIdx]
+                  : isSageBeauty && imgIdx < sageBeautyCaptions.length
+                  ? sageBeautyCaptions[imgIdx]
+                  : isIva && imgIdx < ivaCaptions.length
+                  ? ivaCaptions[imgIdx]
+                  : isCoastalBuns && imgIdx < coastalBunsCaptions.length
+                  ? coastalBunsCaptions[imgIdx]
+                  : isYaad && imgIdx < yaadCaptions.length
                   ? yaadCaptions[imgIdx]
                   : isPronto && imgIdx < prontoCaptions.length
                   ? prontoCaptions[imgIdx]
