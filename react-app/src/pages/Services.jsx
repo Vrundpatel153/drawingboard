@@ -90,8 +90,6 @@ export default function Services() {
             color: var(--pine);
           }
           .engagement-specs-price {
-            width: 145px;
-            min-width: 145px;
             flex-shrink: 0;
             text-align: right;
             font-family: 'IBM Plex Mono', monospace;
@@ -107,15 +105,18 @@ export default function Services() {
             }
             .engagement-specs-row {
               padding: 10px 0;
-              gap: 10px;
+              gap: 8px;
+              flex-wrap: wrap;
+              align-items: baseline;
+              justify-content: space-between;
             }
             .engagement-specs-title {
               font-size: 12.5px;
+              flex: 1 1 140px;
             }
             .engagement-specs-price {
-              width: 120px;
-              min-width: 120px;
-              font-size: 11.5px;
+              font-size: 11px;
+              flex-shrink: 0;
             }
           }
         `}</style>

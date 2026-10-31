@@ -1817,7 +1817,8 @@ motion.base:      180ms ease-out;
         {/* ════════════════════════════════════════════════════════════════
             07 TRANSPARENT INVESTMENT & SPRINT MODELS
            ════════════════════════════════════════════════════════════════ */}
-        <section id="investment" style={{ padding: '90px 0' }}>
+        <section id="pricing" style={{ padding: '90px 0' }}>
+          <span id="investment" style={{ display: 'none' }} />
           <div className="wrap">
             <div className="section-head" style={{ marginBottom: '44px' }}>
               <div>
