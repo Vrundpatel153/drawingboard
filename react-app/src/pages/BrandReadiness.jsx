@@ -12,10 +12,10 @@ import { WHATSAPP_NUMBER } from '../utils/siteConfig';
    Centralised Options & Configuration (Exact match to HTML specifications)
    ───────────────────────────────────────────────────────────────────────────── */
 const SERVICES = [
-  { value: 'brand-identity', label: 'Brand strategy & identity', price: 'From ₹4,75,000' },
-  { value: 'packaging', label: 'Packaging design', price: 'From ₹3,75,000' },
-  { value: 'website-shopify', label: 'Website / Shopify', price: 'From ₹1,15,000' },
-  { value: 'saas', label: 'SaaS branding, UI/UX & app', price: 'From ₹4,75,000 · Scope-dependent' },
+  { value: 'brand-identity', label: 'Brand strategy & identity', price: 'From ₹4,75,000 ($4,960)' },
+  { value: 'packaging', label: 'Packaging design', price: 'From ₹3,75,000 ($3,925)' },
+  { value: 'website-shopify', label: 'Website / Shopify', price: 'From ₹1,15,000 ($1,200)' },
+  { value: 'saas', label: 'SaaS branding, UI/UX & app', price: 'From ₹4,75,000 ($4,960) · Scope-dependent' },
   { value: 'guidance', label: 'Something else / I need guidance', price: '' }
 ];
 
@@ -43,35 +43,35 @@ const TIMELINES = [
 
 const BUDGETS = {
   website: [
-    { value: 'below-1.15l', label: 'Below ₹1,15,000' },
-    { value: '1.15l-2l', label: '₹1,15,000 to under ₹2,00,000' },
-    { value: '2l-3.75l', label: '₹2,00,000 to under ₹3,75,000' },
-    { value: '3.75l-plus', label: '₹3,75,000+' }
+    { value: 'below-1.15l', label: 'Below ₹1,15,000 ($1,200)' },
+    { value: '1.15l-2l', label: '₹1,15,000 to under ₹2,00,000 ($1,200 – $2,100)' },
+    { value: '2l-3.75l', label: '₹2,00,000 to under ₹3,75,000 ($2,100 – $3,925)' },
+    { value: '3.75l-plus', label: '₹3,75,000+ ($3,925+)' }
   ],
   packaging: [
-    { value: 'below-3.75l', label: 'Below ₹3,75,000' },
-    { value: '3.75l-5l', label: '₹3,75,000 to under ₹5,00,000' },
-    { value: '5l-7.5l', label: '₹5,00,000 to under ₹7,50,000' },
-    { value: '7.5l-plus', label: '₹7,50,000+' }
+    { value: 'below-3.75l', label: 'Below ₹3,75,000 ($3,925)' },
+    { value: '3.75l-5l', label: '₹3,75,000 to under ₹5,00,000 ($3,925 – $5,250)' },
+    { value: '5l-7.5l', label: '₹5,00,000 to under ₹7,50,000 ($5,250 – $7,850)' },
+    { value: '7.5l-plus', label: '₹7,50,000+ ($7,850+)' }
   ],
   'brand-identity': [
-    { value: 'below-4.75l', label: 'Below ₹4,75,000' },
-    { value: '4.75l-7l', label: '₹4,75,000 to under ₹7,00,000' },
-    { value: '7l-10l', label: '₹7,00,000 to under ₹10,00,000' },
-    { value: '10l-plus', label: '₹10,00,000+' }
+    { value: 'below-4.75l', label: 'Below ₹4,75,000 ($4,960)' },
+    { value: '4.75l-7l', label: '₹4,75,000 to under ₹7,00,000 ($4,960 – $7,325)' },
+    { value: '7l-10l', label: '₹7,00,000 to under ₹10,00,000 ($7,325 – $10,500)' },
+    { value: '10l-plus', label: '₹10,00,000+ ($10,500+)' }
   ],
   saas: [
-    { value: 'below-4.75l', label: 'Below ₹4,75,000' },
-    { value: '4.75l-7l', label: '₹4,75,000 to under ₹7,00,000' },
-    { value: '7l-10l', label: '₹7,00,000 to under ₹10,00,000' },
-    { value: '10l-plus', label: '₹10,00,000+' }
+    { value: 'below-4.75l', label: 'Below ₹4,75,000 ($4,960)' },
+    { value: '4.75l-7l', label: '₹4,75,000 to under ₹7,00,000 ($4,960 – $7,325)' },
+    { value: '7l-10l', label: '₹7,00,000 to under ₹10,00,000 ($7,325 – $10,500)' },
+    { value: '10l-plus', label: '₹10,00,000+ ($10,500+)' }
   ],
   multiple: [
-    { value: 'below-3.75l', label: 'Below ₹3,75,000' },
-    { value: '3.75l-4.75l', label: '₹3,75,000 to under ₹4,75,000' },
-    { value: '4.75l-7l', label: '₹4,75,000 to under ₹7,00,000' },
-    { value: '7l-10l', label: '₹7,00,000 to under ₹10,00,000' },
-    { value: '10l-plus', label: '₹10,00,000+' }
+    { value: 'below-3.75l', label: 'Below ₹3,75,000 ($3,925)' },
+    { value: '3.75l-4.75l', label: '₹3,75,000 to under ₹4,75,000 ($3,925 – $4,960)' },
+    { value: '4.75l-7l', label: '₹4,75,000 to under ₹7,00,000 ($4,960 – $7,325)' },
+    { value: '7l-10l', label: '₹7,00,000 to under ₹10,00,000 ($7,325 – $10,500)' },
+    { value: '10l-plus', label: '₹10,00,000+ ($10,500+)' }
   ]
 };
 
@@ -1060,7 +1060,7 @@ export default function BrandReadiness() {
 
                   {showSaasHint && (
                     <p className="tdb-hint" id="saas-note">
-                      SaaS engagements typically range from ₹4,75,000 to ₹10,00,000, depending on the branding, product design, and app requirements.
+                      SaaS engagements typically range from ₹4,75,000 ($4,960) to ₹10,00,000 ($10,500), depending on the branding, product design, and app requirements.
                     </p>
                   )}
 

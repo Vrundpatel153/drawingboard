@@ -208,7 +208,7 @@ export default function Services() {
                       {s.title}
                     </Link>
                     <div className="engagement-specs-price">
-                      From {currency === 'USD' ? s.startingPrice : currency === 'GBP' ? (s.startingPriceGBP || s.startingPrice) : s.startingPriceINR}
+                      From {currency === 'USD' ? s.startingPrice : currency === 'GBP' ? `${s.startingPriceGBP || s.startingPrice} (${s.startingPrice})` : `${s.startingPriceINR} (${s.startingPrice})`}
                     </div>
                   </div>
                 ))}
@@ -391,7 +391,7 @@ export default function Services() {
                           {s.eyebrow}
                         </span>
                         <span className="badge" style={{ fontSize: '11px', padding: '4px 8px', border: '1px solid var(--ink)' }}>
-                          From {s.startingPrice}
+                          From {s.startingPriceINR ? `${s.startingPriceINR} (${s.startingPrice})` : s.startingPrice}
                         </span>
                       </div>
 

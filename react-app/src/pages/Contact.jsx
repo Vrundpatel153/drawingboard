@@ -91,11 +91,11 @@ const BUDGET_OPTIONS = [
   {
     group: 'INR (₹)',
     options: [
-      '₹3,25,000 (Master Packaging System)',
-      '₹4,75,000 (Growth Brand-to-Shelf)',
-      '₹6,50,000 (Scale Brand-to-Market)',
-      '₹8,00,000 – ₹12,00,000',
-      '₹12,00,000+'
+      '₹3,25,000 ($3,400) — Master Packaging System',
+      '₹4,75,000 ($4,960) — Growth Brand-to-Shelf',
+      '₹6,50,000 ($6,780) — Scale Brand-to-Market',
+      '₹8,00,000 – ₹12,00,000 ($8,350 – $12,500)',
+      '₹12,00,000+ ($12,500+)'
     ]
   }
 ];

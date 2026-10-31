@@ -1836,8 +1836,10 @@ motion.base:      180ms ease-out;
                 <span className="sb-mono" style={{ fontSize: '11px', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>TIER 01 // FOUNDATION</span>
                 <h3 style={{ fontSize: '24px', margin: '8px 0 4px' }}>Brand Identity</h3>
                 <p style={{ fontSize: '14px', color: 'var(--ink-soft)', marginBottom: '20px' }}>Strategy, market positioning, and a complete visual identity system.</p>
-                <div style={{ font: "600 38px/1 'Fraunces', Georgia, serif", color: 'var(--ink)', marginBottom: '4px' }}>₹4,75,000</div>
-                <span className="sb-mono" style={{ fontSize: '12px', color: 'var(--ink-soft)', marginBottom: '20px' }}>$4,960 / fixed scope sprint</span>
+                <div style={{ font: "600 38px/1 'Fraunces', Georgia, serif", color: 'var(--ink)', marginBottom: '4px', display: 'flex', alignItems: 'baseline', gap: '8px', flexWrap: 'wrap' }}>
+                  ₹4,75,000 <span style={{ fontSize: '18px', color: 'var(--ink-soft)', fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}>($4,960)</span>
+                </div>
+                <span className="sb-mono" style={{ fontSize: '12px', color: 'var(--ink-soft)', marginBottom: '20px' }}>fixed scope sprint</span>
 
                 <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px', fontSize: '13.5px', color: 'var(--ink-soft)', flex: 1 }}>
                   <li style={{ padding: '8px 0', borderBottom: '1px dashed var(--border)' }}>✓ Founder &amp; product strategic discovery</li>
@@ -1863,8 +1865,10 @@ motion.base:      180ms ease-out;
                 <span className="sb-mono" style={{ fontSize: '11px', color: 'var(--pine)', textTransform: 'uppercase' }}>TIER 02 // IDENTITY + INTERFACE</span>
                 <h3 style={{ fontSize: '24px', margin: '8px 0 4px' }}>Brand Identity + UI/UX</h3>
                 <p style={{ fontSize: '14px', color: 'var(--ink-soft)', marginBottom: '16px' }}>The complete brand identity, plus the digital interface your buyers touch.</p>
-                <div style={{ font: "600 38px/1 'Fraunces', Georgia, serif", color: 'var(--pine)', marginBottom: '4px' }}>₹7,25,000</div>
-                <span className="sb-mono" style={{ fontSize: '12px', color: 'var(--ink-soft)', marginBottom: '16px' }}>$7,600 / one digital surface included</span>
+                <div style={{ font: "600 38px/1 'Fraunces', Georgia, serif", color: 'var(--pine)', marginBottom: '4px', display: 'flex', alignItems: 'baseline', gap: '8px', flexWrap: 'wrap' }}>
+                  ₹7,25,000 <span style={{ fontSize: '18px', color: 'var(--ink-soft)', fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}>($7,600)</span>
+                </div>
+                <span className="sb-mono" style={{ fontSize: '12px', color: 'var(--ink-soft)', marginBottom: '16px' }}>one digital surface included</span>
 
                 {/* Surface Toggle */}
                 <div style={{ display: 'flex', border: '1px solid var(--ink)', marginBottom: '16px' }}>
@@ -1933,8 +1937,10 @@ motion.base:      180ms ease-out;
                 <span className="sb-mono" style={{ fontSize: '11px', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>TIER 03 // FULL LAUNCH</span>
                 <h3 style={{ fontSize: '24px', margin: '8px 0 4px' }}>Brand + Web + App Launch</h3>
                 <p style={{ fontSize: '14px', color: 'var(--ink-soft)', marginBottom: '20px' }}>The whole company, fully engineered and ready to enter the market.</p>
-                <div style={{ font: "600 38px/1 'Fraunces', Georgia, serif", color: 'var(--ink)', marginBottom: '4px' }}>₹10,00,000+</div>
-                <span className="sb-mono" style={{ fontSize: '12px', color: 'var(--ink-soft)', marginBottom: '20px' }}>$10,500+ / custom scope proposal</span>
+                <div style={{ font: "600 38px/1 'Fraunces', Georgia, serif", color: 'var(--ink)', marginBottom: '4px', display: 'flex', alignItems: 'baseline', gap: '8px', flexWrap: 'wrap' }}>
+                  ₹10,00,000+ <span style={{ fontSize: '18px', color: 'var(--ink-soft)', fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}>($10,500+)</span>
+                </div>
+                <span className="sb-mono" style={{ fontSize: '12px', color: 'var(--ink-soft)', marginBottom: '20px' }}>custom scope proposal</span>
 
                 <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px', fontSize: '13.5px', color: 'var(--ink-soft)', flex: 1 }}>
                   <li style={{ padding: '8px 0', borderBottom: '1px dashed var(--border)', fontWeight: 600, color: 'var(--ink)' }}>★ Everything in Tier 02 for BOTH surfaces, plus:</li>

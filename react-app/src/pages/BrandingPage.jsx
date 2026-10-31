@@ -1547,7 +1547,14 @@ export default function BrandingPage() {
 
                 <div className="bp-tier-price">
                   <div>
-                    <span className="amt">{growthPrices[currency]}</span>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', flexWrap: 'wrap' }}>
+                      <span className="amt">{growthPrices[currency]}</span>
+                      {currency !== 'USD' && (
+                        <span style={{ fontSize: '18px', color: 'var(--ink-soft)', fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}>
+                          ($4,960)
+                        </span>
+                      )}
+                    </div>
                     <div className="per">per project</div>
                   </div>
                 </div>
@@ -1680,7 +1687,14 @@ export default function BrandingPage() {
                 </div>
                 <div className="bp-tier-price">
                   <div>
-                    <span className="amt">{scalePrices[currency]}</span>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', flexWrap: 'wrap' }}>
+                      <span className="amt">{scalePrices[currency]}</span>
+                      {currency !== 'USD' && (
+                        <span style={{ fontSize: '18px', color: 'var(--ink-soft)', fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}>
+                          ($6,780)
+                        </span>
+                      )}
+                    </div>
                     <div className="per">per project, up to 6 SKUs</div>
                   </div>
                 </div>

@@ -1308,7 +1308,7 @@ export default function After8CaseStudyView({ nextProject, pageRef }) {
                 </p>
               </div>
               <div className="amt">
-                $7,850 <span className="per">PER PROJECT (₹6,50,000), UP TO 6 SKUs</span>
+                $6,780 <span className="per">PER PROJECT (₹6,50,000), UP TO 6 SKUs</span>
               </div>
               <Link className="btn-primary" to="/branding#pricing">
                 See the Scale tier →
