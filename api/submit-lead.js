@@ -229,30 +229,45 @@ async function backupToGoogleSheet(leadData) {
 }
 
 /**
- * Resend API Dispatch to Developer / Primary Alert Inbox
+ * Resend API Dispatch via Verified Domain (drawingsboard.com)
+ * - From: The Drawing Board Studio <hello@drawingsboard.com>
+ * - To: dandelionpa7@gmail.com
+ * - CC: Client who filled the form (receives branded receipt)
+ * - Reply-To: Client's email address
  */
-async function sendViaResend(subject, html, replyTo, toEmails) {
-  if (!RESEND_API_KEY) return { skipped: true };
+async function sendViaResend(subject, html, clientEmail) {
+  if (!RESEND_API_KEY) return { skipped: true, error: 'No RESEND_API_KEY' };
   try {
+    const payload = {
+      from: 'The Drawing Board Studio <hello@drawingsboard.com>',
+      to: [PRIMARY_STUDIO_INBOX],
+      reply_to: (clientEmail && clientEmail.includes('@')) ? clientEmail : PRIMARY_STUDIO_INBOX,
+      subject: subject,
+      html: html
+    };
+
+    if (clientEmail && clientEmail.includes('@') && !clientEmail.includes('example.com')) {
+      payload.cc = [clientEmail];
+    }
+
+    if (BACKUP_ALERT_INBOX && BACKUP_ALERT_INBOX !== PRIMARY_STUDIO_INBOX) {
+      payload.bcc = [BACKUP_ALERT_INBOX];
+    }
+
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${RESEND_API_KEY}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        from: 'The Drawing Board Studio <onboarding@resend.dev>',
-        to: toEmails,
-        reply_to: replyTo,
-        subject: subject,
-        html: html
-      })
+      body: JSON.stringify(payload)
     });
 
     const data = await res.json();
-    return { status: res.status, data };
+    return { ok: res.ok, status: res.status, data };
   } catch (err) {
-    return { status: 500, error: err.message };
+    console.warn('[RESEND_DISPATCH_ERR]:', err.message);
+    return { ok: false, status: 500, error: err.message };
   }
 }
 
@@ -331,21 +346,28 @@ export default async function handler(req, res) {
 
     const html = buildHtmlEmail(payload, clientMeta);
 
-    // 3. PARALLEL TRIPLE-DISPATCH PIPELINE
-    // Task 1: Direct email to dandelionpa7@gmail.com with CC to client via FormSubmit
-    // Task 2: Google Sheet Webhook backup
-    // Task 3: Developer inbox notification via Resend
-    const backgroundTasks = Promise.allSettled([
-      sendViaFormSubmit(clientMeta, clientEmail),
-      backupToGoogleSheet(sheetData),
-      sendViaResend(subject, html, clientEmail || undefined, [BACKUP_ALERT_INBOX])
-    ]).then(results => {
-      console.log('[LEAD_PIPELINE_COMPLETE]:', {
-        formSubmit: results[0]?.status,
-        sheet: results[1]?.status,
-        resend: results[2]?.status
+    // 3. ASYNCHRONOUS BACKGROUND PIPELINE
+    // Primary Email: Resend from hello@drawingsboard.com -> dandelionpa7@gmail.com + CC client
+    // Primary Backup: Google Sheet Webhook row logging
+    // Failsafe: FormSubmit (invoked only if Resend fails)
+    const backgroundTasks = (async () => {
+      const [resendResult, sheetResult] = await Promise.allSettled([
+        sendViaResend(subject, html, clientEmail),
+        backupToGoogleSheet(sheetData)
+      ]);
+
+      const resendSuccess = resendResult.status === 'fulfilled' && resendResult.value?.ok;
+      console.log('[PIPELINE_STATUS]:', {
+        resend: resendResult.status === 'fulfilled' ? resendResult.value : resendResult.reason,
+        sheet: sheetResult.status === 'fulfilled' ? sheetResult.value : sheetResult.reason
       });
-    });
+
+      // Emergency fallback: only trigger FormSubmit if Resend fails
+      if (!resendSuccess) {
+        console.warn('[RESEND_UNAVAILABLE_INVOKING_FORMSUBMIT_FALLBACK]');
+        await sendViaFormSubmit(clientMeta, clientEmail);
+      }
+    })();
 
     // Use Vercel's waitUntil to guarantee background tasks finish even after response is sent
     if (typeof waitUntil === 'function') {
