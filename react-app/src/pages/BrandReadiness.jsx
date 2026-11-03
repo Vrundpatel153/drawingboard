@@ -12,11 +12,46 @@ import { WHATSAPP_NUMBER } from '../utils/siteConfig';
    Centralised Options & Configuration (Exact match to HTML specifications)
    ───────────────────────────────────────────────────────────────────────────── */
 const SERVICES = [
-  { value: 'brand-identity', label: 'Brand strategy & identity', price: 'From ₹4,75,000 ($4,960)' },
-  { value: 'packaging', label: 'Packaging design', price: 'From ₹3,75,000 ($3,925)' },
-  { value: 'website-shopify', label: 'Website / Shopify', price: 'From ₹1,15,000 ($1,200)' },
-  { value: 'saas', label: 'SaaS branding, UI/UX & app', price: 'From ₹4,75,000 ($4,960) · Scope-dependent' },
-  { value: 'guidance', label: 'Something else / I need guidance', price: '' }
+  {
+    value: 'brand-identity',
+    label: 'Brand strategy & identity',
+    prices: {
+      INR: 'From ₹4,75,000',
+      USD: 'From $4,960'
+    }
+  },
+  {
+    value: 'packaging',
+    label: 'Packaging design',
+    prices: {
+      INR: 'From ₹3,75,000',
+      USD: 'From $3,925'
+    }
+  },
+  {
+    value: 'website-shopify',
+    label: 'Website / Shopify',
+    prices: {
+      INR: 'From ₹1,15,000',
+      USD: 'From $1,200'
+    }
+  },
+  {
+    value: 'saas',
+    label: 'SaaS branding, UI/UX & app',
+    prices: {
+      INR: 'From ₹4,75,000 · Scope-dependent',
+      USD: 'From $4,960 · Scope-dependent'
+    }
+  },
+  {
+    value: 'guidance',
+    label: 'Something else / I need guidance',
+    prices: {
+      INR: '',
+      USD: ''
+    }
+  }
 ];
 
 const CATEGORIES = [
@@ -43,35 +78,161 @@ const TIMELINES = [
 
 const BUDGETS = {
   website: [
-    { value: 'below-1.15l', label: 'Below ₹1,15,000 ($1,200)' },
-    { value: '1.15l-2l', label: '₹1,15,000 to under ₹2,00,000 ($1,200 – $2,100)' },
-    { value: '2l-3.75l', label: '₹2,00,000 to under ₹3,75,000 ($2,100 – $3,925)' },
-    { value: '3.75l-plus', label: '₹3,75,000+ ($3,925+)' }
+    {
+      value: 'below-1.15l',
+      labels: {
+        INR: 'Below ₹1,15,000',
+        USD: 'Below $1,200'
+      }
+    },
+    {
+      value: '1.15l-2l',
+      labels: {
+        INR: '₹1,15,000 to under ₹2,00,000',
+        USD: '$1,200 to under $2,100'
+      }
+    },
+    {
+      value: '2l-3.75l',
+      labels: {
+        INR: '₹2,00,000 to under ₹3,75,000',
+        USD: '$2,100 to under $3,925'
+      }
+    },
+    {
+      value: '3.75l-plus',
+      labels: {
+        INR: '₹3,75,000+',
+        USD: '$3,925+'
+      }
+    }
   ],
   packaging: [
-    { value: 'below-3.75l', label: 'Below ₹3,75,000 ($3,925)' },
-    { value: '3.75l-5l', label: '₹3,75,000 to under ₹5,00,000 ($3,925 – $5,250)' },
-    { value: '5l-7.5l', label: '₹5,00,000 to under ₹7,50,000 ($5,250 – $7,850)' },
-    { value: '7.5l-plus', label: '₹7,50,000+ ($7,850+)' }
+    {
+      value: 'below-3.75l',
+      labels: {
+        INR: 'Below ₹3,75,000',
+        USD: 'Below $3,925'
+      }
+    },
+    {
+      value: '3.75l-5l',
+      labels: {
+        INR: '₹3,75,000 to under ₹5,00,000',
+        USD: '$3,925 to under $5,250'
+      }
+    },
+    {
+      value: '5l-7.5l',
+      labels: {
+        INR: '₹5,00,000 to under ₹7,50,000',
+        USD: '$5,250 to under $7,850'
+      }
+    },
+    {
+      value: '7.5l-plus',
+      labels: {
+        INR: '₹7,50,000+',
+        USD: '$7,850+'
+      }
+    }
   ],
   'brand-identity': [
-    { value: 'below-4.75l', label: 'Below ₹4,75,000 ($4,960)' },
-    { value: '4.75l-7l', label: '₹4,75,000 to under ₹7,00,000 ($4,960 – $7,325)' },
-    { value: '7l-10l', label: '₹7,00,000 to under ₹10,00,000 ($7,325 – $10,500)' },
-    { value: '10l-plus', label: '₹10,00,000+ ($10,500+)' }
+    {
+      value: 'below-4.75l',
+      labels: {
+        INR: 'Below ₹4,75,000',
+        USD: 'Below $4,960'
+      }
+    },
+    {
+      value: '4.75l-7l',
+      labels: {
+        INR: '₹4,75,000 to under ₹7,00,000',
+        USD: '$4,960 to under $7,325'
+      }
+    },
+    {
+      value: '7l-10l',
+      labels: {
+        INR: '₹7,00,000 to under ₹10,00,000',
+        USD: '$7,325 to under $10,500'
+      }
+    },
+    {
+      value: '10l-plus',
+      labels: {
+        INR: '₹10,00,000+',
+        USD: '$10,500+'
+      }
+    }
   ],
   saas: [
-    { value: 'below-4.75l', label: 'Below ₹4,75,000 ($4,960)' },
-    { value: '4.75l-7l', label: '₹4,75,000 to under ₹7,00,000 ($4,960 – $7,325)' },
-    { value: '7l-10l', label: '₹7,00,000 to under ₹10,00,000 ($7,325 – $10,500)' },
-    { value: '10l-plus', label: '₹10,00,000+ ($10,500+)' }
+    {
+      value: 'below-4.75l',
+      labels: {
+        INR: 'Below ₹4,75,000',
+        USD: 'Below $4,960'
+      }
+    },
+    {
+      value: '4.75l-7l',
+      labels: {
+        INR: '₹4,75,000 to under ₹7,00,000',
+        USD: '$4,960 to under $7,325'
+      }
+    },
+    {
+      value: '7l-10l',
+      labels: {
+        INR: '₹7,00,000 to under ₹10,00,000',
+        USD: '$7,325 to under $10,500'
+      }
+    },
+    {
+      value: '10l-plus',
+      labels: {
+        INR: '₹10,00,000+',
+        USD: '$10,500+'
+      }
+    }
   ],
   multiple: [
-    { value: 'below-3.75l', label: 'Below ₹3,75,000 ($3,925)' },
-    { value: '3.75l-4.75l', label: '₹3,75,000 to under ₹4,75,000 ($3,925 – $4,960)' },
-    { value: '4.75l-7l', label: '₹4,75,000 to under ₹7,00,000 ($4,960 – $7,325)' },
-    { value: '7l-10l', label: '₹7,00,000 to under ₹10,00,000 ($7,325 – $10,500)' },
-    { value: '10l-plus', label: '₹10,00,000+ ($10,500+)' }
+    {
+      value: 'below-3.75l',
+      labels: {
+        INR: 'Below ₹3,75,000',
+        USD: 'Below $3,925'
+      }
+    },
+    {
+      value: '3.75l-4.75l',
+      labels: {
+        INR: '₹3,75,000 to under ₹4,75,000',
+        USD: '$3,925 to under $4,960'
+      }
+    },
+    {
+      value: '4.75l-7l',
+      labels: {
+        INR: '₹4,75,000 to under ₹7,00,000',
+        USD: '$4,960 to under $7,325'
+      }
+    },
+    {
+      value: '7l-10l',
+      labels: {
+        INR: '₹7,00,000 to under ₹10,00,000',
+        USD: '$7,325 to under $10,500'
+      }
+    },
+    {
+      value: '10l-plus',
+      labels: {
+        INR: '₹10,00,000+',
+        USD: '$10,500+'
+      }
+    }
   ]
 };
 
@@ -88,9 +249,42 @@ function getBudgetSetKey(services) {
   return SINGLE_SET[services[0]];
 }
 
-function getBudgetOptions(key) {
+function getBudgetOptions(key, curr = 'INR') {
   if (!key) return [];
-  return [...BUDGETS[key], { value: 'guidance', label: 'I need guidance' }];
+  const list = BUDGETS[key] || [];
+  return [
+    ...list.map((item) => ({
+      value: item.value,
+      label: item.labels[curr] || item.labels.INR || item.labels.USD
+    })),
+    { value: 'guidance', label: 'I need guidance' }
+  ];
+}
+
+/* ── 2-Way Currency Toggle Component ($ USD / ₹ INR) ── */
+function CurrencyToggle({ currency, setCurrency, label = 'Select currency' }) {
+  return (
+    <div className="tdb-currency-toggle" role="group" aria-label={label}>
+      <button
+        type="button"
+        className={`tdb-curr-btn ${currency === 'USD' ? 'active' : ''}`}
+        onClick={() => setCurrency('USD')}
+        title="US Dollar ($)"
+        aria-pressed={currency === 'USD'}
+      >
+        $ USD
+      </button>
+      <button
+        type="button"
+        className={`tdb-curr-btn ${currency === 'INR' ? 'active' : ''}`}
+        onClick={() => setCurrency('INR')}
+        title="Indian Rupee (₹)"
+        aria-pressed={currency === 'INR'}
+      >
+        ₹ INR
+      </button>
+    </div>
+  );
 }
 
 function calculateEstimateValue(services, budgetRange) {
@@ -153,8 +347,10 @@ export default function BrandReadiness() {
     setTimeout(() => setLiveAnnouncement(msg), 30);
   };
 
+  const [currency, setCurrency] = useState('INR');
+
   const budgetSetKey = getBudgetSetKey(state.services);
-  const budgetOptions = getBudgetOptions(budgetSetKey);
+  const budgetOptions = getBudgetOptions(budgetSetKey, currency);
 
   // Focus result heading on confirmation view
   useEffect(() => {
@@ -555,6 +751,48 @@ export default function BrandReadiness() {
             padding: 0;
             color: var(--tdb-text);
           }
+          .tdb-quote .tdb-q-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px 12px;
+            margin: 0 0 6px;
+          }
+          .tdb-quote .tdb-q-head .tdb-q {
+            margin: 0;
+          }
+          .tdb-quote .tdb-currency-toggle {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px;
+            background: var(--tdb-input, #FBF8F2);
+            border: 1px solid var(--tdb-text, #1B1B17);
+            border-radius: 2px;
+            gap: 2px;
+            user-select: none;
+          }
+          .tdb-quote .tdb-curr-btn {
+            background: transparent;
+            color: var(--tdb-muted, #6B5A4E);
+            border: none;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 8.5px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            padding: 3px 7px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            border-radius: 1px;
+            line-height: 1.2;
+          }
+          .tdb-quote .tdb-curr-btn:hover {
+            color: var(--tdb-text, #1B1B17);
+          }
+          .tdb-quote .tdb-curr-btn.active {
+            background: var(--tdb-text, #1B1B17);
+            color: var(--tdb-bg, #F3EDE3);
+          }
           .tdb-quote .tdb-opt {
             font-weight: 400;
             color: var(--tdb-muted);
@@ -801,6 +1039,16 @@ export default function BrandReadiness() {
             .tdb-quote .tdb-btn {
               width: 100%;
             }
+            .tdb-quote .tdb-q-head {
+              flex-direction: row;
+              align-items: center;
+              justify-content: space-between;
+              gap: 8px;
+            }
+            .tdb-quote .tdb-curr-btn {
+              padding: 4px 8px;
+              font-size: 9px;
+            }
           }
           @media (prefers-reduced-motion: reduce) {
             .tdb-quote * {
@@ -1021,9 +1269,12 @@ export default function BrandReadiness() {
                   className="tdb-field"
                   aria-describedby="help-services help-fees err-services"
                 >
-                  <legend className="tdb-q">
-                    What do you need help with?<span className="tdb-star" aria-hidden="true">*</span>
-                  </legend>
+                  <div className="tdb-q-head">
+                    <legend className="tdb-q">
+                      What do you need help with?<span className="tdb-star" aria-hidden="true">*</span>
+                    </legend>
+                    <CurrencyToggle currency={currency} setCurrency={setCurrency} label="Services currency toggle" />
+                  </div>
                   <span className="tdb-help" id="help-services">
                     Select all that apply.
                   </span>
@@ -1035,6 +1286,7 @@ export default function BrandReadiness() {
                   >
                     {SERVICES.map((s) => {
                       const isChecked = state.services.includes(s.value);
+                      const displayPrice = s.prices ? s.prices[currency] : (s.price || '');
                       return (
                         <label
                           key={s.value}
@@ -1048,7 +1300,7 @@ export default function BrandReadiness() {
                             onChange={() => handleServiceToggle(s.value)}
                           />
                           <span className="tdb-chip-name">{s.label}</span>
-                          {s.price && <span className="tdb-price">{s.price}</span>}
+                          {displayPrice && <span className="tdb-price">{displayPrice}</span>}
                         </label>
                       );
                     })}
@@ -1060,7 +1312,9 @@ export default function BrandReadiness() {
 
                   {showSaasHint && (
                     <p className="tdb-hint" id="saas-note">
-                      SaaS engagements typically range from ₹4,75,000 ($4,960) to ₹10,00,000 ($10,500), depending on the branding, product design, and app requirements.
+                      {currency === 'USD'
+                        ? 'SaaS engagements typically range from $4,960 to $10,500, depending on the branding, product design, and app requirements.'
+                        : 'SaaS engagements typically range from ₹4,75,000 to ₹10,00,000, depending on the branding, product design, and app requirements.'}
                     </p>
                   )}
 
@@ -1122,9 +1376,12 @@ export default function BrandReadiness() {
                 {/* ── Budget & Timeline Row ── */}
                 <div className="tdb-row">
                   <div className="tdb-field">
-                    <label className="tdb-q" htmlFor="budgetRange">
-                      What’s your approximate project budget?<span className="tdb-star" aria-hidden="true">*</span>
-                    </label>
+                    <div className="tdb-q-head">
+                      <label className="tdb-q" htmlFor="budgetRange">
+                        What’s your approximate project budget?<span className="tdb-star" aria-hidden="true">*</span>
+                      </label>
+                      <CurrencyToggle currency={currency} setCurrency={setCurrency} label="Budget currency toggle" />
+                    </div>
                     <span className="tdb-help" id="help-budget">
                       An approximate range helps us recommend a realistic scope.
                       {isMultiService && ' Share your total project budget. We’ll recommend what can realistically fit.'}
