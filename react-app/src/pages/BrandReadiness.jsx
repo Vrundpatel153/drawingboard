@@ -17,8 +17,7 @@ const SERVICES = [
     label: 'Brand strategy & identity',
     prices: {
       INR: 'From ₹4,75,000',
-      USD: 'From $4,960',
-      GBP: 'From £3,700'
+      USD: 'From $4,960'
     }
   },
   {
@@ -26,8 +25,7 @@ const SERVICES = [
     label: 'Packaging design',
     prices: {
       INR: 'From ₹3,75,000',
-      USD: 'From $3,925',
-      GBP: 'From £2,900'
+      USD: 'From $3,925'
     }
   },
   {
@@ -35,8 +33,7 @@ const SERVICES = [
     label: 'Website / Shopify',
     prices: {
       INR: 'From ₹1,15,000',
-      USD: 'From $1,200',
-      GBP: 'From £950'
+      USD: 'From $1,200'
     }
   },
   {
@@ -44,8 +41,7 @@ const SERVICES = [
     label: 'SaaS branding, UI/UX & app',
     prices: {
       INR: 'From ₹4,75,000 · Scope-dependent',
-      USD: 'From $4,960 · Scope-dependent',
-      GBP: 'From £3,700 · Scope-dependent'
+      USD: 'From $4,960 · Scope-dependent'
     }
   },
   {
@@ -53,8 +49,7 @@ const SERVICES = [
     label: 'Something else / I need guidance',
     prices: {
       INR: '',
-      USD: '',
-      GBP: ''
+      USD: ''
     }
   }
 ];
@@ -87,32 +82,28 @@ const BUDGETS = {
       value: 'below-1.15l',
       labels: {
         INR: 'Below ₹1,15,000',
-        USD: 'Below $1,200',
-        GBP: 'Below £950'
+        USD: 'Below $1,200'
       }
     },
     {
       value: '1.15l-2l',
       labels: {
         INR: '₹1,15,000 to under ₹2,00,000',
-        USD: '$1,200 to under $2,100',
-        GBP: '£950 to under £1,650'
+        USD: '$1,200 to under $2,100'
       }
     },
     {
       value: '2l-3.75l',
       labels: {
         INR: '₹2,00,000 to under ₹3,75,000',
-        USD: '$2,100 to under $3,925',
-        GBP: '£1,650 to under £3,100'
+        USD: '$2,100 to under $3,925'
       }
     },
     {
       value: '3.75l-plus',
       labels: {
         INR: '₹3,75,000+',
-        USD: '$3,925+',
-        GBP: '£3,100+'
+        USD: '$3,925+'
       }
     }
   ],
@@ -121,32 +112,28 @@ const BUDGETS = {
       value: 'below-3.75l',
       labels: {
         INR: 'Below ₹3,75,000',
-        USD: 'Below $3,925',
-        GBP: 'Below £3,100'
+        USD: 'Below $3,925'
       }
     },
     {
       value: '3.75l-5l',
       labels: {
         INR: '₹3,75,000 to under ₹5,00,000',
-        USD: '$3,925 to under $5,250',
-        GBP: '£3,100 to under £4,100'
+        USD: '$3,925 to under $5,250'
       }
     },
     {
       value: '5l-7.5l',
       labels: {
         INR: '₹5,00,000 to under ₹7,50,000',
-        USD: '$5,250 to under $7,850',
-        GBP: '£4,100 to under £6,150'
+        USD: '$5,250 to under $7,850'
       }
     },
     {
       value: '7.5l-plus',
       labels: {
         INR: '₹7,50,000+',
-        USD: '$7,850+',
-        GBP: '£6,150+'
+        USD: '$7,850+'
       }
     }
   ],
@@ -155,32 +142,28 @@ const BUDGETS = {
       value: 'below-4.75l',
       labels: {
         INR: 'Below ₹4,75,000',
-        USD: 'Below $4,960',
-        GBP: 'Below £3,900'
+        USD: 'Below $4,960'
       }
     },
     {
       value: '4.75l-7l',
       labels: {
         INR: '₹4,75,000 to under ₹7,00,000',
-        USD: '$4,960 to under $7,325',
-        GBP: '£3,900 to under £5,750'
+        USD: '$4,960 to under $7,325'
       }
     },
     {
       value: '7l-10l',
       labels: {
         INR: '₹7,00,000 to under ₹10,00,000',
-        USD: '$7,325 to under $10,500',
-        GBP: '£5,750 to under £8,250'
+        USD: '$7,325 to under $10,500'
       }
     },
     {
       value: '10l-plus',
       labels: {
         INR: '₹10,00,000+',
-        USD: '$10,500+',
-        GBP: '£8,250+'
+        USD: '$10,500+'
       }
     }
   ],
@@ -189,32 +172,28 @@ const BUDGETS = {
       value: 'below-4.75l',
       labels: {
         INR: 'Below ₹4,75,000',
-        USD: 'Below $4,960',
-        GBP: 'Below £3,900'
+        USD: 'Below $4,960'
       }
     },
     {
       value: '4.75l-7l',
       labels: {
         INR: '₹4,75,000 to under ₹7,00,000',
-        USD: '$4,960 to under $7,325',
-        GBP: '£3,900 to under £5,750'
+        USD: '$4,960 to under $7,325'
       }
     },
     {
       value: '7l-10l',
       labels: {
         INR: '₹7,00,000 to under ₹10,00,000',
-        USD: '$7,325 to under $10,500',
-        GBP: '£5,750 to under £8,250'
+        USD: '$7,325 to under $10,500'
       }
     },
     {
       value: '10l-plus',
       labels: {
         INR: '₹10,00,000+',
-        USD: '$10,500+',
-        GBP: '£8,250+'
+        USD: '$10,500+'
       }
     }
   ],
@@ -223,40 +202,35 @@ const BUDGETS = {
       value: 'below-3.75l',
       labels: {
         INR: 'Below ₹3,75,000',
-        USD: 'Below $3,925',
-        GBP: 'Below £3,100'
+        USD: 'Below $3,925'
       }
     },
     {
       value: '3.75l-4.75l',
       labels: {
         INR: '₹3,75,000 to under ₹4,75,000',
-        USD: '$3,925 to under $4,960',
-        GBP: '£3,100 to under £3,900'
+        USD: '$3,925 to under $4,960'
       }
     },
     {
       value: '4.75l-7l',
       labels: {
         INR: '₹4,75,000 to under ₹7,00,000',
-        USD: '$4,960 to under $7,325',
-        GBP: '£3,900 to under £5,750'
+        USD: '$4,960 to under $7,325'
       }
     },
     {
       value: '7l-10l',
       labels: {
         INR: '₹7,00,000 to under ₹10,00,000',
-        USD: '$7,325 to under $10,500',
-        GBP: '£5,750 to under £8,250'
+        USD: '$7,325 to under $10,500'
       }
     },
     {
       value: '10l-plus',
       labels: {
         INR: '₹10,00,000+',
-        USD: '$10,500+',
-        GBP: '£8,250+'
+        USD: '$10,500+'
       }
     }
   ]
