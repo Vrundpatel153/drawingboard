@@ -1,10 +1,13 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
-export default function ArrowIcon({ size = 15, strokeWidth = 2.5, className = 'arrow-icon', style = {} }) {
+export default function ArrowIcon({ size = 16, strokeWidth = 2.5, className = 'arrow-icon', style = {} }) {
+  // Enforce prominent, legible arrow sizing across all buttons and links
+  const finalSize = Math.max(Number(size) || 16, 14);
+
   return (
     <ArrowRight
-      size={size}
+      size={finalSize}
       strokeWidth={strokeWidth}
       className={className}
       style={{

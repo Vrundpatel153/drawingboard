@@ -11,6 +11,7 @@ import BrandingPage from './pages/BrandingPage';
 import PackagingPage from './pages/PackagingPage';
 import DevelopmentPage from './pages/DevelopmentPage';
 import SaaSBrandingPage from './pages/SaaSBrandingPage';
+import SpatialBrandingPage from './pages/SpatialBrandingPage';
 import Contact from './pages/Contact';
 import BlogDetail from './pages/BlogDetail';
 import LegalDetail from './pages/LegalDetail';
@@ -90,6 +91,16 @@ export default function App() {
             <Route path="/service/ui-ux-design" element={<SaaSBrandingPage />} />
             <Route path="/ui-ux" element={<SaaSBrandingPage />} />
             <Route path="/ui-ux-design" element={<SaaSBrandingPage />} />
+            {/* Dedicated Spatial Branding & Brand Environments page */}
+            <Route path="/spatial-branding" element={<SpatialBrandingPage />} />
+            <Route path="/services/spatial-branding" element={<SpatialBrandingPage />} />
+            <Route path="/service/spatial-branding" element={<SpatialBrandingPage />} />
+            <Route path="/spatial" element={<SpatialBrandingPage />} />
+            <Route path="/services/spatial" element={<SpatialBrandingPage />} />
+            <Route path="/brand-environments" element={<SpatialBrandingPage />} />
+            <Route path="/services/brand-environments" element={<SpatialBrandingPage />} />
+            <Route path="/photography" element={<Navigate to="/services/spatial-branding" replace />} />
+            <Route path="/services/photography" element={<Navigate to="/services/spatial-branding" replace />} />
             <Route path="/services/:serviceId" element={<ServiceDetail />} />
             <Route path="/service/:serviceId" element={<ServiceDetail />} />
 

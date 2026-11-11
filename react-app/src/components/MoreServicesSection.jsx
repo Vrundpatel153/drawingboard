@@ -32,6 +32,13 @@ export default function MoreServicesSection({ current = '' }) {
       link: '/services/saas-branding',
       linkText: 'See SaaS branding →',
     },
+    {
+      id: 'spatial-branding',
+      title: 'Spatial Branding & Environments',
+      desc: 'Translating brand identity into physical spaces, commercial interiors, wayfinding and customer journeys.',
+      link: '/services/spatial-branding',
+      linkText: 'See spatial branding →',
+    },
   ];
 
   const filtered = services.filter((s) => s.id !== current && !(current === 'uiux' && s.id === 'saas-branding')).slice(0, 3);

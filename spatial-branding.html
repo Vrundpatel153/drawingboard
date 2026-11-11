@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Spatial Branding &amp; Brand Environments — The Drawing Board</title>
+<meta name="description" content="We build brands you can step into. Comprehensive spatial branding, environmental graphic design, commercial interior concepts, and customer journey architecture.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/global.css">
+<style>
+:root {
+  --bg: #EDE9E3;
+  --paper: #EDE9E3;
+  --card: #F6F3EC;
+  --ink: #1B1B17;
+  --ink-soft: #4A473F;
+  --line: rgba(27, 27, 23, 0.22);
+  --line-strong: rgba(27, 27, 23, 0.6);
+  --pine: #24463B;
+  --green: #1F3A2D;
+  --marker: #B5432E;
+  --taupe: #9B8A6C;
+  --dk: #1C1D1A;
+  --m: clamp(16px, 4vw, 48px);
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+.mono {
+  font-family: var(--mono);
+}
+
+.lab {
+  font: 600 11px/1.4 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tc {
+  color: var(--marker);
+}
+
+.gr {
+  color: var(--pine);
+}
+
+/* Sections */
+.sec {
+  position: relative;
+  padding: 72px 0;
+  border-bottom: 1px solid var(--ink);
+}
+
+.wrap {
+  padding: 0 var(--m);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Hero Section */
+.hero-sec {
+  border-bottom: 1px solid var(--ink);
+  padding-top: 40px;
+  background: var(--bg);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  align-items: stretch;
+}
+
+@media (min-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+  }
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(38px, 6.8vw, 92px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin: 18px 0 24px;
+}
+
+.hero-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--pine);
+}
+
+.hero-sub {
+  font-size: clamp(16px, 1.8vw, 21px);
+  line-height: 1.5;
+  max-width: 46ch;
+  color: var(--ink-soft);
+  margin-bottom: 32px;
+}
+
+.hero-media-box {
+  position: relative;
+  border: 1.5px solid var(--ink);
+  background: var(--card);
+  overflow: hidden;
+  border-radius: 2px;
+  aspect-ratio: 4/3;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+}
+
+.hero-media-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.hero-media-box:hover img {
+  transform: scale(1.03);
+}
+
+.hero-caption-pill {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(237, 233, 227, 0.96);
+  border: 1px solid var(--ink);
+  padding: 4px 10px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.strip {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--ink);
+  background: var(--card);
+  margin-top: 48px;
+}
+
+@media (min-width: 768px) {
+  .strip {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .strip div + div {
+    border-left: 1px solid var(--ink);
+  }
+}
+
+.strip div {
+  padding: 16px var(--m);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.strip div::before {
+  content: "■";
+  color: var(--marker);
+  font-size: 9px;
+}
+
+/* Stage Tabs & Panels */
+.stages-tab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 32px 0 24px;
+}
+
+@media (min-width: 900px) {
+  .stages-tab-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stage-tab {
+  border: 1px solid var(--ink);
+  background: var(--card);
+  padding: 16px 18px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.stage-tab.active {
+  background: var(--pine);
+  color: var(--bg);
+  border-color: var(--pine);
+}
+
+.stage-tab .num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.stage-tab.active .num {
+  color: #9FCBB6;
+}
+
+.stage-tab h4 {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.stage-content-box {
+  border: 1.5px solid var(--ink);
+  background: var(--card);
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+}
+
+.stage-text-side {
+  padding: 36px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.stage-visual-side {
+  position: relative;
+  width: 100%;
+  min-height: 380px;
+  background: #E6DDCE;
+}
+
+.stage-visual-side img {
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  max-height: 520px;
+  object-fit: cover;
+  display: block;
+}
+
+/* System Grid */
+.sys-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+  margin-top: 36px;
+}
+
+@media (min-width: 768px) {
+  .sys-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1080px) {
+  .sys-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.sys-card {
+  padding: 32px 28px;
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  transition: background 0.2s ease;
+}
+
+.sys-card:hover {
+  background: var(--bg);
+}
+
+.sys-card .n {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--marker);
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+}
+
+.sys-card h3 {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.sys-card p {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* Anatomy Pinpoint */
+.anatomy-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  margin-top: 40px;
+}
+
+@media (min-width: 960px) {
+  .anatomy-layout {
+    grid-template-columns: 1.25fr 0.85fr;
+    gap: 48px;
+  }
+  .anatomy-sticky {
+    position: sticky;
+    top: 90px;
+    align-self: start;
+  }
+}
+
+.anatomy-fig {
+  position: relative;
+  border: 1.5px solid var(--ink);
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--card);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+}
+
+.anatomy-fig img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.anatomy-pin {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  margin-left: -14px;
+  margin-top: -14px;
+  border-radius: 50%;
+  background: rgba(237, 233, 227, 0.95);
+  border: 2px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.anatomy-pin:hover,
+.anatomy-pin.active {
+  background: var(--marker);
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+  transform: scale(1.35);
+  box-shadow: 0 0 0 4px rgba(181, 67, 46, 0.35);
+}
+
+.anatomy-step {
+  padding: 22px 24px;
+  border-left: 3px solid transparent;
+  border-bottom: 1px dashed var(--line);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.anatomy-step:hover {
+  background: rgba(36, 70, 59, 0.04);
+}
+
+.anatomy-step.active {
+  border-left-color: var(--marker);
+  background: var(--card);
+  border-bottom-color: transparent;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+}
+
+/* Dark Blueprint Form */
+.dark-band {
+  background: var(--dk);
+  color: var(--bg);
+  border-top: 1px solid var(--ink);
+  padding: 80px 0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px 32px;
+  margin-top: 40px;
+}
+
+@media (min-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .form-grid .full-span {
+    grid-column: 1 / -1;
+  }
+}
+
+.form-field {
+  display: block;
+  border-top: 1px dashed rgba(237, 233, 227, 0.25);
+  padding-top: 14px;
+}
+
+.form-field .lbl {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  margin-bottom: 8px;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(237, 233, 227, 0.35);
+  color: #FFFFFF;
+  font-family: var(--sans);
+  font-size: 16px;
+  padding: 8px 0;
+  border-radius: 0;
+  transition: border-color 0.2s ease;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--marker);
+}
+
+.form-field select option {
+  background: #1C1D1A;
+  color: #FFFFFF;
+}
+
+.chk-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.chk-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid rgba(237, 233, 227, 0.3);
+  border-radius: 2px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chk-pill.checked {
+  background: var(--pine);
+  border-color: var(--pine);
+  color: #FFFFFF;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Registration Marks -->
+<div class="reg reg-tl"></div>
+<div class="reg reg-tr"></div>
+<div class="reg reg-bl"></div>
+<div class="reg reg-br"></div>
+
+<!-- Header -->
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo-mark"><div class="box"></div>The Drawing Board</a>
+    <nav class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="studio.html">Studio</a>
+      <a href="work.html">Work</a>
+      <a class="active" href="services.html">Services</a>
+      <a href="insights.html">Insights</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav-cta" href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener">Book a 15-min call</a>
+    <button class="mobile-menu-btn" aria-label="Toggle Navigation">[ MENU ]</button>
+  </div>
+  <div class="mobile-drawer">
+    <a href="index.html">Home</a>
+    <a href="studio.html">Studio</a>
+    <a href="work.html">Work</a>
+    <a class="active" href="services.html">Services</a>
+    <a href="insights.html">Insights</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ── 01: HERO SECTION ── -->
+  <section class="hero-sec">
+    <div class="wrap">
+      <div class="sheet-label" style="margin-bottom: 24px;">
+        <span class="tag mono tc">SHEET 05 // SPATIAL BRANDING &amp; BRAND ENVIRONMENTS</span>
+        <div class="rule"></div>
+      </div>
+
+      <div class="hero-grid">
+        <div>
+          <p class="lab tc">The Drawing Board / Commercial Spatial Practice</p>
+          <h1 class="hero-title">
+            We build brands you can <em>step into</em>.
+          </h1>
+          <p class="hero-sub">
+            From the first sketch to the spaces people remember. We translate brand identity into physical rooms, environmental graphics, material palettes, signage systems, and cohesive commercial experiences.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center;">
+            <a href="#enquiry" class="btn-primary" style="padding: 13px 24px; display: inline-flex; align-items: center;">
+              Inquire About a Space
+              <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener" class="btn-link" style="font-size: 13.5px; font-weight: 600; display: inline-flex; align-items: center;">
+              Schedule 15-Min Discovery Call
+              <svg class="arrow-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <div class="hero-media-box">
+            <img src="restaurant-interior.jpg" alt="Commercial Hospitality Interior Concept">
+            <span class="hero-caption-pill">Concept study // Commercial interior</span>
+          </div>
+          <div class="mono" style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 10.5px; color: var(--ink-soft);">
+            <span>LAT 40.7128° N // LON 74.0060° W</span>
+            <span>COMMERCIAL SCALE ONLY</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Metadata Strip -->
+    <div class="strip">
+      <div>Spatial Branding</div>
+      <div>Environmental Graphic Design</div>
+      <div>Commercial Customer Journeys</div>
+    </div>
+  </section>
+
+  <!-- ── 02: FROM IDENTITY TO ENVIRONMENT (STAGES) ── -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono tc">02 // TRANSLATION METHODOLOGY</div>
+          <h2 style="font-family: var(--serif); font-size: clamp(30px, 4.8vw, 56px); margin: 10px 0 16px;">
+            Good brands don’t stop at the logo.
+          </h2>
+        </div>
+        <p style="max-width: 44ch;">
+          They continue through every surface, sign, material and customer interaction. Explore how 2D brand rules scale into 3D architecture.
+        </p>
+      </div>
+
+      <!-- Stage Selector Tabs -->
+      <div class="stages-tab-grid">
+        <button type="button" class="stage-tab active" data-stage="0">
+          <span class="num">Stage 01</span>
+          <h4>The Identity</h4>
+        </button>
+        <button type="button" class="stage-tab" data-stage="1">
+          <span class="num">Stage 02</span>
+          <h4>The Materials</h4>
+        </button>
+        <button type="button" class="stage-tab" data-stage="2">
+          <span class="num">Stage 03</span>
+          <h4>The Spatial Plan</h4>
+        </button>
+        <button type="button" class="stage-tab" data-stage="3">
+          <span class="num">Stage 04</span>
+          <h4>The Environment</h4>
+        </button>
+      </div>
+
+      <!-- Stage Content Box -->
+      <div class="stage-content-box" id="stageContentBox">
+        <div class="stage-text-side">
+          <div class="mono tc" id="stageEyebrow" style="font-size: 11px; letter-spacing: 0.12em; margin-bottom: 8px;">
+            STAGE 01 — BRAND SYSTEM ON PAPER
+          </div>
+          <h3 id="stageTitle" style="font-family: var(--serif); font-size: clamp(24px, 3.2vw, 36px); margin: 0 0 14px;">
+            The Identity Blueprint
+          </h3>
+          <p id="stageDesc" style="font-size: 15px; line-height: 1.6; color: var(--ink-soft); max-width: 64ch;">
+            The strategic logic everything inherits: primary wordmark, bespoke typography, color ratios, and editorial design rules.
+          </p>
+        </div>
+
+        <div class="stage-visual-side" id="stageVisualWrap">
+          <img id="stageImg" src="brand-identity-stationery.jpg" alt="Brand Identity Stationery System">
+          <div id="stageSvgWrap" style="display: none; padding: 24px;">
+            <svg viewBox="0 0 800 480" style="width: 100%; height: auto; max-height: 420px; background: #F6F3EC; border: 1px solid #1B1B17;">
+              <!-- Blueprint Grid Lines -->
+              <defs>
+                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1B1B17" stroke-width="0.5" opacity="0.1"/>
+                </pattern>
+              </defs>
+              <rect width="800" height="480" fill="url(#grid)" />
+              <!-- Walls -->
+              <rect x="80" y="50" width="640" height="380" fill="none" stroke="#1B1B17" stroke-width="4" />
+              <line x1="80" y1="240" x2="320" y2="240" stroke="#1B1B17" stroke-width="3" />
+              <line x1="320" y1="240" x2="320" y2="330" stroke="#1B1B17" stroke-width="3" />
+              <!-- Counter -->
+              <rect x="400" y="110" width="240" height="56" fill="#1F4A3A" opacity="0.9" />
+              <text x="520" y="145" text-anchor="middle" fill="#FFFFFF" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="700">SERVICE BAR / FLUTED COUNTER</text>
+              <!-- Circulation Dash -->
+              <path d="M 100 360 C 220 360, 320 280, 420 200 S 540 180, 440 140" fill="none" stroke="#B5432E" stroke-width="3.5" stroke-dasharray="6 6" />
+              <circle cx="440" cy="280" r="22" fill="none" stroke="#1B1B17" stroke-width="2" />
+              <circle cx="520" cy="280" r="22" fill="none" stroke="#1B1B17" stroke-width="2" />
+              <circle cx="600" cy="280" r="22" fill="none" stroke="#1B1B17" stroke-width="2" />
+              <text x="95" y="45" fill="#1B1B17" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700">ZONE A · ENTRANCE THRESHOLD</text>
+              <text x="400" y="95" fill="#1B1B17" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700">ZONE B · ARTISANAL ORDER STATION</text>
+              <text x="440" y="340" fill="#1B1B17" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700">ZONE C · CASUAL SEATING &amp; LINGER AREA</text>
+              <text x="400" y="455" text-anchor="middle" fill="#1B1B17" font-family="'IBM Plex Mono', monospace" font-size="13" font-weight="700">&larr; 12,400 mm CLEAR SPAN &rarr;</text>
+            </svg>
+          </div>
+          <div style="position: absolute; bottom: 12px; left: 12px; right: 12px; background: rgba(237, 233, 227, 0.95); border: 1px solid var(--ink); padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <span class="mono" id="stageCaption" style="font-size: 11px; font-weight: bold;">
+              Temaki Brand Identity System — Menu, Typography &amp; Stationery
+            </span>
+            <span class="mono tc" style="font-size: 10px;">
+              [ VERIFIED DELIVERABLE SPEC ]
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 03: SELECTED WORK / CONCEPT STUDIES ── -->
+  <section class="sec" id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono tc">03 // SELECTED WORK</div>
+          <h2 style="font-family: var(--serif); font-size: clamp(30px, 4.8vw, 56px); margin: 10px 0 16px;">
+            Brand systems, built in space.
+          </h2>
+        </div>
+        <p class="mono" style="font-size: 11.5px; color: var(--ink-soft); letter-spacing: 0.06em;">
+          Concept studies and architectural design directions. Demonstrating how identity logic extends into commercial interiors.
+        </p>
+      </div>
+
+      <!-- Project 01: Café & Bakery -->
+      <div style="margin-top: 48px; border-top: 1px solid var(--ink); paddingTop: 32px;">
+        <div style="display: grid; grid-template-columns: 1fr; gap: 24px; align-items: center;">
+          <div style="position: relative; border: 1.5px solid var(--ink); overflow: hidden; border-radius: 2px; aspect-ratio: 16/10;">
+            <img src="cafe-interior.jpg" alt="Artisanal Café and Bakery Interior" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            <span style="position: absolute; left: 12px; bottom: 12px; background: var(--card); border: 1px solid var(--ink); padding: 4px 8px; font-family: var(--mono); font-size: 10.5px;">
+              CONCEPT STUDY 01 // CAFÉ &amp; BAKERY
+            </span>
+          </div>
+
+          <div style="background: var(--card); border: 1.5px solid var(--ink); padding: 28px;">
+            <span class="tag mono" style="background: var(--marker); color: #FFF; border: none; margin-bottom: 12px; display: inline-block;">
+              HOSPITALITY CONCEPT
+            </span>
+            <h3 style="font-family: var(--serif); font-size: 28px; margin: 4px 0 14px;">
+              Maison Boulangerie &amp; Espresso Bar
+            </h3>
+            <p style="font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 20px;">
+              A complete neighbourhood hospitality study. The warm terracotta and pine green tones of the brand identity extend onto fluted oak service bars, recessed ambient archways, and minimal brass wayfinding.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; border-top: 1px dashed var(--line); padding-top: 16px;">
+              <div>
+                <span class="mono" style="font-size: 10px; color: var(--ink-soft); text-transform: uppercase;">Scope</span>
+                <div style="font-weight: 600; font-size: 13px; margin-top: 2px;">Identity, Materials, Signage</div>
+              </div>
+              <div>
+                <span class="mono" style="font-size: 10px; color: var(--ink-soft); text-transform: uppercase;">Scale</span>
+                <div style="font-weight: 600; font-size: 13px; margin-top: 2px;">1,850 sq. ft. Commercial</div>
+              </div>
+              <div>
+                <span class="mono" style="font-size: 10px; color: var(--ink-soft); text-transform: uppercase;">Challenge</span>
+                <div style="font-weight: 600; font-size: 13px; margin-top: 2px;">Street recognition &amp; queue flow</div>
+              </div>
+              <div>
+                <span class="mono" style="font-size: 10px; color: var(--ink-soft); text-transform: uppercase;">Materials</span>
+                <div style="font-weight: 600; font-size: 13px; margin-top: 2px;">Fluted Oak, Travertine, Brass</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 02: Full-Bleed Environment with Callouts -->
+      <div style="margin-top: 56px; border-top: 1px solid var(--ink); padding-top: 32px;">
+        <div style="position: relative; border: 1.5px solid var(--ink); overflow: hidden; min-height: 380px;">
+          <img src="restaurant-interior.jpg" alt="Full-Bleed Commercial Dining Environment" style="width: 100%; height: 100%; max-height: 560px; object-fit: cover; display: block;">
+
+          <div style="position: absolute; top: 28%; left: 12%; background: rgba(237, 233, 227, 0.95); border: 1px solid var(--ink); padding: 4px 10px; font-family: var(--mono); font-size: 11px; font-weight: 600;">
+            [A] Architectural Cove Lighting &amp; Sconce Integration
+          </div>
+          <div style="position: absolute; top: 55%; left: 56%; background: rgba(237, 233, 227, 0.95); border: 1px solid var(--ink); padding: 4px 10px; font-family: var(--mono); font-size: 11px; font-weight: 600;">
+            [B] Fluted Timber Slat Acoustical Partitions
+          </div>
+
+          <div style="position: absolute; bottom: 20px; right: 20px; background: var(--card); border: 1.5px solid var(--ink); padding: 20px 24px; max-width: 360px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+            <div class="mono tc" style="font-size: 10px; text-transform: uppercase;">03 // FULL-BLEED INTERIOR STUDY</div>
+            <h4 style="font-family: var(--serif); font-size: 20px; margin: 6px 0 8px;">Dining Room Atmosphere &amp; Acoustics</h4>
+            <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin: 0;">
+              Zoned lighting, curved booth seating, and rhythmic timber slats engineered to balance intimacy and commercial turnover.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 03: Split Study (Identity vs Spatial) -->
+      <div style="margin-top: 56px; border-top: 1px solid var(--ink); padding-top: 32px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+          <div>
+            <div style="border: 1.5px solid var(--ink); overflow: hidden; aspect-ratio: 4/3; position: relative;">
+              <img src="brand-identity-stationery.jpg" alt="Brand Identity Stationery System" style="width: 100%; height: 100%; object-fit: cover;">
+              <span style="position: absolute; left: 12px; bottom: 12px; background: var(--card); border: 1px solid var(--ink); padding: 4px 8px; font-family: var(--mono); font-size: 10.5px;">
+                04A // IDENTITY ROOT: TYPOGRAPHY, PACKAGING &amp; MENU
+              </span>
+            </div>
+            <h4 style="font-family: var(--serif); font-size: 18px; margin-top: 12px;">The Master Identity Blueprint</h4>
+            <p style="font-size: 13.5px; color: var(--ink-soft); line-height: 1.5;">
+              The 2D visual rules: layout hierarchy, serif type scales, and graphic emblems that set the DNA for spatial translation.
+            </p>
+          </div>
+
+          <div>
+            <div style="border: 1.5px solid var(--ink); overflow: hidden; aspect-ratio: 4/3; position: relative;">
+              <img src="material-language-board.jpg" alt="Spatial Material Language Moodboard" style="width: 100%; height: 100%; object-fit: cover;">
+              <span style="position: absolute; left: 12px; bottom: 12px; background: var(--card); border: 1px solid var(--ink); padding: 4px 8px; font-family: var(--mono); font-size: 10.5px;">
+                04B // SPATIAL EXPRESSION: TACTILE FINISH SPECIFICATIONS
+              </span>
+            </div>
+            <h4 style="font-family: var(--serif); font-size: 18px; margin-top: 12px;">The Material Translation</h4>
+            <p style="font-size: 13.5px; color: var(--ink-soft); line-height: 1.5;">
+              Translating visual authority into natural travertine, ribbed timber, chevron fabrics, and custom metal fixtures.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 04: THE BRAND EXPERIENCE SYSTEM (6-CARD GRID) ── -->
+  <section class="sec" style="background: var(--card);">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono tc">04 // THE BRAND EXPERIENCE SYSTEM</div>
+          <h2 style="font-family: var(--serif); font-size: clamp(30px, 4.8vw, 56px); margin: 10px 0 16px;">
+            One identity. Every dimension.
+          </h2>
+        </div>
+        <p style="max-width: 44ch;">
+          We structure physical touchpoints under an engineered systemic model — ensuring seamless continuity from screen to shelf to space.
+        </p>
+      </div>
+
+      <div class="sys-grid">
+        <div class="sys-card">
+          <span class="n">01 / SYSTEM</span>
+          <div>
+            <h3>Brand Identity</h3>
+            <p>The foundational design grammar and positioning narrative that every physical fixture and architectural decision inherits.</p>
+          </div>
+        </div>
+
+        <div class="sys-card">
+          <span class="n">02 / SYSTEM</span>
+          <div>
+            <h3>Spatial Branding</h3>
+            <p>Translating brand values into tactile rooms, intuitive pathways, signature thresholds, and memorable interior moments.</p>
+          </div>
+        </div>
+
+        <div class="sys-card">
+          <span class="n">03 / SYSTEM</span>
+          <div>
+            <h3>Environmental Graphics</h3>
+            <p>Architectural signage, illuminated wayfinding, branded wall treatments, custom pattern tilework, and exterior facades.</p>
+          </div>
+        </div>
+
+        <div class="sys-card">
+          <span class="n">04 / SYSTEM</span>
+          <div>
+            <h3>Commercial Space Concepts</h3>
+            <p>Zoning plans, sightline optimization, customer flow layouts, and custom counter/fixture geometry for commercial environments.</p>
+          </div>
+        </div>
+
+        <div class="sys-card">
+          <span class="n">05 / SYSTEM</span>
+          <div>
+            <h3>Material &amp; Finish Language</h3>
+            <p>Surfaces, timber species, metal patinas, and textiles selected directly from brand color palettes, not generic catalogues.</p>
+          </div>
+        </div>
+
+        <div class="sys-card">
+          <span class="n">06 / SYSTEM</span>
+          <div>
+            <h3>Full Sensory Touchpoints</h3>
+            <p>Tabletop collateral, uniforms, custom packaging unboxing, acoustic consideration, and cohesive branded hospitality details.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 05: SPATIAL ANATOMY (INTERACTIVE PINPOINT ROOM) ── -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono tc">05 // INSIDE THE ENVIRONMENT</div>
+          <h2 style="font-family: var(--serif); font-size: clamp(30px, 4.8vw, 56px); margin: 10px 0 16px;">
+            Six decisions, one room.
+          </h2>
+        </div>
+        <p style="max-width: 44ch;">
+          Click any numbered pin or list item below to inspect how individual architectural details work together to create brand authority.
+        </p>
+      </div>
+
+      <div class="anatomy-layout">
+        <!-- Sticky Room Visual with Interactive Pins -->
+        <div class="anatomy-sticky">
+          <div class="anatomy-fig" id="roomFig">
+            <img src="cafe-interior.jpg" alt="Artisanal Cafe Interior for Spatial Anatomy">
+
+            <!-- 6 Interactive Pins -->
+            <button type="button" class="anatomy-pin active" style="left: 18%; top: 74%;" data-idx="0">01</button>
+            <button type="button" class="anatomy-pin" style="left: 32%; top: 20%;" data-idx="1">02</button>
+            <button type="button" class="anatomy-pin" style="left: 52%; top: 64%;" data-idx="2">03</button>
+            <button type="button" class="anatomy-pin" style="left: 72%; top: 78%;" data-idx="3">04</button>
+            <button type="button" class="anatomy-pin" style="left: 84%; top: 32%;" data-idx="4">05</button>
+            <button type="button" class="anatomy-pin" style="left: 50%; top: 16%;" data-idx="5">06</button>
+
+            <!-- Active Inspector Badge -->
+            <div id="inspectorBadge" style="position: absolute; bottom: 12px; left: 12px; right: 12px; background: rgba(28, 29, 26, 0.95); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.2); padding: 12px 16px; border-radius: 2px; display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <div>
+                <div class="mono tc" id="inspTag" style="font-size: 10px; letter-spacing: 0.1em;">PIN 01 // THRESHOLD</div>
+                <div id="inspTitle" style="font-family: var(--serif); font-size: 15px; font-weight: 600;">Entrance &amp; Threshold</div>
+              </div>
+              <span class="mono gr" style="font-size: 11px; white-space: nowrap;">[ ACTIVE FOCUS ]</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detail Step List -->
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div class="anatomy-step active" data-idx="0">
+            <div class="mono tc" style="font-size: 11px; margin-bottom: 4px;">01 // THE FIRST 5 SECONDS</div>
+            <h4 style="font-family: var(--serif); font-size: 20px; margin: 0 0 6px;">Entrance &amp; Threshold</h4>
+            <p style="font-size: 14px; color: var(--ink-soft); margin: 0;">
+              What the threshold communicates before a single word is read. Flooring transitions, entryway reveal framing, and initial sensory atmosphere.
+            </p>
+          </div>
+
+          <div class="anatomy-step" data-idx="1">
+            <div class="mono tc" style="font-size: 11px; margin-bottom: 4px;">02 // SEEN FROM THE STREET</div>
+            <h4 style="font-family: var(--serif); font-size: 20px; margin: 0 0 6px;">Brand Signage &amp; Recognition</h4>
+            <p style="font-size: 14px; color: var(--ink-soft); margin: 0;">
+              External fascia, architectural lettering, directional illumination, and brand mark integration engineered for legibility at distance, speed, and night.
+            </p>
+          </div>
+
+          <div class="anatomy-step" data-idx="2">
+            <div class="mono tc" style="font-size: 11px; margin-bottom: 4px;">03 // QUEUE, ORDER, LINGER</div>
+            <h4 style="font-family: var(--serif); font-size: 20px; margin: 0 0 6px;">Customer Journey &amp; Circulation</h4>
+            <p style="font-size: 14px; color: var(--ink-soft); margin: 0;">
+              Calculated pedestrian choreography: where customers pause, queue without blocking tables, discover merchandise, and settle into seating.
+            </p>
+          </div>
+
+          <div class="anatomy-step" data-idx="3">
+            <div class="mono tc" style="font-size: 11px; margin-bottom: 4px;">04 // COLOUR YOU CAN TOUCH</div>
+            <h4 style="font-family: var(--serif); font-size: 20px; margin: 0 0 6px;">Material Language &amp; Tactility</h4>
+            <p style="font-size: 14px; color: var(--ink-soft); margin: 0;">
+              Tactile physical palette directly derived from brand identity tokens — fluted white oak, terracotta plaster, honed travertine, and brushed brass.
+            </p>
+          </div>
+
+          <div class="anatomy-step" data-idx="4">
+            <div class="mono tc" style="font-size: 11px; margin-bottom: 4px;">05 // THE SYSTEM ON THE WALL</div>
+            <h4 style="font-family: var(--serif); font-size: 20px; margin: 0 0 6px;">Environmental Graphics &amp; Niches</h4>
+            <p style="font-size: 14px; color: var(--ink-soft); margin: 0;">
+              Large-scale brand murals, architectural archway framing, illuminated niches, and narrative typography integrated into the structural envelope.
+            </p>
+          </div>
+
+          <div class="anatomy-step" data-idx="5">
+            <div class="mono tc" style="font-size: 11px; margin-bottom: 4px;">06 // WHAT PEOPLE KEEP</div>
+            <h4 style="font-family: var(--serif); font-size: 20px; margin: 0 0 6px;">Brand Touchpoints &amp; Tabletop</h4>
+            <p style="font-size: 14px; color: var(--ink-soft); margin: 0;">
+              Physical collateral extending the spatial language: debossed leather menus, custom unboxing packaging, linen coasters, and employee uniforms.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 06 & 07: WHAT WE DO (PRACTICE DISCIPLINES) ── -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono tc">06 // WHAT WE DO</div>
+          <h2 style="font-family: var(--serif); font-size: clamp(30px, 4.8vw, 56px); margin: 10px 0 16px;">
+            Designed beyond the surface.
+          </h2>
+        </div>
+        <p style="max-width: 44ch;">
+          Our complete spatial capabilities — from high-level brand strategy to detailed manufacturer fabrication handoffs.
+        </p>
+      </div>
+
+      <div style="margin-top: 36px; border-top: 1px solid var(--ink);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px 32px; padding: 28px 0; border-bottom: 1px dashed var(--line); align-items: start;">
+          <div style="display: flex; align-items: baseline; gap: 16px;">
+            <span class="mono tc" style="font-size: clamp(28px, 4vw, 44px); font-weight: 700; line-height: 0.9;">01</span>
+            <h3 style="font-family: var(--serif); font-size: 22px; margin: 0;">Spatial Brand Strategy</h3>
+          </div>
+          <p style="font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); margin: 0;">
+            The physical expression of your brand positioning: customer journey choreography, experience principles, and multi-location spatial guidelines.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px 32px; padding: 28px 0; border-bottom: 1px dashed var(--line); align-items: start;">
+          <div style="display: flex; align-items: baseline; gap: 16px;">
+            <span class="mono tc" style="font-size: clamp(28px, 4vw, 44px); font-weight: 700; line-height: 0.9;">02</span>
+            <h3 style="font-family: var(--serif); font-size: 22px; margin: 0;">Environmental Branding &amp; Graphics</h3>
+          </div>
+          <p style="font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); margin: 0;">
+            Architectural signage, wayfinding totems, environmental typography, custom wall murals, branded acoustic treatments, and signature physical moments.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px 32px; padding: 28px 0; border-bottom: 1px dashed var(--line); align-items: start;">
+          <div style="display: flex; align-items: baseline; gap: 16px;">
+            <span class="mono tc" style="font-size: clamp(28px, 4vw, 44px); font-weight: 700; line-height: 0.9;">03</span>
+            <h3 style="font-family: var(--serif); font-size: 22px; margin: 0;">Commercial Space &amp; Interior Concepts</h3>
+          </div>
+          <p style="font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); margin: 0;">
+            Concept space planning, operational zoning, material palettes, bespoke furniture and lighting concepts, and photorealistic 3D rendering. (Commercial spaces only; no residential).
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px 32px; padding: 28px 0; border-bottom: 1px dashed var(--line); align-items: start;">
+          <div style="display: flex; align-items: baseline; gap: 16px;">
+            <span class="mono tc" style="font-size: clamp(28px, 4vw, 44px); font-weight: 700; line-height: 0.9;">04</span>
+            <h3 style="font-family: var(--serif); font-size: 22px; margin: 0;">Hospitality &amp; Retail Experiences</h3>
+          </div>
+          <p style="font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); margin: 0;">
+            Brand-led spatial engineering tailored for restaurants, cafés, bakeries, boutique retail stores, wellness studios, and experiential brand showrooms.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px 32px; padding: 28px 0; border-bottom: 1px dashed var(--line); align-items: start;">
+          <div style="display: flex; align-items: baseline; gap: 16px;">
+            <span class="mono tc" style="font-size: clamp(28px, 4vw, 44px); font-weight: 700; line-height: 0.9;">05</span>
+            <h3 style="font-family: var(--serif); font-size: 22px; margin: 0;">Signage &amp; Wayfinding Systems</h3>
+          </div>
+          <p style="font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); margin: 0;">
+            High-visibility external fascia signs, blade signs, illuminated window graphics, internal room wayfinding, and compliant ADA signage systems.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px 32px; padding: 28px 0; border-bottom: 1px dashed var(--line); align-items: start;">
+          <div style="display: flex; align-items: baseline; gap: 16px;">
+            <span class="mono tc" style="font-size: clamp(28px, 4vw, 44px); font-weight: 700; line-height: 0.9;">06</span>
+            <h3 style="font-family: var(--serif); font-size: 22px; margin: 0;">Design Development &amp; Execution Collaboration</h3>
+          </div>
+          <p style="font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); margin: 0;">
+            Production-ready vector dielines, material specification schedules, and continuous coordination with your licensed architects, general contractors, and fabricators.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 08: OUR PROCESS (6 PHASES) ── -->
+  <section class="sec" style="background: var(--card);">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow mono tc">07 // SPRINT METHODOLOGY</div>
+          <h2 style="font-family: var(--serif); font-size: clamp(30px, 4.8vw, 56px); margin: 10px 0 16px;">
+            Every great space begins with an idea.
+          </h2>
+        </div>
+        <p style="max-width: 44ch;">
+          A structured 6-phase engineering workflow that keeps your physical build on schedule and aligned with brand vision.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px;">
+        <div style="background: var(--bg); border: 1px solid var(--ink); padding: 28px; border-radius: 2px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+            <span class="mono tc" style="font-weight: 700;">01 // PHASE</span>
+            <span class="mono" style="font-size: 11px; border: 1px solid var(--ink); padding: 2px 6px;">WEEK 01</span>
+          </div>
+          <h3 style="font-family: var(--serif); font-size: 22px; margin: 0 0 10px;">Understand</h3>
+          <p style="font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; margin: 0;">
+            Deep intake on business model, target customer profile, site dimensions, foot-traffic analysis, and functional operational constraints.
+          </p>
+        </div>
+
+        <div style="background: var(--bg); border: 1px solid var(--ink); padding: 28px; border-radius: 2px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+            <span class="mono tc" style="font-weight: 700;">02 // PHASE</span>
+            <span class="mono" style="font-size: 11px; border: 1px solid var(--ink); padding: 2px 6px;">WEEK 02</span>
+          </div>
+          <h3 style="font-family: var(--serif); font-size: 22px; margin: 0 0 10px;">Define</h3>
+          <p style="font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; margin: 0;">
+            Synthesizing the core brand narrative into physical experience principles, spatial storytelling pillars, and visual moodboards.
+          </p>
+        </div>
+
+        <div style="background: var(--bg); border: 1px solid var(--ink); padding: 28px; border-radius: 2px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+            <span class="mono tc" style="font-weight: 700;">03 // PHASE</span>
+            <span class="mono" style="font-size: 11px; border: 1px solid var(--ink); padding: 2px 6px;">WEEKS 03-04</span>
+          </div>
+          <h3 style="font-family: var(--serif); font-size: 22px; margin: 0 0 10px;">Conceptualise</h3>
+          <p style="font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; margin: 0;">
+            Developing zoning layouts, customer journey choreography, sightlines, entry reveals, and initial 3D volumetric massing.
+          </p>
+        </div>
+
+        <div style="background: var(--bg); border: 1px solid var(--ink); padding: 28px; border-radius: 2px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+            <span class="mono tc" style="font-weight: 700;">04 // PHASE</span>
+            <span class="mono" style="font-size: 11px; border: 1px solid var(--ink); padding: 2px 6px;">WEEKS 05-06</span>
+          </div>
+          <h3 style="font-family: var(--serif); font-size: 22px; margin: 0 0 10px;">Design</h3>
+          <p style="font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; margin: 0;">
+            Refining identity graphics, custom signage typography, material palettes, finish schedules, and photorealistic 3D renders.
+          </p>
+        </div>
+
+        <div style="background: var(--bg); border: 1px solid var(--ink); padding: 28px; border-radius: 2px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+            <span class="mono tc" style="font-weight: 700;">05 // PHASE</span>
+            <span class="mono" style="font-size: 11px; border: 1px solid var(--ink); padding: 2px 6px;">WEEKS 07-08</span>
+          </div>
+          <h3 style="font-family: var(--serif); font-size: 22px; margin: 0 0 10px;">Develop</h3>
+          <p style="font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; margin: 0;">
+            Producing detailed graphic dielines, material specification binders, lighting temperature specs, and fabrication handoff packages.
+          </p>
+        </div>
+
+        <div style="background: var(--bg); border: 1px solid var(--ink); padding: 28px; border-radius: 2px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+            <span class="mono tc" style="font-weight: 700;">06 // PHASE</span>
+            <span class="mono" style="font-size: 11px; border: 1px solid var(--ink); padding: 2px 6px;">LAUNCH PHASE</span>
+          </div>
+          <h3 style="font-family: var(--serif); font-size: 22px; margin: 0 0 10px;">Coordinate</h3>
+          <p style="font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; margin: 0;">
+            Collaborating directly with your architects, interior designers, general contractors, and signmakers through final punch-list handover.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 09: THE DRAWING BOARD ECOSYSTEM ── -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="mono tc" style="font-size: 11px; letter-spacing: 0.12em; margin-bottom: 12px;">
+        08 // INTEGRATED STUDIO ECOSYSTEM
+      </div>
+      <h3 style="font-family: var(--serif); font-size: 28px; margin: 0 0 24px;">
+        From initial identity to completed commercial experience.
+      </h3>
+
+      <div style="display: flex; flex-wrap: wrap; border-top: 1px solid var(--ink); border-left: 1px solid var(--ink);">
+        <div style="flex: 1 1 160px; padding: 18px 16px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: var(--card);">
+          Brand Strategy
+        </div>
+        <div style="flex: 1 1 160px; padding: 18px 16px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: var(--card);">
+          Brand Identity
+        </div>
+        <div style="flex: 1 1 160px; padding: 18px 16px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: var(--card);">
+          Packaging Design
+        </div>
+        <div style="flex: 1 1 160px; padding: 18px 16px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: var(--card);">
+          Website Design
+        </div>
+        <div style="flex: 1 1 160px; padding: 18px 16px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: var(--card);">
+          Digital High-Code
+        </div>
+        <div style="flex: 1 1 160px; padding: 18px 16px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: var(--pine); color: var(--bg);">
+          Spatial Branding ★
+        </div>
+        <div style="flex: 1 1 160px; padding: 18px 16px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: var(--pine); color: var(--bg);">
+          Brand Environments ★
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 10: PROJECT ENQUIRY (DARK BLUEPRINT) ── -->
+  <div id="enquiry" class="dark-band">
+    <div class="wrap">
+      <div class="section-head" style="color: #EDE9E3;">
+        <div>
+          <div class="mono" style="font-size: 11.5px; color: #9FCBB6; letter-spacing: 0.12em; margin-bottom: 8px;">
+            09 // PROJECT ENQUIRY &amp; BRIEF INTAKE
+          </div>
+          <h2 style="font-family: var(--serif); font-size: clamp(32px, 5.5vw, 68px); margin: 0 0 16px; color: #FFFFFF;">
+            Let’s build something<br>worth entering.
+          </h2>
+        </div>
+        <p style="color: #DAD3C2; max-width: 44ch;">
+          Spatial projects are custom-scoped separately from brand identity engagements. Tell us about your brand, location, and vision.
+        </p>
+      </div>
+
+      <form id="spatialEnquiryForm" class="form-grid" novalidate>
+        <label class="form-field">
+          <span class="lbl">Business Name *</span>
+          <input type="text" name="business" required placeholder="e.g. Maison Boulangerie">
+        </label>
+
+        <label class="form-field">
+          <span class="lbl">Your Name *</span>
+          <input type="text" name="name" required placeholder="e.g. Alex Mercer" autocomplete="name">
+        </label>
+
+        <label class="form-field">
+          <span class="lbl">Email Address *</span>
+          <input type="email" name="email" required placeholder="alex@maison.com" autocomplete="email">
+        </label>
+
+        <label class="form-field">
+          <span class="lbl">Phone / WhatsApp Number</span>
+          <input type="tel" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel">
+        </label>
+
+        <label class="form-field">
+          <span class="lbl">Project Location / City</span>
+          <input type="text" name="location" placeholder="e.g. London / New York / Mumbai">
+        </label>
+
+        <label class="form-field">
+          <span class="lbl">Business Category</span>
+          <select name="category">
+            <option>Restaurant / Café</option>
+            <option>Bakery / Specialty QSR</option>
+            <option>Retail / Concept Boutique</option>
+            <option>Beauty / Wellness &amp; Spa</option>
+            <option>Experiential Showroom</option>
+            <option>Multi-location Rollout</option>
+            <option>Other Commercial Space</option>
+          </select>
+        </label>
+
+        <label class="form-field">
+          <span class="lbl">Space Condition</span>
+          <select name="type">
+            <option>New space (shell / warm box)</option>
+            <option>Existing space renovation / refresh</option>
+            <option>Multi-location adaptation</option>
+          </select>
+        </label>
+
+        <label class="form-field">
+          <span class="lbl">Approx. Area (Sq. Ft.)</span>
+          <input type="number" name="area" min="0" placeholder="e.g. 2,200">
+        </label>
+
+        <div class="form-field full-span">
+          <span class="lbl">Required Services (Select all that apply)</span>
+          <div class="chk-group">
+            <span class="chk-pill checked" data-val="Spatial strategy">✓ Spatial Strategy</span>
+            <span class="chk-pill checked" data-val="Environmental graphics">✓ Environmental Graphics</span>
+            <span class="chk-pill" data-val="Signage & wayfinding">+ Signage &amp; Wayfinding</span>
+            <span class="chk-pill" data-val="Interior concept">+ Interior Concept &amp; Zoning</span>
+            <span class="chk-pill" data-val="Execution collaboration">+ Execution Collaboration</span>
+          </div>
+        </div>
+
+        <label class="form-field">
+          <span class="lbl">Project Stage</span>
+          <select name="stage">
+            <option>Idea / Early planning</option>
+            <option>Site identified / Leased</option>
+            <option>Architecture underway</option>
+            <option>Under construction</option>
+          </select>
+        </label>
+
+        <label class="form-field">
+          <span class="lbl">Design Budget Range</span>
+          <input type="text" name="budget" placeholder="e.g. $8,000 - $15,000 / ₹6.5L - ₹12L">
+        </label>
+
+        <label class="form-field full-span">
+          <span class="lbl">Project Description &amp; Target Launch</span>
+          <textarea name="desc" rows="4" placeholder="Tell us about the space, customer experience goals, floor plans or references..."></textarea>
+        </label>
+
+        <div class="full-span" style="display: flex; flex-direction: column; gap: 14px; margin-top: 12px;">
+          <button type="submit" class="btn" style="background: var(--marker); border-color: var(--marker); color: #FFF; padding: 14px 28px; align-self: flex-start; cursor: pointer; display: inline-flex; align-items: center; font-weight: 600; font-size: 14px;">
+            Discuss a Project
+            <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+          <div id="formStatus" class="mono" style="font-size: 13px; min-height: 1.5em; color: #E5A99D;"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</main>
+
+<!-- Sticky Mobile CTA -->
+<div class="sticky-cta">
+  <div class="txt">
+    <b>Spatial &amp; Environments</b>
+    <span>Commercial Practice Open</span>
+  </div>
+  <a href="#enquiry" style="display: inline-flex; align-items: center;">
+    Inquire Now
+    <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+  </a>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="logo-mark"><div class="box"></div>The Drawing Board</a>
+        <p>Independent Brand, Web, Packaging &amp; Spatial Design Engineering Studio.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Navigation</h5>
+        <a href="index.html">Home</a>
+        <a href="studio.html">Studio</a>
+        <a href="work.html">Work</a>
+        <a href="services.html">Services</a>
+        <a href="insights.html">Insights</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h5>Services</h5>
+        <a href="services.html">Brand Identity</a>
+        <a href="services.html">Web Design &amp; Build</a>
+        <a href="services.html">Structural Packaging</a>
+        <a href="spatial-branding.html">Spatial Branding &amp; Environments</a>
+        <a href="services.html">Monthly Sprints</a>
+      </div>
+      <div class="foot-col">
+        <h5>Connect</h5>
+        <a href="https://cal.com/dandelion-nrvrze" target="_blank" rel="noopener">Book a Call</a>
+        <a href="mailto:hello@thedrawingboard.design">Email Studio</a>
+        <a href="https://www.instagram.com/drawingboard.co/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.linkedin.com/in/vinayak-agarwal-05497a113/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 The Drawing Board Studio. All rights reserved.</span>
+      <span>Architectural Blueprint Editorial System</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+// 4 Stages Data & Logic
+var stageData = [
+  {
+    step: "STAGE 01 — BRAND SYSTEM ON PAPER",
+    title: "The Identity Blueprint",
+    desc: "The strategic logic everything inherits: primary wordmark, bespoke typography, color ratios, and editorial design rules.",
+    img: "brand-identity-stationery.jpg",
+    caption: "Temaki Brand Identity System — Menu, Typography & Stationery",
+    isSvg: false
+  },
+  {
+    step: "STAGE 02 — COLOUR BECOMES MATERIAL",
+    title: "The Material Language",
+    desc: "Brand hex values translate into tangible architectural finishes: oiled oak, brushed bronze, textured wool bouclé, and travertine.",
+    img: "material-language-board.jpg",
+    caption: "Architectural Material Moodboard — Oak, Stone, Slate & Textiles",
+    isSvg: false
+  },
+  {
+    step: "STAGE 03 — GRID BECOMES PLAN",
+    title: "The Spatial Concept & Circulation",
+    desc: "Zoning, sightline analysis, ergonomic counter dimensions (12,400mm plan), entrance threshold, and customer circulation vectors.",
+    img: "",
+    caption: "Architectural Layout & Spatial Circulation Vector Plan",
+    isSvg: true
+  },
+  {
+    step: "STAGE 04 — COMPLETE COMMERCIAL SPACE",
+    title: "The Realized Environment",
+    desc: "The final unified atmosphere: architectural lighting, fluted timber counters, illuminated niches, and tactile warmth.",
+    img: "cafe-interior.jpg",
+    caption: "Artisanal Bakery & Café — Complete Branded Commercial Interior",
+    isSvg: false
+  }
+];
+
+var stageTabs = document.querySelectorAll(".stage-tab");
+var stageEyebrow = document.getElementById("stageEyebrow");
+var stageTitle = document.getElementById("stageTitle");
+var stageDesc = document.getElementById("stageDesc");
+var stageImg = document.getElementById("stageImg");
+var stageSvgWrap = document.getElementById("stageSvgWrap");
+var stageCaption = document.getElementById("stageCaption");
+
+stageTabs.forEach(function(tab) {
+  tab.addEventListener("click", function() {
+    var idx = parseInt(this.getAttribute("data-stage"), 10);
+    stageTabs.forEach(function(t) { t.classList.remove("active"); });
+    tab.classList.add("active");
+
+    var cur = stageData[idx];
+    stageEyebrow.textContent = cur.step;
+    stageTitle.textContent = cur.title;
+    stageDesc.textContent = cur.desc;
+    stageCaption.textContent = cur.caption;
+
+    if (cur.isSvg) {
+      stageImg.style.display = "none";
+      stageSvgWrap.style.display = "block";
+    } else {
+      stageImg.style.display = "block";
+      stageSvgWrap.style.display = "none";
+      stageImg.src = cur.img;
+      stageImg.alt = cur.title;
+    }
+  });
+});
+
+// Anatomy Interactive Pins & Steps
+var anatomyPoints = [
+  { num: "01", tag: "THRESHOLD", title: "Entrance & Threshold" },
+  { num: "02", tag: "EXTERIOR SIGN", title: "Brand Signage & Recognition" },
+  { num: "03", tag: "CIRCULATION", title: "Customer Journey & Zoning" },
+  { num: "04", tag: "FINISHES", title: "Material Language & Tactility" },
+  { num: "05", tag: "SURFACES", title: "Environmental Graphics & Niches" },
+  { num: "06", tag: "TOUCHPOINTS", title: "Brand Touchpoints & Tabletop" }
+];
+
+var pins = document.querySelectorAll(".anatomy-pin");
+var steps = document.querySelectorAll(".anatomy-step");
+var inspTag = document.getElementById("inspTag");
+var inspTitle = document.getElementById("inspTitle");
+
+function setAnatomy(idx) {
+  pins.forEach(function(p, i) { p.classList.toggle("active", i === idx); });
+  steps.forEach(function(s, i) { s.classList.toggle("active", i === idx); });
+  if (anatomyPoints[idx]) {
+    inspTag.textContent = "PIN " + anatomyPoints[idx].num + " // " + anatomyPoints[idx].tag;
+    inspTitle.textContent = anatomyPoints[idx].title;
+  }
+}
+
+pins.forEach(function(p) {
+  p.addEventListener("click", function() {
+    var idx = parseInt(this.getAttribute("data-idx"), 10);
+    setAnatomy(idx);
+  });
+});
+
+steps.forEach(function(s) {
+  s.addEventListener("click", function() {
+    var idx = parseInt(this.getAttribute("data-idx"), 10);
+    setAnatomy(idx);
+  });
+});
+
+// Checkbox pills in form
+document.querySelectorAll(".chk-pill").forEach(function(pill) {
+  pill.addEventListener("click", function() {
+    this.classList.toggle("checked");
+    var isChk = this.classList.contains("checked");
+    var txt = this.getAttribute("data-val") || this.textContent.replace(/^[✓+]\s*/, "");
+    this.textContent = (isChk ? "✓ " : "+ ") + txt;
+  });
+});
+
+// Form submission handler
+var form = document.getElementById("spatialEnquiryForm");
+var formStatus = document.getElementById("formStatus");
+
+if (form) {
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    if (!form.name.value.trim() || !form.business.value.trim() || !form.email.value.trim()) {
+      formStatus.textContent = "Please provide your name, business name, and a valid email address.";
+      return;
+    }
+    formStatus.style.color = "#9FCBB6";
+    formStatus.textContent = "Thank you. Your spatial inquiry has been received. We will be in touch within 24 hours.";
+    form.reset();
+  });
+}
+</script>
+
+</body>
+</html>

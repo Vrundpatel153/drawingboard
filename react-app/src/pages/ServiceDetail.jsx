@@ -27,7 +27,8 @@ export default function ServiceDetail() {
     if ((cleanId.includes('pack') || cleanId.includes('box')) && s.slug === 'packaging-design') return true;
     if ((cleanId.includes('ui') || cleanId.includes('ux') || (cleanId.includes('design') && !cleanId.includes('pack'))) && s.slug === 'design') return true;
     if ((cleanId.includes('dev') || cleanId.includes('code') || cleanId.includes('web')) && s.slug === 'development') return true;
-    if ((cleanId.includes('photo') || cleanId.includes('shoot')) && s.slug === 'photography') return true;
+    if ((cleanId.includes('spatial') || cleanId.includes('environment') || cleanId.includes('interior')) && s.slug === 'spatial-branding') return true;
+    if ((cleanId.includes('photo') || cleanId.includes('shoot')) && s.slug === 'spatial-branding') return true;
     return false;
   }) || servicesData[0];
 

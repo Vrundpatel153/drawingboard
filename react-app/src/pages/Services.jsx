@@ -130,7 +130,7 @@ export default function Services() {
             </div>
             <h1>Specialized design engineering for <em>ambitious brands</em>.</h1>
             <p>
-              We eliminate agency bloat and deliver high-impact branding, custom websites, physical packaging, photography, and high-code digital systems under predictable fixed pricing.
+              We eliminate agency bloat and deliver high-impact branding, custom websites, physical packaging, spatial environments, and high-code digital systems under predictable fixed pricing.
             </p>
 
             <div className="hero-grid" style={{ marginTop: '40px' }}>
@@ -363,7 +363,7 @@ export default function Services() {
                     ? 'Web & Dev'
                     : s.id === 'packaging-design'
                     ? 'Packaging'
-                    : 'Photography';
+                    : 'Spatial Branding';
 
                 return (
                   <div
@@ -530,7 +530,7 @@ export default function Services() {
                 <h4>03. Engineering & Build</h4>
                 <div className="sub">// WEEKS 3-5</div>
                 <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ink-soft)' }}>
-                  Refine assets, write production-ready code, generate 3D renders, or edit high-res photo suites.
+                  Refine assets, write production-ready code, generate 3D renders, or complete spatial specifications.
                 </p>
               </div>
 

@@ -142,11 +142,11 @@ export default function StickyMobileCTA({ title = "The Drawing Board", subtitle 
               border: 'none',
               cursor: 'pointer',
               fontFamily: 'inherit',
-              gap: '4px',
+              gap: '6px',
               flexShrink: 0
             }}
           >
-            {cleanBtnText} <ArrowIcon size={10} />
+            {cleanBtnText} <ArrowIcon size={14} />
           </button>
         ) : isExternal ? (
           <a
@@ -167,11 +167,11 @@ export default function StickyMobileCTA({ title = "The Drawing Board", subtitle 
               borderRadius: '4px',
               whiteSpace: 'nowrap',
               textDecoration: 'none',
-              gap: '4px',
+              gap: '6px',
               flexShrink: 0
             }}
           >
-            {cleanBtnText} <ArrowIcon size={10} />
+            {cleanBtnText} <ArrowIcon size={14} />
           </a>
         ) : (
           <Link
@@ -189,11 +189,11 @@ export default function StickyMobileCTA({ title = "The Drawing Board", subtitle 
               borderRadius: '4px',
               whiteSpace: 'nowrap',
               textDecoration: 'none',
-              gap: '4px',
+              gap: '6px',
               flexShrink: 0
             }}
           >
-            {cleanBtnText} <ArrowIcon size={10} />
+            {cleanBtnText} <ArrowIcon size={14} />
           </Link>
         )}
       </div>

@@ -172,46 +172,46 @@
     ]
   },
   {
-    "id": "photography",
-    "slug": "photography",
-    "title": "Brand & Product Photography",
-    "headline": "Photography That Captures Brand, Mood, and Meaning",
-    "eyebrow": "05 // VISUAL ART DIRECTION",
-    "tagline": "EDITORIAL & PRODUCT VISUALS",
-    "startingPrice": "$5,000",
-    "startingPriceGBP": "£3,730",
-    "startingPriceINR": "₹4,77,150",
-    "duration": "2-3 Weeks Sprint",
-    "heroImage": "https://framerusercontent.com/images/vCqCJUL5qfRIbcly8koz2pDBPQ.jpg?width=10000&height=6952",
-    "secondaryImage": "https://framerusercontent.com/images/DxZcVuSqP6CUtNP0xHCsgSd8SQ.jpg?width=4016&height=4016",
+    "id": "spatial-branding",
+    "slug": "spatial-branding",
+    "title": "Spatial Branding & Brand Environments",
+    "headline": "We Build Brands You Can Step Into",
+    "eyebrow": "05 // SPATIAL BRANDING",
+    "tagline": "ENVIRONMENTAL DESIGN & COMMERCIAL EXPERIENCES",
+    "startingPrice": "$6,500",
+    "startingPriceGBP": "£4,850",
+    "startingPriceINR": "₹5,45,000",
+    "duration": "4-8 Weeks Sprint",
+    "heroImage": "/images/spatial/cafe-interior.jpg",
+    "secondaryImage": "/images/spatial/restaurant-interior.jpg",
     "videoUrl": "/_assets/assets/GmWiQg0MZIvFU3cvgIL12lysLK0.mp4",
-    "description": "Our photography services blend art direction with precision lighting to create scroll-stopping visual assets. Whether studio product stills or on-location editorial shoots, we deliver images that anchor your brand story.",
+    "description": "From the first sketch on paper to the spaces people remember. We translate brand identity into physical rooms, environmental graphics, material palettes, signage systems, and cohesive commercial experiences.",
     "deliverables": [
-      "Creative Direction, Moodboards & Shot List Planning",
-      "High-Resolution Studio Product Photography",
-      "On-Location Lifestyle & Editorial Brand Shoots",
-      "Advanced Color Grading & High-End Retouching",
-      "Optimized Asset Exports for Web, Print & Social Media",
-      "Full Commercial Usage Rights & Master Asset Handoff"
+      "Spatial Brand Strategy & Experience Principles",
+      "Commercial Space Planning, Zoning & Layout Concepts",
+      "Signage, Wayfinding & Environmental Graphics",
+      "Material Language, Finishes & Tactile Palette Direction",
+      "3D Photorealistic Architectural Concept Visualisation",
+      "Architect, Contractor & Fabricator Collaboration Handoff"
     ],
     "process": [
-      { "step": "01", "name": "Concept & Shot List", "desc": "Define moodboards, lighting setup, background props, and shot matrix." },
-      { "step": "02", "name": "Studio Production", "desc": "Execute high-resolution shoot with tethered live monitor viewing." },
-      { "step": "03", "name": "Retouching & Handoff", "desc": "Deliver master retouched files in high-res and web-optimized formats." }
+      { "step": "01", "name": "Understand & Define", "desc": "Audit business, customer journey, site dimensions, and define the spatial brand narrative." },
+      { "step": "02", "name": "Concept & Journey", "desc": "Design zoning, customer routes, entrance thresholds, material language, and 3D mockups." },
+      { "step": "03", "name": "Detail & Coordinate", "desc": "Prepare graphic specifications, signage dielines, and coordinate with execution partners." }
     ],
     "gallery": [
-      "https://framerusercontent.com/images/vCqCJUL5qfRIbcly8koz2pDBPQ.jpg?width=10000&height=6952",
-      "https://framerusercontent.com/images/DxZcVuSqP6CUtNP0xHCsgSd8SQ.jpg?width=4016&height=4016",
-      "https://framerusercontent.com/images/JUgN5ECm4HnK6pp1E3Igc5Vibc.jpeg?width=1024&height=1024",
-      "https://framerusercontent.com/images/TW8nh45W2f0jJxIXkfCtK2I9qo.webp?width=1876&height=1821"
+      "/images/spatial/cafe-interior.jpg",
+      "/images/spatial/restaurant-interior.jpg",
+      "/images/spatial/brand-identity-stationery.jpg",
+      "/images/spatial/material-language-board.jpg"
     ],
     "pricingModels": [
-      { "tier": "Studio Product Campaign", "price": "$5,000", "priceGBP": "£3,730", "priceINR": "₹4,77,150", "desc": "20 retouched studio product assets, macro detail shots, and e-commerce hero images." },
-      { "tier": "Full Brand Editorial Shoot", "price": "$9,500", "priceGBP": "£7,080", "priceINR": "₹9,06,585", "desc": "On-location lifestyle shoot, model direction, 50+ retouched assets, and social campaign suite." }
+      { "tier": "Spatial Brand Concept", "price": "$6,500", "priceGBP": "£4,850", "priceINR": "₹5,45,000", "desc": "Spatial brand strategy, zoning layouts, material board, signage guidelines, and 3 key area concept visualisations." },
+      { "tier": "Complete Environment Suite", "price": "$11,200", "priceGBP": "£8,350", "priceINR": "₹9,40,000", "desc": "Full spatial identity, custom environmental graphics, complete wayfinding dielines, 3D photorealistic suite, and execution collaboration." }
     ],
     "faqs": [
-      { "q": "Do I get full commercial rights to all photos?", "a": "Yes! Full global commercial usage rights are transferred upon project completion." },
-      { "q": "Can I send products to your studio for remote shoots?", "a": "Yes, many clients ship products to our NY studio where we manage the shoot end-to-end." }
+      { "q": "Do you design residential interiors?", "a": "No, our spatial practice is exclusively dedicated to commercial environments — restaurants, cafés, retail stores, wellness studios, and branded workplaces." },
+      { "q": "Do you handle physical construction?", "a": "We are a brand engineering and spatial design studio. We develop the concept, zoning, materials, graphics, and technical specifications, collaborating directly with your licensed architects, general contractors, and fabricators." }
     ]
   }
 ]
