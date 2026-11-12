@@ -327,9 +327,15 @@ export default function Work() {
         {/* Page Hero */}
         <section className="hero-lite">
           <div className="wrap">
-            <div className="sheet-label">
-              <span className="sheet-meta mono">SELECTED CASE STUDIES // PORTFOLIO ARCHIVE</span>
-              <div className="rule"></div>
+            <div className="crumb" style={{ padding: 0, marginBottom: '20px', display: 'flex', alignItems: 'center' }}>
+              <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none', borderBottom: 'none', color: 'var(--ink-soft)' }} aria-label="Home">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                  <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+              </Link>
+              <span className="sep">/</span>
+              <span className="cur">Work</span>
             </div>
             <h1>Proof over promises: <em>Selected Case Studies</em>.</h1>
             <p>Explore our recent work across brand positioning, digital platforms, Framer development, and physical packaging systems.</p>
