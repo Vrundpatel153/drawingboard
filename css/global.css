@@ -141,11 +141,17 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(239, 235, 226, 0.94);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: var(--paper, #EFEBDE);
   border-bottom: 1px solid var(--ink);
   width: 100%;
+}
+
+@supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+  header {
+    background: rgba(239, 235, 226, 0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
 }
 
 .nav {
@@ -1417,6 +1423,90 @@ section {
 
 .final .btn-primary:hover {
   background: #FFF;
+}
+
+.final .cta-button-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 32px 0 24px;
+}
+
+.final .cta-button-group .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 26px;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.final .cta-button-group .btn-quote {
+  background: var(--paper);
+  color: var(--pine);
+}
+
+.final .cta-button-group .btn-quote:hover {
+  background: #FFFFFF;
+}
+
+.final .cta-button-group .btn-contact {
+  background: transparent;
+  color: var(--paper);
+  border: 1.5px solid rgba(239, 235, 226, 0.4);
+}
+
+.final .cta-button-group .btn-contact:hover {
+  border-color: var(--paper);
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+.final .cta-button-group .btn-wa {
+  background: #25D366;
+  color: #000000;
+  border: 1.5px solid #25D366;
+}
+
+.final .cta-button-group .btn-wa:hover {
+  background: #20BA5A;
+  border-color: #20BA5A;
+  color: #000000;
+}
+
+.final .final-studio-sub {
+  font-size: 12.5px;
+  color: #A3BFB5;
+  margin-top: 18px;
+}
+
+.final .final-studio-sub a {
+  color: #CFE0DA;
+  text-decoration: underline;
+}
+
+.final .final-studio-sub a:hover {
+  color: #FFFFFF;
+}
+
+@media (max-width: 600px) {
+  .final .cta-button-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+  .final .cta-button-group .btn-primary {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
 }
 
 /* Sticky Mobile CTA */

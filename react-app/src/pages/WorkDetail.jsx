@@ -168,6 +168,23 @@ export default function WorkDetail() {
             color: var(--ink-soft);
             font-family: 'IBM Plex Mono', monospace;
           }
+
+          /* Defensive guarantee: Specifications & Final CTA sections never get trapped at opacity: 0 */
+          .work-detail-page .section-head,
+          .work-detail-page .spec-grid,
+          .work-detail-page .next-project-strip,
+          .work-detail-page .final {
+            opacity: 1;
+            visibility: visible;
+          }
+
+          .work-detail-page .final h2,
+          .work-detail-page .final p,
+          .work-detail-page .final .cta-button-group,
+          .work-detail-page .final a {
+            opacity: 1;
+            visibility: visible;
+          }
         `}</style>
         <RegistrationMarks />
         <Navbar />
@@ -2583,7 +2600,39 @@ export default function WorkDetail() {
               <div className="eyebrow">BRAND SYSTEM SPECIFICATIONS</div>
             </div>
 
-            {isYaad ? (
+            {isIva ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#161616', color: '#FFF' }}>
+                    <div className="lbl">NOIR // #161616</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#F4F0E8', color: '#1B1B17' }}>
+                    <div className="lbl">ALABASTER // #F4F0E8</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#8A7B6B', color: '#FFF' }}>
+                    <div className="lbl">TAUPE // #8A7B6B</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#D6A85C', color: '#1B1B17' }}>
+                    <div className="lbl">SALON GOLD // #D6A85C</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>IVA Monogram &bull; Proportion-Led European Logotype</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>EDITORIAL SANS:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter Medium &bull; Razor-Sharp Carton Hierarchy</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for formulation codes &amp; 15ml bottle specs.</p>
+                  </div>
+                </div>
+              </div>
+            ) : isYaad ? (
               <div className="spec-grid">
                 <div className="swatches">
                   <div className="swatch" style={{ background: '#5A2E1F', color: '#FFF' }}>

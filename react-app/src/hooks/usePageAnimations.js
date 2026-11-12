@@ -129,7 +129,13 @@ export function usePageAnimations(containerRef) {
           { opacity: 0, y: 26 },
           {
             opacity: 1, y: 0, duration: 0.7, ease: 'power2.out',
-            scrollTrigger: { trigger: el2, start: 'top 88%', toggleActions: 'play none none none' }
+            clearProps: 'all',
+            scrollTrigger: {
+              trigger: el2,
+              start: 'top 92%',
+              toggleActions: 'play none none none',
+              onEnter: () => gsap.set(el2, { opacity: 1, y: 0, clearProps: 'all' })
+            }
           }
         );
       });
@@ -179,22 +185,47 @@ export function usePageAnimations(containerRef) {
       });
 
       /* ── 13. Final CTA section ── */
-      el.querySelectorAll('.final h2, .final p, .final a').forEach((item, i) => {
-        gsap.fromTo(item,
+      el.querySelectorAll('.final').forEach((sec) => {
+        const items = sec.querySelectorAll('h2, p, .cta-button-group, a');
+        gsap.fromTo(items,
           { opacity: 0, y: 20 },
           {
-            opacity: 1, y: 0, duration: 0.6, delay: i * 0.09, ease: 'power2.out',
-            scrollTrigger: { trigger: item, start: 'top 88%', toggleActions: 'play none none none' }
+            opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: 'power2.out',
+            clearProps: 'all',
+            scrollTrigger: {
+              trigger: sec,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+              onEnter: () => gsap.set(items, { opacity: 1, y: 0, clearProps: 'all' })
+            }
           }
         );
       });
 
     }, el);
 
+    // Refresh triggers when images finish loading in long work/project galleries
+    const imgs = el.querySelectorAll('img');
+    imgs.forEach((img) => {
+      if (!img.complete) {
+        img.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
+        img.addEventListener('error', () => ScrollTrigger.refresh(), { once: true });
+      }
+    });
+
+    let resizeObserver;
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(() => {
+        ScrollTrigger.refresh();
+      });
+      resizeObserver.observe(el);
+    }
+
     const refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 400);
 
     return () => {
       clearTimeout(refreshTimer);
+      if (resizeObserver) resizeObserver.disconnect();
       ctx.revert();
     };
   }, []);
