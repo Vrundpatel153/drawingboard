@@ -339,31 +339,11 @@ export default function Work() {
             </div>
             <h1>Proof over promises: <em>Selected Case Studies</em>.</h1>
             <p>Explore our recent work across brand positioning, digital platforms, Framer development, and physical packaging systems.</p>
-            <p style={{ marginTop: '14px' }}>
+            <p style={{ marginTop: '14px', marginBottom: 0 }}>
               <Link className="btn-secondary-cta" to="/brand-readiness">
                 Get Quote <ArrowIcon size={13} />
               </Link>
             </p>
-
-            {/* Stat Strip */}
-            <div className="stat-strip">
-              <div className="stat">
-                <div className="num">120+</div>
-                <div className="lbl">Projects Completed</div>
-              </div>
-              <div className="stat">
-                <div className="num">14 Awards</div>
-                <div className="lbl">Design &amp; Craft Honors</div>
-              </div>
-              <div className="stat">
-                <div className="num">+340%</div>
-                <div className="lbl">Top Growth Spike</div>
-              </div>
-              <div className="stat">
-                <div className="num">94%</div>
-                <div className="lbl">Client Retention Rate</div>
-              </div>
-            </div>
           </div>
         </section>
 
