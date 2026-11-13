@@ -36,17 +36,67 @@ export default function PackagingPage() {
     return [...baseProjects, ...formattedSaas];
   }, []);
 
-  const filteredProjects = allCombinedProjects.filter(p => {
-    if (workFilter === 'all') return true;
-    if (workFilter === 'saas') return p.category === 'saas' || (p.tag && p.tag.toUpperCase().includes('SAAS'));
-    if (workFilter === 'branding') return p.category === 'branding' || (p.tag && p.tag.includes('BRANDING'));
-    if (workFilter === 'food') return p.category === 'food' || (p.tag && (p.tag.includes('FOOD') || p.tag.includes('BEVERAGE') || p.tag.includes('RESTAURANT') || p.tag.includes('CAFE'))) || ['pronto', 'matcha', 'murami', 'soul-brew'].some(s => (p.slug || '').includes(s));
-    if (workFilter === 'packaging') return p.category === 'packaging' || (p.tag && p.tag.includes('PACKAGING')) || (p.slug || '').includes('crystal');
-    if (workFilter === 'skincare') return p.category === 'skincare' || p.category === 'skin care' || (p.tag && (p.tag.includes('SKIN') || p.tag.includes('NAIL') || p.tag.includes('BEAUTY') || p.tag.includes('BODY'))) || ['blank-body', 'crystal-nail-care-brand', 'rest-religion'].some(s => (p.slug || '').includes(s));
-    if (workFilter === 'web') return p.category === 'web' || (p.tag && (p.tag.includes('WEB') || p.tag.includes('UI UX')));
-    if (workFilter === 'photography') return p.category === 'photography' || (p.tag && p.tag.includes('PHOTO'));
-    return true;
-  });
+  const filteredProjects = React.useMemo(() => {
+    let list = allCombinedProjects.filter(p => {
+      if (workFilter === 'all') return true;
+      if (workFilter === 'saas') return p.category === 'saas' || (p.tag && p.tag.toUpperCase().includes('SAAS'));
+      if (workFilter === 'branding') return p.category === 'branding' || (p.tag && p.tag.includes('BRANDING'));
+      if (workFilter === 'food') return p.category === 'food' || (p.tag && (p.tag.includes('FOOD') || p.tag.includes('BEVERAGE') || p.tag.includes('RESTAURANT') || p.tag.includes('CAFE'))) || ['pronto', 'matcha', 'murami', 'soul-brew'].some(s => (p.slug || '').includes(s));
+      if (workFilter === 'packaging') return p.category === 'packaging' || (p.tag && p.tag.includes('PACKAGING')) || ['crystal-nail-care-brand', 'blank-body', 'rest-religion', 'yaad', 'barely', 'sage', 'iva', 'coastal-buns', 'toodaloo', 'kame'].some(s => (p.slug || '').includes(s));
+      if (workFilter === 'skincare') return p.category === 'skincare' || p.category === 'skin care' || (p.tag && (p.tag.includes('SKIN') || p.tag.includes('NAIL') || p.tag.includes('BEAUTY') || p.tag.includes('BODY'))) || ['blank-body', 'crystal-nail-care-brand', 'rest-religion', 'iva'].some(s => (p.slug || '').includes(s));
+      if (workFilter === 'web') return p.category === 'web' || (p.tag && (p.tag.includes('WEB') || p.tag.includes('UI UX')));
+      if (workFilter === 'photography') return p.category === 'photography' || (p.tag && p.tag.includes('PHOTO'));
+      return true;
+    });
+
+    if (workFilter === 'packaging') {
+      const packagingPriority = [
+        'toodaloo-superfood-snack-packaging',
+        'kame-hot-sauce-packaging',
+        'yala-greek-ice-cream-packaging',
+        'reel-paper-eco-packaging',
+        'banam-banana-water-packaging',
+        'morning-grain-snack-packaging',
+        'blank-body',
+        'crystal-nail-care-brand',
+        'rest-religion',
+        'iva-professional-nail-care-packaging'
+      ];
+      const priorityMap = new Map(packagingPriority.map((s, idx) => [s, idx]));
+      const prioritized = [];
+      const remaining = [];
+      list.forEach(p => {
+        if (priorityMap.has(p.slug)) prioritized.push(p);
+        else remaining.push(p);
+      });
+      prioritized.sort((a, b) => priorityMap.get(a.slug) - priorityMap.get(b.slug));
+      return [...prioritized, ...remaining];
+    }
+
+    if (workFilter === 'all') {
+      const topItems = [];
+      const restItems = [];
+      list.forEach(p => {
+        const isAfter8 = (p.slug || '').includes('after8');
+        const isAjumma = (p.slug || '').includes('ajumma');
+        if (isAfter8 || isAjumma) {
+          topItems.push(p);
+        } else {
+          restItems.push(p);
+        }
+      });
+      topItems.sort((a, b) => {
+        const aIsAfter8 = (a.slug || '').includes('after8');
+        const bIsAfter8 = (b.slug || '').includes('after8');
+        if (aIsAfter8 && !bIsAfter8) return -1;
+        if (!aIsAfter8 && bIsAfter8) return 1;
+        return 0;
+      });
+      return [...topItems, ...restItems];
+    }
+
+    return list;
+  }, [allCombinedProjects, workFilter]);
   const [checklistEmail, setChecklistEmail] = useState('');
   const [checklistBrand, setChecklistBrand] = useState('');
   const [checklistCategory, setChecklistCategory] = useState('');
