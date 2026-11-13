@@ -786,7 +786,7 @@ export default function Home() {
                   From how your brand is understood to how it looks on the shelf and performs online, we build one connected system designed to earn attention, communicate value and support growth.
                 </p>
                 <div className="bp-cta-row">
-                  <Link to="/brand-readiness" className="bp-btn-primary" id="btn-get-quote" data-cta="get-quote">Get Quote <ArrowIcon size={14} /></Link>
+                  <Link to="/get-quote" className="bp-btn-primary" id="btn-get-quote" data-cta="get-quote">Get Quote <ArrowIcon size={14} /></Link>
                   <a className="bp-btn-link" id="btn-whatsapp" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Prefer WhatsApp for discussion <ArrowIcon size={13} /></a>
                 </div>
                 <p style={{ marginBottom: '14px' }}>
@@ -944,7 +944,7 @@ export default function Home() {
               </div>
             </div>
             <div style={{ textAlign: 'center', marginTop: '36px' }}>
-              <Link className="bp-btn-link" to="/brand-readiness">This sounds like our stage <ArrowIcon size={13} /> Get Quote</Link>
+              <Link className="bp-btn-link" to="/get-quote">This sounds like our stage <ArrowIcon size={13} /> Get Quote</Link>
             </div>
           </div>
         </section>
@@ -1642,7 +1642,7 @@ export default function Home() {
                 </div>
 
                 <div className="bp-tier-foot">
-                  <Link className="bp-tier-btn" to="/brand-readiness">Get Quote</Link>
+                  <Link className="bp-tier-btn" to="/get-quote">Get Quote</Link>
                   <div className="bp-tier-time">6–8 week delivery</div>
                 </div>
               </div>
@@ -1779,7 +1779,7 @@ export default function Home() {
                 </div>
 
                 <div className="bp-tier-foot">
-                  <Link className="bp-tier-btn" to="/brand-readiness">Get Quote</Link>
+                  <Link className="bp-tier-btn" to="/get-quote">Get Quote</Link>
                   <div className="bp-tier-time">8–12 week delivery</div>
                 </div>
               </div>
@@ -2114,7 +2114,7 @@ export default function Home() {
               Tell us what you are launching, changing or preparing to scale. We will review the requirement and recommend whether you need the Brand-to-Shelf system, the complete Brand-to-Market engagement or a different scope altogether.
             </p>
             <div className="bp-cta-row" style={{ marginTop: '24px', marginBottom: '16px' }}>
-              <Link to="/brand-readiness" className="bp-btn-primary" id="btn-get-quote-final" data-cta="get-quote" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <Link to="/get-quote" className="bp-btn-primary" id="btn-get-quote-final" data-cta="get-quote" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                 Get Quote <ArrowIcon size={14} />
               </Link>
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-outline-light">
@@ -2133,7 +2133,7 @@ export default function Home() {
         title="From ₹4,75,000 ($4,960)"
         subtitle="Strategic Brand Engineering"
         buttonText="Get Quote"
-        link="/brand-readiness"
+        link="/get-quote"
       />
 
       {/* ── LIGHTBOX MODAL OVERLAY FOR THINK GRID IMAGES ───────────── */}

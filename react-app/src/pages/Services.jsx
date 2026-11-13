@@ -578,7 +578,7 @@ export default function Services() {
           title="Services from $1,500"
           subtitle="From ₹1,43,145 · 5 Studio Practices"
           buttonText="Get Quote"
-          link="/brand-readiness"
+          link="/get-quote"
         />
         <Footer />
       </div>

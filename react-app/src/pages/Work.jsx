@@ -390,7 +390,7 @@ export default function Work() {
             <h1>Proof over promises: <em>Selected Case Studies</em>.</h1>
             <p>Explore our recent work across brand positioning, digital platforms, Framer development, and physical packaging systems.</p>
             <p style={{ marginTop: '14px', marginBottom: 0 }}>
-              <Link className="btn-secondary-cta" to="/brand-readiness">
+              <Link className="btn-secondary-cta" to="/get-quote">
                 Get Quote <ArrowIcon size={13} />
               </Link>
             </p>
@@ -673,7 +673,7 @@ export default function Work() {
           <div className="wrap">
             <h2>Have a project that requires precision design?</h2>
             <p>Let's discuss how we can engineer your brand for market leadership.</p>
-            <Link to="/brand-readiness" className="btn-primary">Get Quote <ArrowIcon /></Link>
+            <Link to="/get-quote" className="btn-primary">Get Quote <ArrowIcon /></Link>
           </div>
         </section>
 
@@ -683,7 +683,7 @@ export default function Work() {
           onClose={() => setModalProject(null)}
           initialIndex={modalIndex}
         />
-        <StickyMobileCTA title="Work Archive" subtitle={`${projectsData.length} Selected Projects`} buttonText="Get Quote" link="/brand-readiness" />
+        <StickyMobileCTA title="Work Archive" subtitle={`${projectsData.length} Selected Projects`} buttonText="Get Quote" link="/get-quote" />
         <Footer />
       </div>
     </>

@@ -1598,7 +1598,7 @@ export default function SpatialBrandingPage() {
           title="Spatial & Environments"
           subtitle="From $6,500 · Commercial Scale Only"
           buttonText="Get Quote"
-          link="/brand-readiness"
+          link="/get-quote"
         />
 
         <Footer />

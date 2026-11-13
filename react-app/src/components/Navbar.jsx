@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { to: '/studio', label: 'Studio' },
   { to: '/work', label: 'Work' },
   { to: '/services', label: 'Services' },
-  { to: '/brand-readiness', label: 'Get Quote' },
+  { to: '/get-quote', label: 'Get Quote' },
   { to: '/insights', label: 'Insights' },
   { to: '/contact', label: 'Contact' },
 ];
@@ -90,7 +90,7 @@ export default function Navbar() {
 
           <div className="nav-actions">
             <Link
-              to="/brand-readiness"
+              to="/get-quote"
               className="nav-cta nav-cta--primary nav-cta--quote"
               id="btn-get-quote"
               data-cta="get-quote"
@@ -147,8 +147,8 @@ export default function Navbar() {
             <NavLink key={to} to={to} end={end}
               className={({ isActive }) => isActive ? 'active' : undefined}
               onClick={() => setOpen(false)}
-              style={to === '/brand-readiness' ? { color: 'var(--pine)', fontWeight: 600 } : undefined}>
-              {label} {to === '/brand-readiness' ? '→' : ''}
+              style={to === '/get-quote' ? { color: 'var(--pine)', fontWeight: 600 } : undefined}>
+              {label} {to === '/get-quote' ? '→' : ''}
             </NavLink>
           ))}
         </nav>
@@ -157,7 +157,7 @@ export default function Navbar() {
         <div className="mobile-nav__foot">
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
             <Link
-              to="/brand-readiness"
+              to="/get-quote"
               className="btn-primary"
               id="mobile-btn-get-quote"
               data-cta="get-quote"

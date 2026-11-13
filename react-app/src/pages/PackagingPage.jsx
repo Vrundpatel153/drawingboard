@@ -1385,7 +1385,7 @@ export default function PackagingPage() {
               <h2>Your product is ready. Now make the packaging feel ready too.</h2>
               <p>Book a free 15-minute call to discuss your product, current packaging, launch stage and the scope required. We will tell you honestly whether you need a master redesign, a SKU system, a smaller adaptation or more preparation before design begins.</p>
               <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center', marginTop: '20px' }}>
-                <Link className="btn-primary" to="/brand-readiness">Get Quote <ArrowIcon size={14} /></Link>
+                <Link className="btn-primary" to="/get-quote">Get Quote <ArrowIcon size={14} /></Link>
               </div>
             </div>
           </section>
@@ -1396,7 +1396,7 @@ export default function PackagingPage() {
         title="Packaging from ₹3,25,000"
         subtitle="$3,400 / £2,520"
         buttonText="Get Quote"
-        link="/brand-readiness"
+        link="/get-quote"
       />
       <Footer />
     </>

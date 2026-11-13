@@ -2799,7 +2799,7 @@ export default function WorkDetail() {
           </p>
 
           <div className="cta-button-group">
-            <Link to="/brand-readiness" className="btn-primary btn-quote">
+            <Link to="/get-quote" className="btn-primary btn-quote">
               Get Architectural Quote <ArrowIcon size={14} />
             </Link>
             <Link to="/contact" className="btn-primary btn-contact">

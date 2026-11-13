@@ -3601,7 +3601,7 @@ export default function DevelopmentPage() {
                   </p>
                   <Link
                     className="btn-primary"
-                    to="/brand-readiness"
+                    to="/get-quote"
                   >
                     Get Quote <ArrowIcon size={14} />
                   </Link>
@@ -3651,7 +3651,7 @@ export default function DevelopmentPage() {
         title="Web Dev from $1,500"
         subtitle="₹1,43,145 / £1,120 · Custom Code"
         buttonText="Get Quote"
-        link="/brand-readiness"
+        link="/get-quote"
       />
       <Footer />
     </>

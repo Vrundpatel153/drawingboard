@@ -2074,7 +2074,7 @@ motion.base:      180ms ease-out;
           title="SaaS Branding"
           subtitle="From ₹4,75,000 ($4,960)"
           buttonText="Get Quote"
-          link="/brand-readiness"
+          link="/get-quote"
         />
       </div>
     </>

@@ -24,7 +24,7 @@ export default function Footer() {
             <Link to="/studio">Studio</Link>
             <Link to="/work">Work</Link>
             <Link to="/services">Services</Link>
-            <Link to="/brand-readiness">Get Quote</Link>
+            <Link to="/get-quote">Get Quote</Link>
             <Link to="/insights">Insights</Link>
             <Link to="/contact">Contact</Link>
           </div>
@@ -42,7 +42,7 @@ export default function Footer() {
           </div>
           <div className="foot-col" style={{ opacity: 1, visibility: 'visible' }}>
             <h5>Connect</h5>
-            <Link to="/brand-readiness">Get Quote</Link>
+            <Link to="/get-quote">Get Quote</Link>
             <a href={MAILTO_URL}>{CONTACT_EMAIL}</a>
             <a href="https://www.instagram.com/drawingboard.co/" target="_blank" rel="noopener noreferrer">Instagram</a>
             <a href="https://www.linkedin.com/in/vinayak-agarwal-05497a113/" target="_blank" rel="noopener noreferrer">LinkedIn</a>

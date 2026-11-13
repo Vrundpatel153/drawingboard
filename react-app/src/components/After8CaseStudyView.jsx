@@ -907,7 +907,7 @@ export default function After8CaseStudyView({ nextProject, pageRef }) {
             AFTER8 was created as a bold rethinking of how modern intimacy brands should look, feel, and behave in culture — a full cultural repositioning, not just a packaging refresh.
           </p>
           <p style={{ marginTop: '14px' }}>
-            <Link className="btn-secondary-cta" to="/brand-readiness">
+            <Link className="btn-secondary-cta" to="/get-quote">
               Get Quote <ArrowIcon size={13} />
             </Link>
           </p>
@@ -1342,7 +1342,7 @@ export default function After8CaseStudyView({ nextProject, pageRef }) {
             We collaborate with ambitious founders to build category-defining brand systems, luxury packaging suites, and high-conversion digital experiences.
           </p>
           <div className="cta-button-group">
-            <Link className="btn-primary btn-quote" to="/brand-readiness">
+            <Link className="btn-primary btn-quote" to="/get-quote">
               Get Architectural Quote <ArrowIcon size={14} />
             </Link>
             <Link className="btn-primary btn-contact" to="/contact">
@@ -1362,7 +1362,7 @@ export default function After8CaseStudyView({ nextProject, pageRef }) {
         title="AFTER8® Case Study"
         subtitle="8 Weeks Strategy to Shelf"
         buttonText="Get Quote"
-        link="/brand-readiness"
+        link="/get-quote"
       />
 
       <Footer />
