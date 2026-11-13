@@ -372,12 +372,51 @@ export default function Work() {
           .saas-showcase-card:hover .saas-view-btn {
             color: var(--pine);
           }
+
+          /* Work Hero & Filter Spacing */
+          .work-hero-section {
+            padding-top: 60px !important;
+            padding-bottom: 16px !important;
+          }
+          .work-grid-section {
+            padding-top: 14px !important;
+            padding-bottom: 80px !important;
+          }
+          .work-filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px 16px;
+            border-bottom: 1px dashed var(--paper-line);
+            padding-bottom: 14px;
+            margin-bottom: 24px;
+          }
+
+          @media (max-width: 768px) {
+            .work-hero-section {
+              padding-top: 32px !important;
+              padding-bottom: 12px !important;
+            }
+            .work-grid-section {
+              padding-top: 10px !important;
+              padding-bottom: 60px !important;
+            }
+            .work-filter-bar {
+              gap: 10px;
+              padding-bottom: 12px;
+              margin-bottom: 18px;
+            }
+            .work-filter-bar .filter-tabs {
+              padding-bottom: 2px !important;
+            }
+          }
         `}</style>
 
         {/* Page Hero */}
-        <section className="hero-lite">
+        <section className="hero-lite work-hero-section">
           <div className="wrap">
-            <div className="crumb" style={{ padding: 0, marginBottom: '20px', display: 'flex', alignItems: 'center' }}>
+            <div className="crumb" style={{ padding: 0, marginBottom: '14px', display: 'flex', alignItems: 'center' }}>
               <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none', borderBottom: 'none', color: 'var(--ink-soft)' }} aria-label="Home">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
                   <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
@@ -387,9 +426,11 @@ export default function Work() {
               <span className="sep">/</span>
               <span className="cur">Work</span>
             </div>
-            <h1>Proof over promises: <em>Selected Case Studies</em>.</h1>
-            <p>Explore our recent work across brand positioning, digital platforms, Framer development, and physical packaging systems.</p>
-            <p style={{ marginTop: '14px', marginBottom: 0 }}>
+            <h1 style={{ marginBottom: '12px' }}>Proof over promises.</h1>
+            <p style={{ marginTop: 0, marginBottom: '16px', fontSize: 'clamp(15px, 2vw, 17px)', color: 'var(--ink-soft)', lineHeight: 1.55, maxWidth: '600px' }}>
+              Explore our work in brand identity, packaging and digital experiences.
+            </p>
+            <p style={{ margin: 0 }}>
               <Link className="btn-secondary-cta" to="/get-quote">
                 Get Quote <ArrowIcon size={13} />
               </Link>
@@ -398,21 +439,10 @@ export default function Work() {
         </section>
 
         {/* Portfolio Long Grid Section */}
-        <section style={{ paddingBottom: '80px' }}>
+        <section className="work-grid-section">
           <div className="wrap">
             {/* Top Navigation & Filters Bar */}
-            <div
-              style={{
-                display: 'flex',
-                justify: 'space-between',
-                alignItems: 'center',
-                marginBottom: '32px',
-                flexWrap: 'wrap',
-                gap: '16px',
-                borderBottom: '1px dashed var(--paper-line)',
-                paddingBottom: '20px'
-              }}
-            >
+            <div className="work-filter-bar">
               {/* Category Filter Tabs */}
               <div className="filter-tabs" style={{ margin: 0, padding: 0 }}>
                 <button className={`ftab ${filter === 'all' ? 'on' : ''}`} onClick={() => handleFilter('all')}>[ ALL PROJECTS ]</button>

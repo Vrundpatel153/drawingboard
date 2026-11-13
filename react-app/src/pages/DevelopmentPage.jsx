@@ -335,7 +335,8 @@ export default function DevelopmentPage() {
         }}
       />
 
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         /* ── BLUEPRINT DESIGN SYSTEM TOKENS ── */
         .dev-bp-page {
           --paper: #F3EEE2;
@@ -2465,7 +2466,7 @@ export default function DevelopmentPage() {
         {/* ── LOGOS MARQUEE SECTION ─────────────── */}
         <section className="bp-logo-marquee-section">
           <div className="bp-marquee-title">TRUSTED BY AMBITIOUS BRANDS GLOBAL</div>
-          
+
           {/* Row 1 (LTR) */}
           <div className="bp-marquee-row">
             <div className="bp-marquee-track fast">
