@@ -713,7 +713,12 @@ export default function Work() {
           onClose={() => setModalProject(null)}
           initialIndex={modalIndex}
         />
-        <StickyMobileCTA title="Work Archive" subtitle={`${projectsData.length} Selected Projects`} buttonText="Get Quote" link="/get-quote" />
+        <StickyMobileCTA
+          title="From ₹4,75,000 ($4,960)"
+          subtitle="Strategic Brand Engineering"
+          buttonText="Get Quote"
+          link="/get-quote"
+        />
         <Footer />
       </div>
     </>
