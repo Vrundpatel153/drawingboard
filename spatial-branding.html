@@ -517,6 +517,130 @@ a {
   color: #FFFFFF;
 }
 
+.spatial-work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+@media (max-width: 1024px) {
+  .spatial-work-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+@media (max-width: 640px) {
+  .spatial-work-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+.spatial-work-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  border: 1.5px solid var(--ink);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+}
+.spatial-work-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(27,27,23,0.12);
+}
+.spatial-work-card .img-box {
+  position: relative;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  border-bottom: 1.5px solid var(--ink);
+  background: var(--bg);
+}
+.spatial-work-card .img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+.spatial-work-card:hover .img-box img {
+  transform: scale(1.05);
+}
+.spatial-work-card .assets-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(27,27,23,0.92);
+  color: #FFF;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  padding: 4px 8px;
+  border-radius: 2px;
+}
+.spatial-work-card .work-card-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+}
+.spatial-work-card .work-card-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--pine);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.spatial-work-card .work-card-title {
+  font-family: var(--serif);
+  font-size: 21px;
+  line-height: 1.25;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+.spatial-work-card .work-card-desc {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0 0 18px;
+}
+.spatial-work-card .work-card-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  border-top: 1px dashed var(--line);
+  padding-top: 14px;
+  margin-bottom: 18px;
+}
+.spatial-work-card .work-card-meta-item span {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  display: block;
+}
+.spatial-work-card .work-card-meta-item strong {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  display: block;
+  margin-top: 2px;
+}
+.spatial-work-card .work-card-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--marker);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.05em;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  margin-top: auto;
+}
 </style>
 </head>
 <body>
@@ -697,261 +821,232 @@ a {
     </div>
   </section>
 
-  <!-- ── 03: SELECTED WORK / CONCEPT STUDIES ── -->
-  <section class="sec" id="work">
+  <!-- ── 03: SELECTED SPATIAL ENVIRONMENTS & CASE STUDIES ── -->
+  <section class="sec" id="work" style="padding: 80px 0; border-bottom: 1px solid var(--ink);">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head" style="margin-bottom: 36px;">
         <div>
-          <div class="eyebrow mono tc">03 // SELECTED WORK</div>
-          <h2 style="font-family: var(--serif); font-size: clamp(30px, 4.8vw, 56px); margin: 10px 0 16px;">
+          <div class="eyebrow mono tc" style="color: var(--marker);">03 // SELECTED WORK &amp; CASE STUDIES</div>
+          <h2 style="font-family: var(--serif); font-size: clamp(32px, 4.8vw, 56px); margin: 10px 0 16px;">
             Brand systems, built in space.
           </h2>
         </div>
-        <p class="mono" style="font-size: 11.5px; color: var(--ink-soft); letter-spacing: 0.06em;">
-          Concept studies and architectural design directions. Demonstrating how identity logic extends into commercial interiors.
+        <p>
+          <a class="btn-link" href="react-app/dist/spatial-work" style="font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--ink); text-decoration: none;">
+            Dedicated Spatial Portfolio &rarr;
+          </a>
         </p>
       </div>
 
-      <!-- Project 00: Fine Dining Flagship — Ghalia Acarverde -->
-      <div style="margin-top: 48px; border-top: 1px solid var(--ink); padding-top: 32px;">
-        <div style="display: grid; grid-template-columns: 1fr; gap: 24px; align-items: center;">
-          <div style="position: relative; border: 1.5px solid var(--ink); overflow: hidden; border-radius: 2px; aspect-ratio: 16/10;">
-            <img src="react-app/public/images/ghalia-acarverde/ghalia_cover.jpg" alt="Ghalia Acarverde Luxury Restaurant Interior" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-            <span style="position: absolute; left: 12px; bottom: 12px; background: var(--card); border: 1px solid var(--ink); padding: 4px 8px; font-family: var(--mono); font-size: 10.5px;">
-              FLAGSHIP ENVIRONMENT // 32 MASTER RENDERS
-            </span>
-          </div>
-
-          <div style="background: var(--card); border: 1.5px solid var(--ink); padding: 28px;">
-            <span class="tag mono" style="background: #1A382B; color: #FFF; border: none; margin-bottom: 12px; display: inline-block;">
-              FINE DINING FLAGSHIP · ISTANBUL
-            </span>
-            <h3 style="font-family: var(--serif); font-size: 28px; margin: 4px 0 14px;">
-              Ghalia Acarverde — Luxury Restaurant &amp; Lounge
-            </h3>
-            <p style="font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 16px;">
-              An opulent, contemporary commercial hospitality interior. Features sculptural parametric ribbed walnut ceilings, monolithic emerald stone cocktail bars, bespoke suspended bronze chandeliers, and intimate velvet dining booths.
-            </p>
-            <p style="margin-bottom: 20px;">
-              <a href="work.html" class="btn-primary" style="font-size: 11.5px; padding: 8px 16px;">Explore 32 Master Renders &rarr;</a>
-            </p>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; border-top: 1px dashed var(--line); padding-top: 16px;">
-              <div>
-                <span class="mono" style="font-size: 10px; color: var(--ink-soft); text-transform: uppercase;">Scope</span>
-                <div style="font-weight: 600; font-size: 13px; margin-top: 2px;">Spatial Architecture, Bar &amp; Lighting</div>
-              </div>
-              <div>
-                <span class="mono" style="font-size: 10px; color: var(--ink-soft); text-transform: uppercase;">Scale</span>
-                <div style="font-weight: 600; font-size: 13px; margin-top: 2px;">4,200 sq. ft. Commercial</div>
-              </div>
-              <div>
-                <span class="mono" style="font-size: 10px; color: var(--ink-soft); text-transform: uppercase;">Challenge</span>
-                <div style="font-weight: 600; font-size: 13px; margin-top: 2px;">Acoustic warmth &amp; multi-zone dining</div>
-              </div>
-              <div>
-                <span class="mono" style="font-size: 10px; color: var(--ink-soft); text-transform: uppercase;">Materials</span>
-                <div style="font-weight: 600; font-size: 13px; margin-top: 2px;">Ribbed Walnut, Emerald Stone, Bronze</div>
-              </div>
-            </div>
-          </div>
+      <!-- Filter Tabs & Case Studies Counter -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 36px; flex-wrap: wrap; gap: 16px; border-bottom: 1px dashed var(--line); padding-bottom: 20px;">
+        <div class="filter-tabs" id="spatial-tabs" style="margin: 0; padding: 0;">
+          <button class="ftab on" data-filter="all">[ ALL ENVIRONMENTS ]</button>
+          <button class="ftab" data-filter="dining">[ FINE DINING &amp; RESTAURANTS ]</button>
+          <button class="ftab" data-filter="bakery">[ CAFÉS &amp; BAKERY ]</button>
+          <button class="ftab" data-filter="coffee">[ SPECIALTY COFFEE &amp; BOHO ]</button>
         </div>
+
+        <span class="mono" id="spatial-count" style="font-size: 12.5px; font-weight: 600; color: var(--ink-soft); letter-spacing: 0.05em;">
+          [ 5 SPATIAL CASE STUDIES ]
+        </span>
       </div>
 
-      <!-- Project 01: Café & Bakery -->
-      <div style="margin-top: 48px; border-top: 1px solid var(--ink); padding-top: 32px;">
-        <div style="display: grid; grid-template-columns: 1fr; gap: 24px; align-items: center;">
-          <div style="position: relative; border: 1.5px solid var(--ink); overflow: hidden; border-radius: 2px; aspect-ratio: 16/10;">
-            <img src="react-app/public/images/cafe-bakery/cafe_bakery_cover.jpg" alt="Maison Artisanal Café and Bakery Interior" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-            <span style="position: absolute; left: 12px; bottom: 12px; background: var(--card); border: 1px solid var(--ink); padding: 4px 8px; font-family: var(--mono); font-size: 10.5px;">
-              FLAGSHIP ENVIRONMENT // 23 RENDERS
-            </span>
+      <!-- Spatial Work Grid -->
+      <div class="spatial-work-grid" id="spatial-grid">
+        <!-- 01: Ghalia Acarverde -->
+        <a href="react-app/dist/work/ghalia-acarverde-restaurant-spatial-design" class="spatial-work-card" data-category="dining">
+          <div class="img-box">
+            <img src="react-app/public/images/ghalia-acarverde/ghalia_cover.jpg" alt="Ghalia Acarverde Luxury Restaurant Interior" loading="lazy">
+            <span class="assets-badge">32 PRODUCTION ASSETS</span>
           </div>
-
-          <div style="background: var(--card); border: 1.5px solid var(--ink); padding: 28px;">
-            <span class="tag mono" style="background: var(--marker); color: #FFF; border: none; margin-bottom: 12px; display: inline-block;">
-              HOSPITALITY FLAGSHIP
-            </span>
-            <h3 style="font-family: var(--serif); font-size: 28px; margin: 4px 0 14px;">
-              Maison Boulangerie &amp; Espresso Bar
-            </h3>
-            <p style="font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 16px;">
-              A complete neighbourhood hospitality study. The warm terracotta and limewash tones of the brand identity extend onto fluted travertine service bars, recessed ambient archways, and minimal brass wayfinding.
-            </p>
-            <p style="margin-bottom: 20px;">
-              <a href="work.html" class="btn-primary" style="font-size: 11.5px; padding: 8px 16px;">Explore 23 Master Renders &rarr;</a>
-            </p>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; border-top: 1px dashed var(--line); padding-top: 16px;">
-              <div>
-                <span class="mono" style="font-size: 10px; color: var(--ink-soft); text-transform: uppercase;">Scope</span>
-                <div style="font-weight: 600; font-size: 13px; margin-top: 2px;">Identity, Materials, Signage</div>
+          <div class="work-card-body">
+            <div>
+              <div class="work-card-tag">FINE DINING FLAGSHIP · HOSPITALITY</div>
+              <h3 class="work-card-title">Ghalia Acarverde — Luxury Restaurant &amp; Lounge</h3>
+              <p class="work-card-desc">An opulent contemporary hospitality interior featuring sculptural parametric ribbed walnut ceilings, monolithic emerald stone cocktail bar, and intimate velvet dining booths.</p>
+            </div>
+            <div class="work-card-meta">
+              <div class="work-card-meta-item">
+                <span>Scope</span>
+                <strong>Spatial Architecture &amp; Lighting</strong>
               </div>
-              <div>
-                <span class="mono" style="font-size: 10px; color: var(--ink-soft); text-transform: uppercase;">Scale</span>
-                <div style="font-weight: 600; font-size: 13px; margin-top: 2px;">1,850 sq. ft. Commercial</div>
-              </div>
-              <div>
-                <span class="mono" style="font-size: 10px; color: var(--ink-soft); text-transform: uppercase;">Challenge</span>
-                <div style="font-weight: 600; font-size: 13px; margin-top: 2px;">Street recognition &amp; queue flow</div>
-              </div>
-              <div>
-                <span class="mono" style="font-size: 10px; color: var(--ink-soft); text-transform: uppercase;">Materials</span>
-                <div style="font-weight: 600; font-size: 13px; margin-top: 2px;">Fluted Oak, Travertine, Brass</div>
+              <div class="work-card-meta-item">
+                <span>Scale</span>
+                <strong>4,200 sq. ft. Flagship</strong>
               </div>
             </div>
+            <div class="work-card-link">
+              <span>EXPLORE CASE STUDY</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
           </div>
-        </div>
+        </a>
+
+        <!-- 02: Maison Boulangerie -->
+        <a href="react-app/dist/work/maison-cafe-bakery-spatial-design" class="spatial-work-card" data-category="bakery">
+          <div class="img-box">
+            <img src="react-app/public/images/cafe-bakery/cafe_bakery_cover.jpg" alt="Maison Artisanal Café and Bakery Interior" loading="lazy">
+            <span class="assets-badge">23 PRODUCTION ASSETS</span>
+          </div>
+          <div class="work-card-body">
+            <div>
+              <div class="work-card-tag">ARTISANAL BAKERY · ALL-DAY CAFÉ</div>
+              <h3 class="work-card-title">Maison Boulangerie &amp; Espresso Bar</h3>
+              <p class="work-card-desc">Fluted travertine counters, illuminated pastry display cases, and arched niches creating an elegant Parisian morning ritual space.</p>
+            </div>
+            <div class="work-card-meta">
+              <div class="work-card-meta-item">
+                <span>Scope</span>
+                <strong>Spatial Identity &amp; Signage</strong>
+              </div>
+              <div class="work-card-meta-item">
+                <span>Scale</span>
+                <strong>1,850 sq. ft. Commercial</strong>
+              </div>
+            </div>
+            <div class="work-card-link">
+              <span>EXPLORE CASE STUDY</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- 03: Arcomi Boho Café -->
+        <a href="react-app/dist/work/arcomi-boho-cafe-spatial-design" class="spatial-work-card" data-category="coffee">
+          <div class="img-box">
+            <img src="react-app/public/images/boho-cafe/boho_cafe_cover.jpg" alt="Arcomi Boho-Mediterranean Café Interior" loading="lazy">
+            <span class="assets-badge">18 PRODUCTION ASSETS</span>
+          </div>
+          <div class="work-card-body">
+            <div>
+              <div class="work-card-tag">BOHO-MEDITERRANEAN · SPECIALTY COFFEE</div>
+              <h3 class="work-card-title">Arcomi — Boho-Mediterranean Café</h3>
+              <p class="work-card-desc">Arched architectural openings, textured plaster walls, microcement floors, and biophilic ambient lighting crafted for communal warmth.</p>
+            </div>
+            <div class="work-card-meta">
+              <div class="work-card-meta-item">
+                <span>Scope</span>
+                <strong>Interior Concept &amp; Lighting</strong>
+              </div>
+              <div class="work-card-meta-item">
+                <span>Scale</span>
+                <strong>2,400 sq. ft. Commercial</strong>
+              </div>
+            </div>
+            <div class="work-card-link">
+              <span>EXPLORE CASE STUDY</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- 04: Rooted Rustic Café -->
+        <a href="react-app/dist/work/rooted-rustic-cafe-spatial-design" class="spatial-work-card" data-category="bakery">
+          <div class="img-box">
+            <img src="react-app/public/images/rustic-cafe/rustic_cafe_cover.jpg" alt="Rooted Rustic Café Interior" loading="lazy">
+            <span class="assets-badge">15 PRODUCTION ASSETS</span>
+          </div>
+          <div class="work-card-body">
+            <div>
+              <div class="work-card-tag">RUSTIC COMMERCIAL · ARTISAN BAKERY</div>
+              <h3 class="work-card-title">Rooted — Rustic Café Spatial Design</h3>
+              <p class="work-card-desc">Layered timber ceilings, rough earth plaster finishes, and custom earthenware display fixtures bridging raw tactile craft with high-volume hospitality.</p>
+            </div>
+            <div class="work-card-meta">
+              <div class="work-card-meta-item">
+                <span>Scope</span>
+                <strong>Joinery, Lighting &amp; Journey</strong>
+              </div>
+              <div class="work-card-meta-item">
+                <span>Scale</span>
+                <strong>2,100 sq. ft. Commercial</strong>
+              </div>
+            </div>
+            <div class="work-card-link">
+              <span>EXPLORE CASE STUDY</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- 05: OUUR Modern Industrial Café -->
+        <a href="react-app/dist/work/ouur-cafe-spatial-design" class="spatial-work-card" data-category="coffee">
+          <div class="img-box">
+            <img src="react-app/public/images/ouur-cafe/ouur_cafe_cover.jpg" alt="OUUR Modern Industrial Café Interior" loading="lazy">
+            <span class="assets-badge">9 PRODUCTION ASSETS</span>
+          </div>
+          <div class="work-card-body">
+            <div>
+              <div class="work-card-tag">MODERN INDUSTRIAL · THIRD-WAVE COFFEE</div>
+              <h3 class="work-card-title">OUUR — Modern Industrial Café</h3>
+              <p class="work-card-desc">Brushed stainless steel service counters, fluted timber joinery, and an ergonomic bar layout engineered for specialty coffee speed and hospitality presence.</p>
+            </div>
+            <div class="work-card-meta">
+              <div class="work-card-meta-item">
+                <span>Scope</span>
+                <strong>Full Spatial Branding &amp; Architecture</strong>
+              </div>
+              <div class="work-card-meta-item">
+                <span>Scale</span>
+                <strong>1,600 sq. ft. Commercial</strong>
+              </div>
+            </div>
+            <div class="work-card-link">
+              <span>EXPLORE CASE STUDY</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
       </div>
 
-      <!-- Project 02: Full-Bleed Environment with Callouts -->
-      <div style="margin-top: 56px; border-top: 1px solid var(--ink); padding-top: 32px;">
-        <div style="position: relative; border: 1.5px solid var(--ink); overflow: hidden; min-height: 380px;">
-          <img src="restaurant-interior.jpg" alt="Full-Bleed Commercial Dining Environment" style="width: 100%; height: 100%; max-height: 560px; object-fit: cover; display: block;">
-
-          <div style="position: absolute; top: 28%; left: 12%; background: rgba(237, 233, 227, 0.95); border: 1px solid var(--ink); padding: 4px 10px; font-family: var(--mono); font-size: 11px; font-weight: 600;">
-            [A] Architectural Cove Lighting &amp; Sconce Integration
+      <!-- Bottom Archive Banner -->
+      <div style="margin-top: 48px; padding: 24px 28px; border: 1.5px solid var(--ink); background: var(--card); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+        <div>
+          <div class="mono" style="font-size: 11px; color: var(--marker); font-weight: 600; text-transform: uppercase;">
+            COMPLETE ARCHIVE ACCESS
           </div>
-          <div style="position: absolute; top: 55%; left: 56%; background: rgba(237, 233, 227, 0.95); border: 1px solid var(--ink); padding: 4px 10px; font-family: var(--mono); font-size: 11px; font-weight: 600;">
-            [B] Fluted Timber Slat Acoustical Partitions
+          <div style="font-family: var(--serif); font-size: 20px; font-weight: 600; margin-top: 4px;">
+            Explore All 5 Spatial Hospitality Case Studies
           </div>
-
-          <div style="position: absolute; bottom: 20px; right: 20px; background: var(--card); border: 1.5px solid var(--ink); padding: 20px 24px; max-width: 360px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
-            <div class="mono tc" style="font-size: 10px; text-transform: uppercase;">03 // FULL-BLEED INTERIOR STUDY</div>
-            <h4 style="font-family: var(--serif); font-size: 20px; margin: 6px 0 8px;">Dining Room Atmosphere &amp; Acoustics</h4>
-            <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin: 0;">
-              Zoned lighting, curved booth seating, and rhythmic timber slats engineered to balance intimacy and commercial turnover.
-            </p>
+          <div style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">
+            From high-turnover espresso counters to multi-zone fine dining flagships.
           </div>
         </div>
-      </div>
-
-      <!-- Project 03: Split Study (Identity vs Spatial) -->
-      <div style="margin-top: 56px; border-top: 1px solid var(--ink); padding-top: 32px;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
-          <div>
-            <div style="border: 1.5px solid var(--ink); overflow: hidden; aspect-ratio: 4/3; position: relative;">
-              <img src="brand-identity-stationery.jpg" alt="Brand Identity Stationery System" style="width: 100%; height: 100%; object-fit: cover;">
-              <span style="position: absolute; left: 12px; bottom: 12px; background: var(--card); border: 1px solid var(--ink); padding: 4px 8px; font-family: var(--mono); font-size: 10.5px;">
-                04A // IDENTITY ROOT: TYPOGRAPHY, PACKAGING &amp; MENU
-              </span>
-            </div>
-            <h4 style="font-family: var(--serif); font-size: 18px; margin-top: 12px;">The Master Identity Blueprint</h4>
-            <p style="font-size: 13.5px; color: var(--ink-soft); line-height: 1.5;">
-              The 2D visual rules: layout hierarchy, serif type scales, and graphic emblems that set the DNA for spatial translation.
-            </p>
-          </div>
-
-          <div>
-            <div style="border: 1.5px solid var(--ink); overflow: hidden; aspect-ratio: 4/3; position: relative;">
-              <img src="material-language-board.jpg" alt="Spatial Material Language Moodboard" style="width: 100%; height: 100%; object-fit: cover;">
-              <span style="position: absolute; left: 12px; bottom: 12px; background: var(--card); border: 1px solid var(--ink); padding: 4px 8px; font-family: var(--mono); font-size: 10.5px;">
-                04B // SPATIAL EXPRESSION: TACTILE FINISH SPECIFICATIONS
-              </span>
-            </div>
-            <h4 style="font-family: var(--serif); font-size: 18px; margin-top: 12px;">The Material Translation</h4>
-            <p style="font-size: 13.5px; color: var(--ink-soft); line-height: 1.5;">
-              Translating visual authority into natural travertine, ribbed timber, chevron fabrics, and custom metal fixtures.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Flagship Production Case Studies Grid -->
-      <div style="margin-top: 56px; border-top: 1px solid var(--ink); padding-top: 36px;">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; margin-bottom: 24px;">
-          <div>
-            <div class="eyebrow mono" style="color: var(--marker); font-size: 11px;">PRODUCTION CASE STUDIES</div>
-            <h3 style="font-family: var(--serif); font-size: 26px; margin: 4px 0 0;">Flagship Hospitality Spatial Environments</h3>
-          </div>
-          <a href="spatial-branding.html" class="mono" style="font-size: 12px; font-weight: 600; color: var(--pine); text-decoration: none;">
-            VIEW ALL SPATIAL WORK &rarr;
-          </a>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;">
-          <div style="border: 1.5px solid var(--ink); background: var(--card); border-radius: 2px; overflow: hidden; display: flex; flex-direction: column;">
-            <div style="aspect-ratio: 16/10; overflow: hidden; position: relative;">
-              <img src="react-app/public/images/ghalia-acarverde/ghalia_cover.jpg" alt="Ghalia Acarverde" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-              <span class="mono" style="position: absolute; bottom: 8px; left: 8px; background: rgba(27,27,23,0.88); color: #FFF; font-size: 9.5px; padding: 2px 6px; border-radius: 2px;">
-                32 MASTER RENDERS
-              </span>
-            </div>
-            <div style="padding: 16px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
-              <div>
-                <h4 style="font-family: var(--serif); font-size: 18px; margin: 0 0 6px; line-height: 1.25;">Ghalia Acarverde — Luxury Restaurant</h4>
-                <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.45; margin: 0 0 12px;">Emerald stone bar, ribbed walnut ceilings, bronze lighting, and terrace dining.</p>
-              </div>
-              <a href="work.html" style="font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--marker); text-decoration: none;">EXPLORE CASE STUDY &rarr;</a>
-            </div>
-          </div>
-
-          <div style="border: 1.5px solid var(--ink); background: var(--card); border-radius: 2px; overflow: hidden; display: flex; flex-direction: column;">
-            <div style="aspect-ratio: 16/10; overflow: hidden; position: relative;">
-              <img src="react-app/public/images/cafe-bakery/cafe_bakery_cover.jpg" alt="Maison" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-              <span class="mono" style="position: absolute; bottom: 8px; left: 8px; background: rgba(27,27,23,0.88); color: #FFF; font-size: 9.5px; padding: 2px 6px; border-radius: 2px;">
-                23 MASTER RENDERS
-              </span>
-            </div>
-            <div style="padding: 16px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
-              <div>
-                <h4 style="font-family: var(--serif); font-size: 18px; margin: 0 0 6px; line-height: 1.25;">Maison — Artisanal Café &amp; Bakery</h4>
-                <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.45; margin: 0 0 12px;">Fluted travertine counters, illuminated pastry display cases, and arched niches.</p>
-              </div>
-              <a href="work.html" style="font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--marker); text-decoration: none;">EXPLORE CASE STUDY &rarr;</a>
-            </div>
-          </div>
-
-          <div style="border: 1.5px solid var(--ink); background: var(--card); border-radius: 2px; overflow: hidden; display: flex; flex-direction: column;">
-            <div style="aspect-ratio: 16/10; overflow: hidden; position: relative;">
-              <img src="react-app/public/images/ouur-cafe/ouur_cafe_cover.jpg" alt="OUUR" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-              <span class="mono" style="position: absolute; bottom: 8px; left: 8px; background: rgba(27,27,23,0.88); color: #FFF; font-size: 9.5px; padding: 2px 6px; border-radius: 2px;">
-                9 MASTER RENDERS
-              </span>
-            </div>
-            <div style="padding: 16px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
-              <div>
-                <h4 style="font-family: var(--serif); font-size: 18px; margin: 0 0 6px; line-height: 1.25;">OUUR — Modern Industrial Café</h4>
-                <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.45; margin: 0 0 12px;">Brushed stainless steel service bars, fluted timber joinery, and ergonomic flow.</p>
-              </div>
-              <a href="work.html" style="font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--marker); text-decoration: none;">EXPLORE CASE STUDY &rarr;</a>
-            </div>
-          </div>
-
-          <div style="border: 1.5px solid var(--ink); background: var(--card); border-radius: 2px; overflow: hidden; display: flex; flex-direction: column;">
-            <div style="aspect-ratio: 16/10; overflow: hidden; position: relative;">
-              <img src="react-app/public/images/boho-cafe/boho_cafe_cover.jpg" alt="Arcomi" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-              <span class="mono" style="position: absolute; bottom: 8px; left: 8px; background: rgba(27,27,23,0.88); color: #FFF; font-size: 9.5px; padding: 2px 6px; border-radius: 2px;">
-                18 MASTER RENDERS
-              </span>
-            </div>
-            <div style="padding: 16px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
-              <div>
-                <h4 style="font-family: var(--serif); font-size: 18px; margin: 0 0 6px; line-height: 1.25;">Arcomi — Boho-Mediterranean Café</h4>
-                <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.45; margin: 0 0 12px;">Arched architecture, natural timber, textured plaster, and biophilic lighting.</p>
-              </div>
-              <a href="work.html" style="font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--marker); text-decoration: none;">EXPLORE CASE STUDY &rarr;</a>
-            </div>
-          </div>
-
-          <div style="border: 1.5px solid var(--ink); background: var(--card); border-radius: 2px; overflow: hidden; display: flex; flex-direction: column;">
-            <div style="aspect-ratio: 16/10; overflow: hidden; position: relative;">
-              <img src="react-app/public/images/rustic-cafe/rustic_cafe_cover.jpg" alt="Rooted" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-              <span class="mono" style="position: absolute; bottom: 8px; left: 8px; background: rgba(27,27,23,0.88); color: #FFF; font-size: 9.5px; padding: 2px 6px; border-radius: 2px;">
-                15 MASTER RENDERS
-              </span>
-            </div>
-            <div style="padding: 16px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
-              <div>
-                <h4 style="font-family: var(--serif); font-size: 18px; margin: 0 0 6px; line-height: 1.25;">Rooted — Rustic Café Spatial Design</h4>
-                <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.45; margin: 0 0 12px;">Layered timber ceilings, earth plaster, and custom earthenware fixtures.</p>
-              </div>
-              <a href="work.html" style="font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--marker); text-decoration: none;">EXPLORE CASE STUDY &rarr;</a>
-            </div>
-          </div>
-        </div>
+        <a href="react-app/dist/spatial-work" class="btn-primary" style="font-size: 12px; padding: 10px 20px; text-decoration: none;">
+          VIEW DEDICATED SPATIAL PORTFOLIO &rarr;
+        </a>
       </div>
     </div>
+
+    <script>
+      (function() {
+        var tabs = document.querySelectorAll('#spatial-tabs .ftab');
+        var cards = document.querySelectorAll('#spatial-grid .spatial-work-card');
+        var countEl = document.getElementById('spatial-count');
+        if (!tabs.length || !cards.length) return;
+        tabs.forEach(function(tab) {
+          tab.addEventListener('click', function() {
+            tabs.forEach(function(t) { t.classList.remove('on'); });
+            this.classList.add('on');
+            var filter = this.getAttribute('data-filter');
+            var visible = 0;
+            cards.forEach(function(card) {
+              var cat = card.getAttribute('data-category');
+              if (filter === 'all' || cat === filter) {
+                card.style.display = 'flex';
+                visible++;
+              } else {
+                card.style.display = 'none';
+              }
+            });
+            if (countEl) {
+              countEl.textContent = '[ ' + visible + ' SPATIAL CASE ' + (visible === 1 ? 'STUDY' : 'STUDIES') + ' ]';
+            }
+          });
+        });
+      })();
+    </script>
   </section>
 
   <!-- ── 04: THE BRAND EXPERIENCE SYSTEM (6-CARD GRID) ── -->

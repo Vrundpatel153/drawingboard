@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -43,6 +43,79 @@ export default function SpatialBrandingPage() {
     brief: '',
     services: ['Spatial strategy', 'Environmental graphics']
   });
+
+  const [spatialFilter, setSpatialFilter] = useState('all');
+
+  const SPATIAL_PROJECTS = useMemo(() => [
+    {
+      slug: 'ghalia-acarverde-restaurant-spatial-design',
+      title: 'Ghalia Acarverde — Luxury Restaurant & Lounge',
+      tag: 'FINE DINING FLAGSHIP // COMMERCIAL RESTAURANT',
+      category: 'dining',
+      imageCount: 32,
+      coverImage: '/images/ghalia-acarverde/ghalia_cover.jpg',
+      description: 'An opulent hospitality interior featuring sculptural parametric ribbed walnut ceilings, monolithic emerald stone cocktail bars, suspended bronze chandeliers, and intimate private dining salons in Istanbul.',
+      scope: 'Spatial Architecture & Lighting',
+      scale: '4,200 sq. ft. Commercial Venue',
+      materials: 'Ribbed Walnut, Emerald Stone, Bronze'
+    },
+    {
+      slug: 'maison-cafe-bakery-spatial-design',
+      title: 'Maison — Artisanal Café & Bakery',
+      tag: 'ARTISANAL BAKERY // COMMERCIAL HOSPITALITY',
+      category: 'bakery',
+      imageCount: 23,
+      coverImage: '/images/cafe-bakery/cafe_bakery_cover.jpg',
+      description: 'Warm terracotta and limewash tones of the brand identity extend onto fluted travertine service counters, illuminated brass pastry vitrines, custom arched wall niches, and ergonomic barista order flow.',
+      scope: 'Identity, Materials & Joinery',
+      scale: '1,850 sq. ft. Commercial',
+      materials: 'Fluted Oak, Travertine, Brushed Brass'
+    },
+    {
+      slug: 'arcomi-boho-cafe-spatial-design',
+      title: 'Arcomi — Boho-Mediterranean Café',
+      tag: 'BOHO-MEDITERRANEAN // BIOPHILIC HOSPITALITY',
+      category: 'coffee',
+      imageCount: 18,
+      coverImage: '/images/boho-cafe/boho_cafe_cover.jpg',
+      description: 'Curved architectural arches, natural woven timber, textured earthen plaster, sculpted pendant luminaires, and seamless indoor-outdoor seating engineered for relaxed social lingering.',
+      scope: 'Interior Architecture & Millwork',
+      scale: '2,400 sq. ft. Commercial Space',
+      materials: 'Textured Plaster, Natural Wood, Terrazzo'
+    },
+    {
+      slug: 'rooted-rustic-cafe-spatial-design',
+      title: 'Rooted — Rustic Café Spatial Design',
+      tag: 'RUSTIC HOSPITALITY // BRAND ENVIRONMENTS',
+      category: 'bakery',
+      imageCount: 15,
+      coverImage: '/images/rustic-cafe/rustic_cafe_cover.jpg',
+      description: 'Layered suspended timber ceiling beams, textured earth plaster walls, custom earthenware hanging fixtures, and communal harvest dining tables connecting guests to organic heritage craft.',
+      scope: 'Spatial Design & Brand Environments',
+      scale: '2,100 sq. ft. Commercial Venue',
+      materials: 'Layered Timber, Earth Plaster, Earthenware'
+    },
+    {
+      slug: 'ouur-cafe-spatial-design',
+      title: 'OUUR — Modern Industrial Café',
+      tag: 'MODERN INDUSTRIAL // ESPRESSO BAR SYSTEM',
+      category: 'coffee',
+      imageCount: 9,
+      coverImage: '/images/ouur-cafe/ouur_cafe_cover.jpg',
+      description: 'Brushed stainless steel service bars, raw concrete plinths, fluted timber acoustic wall cladding, and minimalist linear LED lighting engineered for rapid takeaway flow and visual authority.',
+      scope: 'Bar Ergonomics & Interior Joinery',
+      scale: '1,600 sq. ft. Commercial Cafe',
+      materials: 'Brushed Stainless, Fluted Timber, Concrete'
+    }
+  ], []);
+
+  const filteredSpatialProjects = useMemo(() => {
+    if (spatialFilter === 'all') return SPATIAL_PROJECTS;
+    if (spatialFilter === 'dining') return SPATIAL_PROJECTS.filter(p => p.category === 'dining');
+    if (spatialFilter === 'bakery') return SPATIAL_PROJECTS.filter(p => p.category === 'bakery');
+    if (spatialFilter === 'coffee') return SPATIAL_PROJECTS.filter(p => p.category === 'coffee');
+    return SPATIAL_PROJECTS;
+  }, [spatialFilter, SPATIAL_PROJECTS]);
 
   // Handle service checkbox toggle
   const handleServiceToggle = (svc) => {
@@ -571,6 +644,157 @@ export default function SpatialBrandingPage() {
             color: #FFFFFF;
           }
 
+          /* Spatial Work Grid & Case Cards */
+          .spatial-work-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            width: 100%;
+          }
+          @media (max-width: 1024px) {
+            .spatial-work-grid {
+              grid-template-columns: repeat(2, 1fr);
+              gap: 24px;
+            }
+          }
+          @media (max-width: 768px) {
+            .spatial-work-grid {
+              grid-template-columns: 1fr !important;
+              gap: 24px;
+            }
+          }
+
+          .spatial-work-card {
+            border: 1.5px solid var(--ink);
+            background: var(--card);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+            position: relative;
+          }
+
+          .spatial-work-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 32px rgba(27, 27, 23, 0.1);
+          }
+
+          .spatial-work-card .img-box {
+            width: 100%;
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            background: var(--card);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .spatial-work-card .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.45s ease;
+            display: block;
+          }
+
+          .spatial-work-card:hover .img-box img {
+            transform: scale(1.05);
+          }
+
+          .spatial-work-card .assets-badge {
+            position: absolute;
+            left: 12px;
+            bottom: 12px;
+            background: rgba(27, 27, 23, 0.9);
+            color: #FFFFFF;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 4px 8px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            border-radius: 2px;
+            backdrop-filter: blur(4px);
+          }
+
+          .spatial-work-card .work-card-body {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          }
+
+          .spatial-work-card .work-card-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--pine);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+          }
+
+          .spatial-work-card .work-card-title {
+            font-size: 22px;
+            font-family: 'Fraunces', serif;
+            color: var(--ink);
+            margin-bottom: 10px;
+            line-height: 1.25;
+          }
+
+          .spatial-work-card .work-card-desc {
+            font-size: 13.5px;
+            color: var(--ink-soft);
+            line-height: 1.55;
+            margin-bottom: 20px;
+          }
+
+          .spatial-work-card .work-card-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            border-top: 1px dashed var(--paper-line);
+            padding-top: 12px;
+            margin-bottom: 16px;
+          }
+
+          .spatial-work-card .work-card-meta-item span {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9.5px;
+            color: var(--ink-soft);
+            text-transform: uppercase;
+            display: block;
+          }
+
+          .spatial-work-card .work-card-meta-item strong {
+            font-size: 12px;
+            color: var(--ink);
+            font-weight: 600;
+            display: block;
+            margin-top: 2px;
+          }
+
+          .spatial-work-card .work-card-link {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--marker);
+            letter-spacing: 0.04em;
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.15s;
+          }
+
+          .spatial-work-card:hover .work-card-link {
+            color: var(--pine);
+          }
+
           /* Blueprint Dotted Divider */
           .blueprint-rule {
             height: 1px;
@@ -807,394 +1031,144 @@ export default function SpatialBrandingPage() {
 
 
         {/* ── SECTION 03: SELECTED SPATIAL ENVIRONMENTS & CASE STUDIES ── */}
-        <section id="work" style={{ padding: '72px 0', borderBottom: '1px solid var(--ink)' }}>
+        <section id="work" style={{ padding: '80px 0', borderBottom: '1px solid var(--ink)' }}>
           <div className="wrap">
-            <div className="section-head">
+            <div className="section-head" style={{ marginBottom: '36px' }}>
               <div>
-                <div className="eyebrow mono" style={{ color: 'var(--marker)' }}>03 // SELECTED WORK</div>
-                <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: 'clamp(30px, 4.8vw, 56px)', margin: '10px 0 16px' }}>
+                <div className="eyebrow mono" style={{ color: 'var(--marker)' }}>03 // SELECTED WORK &amp; CASE STUDIES</div>
+                <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: 'clamp(32px, 4.8vw, 56px)', margin: '10px 0 16px' }}>
                   Brand systems, built in space.
                 </h2>
               </div>
-              <p className="mono" style={{ fontSize: '11.5px', color: 'var(--ink-soft)', letterSpacing: '0.06em' }}>
-                Concept studies and architectural design directions. Demonstrating how identity logic extends into commercial interiors.
+              <p>
+                <Link className="btn-link" to="/spatial-work">
+                  Dedicated Spatial Portfolio <ArrowIcon size={13} />
+                </Link>
               </p>
             </div>
 
-            {/* Project 00: Fine Dining Flagship — Ghalia Acarverde */}
-            <div style={{ marginTop: '48px', borderTop: '1px solid var(--ink)', paddingTop: '32px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '32px', alignItems: 'stretch' }}>
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr',
-                  gap: '24px',
-                  alignItems: 'center'
-                }}>
-                  <div style={{
-                    position: 'relative',
-                    border: '1.5px solid var(--ink)',
-                    overflow: 'hidden',
-                    borderRadius: '2px',
-                    aspectRatio: '16/10'
-                  }}>
-                    <img
-                      src="/images/ghalia-acarverde/ghalia_cover.jpg"
-                      alt="Ghalia Acarverde Luxury Restaurant Commercial Spatial Design"
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    />
-                    <span style={{
-                      position: 'absolute',
-                      left: '12px',
-                      bottom: '12px',
-                      background: 'var(--card)',
-                      border: '1px solid var(--ink)',
-                      padding: '4px 8px',
-                      fontFamily: "'IBM Plex Mono', monospace",
-                      fontSize: '10.5px'
-                    }}>
-                      FLAGSHIP ENVIRONMENT // 32 MASTER RENDERS
-                    </span>
-                  </div>
-
-                  <div style={{
-                    background: 'var(--card)',
-                    border: '1.5px solid var(--ink)',
-                    padding: '28px',
-                    position: 'relative'
-                  }}>
-                    <span className="badge" style={{ background: '#1A382B', color: '#FFFFFF', border: 'none', marginBottom: '12px', display: 'inline-block' }}>
-                      FINE DINING FLAGSHIP · ISTANBUL
-                    </span>
-                    <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: '28px', margin: '4px 0 14px' }}>
-                      Ghalia Acarverde — Luxury Restaurant &amp; Lounge
-                    </h3>
-                    <p style={{ fontSize: '14.5px', lineHeight: 1.6, color: 'var(--ink-soft)', marginBottom: '16px' }}>
-                      An opulent, contemporary commercial hospitality interior. Features sculptural parametric ribbed walnut ceilings, monolithic emerald stone cocktail bars, bespoke suspended bronze chandeliers, and intimate velvet dining booths.
-                    </p>
-
-                    <Link to="/work/ghalia-acarverde-restaurant-spatial-design" className="btn-secondary-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', marginBottom: '20px', textDecoration: 'none' }}>
-                      Explore 32 Master Renders <ArrowIcon size={12} />
-                    </Link>
-
-                    <div style={{
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(2, 1fr)',
-                      gap: '12px',
-                      borderTop: '1px dashed var(--paper-line)',
-                      paddingTop: '16px'
-                    }}>
-                      <div>
-                        <span className="mono" style={{ fontSize: '10px', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>Scope</span>
-                        <div style={{ fontWeight: 600, fontSize: '13px', marginTop: '2px' }}>Spatial Architecture, Bar &amp; Lighting</div>
-                      </div>
-                      <div>
-                        <span className="mono" style={{ fontSize: '10px', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>Scale</span>
-                        <div style={{ fontWeight: 600, fontSize: '13px', marginTop: '2px' }}>4,200 sq. ft. Commercial Venue</div>
-                      </div>
-                      <div>
-                        <span className="mono" style={{ fontSize: '10px', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>Challenge</span>
-                        <div style={{ fontWeight: 600, fontSize: '13px', marginTop: '2px' }}>Acoustic warmth &amp; multi-zone dining</div>
-                      </div>
-                      <div>
-                        <span className="mono" style={{ fontSize: '10px', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>Materials</span>
-                        <div style={{ fontWeight: 600, fontSize: '13px', marginTop: '2px' }}>Ribbed Walnut, Emerald Stone, Bronze</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            {/* Filter Tabs & Case Studies Counter */}
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: '36px',
+                flexWrap: 'wrap',
+                gap: '16px',
+                borderBottom: '1px dashed var(--paper-line)',
+                paddingBottom: '20px'
+              }}
+            >
+              <div className="filter-tabs" style={{ margin: 0, padding: 0 }}>
+                <button
+                  className={`ftab ${spatialFilter === 'all' ? 'on' : ''}`}
+                  onClick={() => setSpatialFilter('all')}
+                >
+                  [ ALL ENVIRONMENTS ]
+                </button>
+                <button
+                  className={`ftab ${spatialFilter === 'dining' ? 'on' : ''}`}
+                  onClick={() => setSpatialFilter('dining')}
+                >
+                  [ FINE DINING &amp; RESTAURANTS ]
+                </button>
+                <button
+                  className={`ftab ${spatialFilter === 'bakery' ? 'on' : ''}`}
+                  onClick={() => setSpatialFilter('bakery')}
+                >
+                  [ CAFÉS &amp; BAKERY ]
+                </button>
+                <button
+                  className={`ftab ${spatialFilter === 'coffee' ? 'on' : ''}`}
+                  onClick={() => setSpatialFilter('coffee')}
+                >
+                  [ SPECIALTY COFFEE &amp; BOHO ]
+                </button>
               </div>
+
+              <span className="mono" style={{ fontSize: '12.5px', fontWeight: 600, color: 'var(--ink-soft)', letterSpacing: '0.05em' }}>
+                [ {filteredSpatialProjects.length} SPATIAL CASE {filteredSpatialProjects.length === 1 ? 'STUDY' : 'STUDIES'} ]
+              </span>
             </div>
 
-            {/* Project 01: Café & Bakery */}
-            <div style={{ marginTop: '48px', borderTop: '1px solid var(--ink)', paddingTop: '32px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '32px', alignItems: 'stretch' }}>
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr',
-                  gap: '24px'
-                }}>
-                  <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr',
-                    gap: '24px',
-                    alignItems: 'center'
-                  }}>
-                    <div style={{
-                      position: 'relative',
-                      border: '1.5px solid var(--ink)',
-                      overflow: 'hidden',
-                      borderRadius: '2px',
-                      aspectRatio: '16/10'
-                    }}>
-                      <img
-                        src="/images/cafe-bakery/cafe_bakery_cover.jpg"
-                        alt="Maison Artisanal Café & Bakery Commercial Interior"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                      />
-                      <span style={{
-                        position: 'absolute',
-                        left: '12px',
-                        bottom: '12px',
-                        background: 'var(--card)',
-                        border: '1px solid var(--ink)',
-                        padding: '4px 8px',
-                        fontFamily: "'IBM Plex Mono', monospace",
-                        fontSize: '10.5px'
-                      }}>
-                        FLAGSHIP ENVIRONMENT // 23 RENDERS
-                      </span>
-                    </div>
-
-                    <div style={{
-                      background: 'var(--card)',
-                      border: '1.5px solid var(--ink)',
-                      padding: '28px',
-                      position: 'relative'
-                    }}>
-                      <span className="badge" style={{ background: 'var(--marker)', color: '#FFFFFF', border: 'none', marginBottom: '12px', display: 'inline-block' }}>
-                        HOSPITALITY FLAGSHIP
-                      </span>
-                      <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: '28px', margin: '4px 0 14px' }}>
-                        Maison Boulangerie &amp; Espresso Bar
-                      </h3>
-                      <p style={{ fontSize: '14.5px', lineHeight: 1.6, color: 'var(--ink-soft)', marginBottom: '16px' }}>
-                        A complete artisanal commercial hospitality environment. Warm terracotta and limewash tones of the brand identity extend onto fluted travertine service counters, illuminated pastry display cases, custom arched wall niches, and ergonomic barista flow.
-                      </p>
-
-                      <Link to="/work/maison-cafe-bakery-spatial-design" className="btn-secondary-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', marginBottom: '20px', textDecoration: 'none' }}>
-                        Explore 23 Master Renders <ArrowIcon size={12} />
-                      </Link>
-
-                      <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(2, 1fr)',
-                        gap: '12px',
-                        borderTop: '1px dashed var(--paper-line)',
-                        paddingTop: '16px'
-                      }}>
-                        <div>
-                          <span className="mono" style={{ fontSize: '10px', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>Scope</span>
-                          <div style={{ fontWeight: 600, fontSize: '13px', marginTop: '2px' }}>Identity, Materials, Signage</div>
-                        </div>
-                        <div>
-                          <span className="mono" style={{ fontSize: '10px', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>Scale</span>
-                          <div style={{ fontWeight: 600, fontSize: '13px', marginTop: '2px' }}>1,850 sq. ft. Commercial</div>
-                        </div>
-                        <div>
-                          <span className="mono" style={{ fontSize: '10px', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>Challenge</span>
-                          <div style={{ fontWeight: 600, fontSize: '13px', marginTop: '2px' }}>Street-level recognition & queue flow</div>
-                        </div>
-                        <div>
-                          <span className="mono" style={{ fontSize: '10px', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>Materials</span>
-                          <div style={{ fontWeight: 600, fontSize: '13px', marginTop: '2px' }}>Fluted Oak, Travertine, Brass</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Project 02: Full-Bleed Environment with Callout Annotations */}
-            <div style={{ marginTop: '56px', borderTop: '1px solid var(--ink)', paddingTop: '32px' }}>
-              <div style={{ position: 'relative', border: '1.5px solid var(--ink)', overflow: 'hidden', minHeight: '380px' }}>
-                <img
-                  src="/images/spatial/restaurant-interior.jpg"
-                  alt="Full-Bleed Commercial Dining Environment"
-                  style={{ width: '100%', height: '100%', maxHeight: '560px', objectFit: 'cover', display: 'block' }}
-                />
-
-                {/* Callout Overlay Badges */}
-                <div style={{
-                  position: 'absolute',
-                  top: '28%',
-                  left: '15%',
-                  background: 'rgba(237, 233, 227, 0.95)',
-                  border: '1px solid var(--ink)',
-                  padding: '4px 10px',
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: '11px',
-                  fontWeight: 600
-                }}>
-                  [A] Architectural Cove Lighting & Sconce Integration
-                </div>
-
-                <div style={{
-                  position: 'absolute',
-                  top: '55%',
-                  left: '60%',
-                  background: 'rgba(237, 233, 227, 0.95)',
-                  border: '1px solid var(--ink)',
-                  padding: '4px 10px',
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: '11px',
-                  fontWeight: 600
-                }}>
-                  [B] Fluted Timber Slat Acoustical Partitions
-                </div>
-
-                <div style={{
-                  position: 'absolute',
-                  bottom: '24px',
-                  right: '24px',
-                  background: 'var(--card)',
-                  border: '1.5px solid var(--ink)',
-                  padding: '20px 24px',
-                  maxWidth: '360px',
-                  boxShadow: '0 6px 20px rgba(0,0,0,0.1)'
-                }}>
-                  <div className="mono" style={{ fontSize: '10px', color: 'var(--marker)', textTransform: 'uppercase' }}>
-                    03 // FULL-BLEED INTERIOR STUDY
-                  </div>
-                  <h4 style={{ fontFamily: "'Fraunces', serif", fontSize: '20px', margin: '6px 0 8px' }}>
-                    Dining Room Atmosphere & Acoustics
-                  </h4>
-                  <p style={{ fontSize: '13px', color: 'var(--ink-soft)', lineHeight: 1.5, margin: 0 }}>
-                    Zoned lighting, curved upholstered booths, and rhythmic slatted timber walls designed to balance intimacy and commercial table turnover.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Project 04: Split Study (04a Identity vs 04b Spatial Execution) */}
-            <div style={{ marginTop: '56px', borderTop: '1px solid var(--ink)', paddingTop: '32px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
-                <div>
-                  <div style={{ border: '1.5px solid var(--ink)', overflow: 'hidden', aspectRatio: '4/3', position: 'relative' }}>
-                    <img
-                      src="/images/spatial/brand-identity-stationery.jpg"
-                      alt="Brand Identity System Stationery"
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    />
-                    <span style={{ position: 'absolute', left: '12px', bottom: '12px', background: 'var(--card)', border: '1px solid var(--ink)', padding: '4px 8px', fontFamily: "'IBM Plex Mono', monospace", fontSize: '10.5px' }}>
-                      04A // IDENTITY ROOT: TYPOGRAPHY, PACKAGING & MENU
-                    </span>
-                  </div>
-                  <h4 style={{ fontFamily: "'Fraunces', serif", fontSize: '18px', marginTop: '12px' }}>The Master Identity Blueprint</h4>
-                  <p style={{ fontSize: '13.5px', color: 'var(--ink-soft)', lineHeight: 1.5 }}>
-                    The 2D visual rules: layout hierarchy, serif type scales, and graphic emblems that set the DNA for spatial translation.
-                  </p>
-                </div>
-
-                <div>
-                  <div style={{ border: '1.5px solid var(--ink)', overflow: 'hidden', aspectRatio: '4/3', position: 'relative' }}>
-                    <img
-                      src="/images/spatial/material-language-board.jpg"
-                      alt="Spatial Material Language Moodboard"
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    />
-                    <span style={{ position: 'absolute', left: '12px', bottom: '12px', background: 'var(--card)', border: '1px solid var(--ink)', padding: '4px 8px', fontFamily: "'IBM Plex Mono', monospace", fontSize: '10.5px' }}>
-                      04B // SPATIAL EXPRESSION: TACTILE FINISH SPECIFICATIONS
-                    </span>
-                  </div>
-                  <h4 style={{ fontFamily: "'Fraunces', serif", fontSize: '18px', marginTop: '12px' }}>The Material Translation</h4>
-                  <p style={{ fontSize: '13.5px', color: 'var(--ink-soft)', lineHeight: 1.5 }}>
-                    Translating visual authority into natural travertine, ribbed timber, chevron fabrics, and custom metal fixtures.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Flagship Production Case Studies Grid */}
-            <div style={{ marginTop: '56px', borderTop: '1px solid var(--ink)', paddingTop: '36px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '12px', marginBottom: '24px' }}>
-                <div>
-                  <div className="eyebrow mono" style={{ color: 'var(--marker)', fontSize: '11px' }}>PRODUCTION CASE STUDIES</div>
-                  <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: '26px', margin: '4px 0 0' }}>Flagship Hospitality Spatial Environments</h3>
-                </div>
-                <Link to="/work" className="mono" style={{ fontSize: '12px', fontWeight: 600, color: 'var(--pine)', textDecoration: 'none' }}>
-                  VIEW ALL WORK &rarr;
-                </Link>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '24px' }}>
-                {[
-                  {
-                    slug: 'ghalia-acarverde-restaurant-spatial-design',
-                    title: 'Ghalia Acarverde — Luxury Restaurant',
-                    tag: '32 MASTER RENDERS',
-                    cover: '/images/ghalia-acarverde/ghalia_cover.jpg',
-                    desc: 'Emerald stone bar, ribbed walnut ceilings, bronze lighting, and terrace dining.'
-                  },
-                  {
-                    slug: 'maison-cafe-bakery-spatial-design',
-                    title: 'Maison — Artisanal Café & Bakery',
-                    tag: '23 MASTER RENDERS',
-                    cover: '/images/cafe-bakery/cafe_bakery_cover.jpg',
-                    desc: 'Fluted travertine counters, illuminated pastry display cases, and arched niches.'
-                  },
-                  {
-                    slug: 'ouur-cafe-spatial-design',
-                    title: 'OUUR — Modern Industrial Café',
-                    tag: '9 MASTER RENDERS',
-                    cover: '/images/ouur-cafe/ouur_cafe_cover.jpg',
-                    desc: 'Brushed stainless steel service bars, fluted timber joinery, and ergonomic flow.'
-                  },
-                  {
-                    slug: 'arcomi-boho-cafe-spatial-design',
-                    title: 'Arcomi — Boho-Mediterranean Café',
-                    tag: '18 MASTER RENDERS',
-                    cover: '/images/boho-cafe/boho_cafe_cover.jpg',
-                    desc: 'Arched architecture, natural timber, textured plaster, and biophilic lighting.'
-                  },
-                  {
-                    slug: 'rooted-rustic-cafe-spatial-design',
-                    title: 'Rooted — Rustic Café Spatial Design',
-                    tag: '15 MASTER RENDERS',
-                    cover: '/images/rustic-cafe/rustic_cafe_cover.jpg',
-                    desc: 'Layered timber ceilings, earth plaster, and custom earthenware fixtures.'
-                  }
-                ].map((item, i) => (
+            {/* Spatial Work Grid */}
+            <div className="spatial-work-grid">
+              {filteredSpatialProjects.map((project, idx) => {
+                return (
                   <Link
-                    key={i}
-                    to={`/work/${item.slug}`}
-                    style={{
-                      border: '1.5px solid var(--ink)',
-                      background: 'var(--card)',
-                      borderRadius: '2px',
-                      overflow: 'hidden',
-                      textDecoration: 'none',
-                      color: 'inherit',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      transition: 'transform 0.2s ease, box-shadow 0.2s ease'
-                    }}
+                    key={project.slug || idx}
+                    to={`/work/${project.slug}`}
+                    className="spatial-work-card"
                   >
-                    <div style={{ aspectRatio: '16/10', overflow: 'hidden', position: 'relative' }}>
+                    <div className="img-box">
                       <img
-                        src={item.cover}
-                        alt={item.title}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                        src={project.coverImage}
+                        alt={project.title}
+                        loading="lazy"
                       />
-                      <span className="mono" style={{
-                        position: 'absolute',
-                        bottom: '8px',
-                        left: '8px',
-                        background: 'rgba(27,27,23,0.88)',
-                        color: '#FFF',
-                        fontSize: '9.5px',
-                        padding: '2px 6px',
-                        borderRadius: '2px'
-                      }}>
-                        {item.tag}
+                      <span className="assets-badge">
+                        {project.imageCount} PRODUCTION ASSETS
                       </span>
                     </div>
-                    <div style={{ padding: '16px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+
+                    <div className="work-card-body">
                       <div>
-                        <h4 style={{ fontFamily: "'Fraunces', serif", fontSize: '18px', margin: '0 0 6px', lineHeight: 1.25 }}>
-                          {item.title}
-                        </h4>
-                        <p style={{ fontSize: '12.5px', color: 'var(--ink-soft)', lineHeight: 1.5, margin: 0 }}>
-                          {item.desc}
+                        <div className="work-card-tag">
+                          {project.tag}
+                        </div>
+                        <h3 className="work-card-title">
+                          {project.title}
+                        </h3>
+                        <p className="work-card-desc">
+                          {project.description}
                         </p>
                       </div>
-                      <div className="mono" style={{ fontSize: '11px', fontWeight: 600, color: 'var(--marker)', marginTop: '14px', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                        EXPLORE CASE STUDY &rarr;
+
+                      <div className="work-card-meta">
+                        <div className="work-card-meta-item">
+                          <span>Scope</span>
+                          <strong>{project.scope}</strong>
+                        </div>
+                        <div className="work-card-meta-item">
+                          <span>Scale</span>
+                          <strong>{project.scale}</strong>
+                        </div>
+                      </div>
+
+                      <div className="work-card-link">
+                        <span>EXPLORE CASE STUDY</span>
+                        <ArrowIcon size={14} />
                       </div>
                     </div>
                   </Link>
-                ))}
+                );
+              })}
+            </div>
+
+            {/* Bottom Archive Banner */}
+            <div style={{
+              marginTop: '48px',
+              padding: '24px 28px',
+              border: '1.5px solid var(--ink)',
+              background: 'var(--card)',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '20px'
+            }}>
+              <div>
+                <span className="mono" style={{ fontSize: '11px', color: 'var(--marker)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                  // COMMERCIAL SPATIAL ARCHITECTURE
+                </span>
+                <h4 style={{ fontFamily: "'Fraunces', serif", fontSize: '20px', margin: '4px 0 0' }}>
+                  Looking for full architectural floorplans, lighting schedules &amp; finish packages?
+                </h4>
               </div>
+              <Link to="/spatial-work" className="btn-secondary-cta" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                View Dedicated Spatial Portfolio <ArrowIcon size={13} />
+              </Link>
             </div>
           </div>
         </section>
