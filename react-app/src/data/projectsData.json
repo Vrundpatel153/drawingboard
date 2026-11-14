@@ -196,6 +196,36 @@
     "imageCount": 15
   },
   {
+    "slug": "arcomi-boho-cafe-spatial-design",
+    "title": "Arcomi — Boho-Mediterranean Café Spatial Design & Brand Environments",
+    "category": "spatial",
+    "tag": "SPATIAL DESIGN & BRAND ENVIRONMENTS",
+    "client": "Arcomi Commercial Café (Saudi Arabia)",
+    "description": "Organic contemporary and Mediterranean-inspired commercial hospitality interior combining arched architecture, natural timber, textured plaster, handcrafted lighting, and biophilic brand environments in Saudi Arabia.",
+    "coverImage": "/images/boho-cafe/boho_cafe_cover.jpg",
+    "images": [
+      "/images/boho-cafe/boho_cafe_01.jpg",
+      "/images/boho-cafe/boho_cafe_02.jpg",
+      "/images/boho-cafe/boho_cafe_03.jpg",
+      "/images/boho-cafe/boho_cafe_04.jpg",
+      "/images/boho-cafe/boho_cafe_05.jpg",
+      "/images/boho-cafe/boho_cafe_06.jpg",
+      "/images/boho-cafe/boho_cafe_07.jpg",
+      "/images/boho-cafe/boho_cafe_08.jpg",
+      "/images/boho-cafe/boho_cafe_09.jpg",
+      "/images/boho-cafe/boho_cafe_10.jpg",
+      "/images/boho-cafe/boho_cafe_11.jpg",
+      "/images/boho-cafe/boho_cafe_12.jpg",
+      "/images/boho-cafe/boho_cafe_13.jpg",
+      "/images/boho-cafe/boho_cafe_14.jpg",
+      "/images/boho-cafe/boho_cafe_15.jpg",
+      "/images/boho-cafe/boho_cafe_16.jpg",
+      "/images/boho-cafe/boho_cafe_17.jpg",
+      "/images/boho-cafe/boho_cafe_18.jpg"
+    ],
+    "imageCount": 18
+  },
+  {
     "slug": "toodaloo-superfood-snack-packaging",
     "title": "Toodaloo — Heal Your Body & The Planet Adaptogenic Trail Mix & Snack Packaging",
     "category": "packaging",

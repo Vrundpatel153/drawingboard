@@ -27,6 +27,7 @@ export default function WorkDetail() {
   const isMurami = cleanId.includes('murami');
   const isDorada = cleanId.includes('dorada');
   const isRusticCafe = cleanId.includes('rustic') || cleanId.includes('rooted');
+  const isArcomi = cleanId.includes('arcomi') || cleanId.includes('boho');
   const isSoulBrew = cleanId.includes('soul') || cleanId.includes('brew');
   const isBondwith = cleanId.includes('bondwith');
   const isFlint = cleanId.includes('flint');
@@ -66,6 +67,7 @@ export default function WorkDetail() {
       (isMurami && s.includes('murami')) ||
       (isDorada && s.includes('dorada')) ||
       (isRusticCafe && (s.includes('rustic') || s.includes('rooted'))) ||
+      (isArcomi && (s.includes('arcomi') || s.includes('boho'))) ||
       (isSoulBrew && s.includes('soul-brew')) ||
       (isBondwith && s.includes('bondwith')) ||
       (isFlint && s.includes('flint')) ||
@@ -239,6 +241,8 @@ export default function WorkDetail() {
               ? 'Dorada Café & Bar Case Study'
               : isRusticCafe
               ? 'Rooted Rustic Café Spatial Design Case Study'
+              : isArcomi
+              ? 'Arcomi Boho Café Spatial Design Case Study'
               : isSoulBrew
               ? 'Soul Brew Case Study'
               : isBondwith
@@ -279,6 +283,8 @@ export default function WorkDetail() {
                 ? 'CASE STUDY // SPEC 04 — COLOMBIAN SPECIALTY COFFEE & CAFE BRANDING'
                 : isRusticCafe
                 ? 'CASE STUDY // SPEC 18 — COMMERCIAL SPATIAL DESIGN & BRAND ENVIRONMENTS'
+                : isArcomi
+                ? 'CASE STUDY // SPEC 19 — COMMERCIAL BOHO SPATIAL DESIGN & BRAND ENVIRONMENTS'
                 : isSoulBrew
                 ? 'CASE STUDY // SPEC 04 — ARTISAN COFFEE & MOTION'
                 : isBondwith
@@ -524,6 +530,31 @@ export default function WorkDetail() {
                 <div className="meta-cell">
                   <div className="k">Impact</div>
                   <div className="v" style={{ color: 'var(--pine)' }}>15 Master Spatial Renders</div>
+                </div>
+              </div>
+            </>
+          ) : isArcomi ? (
+            <>
+              <h1>Arcomi — <em>Boho-Mediterranean Café Spatial Design</em> &amp; Brand Environments.</h1>
+              <p className="dek">
+                How we engineered a warm, organic contemporary and Mediterranean hospitality environment combining arched architecture, natural timber, textured plaster, handcrafted lighting, and biophilic brand environments in Saudi Arabia.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Arcomi Commercial Café (Saudi Arabia)</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Spatial Design &amp; Architectural Environments</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">6 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>18 Master Spatial Renders</div>
                 </div>
               </div>
             </>
@@ -1615,6 +1646,62 @@ export default function WorkDetail() {
                     <li>Turnkey Architectural Spec Handoff</li>
                     <li>High Customer Dwell-Time Design</li>
                     <li>UAE Commercial Flagship Experience</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isArcomi ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Hospitality architecture &amp; brand environments.</h2>
+                </div>
+                <p>Arched openings, sculptural lighting fixtures, woven natural wood furniture, and Mediterranean biophilic spatial design.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Spatial Architecture</h4>
+                  <div className="sub">// ARCHES &amp; SURFACES</div>
+                  <ul>
+                    <li>Curved arched architectural openings</li>
+                    <li>Textured earthen plaster walls</li>
+                    <li>Natural timber exposed beams</li>
+                    <li>Stone composite monolithic bar counters</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Lighting Design</h4>
+                  <div className="sub">// FIXTURES &amp; AMBIENCE</div>
+                  <ul>
+                    <li>Custom sculptural woven pendant shades</li>
+                    <li>Concealed warm cove accent lighting</li>
+                    <li>Integrated shelf backlighting</li>
+                    <li>Brass &amp; clay wall-mounted sconces</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Furniture &amp; Biophilic</h4>
+                  <div className="sub">// SEATING &amp; GREENERY</div>
+                  <ul>
+                    <li>Natural wood dining tables &amp; armchairs</li>
+                    <li>Woven cane backrests &amp; soft upholstery</li>
+                    <li>Curved banquettes &amp; carved wood stools</li>
+                    <li>Layered indoor Mediterranean greenery</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>18 Master 3D Spatial Visualizations</li>
+                    <li>Saudi Arabia Commercial Flagship</li>
+                    <li>Turnkey Architectural Spec Package</li>
+                    <li>High Guest Dwell-Time &amp; Recall</li>
                   </ul>
                 </div>
               </div>
