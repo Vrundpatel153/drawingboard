@@ -157,8 +157,8 @@ export default function SpatialBrandingPage() {
       title: 'The Environment',
       sub: 'Complete Commercial Space',
       desc: 'The final unified atmosphere: architectural lighting, fluted timber counters, illuminated niches, and tactile warmth.',
-      image: '/images/spatial/cafe-interior.jpg',
-      caption: 'Artisanal Bakery & Café — Complete Branded Commercial Interior'
+      image: '/images/cafe-bakery/cafe_bakery_01.jpg',
+      caption: 'Maison Artisanal Bakery & Café — Complete Branded Commercial Interior'
     }
   ];
 
