@@ -30,6 +30,7 @@ export default function WorkDetail() {
   const isRusticCafe = cleanId.includes('rustic') || cleanId.includes('rooted');
   const isArcomi = cleanId.includes('arcomi') || cleanId.includes('boho');
   const isOuur = cleanId.includes('ouur');
+  const isMaison = cleanId.includes('maison') || cleanId.includes('bakery');
   const isSoulBrew = cleanId.includes('soul') || cleanId.includes('brew');
   const isBondwith = cleanId.includes('bondwith');
   const isFlint = cleanId.includes('flint');
@@ -72,6 +73,7 @@ export default function WorkDetail() {
       (isRusticCafe && (s.includes('rustic') || s.includes('rooted'))) ||
       (isArcomi && (s.includes('arcomi') || s.includes('boho'))) ||
       (isOuur && s.includes('ouur')) ||
+      (isMaison && (s.includes('maison') || s.includes('bakery'))) ||
       (isSoulBrew && s.includes('soul-brew')) ||
       (isBondwith && s.includes('bondwith')) ||
       (isFlint && s.includes('flint')) ||
@@ -251,6 +253,8 @@ export default function WorkDetail() {
               ? 'Arcomi Boho Café Spatial Design Case Study'
               : isOuur
               ? 'OUUR Modern Industrial Café Spatial Design Case Study'
+              : isMaison
+              ? 'Maison Café & Bakery Spatial Design Case Study'
               : isSoulBrew
               ? 'Soul Brew Case Study'
               : isBondwith
@@ -297,6 +301,8 @@ export default function WorkDetail() {
                 ? 'CASE STUDY // SPEC 19 — COMMERCIAL BOHO SPATIAL DESIGN & BRAND ENVIRONMENTS'
                 : isOuur
                 ? 'CASE STUDY // SPEC 20 — MODERN INDUSTRIAL SPATIAL DESIGN & BRAND ENVIRONMENTS'
+                : isMaison
+                ? 'CASE STUDY // SPEC 22 — ARTISANAL BAKERY & CAFE SPATIAL DESIGN & BRAND ENVIRONMENTS'
                 : isSoulBrew
                 ? 'CASE STUDY // SPEC 04 — ARTISAN COFFEE & MOTION'
                 : isBondwith
@@ -617,6 +623,31 @@ export default function WorkDetail() {
                 <div className="meta-cell">
                   <div className="k">Impact</div>
                   <div className="v" style={{ color: 'var(--pine)' }}>9 Master Spatial Renders</div>
+                </div>
+              </div>
+            </>
+          ) : isMaison ? (
+            <>
+              <h1>Maison — <em>Artisanal Café &amp; Bakery Spatial Design</em> &amp; Brand Environments.</h1>
+              <p className="dek">
+                How we engineered a warm, contemporary hospitality interior combining fluted travertine counters, illuminated pastry display cases, custom arched wall niches, tactile limewash plaster, and bespoke coffee bar ergonomics.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Maison Artisanal Boulangerie &amp; Café</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Spatial Design &amp; Architectural Environments</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">6 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>23 Master Spatial Renders</div>
                 </div>
               </div>
             </>
@@ -1876,6 +1907,62 @@ export default function WorkDetail() {
                     <li>Complete Commercial Floorplan Specs</li>
                     <li>Optimized Peak-Hour Barista Flow</li>
                     <li>Flagship Specialty Coffee Interior</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isMaison ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Artisanal bakery architecture &amp; commercial hospitality environments.</h2>
+                </div>
+                <p>Fluted travertine service counters, illuminated pastry vitrines, structural arched niches, and high-efficiency barista and baker workflow zoning.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Spatial Architecture</h4>
+                  <div className="sub">// MILLWORK &amp; COUNTERS</div>
+                  <ul>
+                    <li>Fluted travertine service bar &amp; counter</li>
+                    <li>Arched structural wall display niches</li>
+                    <li>Textured limewash &amp; earth plaster walls</li>
+                    <li>Terrazzo seamless commercial floor finish</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Lighting &amp; Ambience</h4>
+                  <div className="sub">// ILLUMINATION &amp; FIXTURES</div>
+                  <ul>
+                    <li>Warm under-counter display illumination</li>
+                    <li>Sculptural clay &amp; brass wall sconces</li>
+                    <li>Concealed archway cove accent lighting</li>
+                    <li>Directional high-CRI pastry spotlights</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Bakery Ergonomics</h4>
+                  <div className="sub">// FLOW &amp; WORKSTATIONS</div>
+                  <ul>
+                    <li>Dual-station espresso &amp; pastry workflow</li>
+                    <li>Low-profile glass bread display vitrines</li>
+                    <li>Ergonomic customer queue circulation</li>
+                    <li>Integrated pickup &amp; takeaway packaging counter</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>23 Master 3D Spatial Visualizations</li>
+                    <li>Complete Commercial Floorplan Specs</li>
+                    <li>Turnkey Millwork &amp; Fabricator Handoff</li>
+                    <li>Flagship Commercial Bakery Atmosphere</li>
                   </ul>
                 </div>
               </div>

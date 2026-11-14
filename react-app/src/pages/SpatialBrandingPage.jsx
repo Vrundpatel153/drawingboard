@@ -843,8 +843,8 @@ export default function SpatialBrandingPage() {
                       aspectRatio: '16/10'
                     }}>
                       <img
-                        src="/images/spatial/cafe-interior.jpg"
-                        alt="Café and Bakery Concept Environment"
+                        src="/images/cafe-bakery/cafe_bakery_cover.jpg"
+                        alt="Maison Artisanal Café & Bakery Commercial Interior"
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                       />
                       <span style={{
@@ -857,7 +857,7 @@ export default function SpatialBrandingPage() {
                         fontFamily: "'IBM Plex Mono', monospace",
                         fontSize: '10.5px'
                       }}>
-                        CONCEPT STUDY 01 // CAFÉ & BAKERY
+                        FLAGSHIP ENVIRONMENT // 23 RENDERS
                       </span>
                     </div>
 
@@ -868,14 +868,18 @@ export default function SpatialBrandingPage() {
                       position: 'relative'
                     }}>
                       <span className="badge" style={{ background: 'var(--marker)', color: '#FFFFFF', border: 'none', marginBottom: '12px', display: 'inline-block' }}>
-                        HOSPITALITY CONCEPT
+                        HOSPITALITY FLAGSHIP
                       </span>
                       <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: '28px', margin: '4px 0 14px' }}>
-                        Maison Boulangerie & Espresso Bar
+                        Maison Boulangerie &amp; Espresso Bar
                       </h3>
-                      <p style={{ fontSize: '14.5px', lineHeight: 1.6, color: 'var(--ink-soft)', marginBottom: '20px' }}>
-                        A complete neighbourhood hospitality study. The warm terracotta and pine green tones of the brand identity extend onto fluted oak service bars, recessed ambient archways, and minimal brass wayfinding.
+                      <p style={{ fontSize: '14.5px', lineHeight: 1.6, color: 'var(--ink-soft)', marginBottom: '16px' }}>
+                        A complete artisanal commercial hospitality environment. Warm terracotta and limewash tones of the brand identity extend onto fluted travertine service counters, illuminated pastry display cases, custom arched wall niches, and ergonomic barista flow.
                       </p>
+
+                      <Link to="/work/maison-cafe-bakery-spatial-design" className="btn-secondary-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', marginBottom: '20px', textDecoration: 'none' }}>
+                        Explore 23 Master Renders <ArrowIcon size={12} />
+                      </Link>
 
                       <div style={{
                         display: 'grid',
@@ -1004,6 +1008,101 @@ export default function SpatialBrandingPage() {
                     Translating visual authority into natural travertine, ribbed timber, chevron fabrics, and custom metal fixtures.
                   </p>
                 </div>
+              </div>
+            </div>
+
+            {/* Flagship Production Case Studies Grid */}
+            <div style={{ marginTop: '56px', borderTop: '1px solid var(--ink)', paddingTop: '36px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '12px', marginBottom: '24px' }}>
+                <div>
+                  <div className="eyebrow mono" style={{ color: 'var(--marker)', fontSize: '11px' }}>PRODUCTION CASE STUDIES</div>
+                  <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: '26px', margin: '4px 0 0' }}>Flagship Hospitality Spatial Environments</h3>
+                </div>
+                <Link to="/work" className="mono" style={{ fontSize: '12px', fontWeight: 600, color: 'var(--pine)', textDecoration: 'none' }}>
+                  VIEW ALL WORK &rarr;
+                </Link>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '24px' }}>
+                {[
+                  {
+                    slug: 'maison-cafe-bakery-spatial-design',
+                    title: 'Maison — Artisanal Café & Bakery',
+                    tag: '23 MASTER RENDERS',
+                    cover: '/images/cafe-bakery/cafe_bakery_cover.jpg',
+                    desc: 'Fluted travertine counters, illuminated pastry display cases, and arched niches.'
+                  },
+                  {
+                    slug: 'ouur-cafe-spatial-design',
+                    title: 'OUUR — Modern Industrial Café',
+                    tag: '9 MASTER RENDERS',
+                    cover: '/images/ouur-cafe/ouur_cafe_cover.jpg',
+                    desc: 'Brushed stainless steel service bars, fluted timber joinery, and ergonomic flow.'
+                  },
+                  {
+                    slug: 'arcomi-boho-cafe-spatial-design',
+                    title: 'Arcomi — Boho-Mediterranean Café',
+                    tag: '18 MASTER RENDERS',
+                    cover: '/images/boho-cafe/boho_cafe_cover.jpg',
+                    desc: 'Arched architecture, natural timber, textured plaster, and biophilic lighting.'
+                  },
+                  {
+                    slug: 'rooted-rustic-cafe-spatial-design',
+                    title: 'Rooted — Rustic Café Spatial Design',
+                    tag: '15 MASTER RENDERS',
+                    cover: '/images/rustic-cafe/rustic_cafe_cover.jpg',
+                    desc: 'Layered timber ceilings, earth plaster, and custom earthenware fixtures.'
+                  }
+                ].map((item, i) => (
+                  <Link
+                    key={i}
+                    to={`/work/${item.slug}`}
+                    style={{
+                      border: '1.5px solid var(--ink)',
+                      background: 'var(--card)',
+                      borderRadius: '2px',
+                      overflow: 'hidden',
+                      textDecoration: 'none',
+                      color: 'inherit',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                    }}
+                  >
+                    <div style={{ aspectRatio: '16/10', overflow: 'hidden', position: 'relative' }}>
+                      <img
+                        src={item.cover}
+                        alt={item.title}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                      />
+                      <span className="mono" style={{
+                        position: 'absolute',
+                        bottom: '8px',
+                        left: '8px',
+                        background: 'rgba(27,27,23,0.88)',
+                        color: '#FFF',
+                        fontSize: '9.5px',
+                        padding: '2px 6px',
+                        borderRadius: '2px'
+                      }}>
+                        {item.tag}
+                      </span>
+                    </div>
+                    <div style={{ padding: '16px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                      <div>
+                        <h4 style={{ fontFamily: "'Fraunces', serif", fontSize: '18px', margin: '0 0 6px', lineHeight: 1.25 }}>
+                          {item.title}
+                        </h4>
+                        <p style={{ fontSize: '12.5px', color: 'var(--ink-soft)', lineHeight: 1.5, margin: 0 }}>
+                          {item.desc}
+                        </p>
+                      </div>
+                      <div className="mono" style={{ fontSize: '11px', fontWeight: 600, color: 'var(--marker)', marginTop: '14px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        EXPLORE CASE STUDY &rarr;
+                      </div>
+                    </div>
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
