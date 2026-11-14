@@ -31,6 +31,7 @@ export default function WorkDetail() {
   const isArcomi = cleanId.includes('arcomi') || cleanId.includes('boho');
   const isOuur = cleanId.includes('ouur');
   const isMaison = cleanId.includes('maison') || cleanId.includes('bakery');
+  const isGhalia = cleanId.includes('ghalia');
   const isSoulBrew = cleanId.includes('soul') || cleanId.includes('brew');
   const isBondwith = cleanId.includes('bondwith');
   const isFlint = cleanId.includes('flint');
@@ -74,6 +75,7 @@ export default function WorkDetail() {
       (isArcomi && (s.includes('arcomi') || s.includes('boho'))) ||
       (isOuur && s.includes('ouur')) ||
       (isMaison && (s.includes('maison') || s.includes('bakery'))) ||
+      (isGhalia && s.includes('ghalia')) ||
       (isSoulBrew && s.includes('soul-brew')) ||
       (isBondwith && s.includes('bondwith')) ||
       (isFlint && s.includes('flint')) ||
@@ -255,6 +257,8 @@ export default function WorkDetail() {
               ? 'OUUR Modern Industrial Café Spatial Design Case Study'
               : isMaison
               ? 'Maison Café & Bakery Spatial Design Case Study'
+              : isGhalia
+              ? 'Ghalia Acarverde Restaurant Spatial Design Case Study'
               : isSoulBrew
               ? 'Soul Brew Case Study'
               : isBondwith
@@ -303,6 +307,8 @@ export default function WorkDetail() {
                 ? 'CASE STUDY // SPEC 20 — MODERN INDUSTRIAL SPATIAL DESIGN & BRAND ENVIRONMENTS'
                 : isMaison
                 ? 'CASE STUDY // SPEC 22 — ARTISANAL BAKERY & CAFE SPATIAL DESIGN & BRAND ENVIRONMENTS'
+                : isGhalia
+                ? 'CASE STUDY // SPEC 23 — LUXURY RESTAURANT SPATIAL DESIGN & BRAND ENVIRONMENTS'
                 : isSoulBrew
                 ? 'CASE STUDY // SPEC 04 — ARTISAN COFFEE & MOTION'
                 : isBondwith
@@ -648,6 +654,31 @@ export default function WorkDetail() {
                 <div className="meta-cell">
                   <div className="k">Impact</div>
                   <div className="v" style={{ color: 'var(--pine)' }}>23 Master Spatial Renders</div>
+                </div>
+              </div>
+            </>
+          ) : isGhalia ? (
+            <>
+              <h1>Ghalia Acarverde — <em>Luxury Restaurant Spatial Design</em> &amp; Brand Environments.</h1>
+              <p className="dek">
+                How we engineered an opulent, contemporary commercial hospitality interior combining emerald stone accents, sculptural ribbed timber ceilings, bespoke bronze lighting installations, plush velvet booth dining, and seamless indoor-outdoor terrace circulation in Istanbul.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Ghalia Acarverde Fine Dining Restaurant &amp; Lounge</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Spatial Design &amp; Architectural Environments</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">7 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>32 Master Spatial Renders</div>
                 </div>
               </div>
             </>
@@ -1963,6 +1994,62 @@ export default function WorkDetail() {
                     <li>Complete Commercial Floorplan Specs</li>
                     <li>Turnkey Millwork &amp; Fabricator Handoff</li>
                     <li>Flagship Commercial Bakery Atmosphere</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isGhalia ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Opulent hospitality architecture &amp; fine dining brand environments.</h2>
+                </div>
+                <p>Sculptural ribbed timber ceilings, monolithic emerald stone cocktail bars, bespoke bronze pendant installations, and high-dwell velvet dining booths.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Spatial Architecture</h4>
+                  <div className="sub">// CEILING &amp; MILLWORK</div>
+                  <ul>
+                    <li>Parametric ribbed walnut ceiling architecture</li>
+                    <li>Emerald stone monolithic central bar</li>
+                    <li>Textured warm plaster &amp; fluted paneling</li>
+                    <li>Seamless micro-terrazzo dining floor</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Lighting &amp; Ambience</h4>
+                  <div className="sub">// FIXTURES &amp; ILLUMINATION</div>
+                  <ul>
+                    <li>Custom suspended bronze chandelier clusters</li>
+                    <li>Concealed warm cove perimeter architectural lighting</li>
+                    <li>Integrated cocktail shelf backlighting</li>
+                    <li>Dimmable table-level intimacy wall sconces</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Bespoke Hospitality</h4>
+                  <div className="sub">// BOOTHS &amp; SEATING</div>
+                  <ul>
+                    <li>Curved plush emerald velvet dining booths</li>
+                    <li>Solid walnut &amp; brass two-top café tables</li>
+                    <li>Terrace lounge all-weather upholstered suite</li>
+                    <li>Ergonomic server staging &amp; sommelier stations</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>32 Master 3D Spatial Visualizations</li>
+                    <li>Complete Architectural Millwork Drawings</li>
+                    <li>Turnkey General Contractor Spec Package</li>
+                    <li>High Atmospheric Recall &amp; Patron Dwell-Time</li>
                   </ul>
                 </div>
               </div>

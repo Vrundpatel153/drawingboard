@@ -1026,6 +1026,13 @@ export default function SpatialBrandingPage() {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '24px' }}>
                 {[
                   {
+                    slug: 'ghalia-acarverde-restaurant-spatial-design',
+                    title: 'Ghalia Acarverde — Luxury Restaurant',
+                    tag: '32 MASTER RENDERS',
+                    cover: '/images/ghalia-acarverde/ghalia_cover.jpg',
+                    desc: 'Emerald stone bar, ribbed walnut ceilings, bronze lighting, and terrace dining.'
+                  },
+                  {
                     slug: 'maison-cafe-bakery-spatial-design',
                     title: 'Maison — Artisanal Café & Bakery',
                     tag: '23 MASTER RENDERS',
