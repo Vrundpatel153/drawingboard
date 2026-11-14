@@ -1,0 +1,58 @@
+{
+  "gusto": {
+    "coverImage": "/images/gusto/gusto_cover.jpg",
+    "images": [
+      "/images/gusto/gusto_01.png",
+      "/images/gusto/gusto_02.jpg",
+      "/images/gusto/gusto_03.jpg",
+      "/images/gusto/gusto_04.jpg",
+      "/images/gusto/gusto_05.jpg",
+      "/images/gusto/gusto_06.jpg",
+      "/images/gusto/gusto_07.jpg",
+      "/images/gusto/gusto_08.jpg",
+      "/images/gusto/gusto_09.jpg",
+      "/images/gusto/gusto_10.jpg",
+      "/images/gusto/gusto_11.jpg",
+      "/images/gusto/gusto_12.jpg",
+      "/images/gusto/gusto_13.png",
+      "/images/gusto/gusto_14.png",
+      "/images/gusto/gusto_15.png",
+      "/images/gusto/gusto_16.png",
+      "/images/gusto/gusto_17.png",
+      "/images/gusto/gusto_18.png",
+      "/images/gusto/gusto_19.png",
+      "/images/gusto/gusto_20.jpg",
+      "/images/gusto/gusto_21.mp4",
+      "/images/gusto/gusto_22.mp4"
+    ]
+  },
+  "bonta": {
+    "coverImage": "/images/bonta/bonta_cover.jpg",
+    "images": [
+      "/images/bonta/bonta_01.jpg",
+      "/images/bonta/bonta_02.jpg",
+      "/images/bonta/bonta_03.jpg",
+      "/images/bonta/bonta_04.jpg",
+      "/images/bonta/bonta_05.jpg",
+      "/images/bonta/bonta_06.jpg",
+      "/images/bonta/bonta_07.jpg",
+      "/images/bonta/bonta_08.jpg",
+      "/images/bonta/bonta_09.jpg",
+      "/images/bonta/bonta_10.jpg",
+      "/images/bonta/bonta_11.jpg",
+      "/images/bonta/bonta_12.jpg",
+      "/images/bonta/bonta_13.jpg",
+      "/images/bonta/bonta_14.jpg",
+      "/images/bonta/bonta_15.jpg",
+      "/images/bonta/bonta_16.jpg",
+      "/images/bonta/bonta_17.jpg",
+      "/images/bonta/bonta_18.jpg",
+      "/images/bonta/bonta_19.mp4",
+      "/images/bonta/bonta_20.mp4",
+      "/images/bonta/bonta_21.mp4",
+      "/images/bonta/bonta_22.mp4",
+      "/images/bonta/bonta_23.mp4",
+      "/images/bonta/bonta_24.mp4"
+    ]
+  }
+}

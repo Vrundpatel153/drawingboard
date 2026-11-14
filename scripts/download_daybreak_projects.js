@@ -118,3 +118,4 @@ async function tryDownload(filename, dest) {
   }
   console.log('\nAll downloads complete!');
 })();
+
