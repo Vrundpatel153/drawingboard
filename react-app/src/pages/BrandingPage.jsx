@@ -1551,7 +1551,7 @@ export default function BrandingPage() {
                       <span className="amt">{growthPrices[currency]}</span>
                       {currency !== 'USD' && (
                         <span style={{ fontSize: '18px', color: 'var(--ink-soft)', fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}>
-                          ($4,960)
+                          ($3,650)
                         </span>
                       )}
                     </div>
@@ -1691,7 +1691,7 @@ export default function BrandingPage() {
                       <span className="amt">{scalePrices[currency]}</span>
                       {currency !== 'USD' && (
                         <span style={{ fontSize: '18px', color: 'var(--ink-soft)', fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}>
-                          ($6,780)
+                          ($4,960)
                         </span>
                       )}
                     </div>

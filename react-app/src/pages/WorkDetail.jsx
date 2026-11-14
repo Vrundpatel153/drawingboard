@@ -29,6 +29,7 @@ export default function WorkDetail() {
   const isElsewhere = cleanId.includes('elsewhere');
   const isGusto = cleanId.includes('gusto');
   const isBonta = cleanId.includes('bonta');
+  const isDabbo = cleanId.includes('dabbo');
   const isGloopy = cleanId.includes('gloopy');
   const isBunzoBun = cleanId.includes('bunzo');
   const isChaiTo = cleanId.includes('chai-to') || cleanId.includes('chaito');
@@ -79,6 +80,7 @@ export default function WorkDetail() {
       (isElsewhere && s.includes('elsewhere')) ||
       (isGusto && s.includes('gusto')) ||
       (isBonta && s.includes('bonta')) ||
+      (isDabbo && s.includes('dabbo')) ||
       (isGloopy && s.includes('gloopy')) ||
       (isBunzoBun && s.includes('bunzo')) ||
       (isChaiTo && (s.includes('chai-to') || s.includes('chaito'))) ||
@@ -708,6 +710,31 @@ export default function WorkDetail() {
                 <div className="meta-cell">
                   <div className="k">Impact</div>
                   <div className="v" style={{ color: 'var(--pine)' }}>30 Master Production Assets</div>
+                </div>
+              </div>
+            </>
+          ) : isDabbo ? (
+            <>
+              <h1>Dabbo — <em>Madrid Street Food Hot Dog</em> &amp; Specialty Coffee Packaging.</h1>
+              <p className="dek">
+                Artisanal street food brand identity, custom folding hot dog clamshells, takeaway carrier boxes (&lsquo;dabbo&rsquo;), specialty coffee cups, and greaseproof continuous-pattern wrapping paper engineered for Madrid&apos;s energetic quick-service dining scene.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Dabbo Madrid (Spain)</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Street Food Identity, Custom Packaging Dielines &amp; Coffee Collateral</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">4 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>10 Master High-Res Assets &bull; +280% Footfall</div>
                 </div>
               </div>
             </>
@@ -1542,6 +1569,28 @@ export default function WorkDetail() {
                 <div className="insight-card">
                   <div className="lbl">// THE SENSORY NOSTALGIA INSIGHT</div>
                   <p>"Scent is the invisible thread that connects us to our memories. When packaging materiality and typography honour cultural heritage with restraint, daily burning becomes a transformative sacred ritual."</p>
+                </div>
+              </div>
+            </>
+          ) : isDabbo ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE MADRID STREET FOOD CHALLENGE</div>
+                  <h2>Reinventing casual street dining into a cult-favorite culinary destination.</h2>
+                </div>
+                <p>Moving beyond generic fast-food paper wraps to an iconic, retro-modern takeaway packaging architecture.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>Madrid&apos;s bustling street food landscape demanded an identity that honors Spanish culinary warmth while executing with razor-sharp Scandinavian typographic restraint.</strong></p>
+                  <p>Dabbo needed a modular takeaway architecture capable of keeping artisanal grilled sausages piping hot, containing condiments without sogginess, and pairing seamlessly with high-volume specialty roasted espresso on the go.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// PACKAGING FUNCTIONALITY INSIGHT</div>
+                  <p>&ldquo;Street food packaging must perform as a mobile billboard. When custom folding clamshells lock securely and carry bold Madrid crimson branding, customers proudly carry the brand across the city plazas.&rdquo;</p>
                 </div>
               </div>
             </>
@@ -3803,6 +3852,19 @@ export default function WorkDetail() {
                   "Handcrafted Ceramics in Motion: Warmth, Stillness & Form"
                 ];
 
+                const dabboCaptions = [
+                  "Dabbo — Master Brand Identity & Madrid Street Food Packaging Suite",
+                  "Artisanal Hot Dog Folding Clamshell Box with Precision Locking Tab",
+                  "Modular Takeaway Carrier Box ('Dabbo') Engineered for Street Dining",
+                  "Specialty Roasted Coffee Cups & Corrugated Thermal Embossed Sleeves",
+                  "Greaseproof Repeating Pattern Food Wrapping Liners & Fast-Casual Tray Setup",
+                  "Fluorescent Sticker Seal Architecture & Tamper-Evident Packaging Badges",
+                  "Bespoke Retro Wordmark & Madrid Street Food Emblem Stamp Matrix",
+                  "Takeaway Kraft Paper Bags with Bold Red Screen-Printed Typography",
+                  "Streetfront Signage & Madrid Walk-Up Window Spatial Menu Architecture",
+                  "Complete Quick-Service Brand Architecture & Production-Ready Dieline System"
+                ];
+
                 const bontaCaptions = [
                   "Bontà Gelato Master Hero Tub Architecture: Lavender, Vanilla & Dark Chocolate",
                   "Brand Rebrand Case Study Film: 'Gelato from the Great Outdoors'",
@@ -3891,6 +3953,12 @@ export default function WorkDetail() {
                   ? braveRxCaptions[imgIdx]
                   : isRestReligion && imgIdx < restReligionCaptions.length
                   ? restReligionCaptions[imgIdx]
+                  : isDabbo && imgIdx < dabboCaptions.length
+                  ? dabboCaptions[imgIdx]
+                  : isGusto && imgIdx < gustoCaptions.length
+                  ? gustoCaptions[imgIdx]
+                  : isBonta && imgIdx < bontaCaptions.length
+                  ? bontaCaptions[imgIdx]
                   : isGloopy && imgIdx < gloopyCaptions.length
                   ? gloopyCaptions[imgIdx]
                   : isBunzoBun && imgIdx < bunzoBunCaptions.length
@@ -4017,6 +4085,41 @@ export default function WorkDetail() {
                   <div className="row">
                     <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
                     <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for mountain coordinates, batch numbers &amp; dieline codes.</p>
+                  </div>
+                </div>
+              </div>
+            ) : isDabbo ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#C8102E', color: '#FFF' }}>
+                    <div className="lbl">MADRID CRIMSON // #C8102E</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#F6F2E9', color: '#1A120E' }}>
+                    <div className="lbl">BRIOCHE CREAM // #F6F2E9</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#1A120E', color: '#FFF' }}>
+                    <div className="lbl">ESPRESSO ROAST // #1A120E</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#EAA824', color: '#1A120E' }}>
+                    <div className="lbl">RETRO MUSTARD // #EAA824</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#7A9AB8', color: '#FFF' }}>
+                    <div className="lbl">SPANISH SKY // #7A9AB8</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>STREET DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>Vintage European Grotesk &bull; Bold Retro Street Display</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>MENU &amp; PACKAGING:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter SemiBold &bull; Clamshell Nutrition &amp; Takeaway Menu Typography</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for roasting origins, dieline cut-lines &amp; batch codes.</p>
                   </div>
                 </div>
               </div>
