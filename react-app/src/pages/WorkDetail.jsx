@@ -3209,7 +3209,345 @@ export default function WorkDetail() {
               <div className="eyebrow">BRAND SYSTEM SPECIFICATIONS</div>
             </div>
 
-            {isIva ? (
+            {isGhalia ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#1A382B', color: '#FFF' }}>
+                    <div className="lbl">EMERALD // #1A382B</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#3D2817', color: '#FFF' }}>
+                    <div className="lbl">RIBBED WALNUT // #3D2817</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#A88448', color: '#1B1B17' }}>
+                    <div className="lbl">BRUSHED BRONZE // #A88448</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#F5EFEB', color: '#1B1B17' }}>
+                    <div className="lbl">WARM ALABASTER // #F5EFEB</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#121413', color: '#FFF' }}>
+                    <div className="lbl">NOIR // #121413</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>Fraunces Luxury Serif &bull; Architectural Geometry</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>EDITORIAL SANS:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter Medium &bull; Fine Dining Tasting Menus &amp; Table Collateral</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for architectural millwork codes &amp; MEP schedules.</p>
+                  </div>
+                </div>
+              </div>
+            ) : isMaison ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#D9CBB8', color: '#1B1B17' }}>
+                    <div className="lbl">TRAVERTINE // #D9CBB8</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#B3583C', color: '#FFF' }}>
+                    <div className="lbl">TERRACOTTA // #B3583C</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#F7F4EE', color: '#1B1B17' }}>
+                    <div className="lbl">ALABASTER // #F7F4EE</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#C29B4A', color: '#1B1B17' }}>
+                    <div className="lbl">BRASS // #C29B4A</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#1F1E1C', color: '#FFF' }}>
+                    <div className="lbl">CHARCOAL // #1F1E1C</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>Maison Display Serif &bull; Bakery Arched Logotype</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>EDITORIAL SANS:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter Regular &amp; Medium &bull; Artisanal Pastry Vitrine Hierarchy</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for daily bake rotations &amp; formulation ratios.</p>
+                  </div>
+                </div>
+              </div>
+            ) : isOuur ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#C5C9CD', color: '#1B1B17' }}>
+                    <div className="lbl">STAINLESS // #C5C9CD</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#7A614A', color: '#FFF' }}>
+                    <div className="lbl">TIMBER // #7A614A</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#E2E0D8', color: '#1B1B17' }}>
+                    <div className="lbl">CONCRETE // #E2E0D8</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#18191B', color: '#FFF' }}>
+                    <div className="lbl">NOIR // #18191B</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#D9822B', color: '#1B1B17' }}>
+                    <div className="lbl">AMBER // #D9822B</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>Architectural Geometric Sans &bull; Minimalist Identity</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>BARISTA SANS:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter Medium &bull; High-Efficiency Workflow Typography</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for extraction yield formulas &amp; roast profiles.</p>
+                  </div>
+                </div>
+              </div>
+            ) : isArcomi ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#BD694B', color: '#FFF' }}>
+                    <div className="lbl">MEDITERRANEAN // #BD694B</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#EDE4D3', color: '#1B1B17' }}>
+                    <div className="lbl">SAND PLASTER // #EDE4D3</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#3F4735', color: '#FFF' }}>
+                    <div className="lbl">OLIVE // #3F4735</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#C7A26F', color: '#1B1B17' }}>
+                    <div className="lbl">RATTAN // #C7A26F</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#201A17', color: '#FFF' }}>
+                    <div className="lbl">ESPRESSO // #201A17</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>Arcomi Bohemian Sans &bull; Arched Geometric Proportions</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>EDITORIAL SANS:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter Medium &bull; Hospitality Menus &amp; Tactile Tableware</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for origin lot coordinates &amp; elevation data.</p>
+                  </div>
+                </div>
+              </div>
+            ) : isRusticCafe ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#4A3324', color: '#FFF' }}>
+                    <div className="lbl">EARTH TIMBER // #4A3324</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#A85A3B', color: '#FFF' }}>
+                    <div className="lbl">TERRACOTTA // #A85A3B</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#F2ECE1', color: '#1B1B17' }}>
+                    <div className="lbl">CHALK LIME // #F2ECE1</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#384231', color: '#FFF' }}>
+                    <div className="lbl">BOTANICAL // #384231</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#1C1613', color: '#FFF' }}>
+                    <div className="lbl">DEEP UMBER // #1C1613</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>Rooted Organic Display &bull; Tactile Architectural Titling</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>EDITORIAL SANS:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter Regular &amp; Medium &bull; Farm-to-Table Seasonal Menus</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for spatial zoning dimensions &amp; joinery schedules.</p>
+                  </div>
+                </div>
+              </div>
+            ) : isElsewhere ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#8B85C1', color: '#FFF' }}>
+                    <div className="lbl">LAVENDER // #8B85C1</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#D2DFC7', color: '#1B1B17' }}>
+                    <div className="lbl">MATCHA // #D2DFC7</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#261F23', color: '#FFF' }}>
+                    <div className="lbl">COSMIC // #261F23</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#E2B7A8', color: '#1B1B17' }}>
+                    <div className="lbl">DUSK ROSE // #E2B7A8</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#F4D37A', color: '#1B1B17' }}>
+                    <div className="lbl">GOLD CLOUD // #F4D37A</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>Elsewhere Custom Cloud Serif &bull; Playful Dream Typography</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>EDITORIAL SANS:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter Medium &bull; Whimsical Specialty Coffee &amp; Merchandise System</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for roast profiles, bean origins &amp; batch numbers.</p>
+                  </div>
+                </div>
+              </div>
+            ) : isMatcha ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#3C5A38', color: '#FFF' }}>
+                    <div className="lbl">MATCHA // #3C5A38</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#F7F5EB', color: '#1B1B17' }}>
+                    <div className="lbl">CREAM // #F7F5EB</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#1C1E1D', color: '#FFF' }}>
+                    <div className="lbl">CHARCOAL // #1C1E1D</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#E6B638', color: '#1B1B17' }}>
+                    <div className="lbl">YUZU // #E6B638</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>Matcha Club Character Wordmark &bull; Japanese Ritual Influence</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>EDITORIAL SANS:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter Medium &bull; Clean Beverage Menu &amp; Tin Label Architecture</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for harvest ceremonial grade batches &amp; whisk ratios.</p>
+                  </div>
+                </div>
+              </div>
+            ) : isPronto ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#C53D25', color: '#FFF' }}>
+                    <div className="lbl">TOMATO // #C53D25</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#F6EBD4', color: '#1B1B17' }}>
+                    <div className="lbl">SEMOLINA // #F6EBD4</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#2E5C38', color: '#FFF' }}>
+                    <div className="lbl">BASIL // #2E5C38</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#191615', color: '#FFF' }}>
+                    <div className="lbl">WOODFIRE // #191615</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>PRONTO! Dynamic Neapolitan Display &bull; Bold Retro Italian</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>EDITORIAL SANS:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter Bold &amp; Medium &bull; Pizzeria Box Dielines &amp; Table Collateral</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for wood-fired oven temps &amp; fermentation timestamps.</p>
+                  </div>
+                </div>
+              </div>
+            ) : isDorada ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#C9963D', color: '#1B1B17' }}>
+                    <div className="lbl">COLOMBIAN GOLD // #C9963D</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#9E4B2F', color: '#FFF' }}>
+                    <div className="lbl">TERRACOTTA // #9E4B2F</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#F4EEDF', color: '#1B1B17' }}>
+                    <div className="lbl">PARCHMENT // #F4EEDF</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#1E1714', color: '#FFF' }}>
+                    <div className="lbl">DARK ROAST // #1E1714</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>Dorada Latin Serif &bull; Sunlit Roastery Heritage</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>EDITORIAL SANS:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter Medium &bull; Coffee Bag Label Architecture &amp; Café Menu</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for altitude meters, washed process &amp; tasting notes.</p>
+                  </div>
+                </div>
+              </div>
+            ) : isMurami ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#D4883C', color: '#1B1B17' }}>
+                    <div className="lbl">RAMEN BROTH // #D4883C</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#2B1E19', color: '#FFF' }}>
+                    <div className="lbl">UMAMI SOY // #2B1E19</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#141615', color: '#FFF' }}>
+                    <div className="lbl">NORI BLACK // #141615</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#E88374', color: '#1B1B17' }}>
+                    <div className="lbl">GINGER BLUSH // #E88374</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>Murami Character Display &bull; Playful Japanese Restaurant Wordmark</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>EDITORIAL SANS:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter Medium &bull; Editorial Dining Menu &amp; Chopstick Sleeves</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for broth boiling hours, ramen bowls &amp; kitchen orders.</p>
+                  </div>
+                </div>
+              </div>
+            ) : isIva ? (
               <div className="spec-grid">
                 <div className="swatches">
                   <div className="swatch" style={{ background: '#161616', color: '#FFF' }}>
