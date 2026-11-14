@@ -134,8 +134,20 @@ export function calculateDynamicLeadValue(data = {}) {
   if (budget.includes('$6,000') || budget.includes('6000')) return { value: 7500, currency: 'USD' };
 
   // 2. INR Budget Choices (Brand Readiness & Contact)
-  if (budget.includes('u3') || budget.includes('under ₹3') || budget.includes('under 3')) {
+  if (budget.includes('u3') || budget.includes('under ₹3') || budget.includes('under 3') || budget.includes('below-3l') || budget.includes('below ₹3,00,000')) {
     return { value: 250000, currency: 'INR' };
+  }
+  if (budget.includes('3.5l-4l') || budget.includes('3,50,000 to under ₹4,00,000') || budget.includes('3,50,000')) {
+    return { value: 375000, currency: 'INR' };
+  }
+  if (budget.includes('4.5l-5.75l') || budget.includes('4,50,000 to under ₹5,75,000')) {
+    return { value: 512500, currency: 'INR' };
+  }
+  if (budget.includes('5.75l-6l') || budget.includes('5,75,000 to under ₹6,00,000')) {
+    return { value: 587500, currency: 'INR' };
+  }
+  if (budget.includes('6l-plus') || budget.includes('6,00,000+')) {
+    return { value: 650000, currency: 'INR' };
   }
   if (budget.includes('3-475') || budget.includes('3–4.75') || budget.includes('3-4.75') || budget.includes('3,25,000')) {
     return { value: 387500, currency: 'INR' };
@@ -152,13 +164,13 @@ export function calculateDynamicLeadValue(data = {}) {
 
   // 3. Service / Engagement Packages
   if (services.includes('market') || services.includes('identity + pack + web')) {
-    return { value: 750000, currency: 'INR' };
+    return { value: 475000, currency: 'INR' };
   }
   if (services.includes('shelf') || services.includes('brand-to-shelf')) {
-    return { value: 475000, currency: 'INR' };
+    return { value: 350000, currency: 'INR' };
   }
   if (services.includes('foundation') || services.includes('brand foundation')) {
-    return { value: 475000, currency: 'INR' };
+    return { value: 350000, currency: 'INR' };
   }
   if (services.includes('packaging')) {
     return { value: 325000, currency: 'INR' };

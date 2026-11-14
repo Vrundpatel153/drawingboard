@@ -717,7 +717,7 @@ export default function Work() {
           initialIndex={modalIndex}
         />
         <StickyMobileCTA
-          title="From ₹4,75,000 ($4,960)"
+          title="From ₹3,50,000 ($3,650)"
           subtitle="Strategic Brand Engineering"
           buttonText="Get Quote"
           link="/get-quote"

@@ -24,7 +24,7 @@ Most agencies treat branding as visual decoration applied to a business after th
 We believe in radical pricing transparency. Traditional legacy advertising agencies often quote vague ₹15 Lakhs to ₹25 Lakhs retainers with 8 to 14 weeks of bureaucratic overhead. We operate on structured, fixed-scope sprint models with direct senior design director involvement:
 
 ### Engagement Tier 1: Brand-to-Shelf System
-- **Investment:** $4,960 USD / ₹4,75,000 INR
+- **Investment:** $3,650 USD / ₹3,50,000 INR
 - **Sprint Timeline:** 4 to 6 Weeks
 - **Core Deliverables:**
   - Founder strategic discovery session
@@ -39,7 +39,7 @@ We believe in radical pricing transparency. Traditional legacy advertising agenc
   - Comprehensive brand guidelines manual
 
 ### Engagement Tier 2: Brand-to-Market System
-- **Investment:** $6,780 USD / ₹6,50,000 INR
+- **Investment:** $4,960 USD / ₹4,75,000 INR
 - **Sprint Timeline:** 6 to 8 Weeks
 - **Core Deliverables:**
   - Everything included in the Brand-to-Shelf System
@@ -142,7 +142,7 @@ Every engagement is governed by our proprietary 5-stage sprint methodology, ensu
 ## 5. Frequently Asked Questions (FAQ)
 
 ### Q: How much does a brand identity cost at The Drawing Board?
-**A:** Engagements begin at **$4,960 (₹4,75,000)** for our **Brand-to-Shelf** core system, which covers full strategic positioning, competitor audits, mathematical logomark systems, typography, color tokens, master packaging design, up to 5 SKU adaptations, and brand guidelines with 100% vector file handover. For brands requiring a custom high-performance digital storefront or custom web build, our **Brand-to-Market** engagement is **$6,780 (₹6,50,000)**.
+**A:** Engagements begin at **$3,650 (₹3,50,000)** for our **Brand-to-Shelf** core system, which covers full strategic positioning, competitor audits, mathematical logomark systems, typography, color tokens, master packaging design, up to 5 SKU adaptations, and brand guidelines with 100% vector file handover. For brands requiring a custom high-performance digital storefront or custom web build, our **Brand-to-Market** engagement is **$4,960 (₹4,75,000)**.
 
 ### Q: How long does a project take?
 **A:** Our focused sprint runs **4 to 6 weeks for Brand-to-Shelf** and **6 to 8 weeks for Brand-to-Market**. Because you work directly with senior design directors and founders—without bureaucratic agency layers or junior account handlers—decisions are made swiftly and revisions are executed without delay.

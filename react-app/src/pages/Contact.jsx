@@ -81,8 +81,8 @@ const BUDGET_OPTIONS = [
     group: 'USD ($)',
     options: [
       '$3,400 (Master Packaging System)',
-      '$4,960 (Growth Brand-to-Shelf)',
-      '$6,780 (Scale Brand-to-Market)',
+      '$3,650 (Growth Brand-to-Shelf)',
+      '$4,960 (Scale Brand-to-Market)',
       '$8,000 – $12,000',
       '$12,000 – $20,000',
       '$20,000+'
@@ -92,8 +92,8 @@ const BUDGET_OPTIONS = [
     group: 'INR (₹)',
     options: [
       '₹3,25,000 ($3,400) — Master Packaging System',
-      '₹4,75,000 ($4,960) — Growth Brand-to-Shelf',
-      '₹6,50,000 ($6,780) — Scale Brand-to-Market',
+      '₹3,50,000 ($3,650) — Growth Brand-to-Shelf',
+      '₹4,75,000 ($4,960) — Scale Brand-to-Market',
       '₹8,00,000 – ₹12,00,000 ($8,350 – $12,500)',
       '₹12,00,000+ ($12,500+)'
     ]
@@ -126,7 +126,7 @@ export default function Contact() {
     teamStructure: '',
     primaryChallenge: '',
     services: ['Branding'],
-    budget: '₹4,75,000 (Growth Brand-to-Shelf)',
+    budget: '₹3,50,000 (Growth Brand-to-Shelf)',
     timeline: 'Immediately',
     message: ''
   });

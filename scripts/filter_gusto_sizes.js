@@ -23,3 +23,4 @@ gustoUrls.forEach((url, i) => {
 
 console.log('Valid high-res gusto assets:', valid.length);
 fs.writeFileSync('scripts/gusto_filtered.json', JSON.stringify(valid, null, 2));
+

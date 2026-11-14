@@ -27,7 +27,7 @@ const FAQ_BRANDING = [
   },
   {
     q: 'What is your pricing structure?',
-    a: 'We publish transparent, fixed-scope sprint pricing: Brand-to-Shelf System is ₹4,75,000 / $4,960 (4–6 weeks); Brand-to-Market System (Identity + Packaging + Web) is ₹6,50,000 / $6,780 (6–8 weeks); and Enterprise / SaaS platforms range from ₹6,00,000 to ₹8,50,000 / $6,200 to $8,900. No hidden hourly fees or unexpected retainer creep.'
+    a: 'We publish transparent, fixed-scope sprint pricing: Brand-to-Shelf System is ₹3,50,000 / $3,650 (4–6 weeks); Brand-to-Market System (Identity + Packaging + Web) is ₹4,75,000 / $4,960 (6–8 weeks); and Enterprise / SaaS platforms range from ₹6,00,000 to ₹8,50,000 / $6,200 to $8,900. No hidden hourly fees or unexpected retainer creep.'
   },
   {
     q: 'How many clients do you take on at once?',

@@ -327,3 +327,4 @@ if (!content.includes('GLACIER BLUE // #4A89A4')) {
 
 fs.writeFileSync(path, content, 'utf8');
 console.log('WorkDetail.jsx updated successfully!');
+

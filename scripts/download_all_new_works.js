@@ -124,3 +124,4 @@ function syncToDist(sub) {
 syncToDist('gusto');
 syncToDist('bonta');
 console.log('=== ALL DOWNLOADS & SYNC COMPLETE ===');
+

@@ -13,3 +13,4 @@ allVideoTags.forEach((s, i) => console.log('video:', i+1, s));
 
 console.log('\nAll data-src:', allDataSrc.length);
 allDataSrc.forEach((s, i) => console.log('data-src:', i+1, s));
+

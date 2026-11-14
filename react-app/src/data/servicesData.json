@@ -6,9 +6,9 @@
     "headline": "We Craft Brands That Speak with Purpose and Scale with Confidence",
     "eyebrow": "01 // BRAND IDENTITY",
     "tagline": "STRATEGY & VISUAL SYSTEM",
-    "startingPrice": "$4,960",
-    "startingPriceGBP": "£3,700",
-    "startingPriceINR": "₹4,75,000",
+    "startingPrice": "$3,650",
+    "startingPriceGBP": "£2,850",
+    "startingPriceINR": "₹3,50,000",
     "duration": "3-4 Weeks Sprint",
     "heroImage": "https://framerusercontent.com/images/cYvKtkgBQZ9BOFI5j8LSipd9c8.jpeg?width=1069&height=1024",
     "secondaryImage": "https://framerusercontent.com/images/TW8nh45W2f0jJxIXkfCtK2I9qo.webp?width=1876&height=1821",
@@ -34,8 +34,8 @@
       "https://framerusercontent.com/images/RQJI69utdAxFprNWe2HKz94CqO0.webp?width=2100&height=1183"
     ],
     "pricingModels": [
-      { "tier": "Growth Brand-to-Shelf", "price": "$4,960", "priceGBP": "£3,700", "priceINR": "₹4,75,000", "desc": "Positioning, complete visual identity, master packaging direction, up to 5 SKU adaptations, and guidelines." },
-      { "tier": "Scale Brand-to-Market", "price": "$6,780", "priceGBP": "£5,060", "priceINR": "₹6,50,000", "desc": "Everything in Brand-to-Shelf plus full website UI/UX strategy, responsive development, and launch handover." }
+      { "tier": "Growth Brand-to-Shelf", "price": "$3,650", "priceGBP": "£2,850", "priceINR": "₹3,50,000", "desc": "Positioning, complete visual identity, master packaging direction, up to 5 SKU adaptations, and guidelines." },
+      { "tier": "Scale Brand-to-Market", "price": "$4,960", "priceGBP": "£3,700", "priceINR": "₹4,75,000", "desc": "Everything in Brand-to-Shelf plus full website UI/UX strategy, responsive development, and launch handover." }
     ],
     "faqs": [
       { "q": "What deliverables are included in the final handoff?", "a": "You receive full vector AI, SVG, EPS, PNG, and PDF source files, along with an interactive web brand guide." },

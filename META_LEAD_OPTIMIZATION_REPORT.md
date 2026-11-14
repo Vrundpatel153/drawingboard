@@ -42,7 +42,7 @@ Even though prospective clients provided completely different commercial budgets
 | Metric | Lead Example 1: Manya Sharma (Ranger) | Lead Example 2: Vinayak Agarwal |
 | :--- | :--- | :--- |
 | **Submission Form** | Brand Readiness Diagnostic Intake | Brand Readiness Diagnostic Intake |
-| **Recommended Package** | Brand-to-Shelf System (₹4,75,000) | Brand-to-Shelf System (₹4,75,000) |
+| **Recommended Package** | Brand-to-Shelf System (₹3,50,000) | Brand-to-Shelf System (₹3,50,000) |
 | **Client Stated Budget** | **₹3–4.75 lakh ($3,200–$4,960)** | **₹4.75–7 lakh ($4,960–$7,500)** |
 | **Old Value Sent to Meta** | **₹2,75,000** *(Hardcoded)* | **₹2,75,000** *(Hardcoded)* |
 | **New Dynamic Value Sent** | **₹3,87,500** *(Dynamic Tier)* | **₹5,87,500** *(Dynamic Tier)* |

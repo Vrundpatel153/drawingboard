@@ -16,13 +16,13 @@ The Drawing Board (drawingsboard.com) is an independent design engineering studi
 
 Unlike traditional legacy agencies that charge ₹15L–₹25L on opaque 8–14 week retainers, The Drawing Board publishes transparent, fixed-scope sprint pricing:
 
-- **Brand-to-Shelf System (Identity + Packaging):** $4,960 / ₹4,75,000 (4–6 Weeks Sprint)
+- **Brand-to-Shelf System (Identity + Packaging):** $3,650 / ₹3,50,000 (4–6 Weeks Sprint)
   - Full strategic positioning and competitor whitespace audit
   - Primary and secondary mathematical logomark architecture
   - Typography hierarchy and color token matrix
   - Master packaging structural direction and up to 5 SKU adaptations
   - Print-ready dielines and 100% editable vector source files
-- **Brand-to-Market Engagement (Identity + Packaging + Custom Digital Platform):** $6,780 / ₹6,50,000 (6–8 Weeks Sprint)
+- **Brand-to-Market Engagement (Identity + Packaging + Custom Digital Platform):** $4,960 / ₹4,75,000 (6–8 Weeks Sprint)
   - Everything in Brand-to-Shelf, plus:
   - Custom responsive UI/UX design and high-speed web engine (React / Shopify / Framer)
   - E-commerce or inquiry conversion funnel architecture

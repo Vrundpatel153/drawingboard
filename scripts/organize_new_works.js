@@ -42,3 +42,4 @@ const gustoData = organize('gusto', 'gusto');
 const bontaData = organize('bonta', 'bonta');
 
 fs.writeFileSync('scripts/organized_manifest.json', JSON.stringify({ gusto: gustoData, bonta: bontaData }, null, 2));
+

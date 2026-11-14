@@ -16,8 +16,8 @@ const SERVICES = [
     value: 'brand-identity',
     label: 'Brand strategy & identity',
     prices: {
-      INR: 'From ₹4,75,000',
-      USD: 'From $4,960'
+      INR: 'From ₹3,50,000',
+      USD: 'From $3,650'
     }
   },
   {
@@ -139,31 +139,38 @@ const BUDGETS = {
   ],
   'brand-identity': [
     {
-      value: 'below-4.75l',
+      value: 'below-3l',
       labels: {
-        INR: 'Below ₹4,75,000',
-        USD: 'Below $4,960'
+        INR: 'Below ₹3,00,000',
+        USD: 'Below $3,150'
       }
     },
     {
-      value: '4.75l-7l',
+      value: '3.5l-4l',
       labels: {
-        INR: '₹4,75,000 to under ₹7,00,000',
-        USD: '$4,960 to under $7,325'
+        INR: '₹3,50,000 to under ₹4,00,000',
+        USD: '$3,650 to under $4,200'
       }
     },
     {
-      value: '7l-10l',
+      value: '4.5l-5.75l',
       labels: {
-        INR: '₹7,00,000 to under ₹10,00,000',
-        USD: '$7,325 to under $10,500'
+        INR: '₹4,50,000 to under ₹5,75,000',
+        USD: '$4,700 to under $6,000'
       }
     },
     {
-      value: '10l-plus',
+      value: '5.75l-6l',
       labels: {
-        INR: '₹10,00,000+',
-        USD: '$10,500+'
+        INR: '₹5,75,000 to under ₹6,00,000',
+        USD: '$6,000 to under $6,250'
+      }
+    },
+    {
+      value: '6l-plus',
+      labels: {
+        INR: '₹6,00,000+',
+        USD: '$6,250+'
       }
     }
   ],
@@ -199,17 +206,17 @@ const BUDGETS = {
   ],
   multiple: [
     {
-      value: 'below-3.75l',
+      value: 'below-3.5l',
       labels: {
-        INR: 'Below ₹3,75,000',
-        USD: 'Below $3,925'
+        INR: 'Below ₹3,50,000',
+        USD: 'Below $3,650'
       }
     },
     {
-      value: '3.75l-4.75l',
+      value: '3.5l-4.75l',
       labels: {
-        INR: '₹3,75,000 to under ₹4,75,000',
-        USD: '$3,925 to under $4,960'
+        INR: '₹3,50,000 to under ₹4,75,000',
+        USD: '$3,650 to under $4,960'
       }
     },
     {
@@ -291,8 +298,14 @@ function calculateEstimateValue(services, budgetRange) {
   if (budgetRange === 'below-1.15l') return 95000;
   if (budgetRange === '1.15l-2l') return 157500;
   if (budgetRange === '2l-3.75l') return 287500;
+  if (budgetRange === 'below-3l') return 250000;
+  if (budgetRange === 'below-3.5l') return 300000;
+  if (budgetRange === '3.5l-4l') return 375000;
+  if (budgetRange === '4.5l-5.75l') return 512500;
+  if (budgetRange === '5.75l-6l') return 587500;
+  if (budgetRange === '6l-plus') return 650000;
   if (budgetRange === 'below-3.75l') return 275000;
-  if (budgetRange === '3.75l-4.75l') return 425000;
+  if (budgetRange === '3.5l-4.75l' || budgetRange === '3.75l-4.75l') return 425000;
   if (budgetRange === '3.75l-5l') return 437500;
   if (budgetRange === 'below-4.75l') return 375000;
   if (budgetRange === '4.75l-7l') return 587500;
@@ -301,7 +314,7 @@ function calculateEstimateValue(services, budgetRange) {
   if (budgetRange === '7.5l-plus') return 900000;
   if (budgetRange === '10l-plus') return 1200000;
   if (budgetRange === '3.75l-plus') return 450000;
-  return 475000;
+  return 350000;
 }
 
 const ORDER = ['fullName', 'email', 'whatsappCountryCode', 'whatsappNumber', 'phoneCountryCode', 'phoneNumber', 'services', 'category', 'budgetRange', 'projectDescription'];

@@ -52,3 +52,4 @@ bontaAssets.forEach((u, i) => console.log(i + 1, u));
 
 fs.writeFileSync('scripts/gusto_urls.json', JSON.stringify(gustoAssets, null, 2));
 fs.writeFileSync('scripts/bonta_urls.json', JSON.stringify(bontaAssets, null, 2));
+

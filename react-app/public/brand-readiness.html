@@ -469,7 +469,7 @@ const CONFIG = {
   bookingUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header',
   discussUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScSzoze0gREm8KQFadpx0-CkqOq75iDVCEqi0grxcnr_qH0Qw/viewform?usp=header',
   replyTime: '2 working days',
-  startingPrice: 475000,
+  startingPrice: 350000,
   siteUrl: '/',
   requestTimeoutMs: 10000
 };
@@ -506,7 +506,7 @@ const QUESTIONS = [
    options:[['30','Within 30 days'],['1-3','1\u20133 months'],['3-6','3\u20136 months'],['flexible','Flexible / exploring']]},
   {id:'budget', type:'single', title:'What level of investment have you planned for the brand?',
    help:'Our comprehensive brand systems begin at ' + lakh(CONFIG.startingPrice) + '. This helps us recommend an appropriate route rather than overscope your project.',
-   options:[['u3','Under \u20B93 lakh'],['3-475','\u20B93\u20134.75 lakh'],['475-7','\u20B94.75\u20137 lakh'],['7-10','\u20B97\u201310 lakh'],['10+','\u20B910 lakh+'],['undecided','Not decided yet']]},
+   options:[['u3','Under \u20B93 lakh'],['3.5-4','\u20B93.5\u20134 lakh'],['4.5-5.75','\u20B94.5\u20135.75 lakh'],['5.75-6','\u20B95.75\u20136 lakh'],['6+','\u20B96 lakh+'],['undecided','Not decided yet / I need guidance']]},
   {id:'outcome', type:'text', title:'If this project goes brilliantly, what changes for the business?',
    help:"Don't overthink it. A sentence or two is enough.",
    placeholder:'For example: We enter retail looking credible beside established brands, launch six new SKUs without the range becoming inconsistent, and finally feel confident sending buyers to our website.'}
@@ -527,7 +527,7 @@ const ENGAGEMENTS = {
     scope:['Founder and business discovery','Category and competitor audit','Positioning and central brand idea','Messaging direction','Identity system','Guidelines and editable files']},
   shelf:{key:'brand_to_shelf', name:'Brand-to-Shelf', price:'From ' + inr(CONFIG.startingPrice), weeks:'6\u20138 weeks',
     scope:['Strategy and positioning','Identity system','Packaging architecture','Master packaging system','SKU extension logic','Launch direction']},
-  market:{key:'brand_to_market', name:'Brand-to-Market', price:inr(650000) + ' \u2013 ' + inr(1000000) + '+', weeks:'8\u201312 weeks',
+  market:{key:'brand_to_market', name:'Brand-to-Market', price:inr(475000) + ' \u2013 ' + inr(1000000) + '+', weeks:'8\u201312 weeks',
     scope:['Strategy and positioning','Identity system','Packaging architecture','Master packaging system','SKU extension logic','Website strategy and UI/UX','E-commerce or enquiry flow','Website development and handover']}
 };
 const SYSTEMS = [

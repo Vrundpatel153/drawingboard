@@ -38,3 +38,4 @@ filtered.splice(18, 0, bontaProject);
 
 fs.writeFileSync('react-app/src/data/projectsData.json', JSON.stringify(filtered, null, 2), 'utf8');
 console.log('Successfully updated projectsData.json! Total projects:', filtered.length);
+

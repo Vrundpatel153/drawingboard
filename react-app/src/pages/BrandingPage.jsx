@@ -90,15 +90,15 @@ export default function BrandingPage() {
   }, []);
 
   const growthPrices = {
-    INR: '₹4,75,000/-',
-    USD: '$4,960/-',
-    GBP: '£3,715/-',
+    INR: '₹3,50,000/-',
+    USD: '$3,650/-',
+    GBP: '£2,850/-',
   };
 
   const scalePrices = {
-    INR: '₹6,50,000/-',
-    USD: '$6,780/-',
-    GBP: '£5,080/-',
+    INR: '₹4,75,000/-',
+    USD: '$4,960/-',
+    GBP: '£3,700/-',
   };
 
   const whatsappScreenshots = [
@@ -179,16 +179,16 @@ export default function BrandingPage() {
   ];
 
   const faqs = [
-    { q: 'What is included in the $4,960 (₹4,75,000) engagement?', a: 'The Brand-to-Shelf engagement includes strategy, positioning, messaging direction, a complete identity system, brand guidelines, one master packaging direction, front and back information hierarchy, up to five straightforward SKU adaptations, presentation mockups, print-ready artwork on approved dielines and editable source files.' },
+    { q: 'What is included in the $3,650 (₹3,50,000) engagement?', a: 'The Brand-to-Shelf engagement includes strategy, positioning, messaging direction, a complete identity system, brand guidelines, one master packaging direction, front and back information hierarchy, up to five straightforward SKU adaptations, presentation mockups, print-ready artwork on approved dielines and editable source files.' },
     { q: 'What is your turnaround timeline, and why is it faster than traditional agencies?', a: 'Our focused sprint runs 4 to 6 weeks for Brand-to-Shelf and 6 to 8 weeks for Brand-to-Market. Traditional legacy agencies (like NOW Media or holding groups) take 8 to 14 weeks because your brief gets passed through layers of junior account executives, coordinators, and approval committees. At The Drawing Board, you work directly with senior design directors and founders—meaning rapid alignment, zero bureaucratic dilution, and swift turnaround.' },
     { q: 'What is the Architectural Brand Engine™ process?', a: 'We operate on a proprietary 5-stage sprint methodology: 01 Discovery Blueprint (category whitespace and buyer psychology), 02 Verbal Architecture (defining the core idea your brand uniquely owns), 03 Visual Identity System (engineering mathematical logomarks and type hierarchy), 04 Tactile Production (translating assets to physical production dielines and foil specs), and 05 Kinetic Rollout (delivering complete editable Figma libraries, motion assets, and turnkey guidelines).' },
     { q: 'How do you demonstrate proof of results compared to agencies that list "200+ logos"?', a: 'Rather than displaying hundreds of superficial, templated logos from quick design contests, we engineer fewer, high-impact systems with verified business outcomes. Our case studies prove tangible commercial performance: PRONTO! achieved +180% dine-in & takeout orders, Matcha Club grew DTC subscriptions by +220%, Murami delivered +310% brand recall, Soul Brew drove +240% customer engagement, AFTER8® generated +340% DTC revenue growth, and Flint achieved a +340% increase in enterprise qualified leads.' },
     { q: 'How is The Drawing Board different from traditional branding agencies?', a: 'Three key advantages: (1) Strategy before decoration—we do not pitch random visual styles; every curve and typeface is anchored in market positioning and unit economics. (2) Senior boutique focus—we take only 2 to 3 founder-led projects concurrently to ensure direct principal attention. (3) Multi-touchpoint integration—your identity, packaging dielines, and digital website are built as one unified system, eliminating disconnects between separate vendors.' },
-    { q: 'What is included in the $6,780 (₹6,50,000) engagement?', a: 'Brand-to-Market includes everything in Brand-to-Shelf plus website strategy, sitemap, customer journey, content hierarchy, responsive UI/UX design, an agreed page-template system, website development, testing, launch support and handover.' },
+    { q: 'What is included in the $4,960 (₹4,75,000) engagement?', a: 'Brand-to-Market includes everything in Brand-to-Shelf plus website strategy, sitemap, customer journey, content hierarchy, responsive UI/UX design, an agreed page-template system, website development, testing, launch support and handover.' },
     { q: 'Can we begin with branding and packaging and add the website later?', a: 'Yes. Brand-to-Shelf can be completed first, with the website scoped as a second phase. This works especially well when product information, photography or website content will not be ready during the branding stage.' },
     { q: 'How many packaging SKUs are included?', a: 'Brand-to-Shelf includes one master packaging direction and up to five straightforward SKU adaptations using the approved structure. Additional SKUs, sizes, structures or formats are quoted separately.' },
     { q: 'What counts as a straightforward SKU adaptation?', a: 'A straightforward adaptation keeps the approved packaging structure while changing controlled elements such as flavour, ingredient, product name, colour, quantity or approved content.' },
-    { q: 'Is website development included in $6,780 (₹6,50,000)?', a: 'Yes, within the platform, page-template system, product count and functionality defined in the proposal. Advanced applications, unusual integrations, large catalogues or custom backend requirements may require separate scope.' },
+    { q: 'Is website development included in $4,960 (₹4,75,000)?', a: 'Yes, within the platform, page-template system, product count and functionality defined in the proposal. Advanced applications, unusual integrations, large catalogues or custom backend requirements may require separate scope.' },
     { q: 'Which website platform will you use?', a: 'The platform is selected according to your business model. Depending on the project, this may include Shopify, Framer or another agreed platform. The recommendation is confirmed after reviewing your requirements.' },
     { q: 'Do you write the website or packaging copy?', a: 'Messaging direction, content hierarchy and key brand language are included. Full website copywriting, large product-description libraries, legal copy and regulated packaging content are separate unless explicitly included.' },
     { q: 'Do you create packaging dielines?', a: 'The standard engagement applies approved artwork to client- or manufacturer-supplied dielines. Structural engineering and technical dieline creation are not included by default.' },
@@ -791,7 +791,7 @@ export default function BrandingPage() {
                 <p style={{ marginBottom: '14px' }}>
                   <a className="bp-btn-link" href="#case-studies">View Selected Work ↓</a>
                 </p>
-                <p className="bp-price-note">Brand and packaging engagements begin at <b>$4,960 (₹4,75,000)</b>.</p>
+                <p className="bp-price-note">Brand and packaging engagements begin at <b>$3,650 (₹3,50,000)</b>.</p>
               </div>
 
               <div className="bp-annot-card">
@@ -801,7 +801,7 @@ export default function BrandingPage() {
                 <div className="bp-annot-row"><span>Brand system</span><span>Identity + packaging</span></div>
                 <div className="bp-annot-row"><span>Extended system</span><span>Identity + packaging + website</span></div>
                 <div className="bp-annot-row"><span>Collaboration</span><span>Direct founder-to-studio</span></div>
-                <div className="bp-annot-row"><span>Starting investment</span><span>$4,960 (₹4,75,000)</span></div>
+                <div className="bp-annot-row"><span>Starting investment</span><span>$3,650 (₹3,50,000)</span></div>
                 <div className="bp-annot-row"><span>Typical engagement</span><span>6–12 weeks</span></div>
               </div>
             </div>
@@ -1251,7 +1251,7 @@ export default function BrandingPage() {
                   <li>Print-ready artwork</li>
                   <li>Editable source files</li>
                 </ul>
-                <div className="note">The $4,960 (₹4,75,000) engagement includes one master packaging direction and up to five straightforward SKU adaptations using the approved structure. New formats, structural changes, new sizes, additional SKUs or substantial copy changes are quoted separately.</div>
+                <div className="note">The $3,650 (₹3,50,000) engagement includes one master packaging direction and up to five straightforward SKU adaptations using the approved structure. New formats, structural changes, new sizes, additional SKUs or substantial copy changes are quoted separately.</div>
               </div>
               <div className="bp-deliv-col">
                 <h4>Digital Experience</h4>
@@ -1268,7 +1268,7 @@ export default function BrandingPage() {
                   <li>Basic launch support</li>
                   <li>Website handover</li>
                 </ul>
-                <div className="note">Digital experience is included only in the $6,780 (₹6,50,000) Brand-to-Market engagement. Exact platform, page templates, product count, e-commerce requirements, integrations and content responsibilities are confirmed in the proposal.</div>
+                <div className="note">Digital experience is included only in the $4,960 (₹4,75,000) Brand-to-Market engagement. Exact platform, page templates, product count, e-commerce requirements, integrations and content responsibilities are confirmed in the proposal.</div>
               </div>
             </div>
           </div>
@@ -2120,7 +2120,7 @@ export default function BrandingPage() {
               </a>
             </div>
             <p className="bp-price-note" style={{ color: '#C9C3B4', fontSize: '13px', fontFamily: "'IBM Plex Mono', monospace", margin: 0 }}>
-              Engagements begin at <b style={{ color: '#ffffff' }}>$4,960 (₹4,75,000)</b>.
+              Engagements begin at <b style={{ color: '#ffffff' }}>$3,650 (₹3,50,000)</b>.
             </p>
           </div>
         </section>
@@ -2128,8 +2128,8 @@ export default function BrandingPage() {
 
       {/* ── STICKY MOBILE CTA ────────────────────────────────────────── */}
       <StickyMobileCTA
-        title="Branding from ₹4,75,000"
-        subtitle="$4,960 / £3,700"
+        title="Branding from ₹3,50,000"
+        subtitle="$3,650 / £2,850"
         buttonText="Get Quote"
         link="/get-quote"
       />
