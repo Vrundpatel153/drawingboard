@@ -821,6 +821,90 @@ export default function SpatialBrandingPage() {
               </p>
             </div>
 
+            {/* Project 00: Fine Dining Flagship — Ghalia Acarverde */}
+            <div style={{ marginTop: '48px', borderTop: '1px solid var(--ink)', paddingTop: '32px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '32px', alignItems: 'stretch' }}>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr',
+                  gap: '24px',
+                  alignItems: 'center'
+                }}>
+                  <div style={{
+                    position: 'relative',
+                    border: '1.5px solid var(--ink)',
+                    overflow: 'hidden',
+                    borderRadius: '2px',
+                    aspectRatio: '16/10'
+                  }}>
+                    <img
+                      src="/images/ghalia-acarverde/ghalia_cover.jpg"
+                      alt="Ghalia Acarverde Luxury Restaurant Commercial Spatial Design"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                    <span style={{
+                      position: 'absolute',
+                      left: '12px',
+                      bottom: '12px',
+                      background: 'var(--card)',
+                      border: '1px solid var(--ink)',
+                      padding: '4px 8px',
+                      fontFamily: "'IBM Plex Mono', monospace",
+                      fontSize: '10.5px'
+                    }}>
+                      FLAGSHIP ENVIRONMENT // 32 MASTER RENDERS
+                    </span>
+                  </div>
+
+                  <div style={{
+                    background: 'var(--card)',
+                    border: '1.5px solid var(--ink)',
+                    padding: '28px',
+                    position: 'relative'
+                  }}>
+                    <span className="badge" style={{ background: '#1A382B', color: '#FFFFFF', border: 'none', marginBottom: '12px', display: 'inline-block' }}>
+                      FINE DINING FLAGSHIP · ISTANBUL
+                    </span>
+                    <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: '28px', margin: '4px 0 14px' }}>
+                      Ghalia Acarverde — Luxury Restaurant &amp; Lounge
+                    </h3>
+                    <p style={{ fontSize: '14.5px', lineHeight: 1.6, color: 'var(--ink-soft)', marginBottom: '16px' }}>
+                      An opulent, contemporary commercial hospitality interior. Features sculptural parametric ribbed walnut ceilings, monolithic emerald stone cocktail bars, bespoke suspended bronze chandeliers, and intimate velvet dining booths.
+                    </p>
+
+                    <Link to="/work/ghalia-acarverde-restaurant-spatial-design" className="btn-secondary-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', marginBottom: '20px', textDecoration: 'none' }}>
+                      Explore 32 Master Renders <ArrowIcon size={12} />
+                    </Link>
+
+                    <div style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(2, 1fr)',
+                      gap: '12px',
+                      borderTop: '1px dashed var(--paper-line)',
+                      paddingTop: '16px'
+                    }}>
+                      <div>
+                        <span className="mono" style={{ fontSize: '10px', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>Scope</span>
+                        <div style={{ fontWeight: 600, fontSize: '13px', marginTop: '2px' }}>Spatial Architecture, Bar &amp; Lighting</div>
+                      </div>
+                      <div>
+                        <span className="mono" style={{ fontSize: '10px', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>Scale</span>
+                        <div style={{ fontWeight: 600, fontSize: '13px', marginTop: '2px' }}>4,200 sq. ft. Commercial Venue</div>
+                      </div>
+                      <div>
+                        <span className="mono" style={{ fontSize: '10px', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>Challenge</span>
+                        <div style={{ fontWeight: 600, fontSize: '13px', marginTop: '2px' }}>Acoustic warmth &amp; multi-zone dining</div>
+                      </div>
+                      <div>
+                        <span className="mono" style={{ fontSize: '10px', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>Materials</span>
+                        <div style={{ fontWeight: 600, fontSize: '13px', marginTop: '2px' }}>Ribbed Walnut, Emerald Stone, Bronze</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Project 01: Café & Bakery */}
             <div style={{ marginTop: '48px', borderTop: '1px solid var(--ink)', paddingTop: '32px' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '32px', alignItems: 'stretch' }}>
