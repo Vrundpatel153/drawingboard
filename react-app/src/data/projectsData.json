@@ -211,6 +211,83 @@
     "imageCount": 30
   },
   {
+    "slug": "gloopy-waffle-coffee-branding",
+    "title": "Gloopy — Waffle & Specialty Coffee Café Identity",
+    "category": "food",
+    "tag": "FOOD & BEVERAGE // SPECIALTY CAFE BRANDING",
+    "client": "Gloopy Café (Saudi Arabia)",
+    "description": "Playful waffle dripping logotype, artisanal Belgian waffle packaging, custom coffee cups, dessert boxes, takeout bags, and vibrant spatial menu collateral for Gloopy, a Saudi Arabia-based waffle and specialty coffee café.",
+    "coverImage": "/images/gloopy/gloopy_cover.png",
+    "images": [
+      "/images/gloopy/gloopy_cover.png",
+      "/images/gloopy/gloopy_02.png",
+      "/images/gloopy/gloopy_03.png",
+      "/images/gloopy/gloopy_04.png",
+      "/images/gloopy/gloopy_05.png",
+      "/images/gloopy/gloopy_06.png",
+      "/images/gloopy/gloopy_07.png"
+    ],
+    "imageCount": 7
+  },
+  {
+    "slug": "bunzo-bun-bakery-cafe-packaging",
+    "title": "Bunzo Bun — Artisan Bakery & Burger Bun Packaging",
+    "category": "food",
+    "tag": "FOOD & PACKAGING // ARTISAN BAKERY SYSTEM",
+    "client": "Bunzo Bun Artisanal Bakery",
+    "description": "Warm Japanese-inspired bakery brand identity, custom rounded typography, geometric smiling bun mascot, greaseproof burger wrappers, kraft delivery boxes, stickers, and artisan pastry packaging for Bunzo Bun.",
+    "coverImage": "/images/bunzo-bun/bunzo-bun_cover.png",
+    "images": [
+      "/images/bunzo-bun/bunzo-bun_cover.png",
+      "/images/bunzo-bun/bunzo-bun_02.png",
+      "/images/bunzo-bun/bunzo-bun_03.png",
+      "/images/bunzo-bun/bunzo-bun_04.png",
+      "/images/bunzo-bun/bunzo-bun_05.png",
+      "/images/bunzo-bun/bunzo-bun_06.png",
+      "/images/bunzo-bun/bunzo-bun_07.png",
+      "/images/bunzo-bun/bunzo-bun_08.png",
+      "/images/bunzo-bun/bunzo-bun_09.png",
+      "/images/bunzo-bun/bunzo-bun_10.png",
+      "/images/bunzo-bun/bunzo-bun_11.png"
+    ],
+    "imageCount": 11
+  },
+  {
+    "slug": "chai-to-tea-branding-packaging",
+    "title": "Chai-To — Artisanal Heritage Tea & Packaging System",
+    "category": "packaging",
+    "tag": "PACKAGING // ARTISANAL TEA & CPG SYSTEM",
+    "client": "Chai-To Artisanal Teas",
+    "description": "Refined heritage tea brand identity, botanical tea leaf logomark, premium cylindrical loose-leaf tea canisters, ready-to-drink aluminum iced tea cans, sustainable kraft tea pouches, and editorial label hierarchy for Chai-To.",
+    "coverImage": "/images/chai-to/chai-to_cover.png",
+    "images": [
+      "/images/chai-to/chai-to_cover.png",
+      "/images/chai-to/chai-to_02.png",
+      "/images/chai-to/chai-to_03.png",
+      "/images/chai-to/chai-to_04.png",
+      "/images/chai-to/chai-to_05.png",
+      "/images/chai-to/chai-to_06.png"
+    ],
+    "imageCount": 6
+  },
+  {
+    "slug": "brite-harvest-organic-beverage-branding",
+    "title": "Brite Harvest — Organic Superfood & Cold-Pressed Beverage Packaging",
+    "category": "packaging",
+    "tag": "PACKAGING // ORGANIC BEVERAGE & SUPERFOOD CPG",
+    "client": "Brite Harvest Organics",
+    "description": "Bold, sun-drenched organic brand identity, vibrant fruit-forward chromatic system, glass juice bottles, superfood smoothie pouch dielines, shelf carton packaging, and clean nutritional typography for Brite Harvest.",
+    "coverImage": "/images/brite-harvest/brite-harvest_cover.png",
+    "images": [
+      "/images/brite-harvest/brite-harvest_cover.png",
+      "/images/brite-harvest/brite-harvest_02.png",
+      "/images/brite-harvest/brite-harvest_03.png",
+      "/images/brite-harvest/brite-harvest_04.png",
+      "/images/brite-harvest/brite-harvest_05.png"
+    ],
+    "imageCount": 5
+  },
+  {
     "slug": "rooted-rustic-cafe-spatial-design",
     "title": "Rooted — Rustic Café Spatial Design & Brand Environments",
     "category": "spatial",

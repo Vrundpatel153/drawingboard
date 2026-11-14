@@ -27,6 +27,10 @@ export default function WorkDetail() {
   const isMurami = cleanId.includes('murami');
   const isDorada = cleanId.includes('dorada');
   const isElsewhere = cleanId.includes('elsewhere');
+  const isGloopy = cleanId.includes('gloopy');
+  const isBunzoBun = cleanId.includes('bunzo');
+  const isChaiTo = cleanId.includes('chai-to') || cleanId.includes('chaito');
+  const isBriteHarvest = cleanId.includes('brite-harvest') || cleanId.includes('brite');
   const isRusticCafe = cleanId.includes('rustic') || cleanId.includes('rooted');
   const isArcomi = cleanId.includes('arcomi') || cleanId.includes('boho');
   const isOuur = cleanId.includes('ouur');
@@ -71,8 +75,10 @@ export default function WorkDetail() {
       (isMurami && s.includes('murami')) ||
       (isDorada && s.includes('dorada')) ||
       (isElsewhere && s.includes('elsewhere')) ||
-      (isRusticCafe && (s.includes('rustic') || s.includes('rooted'))) ||
-      (isArcomi && (s.includes('arcomi') || s.includes('boho'))) ||
+      (isGloopy && s.includes('gloopy')) ||
+      (isBunzoBun && s.includes('bunzo')) ||
+      (isChaiTo && (s.includes('chai-to') || s.includes('chaito'))) ||
+      (isBriteHarvest && (s.includes('brite-harvest') || s.includes('brite'))) ||
       (isRusticCafe && (s.includes('rustic') || s.includes('rooted'))) ||
       (isArcomi && (s.includes('arcomi') || s.includes('boho'))) ||
       (isOuur && s.includes('ouur')) ||
@@ -251,10 +257,14 @@ export default function WorkDetail() {
               ? 'Dorada Café & Bar Case Study'
               : isElsewhere
               ? 'ELSEWHERE Coffee Shop Branding Case Study'
-              : isRusticCafe
-              ? 'Rooted Rustic Café Spatial Design Case Study'
-              : isArcomi
-              ? 'Arcomi Boho Café Spatial Design Case Study'
+              : isGloopy
+              ? 'Gloopy Waffle & Coffee Café Case Study'
+              : isBunzoBun
+              ? 'Bunzo Bun Artisan Bakery & Burger Packaging Case Study'
+              : isChaiTo
+              ? 'Chai-To Artisanal Heritage Tea Case Study'
+              : isBriteHarvest
+              ? 'Brite Harvest Organic Beverage Packaging Case Study'
               : isRusticCafe
               ? 'Rooted Rustic Café Spatial Design Case Study'
               : isArcomi
@@ -305,10 +315,14 @@ export default function WorkDetail() {
                 ? 'CASE STUDY // SPEC 04 — COLOMBIAN SPECIALTY COFFEE & CAFE BRANDING'
                 : isElsewhere
                 ? 'CASE STUDY // SPEC 21 — DREAMY COFFEE SHOP BRANDING & PACKAGING'
-                : isRusticCafe
-                ? 'CASE STUDY // SPEC 18 — COMMERCIAL SPATIAL DESIGN & BRAND ENVIRONMENTS'
-                : isArcomi
-                ? 'CASE STUDY // SPEC 19 — COMMERCIAL BOHO SPATIAL DESIGN & BRAND ENVIRONMENTS'
+                : isGloopy
+                ? 'CASE STUDY // SPEC 22 — WAFFLE & SPECIALTY COFFEE CAFE BRANDING'
+                : isBunzoBun
+                ? 'CASE STUDY // SPEC 23 — ARTISAN BAKERY & BURGER PACKAGING SYSTEM'
+                : isChaiTo
+                ? 'CASE STUDY // SPEC 24 — ARTISANAL TEA & SUSTAINABLE CPG PACKAGING'
+                : isBriteHarvest
+                ? 'CASE STUDY // SPEC 25 — ORGANIC SUPERFOOD & COLD-PRESSED BEVERAGE'
                 : isRusticCafe
                 ? 'CASE STUDY // SPEC 18 — COMMERCIAL SPATIAL DESIGN & BRAND ENVIRONMENTS'
                 : isArcomi
@@ -564,6 +578,106 @@ export default function WorkDetail() {
                 <div className="meta-cell">
                   <div className="k">Impact</div>
                   <div className="v" style={{ color: 'var(--pine)' }}>30 Master Production Assets</div>
+                </div>
+              </div>
+            </>
+          ) : isGloopy ? (
+            <>
+              <h1>Gloopy — <em>Waffle &amp; Specialty Coffee</em> Café Identity.</h1>
+              <p className="dek">
+                How we engineered a high-energy hospitality brand identity for Saudi Arabia&apos;s premier dessert destination — combining dripping waffle wordmarks, playful character emblems, bespoke clamshell packaging, and vibrant spatial collateral.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Gloopy Waffles &amp; Coffee (Saudi Arabia)</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Brand Identity, Packaging Suite &amp; Spatial Signage</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">3 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>7 Master Production Assets</div>
+                </div>
+              </div>
+            </>
+          ) : isBunzoBun ? (
+            <>
+              <h1>Bunzo Bun — <em>Artisan Bakery &amp; Burger</em> Packaging Architecture.</h1>
+              <p className="dek">
+                How we engineered a warm, Japanese-inspired artisan bakery identity and complete CPG &amp; takeout packaging ecosystem — featuring smiling brioche mascots, greaseproof checkered food paper, kraft slider cartons, and die-cut tamper seals.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Bunzo Bun Artisanal Bakery &amp; Burger Co.</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Brand Identity, Structural Packaging &amp; Retail Collateral</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">4 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>11 Master Production Assets</div>
+                </div>
+              </div>
+            </>
+          ) : isChaiTo ? (
+            <>
+              <h1>Chai-To — <em>Artisanal Heritage Tea</em> &amp; Sustainable CPG Packaging.</h1>
+              <p className="dek">
+                How we engineered an authentic heritage tea brand identity rooted in botanical craftsmanship — spanning airtight cylindrical tin canisters, sleek ready-to-drink aluminum iced tea cans, resealable kraft pouches, and editorial origin storytelling.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Chai-To Artisanal Teas</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Brand Identity, Canister &amp; Can Packaging Architecture</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">3 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>6 Master Production Assets</div>
+                </div>
+              </div>
+            </>
+          ) : isBriteHarvest ? (
+            <>
+              <h1>Brite Harvest — <em>Organic Superfood &amp; Cold-Pressed</em> Beverage Packaging.</h1>
+              <p className="dek">
+                How we engineered a vibrant, sun-drenched organic CPG brand identity — pairing geometric fruit-forward chromatic palettes, 330ml cold-pressed glass bottle dielines, ergonomic spouted superfood smoothie pouches, and clean nutritional typography.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Brite Harvest Organics</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Brand Identity, Glass &amp; Pouch Packaging Architecture</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">3 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>5 Master Production Assets</div>
                 </div>
               </div>
             </>
@@ -1830,6 +1944,230 @@ export default function WorkDetail() {
                     <li>Complete Retail &amp; Café Collateral Suite</li>
                     <li>High Consumer Affinity &amp; Social Recall</li>
                     <li>Turnkey Supplier-Ready Print Dielines</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isGloopy ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Waffle café brand identity &amp; dessert packaging.</h2>
+                </div>
+                <p>Playful dripping logomarks, custom waffle takeout clamshells, insulated beverage cups, and spatial neon storefront signage.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Visual Identity</h4>
+                  <div className="sub">// MARKS &amp; TYPOGRAPHY</div>
+                  <ul>
+                    <li>Dripping waffle syrup custom wordmark</li>
+                    <li>Playful dessert emblem badge variants</li>
+                    <li>Warm golden butter &amp; cocoa color system</li>
+                    <li>Dynamic vector waffle pattern grids</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Packaging Suite</h4>
+                  <div className="sub">// DIELINES &amp; TAKEOUT</div>
+                  <ul>
+                    <li>Corrugated Belgian waffle clamshell cartons</li>
+                    <li>Double-wall insulated coffee &amp; shake cups</li>
+                    <li>Greaseproof deli food wrapping paper</li>
+                    <li>Reinforced kraft paper carry-out bags</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Spatial &amp; Storefront</h4>
+                  <div className="sub">// SIGNAGE &amp; COLLATERAL</div>
+                  <ul>
+                    <li>Custom warm neon facade logo sign</li>
+                    <li>Backlit acrylic counter menu boards</li>
+                    <li>Staff barista aprons &amp; enamel pins</li>
+                    <li>Die-cut dessert box sealing stickers</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>7 Master Production Deliverables</li>
+                    <li>100% Custom Supplier-Ready Dielines</li>
+                    <li>High Social Unboxing Engagement</li>
+                    <li>Instant Brand Recognition in Riyadh</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isBunzoBun ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Artisan brioche bakery &amp; burger packaging.</h2>
+                </div>
+                <p>Smiling character mascot branding, greaseproof burger wraps, corrugated slider boxes, and artisan retail packaging architecture.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Brand Identity</h4>
+                  <div className="sub">// CHARACTER &amp; MARKS</div>
+                  <ul>
+                    <li>Smiling brioche bun mascot illustration</li>
+                    <li>Japanese-inspired rounded bold logotype</li>
+                    <li>Artisan baker stamp &amp; monogram marks</li>
+                    <li>Warm brioche tan &amp; sesame ivory palette</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Packaging Architecture</h4>
+                  <div className="sub">// CARTONS &amp; WRAPPERS</div>
+                  <ul>
+                    <li>Biodegradable burger slider cartons</li>
+                    <li>Greaseproof checkered food wrap sheets</li>
+                    <li>Artisan pastry boxes with clear viewing bands</li>
+                    <li>Reinforced kraft paper delivery bags</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Retail &amp; Merchandise</h4>
+                  <div className="sub">// IN-STORE &amp; APPAREL</div>
+                  <ul>
+                    <li>Bakery counter price cards &amp; menu boards</li>
+                    <li>Die-cut adhesive freshness tamper seals</li>
+                    <li>Heavyweight canvas tote bags &amp; baker caps</li>
+                    <li>Window decals &amp; spatial storefront signage</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>11 Master Production Deliverables</li>
+                    <li>100% Biodegradable Packaging Substrates</li>
+                    <li>4.8x Increase in Unboxing Social Mentions</li>
+                    <li>Turnkey Vendor Manufacturing Handoff</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isChaiTo ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Artisanal heritage tea &amp; CPG packaging architecture.</h2>
+                </div>
+                <p>Botanical logomarks, airtight cylindrical canisters, sleek aluminum iced tea cans, and resealable barrier kraft pouches.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Brand System</h4>
+                  <div className="sub">// IDENTITY &amp; HERITAGE</div>
+                  <ul>
+                    <li>Botanical tea leaf emblem &amp; editorial wordmark</li>
+                    <li>Assam amber &amp; cardamom green color tokens</li>
+                    <li>Terroir provenance &amp; altitude storytelling</li>
+                    <li>Single-origin certification seal iconography</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Canister Architecture</h4>
+                  <div className="sub">// AIRTIGHT METAL CPG</div>
+                  <ul>
+                    <li>Cylindrical loose-leaf tea metal canisters</li>
+                    <li>Matte soft-touch wrap sleeves with gold foil</li>
+                    <li>Embossed airtight inner lid aroma lock</li>
+                    <li>Terroir &amp; brewing temperature spec labels</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Beverage &amp; Pouches</h4>
+                  <div className="sub">// CANS &amp; REFILL POUCHES</div>
+                  <ul>
+                    <li>Sleek 250ml RTD cold brew aluminum cans</li>
+                    <li>Resealable barrier zip kraft refill pouches</li>
+                    <li>Biodegradable pyramid tea sachet tags</li>
+                    <li>Countertop wooden canister retail display</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>6 Master Production Deliverables</li>
+                    <li>Premium Shelf-Dominant Silhouettes</li>
+                    <li>100% Recyclable Packaging Substrates</li>
+                    <li>Rapid Consumer Trial &amp; Subscription Growth</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isBriteHarvest ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Organic superfood &amp; cold-pressed beverage packaging.</h2>
+                </div>
+                <p>Fruit-forward geometric palettes, 330ml cold-pressed glass bottles, spouted smoothie pouches, and multi-pack folding cartons.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Visual System</h4>
+                  <div className="sub">// BRAND MARKS &amp; BADGES</div>
+                  <ul>
+                    <li>Modern sun-drenched geometric logotype</li>
+                    <li>Solar harvest organic quality seal</li>
+                    <li>Fruit-vector chromatic color system</li>
+                    <li>Clean nutritional facts typographic layout</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Bottle Architecture</h4>
+                  <div className="sub">// 330ML COLD-PRESSED GLASS</div>
+                  <ul>
+                    <li>Direct screen-printed 330ml glass bottles</li>
+                    <li>Vibrant chromatic fruit gradient bands</li>
+                    <li>Tamper-evident aluminum safety twist caps</li>
+                    <li>Water-resistant synthetic shelf labels</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Pouches &amp; Cartons</h4>
+                  <div className="sub">// PUREE &amp; MULTI-PACKS</div>
+                  <ul>
+                    <li>Stand-up spouted superfood puree pouches</li>
+                    <li>Ergonomic squeeze dieline with choke-safe cap</li>
+                    <li>4-pack recyclable kraft retail carry cartons</li>
+                    <li>Die-cut product inspection viewing windows</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>5 Master Production Deliverables</li>
+                    <li>USDA Organic Regulatory Compliance</li>
+                    <li>3.8x Retail Endcap Shelf Visibility</li>
+                    <li>Turnkey Co-Packer Production Files</li>
                   </ul>
                 </div>
               </div>
@@ -3269,6 +3607,47 @@ export default function WorkDetail() {
                   "Luxury Incense Packaging Suite & Hand-Dipped Incense Stick Bundle Presentation"
                 ];
 
+                const gloopyCaptions = [
+                  "Gloopy — Playful Dripping Logotype & Artisanal Waffle Cafe Cover Art",
+                  "Custom Corrugated Waffle Clamshell Packaging & Takeaway Box Architecture",
+                  "Insulated Specialty Coffee Cups & Vibrant Kraft Takeout Carry Bags",
+                  "Playful Character Mascot Stickers & Multi-Format Pattern Wrap Details",
+                  "Cafe Barista Apron Emblems & Tactile Embroidered Staff Uniforms",
+                  "Spatial Storefront Neon Glow Signage & Warm Commercial Interior Staging",
+                  "Complete Master Packaging Suite & In-Store Dessert Menu Presentation"
+                ];
+
+                const bunzoBunCaptions = [
+                  "Bunzo Bun — Artisanal Brioche Bakery & Burger Packaging System Cover",
+                  "Smiling Brioche Mascot Logomark & Japanese-Inspired Soft Geometry",
+                  "Greaseproof Food Wrap Paper & Biodegradable Burger Slider Cartons",
+                  "Artisan Pastry Box Dielines with Custom Sesame Stamp Typography",
+                  "Takeaway Paper Bags & Die-Cut Adhesive Tamper Seals",
+                  "Multi-Tiered Bakery Shelf Packaging & Brioche Loaf Sleeves",
+                  "Burger Box Flat Unfolded Dieline & Precision Fold Scoring Specs",
+                  "Counter Menu Boards & Typographic Price Display Architecture",
+                  "Branded Kraft Delivery Bag Architecture & Reinforced Handle Struts",
+                  "Brand Merchandise Suite: Canvas Bakery Totes & Embroidered Caps",
+                  "Complete 11-Piece Production Packaging Architecture & Retail Lineup"
+                ];
+
+                const chaiToCaptions = [
+                  "Chai-To — Artisanal Heritage Loose-Leaf Tea & CPG Packaging System Cover",
+                  "Cylindrical Airtight Matte Metal Canisters & Botanical Harvest Labels",
+                  "Ready-to-Drink Cold Brew Aluminum Tea Cans & Terroir Graphic Sleeves",
+                  "Resealable Barrier Kraft Tea Pouches with Gold Foil Stamped Monograms",
+                  "Typographic Label Detail: Terroir Provenance, Steep Timers & Harvest Dates",
+                  "Complete Master Tea SKU Architecture & Luxury Retail Shelf Display"
+                ];
+
+                const briteHarvestCaptions = [
+                  "Brite Harvest — Organic Superfood & Cold-Pressed Beverage Packaging Cover",
+                  "330ml Glass Bottle Label Architecture with Vibrant Chromatic Fruit Bands",
+                  "Spouted Superfood Puree Pouches & Ergonomic On-the-Go Form Factor",
+                  "Multi-Pack Retail Folding Cartons & Die-Cut Viewing Windows",
+                  "Complete Cold-Pressed Beverage Lineup & Shelf Retail Visual System"
+                ];
+
                 const isWebProject = (project.category === 'web') || (project.tag && (project.tag.includes('WEB') || project.tag.includes('UI UX')));
                 const isPackagingProject = (project.category === 'packaging') || (project.tag && project.tag.includes('PACKAGING'));
 
@@ -3330,6 +3709,14 @@ export default function WorkDetail() {
                   ? braveRxCaptions[imgIdx]
                   : isRestReligion && imgIdx < restReligionCaptions.length
                   ? restReligionCaptions[imgIdx]
+                  : isGloopy && imgIdx < gloopyCaptions.length
+                  ? gloopyCaptions[imgIdx]
+                  : isBunzoBun && imgIdx < bunzoBunCaptions.length
+                  ? bunzoBunCaptions[imgIdx]
+                  : isChaiTo && imgIdx < chaiToCaptions.length
+                  ? chaiToCaptions[imgIdx]
+                  : isBriteHarvest && imgIdx < briteHarvestCaptions.length
+                  ? briteHarvestCaptions[imgIdx]
                   : saasDetail && imgIdx < saasDetail.captions.length
                   ? saasDetail.captions[imgIdx]
                   : defaultCaption(imgIdx);
@@ -3588,6 +3975,134 @@ export default function WorkDetail() {
                   <div className="row">
                     <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
                     <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for roast profiles, bean origins &amp; batch numbers.</p>
+                  </div>
+                </div>
+              </div>
+            ) : isGloopy ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#F2A93B', color: '#1B1B17' }}>
+                    <div className="lbl">WAFFLE GOLD // #F2A93B</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#3A2312', color: '#FFF' }}>
+                    <div className="lbl">COCOA DRIZZLE // #3A2312</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#FFF4DE', color: '#1B1B17' }}>
+                    <div className="lbl">SWEET BUTTER // #FFF4DE</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#B82E2E', color: '#FFF' }}>
+                    <div className="lbl">BERRY RED // #B82E2E</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>Gloopy Chubby Display &bull; Dripping Dessert Logotype</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>EDITORIAL SANS:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter SemiBold &bull; Cafe Counter Menu Architecture &amp; Ingredient Breakdown</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for espresso extraction seconds, waffle iron heat tokens &amp; batch numbers.</p>
+                  </div>
+                </div>
+              </div>
+            ) : isBunzoBun ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#D49B58', color: '#1B1B17' }}>
+                    <div className="lbl">BRIOCHE TAN // #D49B58</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#FAF3E0', color: '#1B1B17' }}>
+                    <div className="lbl">SESAME IVORY // #FAF3E0</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#1A1816', color: '#FFF' }}>
+                    <div className="lbl">NORI INK // #1A1816</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#E88C85', color: '#1B1B17' }}>
+                    <div className="lbl">BLOSSOM PINK // #E88C85</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>Bunzo Rounded Bold &bull; Japanese-Inspired Soft Geometry</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>EDITORIAL SANS:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Space Grotesk Medium &bull; Bakery Menu Specs &amp; Burger Flavor Labels</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for proofing chamber timers, fermentation hydration &amp; oven temperatures.</p>
+                  </div>
+                </div>
+              </div>
+            ) : isChaiTo ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#C27D38', color: '#FFF' }}>
+                    <div className="lbl">CHAI OCHRE // #C27D38</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#8C4318', color: '#FFF' }}>
+                    <div className="lbl">ASSAM AMBER // #8C4318</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#556B2F', color: '#FFF' }}>
+                    <div className="lbl">CARDAMOM GREEN // #556B2F</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#F9F6F0', color: '#1B1B17' }}>
+                    <div className="lbl">MILK FOAM // #F9F6F0</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>Chai-To Heritage Display &bull; Botanical Editorial Curves</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>EDITORIAL SANS:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter Medium &bull; Origin Terroir Descriptions &amp; Brewing Instructions</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for water temperature (95°C), steep minutes (4m), and elevation (1800m).</p>
+                  </div>
+                </div>
+              </div>
+            ) : isBriteHarvest ? (
+              <div className="spec-grid">
+                <div className="swatches">
+                  <div className="swatch" style={{ background: '#4A2040', color: '#FFF' }}>
+                    <div className="lbl">ACAI VIOLET // #4A2040</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#9A2B4C', color: '#FFF' }}>
+                    <div className="lbl">POMEGRANATE // #9A2B4C</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#2E5C38', color: '#FFF' }}>
+                    <div className="lbl">LEAF GREEN // #2E5C38</div>
+                  </div>
+                  <div className="swatch" style={{ background: '#F7D154', color: '#1B1B17' }}>
+                    <div className="lbl">RAW SUN // #F7D154</div>
+                  </div>
+                </div>
+
+                <div className="type-spec">
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>PRIMARY DISPLAY:</span>
+                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>Brite Modern Sans &bull; Sun-Drenched Geometric Precision</h4>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>EDITORIAL SANS:</span>
+                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter SemiBold &bull; Ingredient Transparency &amp; Nutritional Facts</p>
+                  </div>
+                  <div className="row">
+                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
+                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for HPP cold-pressure metrics, cold-chain temperature (4°C) &amp; harvest batches.</p>
                   </div>
                 </div>
               </div>
