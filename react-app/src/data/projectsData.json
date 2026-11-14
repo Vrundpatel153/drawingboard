@@ -226,6 +226,27 @@
     "imageCount": 18
   },
   {
+    "slug": "ouur-cafe-spatial-design",
+    "title": "OUUR — Modern Industrial Café Spatial Design & Brand Environments",
+    "category": "spatial",
+    "tag": "SPATIAL DESIGN & BRAND ENVIRONMENTS",
+    "client": "OUUR Specialty Coffee & Café",
+    "description": "Warm minimalist and modern industrial hospitality interior combining brushed stainless steel counters, curved fluted timber joinery, sculptural pendant acoustics, and refined coffee bar ergonomics.",
+    "coverImage": "/images/ouur-cafe/ouur_cafe_cover.jpg",
+    "images": [
+      "/images/ouur-cafe/ouur_cafe_01.jpg",
+      "/images/ouur-cafe/ouur_cafe_02.jpg",
+      "/images/ouur-cafe/ouur_cafe_03.jpg",
+      "/images/ouur-cafe/ouur_cafe_04.jpg",
+      "/images/ouur-cafe/ouur_cafe_05.jpg",
+      "/images/ouur-cafe/ouur_cafe_06.jpg",
+      "/images/ouur-cafe/ouur_cafe_07.jpg",
+      "/images/ouur-cafe/ouur_cafe_08.jpg",
+      "/images/ouur-cafe/ouur_cafe_09.jpg"
+    ],
+    "imageCount": 9
+  },
+  {
     "slug": "toodaloo-superfood-snack-packaging",
     "title": "Toodaloo — Heal Your Body & The Planet Adaptogenic Trail Mix & Snack Packaging",
     "category": "packaging",

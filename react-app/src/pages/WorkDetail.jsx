@@ -28,6 +28,7 @@ export default function WorkDetail() {
   const isDorada = cleanId.includes('dorada');
   const isRusticCafe = cleanId.includes('rustic') || cleanId.includes('rooted');
   const isArcomi = cleanId.includes('arcomi') || cleanId.includes('boho');
+  const isOuur = cleanId.includes('ouur');
   const isSoulBrew = cleanId.includes('soul') || cleanId.includes('brew');
   const isBondwith = cleanId.includes('bondwith');
   const isFlint = cleanId.includes('flint');
@@ -68,6 +69,7 @@ export default function WorkDetail() {
       (isDorada && s.includes('dorada')) ||
       (isRusticCafe && (s.includes('rustic') || s.includes('rooted'))) ||
       (isArcomi && (s.includes('arcomi') || s.includes('boho'))) ||
+      (isOuur && s.includes('ouur')) ||
       (isSoulBrew && s.includes('soul-brew')) ||
       (isBondwith && s.includes('bondwith')) ||
       (isFlint && s.includes('flint')) ||
@@ -243,6 +245,8 @@ export default function WorkDetail() {
               ? 'Rooted Rustic Café Spatial Design Case Study'
               : isArcomi
               ? 'Arcomi Boho Café Spatial Design Case Study'
+              : isOuur
+              ? 'OUUR Modern Industrial Café Spatial Design Case Study'
               : isSoulBrew
               ? 'Soul Brew Case Study'
               : isBondwith
@@ -285,6 +289,8 @@ export default function WorkDetail() {
                 ? 'CASE STUDY // SPEC 18 — COMMERCIAL SPATIAL DESIGN & BRAND ENVIRONMENTS'
                 : isArcomi
                 ? 'CASE STUDY // SPEC 19 — COMMERCIAL BOHO SPATIAL DESIGN & BRAND ENVIRONMENTS'
+                : isOuur
+                ? 'CASE STUDY // SPEC 20 — MODERN INDUSTRIAL SPATIAL DESIGN & BRAND ENVIRONMENTS'
                 : isSoulBrew
                 ? 'CASE STUDY // SPEC 04 — ARTISAN COFFEE & MOTION'
                 : isBondwith
@@ -555,6 +561,31 @@ export default function WorkDetail() {
                 <div className="meta-cell">
                   <div className="k">Impact</div>
                   <div className="v" style={{ color: 'var(--pine)' }}>18 Master Spatial Renders</div>
+                </div>
+              </div>
+            </>
+          ) : isOuur ? (
+            <>
+              <h1>OUUR — <em>Modern Industrial Café Spatial Design</em> &amp; Brand Environments.</h1>
+              <p className="dek">
+                How we engineered a warm minimalist and modern industrial hospitality interior combining brushed stainless steel counters, curved fluted timber joinery, sculptural pendant acoustics, and refined coffee bar ergonomics.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">OUUR Specialty Coffee &amp; Café</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Spatial Design &amp; Architectural Environments</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">5 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>9 Master Spatial Renders</div>
                 </div>
               </div>
             </>
@@ -1702,6 +1733,62 @@ export default function WorkDetail() {
                     <li>Saudi Arabia Commercial Flagship</li>
                     <li>Turnkey Architectural Spec Package</li>
                     <li>High Guest Dwell-Time &amp; Recall</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isOuur ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Industrial minimalism &amp; ergonomic spatial architecture.</h2>
+                </div>
+                <p>Brushed stainless steel service bars, bespoke fluted acoustic wood paneling, architectural directional lighting, and refined hospitality ergonomics.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Spatial Architecture</h4>
+                  <div className="sub">// STEEL &amp; JOINERY</div>
+                  <ul>
+                    <li>Monolithic brushed steel barista counter</li>
+                    <li>Curved fluted timber feature walls</li>
+                    <li>Micro-cement seamless floor finish</li>
+                    <li>Integrated acoustic ceiling baffles</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Lighting Design</h4>
+                  <div className="sub">// FIXTURES &amp; AMBIENCE</div>
+                  <ul>
+                    <li>Minimalist linear track spotlighting</li>
+                    <li>Sculptural brushed aluminum pendants</li>
+                    <li>Concealed warm LED under-counter coving</li>
+                    <li>High-CRI specialty coffee task illumination</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Furniture &amp; Seating</h4>
+                  <div className="sub">// CUSTOM HOSPITALITY SUITE</div>
+                  <ul>
+                    <li>Bespoke modular upholstered banquettes</li>
+                    <li>Anodized aluminum counter barstools</li>
+                    <li>Solid ash timber two-top café tables</li>
+                    <li>Ergonomic order &amp; pickup workflow zones</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>9 Master 3D Spatial Visualizations</li>
+                    <li>Complete Commercial Floorplan Specs</li>
+                    <li>Optimized Peak-Hour Barista Flow</li>
+                    <li>Flagship Specialty Coffee Interior</li>
                   </ul>
                 </div>
               </div>
