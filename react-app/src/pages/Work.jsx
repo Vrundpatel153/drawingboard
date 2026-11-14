@@ -25,8 +25,8 @@ export default function Work() {
   usePageAnimations(pageRef);
 
   const allCombinedProjects = React.useMemo(() => {
-    // Exclude saas-* items from projectsData to avoid duplicate cards, then map saasProjectsData cleanly
-    const baseProjects = projectsData.filter(p => !p.slug || !p.slug.startsWith('saas-'));
+    // Exclude saas-* items and spatial items (spatial work has its own dedicated /spatial-work page)
+    const baseProjects = projectsData.filter(p => (!p.slug || !p.slug.startsWith('saas-')) && p.category !== 'spatial');
     const formattedSaas = saasProjectsData.map(sp => ({
       slug: `saas-${sp.slug}`,
       title: `${sp.title} — ${sp.tag}`,
@@ -449,7 +449,7 @@ export default function Work() {
                 <button className={`ftab ${filter === 'all' ? 'on' : ''}`} onClick={() => handleFilter('all')}>[ ALL PROJECTS ]</button>
                 <button className={`ftab ${filter === 'saas' ? 'on' : ''}`} onClick={() => handleFilter('saas')}>[ SAAS BRANDING ]</button>
                 <button className={`ftab ${filter === 'branding' ? 'on' : ''}`} onClick={() => handleFilter('branding')}>[ BRANDING ]</button>
-                <button className={`ftab ${filter === 'spatial' ? 'on' : ''}`} onClick={() => handleFilter('spatial')}>[ SPATIAL DESIGN ]</button>
+                <Link to="/spatial-work" className="ftab" style={{ textDecoration: 'none', color: 'var(--pine)', fontWeight: 600 }}>[ SPATIAL WORK ↗ ]</Link>
                 <button className={`ftab ${filter === 'food' ? 'on' : ''}`} onClick={() => handleFilter('food')}>[ FOOD ]</button>
                 <button className={`ftab ${filter === 'skincare' ? 'on' : ''}`} onClick={() => handleFilter('skincare')}>[ SKIN CARE ]</button>
                 <button className={`ftab ${filter === 'wellness' ? 'on' : ''}`} onClick={() => handleFilter('wellness')}>[ HEALTH &amp; WELLNESS ]</button>

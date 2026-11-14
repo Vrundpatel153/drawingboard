@@ -73,6 +73,8 @@ export default function WorkDetail() {
       (isElsewhere && s.includes('elsewhere')) ||
       (isRusticCafe && (s.includes('rustic') || s.includes('rooted'))) ||
       (isArcomi && (s.includes('arcomi') || s.includes('boho'))) ||
+      (isRusticCafe && (s.includes('rustic') || s.includes('rooted'))) ||
+      (isArcomi && (s.includes('arcomi') || s.includes('boho'))) ||
       (isOuur && s.includes('ouur')) ||
       (isMaison && (s.includes('maison') || s.includes('bakery'))) ||
       (isGhalia && s.includes('ghalia')) ||
@@ -253,6 +255,10 @@ export default function WorkDetail() {
               ? 'Rooted Rustic Café Spatial Design Case Study'
               : isArcomi
               ? 'Arcomi Boho Café Spatial Design Case Study'
+              : isRusticCafe
+              ? 'Rooted Rustic Café Spatial Design Case Study'
+              : isArcomi
+              ? 'Arcomi Boho Café Spatial Design Case Study'
               : isOuur
               ? 'OUUR Modern Industrial Café Spatial Design Case Study'
               : isMaison
@@ -299,6 +305,10 @@ export default function WorkDetail() {
                 ? 'CASE STUDY // SPEC 04 — COLOMBIAN SPECIALTY COFFEE & CAFE BRANDING'
                 : isElsewhere
                 ? 'CASE STUDY // SPEC 21 — DREAMY COFFEE SHOP BRANDING & PACKAGING'
+                : isRusticCafe
+                ? 'CASE STUDY // SPEC 18 — COMMERCIAL SPATIAL DESIGN & BRAND ENVIRONMENTS'
+                : isArcomi
+                ? 'CASE STUDY // SPEC 19 — COMMERCIAL BOHO SPATIAL DESIGN & BRAND ENVIRONMENTS'
                 : isRusticCafe
                 ? 'CASE STUDY // SPEC 18 — COMMERCIAL SPATIAL DESIGN & BRAND ENVIRONMENTS'
                 : isArcomi
@@ -554,6 +564,56 @@ export default function WorkDetail() {
                 <div className="meta-cell">
                   <div className="k">Impact</div>
                   <div className="v" style={{ color: 'var(--pine)' }}>30 Master Production Assets</div>
+                </div>
+              </div>
+            </>
+          ) : isRusticCafe ? (
+            <>
+              <h1>Rooted — <em>Rustic Café Spatial Design</em> &amp; Brand Environments.</h1>
+              <p className="dek">
+                How we engineered a warm, nature-inspired hospitality environment combining layered timber ceilings, textured earth plaster, custom hanging earthenware fixtures, and tactile brand environments in the UAE.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Rooted Commercial Café (UAE)</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Spatial Design &amp; Architectural Environments</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">6 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>15 Master Spatial Renders</div>
+                </div>
+              </div>
+            </>
+          ) : isArcomi ? (
+            <>
+              <h1>Arcomi — <em>Boho-Mediterranean Café Spatial Design</em> &amp; Brand Environments.</h1>
+              <p className="dek">
+                How we engineered a warm, organic contemporary and Mediterranean hospitality environment combining arched architecture, natural timber, textured plaster, handcrafted lighting, and biophilic brand environments in Saudi Arabia.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Arcomi Commercial Café (Saudi Arabia)</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Spatial Design &amp; Architectural Environments</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">6 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>18 Master Spatial Renders</div>
                 </div>
               </div>
             </>
@@ -1770,6 +1830,118 @@ export default function WorkDetail() {
                     <li>Complete Retail &amp; Café Collateral Suite</li>
                     <li>High Consumer Affinity &amp; Social Recall</li>
                     <li>Turnkey Supplier-Ready Print Dielines</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isRusticCafe ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Hospitality architecture &amp; brand environments.</h2>
+                </div>
+                <p>Layered timber ceiling architecture, bespoke lighting fixtures, zoned dining layouts, and natural material finishes.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Spatial Architecture</h4>
+                  <div className="sub">// CEILING &amp; SURFACES</div>
+                  <ul>
+                    <li>Layered timber ceiling beam system</li>
+                    <li>Textured natural earth plaster walls</li>
+                    <li>Stone-like terrazzo floor surfaces</li>
+                    <li>Flowing fabric acoustic ceiling panels</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Lighting Design</h4>
+                  <div className="sub">// FIXTURES &amp; AMBIENCE</div>
+                  <ul>
+                    <li>Custom suspended earthenware lighting</li>
+                    <li>Integrated recessed floor cove lights</li>
+                    <li>Warm ambient shelf backlighting</li>
+                    <li>Sculptural ceramic pendant clusters</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Furniture &amp; Seating</h4>
+                  <div className="sub">// CUSTOM HOSPITALITY SUITE</div>
+                  <ul>
+                    <li>Curved banquettes &amp; upholstered booths</li>
+                    <li>Natural solid wood dining tables</li>
+                    <li>Woven cane counter barstools</li>
+                    <li>Integrated indoor sculptural planters</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>15 Master 3D Spatial Visualizations</li>
+                    <li>Turnkey Architectural Spec Handoff</li>
+                    <li>High Customer Dwell-Time Design</li>
+                    <li>UAE Commercial Flagship Experience</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isArcomi ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Hospitality architecture &amp; brand environments.</h2>
+                </div>
+                <p>Arched openings, sculptural lighting fixtures, woven natural wood furniture, and Mediterranean biophilic spatial design.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Spatial Architecture</h4>
+                  <div className="sub">// ARCHES &amp; SURFACES</div>
+                  <ul>
+                    <li>Curved arched architectural openings</li>
+                    <li>Textured earthen plaster walls</li>
+                    <li>Natural timber exposed beams</li>
+                    <li>Stone composite monolithic bar counters</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Lighting Design</h4>
+                  <div className="sub">// FIXTURES &amp; AMBIENCE</div>
+                  <ul>
+                    <li>Custom sculptural woven pendant shades</li>
+                    <li>Concealed warm cove accent lighting</li>
+                    <li>Integrated shelf backlighting</li>
+                    <li>Brass &amp; clay wall-mounted sconces</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Furniture &amp; Biophilic</h4>
+                  <div className="sub">// SEATING &amp; GREENERY</div>
+                  <ul>
+                    <li>Natural wood dining tables &amp; armchairs</li>
+                    <li>Woven cane backrests &amp; soft upholstery</li>
+                    <li>Curved banquettes &amp; carved wood stools</li>
+                    <li>Layered indoor Mediterranean greenery</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>18 Master 3D Spatial Visualizations</li>
+                    <li>Saudi Arabia Commercial Flagship</li>
+                    <li>Turnkey Architectural Spec Package</li>
+                    <li>High Guest Dwell-Time &amp; Recall</li>
                   </ul>
                 </div>
               </div>

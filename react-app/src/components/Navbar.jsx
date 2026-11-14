@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { to: '/', label: 'Home', end: true },
   { to: '/studio', label: 'Studio' },
   { to: '/work', label: 'Work' },
+  { to: '/spatial-work', label: 'Spatial Work' },
   { to: '/services', label: 'Services' },
   { to: '/get-quote', label: 'Get Quote' },
   { to: '/insights', label: 'Insights' },

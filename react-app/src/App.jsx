@@ -12,6 +12,7 @@ import PackagingPage from './pages/PackagingPage';
 import DevelopmentPage from './pages/DevelopmentPage';
 import SaaSBrandingPage from './pages/SaaSBrandingPage';
 import SpatialBrandingPage from './pages/SpatialBrandingPage';
+import SpatialWork from './pages/SpatialWork';
 import Contact from './pages/Contact';
 import BlogDetail from './pages/BlogDetail';
 import LegalDetail from './pages/LegalDetail';
@@ -57,6 +58,13 @@ export default function App() {
             <Route path="/works" element={<Work />} />
             <Route path="/work/:projectId" element={<WorkDetail />} />
             <Route path="/works/:projectId" element={<WorkDetail />} />
+
+            {/* Dedicated Spatial & Interior Work routes */}
+            <Route path="/spatial-work" element={<SpatialWork />} />
+            <Route path="/spatial-works" element={<SpatialWork />} />
+            <Route path="/interior-work" element={<SpatialWork />} />
+            <Route path="/interior-works" element={<SpatialWork />} />
+            <Route path="/spatial-portfolio" element={<SpatialWork />} />
 
             {/* Services routes */}
             <Route path="/services" element={<Services />} />

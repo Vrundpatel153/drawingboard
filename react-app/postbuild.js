@@ -533,7 +533,19 @@ async function run() {
     {
       route: '/work',
       title: 'Selected Works & Brand Architecture Archive | The Drawing Board',
-      description: 'Explore 35+ verified case studies across brand identity, luxury packaging systems, and digital engineering platforms.',
+      description: 'Explore verified case studies across brand identity, luxury packaging systems, and digital engineering platforms.',
+      schemas: []
+    },
+    {
+      route: '/spatial-work',
+      title: 'Spatial & Interior Work — Architectural Environments | The Drawing Board',
+      description: 'Explore 100+ master photorealistic 3D spatial renders, interior architecture concepts, and branded commercial hospitality environments designed by The Drawing Board Studio.',
+      schemas: []
+    },
+    {
+      route: '/services/spatial-branding',
+      title: 'Spatial Branding & Commercial Architecture Environments | The Drawing Board',
+      description: 'We build brands you can step into. Commercial spatial design, environmental graphics, and turnkey architectural specification schedules.',
       schemas: []
     },
     {
@@ -709,7 +721,9 @@ async function run() {
     { loc: `${DOMAIN}/web-development`, priority: '0.9', changefreq: 'weekly' },
     { loc: `${DOMAIN}/saas-branding`, priority: '0.9', changefreq: 'weekly' },
     { loc: `${DOMAIN}/work`, priority: '0.9', changefreq: 'weekly' },
+    { loc: `${DOMAIN}/spatial-work`, priority: '0.9', changefreq: 'weekly' },
     { loc: `${DOMAIN}/services`, priority: '0.9', changefreq: 'weekly' },
+    { loc: `${DOMAIN}/services/spatial-branding`, priority: '0.8', changefreq: 'weekly' },
     { loc: `${DOMAIN}/services/branding`, priority: '0.8', changefreq: 'weekly' },
     { loc: `${DOMAIN}/services/packaging-design`, priority: '0.8', changefreq: 'weekly' },
     { loc: `${DOMAIN}/services/development`, priority: '0.8', changefreq: 'weekly' },
