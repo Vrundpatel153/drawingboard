@@ -26,6 +26,7 @@ export default function WorkDetail() {
   const isMatchaClub = cleanId.includes('matcha');
   const isMurami = cleanId.includes('murami');
   const isDorada = cleanId.includes('dorada');
+  const isElsewhere = cleanId.includes('elsewhere');
   const isRusticCafe = cleanId.includes('rustic') || cleanId.includes('rooted');
   const isArcomi = cleanId.includes('arcomi') || cleanId.includes('boho');
   const isOuur = cleanId.includes('ouur');
@@ -67,6 +68,7 @@ export default function WorkDetail() {
       (isMatchaClub && s.includes('matcha')) ||
       (isMurami && s.includes('murami')) ||
       (isDorada && s.includes('dorada')) ||
+      (isElsewhere && s.includes('elsewhere')) ||
       (isRusticCafe && (s.includes('rustic') || s.includes('rooted'))) ||
       (isArcomi && (s.includes('arcomi') || s.includes('boho'))) ||
       (isOuur && s.includes('ouur')) ||
@@ -241,6 +243,8 @@ export default function WorkDetail() {
               ? 'Murami Case Study'
               : isDorada
               ? 'Dorada Café & Bar Case Study'
+              : isElsewhere
+              ? 'ELSEWHERE Coffee Shop Branding Case Study'
               : isRusticCafe
               ? 'Rooted Rustic Café Spatial Design Case Study'
               : isArcomi
@@ -285,6 +289,8 @@ export default function WorkDetail() {
                 ? 'CASE STUDY // SPEC 03 — CHARACTER & HOSPITALITY'
                 : isDorada
                 ? 'CASE STUDY // SPEC 04 — COLOMBIAN SPECIALTY COFFEE & CAFE BRANDING'
+                : isElsewhere
+                ? 'CASE STUDY // SPEC 21 — DREAMY COFFEE SHOP BRANDING & PACKAGING'
                 : isRusticCafe
                 ? 'CASE STUDY // SPEC 18 — COMMERCIAL SPATIAL DESIGN & BRAND ENVIRONMENTS'
                 : isArcomi
@@ -511,6 +517,31 @@ export default function WorkDetail() {
                 <div className="meta-cell">
                   <div className="k">Impact</div>
                   <div className="v" style={{ color: 'var(--pine)' }}>14 Master Production Assets</div>
+                </div>
+              </div>
+            </>
+          ) : isElsewhere ? (
+            <>
+              <h1>ELSEWHERE — <em>Daydream Coffee Shop</em> Branding &amp; Packaging.</h1>
+              <p className="dek">
+                How we engineered a dreamy, contemporary hospitality brand identity inspired by the quiet beauty of daydreaming — blending earthy olive palettes, editorial typography, whimsical cloud characters, and tactile coffee packaging systems.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">ELSEWHERE Daydream Coffee Co.</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Brand Identity, Packaging &amp; Illustration</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">4 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>30 Master Production Assets</div>
                 </div>
               </div>
             </>
@@ -1621,6 +1652,62 @@ export default function WorkDetail() {
                     <li>Seamless Shelf-to-Cafe Coherence</li>
                     <li>Premium Specialty Coffee Positioning</li>
                     <li>High In-Store &amp; Takeaway Recall</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isElsewhere ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Daydreaming brand identity &amp; tactile coffee packaging.</h2>
+                </div>
+                <p>Earthy olive and cream color architecture, bespoke logotypes, whimsical character illustrations, and sustainable specialty coffee packaging dielines.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Brand Architecture</h4>
+                  <div className="sub">// IDENTITY &amp; TYPOGRAPHY</div>
+                  <ul>
+                    <li>Primary logotype &amp; cloud symbol</li>
+                    <li>Editorial serif &amp; sans typography system</li>
+                    <li>Calming olive, butter &amp; espresso palette</li>
+                    <li>Brand tone of voice &amp; storytelling rules</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Packaging Design</h4>
+                  <div className="sub">// DIELINES &amp; MATERIALS</div>
+                  <ul>
+                    <li>Whole-bean specialty coffee pouch bags</li>
+                    <li>Embossed hot &amp; cold takeaway cups</li>
+                    <li>Cold brew bottle labels &amp; seal stickers</li>
+                    <li>Custom pastry &amp; bakery take-out boxes</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Illustration &amp; Print</h4>
+                  <div className="sub">// COLLATERAL &amp; MERCH</div>
+                  <ul>
+                    <li>Whimsical daydream cloud character suite</li>
+                    <li>Screen-printed canvas tote bags &amp; tees</li>
+                    <li>Editorial print café menu &amp; table markers</li>
+                    <li>Animated social reveals &amp; motion stickers</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>30 Master Brand &amp; Packaging Assets</li>
+                    <li>Complete Retail &amp; Café Collateral Suite</li>
+                    <li>High Consumer Affinity &amp; Social Recall</li>
+                    <li>Turnkey Supplier-Ready Print Dielines</li>
                   </ul>
                 </div>
               </div>
