@@ -25,6 +25,7 @@ export default function WorkDetail() {
   const isPronto = cleanId.includes('pronto');
   const isMatchaClub = cleanId.includes('matcha');
   const isMurami = cleanId.includes('murami');
+  const isDorada = cleanId.includes('dorada');
   const isSoulBrew = cleanId.includes('soul') || cleanId.includes('brew');
   const isBondwith = cleanId.includes('bondwith');
   const isFlint = cleanId.includes('flint');
@@ -62,6 +63,7 @@ export default function WorkDetail() {
       (isPronto && s.includes('pronto')) ||
       (isMatchaClub && s.includes('matcha')) ||
       (isMurami && s.includes('murami')) ||
+      (isDorada && s.includes('dorada')) ||
       (isSoulBrew && s.includes('soul-brew')) ||
       (isBondwith && s.includes('bondwith')) ||
       (isFlint && s.includes('flint')) ||
@@ -231,6 +233,8 @@ export default function WorkDetail() {
               ? 'Matcha Club Case Study'
               : isMurami
               ? 'Murami Case Study'
+              : isDorada
+              ? 'Dorada Café & Bar Case Study'
               : isSoulBrew
               ? 'Soul Brew Case Study'
               : isBondwith
@@ -267,6 +271,8 @@ export default function WorkDetail() {
                 ? 'CASE STUDY // SPEC 02 — CPG & RITUAL BRANDING'
                 : isMurami
                 ? 'CASE STUDY // SPEC 03 — CHARACTER & HOSPITALITY'
+                : isDorada
+                ? 'CASE STUDY // SPEC 04 — COLOMBIAN SPECIALTY COFFEE & CAFE BRANDING'
                 : isSoulBrew
                 ? 'CASE STUDY // SPEC 04 — ARTISAN COFFEE & MOTION'
                 : isBondwith
@@ -462,6 +468,31 @@ export default function WorkDetail() {
                 <div className="meta-cell">
                   <div className="k">Impact</div>
                   <div className="v" style={{ color: 'var(--pine)' }}>+310% Brand Recall</div>
+                </div>
+              </div>
+            </>
+          ) : isDorada ? (
+            <>
+              <h1>Dorada — <em>Colombian Café, Roastery</em> &amp; Bar Identity.</h1>
+              <p className="dek">
+                How we engineered a vibrant brand identity, warm color system, bespoke typographic marks, packaging dielines, and artisanal cafe collateral for Colombian specialty coffee roaster and cafe bar Dorada.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Dorada Café &amp; Bar</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Brand Identity, Packaging Suite &amp; Collateral</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">4 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>14 Master Production Assets</div>
                 </div>
               </div>
             </>
@@ -1441,6 +1472,62 @@ export default function WorkDetail() {
                     <li>5.0x Organic Social Mentions</li>
                     <li>14 Master Production Assets</li>
                     <li>Complete Turnkey Asset Handoff</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isDorada ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Artisanal cafe branding &amp; coffee packaging.</h2>
+                </div>
+                <p>Custom typographic marks, tin and can packaging suites, take-out bags, and cafe bar collateral.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Visual Identity</h4>
+                  <div className="sub">// MARKS &amp; TYPOGRAPHY</div>
+                  <ul>
+                    <li>Hand-crafted bespoke logomark suite</li>
+                    <li>Illustrated character chef barista mascot</li>
+                    <li>Colombian-inspired warm color system</li>
+                    <li>Typographic hierarchy &amp; guidelines</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Packaging Suite</h4>
+                  <div className="sub">// CANS, TINS &amp; POUCHES</div>
+                  <ul>
+                    <li>Square metal coffee tin packaging</li>
+                    <li>Cold-brew sleek aluminum cans</li>
+                    <li>Kraft paper takeout carriers &amp; bags</li>
+                    <li>Custom illustrated coffee cups</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Cafe Collateral</h4>
+                  <div className="sub">// SPATIAL &amp; PRINT</div>
+                  <ul>
+                    <li>Artisanal glass bottle menu labeling</li>
+                    <li>Cafe bar counter collateral &amp; signage</li>
+                    <li>Staff uniforms &amp; merchandise</li>
+                    <li>Social media motion graphics &amp; loops</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>14 Master Production Deliverables</li>
+                    <li>Seamless Shelf-to-Cafe Coherence</li>
+                    <li>Premium Specialty Coffee Positioning</li>
+                    <li>High In-Store &amp; Takeaway Recall</li>
                   </ul>
                 </div>
               </div>

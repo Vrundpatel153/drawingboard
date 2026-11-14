@@ -143,6 +143,32 @@
     "imageCount": 14
   },
   {
+    "slug": "dorada-coffee-cafe-branding",
+    "title": "Dorada — Colombian Café, Roastery & Bar Identity",
+    "category": "food",
+    "tag": "FOOD & SPECIALTY CAFE BRANDING",
+    "client": "Dorada Café & Bar",
+    "description": "Strategic brand identity, warm color system, bespoke typographic marks, packaging dielines, and artisanal cafe collateral for Colombian specialty coffee roaster and cafe bar Dorada.",
+    "coverImage": "/images/dorada/dorada_cover.png",
+    "images": [
+      "/images/dorada/dorada_01.png",
+      "/images/dorada/dorada_02.png",
+      "/images/dorada/dorada_03.png",
+      "/images/dorada/dorada_04.png",
+      "/images/dorada/dorada_05.gif",
+      "/images/dorada/dorada_06.png",
+      "/images/dorada/dorada_07.png",
+      "/images/dorada/dorada_08.png",
+      "/images/dorada/dorada_09.png",
+      "/images/dorada/dorada_10.png",
+      "/images/dorada/dorada_11.png",
+      "/images/dorada/dorada_12.png",
+      "/images/dorada/dorada_13.png",
+      "/images/dorada/dorada_14.png"
+    ],
+    "imageCount": 14
+  },
+  {
     "slug": "toodaloo-superfood-snack-packaging",
     "title": "Toodaloo — Heal Your Body & The Planet Adaptogenic Trail Mix & Snack Packaging",
     "category": "packaging",
