@@ -169,6 +169,33 @@
     "imageCount": 14
   },
   {
+    "slug": "rooted-rustic-cafe-spatial-design",
+    "title": "Rooted — Rustic Café Spatial Design & Brand Environments",
+    "category": "spatial",
+    "tag": "SPATIAL DESIGN & BRAND ENVIRONMENTS",
+    "client": "Rooted Commercial Café (UAE)",
+    "description": "A warm and sophisticated commercial café concept inspired by organic forms, layered timber ceilings, textured earth plaster, handcrafted hanging earthenware fixtures, and nature-inspired brand environments in the UAE.",
+    "coverImage": "/images/rustic-cafe/rustic_cafe_cover.jpg",
+    "images": [
+      "/images/rustic-cafe/rustic_cafe_01.jpg",
+      "/images/rustic-cafe/rustic_cafe_02.jpg",
+      "/images/rustic-cafe/rustic_cafe_03.png",
+      "/images/rustic-cafe/rustic_cafe_04.png",
+      "/images/rustic-cafe/rustic_cafe_05.png",
+      "/images/rustic-cafe/rustic_cafe_06.png",
+      "/images/rustic-cafe/rustic_cafe_07.png",
+      "/images/rustic-cafe/rustic_cafe_08.png",
+      "/images/rustic-cafe/rustic_cafe_09.png",
+      "/images/rustic-cafe/rustic_cafe_10.png",
+      "/images/rustic-cafe/rustic_cafe_11.png",
+      "/images/rustic-cafe/rustic_cafe_12.png",
+      "/images/rustic-cafe/rustic_cafe_13.png",
+      "/images/rustic-cafe/rustic_cafe_14.png",
+      "/images/rustic-cafe/rustic_cafe_15.png"
+    ],
+    "imageCount": 15
+  },
+  {
     "slug": "toodaloo-superfood-snack-packaging",
     "title": "Toodaloo — Heal Your Body & The Planet Adaptogenic Trail Mix & Snack Packaging",
     "category": "packaging",

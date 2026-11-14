@@ -45,7 +45,8 @@ export default function Work() {
     let list = allCombinedProjects.filter(p => {
       if (filter === 'all') return true;
       if (filter === 'saas') return p.category === 'saas' || (p.tag && p.tag.toUpperCase().includes('SAAS'));
-      if (filter === 'branding') return p.category === 'branding' || (p.tag && p.tag.includes('BRANDING')) || (p.slug || '').includes('yaad');
+      if (filter === 'branding') return p.category === 'branding' || (p.tag && p.tag.includes('BRANDING')) || (p.slug || '').includes('yaad') || (p.slug || '').includes('dorada');
+      if (filter === 'spatial') return p.category === 'spatial' || (p.tag && (p.tag.includes('SPATIAL') || p.tag.includes('ENVIRONMENT') || p.tag.includes('INTERIOR') || p.tag.includes('ARCHITECTURE'))) || (p.slug || '').includes('rustic');
       if (filter === 'food') return p.category === 'food' || (p.tag && (p.tag.includes('FOOD') || p.tag.includes('BEVERAGE') || p.tag.includes('RESTAURANT') || p.tag.includes('CAFE'))) || ['pronto', 'matcha', 'murami', 'soul-brew', 'coastal-buns', 'dorada'].some(s => (p.slug || '').includes(s));
       if (filter === 'skincare') return p.category === 'skincare' || p.category === 'skin care' || (p.tag && (p.tag.includes('SKIN') || p.tag.includes('NAIL') || p.tag.includes('BEAUTY') || p.tag.includes('BODY'))) || ['blank-body', 'crystal-nail-care-brand', 'rest-religion', 'barely', 'sage', 'iva'].some(s => (p.slug || '').includes(s));
       if (filter === 'wellness') return p.category === 'wellness' || p.category === 'health' || (p.tag && (p.tag.includes('HEALTH') || p.tag.includes('WELLNESS') || p.tag.includes('TELEHEALTH'))) || ['brave-rx', 'yaad'].some(s => (p.slug || '').includes(s));
@@ -448,6 +449,7 @@ export default function Work() {
                 <button className={`ftab ${filter === 'all' ? 'on' : ''}`} onClick={() => handleFilter('all')}>[ ALL PROJECTS ]</button>
                 <button className={`ftab ${filter === 'saas' ? 'on' : ''}`} onClick={() => handleFilter('saas')}>[ SAAS BRANDING ]</button>
                 <button className={`ftab ${filter === 'branding' ? 'on' : ''}`} onClick={() => handleFilter('branding')}>[ BRANDING ]</button>
+                <button className={`ftab ${filter === 'spatial' ? 'on' : ''}`} onClick={() => handleFilter('spatial')}>[ SPATIAL DESIGN ]</button>
                 <button className={`ftab ${filter === 'food' ? 'on' : ''}`} onClick={() => handleFilter('food')}>[ FOOD ]</button>
                 <button className={`ftab ${filter === 'skincare' ? 'on' : ''}`} onClick={() => handleFilter('skincare')}>[ SKIN CARE ]</button>
                 <button className={`ftab ${filter === 'wellness' ? 'on' : ''}`} onClick={() => handleFilter('wellness')}>[ HEALTH &amp; WELLNESS ]</button>

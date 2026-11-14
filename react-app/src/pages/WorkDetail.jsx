@@ -26,6 +26,7 @@ export default function WorkDetail() {
   const isMatchaClub = cleanId.includes('matcha');
   const isMurami = cleanId.includes('murami');
   const isDorada = cleanId.includes('dorada');
+  const isRusticCafe = cleanId.includes('rustic') || cleanId.includes('rooted');
   const isSoulBrew = cleanId.includes('soul') || cleanId.includes('brew');
   const isBondwith = cleanId.includes('bondwith');
   const isFlint = cleanId.includes('flint');
@@ -64,6 +65,7 @@ export default function WorkDetail() {
       (isMatchaClub && s.includes('matcha')) ||
       (isMurami && s.includes('murami')) ||
       (isDorada && s.includes('dorada')) ||
+      (isRusticCafe && (s.includes('rustic') || s.includes('rooted'))) ||
       (isSoulBrew && s.includes('soul-brew')) ||
       (isBondwith && s.includes('bondwith')) ||
       (isFlint && s.includes('flint')) ||
@@ -235,6 +237,8 @@ export default function WorkDetail() {
               ? 'Murami Case Study'
               : isDorada
               ? 'Dorada Café & Bar Case Study'
+              : isRusticCafe
+              ? 'Rooted Rustic Café Spatial Design Case Study'
               : isSoulBrew
               ? 'Soul Brew Case Study'
               : isBondwith
@@ -273,6 +277,8 @@ export default function WorkDetail() {
                 ? 'CASE STUDY // SPEC 03 — CHARACTER & HOSPITALITY'
                 : isDorada
                 ? 'CASE STUDY // SPEC 04 — COLOMBIAN SPECIALTY COFFEE & CAFE BRANDING'
+                : isRusticCafe
+                ? 'CASE STUDY // SPEC 18 — COMMERCIAL SPATIAL DESIGN & BRAND ENVIRONMENTS'
                 : isSoulBrew
                 ? 'CASE STUDY // SPEC 04 — ARTISAN COFFEE & MOTION'
                 : isBondwith
@@ -493,6 +499,31 @@ export default function WorkDetail() {
                 <div className="meta-cell">
                   <div className="k">Impact</div>
                   <div className="v" style={{ color: 'var(--pine)' }}>14 Master Production Assets</div>
+                </div>
+              </div>
+            </>
+          ) : isRusticCafe ? (
+            <>
+              <h1>Rooted — <em>Rustic Café Spatial Design</em> &amp; Brand Environments.</h1>
+              <p className="dek">
+                How we engineered a warm, nature-inspired hospitality environment combining layered timber ceilings, textured earth plaster, custom hanging earthenware fixtures, and tactile brand environments in the UAE.
+              </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Rooted Commercial Café (UAE)</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Spatial Design &amp; Architectural Environments</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">6 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>15 Master Spatial Renders</div>
                 </div>
               </div>
             </>
@@ -1528,6 +1559,62 @@ export default function WorkDetail() {
                     <li>Seamless Shelf-to-Cafe Coherence</li>
                     <li>Premium Specialty Coffee Positioning</li>
                     <li>High In-Store &amp; Takeaway Recall</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isRusticCafe ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Hospitality architecture &amp; brand environments.</h2>
+                </div>
+                <p>Layered timber ceiling architecture, bespoke lighting fixtures, zoned dining layouts, and natural material finishes.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Spatial Architecture</h4>
+                  <div className="sub">// CEILING &amp; SURFACES</div>
+                  <ul>
+                    <li>Layered timber ceiling beam system</li>
+                    <li>Textured natural earth plaster walls</li>
+                    <li>Stone-like terrazzo floor surfaces</li>
+                    <li>Flowing fabric acoustic ceiling panels</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Lighting Design</h4>
+                  <div className="sub">// FIXTURES &amp; AMBIENCE</div>
+                  <ul>
+                    <li>Custom suspended earthenware lighting</li>
+                    <li>Integrated recessed floor cove lights</li>
+                    <li>Warm ambient shelf backlighting</li>
+                    <li>Sculptural ceramic pendant clusters</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Furniture &amp; Seating</h4>
+                  <div className="sub">// CUSTOM HOSPITALITY SUITE</div>
+                  <ul>
+                    <li>Curved banquettes &amp; upholstered booths</li>
+                    <li>Natural solid wood dining tables</li>
+                    <li>Woven cane counter barstools</li>
+                    <li>Integrated indoor sculptural planters</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>15 Master 3D Spatial Visualizations</li>
+                    <li>Turnkey Architectural Spec Handoff</li>
+                    <li>High Customer Dwell-Time Design</li>
+                    <li>UAE Commercial Flagship Experience</li>
                   </ul>
                 </div>
               </div>
