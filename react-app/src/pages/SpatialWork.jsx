@@ -27,10 +27,12 @@ export default function SpatialWork() {
 
   // Dedicated Spatial & Interior Design Projects
   const spatialProjects = useMemo(() => {
-    const list = projectsData.filter(p => p.category === 'spatial');
+    const list = projectsData.filter(p => p.category === 'spatial' || ['forte', 'high-life'].some(s => (p.slug || '').includes(s)));
     
-    // Custom order: Commercial & Architecture -> Fine Dining -> Artisanal Bakery -> Boho -> Rustic -> Industrial
+    // Custom order: Forte & High Life & Orient -> Fine Dining -> Artisanal Bakery -> Boho -> Rustic -> Industrial
     const order = [
+      'forte-luxury-architecture-brand-identity',
+      'high-life-residences',
       'orient-developers-spatial-branding',
       'ghalia-acarverde-restaurant-spatial-design',
       'maison-cafe-bakery-spatial-design',
@@ -50,8 +52,8 @@ export default function SpatialWork() {
 
   const filteredProjects = useMemo(() => {
     if (filter === 'all') return spatialProjects;
-    if (filter === 'commercial') {
-      return spatialProjects.filter(p => p.slug.includes('orient'));
+    if (filter === 'commercial' || filter === 'real-estate') {
+      return spatialProjects.filter(p => p.slug.includes('forte') || p.slug.includes('high-life') || p.slug.includes('orient'));
     }
     if (filter === 'dining') {
       return spatialProjects.filter(p => p.slug.includes('ghalia'));
@@ -345,7 +347,7 @@ export default function SpatialWork() {
                 className={`spatial-filter-btn ${filter === 'commercial' ? 'active' : ''}`}
                 onClick={() => setFilter('commercial')}
               >
-                [ COMMERCIAL &amp; ARCHITECTURE ]
+                [ REAL ESTATE &amp; ARCHITECTURE ]
               </button>
               <button
                 className={`spatial-filter-btn ${filter === 'dining' ? 'active' : ''}`}

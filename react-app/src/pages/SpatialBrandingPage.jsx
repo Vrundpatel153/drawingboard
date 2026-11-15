@@ -48,10 +48,34 @@ export default function SpatialBrandingPage() {
 
   const SPATIAL_PROJECTS = useMemo(() => [
     {
+      slug: 'forte-luxury-architecture-brand-identity',
+      title: 'Forte — Luxury Architecture & Real Estate Brand Identity',
+      tag: 'LUXURY REAL ESTATE // ARCHITECTURAL IDENTITY',
+      category: 'real-estate',
+      imageCount: 15,
+      coverImage: '/images/forte/forte_cover.jpg',
+      description: 'Timeless brand architecture for modern living spaces. Arch-shaped monograms, high-contrast serif typography, hot-foil property folios, and architectural bronze fascia signage specifications.',
+      scope: 'Brand Architecture, Environmental Signage & Folios',
+      scale: 'Luxury Residential & Architecture Practice',
+      materials: 'Cast Bronze, Limestone, Hot-Foil Vellum, Deep Forest Green'
+    },
+    {
+      slug: 'high-life-residences',
+      title: 'High Life Residences — Luxury Residential Architecture',
+      tag: 'METROPOLITAN RESIDENTIAL // REAL ESTATE BRANDING',
+      category: 'real-estate',
+      imageCount: 29,
+      coverImage: '/images/high-life-residences/high_life_cover.jpg',
+      description: 'A landmark multi-platform real estate brand identity and urban advertising campaign for premier residential towers. Gold-foil sales folios, penthouse monographs, luminous tower signage, and resident mobile portals.',
+      scope: 'Master Identity, Wayfinding, Sales Gallery & Mobile UI',
+      scale: 'Landmark Metropolitan Residential Tower',
+      materials: 'Obsidian Steel, Amber Gold Leaf, Fluted Architectural Glass'
+    },
+    {
       slug: 'orient-developers-spatial-branding',
       title: 'Orient Developers — Commercial Architecture & Spatial Branding',
       tag: 'COMMERCIAL REAL ESTATE // SPATIAL BRANDING',
-      category: 'commercial',
+      category: 'real-estate',
       imageCount: 18,
       coverImage: '/images/orient-developers/orient_page_01.jpg',
       description: 'Crafting spaces and building legacies. Enduring commercial spatial branding, architectural moodboards, executive presentation folios, environmental graphics, and bespoke corporate sales lounge design.',
@@ -123,6 +147,7 @@ export default function SpatialBrandingPage() {
 
   const filteredSpatialProjects = useMemo(() => {
     if (spatialFilter === 'all') return SPATIAL_PROJECTS;
+    if (spatialFilter === 'real-estate') return SPATIAL_PROJECTS.filter(p => p.category === 'real-estate' || p.category === 'commercial');
     if (spatialFilter === 'dining') return SPATIAL_PROJECTS.filter(p => p.category === 'dining');
     if (spatialFilter === 'bakery') return SPATIAL_PROJECTS.filter(p => p.category === 'bakery');
     if (spatialFilter === 'coffee') return SPATIAL_PROJECTS.filter(p => p.category === 'coffee');
@@ -1078,6 +1103,12 @@ export default function SpatialBrandingPage() {
                   onClick={() => setSpatialFilter('all')}
                 >
                   [ ALL ENVIRONMENTS ]
+                </button>
+                <button
+                  className={`ftab ${spatialFilter === 'real-estate' ? 'on' : ''}`}
+                  onClick={() => setSpatialFilter('real-estate')}
+                >
+                  [ REAL ESTATE &amp; ARCHITECTURE ]
                 </button>
                 <button
                   className={`ftab ${spatialFilter === 'dining' ? 'on' : ''}`}

@@ -25,8 +25,8 @@ export default function Work() {
   usePageAnimations(pageRef);
 
   const allCombinedProjects = React.useMemo(() => {
-    // Exclude saas-* items and spatial items (spatial work has its own dedicated /spatial-work page)
-    const baseProjects = projectsData.filter(p => (!p.slug || !p.slug.startsWith('saas-')) && p.category !== 'spatial');
+    // Exclude saas-* items and spatial items, keeping orient-developers which is commercial real estate
+    const baseProjects = projectsData.filter(p => (!p.slug || !p.slug.startsWith('saas-')) && (p.category !== 'spatial' || (p.slug && p.slug.includes('orient'))));
     const formattedSaas = saasProjectsData.map(sp => ({
       slug: `saas-${sp.slug}`,
       title: `${sp.title} — ${sp.tag}`,
@@ -56,6 +56,24 @@ export default function Work() {
       if (filter === 'photography') return p.category === 'photography' || (p.tag && p.tag.includes('PHOTO'));
       return true;
     });
+
+    if (filter === 'real-estate') {
+      const realEstatePriority = [
+        'forte-luxury-architecture-brand-identity',
+        'high-life-residences',
+        'orient-developers-spatial-branding',
+        'krona-architecture-studio'
+      ];
+      const priorityMap = new Map(realEstatePriority.map((s, idx) => [s, idx]));
+      const prioritized = [];
+      const remaining = [];
+      list.forEach(p => {
+        if (priorityMap.has(p.slug)) prioritized.push(p);
+        else remaining.push(p);
+      });
+      prioritized.sort((a, b) => priorityMap.get(a.slug) - priorityMap.get(b.slug));
+      return [...prioritized, ...remaining];
+    }
 
     if (filter === 'packaging') {
       const packagingPriority = [
