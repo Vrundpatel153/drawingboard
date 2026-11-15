@@ -229,3 +229,4 @@ content = content.replace(specsTarget, dabboSpecs);
 
 fs.writeFileSync(filePath, content, 'utf8');
 console.log('WorkDetail.jsx perfectly patched!');
+

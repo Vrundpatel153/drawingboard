@@ -232,3 +232,4 @@ if (!content.includes('MADRID CRIMSON // #C8102E')) {
 
 fs.writeFileSync(filePath, content, 'utf8');
 console.log('WorkDetail.jsx patch complete!');
+

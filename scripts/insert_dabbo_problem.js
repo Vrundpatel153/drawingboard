@@ -44,3 +44,4 @@ const dabboProblem = `) : isDabbo ? (
 c = c.slice(0, splitPart) + dabboProblem + c.slice(splitPart);
 fs.writeFileSync(targetFile, c, 'utf8');
 console.log('Successfully inserted Dabbo problem section!');
+

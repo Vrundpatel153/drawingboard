@@ -10,9 +10,9 @@ const NAV_LINKS = [
   { to: '/work', label: 'Work' },
   { to: '/spatial-work', label: 'Spatial Work' },
   { to: '/services', label: 'Services' },
-  { to: '/get-quote', label: 'Get Quote' },
   { to: '/insights', label: 'Insights' },
   { to: '/contact', label: 'Contact' },
+  { to: '/get-quote', label: 'Get Quote' },
 ];
 
 export default function Navbar() {
@@ -81,7 +81,7 @@ export default function Navbar() {
           </Link>
 
           <nav className="navlinks" aria-label="Main navigation">
-            {NAV_LINKS.map(({ to, label, end }) => (
+            {NAV_LINKS.filter(l => l.to !== '/get-quote').map(({ to, label, end }) => (
               <NavLink key={to} to={to} end={end}
                 className={({ isActive }) => isActive ? 'active' : undefined}>
                 {label}

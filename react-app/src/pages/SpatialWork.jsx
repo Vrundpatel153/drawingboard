@@ -29,8 +29,9 @@ export default function SpatialWork() {
   const spatialProjects = useMemo(() => {
     const list = projectsData.filter(p => p.category === 'spatial');
     
-    // Custom order: Flagship Fine Dining -> Artisanal Bakery -> Boho -> Rustic -> Industrial
+    // Custom order: Commercial & Architecture -> Fine Dining -> Artisanal Bakery -> Boho -> Rustic -> Industrial
     const order = [
+      'orient-developers-spatial-branding',
       'ghalia-acarverde-restaurant-spatial-design',
       'maison-cafe-bakery-spatial-design',
       'arcomi-boho-cafe-spatial-design',
@@ -49,6 +50,9 @@ export default function SpatialWork() {
 
   const filteredProjects = useMemo(() => {
     if (filter === 'all') return spatialProjects;
+    if (filter === 'commercial') {
+      return spatialProjects.filter(p => p.slug.includes('orient'));
+    }
     if (filter === 'dining') {
       return spatialProjects.filter(p => p.slug.includes('ghalia'));
     }
@@ -336,6 +340,12 @@ export default function SpatialWork() {
                 onClick={() => setFilter('all')}
               >
                 [ ALL SPATIAL WORK ({spatialProjects.length}) ]
+              </button>
+              <button
+                className={`spatial-filter-btn ${filter === 'commercial' ? 'active' : ''}`}
+                onClick={() => setFilter('commercial')}
+              >
+                [ COMMERCIAL &amp; ARCHITECTURE ]
               </button>
               <button
                 className={`spatial-filter-btn ${filter === 'dining' ? 'active' : ''}`}

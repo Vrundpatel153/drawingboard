@@ -48,6 +48,18 @@ export default function SpatialBrandingPage() {
 
   const SPATIAL_PROJECTS = useMemo(() => [
     {
+      slug: 'orient-developers-spatial-branding',
+      title: 'Orient Developers — Commercial Architecture & Spatial Branding',
+      tag: 'COMMERCIAL REAL ESTATE // SPATIAL BRANDING',
+      category: 'commercial',
+      imageCount: 18,
+      coverImage: '/images/orient-developers/orient_page_01.jpg',
+      description: 'Crafting spaces and building legacies. Enduring commercial spatial branding, architectural moodboards, executive presentation folios, environmental graphics, and bespoke corporate sales lounge design.',
+      scope: 'Spatial Branding, Identity & Architecture',
+      scale: 'Corporate Headquarters & Sales Gallery',
+      materials: 'Natural Oak, Architectural Glass, Brushed Aluminum, Matte Stone'
+    },
+    {
       slug: 'ghalia-acarverde-restaurant-spatial-design',
       title: 'Ghalia Acarverde — Luxury Restaurant & Lounge',
       tag: 'FINE DINING FLAGSHIP // COMMERCIAL RESTAURANT',
