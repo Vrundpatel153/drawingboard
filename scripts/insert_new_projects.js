@@ -90,3 +90,4 @@ fs.writeFileSync(filePath, JSON.stringify(cleanList, null, 2), 'utf8');
 console.log(`Updated projectsData.json with ${cleanList.length} projects.`);
 console.log('High Life Images count:', highLifeImages.length);
 console.log('Orient Images count:', orientImages.length);
+

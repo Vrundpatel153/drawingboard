@@ -61,6 +61,7 @@ export default function Work() {
       const packagingPriority = [
         'bonta-gelato-outdoor-packaging-branding',
         'dabbo-madrid-hot-dog-coffee-branding',
+        'gusto-handcrafted-pottery-brand-identity',
         'toodaloo-superfood-snack-packaging',
         'kame-hot-sauce-packaging',
         'yala-greek-ice-cream-packaging',

@@ -571,126 +571,50 @@ export default function WorkDetail() {
           ) : isGusto ? (
             <>
               <h1>Gusto — <em>Handcrafted Pottery</em> &amp; Mindful Living Brand Identity.</h1>
-              <p className="lead">
+              <p className="dek">
                 A thoughtful, elegant homeware and ceramic studio celebrating the art of intentional, mindful living. Merging functional tableware with serene earthy textures, tactile stationery packaging, and calm editorial storytelling.
               </p>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Gusto Ceramic &amp; Homeware Studio</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Brand Identity, Packaging Suite, Art Direction &amp; Motion</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">4 Weeks Sprint</div>
+                </div>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>22 Master Brand &amp; Packaging Assets</div>
+                </div>
+              </div>
             </>
           ) : isBonta ? (
             <>
               <h1>Bontà — <em>Artisanal Gelato</em> &amp; Outdoor Adventure Packaging Architecture.</h1>
-              <p className="lead">
+              <p className="dek">
                 Born in Bend, Oregon. Rebranding small-batch Pacific Northwest gelato around &ldquo;Gelato from the great outdoors&rdquo; — blending topographical mountain contours with fluid gelato textures, vibrant activewear colors, and custom outdoor character storytelling.
               </p>
-            </>
-          ) : isGusto ? (
-            <>
-              <div className="section-head">
-                <div>
-                  <div className="eyebrow">PROJECT DELIVERABLES</div>
-                  <h2>Mindful ceramic brand identity &amp; tactile packaging.</h2>
+              <div className="meta-strip">
+                <div className="meta-cell">
+                  <div className="k">Client</div>
+                  <div className="v">Bontà Gelato (Bend, Oregon)</div>
                 </div>
-                <p>Warm terracotta and raw earth color palettes, bespoke geometric wordmark, handcrafted homeware art direction, and tactile packaging hangtags.</p>
-              </div>
-
-              <div className="deliv-grid">
-                <div className="deliv-col">
-                  <h4>Brand Architecture</h4>
-                  <div className="sub">// IDENTITY &amp; TYPOGRAPHY</div>
-                  <ul>
-                    <li>Primary logotype &amp; monogram emblem</li>
-                    <li>Editorial serif &amp; minimal sans type pairing</li>
-                    <li>Terracotta, raw earth &amp; sage color system</li>
-                    <li>Brand manifesto &amp; mindful living narrative</li>
-                  </ul>
+                <div className="meta-cell">
+                  <div className="k">Scope</div>
+                  <div className="v">Brand Strategy, Retail Pint Packaging Architecture &amp; Motion</div>
                 </div>
-
-                <div className="deliv-col">
-                  <h4>Packaging &amp; Print</h4>
-                  <div className="sub">// DIELINES &amp; MATERIALS</div>
-                  <ul>
-                    <li>FSC-certified uncoated ceramic packaging boxes</li>
-                    <li>Letterpress printed business cards &amp; notes</li>
-                    <li>Tactile debossed hangtags &amp; linen care labels</li>
-                    <li>Minimalist tissue paper pattern wrap</li>
-                  </ul>
+                <div className="meta-cell">
+                  <div className="k">Timeline</div>
+                  <div className="v">5 Weeks Delivery</div>
                 </div>
-
-                <div className="deliv-col">
-                  <h4>Art Direction &amp; Motion</h4>
-                  <div className="sub">// LOOKBOOK &amp; VIDEO</div>
-                  <ul>
-                    <li>Studio product photography &amp; still life</li>
-                    <li>Tactile ceramic texture &amp; glaze close-ups</li>
-                    <li>Kinetic brand identity motion reveals</li>
-                    <li>Editorial homeware catalog &amp; lookbook</li>
-                  </ul>
-                </div>
-
-                <div className="deliv-col">
-                  <h4>Verified Impact</h4>
-                  <div className="sub">// PERFORMANCE METRICS</div>
-                  <ul>
-                    <li>22 Master Brand &amp; Packaging Assets</li>
-                    <li>Complete Homeware &amp; Pottery SKU Rollout</li>
-                    <li>High Social Media Engagement &amp; Press Recall</li>
-                    <li>Sustainable Turnkey Packaging Specifications</li>
-                  </ul>
-                </div>
-              </div>
-            </>
-          ) : isBonta ? (
-            <>
-              <div className="section-head">
-                <div>
-                  <div className="eyebrow">PROJECT DELIVERABLES</div>
-                  <h2>Gelato from the great outdoors &amp; adventure packaging.</h2>
-                </div>
-                <p>Cascade mountain topographical contour dielines, bold activewear colorways, playful outdoor character illustrations, and retail pint packaging architecture.</p>
-              </div>
-
-              <div className="deliv-grid">
-                <div className="deliv-col">
-                  <h4>Brand Strategy</h4>
-                  <div className="sub">// POSITIONING &amp; VOICE</div>
-                  <ul>
-                    <li>&ldquo;Low-adrenaline adventure&rdquo; brand positioning</li>
-                    <li>Pacific Northwest regional heritage storytelling</li>
-                    <li>Playful outdoor tone of voice &amp; copy matrix</li>
-                    <li>National retail shelf presence strategy</li>
-                  </ul>
-                </div>
-
-                <div className="deliv-col">
-                  <h4>Packaging Architecture</h4>
-                  <div className="sub">// PINTS &amp; DIELINES</div>
-                  <ul>
-                    <li>Cascade mountain topographical pattern wrap</li>
-                    <li>Multi-flavor retail pint tub &amp; lid hierarchy</li>
-                    <li>Single-serve scoop cups &amp; takeaway containers</li>
-                    <li>Foil-stamped tamper-evident safety seals</li>
-                  </ul>
-                </div>
-
-                <div className="deliv-col">
-                  <h4>Illustration &amp; Merch</h4>
-                  <div className="sub">// CHARACTERS &amp; APPAREL</div>
-                  <ul>
-                    <li>Custom outdoor character mascot badges</li>
-                    <li>Embroidered adventure trucker hats &amp; tees</li>
-                    <li>Branded refrigerated delivery van fleet graphics</li>
-                    <li>Enamel pins, walking boot tags &amp; stickers</li>
-                  </ul>
-                </div>
-
-                <div className="deliv-col">
-                  <h4>Motion &amp; Digital</h4>
-                  <div className="sub">// 3D LOOPS &amp; COMMERCE</div>
-                  <ul>
-                    <li>24 Master Brand &amp; Packaging Assets</li>
-                    <li>360-degree rotating pint 3D motion loops</li>
-                    <li>High-conversion mobile DTC subscription UI</li>
-                    <li>National retail expansion packaging sign-off</li>
-                  </ul>
+                <div className="meta-cell">
+                  <div className="k">Impact</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>24 Master Packaging Assets &bull; Oregon Regional Retail Expansion</div>
                 </div>
               </div>
             </>
@@ -736,24 +660,24 @@ export default function WorkDetail() {
                 </div>
                 <div className="meta-cell">
                   <div className="k">Timeline</div>
-                  <div className="v">6 Weeks Sprint</div>
+                  <div className="v">6 Weeks Delivery</div>
                 </div>
                 <div className="meta-cell">
                   <div className="k">Impact</div>
-                  <div className="v" style={{ color: 'var(--pine)' }}>30 Master Assets &bull; +420% VIP Registrations &bull; 100% Penthouse Presales</div>
+                  <div className="v" style={{ color: 'var(--pine)' }}>30 Master Assets &bull; 92% Penthouse Pre-Commitment</div>
                 </div>
               </div>
             </>
           ) : isOrient ? (
             <>
-              <h1>Orient Developers — <em>Spatial Architecture</em> &amp; Legacy Brand Identity.</h1>
+              <h1>Orient Developers — <em>Spatial Design, Architecture</em> &amp; Legacy Brand Identity.</h1>
               <p className="dek">
-                Crafting spaces. Building legacies. Comprehensive commercial spatial design, environmental branding, architectural wayfinding, corporate identity suite, and luxury sales gallery presentation system for Orient Developers.
+                Complete brand architecture, spatial environmental graphics, and bespoke corporate sales folio design for Orient Developers — engineering an enduring visual and physical identity celebrating architectural permanence, balanced proportions, and multi-generational craftsmanship.
               </p>
               <div className="meta-strip">
                 <div className="meta-cell">
                   <div className="k">Client</div>
-                  <div className="v">Orient Developers</div>
+                  <div className="v">Orient Developers &amp; Builders</div>
                 </div>
                 <div className="meta-cell">
                   <div className="k">Scope</div>
@@ -769,307 +693,7 @@ export default function WorkDetail() {
                 </div>
               </div>
             </>
-          ) : isHighLife ? (
-            <>
-              <div className="section-head">
-                <div>
-                  <div className="eyebrow">THE HIGH-END REAL ESTATE IDENTITY CHALLENGE</div>
-                  <h2>Distinguishing a landmark residential tower in a crowded metropolitan luxury market.</h2>
-                </div>
-                <p>Moving beyond predictable property marketing to an urban architectural icon celebrated through light and tactile craft.</p>
-              </div>
-
-              <div className="problem-grid">
-                <div className="problem-copy">
-                  <p><strong>Conventional real estate branding often falls into repetitive clichés: generic 3D renders paired with timid typography that fail to convey true architectural stature.</strong></p>
-                  <p>High Life by Pioneer Group demanded an identity that reflects the pulse of high-altitude metropolitan living. The system needed to celebrate the nocturnal skyline through vibrant light trails, while anchoring the physical experience in ultra-premium tactile finishes—heavyweight blind-debossed Penthouse lookbooks, gold-foil sales dossiers, luminous tower signage, and a dedicated resident mobile portal.</p>
-                </div>
-
-                <div className="insight-card">
-                  <div className="lbl">// ARCHITECTURAL HORIZON INSIGHT</div>
-                  <p>&ldquo;Skyline architecture is not just a building; it is a viewpoint. The brand must embody the elevation, speed, and luminous atmosphere of living above the city.&rdquo;</p>
-                </div>
-              </div>
-            </>
-          ) : isOrient ? (
-            <>
-              <div className="section-head">
-                <div>
-                  <div className="eyebrow">THE SPATIAL &amp; ARCHITECTURAL LEGACY CHALLENGE</div>
-                  <h2>Unifying physical architecture with corporate identity and commercial sales environments.</h2>
-                </div>
-                <p>Creating an environmental brand language that lives and breathes in physical space.</p>
-              </div>
-
-              <div className="problem-grid">
-                <div className="problem-copy">
-                  <p><strong>Orient Developers creates enduring spaces engineered to stand the test of time. Their visual and physical brand required a seamless bridge between architecture and human experience.</strong></p>
-                  <p>We designed an environmental branding and spatial design system where every touchpoint—from sales gallery reception desks and architectural moodboard vitrines to executive corporate folios and digital showroom screens—articulates enduring craftsmanship, balanced proportions, and permanent architectural value.</p>
-                </div>
-
-                <div className="insight-card">
-                  <div className="lbl">// SPATIAL BRANDING INSIGHT</div>
-                  <p>&ldquo;When branding lives in the physical space, architecture stops being passive shelter and becomes an active, immersive brand experience.&rdquo;</p>
-                </div>
-              </div>
-            </>
-          ) : isHighLife ? (
-            <>
-              <div className="section-head">
-                <div>
-                  <div className="eyebrow">PROJECT DELIVERABLES</div>
-                  <h2>Master identity, sales gallery collaterals, wayfinding &amp; resident digital app.</h2>
-                </div>
-                <p>30 production assets spanning brand marks, gold-foil sales dossiers, penthouse monographs, mobile UI, and exterior site hoardings.</p>
-              </div>
-
-              <div className="deliv-grid">
-                <div className="deliv-col">
-                  <h4>01 / Brand System</h4>
-                  <ul>
-                    <li>Dynamic Light-Trail Identity</li>
-                    <li>Geometric Logotype Construction</li>
-                    <li>Master Token &amp; Grid Hierarchy</li>
-                    <li>Obsidian &amp; Amber Palette</li>
-                  </ul>
-                </div>
-                <div className="deliv-col">
-                  <h4>02 / Print &amp; Folios</h4>
-                  <ul>
-                    <li>Gold-Foil Sales Folio Suite</li>
-                    <li>Hardcover Penthouse Monograph</li>
-                    <li>Translucent Vellum VIP Invites</li>
-                    <li>Architectural Floorplate Volumes</li>
-                  </ul>
-                </div>
-                <div className="deliv-col">
-                  <h4>03 / Space &amp; Signage</h4>
-                  <ul>
-                    <li>Exterior Luminous Tower Signage</li>
-                    <li>Sales Gallery Brass Relief</li>
-                    <li>Custom Brass Residence Numbers</li>
-                    <li>Construction Perimeter Hoardings</li>
-                  </ul>
-                </div>
-                <div className="deliv-col">
-                  <h4>04 / Digital &amp; Touch</h4>
-                  <ul>
-                    <li>Resident Companion Mobile App</li>
-                    <li>Metropolitan Billboard Campaign</li>
-                    <li>Concierge Leather Key-Card Sleeves</li>
-                    <li>Resident Welcome Amenity Box</li>
-                  </ul>
-                </div>
-              </div>
-            </>
-          ) : isOrient ? (
-            <>
-              <div className="section-head">
-                <div>
-                  <div className="eyebrow">PROJECT DELIVERABLES</div>
-                  <h2>Spatial architecture, environmental graphics &amp; executive folio suite.</h2>
-                </div>
-                <p>18 master assets including 10-part architectural case study presentation, moodboards, environmental signage, and sales gallery.</p>
-              </div>
-
-              <div className="deliv-grid">
-                <div className="deliv-col">
-                  <h4>01 / Spatial Identity</h4>
-                  <ul>
-                    <li>Spatial Brand Architecture</li>
-                    <li>Environmental Graphic Standards</li>
-                    <li>Architectural Grid &amp; Proportions</li>
-                    <li>Monogram Construction Specs</li>
-                  </ul>
-                </div>
-                <div className="deliv-col">
-                  <h4>02 / Executive Print</h4>
-                  <ul>
-                    <li>Corporate Stationery Suite</li>
-                    <li>Architectural Specification Folios</li>
-                    <li>Embossed Presentation Folders</li>
-                    <li>Tactile Cotton Paper Stocks</li>
-                  </ul>
-                </div>
-                <div className="deliv-col">
-                  <h4>03 / Space &amp; Materials</h4>
-                  <ul>
-                    <li>Architectural Material Moodboards</li>
-                    <li>Natural Oak &amp; Travertine Desks</li>
-                    <li>Sales Lounge Reception Signage</li>
-                    <li>Corridor Wayfinding Plaques</li>
-                  </ul>
-                </div>
-                <div className="deliv-col">
-                  <h4>04 / Digital &amp; Display</h4>
-                  <ul>
-                    <li>Digital Showroom Screen Layouts</li>
-                    <li>Interactive Walkthrough Graphics</li>
-                    <li>3D Architectural Render Sheets</li>
-                    <li>Contractor Specification Handoff</li>
-                  </ul>
-                </div>
-              </div>
-            </>
-          ) : isHighLife ? (
-              <div className="spec-grid">
-                <div className="swatches">
-                  <div className="swatch" style={{ background: '#0D1117' }}>
-                    <div className="swatch-c">#0D1117</div>
-                    <div className="swatch-n">Obsidian Midnight</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#D4A359', color: '#111' }}>
-                    <div className="swatch-c" style={{ color: '#111' }}>#D4A359</div>
-                    <div className="swatch-n" style={{ color: '#111' }}>Amber Light Gold</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#F5F2EB', color: '#111' }}>
-                    <div className="swatch-c" style={{ color: '#111' }}>#F5F2EB</div>
-                    <div className="swatch-n" style={{ color: '#111' }}>Gallery Ivory</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#3A4D39' }}>
-                    <div className="swatch-c">#3A4D39</div>
-                    <div className="swatch-n">Park View Pine</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#8C92AC' }}>
-                    <div className="swatch-c">#8C92AC</div>
-                    <div className="swatch-n">Skyline Titanium</div>
-                  </div>
-                </div>
-
-                <div className="typeset">
-                  <div className="type-row">
-                    <span className="mono">DISPLAY</span>
-                    <span style={{ fontFamily: "'Fraunces', serif", fontSize: '22px', fontWeight: 600 }}>High Life Display Serif — Editorial Elegance</span>
-                  </div>
-                  <div className="type-row">
-                    <span className="mono">HEADLINE</span>
-                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '18px', fontWeight: 700, letterSpacing: '0.08em' }}>ARCHITECTURAL GEOMETRIC SANS</span>
-                  </div>
-                  <div className="type-row">
-                    <span className="mono">BODY</span>
-                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '15px', color: 'var(--ink-soft)' }}>Inter Regular 15/24 — High-legibility technical floorplate annotations</span>
-                  </div>
-                  <div className="type-row">
-                    <span className="mono">SPECS</span>
-                    <span className="mono" style={{ fontSize: '13px', color: 'var(--pine)' }}>IBM PLEX MONO 12PT // ARCHITECTURAL WAYFINDING &amp; SIGNAGE</span>
-                  </div>
-                </div>
-              </div>
-            ) : isOrient ? (
-              <div className="spec-grid">
-                <div className="swatches">
-                  <div className="swatch" style={{ background: '#24282B' }}>
-                    <div className="swatch-c">#24282B</div>
-                    <div className="swatch-n">Architectural Slate</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#8D7B68' }}>
-                    <div className="swatch-c">#8D7B68</div>
-                    <div className="swatch-n">Warm Oak Taupe</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#EAE6DF', color: '#111' }}>
-                    <div className="swatch-c" style={{ color: '#111' }}>#EAE6DF</div>
-                    <div className="swatch-n" style={{ color: '#111' }}>Limewash Off-White</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#4A5568' }}>
-                    <div className="swatch-c">#4A5568</div>
-                    <div className="swatch-n">Structural Steel</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#C2B092', color: '#111' }}>
-                    <div className="swatch-c" style={{ color: '#111' }}>#C2B092</div>
-                    <div className="swatch-n" style={{ color: '#111' }}>Raw Travertine</div>
-                  </div>
-                </div>
-
-                <div className="typeset">
-                  <div className="type-row">
-                    <span className="mono">DISPLAY</span>
-                    <span style={{ fontFamily: "'Fraunces', serif", fontSize: '22px', fontWeight: 600 }}>Orient Architectural Serif — Generational Permanence</span>
-                  </div>
-                  <div className="type-row">
-                    <span className="mono">HEADLINE</span>
-                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '18px', fontWeight: 700, letterSpacing: '0.06em' }}>SPATIAL GEOMETRIC SANS</span>
-                  </div>
-                  <div className="type-row">
-                    <span className="mono">BODY</span>
-                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '15px', color: 'var(--ink-soft)' }}>Inter Regular 15/24 — Refined architectural specifications</span>
-                  </div>
-                  <div className="type-row">
-                    <span className="mono">SPECS</span>
-                    <span className="mono" style={{ fontSize: '13px', color: 'var(--pine)' }}>IBM PLEX MONO 12PT // ENVIRONMENTAL BRANDING &amp; WAYFINDING</span>
-                  </div>
-                </div>
-              </div>
-            ) : isHighLife ? (
-              <div className="spec-grid">
-                <div className="swatches">
-                  <div className="swatch" style={{ background: '#0D1117', color: '#FFF' }}>
-                    <div className="lbl">OBSIDIAN MIDNIGHT // #0D1117</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#D4A359', color: '#111' }}>
-                    <div className="lbl" style={{ color: '#111' }}>AMBER LIGHT GOLD // #D4A359</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#F5F2EB', color: '#121413' }}>
-                    <div className="lbl" style={{ color: '#121413' }}>GALLERY IVORY // #F5F2EB</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#3A4D39', color: '#FFF' }}>
-                    <div className="lbl">PARK VIEW PINE // #3A4D39</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#8C92AC', color: '#FFF' }}>
-                    <div className="lbl">SKYLINE TITANIUM // #8C92AC</div>
-                  </div>
-                </div>
-
-                <div className="type-spec">
-                  <div className="row">
-                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>ARCHITECTURAL DISPLAY:</span>
-                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>High Life Display Serif &bull; Skyline Elevation</h4>
-                  </div>
-                  <div className="row">
-                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>EDITORIAL SANS:</span>
-                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter Medium &bull; Floorplate Volumes, Penthouse Monograph &amp; Mobile UI</p>
-                  </div>
-                  <div className="row">
-                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
-                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for penthouse square footage, azimuth bearings &amp; wayfinding.</p>
-                  </div>
-                </div>
-              </div>
-            ) : isOrient ? (
-              <div className="spec-grid">
-                <div className="swatches">
-                  <div className="swatch" style={{ background: '#24282B', color: '#FFF' }}>
-                    <div className="lbl">ARCHITECTURAL SLATE // #24282B</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#8D7B68', color: '#FFF' }}>
-                    <div className="lbl">WARM OAK TAUPE // #8D7B68</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#EAE6DF', color: '#121413' }}>
-                    <div className="lbl" style={{ color: '#121413' }}>LIMEWASH OFF-WHITE // #EAE6DF</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#4A5568', color: '#FFF' }}>
-                    <div className="lbl">STRUCTURAL STEEL // #4A5568</div>
-                  </div>
-                  <div className="swatch" style={{ background: '#C2B092', color: '#121413' }}>
-                    <div className="lbl" style={{ color: '#121413' }}>RAW TRAVERTINE // #C2B092</div>
-                  </div>
-                </div>
-
-                <div className="type-spec">
-                  <div className="row">
-                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>LEGACY DISPLAY:</span>
-                    <h4 style={{ fontSize: '20px', marginTop: '4px' }}>Orient Architectural Serif &bull; Generational Permanence</h4>
-                  </div>
-                  <div className="row">
-                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>SPATIAL SANS:</span>
-                    <p style={{ fontSize: '14.5px', fontFamily: "'Inter', sans-serif", marginTop: '4px' }}>Inter Medium &bull; Commercial Material Schedules &amp; Specification Folios</p>
-                  </div>
-                  <div className="row">
-                    <span className="mono" style={{ fontSize: '12px', color: 'var(--marker)' }}>TECHNICAL MONO:</span>
-                    <p className="mono" style={{ fontSize: '13px', marginTop: '4px' }}>IBM Plex Mono for architectural tolerances, contractor specs &amp; finish codes.</p>
-                  </div>
-                </div>
-              </div>
-            ) : isForte ? (
+          ) : isForte ? (
             <>
               <h1>Forte — <em>Luxury Architecture</em> &amp; Real Estate Brand Identity.</h1>
               <p className="dek">
@@ -1994,6 +1618,94 @@ export default function WorkDetail() {
                 <div className="insight-card">
                   <div className="lbl">// PACKAGING FUNCTIONALITY INSIGHT</div>
                   <p>&ldquo;Street food packaging must perform as a mobile billboard. When custom folding clamshells lock securely and carry bold Madrid crimson branding, customers proudly carry the brand across the city plazas.&rdquo;</p>
+                </div>
+              </div>
+            </>
+          ) : isHighLife ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE HIGH-END REAL ESTATE IDENTITY CHALLENGE</div>
+                  <h2>Distinguishing a landmark residential tower in a crowded metropolitan luxury market.</h2>
+                </div>
+                <p>Moving beyond predictable property marketing to an urban architectural icon celebrated through light and tactile craft.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>Conventional real estate branding often falls into repetitive clichés: generic 3D renders paired with timid typography that fail to convey true architectural stature.</strong></p>
+                  <p>High Life by Pioneer Group demanded an identity that reflects the pulse of high-altitude metropolitan living. The system needed to celebrate the nocturnal skyline through vibrant light trails, while anchoring the physical experience in ultra-premium tactile finishes—heavyweight blind-debossed Penthouse lookbooks, gold-foil sales dossiers, luminous tower signage, and a dedicated resident mobile portal.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// ARCHITECTURAL SKYLINE INSIGHT</div>
+                  <p>&ldquo;True high-rise luxury isn&apos;t about golden embellishment—it&apos;s about altitude, light, and proportion. When light trails embody kinetic urban energy, the tower transforms into a living beacon across the skyline.&rdquo;</p>
+                </div>
+              </div>
+            </>
+          ) : isOrient ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE SPATIAL ARCHITECTURE CHALLENGE</div>
+                  <h2>Translating multi-generational structural engineering into a permanent brand language.</h2>
+                </div>
+                <p>Creating an environmental brand language that lives and breathes in physical space.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>Orient Developers creates enduring spaces engineered to stand the test of time. Their visual and physical brand required a seamless bridge between architecture and human experience.</strong></p>
+                  <p>We designed an environmental branding and spatial design system where every touchpoint—from sales gallery reception desks and architectural moodboard vitrines to executive corporate folios and digital showroom screens—articulates enduring craftsmanship, balanced proportions, and permanent architectural value.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// SPATIAL BRANDING INSIGHT</div>
+                  <p>&ldquo;When branding lives in the physical space, architecture stops being passive shelter and becomes an active, immersive brand experience.&rdquo;</p>
+                </div>
+              </div>
+            </>
+          ) : isGusto ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE MINDFUL LIVING &amp; CRAFT CHALLENGE</div>
+                  <h2>Articulating the quiet tactile beauty of handcrafted ceramics in a fast-paced digital age.</h2>
+                </div>
+                <p>Moving beyond generic homeware minimalism to an intentional, soulfully grounded lifestyle brand.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>In an era of mass-manufactured homewares, Gusto&apos;s handcrafted ceramics represent patience, earth, and mindful presence.</strong></p>
+                  <p>The studio needed a visual and packaging identity that doesn&apos;t just sell tableware, but invites people into a daily ritual of slower living. The system balances earthy raw terracotta and moss tones with serene editorial typography, tactile unboxing sleeves, and poetic pottery care guides.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// MINDFUL CRAFT INSIGHT</div>
+                  <p>&ldquo;A ceramic piece is shaped by human hands and transformed by kiln fire. The visual identity must hold that same quiet warmth—celebrating raw clay imperfections, natural glaze textures, and the serene beauty of unhurried everyday rituals.&rdquo;</p>
+                </div>
+              </div>
+            </>
+          ) : isBonta ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">THE OUTDOOR ADVENTURE CPG CHALLENGE</div>
+                  <h2>Reframing artisanal gelato around low-adrenaline Pacific Northwest outdoor adventures.</h2>
+                </div>
+                <p>Breaking frozen dessert retail conventions with bold activewear aesthetics and playful trail culture.</p>
+              </div>
+
+              <div className="problem-grid">
+                <div className="problem-copy">
+                  <p><strong>Traditional ice cream branding is dominated by two extremes: whimsical childish cartoon packaging or nostalgic Italian heritage tropes.</strong></p>
+                  <p>Bont&agrave; Gelato, crafted in Bend, Oregon, sits at the intersection of artisanal culinary obsession and the Pacific Northwest&apos;s outdoorsy spirit. We engineered a fresh category code: &ldquo;Gelato from the great outdoors&rdquo;—merging Cascade topographical contours with fluid gelato textures, vibrant activewear colorways, and cheeky trail character illustrations across retail pints.</p>
+                </div>
+
+                <div className="insight-card">
+                  <div className="lbl">// CATEGORY INNOVATION INSIGHT</div>
+                  <p>&ldquo;Gelato doesn&apos;t belong only in refined parlor dishes. When paired with Cascade mountain topographical contours, bold activewear palettes, and campfire camaraderie, it becomes the ultimate reward after an unhurried day on the trail.&rdquo;</p>
                 </div>
               </div>
             </>
@@ -3547,6 +3259,336 @@ export default function WorkDetail() {
                     <li>Position mapping: Nostalgia vs Luxury</li>
                     <li>Audience psychographics across wellness &amp; gifting</li>
                     <li>Sustainable, charcoal-free ingredient trust</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isHighLife ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Master identity, sales gallery collaterals, wayfinding &amp; resident digital app.</h2>
+                </div>
+                <p>30 production assets spanning brand marks, gold-foil sales dossiers, penthouse monographs, mobile UI, and exterior site hoardings.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>01 / Brand System</h4>
+                  <div className="sub">// IDENTITY &amp; TOKENS</div>
+                  <ul>
+                    <li>Dynamic Light-Trail Identity</li>
+                    <li>Geometric Logotype Construction</li>
+                    <li>Master Token &amp; Grid Hierarchy</li>
+                    <li>Obsidian &amp; Amber Palette</li>
+                  </ul>
+                </div>
+                <div className="deliv-col">
+                  <h4>02 / Print &amp; Folios</h4>
+                  <div className="sub">// ARCHITECTURAL COLLATERAL</div>
+                  <ul>
+                    <li>Gold-Foil Sales Folio Suite</li>
+                    <li>Hardcover Penthouse Monograph</li>
+                    <li>Translucent Vellum VIP Invites</li>
+                    <li>Architectural Floorplate Volumes</li>
+                  </ul>
+                </div>
+                <div className="deliv-col">
+                  <h4>03 / Space &amp; Signage</h4>
+                  <div className="sub">// ENVIRONMENTAL WAYFINDING</div>
+                  <ul>
+                    <li>Exterior Luminous Tower Signage</li>
+                    <li>Sales Gallery Brass Relief</li>
+                    <li>Custom Brass Residence Numbers</li>
+                    <li>Construction Perimeter Hoardings</li>
+                  </ul>
+                </div>
+                <div className="deliv-col">
+                  <h4>04 / Digital &amp; Touch</h4>
+                  <div className="sub">// UI/UX &amp; RESIDENT EXPERIENCE</div>
+                  <ul>
+                    <li>Resident Companion Mobile App</li>
+                    <li>Metropolitan Billboard Campaign</li>
+                    <li>Concierge Leather Key-Card Sleeves</li>
+                    <li>Resident Welcome Amenity Box</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isOrient ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Spatial architecture, environmental graphics &amp; executive folio suite.</h2>
+                </div>
+                <p>18 master assets including 10-part architectural case study presentation, moodboards, environmental signage, and sales gallery.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>01 / Spatial Identity</h4>
+                  <div className="sub">// BRAND ARCHITECTURE</div>
+                  <ul>
+                    <li>Spatial Brand Architecture</li>
+                    <li>Environmental Graphic Standards</li>
+                    <li>Architectural Grid &amp; Proportions</li>
+                    <li>Monogram Construction Specs</li>
+                  </ul>
+                </div>
+                <div className="deliv-col">
+                  <h4>02 / Executive Print</h4>
+                  <div className="sub">// CORPORATE COLLATERAL</div>
+                  <ul>
+                    <li>Corporate Stationery Suite</li>
+                    <li>Architectural Specification Folios</li>
+                    <li>Embossed Presentation Folders</li>
+                    <li>Material Sample Board Vitrines</li>
+                  </ul>
+                </div>
+                <div className="deliv-col">
+                  <h4>03 / Environment</h4>
+                  <div className="sub">// SALES GALLERY &amp; SIGNAGE</div>
+                  <ul>
+                    <li>Sales Gallery Reception Totems</li>
+                    <li>3D Cast-Bronze Exterior Signage</li>
+                    <li>Architectural Floor-Plate Displays</li>
+                    <li>Interactive Showroom Wayfinding</li>
+                  </ul>
+                </div>
+                <div className="deliv-col">
+                  <h4>04 / Architectural Folio</h4>
+                  <div className="sub">// CASE STUDY &amp; DIGITAL</div>
+                  <ul>
+                    <li>10-Part Architectural Case Study Suite</li>
+                    <li>Digital Showroom Screen Layouts</li>
+                    <li>Commercial Project Lookbooks</li>
+                    <li>Executive Portfolio Archival Box</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isGusto ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Mindful ceramic brand identity &amp; tactile packaging.</h2>
+                </div>
+                <p>Warm terracotta and raw earth color palettes, bespoke geometric wordmark, handcrafted homeware art direction, and tactile packaging hangtags.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Brand Architecture</h4>
+                  <div className="sub">// IDENTITY &amp; TYPOGRAPHY</div>
+                  <ul>
+                    <li>Primary logotype &amp; monogram emblem</li>
+                    <li>Editorial serif &amp; minimal sans type pairing</li>
+                    <li>Terracotta, raw earth &amp; sage color system</li>
+                    <li>Brand manifesto &amp; mindful living narrative</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Packaging &amp; Print</h4>
+                  <div className="sub">// DIELINES &amp; MATERIALS</div>
+                  <ul>
+                    <li>FSC-certified uncoated ceramic packaging boxes</li>
+                    <li>Letterpress printed business cards &amp; notes</li>
+                    <li>Tactile debossed hangtags &amp; linen care labels</li>
+                    <li>Minimalist tissue paper pattern wrap</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Art Direction &amp; Motion</h4>
+                  <div className="sub">// LOOKBOOK &amp; VIDEO</div>
+                  <ul>
+                    <li>Studio product photography &amp; still life</li>
+                    <li>Tactile ceramic texture &amp; glaze close-ups</li>
+                    <li>Kinetic brand identity motion reveals</li>
+                    <li>Editorial homeware catalog &amp; lookbook</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>22 Master Brand &amp; Packaging Assets</li>
+                    <li>Complete Homeware &amp; Pottery SKU Rollout</li>
+                    <li>High Social Media Engagement &amp; Press Recall</li>
+                    <li>Sustainable Turnkey Packaging Specifications</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isBonta ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Gelato from the great outdoors &amp; adventure packaging.</h2>
+                </div>
+                <p>Cascade mountain topographical contour dielines, bold activewear colorways, playful outdoor character illustrations, and retail pint packaging architecture.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>Brand Strategy</h4>
+                  <div className="sub">// POSITIONING &amp; VOICE</div>
+                  <ul>
+                    <li>&ldquo;Low-adrenaline adventure&rdquo; brand positioning</li>
+                    <li>Pacific Northwest regional heritage storytelling</li>
+                    <li>Playful outdoor tone of voice &amp; copy matrix</li>
+                    <li>National retail shelf presence strategy</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Packaging Architecture</h4>
+                  <div className="sub">// RETAIL PINTS &amp; TUBS</div>
+                  <ul>
+                    <li>Topographical contour retail pint dielines</li>
+                    <li>Scoop shop single &amp; double cup sleeves</li>
+                    <li>Vibrant color-coded flavor lids &amp; seals</li>
+                    <li>Whimsical character spot illustrations</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Environmental &amp; Retail</h4>
+                  <div className="sub">// SCOOP SHOPS &amp; MERCH</div>
+                  <ul>
+                    <li>Bend, Oregon scoop shop menu architecture</li>
+                    <li>Outdoor-ready apparel &amp; enameled trail mugs</li>
+                    <li>Die-cut mountain trail stickers &amp; pint totes</li>
+                    <li>Wooden A-frame sidewalk signage system</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>Motion &amp; Digital</h4>
+                  <div className="sub">// 3D LOOPS &amp; COMMERCE</div>
+                  <ul>
+                    <li>24 Master Brand &amp; Packaging Assets</li>
+                    <li>360-degree rotating pint 3D motion loops</li>
+                    <li>High-conversion mobile DTC subscription UI</li>
+                    <li>National retail expansion packaging sign-off</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isForte ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Timeless luxury architecture &amp; real estate brand identity.</h2>
+                </div>
+                <p>Architectural arch monograms, high-contrast typography, hot-foil property folios, and environmental brass signage specs.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>01 / Brand Architecture</h4>
+                  <div className="sub">// IDENTITY &amp; TYPOGRAPHY</div>
+                  <ul>
+                    <li>Architectural Arch Monogram</li>
+                    <li>High-Contrast Serif Typography</li>
+                    <li>Master Forest Green &amp; Limestone Tokens</li>
+                    <li>Comprehensive Brand Identity Manual</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>02 / Print &amp; Collateral</h4>
+                  <div className="sub">// FOLIOS &amp; SPECIFICATIONS</div>
+                  <ul>
+                    <li>Hot-Foil Embossed Stationery Suite</li>
+                    <li>Heavyweight Property Dossiers</li>
+                    <li>Translucent Vellum Plan Overlays</li>
+                    <li>Editorial Real Estate Catalog</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>03 / Environmental Signage</h4>
+                  <div className="sub">// WAYFINDING &amp; DEVELOPMENT</div>
+                  <ul>
+                    <li>Architectural Bronze Fascia Signs</li>
+                    <li>50-Foot Development Hoardings</li>
+                    <li>Interior Wayfinding &amp; Room Numbering</li>
+                    <li>Sales Suite Cast-Brass Plaque</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>04 / Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>15 Master High-Resolution Assets</li>
+                    <li>100% Client Approval on First Review</li>
+                    <li>+340% HNW Buyer Inquiries</li>
+                    <li>Production-Ready CAD &amp; Vector Handoff</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : isDabbo ? (
+            <>
+              <div className="section-head">
+                <div>
+                  <div className="eyebrow">PROJECT DELIVERABLES</div>
+                  <h2>Artisanal Madrid street food &amp; specialty coffee packaging system.</h2>
+                </div>
+                <p>Custom folding hot dog clamshells, takeaway carrier boxes, specialty coffee cups, and greaseproof pattern wrapping paper.</p>
+              </div>
+
+              <div className="deliv-grid">
+                <div className="deliv-col">
+                  <h4>01 / Brand Identity</h4>
+                  <div className="sub">// MARKS &amp; VOICE</div>
+                  <ul>
+                    <li>Madrid Crimson &amp; Ochre Palette</li>
+                    <li>Retro-Modern Wordmark &amp; Badge</li>
+                    <li>Custom Street Mascot Iconography</li>
+                    <li>Energetic Spanish Tone of Voice</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>02 / Structural Packaging</h4>
+                  <div className="sub">// DIELINES &amp; BOXES</div>
+                  <ul>
+                    <li>Custom Folding Hot Dog Clamshells</li>
+                    <li>Takeaway Carrier Boxes (&lsquo;dabbo&rsquo;)</li>
+                    <li>Single &amp; Double Cup Carry Sleeves</li>
+                    <li>Greaseproof Continuous Wrapping Paper</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>03 / Retail &amp; Collateral</h4>
+                  <div className="sub">// SPECIALTY COFFEE &amp; MERCH</div>
+                  <ul>
+                    <li>Specialty Coffee Cup System</li>
+                    <li>Kraft Paper Takeaway Bags</li>
+                    <li>Die-Cut Vinyl Sticker Suite</li>
+                    <li>Menu Boards &amp; Mobile Ordering</li>
+                  </ul>
+                </div>
+
+                <div className="deliv-col">
+                  <h4>04 / Verified Impact</h4>
+                  <div className="sub">// PERFORMANCE METRICS</div>
+                  <ul>
+                    <li>10 Master High-Res Assets</li>
+                    <li>Zero-Leakage Greaseproof Testing</li>
+                    <li>+280% Footfall in Madrid Barrio</li>
+                    <li>Production-Ready Dieline Files</li>
                   </ul>
                 </div>
               </div>

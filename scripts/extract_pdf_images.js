@@ -44,3 +44,4 @@ while ((pos = buf.indexOf(Buffer.from('/DCTDecode'), pos)) !== -1) {
 
 console.log(`Extracted ${extracted.length} high-resolution JPEG images from PDF:`);
 console.log(extracted);
+

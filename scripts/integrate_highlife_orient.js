@@ -422,3 +422,4 @@ if (!code.includes('#D4A359')) {
 
 fs.writeFileSync(workDetailPath, code, 'utf8');
 console.log('WorkDetail.jsx updated successfully with High Life Residences & Orient Developers!');
+
