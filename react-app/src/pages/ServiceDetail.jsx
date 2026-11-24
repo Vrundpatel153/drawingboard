@@ -101,7 +101,7 @@ export default function ServiceDetail() {
               {/* Video Showcase */}
               <div className="hero-visual has-img" style={{ height: '360px', overflow: 'hidden', border: '1px solid var(--ink)', borderRadius: '4px' }}>
                 <video
-                  src={service.videoUrl || '/_assets/assets/GmWiQg0MZIvFU3cvgIL12lysLK0.mp4'}
+                  src={service.videoUrl || 'https://res.cloudinary.com/f4xvzpqg/video/upload/v1795473027/drawingsboard/07-site-meta/ambient-video/site_ambient_services_reel_loop.mp4'}
                   autoPlay
                   loop
                   muted

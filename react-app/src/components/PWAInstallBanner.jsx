@@ -55,8 +55,8 @@ export default function PWAInstallBanner({ promptInstall }) {
           setNotifGranted(true);
           new Notification('The Drawing Board is installed!', {
             body: 'You\'ll always have access to our studio from your home screen.',
-            icon: '/favicon.svg',
-            badge: '/favicon.svg',
+            icon: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795467082/drawingsboard/07-site-meta/brand-identity/site_favicon.svg',
+            badge: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795467082/drawingsboard/07-site-meta/brand-identity/site_favicon.svg',
           });
         }
       }
@@ -81,8 +81,8 @@ export default function PWAInstallBanner({ promptInstall }) {
       setNotifGranted(true);
       new Notification('Stay updated with The Drawing Board', {
         body: 'We\'ll notify you about new work, insights, and availability.',
-        icon: '/favicon.svg',
-        badge: '/favicon.svg',
+        icon: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795467082/drawingsboard/07-site-meta/brand-identity/site_favicon.svg',
+        badge: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795467082/drawingsboard/07-site-meta/brand-identity/site_favicon.svg',
       });
     }
     handleDismiss();

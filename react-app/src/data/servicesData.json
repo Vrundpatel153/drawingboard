@@ -12,7 +12,7 @@
     "duration": "3-4 Weeks Sprint",
     "heroImage": "https://framerusercontent.com/images/cYvKtkgBQZ9BOFI5j8LSipd9c8.jpeg?width=1069&height=1024",
     "secondaryImage": "https://framerusercontent.com/images/TW8nh45W2f0jJxIXkfCtK2I9qo.webp?width=1876&height=1821",
-    "videoUrl": "/_assets/assets/GmWiQg0MZIvFU3cvgIL12lysLK0.mp4",
+    "videoUrl": "https://res.cloudinary.com/f4xvzpqg/video/upload/v1795473027/drawingsboard/07-site-meta/ambient-video/site_ambient_services_reel_loop.mp4",
     "description": "We go beyond logos. Our strategy-driven branding process fuses market positioning with refined typography and visual architecture to build an enduring identity system that grows with your business.",
     "deliverables": [
       "Market Positioning & Brand Narrative Strategy",
@@ -55,7 +55,7 @@
     "duration": "4-6 Weeks Sprint",
     "heroImage": "https://framerusercontent.com/images/gTIfPf4an07uhbykxhoEyw0o0M.gif?width=640&height=480",
     "secondaryImage": "https://framerusercontent.com/images/JUgN5ECm4HnK6pp1E3Igc5Vibc.jpeg?width=1024&height=1024",
-    "videoUrl": "/_assets/assets/GmWiQg0MZIvFU3cvgIL12lysLK0.mp4",
+    "videoUrl": "https://res.cloudinary.com/f4xvzpqg/video/upload/v1795473027/drawingsboard/07-site-meta/ambient-video/site_ambient_services_reel_loop.mp4",
     "description": "We bridge brand positioning with software reality — designing unified visual identities, tokenized Figma component systems, and high-conversion web & app product surfaces built to scale.",
     "deliverables": [
       "Brand-to-Product Architecture & Positioning",
@@ -71,10 +71,10 @@
       { "step": "03", "name": "Token Handover & Polish", "desc": "Deliver production tokens, interactive prototypes, and collaborate directly with engineering." }
     ],
     "gallery": [
-      "/images/flint/flint_01.png",
-      "/images/flint/flint_08.png",
-      "/images/flint/flint_02.png",
-      "/images/flint/flint_12.png"
+      "https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470640/drawingsboard/01-case-studies/flint/flint_01.png",
+      "https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470788/drawingsboard/01-case-studies/flint/flint_08.png",
+      "https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470619/drawingsboard/01-case-studies/flint/flint_02.png",
+      "https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470687/drawingsboard/01-case-studies/flint/flint_12.png"
     ],
     "pricingModels": [
       { "tier": "SaaS Brand + Foundation UI", "price": "$4,960", "priceGBP": "£3,700", "priceINR": "₹4,75,000", "desc": "Positioning, core brand identity, master design tokens, marketing site foundation, and core product shell UI." },
@@ -98,7 +98,7 @@
     "duration": "4-8 Weeks Sprint",
     "heroImage": "https://framerusercontent.com/images/uDdH4r3dDH0e0oPRnTJg7WFpE.webp?width=2404&height=1938",
     "secondaryImage": "https://framerusercontent.com/images/wwljvqAiXbHPskZq2H2HFW16ug.png?width=3414&height=2092",
-    "videoUrl": "/_assets/assets/GmWiQg0MZIvFU3cvgIL12lysLK0.mp4",
+    "videoUrl": "https://res.cloudinary.com/f4xvzpqg/video/upload/v1795473027/drawingsboard/07-site-meta/ambient-video/site_ambient_services_reel_loop.mp4",
     "description": "From high-impact marketing websites to custom website applications, we engineer digital products that load fast, scale cleanly, and deliver sub-second performance without sacrificing design integrity.",
     "deliverables": [
       "Custom React / Next.js / Vite High-Code Frontend Builds",
@@ -141,7 +141,7 @@
     "duration": "3-5 Weeks Sprint",
     "heroImage": "https://framerusercontent.com/images/RQJI69utdAxFprNWe2HKz94CqO0.webp?width=2100&height=1183",
     "secondaryImage": "https://framerusercontent.com/images/Ib87ABhofKAGBqiaHLBLqQsc.png?width=1290&height=1602",
-    "videoUrl": "/_assets/assets/GmWiQg0MZIvFU3cvgIL12lysLK0.mp4",
+    "videoUrl": "https://res.cloudinary.com/f4xvzpqg/video/upload/v1795473027/drawingsboard/07-site-meta/ambient-video/site_ambient_services_reel_loop.mp4",
     "description": "We engineer physical packaging systems that command retail shelves and elevate unboxing moments. From structural dielines to tactile foil debossing, we ensure your physical product matches your brand prestige.",
     "deliverables": [
       "Structural Box, Bottle & Sleeve Dielines",
@@ -182,9 +182,9 @@
     "startingPriceGBP": "£4,850",
     "startingPriceINR": "₹5,45,000",
     "duration": "4-8 Weeks Sprint",
-    "heroImage": "/images/spatial/cafe-interior.jpg",
-    "secondaryImage": "/images/spatial/restaurant-interior.jpg",
-    "videoUrl": "/_assets/assets/GmWiQg0MZIvFU3cvgIL12lysLK0.mp4",
+    "heroImage": "https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472759/drawingsboard/03-spatial-environments/spatial-general/spatial_general_cafe_interior.jpg",
+    "secondaryImage": "https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472757/drawingsboard/03-spatial-environments/spatial-general/spatial_general_restaurant_interior.jpg",
+    "videoUrl": "https://res.cloudinary.com/f4xvzpqg/video/upload/v1795473027/drawingsboard/07-site-meta/ambient-video/site_ambient_services_reel_loop.mp4",
     "description": "From the first sketch on paper to the spaces people remember. We translate brand identity into physical rooms, environmental graphics, material palettes, signage systems, and cohesive commercial experiences.",
     "deliverables": [
       "Spatial Brand Strategy & Experience Principles",
@@ -200,10 +200,10 @@
       { "step": "03", "name": "Detail & Coordinate", "desc": "Prepare graphic specifications, signage dielines, and coordinate with execution partners." }
     ],
     "gallery": [
-      "/images/spatial/cafe-interior.jpg",
-      "/images/spatial/restaurant-interior.jpg",
-      "/images/spatial/brand-identity-stationery.jpg",
-      "/images/spatial/material-language-board.jpg"
+      "https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472759/drawingsboard/03-spatial-environments/spatial-general/spatial_general_cafe_interior.jpg",
+      "https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472757/drawingsboard/03-spatial-environments/spatial-general/spatial_general_restaurant_interior.jpg",
+      "https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472755/drawingsboard/03-spatial-environments/spatial-general/spatial_general_brand_identity_stationery.jpg",
+      "https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472756/drawingsboard/03-spatial-environments/spatial-general/spatial_general_material_language_board.jpg"
     ],
     "pricingModels": [
       { "tier": "Spatial Brand Concept", "price": "$6,500", "priceGBP": "£4,850", "priceINR": "₹5,45,000", "desc": "Spatial brand strategy, zoning layouts, material board, signage guidelines, and 3 key area concept visualisations." },

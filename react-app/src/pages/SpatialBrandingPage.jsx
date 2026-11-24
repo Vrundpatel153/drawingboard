@@ -53,7 +53,7 @@ export default function SpatialBrandingPage() {
       tag: 'LUXURY REAL ESTATE // ARCHITECTURAL IDENTITY',
       category: 'real-estate',
       imageCount: 15,
-      coverImage: '/images/forte/forte_cover.jpg',
+      coverImage: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795471176/drawingsboard/01-case-studies/forte-luxury-architecture/forte_cover.png',
       description: 'Timeless brand architecture for modern living spaces. Arch-shaped monograms, high-contrast serif typography, hot-foil property folios, and architectural bronze fascia signage specifications.',
       scope: 'Brand Architecture, Environmental Signage & Folios',
       scale: 'Luxury Residential & Architecture Practice',
@@ -65,7 +65,7 @@ export default function SpatialBrandingPage() {
       tag: 'METROPOLITAN RESIDENTIAL // REAL ESTATE BRANDING',
       category: 'real-estate',
       imageCount: 29,
-      coverImage: '/images/high-life-residences/high_life_cover.jpg',
+      coverImage: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795471621/drawingsboard/01-case-studies/high-life-residences/high_life_cover.jpg',
       description: 'A landmark multi-platform real estate brand identity and urban advertising campaign for premier residential towers. Gold-foil sales folios, penthouse monographs, luminous tower signage, and resident mobile portals.',
       scope: 'Master Identity, Wayfinding, Sales Gallery & Mobile UI',
       scale: 'Landmark Metropolitan Residential Tower',
@@ -77,7 +77,7 @@ export default function SpatialBrandingPage() {
       tag: 'COMMERCIAL REAL ESTATE // SPATIAL BRANDING',
       category: 'real-estate',
       imageCount: 18,
-      coverImage: '/images/orient-developers/orient_page_01.jpg',
+      coverImage: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472299/drawingsboard/01-case-studies/orient-developers/orient_page_01.jpg',
       description: 'Crafting spaces and building legacies. Enduring commercial spatial branding, architectural moodboards, executive presentation folios, environmental graphics, and bespoke corporate sales lounge design.',
       scope: 'Spatial Branding, Identity & Architecture',
       scale: 'Corporate Headquarters & Sales Gallery',
@@ -89,7 +89,7 @@ export default function SpatialBrandingPage() {
       tag: 'FINE DINING FLAGSHIP // COMMERCIAL RESTAURANT',
       category: 'dining',
       imageCount: 32,
-      coverImage: '/images/ghalia-acarverde/ghalia_cover.jpg',
+      coverImage: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795471260/drawingsboard/03-spatial-environments/ghalia-acarverde/spatial_ghalia_cover.jpg',
       description: 'An opulent hospitality interior featuring sculptural parametric ribbed walnut ceilings, monolithic emerald stone cocktail bars, suspended bronze chandeliers, and intimate private dining salons in Istanbul.',
       scope: 'Spatial Architecture & Lighting',
       scale: '4,200 sq. ft. Commercial Venue',
@@ -101,7 +101,7 @@ export default function SpatialBrandingPage() {
       tag: 'ARTISANAL BAKERY // COMMERCIAL HOSPITALITY',
       category: 'bakery',
       imageCount: 23,
-      coverImage: '/images/cafe-bakery/cafe_bakery_cover.jpg',
+      coverImage: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470286/drawingsboard/03-spatial-environments/cafe-bakery/spatial_cafe_bakery_cover.jpg',
       description: 'Warm terracotta and limewash tones of the brand identity extend onto fluted travertine service counters, illuminated brass pastry vitrines, custom arched wall niches, and ergonomic barista order flow.',
       scope: 'Identity, Materials & Joinery',
       scale: '1,850 sq. ft. Commercial',
@@ -113,7 +113,7 @@ export default function SpatialBrandingPage() {
       tag: 'BOHO-MEDITERRANEAN // BIOPHILIC HOSPITALITY',
       category: 'coffee',
       imageCount: 18,
-      coverImage: '/images/boho-cafe/boho_cafe_cover.jpg',
+      coverImage: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470018/drawingsboard/03-spatial-environments/boho-cafe/spatial_boho_cafe_cover.jpg',
       description: 'Curved architectural arches, natural woven timber, textured earthen plaster, sculpted pendant luminaires, and seamless indoor-outdoor seating engineered for relaxed social lingering.',
       scope: 'Interior Architecture & Millwork',
       scale: '2,400 sq. ft. Commercial Space',
@@ -125,7 +125,7 @@ export default function SpatialBrandingPage() {
       tag: 'RUSTIC HOSPITALITY // BRAND ENVIRONMENTS',
       category: 'bakery',
       imageCount: 15,
-      coverImage: '/images/rustic-cafe/rustic_cafe_cover.jpg',
+      coverImage: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472574/drawingsboard/03-spatial-environments/rustic-cafe/spatial_rustic_cafe_cover.jpg',
       description: 'Layered suspended timber ceiling beams, textured earth plaster walls, custom earthenware hanging fixtures, and communal harvest dining tables connecting guests to organic heritage craft.',
       scope: 'Spatial Design & Brand Environments',
       scale: '2,100 sq. ft. Commercial Venue',
@@ -137,7 +137,7 @@ export default function SpatialBrandingPage() {
       tag: 'MODERN INDUSTRIAL // ESPRESSO BAR SYSTEM',
       category: 'coffee',
       imageCount: 9,
-      coverImage: '/images/ouur-cafe/ouur_cafe_cover.jpg',
+      coverImage: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472332/drawingsboard/03-spatial-environments/ouur-cafe/spatial_ouur_cafe_cover.jpg',
       description: 'Brushed stainless steel service bars, raw concrete plinths, fluted timber acoustic wall cladding, and minimalist linear LED lighting engineered for rapid takeaway flow and visual authority.',
       scope: 'Bar Ergonomics & Interior Joinery',
       scale: '1,600 sq. ft. Commercial Cafe',
@@ -243,7 +243,7 @@ export default function SpatialBrandingPage() {
       title: 'The Identity',
       sub: 'Brand System On Paper',
       desc: 'The strategic logic everything inherits: primary wordmark, bespoke typography, color ratios, and editorial design rules.',
-      image: '/images/spatial/brand-identity-stationery.jpg',
+      image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472755/drawingsboard/03-spatial-environments/spatial-general/spatial_general_brand_identity_stationery.jpg',
       caption: 'Temaki Brand Identity System — Menu, Typography & Stationery'
     },
     {
@@ -251,7 +251,7 @@ export default function SpatialBrandingPage() {
       title: 'The Materials',
       sub: 'Colour Becomes Material',
       desc: 'Brand hex values translate into tangible architectural finishes: oiled oak, brushed bronze, textured wool bouclé, and travertine.',
-      image: '/images/spatial/material-language-board.jpg',
+      image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472756/drawingsboard/03-spatial-environments/spatial-general/spatial_general_material_language_board.jpg',
       caption: 'Architectural Material Moodboard — Oak, Stone, Slate & Textiles'
     },
     {
@@ -267,7 +267,7 @@ export default function SpatialBrandingPage() {
       title: 'The Environment',
       sub: 'Complete Commercial Space',
       desc: 'The final unified atmosphere: architectural lighting, fluted timber counters, illuminated niches, and tactile warmth.',
-      image: '/images/cafe-bakery/cafe_bakery_01.jpg',
+      image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470235/drawingsboard/03-spatial-environments/cafe-bakery/spatial_cafe_bakery_01.jpg',
       caption: 'Maison Artisanal Bakery & Café — Complete Branded Commercial Interior'
     }
   ];
@@ -899,7 +899,7 @@ export default function SpatialBrandingPage() {
                   boxShadow: '0 8px 30px rgba(0,0,0,0.06)'
                 }}>
                   <img
-                    src="/images/spatial/restaurant-interior.jpg"
+                    src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472757/drawingsboard/03-spatial-environments/spatial-general/spatial_general_restaurant_interior.jpg"
                     alt="Warm Branded Commercial Restaurant Interior"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   />
@@ -1305,7 +1305,7 @@ export default function SpatialBrandingPage() {
               <div className="anatomy-sticky-visual">
                 <div className="anatomy-fig">
                   <img
-                    src="/images/spatial/cafe-interior.jpg"
+                    src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472759/drawingsboard/03-spatial-environments/spatial-general/spatial_general_cafe_interior.jpg"
                     alt="Interactive Spatial Anatomy Concept Room"
                     style={{ width: '100%', height: 'auto', display: 'block' }}
                   />

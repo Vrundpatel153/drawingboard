@@ -30,7 +30,7 @@ export const AUTHOR =
 
 export const DEFAULT_OG_IMAGE =
   import.meta.env.VITE_DEFAULT_OG_IMAGE ||
-  `${SITE_URL}/home_preview.png`;
+  `${SITE_URL}https://res.cloudinary.com/f4xvzpqg/image/upload/v1795469895/drawingsboard/07-site-meta/og-share-previews/meta_og_home_preview.png`;
 
 export const GA_MEASUREMENT_ID =
   import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-3FHFNH8BZ7';
@@ -78,49 +78,49 @@ export const PAGE_META = {
     title: `${SITE_NAME} — Strategy-First Design Studio`,
     description:
       'The Drawing Board is a strategy-first design studio crafting brand identities, packaging systems, and digital products for ambitious founders across India and globally.',
-    ogImage: `${SITE_URL}/home_preview.png`,
+    ogImage: `${SITE_URL}https://res.cloudinary.com/f4xvzpqg/image/upload/v1795469895/drawingsboard/07-site-meta/og-share-previews/meta_og_home_preview.png`,
     keywords: 'brand identity, packaging design, web design, design studio India, branding agency',
   },
   '/work': {
     title: `Work & Case Studies — ${SITE_NAME}`,
     description:
       'Explore our portfolio of branding, packaging design, and digital product projects — real work for real brands, across food, wellness, fashion, and tech.',
-    ogImage: `${SITE_URL}/work_preview.png`,
+    ogImage: `${SITE_URL}https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473030/drawingsboard/07-site-meta/og-share-previews/meta_og_work_preview.png`,
     keywords: 'design portfolio, brand case studies, packaging design work, logo design India',
   },
   '/works': {
     title: `Work & Case Studies — ${SITE_NAME}`,
     description:
       'Explore our portfolio of branding, packaging design, and digital product projects — real work for real brands, across food, wellness, fashion, and tech.',
-    ogImage: `${SITE_URL}/work_preview.png`,
+    ogImage: `${SITE_URL}https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473030/drawingsboard/07-site-meta/og-share-previews/meta_og_work_preview.png`,
     keywords: 'design portfolio, brand case studies, packaging design work, logo design India',
   },
   '/studio': {
     title: `Studio & About — ${SITE_NAME}`,
     description:
       'Learn about The Drawing Board — who we are, how we work, and the founders and brands we partner with to build intentional brands.',
-    ogImage: `${SITE_URL}/studio_preview.png`,
+    ogImage: `${SITE_URL}https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473031/drawingsboard/07-site-meta/og-share-previews/meta_og_studio_preview.png`,
     keywords: 'about drawing board studio, design studio team, branding studio about',
   },
   '/about': {
     title: `Studio & About — ${SITE_NAME}`,
     description:
       'Learn about The Drawing Board — who we are, how we work, and the founders and brands we partner with to build intentional brands.',
-    ogImage: `${SITE_URL}/studio_preview.png`,
+    ogImage: `${SITE_URL}https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473031/drawingsboard/07-site-meta/og-share-previews/meta_og_studio_preview.png`,
     keywords: 'about drawing board studio, design studio team, branding studio about',
   },
   '/services': {
     title: `Services — ${SITE_NAME}`,
     description:
       'Brand identity, packaging design, UI/UX design, and web development — full-stack creative services for product brands and ambitious founders.',
-    ogImage: `${SITE_URL}/services_preview.png`,
+    ogImage: `${SITE_URL}https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473025/drawingsboard/07-site-meta/og-share-previews/meta_og_services_preview.png`,
     keywords: 'branding services, packaging design services, UI UX services India, web development services',
   },
   '/service': {
     title: `Services — ${SITE_NAME}`,
     description:
       'Brand identity, packaging design, UI/UX design, and web development — full-stack creative services for product brands and ambitious founders.',
-    ogImage: `${SITE_URL}/services_preview.png`,
+    ogImage: `${SITE_URL}https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473025/drawingsboard/07-site-meta/og-share-previews/meta_og_services_preview.png`,
     keywords: 'branding services, packaging design services, UI UX services India, web development services',
   },
   '/branding': {
@@ -289,14 +289,14 @@ export const PAGE_META = {
     title: `Insights & Articles — ${SITE_NAME}`,
     description:
       'Practical articles on branding, packaging strategy, and design thinking — written for founders building real brands.',
-    ogImage: `${SITE_URL}/insights_preview.png`,
+    ogImage: `${SITE_URL}https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473007/drawingsboard/07-site-meta/og-share-previews/meta_og_insights_preview.png`,
     keywords: 'branding insights, packaging strategy, design thinking, founder resources',
   },
   '/blog': {
     title: `Insights & Articles — ${SITE_NAME}`,
     description:
       'Practical articles on branding, packaging strategy, and design thinking — written for founders building real brands.',
-    ogImage: `${SITE_URL}/insights_preview.png`,
+    ogImage: `${SITE_URL}https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473007/drawingsboard/07-site-meta/og-share-previews/meta_og_insights_preview.png`,
     keywords: 'branding insights, packaging strategy, design thinking, founder resources',
   },
   '/contact': {
@@ -351,7 +351,7 @@ export const ORGANIZATION_SCHEMA = {
   '@type': 'Organization',
   name: COMPANY_NAME,
   url: SITE_URL,
-  logo: `${SITE_URL}/favicon.svg`,
+  logo: `${SITE_URL}https://res.cloudinary.com/f4xvzpqg/image/upload/v1795467082/drawingsboard/07-site-meta/brand-identity/site_favicon.svg`,
   description: DEFAULT_DESCRIPTION,
   sameAs: [
     'https://www.instagram.com/drawingboard.co/',

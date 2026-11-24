@@ -15,42 +15,42 @@ export default function Studio() {
     {
       name: 'Vinayak Agarwal',
       role: 'Founder',
-      image: '/images/studio/studio_about_10.jpeg'
+      image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472771/drawingsboard/04-brand-pages/studio/studio_studio_about_10.jpg'
     },
     {
       name: 'RajLaxmi',
       role: 'Brand Designer & Illustrator',
-      image: '/images/studio/studio_about_12.jpeg'
+      image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472773/drawingsboard/04-brand-pages/studio/studio_studio_about_12.jpg'
     },
     {
       name: 'Ajit Biswas',
       role: 'Web & App Developer',
-      image: '/images/studio/studio_about_13.jpeg'
+      image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472773/drawingsboard/04-brand-pages/studio/studio_studio_about_13.jpg'
     },
     {
       name: 'Vrund Patel',
       role: 'Web & App Developer',
-      image: '/images/studio/vrund_patel.jpg'
+      image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472793/drawingsboard/04-brand-pages/studio/studio_vrund_patel.jpg'
     },
     {
       name: 'Jane Taylor',
       role: 'UI/UX Designer',
-      image: '/images/studio/studio_about_14.jpg'
+      image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472799/drawingsboard/04-brand-pages/studio/studio_studio_about_14.jpg'
     },
     {
       name: 'Michael Wilson',
       role: 'Photographer',
-      image: '/images/studio/studio_about_15.jpg'
+      image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472796/drawingsboard/04-brand-pages/studio/studio_studio_about_15.jpg'
     },
     {
       name: 'Trisha Agarwal',
       role: 'Brand Designer',
-      image: '/images/studio/studio_about_16.jpg'
+      image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472775/drawingsboard/04-brand-pages/studio/studio_studio_about_16.jpg'
     },
     {
       name: 'Omisha Ghandi',
       role: 'Creative Head',
-      image: '/images/studio/omisha_ghandi.webp'
+      image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472758/drawingsboard/04-brand-pages/studio/studio_omisha_ghandi.webp'
     }
   ];
 
@@ -147,22 +147,22 @@ export default function Studio() {
                 {/* Avatar Stack */}
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <img
-                    src="/images/studio/studio_about_04.jpg"
+                    src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472768/drawingsboard/04-brand-pages/studio/studio_studio_about_04.jpg"
                     alt="Client Profile 1"
                     style={{ width: '48px', height: '48px', borderRadius: '50%', border: '2px solid var(--paper)', objectFit: 'cover', marginLeft: 0 }}
                   />
                   <img
-                    src="/images/studio/studio_about_05.jpg"
+                    src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472792/drawingsboard/04-brand-pages/studio/studio_studio_about_05.jpg"
                     alt="Client Profile 2"
                     style={{ width: '48px', height: '48px', borderRadius: '50%', border: '2px solid var(--paper)', objectFit: 'cover', marginLeft: '-12px' }}
                   />
                   <img
-                    src="/images/studio/studio_about_06.jpg"
+                    src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472772/drawingsboard/04-brand-pages/studio/studio_studio_about_06.jpg"
                     alt="Client Profile 3"
                     style={{ width: '48px', height: '48px', borderRadius: '50%', border: '2px solid var(--paper)', objectFit: 'cover', marginLeft: '-12px' }}
                   />
                   <img
-                    src="/images/studio/studio_about_07.webp"
+                    src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472767/drawingsboard/04-brand-pages/studio/studio_studio_about_07.webp"
                     alt="Client Profile 4"
                     style={{ width: '48px', height: '48px', borderRadius: '50%', border: '2px solid var(--paper)', objectFit: 'cover', marginLeft: '-12px' }}
                   />
@@ -228,7 +228,7 @@ export default function Studio() {
           <div className="wrap">
             <div style={{ border: '1px solid var(--ink)', borderRadius: '2px', overflow: 'hidden', background: 'var(--card)' }}>
               <img
-                src="/images/studio/studio_about_09.jpg"
+                src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472779/drawingsboard/04-brand-pages/studio/studio_studio_about_09.jpg"
                 alt="The Drawing Board Studio Environment"
                 style={{ width: '100%', height: 'auto', maxHeight: '520px', objectFit: 'cover', display: 'block' }}
               />

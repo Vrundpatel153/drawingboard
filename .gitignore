@@ -58,3 +58,10 @@ react-app/compile_all_pages.js
 react-app/read_services_index.js
 react-app/read_services_scripts.js
 react-app/search_button_css.js
+
+# Cloudinary CDN Migration & Local Assets
+cdn_assets_staging/
+cloudinary_progress.json
+react-app/public/images/
+react-app/public/logos/
+

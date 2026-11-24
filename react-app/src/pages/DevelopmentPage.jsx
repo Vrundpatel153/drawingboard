@@ -215,52 +215,52 @@ export default function DevelopmentPage() {
   ];
 
   const row1Logos = [
-    '/logos/Clip-path-group.png',
-    '/logos/Group-1000001687.png',
-    '/logos/Group-1000001964.png',
-    '/logos/Group-1000001965.png',
-    '/logos/Group-1000001966.png',
-    '/logos/Group-1000002217.png',
-    '/logos/Group-1000002324.png',
-    '/logos/Group-1000003522.png',
-    '/logos/Group-1000003523.png',
-    '/logos/Group-1000004603.png'
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473008/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_clip_path_group.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473009/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_1000001687.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473009/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_1000001964.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473010/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_1000001965.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473010/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_1000001966.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473011/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_1000002217.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473012/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_1000002324.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473012/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_1000003522.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473013/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_1000003523.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473014/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_1000004603.png'
   ];
 
   const row2Logos = [
-    '/logos/Group-13.png',
-    '/logos/Group-17-2.png',
-    '/logos/Group-18-4.png',
-    '/logos/Group-19-2.png',
-    '/logos/Group-2-6.png',
-    '/logos/Group-20-3.png',
-    '/logos/Group-24-2.png',
-    '/logos/Group-25-2.png',
-    '/logos/Group-26-2.png',
-    '/logos/Group-30-1.png'
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473014/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_13.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473014/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_17_2.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473015/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_18_4.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473015/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_19_2.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473016/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_2_6.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473017/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_20_3.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473017/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_24_2.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473017/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_25_2.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473018/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_26_2.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473019/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_30_1.png'
   ];
 
   const row3Logos = [
-    '/logos/Group-4-6.png',
-    '/logos/Group-5-5.png',
-    '/logos/Group-5137-1.png',
-    '/logos/Group-5148.png',
-    '/logos/Group-5139-1.png',
-    '/logos/Group-5140-3.png',
-    '/logos/Group-5141-3.png',
-    '/logos/Group-5145.png',
-    '/logos/Group-6-9.png'
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473019/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_4_6.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473019/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_5_5.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473020/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_5137_1.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473022/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_5148.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473021/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_5139_1.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473021/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_5140_3.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473021/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_5141_3.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473022/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_5145.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473023/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_6_9.png'
   ];
 
   const whatsappScreenshots = [
-    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.10 PM (1).jpeg',
-    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.10 PM.jpeg',
-    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.11 PM.jpeg',
-    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.12 PM (1).jpeg',
-    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.12 PM.jpeg',
-    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.13 PM (1).jpeg',
-    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.13 PM (2).jpeg',
-    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.13 PM.jpeg'
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473029/drawingsboard/06-social-proof/whatsapp-client-reviews/proof_whatsapp_review_1150.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473030/drawingsboard/06-social-proof/whatsapp-client-reviews/proof_whatsapp_review_1151.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473031/drawingsboard/06-social-proof/whatsapp-client-reviews/proof_whatsapp_review_1152.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473031/drawingsboard/06-social-proof/whatsapp-client-reviews/proof_whatsapp_review_1153.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473031/drawingsboard/06-social-proof/whatsapp-client-reviews/proof_whatsapp_review_1154.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473031/drawingsboard/06-social-proof/whatsapp-client-reviews/proof_whatsapp_review_1155.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473032/drawingsboard/06-social-proof/whatsapp-client-reviews/proof_whatsapp_review_1156.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473032/drawingsboard/06-social-proof/whatsapp-client-reviews/proof_whatsapp_review_1157.jpg'
   ];
 
   const founderQuotes = [
@@ -2668,7 +2668,7 @@ export default function DevelopmentPage() {
                       }}
                     >
                       <img
-                        src={commercePp === 'standard' ? '/images/development/shopify_store_01.png' : '/images/development/immersive_ui_01.jpeg'}
+                        src={commercePp === 'standard' ? 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470463/drawingsboard/04-brand-pages/development/dev_shopify_store_01.png' : 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470449/drawingsboard/04-brand-pages/development/dev_immersive_ui_01.jpg'}
                         alt={commercePp === 'standard' ? 'Standard Shopify Store Build' : 'Drawing Board High-Conversion Shopify Experience'}
                         style={{
                           width: '100%',
@@ -2693,7 +2693,7 @@ export default function DevelopmentPage() {
                   <div className="live-stores-grid">
                     <a href="https://shaktimat.ca/" target="_blank" rel="noopener noreferrer" className="live-store-card">
                       <div className="live-store-img-wrap">
-                        <img src="/images/live-stores/shaktimat_mobile.png" alt="Shaktimat Shopify Build" loading="lazy" />
+                        <img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795471747/drawingsboard/04-brand-pages/live-stores/live_store_shaktimat_mobile.png" alt="Shaktimat Shopify Build" loading="lazy" />
                         <span className="live-store-badge">LIVE ↗</span>
                       </div>
                       <div className="live-store-info">
@@ -2707,7 +2707,7 @@ export default function DevelopmentPage() {
 
                     <a href="https://suta.in/" target="_blank" rel="noopener noreferrer" className="live-store-card">
                       <div className="live-store-img-wrap">
-                        <img src="/images/live-stores/suta_mobile.png" alt="Suta Shopify Build" loading="lazy" />
+                        <img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795471745/drawingsboard/04-brand-pages/live-stores/live_store_suta_mobile.png" alt="Suta Shopify Build" loading="lazy" />
                         <span className="live-store-badge">LIVE ↗</span>
                       </div>
                       <div className="live-store-info">
@@ -2721,7 +2721,7 @@ export default function DevelopmentPage() {
 
                     <a href="https://www.arata.in/" target="_blank" rel="noopener noreferrer" className="live-store-card">
                       <div className="live-store-img-wrap">
-                        <img src="/images/live-stores/arata_mobile.png" alt="Arata Shopify Build" loading="lazy" />
+                        <img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795471742/drawingsboard/04-brand-pages/live-stores/live_store_arata_mobile.png" alt="Arata Shopify Build" loading="lazy" />
                         <span className="live-store-badge">LIVE ↗</span>
                       </div>
                       <div className="live-store-info">
@@ -2790,7 +2790,7 @@ export default function DevelopmentPage() {
                       }}
                     >
                       <video
-                        src="/images/development/immersive_video.mp4"
+                        src="https://res.cloudinary.com/f4xvzpqg/video/upload/v1795470478/drawingsboard/04-brand-pages/development/dev_immersive_video.mp4"
                         autoPlay
                         loop
                         muted

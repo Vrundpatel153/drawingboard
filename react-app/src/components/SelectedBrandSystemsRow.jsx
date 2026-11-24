@@ -39,7 +39,7 @@ const BRAND_SYSTEMS = [
     slug: 'yaad-sacred-memories-sensory-rituals',
     tag: 'Sensory Rituals & Packaging',
     name: 'YAAD',
-    image: '/images/yaad/yaad_cover.png',
+    image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472950/drawingsboard/01-case-studies/yaad/yaad_cover.png',
     challenge: 'Elevate traditional incense, soaps, and candles from low-margin commodities into an emotional, nostalgic luxury ritual.',
     direction: 'Incense-stand geometry typography, timestamped memory storytelling, architectural dielines, and monochromatic packaging suites.',
     systems: [
@@ -72,7 +72,7 @@ const BRAND_SYSTEMS = [
     slug: 'soul-brew-branding-packaging-design',
     tag: 'Specialty Coffee & F&B',
     name: 'SOUL BREW',
-    image: '/images/soul-brew/o1.png',
+    image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472740/drawingsboard/01-case-studies/soul-brew/o1.png',
     challenge: 'Build a distinctive brand identity, custom roast packaging architecture, and brand narrative for an artisanal specialty coffee brand.',
     direction: 'Artisanal logotype, custom roast color-coding, sustainable pouch packaging, and tactile coffee collateral.',
     systems: [
@@ -88,7 +88,7 @@ const BRAND_SYSTEMS = [
     slug: 'pronto-italian-restaurant-identity',
     tag: 'Fast-Casual Hospitality',
     name: 'PRONTO!',
-    image: '/images/pronto/pronto_01.png',
+    image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472359/drawingsboard/01-case-studies/pronto/pronto_01.png',
     challenge: 'Modernise an authentic Italian pasta bar identity for high-volume urban rollout without losing culinary heritage.',
     direction: 'Bold typographic lockups, Italian racing-red palette, custom delivery packaging, and kinetic kitchen menus.',
     systems: [
@@ -104,7 +104,7 @@ const BRAND_SYSTEMS = [
     slug: 'matcha-club-brand-identity',
     tag: 'Organic Japanese Tea',
     name: 'MATCHA CLUB',
-    image: '/images/matcha-club/matcha-club_02.png',
+    image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795471851/drawingsboard/01-case-studies/matcha-club/matcha_club_02.png',
     challenge: 'Introduce ceremonial-grade Japanese Uji matcha to western wellness consumers with supreme shelf presence.',
     direction: 'Minimalist tin packaging architecture, washi paper label textures, and clean Scandinavian-Japanese typography.',
     systems: [
@@ -120,7 +120,7 @@ const BRAND_SYSTEMS = [
     slug: 'murami-character-driven-brand-identity',
     tag: 'Character & Hospitality',
     name: 'MURAMI',
-    image: '/images/murami/murami_01.png',
+    image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472037/drawingsboard/01-case-studies/murami/murami_01.png',
     challenge: 'Create an unmistakable character-led mascot universe in a fast-paced dining scene without losing culinary authority or scalability.',
     direction: 'High-energy modular mascot illustration system, Japanese streetwear art direction, custom takeout packaging, and interior neon specs.',
     systems: [
@@ -136,7 +136,7 @@ const BRAND_SYSTEMS = [
     slug: 'flint-business-automation-brand-identity',
     tag: 'Enterprise Automation & SaaS',
     name: 'FLINT',
-    image: '/images/flint/flint_01.png',
+    image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470640/drawingsboard/01-case-studies/flint/flint_01.png',
     challenge: 'Position a next-generation workflow automation platform to compete directly with legacy enterprise monoliths.',
     direction: 'High-precision geometric typography, technical schematic aesthetic, custom dark-mode design system, and telemetry motion graphics.',
     systems: [
@@ -152,7 +152,7 @@ const BRAND_SYSTEMS = [
     slug: 'bondwith---brand-identity-and-guidelines',
     tag: 'Relationship Tech & Lifestyle',
     name: 'BONDWITH',
-    image: '/images/bondwith/bondwith_page_01.jpg',
+    image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470018/drawingsboard/01-case-studies/bondwith/bondwith_page_01.jpg',
     challenge: 'Translate deep emotional human connections into a vibrant, modern social lifestyle brand without feeling sentimental or dated.',
     direction: 'Dynamic interlocking letterforms, warm sunset color palettes, expressive iconography, and cohesive mobile app interface.',
     systems: [
@@ -184,7 +184,7 @@ const BRAND_SYSTEMS = [
     slug: 'rest-religion',
     tag: 'Restorative Sleep & Skincare',
     name: 'REST RELIGION',
-    image: '/images/rest-religion/rest-religion_01.jpg',
+    image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472474/drawingsboard/01-case-studies/rest-religion/rest_religion_01.jpg',
     challenge: 'Differentiate an organic psychodermatology and sleep ritual line in an oversaturated generic skincare market.',
     direction: 'Deep twilight color architecture, tactile debossed secondary cartons, calming editorial serif typography, and apothecary amber bottles.',
     systems: [
@@ -200,7 +200,7 @@ const BRAND_SYSTEMS = [
     slug: 'toodaloo-superfood-snack-packaging',
     tag: 'Adaptogenic Superfood & Snacks',
     name: 'TOODALOO',
-    image: '/images/toodaloo/toodaloo_01.jpg',
+    image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472804/drawingsboard/01-case-studies/toodaloo/toodaloo_01.jpg',
     challenge: 'Launch an adaptogenic functional trail mix line with vivid shelf impact that communicates gut and brain health benefits instantly.',
     direction: 'Psychedelic organic illustrations, vibrant chromatic spectrum, custom barrier-sealed pouch dielines, and playful flavor storytelling.',
     systems: [
@@ -216,7 +216,7 @@ const BRAND_SYSTEMS = [
     slug: 'reel-paper-eco-packaging',
     tag: 'Sustainable FMCG Paper Goods',
     name: 'REEL',
-    image: '/images/reel/reel_01.jpg',
+    image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472448/drawingsboard/04-brand-pages/reel/reel_showcase_reel_01.jpg',
     challenge: 'Elevate tree-free bamboo household paper products into a chic, design-forward DTC subscription brand.',
     direction: 'Modern geometric patterns, monochrome Kraft packaging tape, minimalist typography, and eco-certified packaging specs.',
     systems: [
@@ -248,7 +248,7 @@ const BRAND_SYSTEMS = [
     slug: 'yala-greek-ice-cream-packaging',
     tag: 'Artisanal Dairy & Gelato',
     name: 'YALA GREEK',
-    image: '/images/yala/yala_01.jpg',
+    image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472955/drawingsboard/01-case-studies/yala/yala_01.jpg',
     challenge: 'Bring traditional Greek olive oil and mountain yogurt gelato into contemporary European gourmet retail.',
     direction: 'Aegean cobalt blue and sunlit terracotta palette, classical stone-carved typographic touches, and biodegradable pint tub packaging.',
     systems: [
@@ -264,7 +264,7 @@ const BRAND_SYSTEMS = [
     slug: 'blank-body',
     tag: 'Fragrance & Body Care',
     name: 'BLANK BODY',
-    image: '/images/blank-body/blank-body_01.jpg',
+    image: 'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795469972/drawingsboard/01-case-studies/blank-body/blank_body_01.jpg',
     challenge: 'Differentiate an unscented-base, custom-scented body oil brand for dermatologically sensitive modern consumers.',
     direction: 'Monochromatic clinical-meets-luxury packaging, screen-printed frosted amber glass, embossed carton dielines, and clean typography.',
     systems: [

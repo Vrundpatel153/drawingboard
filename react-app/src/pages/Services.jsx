@@ -230,7 +230,7 @@ export default function Services() {
             </div>
             <div className="hero-visual has-img" style={{ height: '420px', borderRadius: '4px', overflow: 'hidden', border: '1px solid var(--ink)' }}>
               <video
-                src="/_assets/assets/GmWiQg0MZIvFU3cvgIL12lysLK0.mp4"
+                src="https://res.cloudinary.com/f4xvzpqg/video/upload/v1795473027/drawingsboard/07-site-meta/ambient-video/site_ambient_services_reel_loop.mp4"
                 autoPlay
                 loop
                 muted

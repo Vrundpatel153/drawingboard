@@ -1278,35 +1278,35 @@ export default function SaaSBrandingPage() {
 
               {/* Flint Hero Banner (21:9) */}
               <div style={{ width: '100%', height: 'clamp(220px, 46vw, 480px)', borderRadius: '4px', overflow: 'hidden', border: '1px solid var(--ink)', background: 'var(--card)', marginBottom: '24px' }}>
-                <img src="/images/flint/flint_01.png" alt="Flint Enterprise SaaS Brand Identity" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470640/drawingsboard/01-case-studies/flint/flint_01.png" alt="Flint Enterprise SaaS Brand Identity" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
 
               {/* Flint Image Chapters Grid */}
               <div className="flint-chapters-grid">
                 {/* Wordmark + Symbol */}
                 <div className="flint-col-8" style={{ background: '#000' }}>
-                  <img src="/images/flint/flint_02.png" alt="Flint Wordmark & Symbol" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470619/drawingsboard/01-case-studies/flint/flint_02.png" alt="Flint Wordmark & Symbol" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 {/* Symbol Construction */}
                 <div className="flint-col-4" style={{ background: '#111' }}>
-                  <img src="/images/flint/flint_03.png" alt="Flint Symbol Construction" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470633/drawingsboard/01-case-studies/flint/flint_03.png" alt="Flint Symbol Construction" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
 
                 {/* Typography Hierarchy */}
                 <div className="flint-col-6" style={{ background: '#0a0a0a' }}>
-                  <img src="/images/flint/flint_04.png" alt="Flint Typography System" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470651/drawingsboard/01-case-studies/flint/flint_04.png" alt="Flint Typography System" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 {/* Pattern & Graphic Language */}
                 <div className="flint-col-6" style={{ background: '#0a0a0a' }}>
-                  <img src="/images/flint/flint_06.png" alt="Flint Visual Pattern Architecture" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470641/drawingsboard/01-case-studies/flint/flint_06.png" alt="Flint Visual Pattern Architecture" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
 
                 {/* Web UI & App Icon */}
                 <div className="flint-col-8">
-                  <img src="/images/flint/flint_08.png" alt="Flint Web Platform Application" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470788/drawingsboard/01-case-studies/flint/flint_08.png" alt="Flint Web Platform Application" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 <div className="flint-col-4">
-                  <img src="/images/flint/flint_12.png" alt="Flint Digital Icon & UI" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470687/drawingsboard/01-case-studies/flint/flint_12.png" alt="Flint Digital Icon & UI" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
               </div>
 

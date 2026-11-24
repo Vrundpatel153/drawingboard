@@ -34,17 +34,17 @@ export default function Home() {
   const [lightboxImage, setLightboxImage] = useState(null);
 
   const categoryAuditImages = [
-    '/images/think/category_audit.jpeg',
-    '/images/think/category_audit1.jpeg',
-    '/images/think/category_audit2.jpeg',
-    '/images/think/category_audit3.jpeg'
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472797/drawingsboard/04-brand-pages/think-framework/think_category_audit.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472798/drawingsboard/04-brand-pages/think-framework/think_category_audit1.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472802/drawingsboard/04-brand-pages/think-framework/think_category_audit2.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472798/drawingsboard/04-brand-pages/think-framework/think_category_audit3.jpg'
   ];
 
   const heatmapImages = [
-    '/images/think/heatmap.jpeg',
-    '/images/think/heatmap1.jpeg',
-    '/images/think/heatmap2.jpeg',
-    '/images/think/heatmap3.jpeg'
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472801/drawingsboard/04-brand-pages/think-framework/think_heatmap.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472800/drawingsboard/04-brand-pages/think-framework/think_heatmap1.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472800/drawingsboard/04-brand-pages/think-framework/think_heatmap2.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472801/drawingsboard/04-brand-pages/think-framework/think_heatmap3.jpg'
   ];
 
   const systemPlanningImages = [
@@ -103,14 +103,14 @@ export default function Home() {
   };
 
   const whatsappScreenshots = [
-    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.10 PM (1).jpeg',
-    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.10 PM.jpeg',
-    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.11 PM.jpeg',
-    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.12 PM (1).jpeg',
-    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.12 PM.jpeg',
-    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.13 PM (1).jpeg',
-    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.13 PM (2).jpeg',
-    '/_assets/images/whatsap_screenshots/WhatsApp Image 2026-08-01 at 11.41.13 PM.jpeg'
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473029/drawingsboard/06-social-proof/whatsapp-client-reviews/proof_whatsapp_review_1150.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473030/drawingsboard/06-social-proof/whatsapp-client-reviews/proof_whatsapp_review_1151.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473031/drawingsboard/06-social-proof/whatsapp-client-reviews/proof_whatsapp_review_1152.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473031/drawingsboard/06-social-proof/whatsapp-client-reviews/proof_whatsapp_review_1153.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473031/drawingsboard/06-social-proof/whatsapp-client-reviews/proof_whatsapp_review_1154.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473031/drawingsboard/06-social-proof/whatsapp-client-reviews/proof_whatsapp_review_1155.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473032/drawingsboard/06-social-proof/whatsapp-client-reviews/proof_whatsapp_review_1156.jpg',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473032/drawingsboard/06-social-proof/whatsapp-client-reviews/proof_whatsapp_review_1157.jpg'
   ];
 
   const founderQuotes = [
@@ -141,42 +141,42 @@ export default function Home() {
   ];
 
   const row1Logos = [
-    '/logos/Clip-path-group.png',
-    '/logos/Group-1000001687.png',
-    '/logos/Group-1000001964.png',
-    '/logos/Group-1000001965.png',
-    '/logos/Group-1000001966.png',
-    '/logos/Group-1000002217.png',
-    '/logos/Group-1000002324.png',
-    '/logos/Group-1000003522.png',
-    '/logos/Group-1000003523.png',
-    '/logos/Group-1000004603.png'
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473008/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_clip_path_group.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473009/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_1000001687.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473009/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_1000001964.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473010/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_1000001965.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473010/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_1000001966.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473011/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_1000002217.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473012/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_1000002324.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473012/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_1000003522.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473013/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_1000003523.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473014/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_1000004603.png'
   ];
 
   const row2Logos = [
-    '/logos/Group-13.png',
-    '/logos/Group-17-2.png',
-    '/logos/Group-18-4.png',
-    '/logos/Group-19-2.png',
-    '/logos/Group-2-6.png',
-    '/logos/Group-20-3.png',
-    '/logos/Group-24-2.png',
-    '/logos/Group-25-2.png',
-    '/logos/Group-26-2.png',
-    '/logos/Group-30-1.png'
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473014/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_13.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473014/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_17_2.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473015/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_18_4.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473015/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_19_2.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473016/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_2_6.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473017/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_20_3.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473017/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_24_2.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473017/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_25_2.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473018/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_26_2.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473019/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_30_1.png'
   ];
 
   const row3Logos = [
-    '/logos/Group-4-6.png',
-    '/logos/Group-5-5.png',
-    '/logos/Group-5137-1.png',
-    '/logos/Group-5138-2.png',
-    '/logos/Group-5139-1.png',
-    '/logos/Group-5140-3.png',
-    '/logos/Group-5141-3.png',
-    '/logos/Group-5145.png',
-    '/logos/Group-5148.png',
-    '/logos/Group-6-9.png'
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473019/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_4_6.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473019/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_5_5.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473020/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_5137_1.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473020/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_5138_2.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473021/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_5139_1.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473021/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_5140_3.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473021/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_5141_3.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473022/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_5145.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473022/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_5148.png',
+    'https://res.cloudinary.com/f4xvzpqg/image/upload/v1795473023/drawingsboard/05-brand-logos/partner-and-client-marks/brand_logo_group_6_9.png'
   ];
 
   const faqs = [
@@ -1035,10 +1035,10 @@ export default function Home() {
               <div className="think-card">
                 <div
                   className="think-card-media"
-                  onClick={() => setLightboxImage('/images/think/audience_understanding.jpeg')}
+                  onClick={() => setLightboxImage('https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472794/drawingsboard/04-brand-pages/think-framework/think_audience_understanding.jpg')}
                 >
                   <img
-                    src="/images/think/audience_understanding.jpeg"
+                    src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472794/drawingsboard/04-brand-pages/think-framework/think_audience_understanding.jpg"
                     alt="Audience Context Strategy"
                     loading="lazy"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -1055,11 +1055,11 @@ export default function Home() {
               <div className="think-card">
                 <div
                   className="think-card-media"
-                  onClick={() => setLightboxImage('/images/think/positioning_territory.jpeg')}
+                  onClick={() => setLightboxImage('https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472801/drawingsboard/04-brand-pages/think-framework/think_positioning_territory_1000.jpg')}
                   title="Click to view full image"
                 >
                   <img
-                    src="/images/think/positioning_territory.jpeg"
+                    src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472801/drawingsboard/04-brand-pages/think-framework/think_positioning_territory_1000.jpg"
                     alt="Positioning Territory Strategy"
                     loading="lazy"
                     style={{ width: '100%', height: '100%', objectFit: 'contain' }}
@@ -1122,11 +1122,11 @@ export default function Home() {
               <div className="think-card">
                 <div
                   className="think-card-media"
-                  onClick={() => setLightboxImage('/images/think/creative_exploration.jpeg')}
+                  onClick={() => setLightboxImage('https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472798/drawingsboard/04-brand-pages/think-framework/think_creative_exploration.jpg')}
                   title="Click to view full image"
                 >
                   <img
-                    src="/images/think/creative_exploration.jpeg"
+                    src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472798/drawingsboard/04-brand-pages/think-framework/think_creative_exploration.jpg"
                     alt="Creative Exploration Strategy"
                     loading="lazy"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
