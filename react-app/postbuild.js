@@ -549,6 +549,12 @@ async function run() {
       schemas: []
     },
     {
+      route: '/spatial-branding',
+      title: 'Spatial Branding & Commercial Architecture Environments | The Drawing Board',
+      description: 'We build brands you can step into. Commercial spatial design, environmental graphics, and turnkey architectural specification schedules.',
+      schemas: []
+    },
+    {
       route: '/about',
       title: 'Studio & Design Engineering Philosophy | The Drawing Board',
       description: 'Why senior boutique studios outperform bloated agencies. Discover our Architectural Brand Engine methodology and founder-led model.',
