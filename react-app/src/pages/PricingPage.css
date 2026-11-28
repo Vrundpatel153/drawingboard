@@ -177,8 +177,20 @@
   font-size: 1.45em;
 }
 
+.pricing-page-root .hero-sub-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  margin-top: 10px;
+}
+
+.pricing-page-root .hero-sub-left {
+  max-width: 580px;
+}
+
 .pricing-page-root .hero p {
-  margin: 20px 0 28px;
+  margin: 10px 0 28px;
   max-width: 580px;
   text-align: left;
   font-size: clamp(18px, 2vw, 24px);
@@ -213,9 +225,10 @@
 /* V17 Spirograph Hero Art */
 .pricing-page-root .art {
   display: block;
-  width: min(100%, 340px);
+  width: min(100%, 320px);
   height: auto;
-  margin: 20px 0 0;
+  margin: 0;
+  flex-shrink: 0;
 }
 
 /* Marquee */
@@ -767,8 +780,22 @@
     margin: 20px 0;
   }
 
+  .pricing-page-root .hero-sub-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    margin-top: 12px;
+  }
+
   .pricing-page-root .hero p {
     font-size: 17px;
+    margin-bottom: 20px;
+  }
+
+  .pricing-page-root .art {
+    width: min(100%, 260px);
+    margin: 8px 0 0;
+    align-self: flex-start;
   }
 
   .pricing-page-root .split,

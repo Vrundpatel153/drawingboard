@@ -149,8 +149,18 @@
     .hero h1 span:nth-child(2) {
       font-size: 1.45em;
     }
+    .hero-sub-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+      margin-top: 10px;
+    }
+    .hero-sub-left {
+      max-width: 580px;
+    }
     .hero p {
-      margin: 20px 0 28px;
+      margin: 10px 0 28px;
       max-width: 580px;
       text-align: left;
       font-size: clamp(18px, 2vw, 24px);
@@ -191,9 +201,10 @@
     /* V17 Spirograph Hero Art */
     .art {
       display: block;
-      width: min(100%, 340px);
+      width: min(100%, 320px);
       height: auto;
-      margin: 20px 0 0;
+      margin: 0;
+      flex-shrink: 0;
     }
 
     /* Marquee */
@@ -624,7 +635,18 @@
       .logo { font-size: 20px; }
       .hero { padding: 36px 0 20px; }
       .hero h1 { font-size: clamp(34px, 10.5vw, 72px); margin: 20px 0; }
-      .hero p { font-size: 17px; }
+      .hero-sub-wrap {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        margin-top: 12px;
+      }
+      .hero p { font-size: 17px; margin-bottom: 20px; }
+      .art {
+        width: min(100%, 260px);
+        margin: 8px 0 0;
+        align-self: flex-start;
+      }
       .split, .process, .terms, .formgrid { grid-template-columns: 1fr; }
       .section { padding: 48px 0; }
       #deliverables-v17 { padding: 48px 0; }
@@ -677,24 +699,28 @@
           <span>CLEAR</span>
           <span>INVESTMENT.</span>
         </h1>
-        <p>Thoughtfully considered engagements. Clearly defined deliverables. Good thinking included.</p>
-        <a class="pill" href="#pricing">Explore our pricing ↓</a>
+        <div class="hero-sub-wrap">
+          <div class="hero-sub-left">
+            <p>Thoughtfully considered engagements. Clearly defined deliverables. Good thinking included.</p>
+            <a class="pill" href="#pricing">Explore our pricing ↓</a>
+          </div>
 
-        <!-- V17 Spirograph Art -->
-        <svg aria-hidden="true" class="art" viewBox="0 0 320 145">
-          <g fill="none" stroke="#2B2675" stroke-width="1.5">
-            <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(0.0 160 72)"></ellipse>
-            <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(22.5 160 72)"></ellipse>
-            <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(45.0 160 72)"></ellipse>
-            <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(67.5 160 72)"></ellipse>
-            <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(90.0 160 72)"></ellipse>
-            <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(112.5 160 72)"></ellipse>
-            <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(135.0 160 72)"></ellipse>
-            <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(157.5 160 72)"></ellipse>
-          </g>
-          <circle cx="160" cy="72" fill="#D1D84E" r="34" stroke="#2B2675"></circle>
-          <text id="coinSymbol" fill="#2B2675" font-size="44" font-weight="800" text-anchor="middle" x="160" y="87">₹</text>
-        </svg>
+          <!-- V17 Spirograph Art -->
+          <svg aria-hidden="true" class="art" viewBox="0 0 320 145">
+            <g fill="none" stroke="#2B2675" stroke-width="1.5">
+              <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(0.0 160 72)"></ellipse>
+              <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(22.5 160 72)"></ellipse>
+              <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(45.0 160 72)"></ellipse>
+              <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(67.5 160 72)"></ellipse>
+              <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(90.0 160 72)"></ellipse>
+              <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(112.5 160 72)"></ellipse>
+              <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(135.0 160 72)"></ellipse>
+              <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(157.5 160 72)"></ellipse>
+            </g>
+            <circle cx="160" cy="72" fill="#D1D84E" r="34" stroke="#2B2675"></circle>
+            <text id="coinSymbol" fill="#2B2675" font-size="44" font-weight="800" text-anchor="middle" x="160" y="87">₹</text>
+          </svg>
+        </div>
       </div>
     </section>
 

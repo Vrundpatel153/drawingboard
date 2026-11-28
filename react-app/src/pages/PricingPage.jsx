@@ -297,26 +297,30 @@ export default function PricingPage() {
               <span>CLEAR</span>
               <span>INVESTMENT.</span>
             </h1>
-            <p>Thoughtfully considered engagements. Clearly defined deliverables. Good thinking included.</p>
-            <a className="pill" href="#pricing">Explore our pricing ↓</a>
+            <div className="hero-sub-wrap">
+              <div className="hero-sub-left">
+                <p>Thoughtfully considered engagements. Clearly defined deliverables. Good thinking included.</p>
+                <a className="pill" href="#pricing">Explore our pricing ↓</a>
+              </div>
 
-            {/* V17 Spirograph Hero Art */}
-            <svg aria-hidden="true" className="art" viewBox="0 0 320 145">
-              <g fill="none" stroke="#2B2675" strokeWidth="1.5">
-                <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(0.0 160 72)"></ellipse>
-                <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(22.5 160 72)"></ellipse>
-                <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(45.0 160 72)"></ellipse>
-                <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(67.5 160 72)"></ellipse>
-                <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(90.0 160 72)"></ellipse>
-                <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(112.5 160 72)"></ellipse>
-                <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(135.0 160 72)"></ellipse>
-                <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(157.5 160 72)"></ellipse>
-              </g>
-              <circle cx="160" cy="72" fill="#D1D84E" r="34" stroke="#2B2675"></circle>
-              <text fill="#2B2675" fontSize="44" fontWeight="800" textAnchor="middle" x="160" y="87">
-                {currency === 'INR' ? '₹' : '$'}
-              </text>
-            </svg>
+              {/* V17 Spirograph Hero Art */}
+              <svg aria-hidden="true" className="art" viewBox="0 0 320 145">
+                <g fill="none" stroke="#2B2675" strokeWidth="1.5">
+                  <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(0.0 160 72)"></ellipse>
+                  <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(22.5 160 72)"></ellipse>
+                  <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(45.0 160 72)"></ellipse>
+                  <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(67.5 160 72)"></ellipse>
+                  <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(90.0 160 72)"></ellipse>
+                  <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(112.5 160 72)"></ellipse>
+                  <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(135.0 160 72)"></ellipse>
+                  <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(157.5 160 72)"></ellipse>
+                </g>
+                <circle cx="160" cy="72" fill="#D1D84E" r="34" stroke="#2B2675"></circle>
+                <text fill="#2B2675" fontSize="44" fontWeight="800" textAnchor="middle" x="160" y="87">
+                  {currency === 'INR' ? '₹' : '$'}
+                </text>
+              </svg>
+            </div>
           </div>
         </section>
 
