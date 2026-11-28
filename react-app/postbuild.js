@@ -573,6 +573,12 @@ async function run() {
       schemas: [buildFaqSchema(FAQ_BRANDING)]
     },
     {
+      route: '/newhome',
+      title: 'The Drawing Board — Draw first. Argue later.',
+      description: 'Independent brand, packaging & web studio. We design brands people choose before they compare. Senior hands only, transparent fixed pricing.',
+      schemas: [buildFaqSchema(FAQ_BRANDING)]
+    },
+    {
       route: '/contact',
       title: 'Initiate a Project Sprint | The Drawing Board',
       description: 'Book a 15-minute discovery call or submit your project brief directly to The Drawing Board.',

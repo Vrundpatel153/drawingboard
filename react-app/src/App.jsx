@@ -22,6 +22,7 @@ import Admin from './pages/Admin';
 import ThankYou from './pages/ThankYou';
 import BrandReadiness from './pages/BrandReadiness';
 import PricingPage from './pages/PricingPage';
+import NewHomePage from './pages/NewHomePage';
 import SmoothScroll from './components/SmoothScroll';
 import WhatsAppButton from './components/WhatsAppButton';
 import GlobalCTAInterceptor from './components/GlobalCTAInterceptor';
@@ -126,6 +127,11 @@ export default function App() {
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/pricing.html" element={<PricingPage />} />
             <Route path="/investment" element={<PricingPage />} />
+
+            {/* New Homepage V17 route */}
+            <Route path="/newhome" element={<NewHomePage />} />
+            <Route path="/newhome.html" element={<NewHomePage />} />
+            <Route path="/new-home" element={<NewHomePage />} />
 
             {/* Brand Readiness & Instant Quote routes */}
             <Route path="/brand-readiness" element={<BrandReadiness />} />

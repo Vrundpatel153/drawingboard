@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Drawing Board — Draw first. Argue later.</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&amp;family=Big+Shoulders+Display:wght@800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+<style>
+:root{--paper:#FCFAEF;--ink:#2B2675;--blue:#D1D84E;--hi:#FCFAEF;--hot:#D1D84E;--card:#FCFAEF;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box;margin:0}
+body{background:var(--paper);color:var(--ink);font:500 17px/1.5 "Bricolage Grotesque",system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.mono{font:500 12px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase}
+.wrap{max-width:1360px;margin:0 auto;padding:0 clamp(16px,3.5vw,44px)}
+.d{font-weight:800;text-transform:uppercase;letter-spacing:-.045em;line-height:.84}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper);border-bottom:1.5px solid var(--ink)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:62px;gap:14px}
+.logo{font-weight:800;text-transform:uppercase;letter-spacing:-.03em;font-size:20px}
+.logo i{font-style:normal;background:var(--blue);color:#2B2675;padding:2px 8px;border-radius:6px;margin-right:6px}
+.links{display:flex;gap:24px}.links a:hover{color:var(--blue)}
+@media(max-width:760px){.links{display:none}}
+.btn{display:inline-flex;gap:10px;align-items:center;background:var(--blue);color:#2B2675;padding:14px 26px;border-radius:99px;font-weight:800;border:1.5px solid var(--ink);box-shadow:0 8px 20px rgba(43,38,117,.12);transition:.15s}
+.btn:hover{transform:translateY(-3px)}
+.btn.y{background:var(--hi);color:#2B2675}
+.hero{padding:clamp(36px,6vw,80px) 0 0;position:relative}
+.hero h1{font-size:clamp(72px,17vw,300px)}
+.hero h1 .l2{display:block}
+.hl{background:linear-gradient(transparent 62%,var(--hi) 62%);color:var(--ink);padding:0 .06em}
+.blue{color:var(--blue)}
+#w{display:inline-block;color:var(--hot)}
+.stk{position:absolute;right:4%;top:8%;width:clamp(92px,14vw,170px);aspect-ratio:1;background:var(--hi);color:#2B2675;border:1.5px solid #2B2675;border-radius:50%;display:grid;place-items:center;text-align:center;font-weight:800;text-transform:uppercase;font-size:clamp(12px,1.5vw,17px);line-height:1;transform:rotate(14deg);animation:sp 14s linear infinite}
+@keyframes sp{to{transform:rotate(374deg)}}
+.row{display:flex;flex-wrap:wrap;gap:26px;justify-content:space-between;align-items:flex-end;margin:34px 0 56px}
+.row p{max-width:500px;font-size:20px}
+.mq{background:var(--blue);color:#2B2675;overflow:hidden;white-space:nowrap;padding:14px 0}
+.mq div{display:inline-block;animation:m 24s linear infinite;font-weight:800;text-transform:uppercase;font-size:clamp(24px,4vw,48px);letter-spacing:-.02em}
+.mq b{color:#FCFAEF}
+@keyframes m{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.mq div,.stk{animation:none}}
+section{padding:clamp(60px,9vw,130px) 0}
+.man{background:#FCFAEF;color:#2B2675}
+.man p{font-size:clamp(28px,5.2vw,76px);font-weight:800;letter-spacing:-.035em;line-height:1}
+.man em{font-style:normal;background:var(--blue);color:#2B2675;padding:0 .12em;border-radius:.12em}
+.man .mono{opacity:.8;margin-bottom:24px;display:block}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:40px}
+.head h2{font-size:clamp(44px,9vw,140px)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.c{grid-column:span 6;min-height:360px;border:1.5px solid var(--ink);border-radius:28px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;background:var(--b);color:var(--t);transition:.25s;position:relative;overflow:hidden}
+.c:nth-child(3n+1){grid-column:span 7}.c:nth-child(3n+2){grid-column:span 5}.c:nth-child(3n){grid-column:span 12;min-height:300px}
+.c:hover{transform:rotate(-1deg) translateY(-6px);box-shadow:0 18px 34px rgba(43,38,117,.14)}
+.c h3{font-size:clamp(40px,7vw,104px);font-weight:800;text-transform:uppercase;letter-spacing:-.045em;line-height:.85}
+.c p{max-width:420px;font-weight:500}
+.c .mono{display:flex;justify-content:space-between;gap:10px}
+.c:after{content:"↗";position:absolute;right:22px;bottom:18px;font-size:44px;font-weight:800;opacity:0;transition:.25s}.c:hover:after{opacity:1}
+@media(max-width:820px){.c,.c:nth-child(n){grid-column:span 12;min-height:280px}}
+.svc a{display:grid;grid-template-columns:70px 1fr 1.1fr;gap:20px;align-items:baseline;padding:26px 0;border-top:1.5px solid var(--ink);transition:.2s}
+.svc a:last-child{border-bottom:1.5px solid var(--ink)}
+.svc h3{font-size:clamp(32px,6vw,88px);font-weight:800;text-transform:uppercase;letter-spacing:-.04em;line-height:.9}
+.svc a:hover{background:var(--hi);color:#2B2675;padding-left:18px}.svc a:hover h3{color:var(--blue)}
+@media(max-width:760px){.svc a{grid-template-columns:1fr}}
+.yel{background:#A99BF7;color:#2B2675}
+.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:40px}
+.rg div{border:1.5px solid #2B2675;border-radius:28px;padding:24px;background:#FCFAEF;transition:.2s}
+.rg div:nth-child(odd){transform:rotate(-1.5deg)}.rg div:nth-child(even){transform:rotate(1.5deg)}.rg div:hover{transform:rotate(0) scale(1.03)}
+.rg b{font-size:72px;font-weight:800;letter-spacing:-.05em;line-height:1;color:var(--blue);display:block}
+.rg h3{font-size:22px;font-weight:800;margin:6px 0}
+details{border-top:1.5px solid var(--ink);padding:22px 0}details:last-of-type{border-bottom:1.5px solid var(--ink)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font-size:clamp(22px,3vw,38px);font-weight:800;letter-spacing:-.03em;text-transform:uppercase}
+summary::-webkit-details-marker{display:none}summary:after{content:"+";color:var(--hot);font-size:1.2em;line-height:.8}details[open] summary:after{content:"−"}
+details p{margin-top:12px;max-width:760px;opacity:.85}
+.faq{display:grid;grid-template-columns:1fr 1.7fr;gap:40px}@media(max-width:800px){.faq{grid-template-columns:1fr}}
+footer{background:var(--blue);color:#2B2675;padding:clamp(60px,9vw,120px) 0 26px}
+footer h2{font-size:clamp(52px,12vw,220px)}
+footer h2 span{color:#FCFAEF}
+footer .btn{margin-top:36px;background:var(--hi);color:#2B2675;border-color:var(--paper);box-shadow:0 8px 20px rgba(43,38,117,.18)}
+.bar{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:70px;padding-top:18px;border-top:1.5px solid #2B2675}
+
+.d,.c h3,.svc h3,.rg b,summary,.mq div,.stk,.logo{font-family:"Big Shoulders Display","Bricolage Grotesque",Impact,sans-serif;letter-spacing:-.01em}
+.d{line-height:.86}.hl{background:linear-gradient(transparent 60%,var(--hi) 60%)}
+.pen{position:absolute;right:3%;top:12%;width:clamp(110px,18vw,260px);z-index:5;}
+.pen svg{width:100%;display:block;filter:drop-shadow(0 14px 14px rgba(43,38,117,.18))}
+.bub{position:absolute;right:92%;top:-6%;width:max-content;max-width:190px;background:#FCFAEF;color:#2B2675;border:2px solid #2B2675;border-radius:18px 18px 4px 18px;padding:8px 12px;font:500 13px/1.25 "JetBrains Mono",monospace}
+@keyframes wob{50%{transform:rotate(-5deg) translateY(-8px)}}
+@media(prefers-reduced-motion:reduce){.pen{animation:none}}
+@media(max-width:560px){.bub{display:none}.pen{top:6%}}
+.pen2{position:absolute;right:5%;top:-1px;width:clamp(70px,11vw,150px);transform:translateY(-97%)}
+footer{margin-top:90px}
+
+html.js .rv{opacity:0;translate:0 44px;transition:opacity .8s cubic-bezier(.2,.7,.2,1),translate .8s cubic-bezier(.2,.7,.2,1),transform .25s,box-shadow .25s,background .2s,padding .2s}
+html.js .rv.in{opacity:1;translate:0 0}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding:.08em .02em;margin:-.08em -.02em}
+.w>i{display:inline-block;font-style:normal;transform:translateY(108%);transition:transform .95s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i)*60ms)}
+.in .w>i{transform:none}
+.pen{translate:0 var(--py,0px);animation:pop 1s .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes pop{from{opacity:0;transform:translateY(60px) scale(.88)}}
+#bar{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);height:4px;background:var(--blue);transform-origin:0 50%;transform:scaleX(0);z-index:60}
+.c{min-height:0;justify-content:flex-start;gap:16px}.c p{font-size:17px}
+.c .im{display:block;aspect-ratio:4/3;border-radius:18px;overflow:hidden;background:rgba(43,38,117,.1)}
+.c .im img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}.c:hover .im img{transform:scale(1.06)}
+.c.nm{min-height:300px;justify-content:space-between}
+.c.s7{grid-column:span 7}.c.s5{grid-column:span 5}
+@media(max-width:820px){.c.s7,.c.s5{grid-column:span 12}}
+.stripw{overflow:hidden;border-bottom:1.5px solid var(--ink)}
+.strip{display:flex;gap:14px;width:max-content;padding:14px;animation:m2 50s linear infinite}
+.strip img{height:clamp(150px,20vw,260px);width:auto;border-radius:18px;border:1.5px solid var(--ink);display:block;background:#FCFAEF}
+@keyframes m2{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.strip{animation:none}}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 34px}
+.chip{font:800 15px "Bricolage Grotesque",sans-serif;border:1.5px solid var(--ink);border-radius:99px;padding:10px 20px;background:transparent;color:var(--ink);cursor:pointer;transition:.2s}.chip:hover{background:#FCFAEF}.chip.on{background:var(--blue)}
+.tg{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}.tg b{border:1.5px solid currentColor;border-radius:99px;padding:3px 11px;font:500 11px "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase}
+
+/* V17 palette: color-only overrides */
+:root{--paper:#FCFAEF;--ink:#2B2675;--blue:#D1D84E;--hi:#A99BF7;--hot:#2B2675;--card:#FCFAEF}
+.blue{color:var(--ink)}
+.links a:hover,.svc a:hover h3,.rg b{color:var(--ink)}
+.hl{background:linear-gradient(transparent 60%,#A99BF7 60%)}
+.mq b{color:var(--ink)}
+.man{background:#2B2675;color:#FCFAEF}
+.man em{background:#A99BF7;color:#2B2675}
+footer{background:#2B2675;color:#FCFAEF}
+footer h2 span{color:#A99BF7}
+footer .bar{border-color:#A99BF7}
+footer .btn{background:#D1D84E;color:#2B2675}
+#bar{background:#ED913C}
+</style>
+<script>if(!matchMedia("(prefers-reduced-motion:reduce)").matches)document.documentElement.classList.add("js")</script>
+</head>
+<body>
+<div id="bar"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="penn" viewBox="0 0 250 340"><path d="M168 305Q226 306 220 252Q217 226 234 212" fill="none" stroke="#2B2675" stroke-width="16" stroke-linecap="round"/><path d="M120 130C62 140 50 240 55 290Q58 316 90 316H150Q182 316 185 290C190 240 178 140 120 130Z" fill="#2B2675"/><ellipse cx="120" cy="232" rx="22" ry="42" fill="#FCFAEF"/><ellipse cx="97" cy="312" rx="19" ry="9" fill="#FCFAEF"/><ellipse cx="143" cy="312" rx="19" ry="9" fill="#FCFAEF"/><path d="M76 84L70 32L110 62ZM164 84L170 32L130 62Z" fill="#2B2675"/><path d="M81 75L78 46L99 62ZM159 75L162 46L141 62Z" fill="#D1D84E"/><ellipse cx="120" cy="102" rx="53" ry="44" fill="#2B2675"/><circle cx="100" cy="102" r="11" fill="#D1D84E"/><circle cx="140" cy="102" r="11" fill="#D1D84E"/><ellipse cx="100" cy="106" rx="3" ry="6" fill="#2B2675"/><ellipse cx="140" cy="106" rx="3" ry="6" fill="#2B2675"/><path d="M88 102A12 12 0 0 1 112 102ZM128 102A12 12 0 0 1 152 102Z" fill="#2B2675"/><path d="M114 118H126L120 125Z" fill="#FCFAEF"/><path d="M120 125Q114 133 107 128M120 125Q126 133 133 128M90 120L58 113M90 126L56 130M150 120L182 113M150 126L184 130" fill="none" stroke="#FCFAEF" stroke-width="2" stroke-linecap="round"/><path d="M120 150L94 138V162ZM120 150L146 138V162Z" fill="#D1D84E"/><circle cx="120" cy="150" r="7" fill="#D1D84E" stroke="#2B2675" stroke-width="2"/></symbol></svg>
+<nav><div class="wrap"><a class="logo" href="https://drawingsboard.com/"><i>TDB</i>The Drawing Board</a>
+<div class="links mono"><a href="https://drawingsboard.com/work">Work</a><a href="https://drawingsboard.com/services">Services</a><a href="https://drawingsboard.com/studio">Studio</a><a href="https://drawingsboard.com/insights">Insights</a></div>
+<a class="btn" href="https://drawingsboard.com/brand-readiness">Let’s talk ↗</a></div></nav>
+<header class="hero"><div class="wrap">
+<div class="pen" aria-hidden="true"><span class="bub">Kern. I sign off on every letter-space.</span><svg viewBox="0 0 250 340"><use href="#penn"/></svg></div>
+<p class="mono" style="margin-bottom:20px">Independent brand, packaging &amp; web studio · India → everywhere</p>
+<h1 class="d">Draw first.<span class="l2"><span class="hl">Argue</span> <span class="blue">later.</span></span></h1>
+<div class="row"><p>We design <span id="w">brands</span> people choose before they compare. Identity, packaging and web from one senior team, one system, one fixed price.</p>
+<div style="display:flex;gap:14px;flex-wrap:wrap"><a class="btn" href="https://drawingsboard.com/brand-readiness">Get a quote ↗</a><a class="btn y" href="https://drawingsboard.com/work">See the work</a></div></div></div></header>
+<div class="mq" aria-hidden="true"><div>Strategy first <b>✺</b> Dielines never lie <b>✺</b> Shelf to screen <b>✺</b> Senior hands only <b>✺</b> Strategy first <b>✺</b> Dielines never lie <b>✺</b> Shelf to screen <b>✺</b> Senior hands only <b>✺</b> Strategy first <b>✺</b> Dielines never lie <b>✺</b> Shelf to screen <b>✺</b> Senior hands only <b>✺</b> </div></div><div class="stripw" aria-hidden="true"><div class="strip"><img src="https://framerusercontent.com/images/GI9hs6gABp4QhAbVBk1Ej9TVE0.png" alt="" onerror="this.remove()"><img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795471086/drawingsboard/01-case-studies/forte-luxury-architecture/forte_01.png" alt="" onerror="this.remove()"><img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470425/drawingsboard/01-case-studies/dabbo-madrid/dabbo_01.jpg" alt="" onerror="this.remove()"><img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472292/drawingsboard/01-case-studies/orient-developers/orient_page_02.jpg" alt="" onerror="this.remove()"><img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470037/drawingsboard/01-case-studies/bonta-gelato/bonta_01.jpg" alt="" onerror="this.remove()"><img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795471270/drawingsboard/01-case-studies/gusto-pottery/gusto_01.png" alt="" onerror="this.remove()"><img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795471371/drawingsboard/01-case-studies/high-life-residences/high_life_02.jpg" alt="" onerror="this.remove()"><img src="https://framerusercontent.com/images/lDJGRw6ojn1T4R3Kty0DiGRtA.jpg" alt="" onerror="this.remove()"><img src="https://framerusercontent.com/images/GI9hs6gABp4QhAbVBk1Ej9TVE0.png" alt="" onerror="this.remove()"><img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795471086/drawingsboard/01-case-studies/forte-luxury-architecture/forte_01.png" alt="" onerror="this.remove()"><img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470425/drawingsboard/01-case-studies/dabbo-madrid/dabbo_01.jpg" alt="" onerror="this.remove()"><img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472292/drawingsboard/01-case-studies/orient-developers/orient_page_02.jpg" alt="" onerror="this.remove()"><img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470037/drawingsboard/01-case-studies/bonta-gelato/bonta_01.jpg" alt="" onerror="this.remove()"><img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795471270/drawingsboard/01-case-studies/gusto-pottery/gusto_01.png" alt="" onerror="this.remove()"><img src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795471371/drawingsboard/01-case-studies/high-life-residences/high_life_02.jpg" alt="" onerror="this.remove()"><img src="https://framerusercontent.com/images/lDJGRw6ojn1T4R3Kty0DiGRtA.jpg" alt="" onerror="this.remove()"></div></div>
+<section class="man"><div class="wrap"><span class="mono">/ Manifesto</span>
+<p>Most brands look fine and say nothing. We build the ones <em>people remember,</em> from the idea to the dieline to the website, with the same senior hands on every pixel.</p></div></section>
+<section><div class="wrap"><div class="head"><h2 class="d">Brands we’ve<br>built</h2><a class="btn y" href="https://drawingsboard.com/work">All projects ↗</a></div>
+<div class="grid"><a class="c s7" data-cat="identity packaging" style="--b:#D1D84E;--t:#2B2675" href="https://drawingsboard.com/work/after8®---reimagining-intimacy-for-a-new-generation."><span class="mono"><span>Wellness</span><span>01</span></span><span class="im"><img loading="lazy" src="https://framerusercontent.com/images/GI9hs6gABp4QhAbVBk1Ej9TVE0.png" alt="After8® brand identity project by The Drawing Board" onerror="this.parentNode.remove()"></span><div><h3>After8®</h3><p>Intimate care for a generation that’s done whispering. A full identity, packaging and digital system.</p><div class="tg"><b>Identity</b><b>Packaging</b><b>Digital</b></div></div></a>
+<a class="c s5" data-cat="identity" style="--b:#A99BF7;--t:#2B2675" href="https://drawingsboard.com/work/forte-luxury-architecture-brand-identity"><span class="mono"><span>Architecture</span><span>02</span></span><span class="im"><img loading="lazy" src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795471086/drawingsboard/01-case-studies/forte-luxury-architecture/forte_01.png" alt="Forte brand identity project by The Drawing Board" onerror="this.parentNode.remove()"></span><div><h3>Forte</h3><p>A refined identity for an architecture and real estate practice: arch monogram, high-contrast serif, forest green and warm cream, from signage to shopping bags.</p><div class="tg"><b>Identity</b><b>Signage</b></div></div></a>
+<a class="c s5" data-cat="packaging identity" style="--b:#FCFAEF;--t:#2B2675" href="https://drawingsboard.com/work/dabbo-madrid-hot-dog-coffee-branding"><span class="mono"><span>Food &amp; beverage</span><span>03</span></span><span class="im"><img loading="lazy" src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470425/drawingsboard/01-case-studies/dabbo-madrid/dabbo_01.jpg" alt="Dabbo brand identity project by The Drawing Board" onerror="this.parentNode.remove()"></span><div><h3>Dabbo</h3><p>Retro street food for Madrid: folding hot dog clamshells, carrier boxes, coffee cups and greaseproof paper, made to be held and photographed.</p><div class="tg"><b>Packaging</b><b>Identity</b></div></div></a>
+<a class="c s7" data-cat="identity" style="--b:#FCFAEF;--t:#2B2675" href="https://drawingsboard.com/work/high-life-residences"><span class="mono"><span>Real estate</span><span>04</span></span><span class="im"><img loading="lazy" src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795471371/drawingsboard/01-case-studies/high-life-residences/high_life_02.jpg" alt="High Life brand identity project by The Drawing Board" onerror="this.parentNode.remove()"></span><div><h3>High Life</h3><p>“It’s High Life.” Light trails and architectural grids for a luxury residential tower, from gold-foil sales folios to a resident app.</p><div class="tg"><b>Identity</b><b>Campaign</b><b>App</b></div></div></a>
+<a class="c s7" data-cat="spatial identity" style="--b:#D1D84E;--t:#2B2675" href="https://drawingsboard.com/work/orient-developers-spatial-branding"><span class="mono"><span>Spatial</span><span>05</span></span><span class="im"><img loading="lazy" src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795472292/drawingsboard/01-case-studies/orient-developers/orient_page_02.jpg" alt="Orient Developers brand identity project by The Drawing Board" onerror="this.parentNode.remove()"></span><div><h3>Orient Developers</h3><p>Crafting spaces, building legacies. Spatial design, wayfinding, a corporate identity suite and a sales gallery system.</p><div class="tg"><b>Spatial</b><b>Identity</b></div></div></a>
+<a class="c s5" data-cat="packaging" style="--b:#A99BF7;--t:#2B2675" href="https://drawingsboard.com/work/bonta-gelato-outdoor-packaging-branding"><span class="mono"><span>Food &amp; beverage</span><span>06</span></span><span class="im"><img loading="lazy" src="https://res.cloudinary.com/f4xvzpqg/image/upload/v1795470037/drawingsboard/01-case-studies/bonta-gelato/bonta_01.jpg" alt="Bontà brand identity project by The Drawing Board" onerror="this.parentNode.remove()"></span><div><h3>Bontà</h3><p>Gelato from the great outdoors. Cascade mountain contours meet melting-gelato texture on bright, activewear-style packaging.</p><div class="tg"><b>Packaging</b></div></div></a>
+</div></div></section>
+<section style="padding-top:0"><div class="wrap"><div class="head"><h2 class="d">What we<br><span class="blue">make</span></h2></div><div class="svc"><a href="https://drawingsboard.com/branding"><span class="mono">01</span><h3>Strategy</h3><p>Positioning, audience and a sharp reason to exist, settled before any logo is drawn.</p></a><a href="https://drawingsboard.com/branding"><span class="mono">02</span><h3>Identity</h3><p>Marks, colour, type and pattern, built as a system that survives the real world.</p></a><a href="https://drawingsboard.com/packaging"><span class="mono">03</span><h3>Packaging</h3><p>Print-ready dielines in the right stocks, foils and finishes, built to be picked up first.</p></a><a href="https://drawingsboard.com/web-development"><span class="mono">04</span><h3>Web</h3><p>React, Shopify or Framer sites that carry the brand from shelf to screen.</p></a><a href="https://drawingsboard.com/spatial-branding"><span class="mono">05</span><h3>Spaces</h3><p>Your identity extended into rooms, signage and sales galleries.</p></a></div></div></section>
+<section class="yel"><div class="wrap"><h2 class="d" style="font-size:clamp(44px,9vw,140px)">The fine print,<br>upfront</h2><div class="rg">
+<div><b>2–3</b><h3>Clients per sprint</h3><p>Every brand gets senior attention.</p></div>
+<div><b>0</b><h3>Account managers</h3><p>You brief the people who design.</p></div>
+<div><b>100%</b><h3>Yours to keep</h3><p>Full IP and every source file.</p></div>
+<div><b>Fixed</b><h3>Scope and price</h3><p>Agreed on day one. No surprises.</p></div></div></div></section>
+<section><div class="wrap faq"><h2 class="d" style="font-size:clamp(44px,7vw,110px)">Questions<br>founders ask</h2><div><details><summary>How are you different from a big agency?</summary><p>You work directly with the senior team that designs your brand. No account managers, no hand-offs, and no more than two or three active clients per sprint.</p></details><details><summary>How long does it take?</summary><p>A Brand-to-Shelf sprint runs 4 to 6 weeks, from discovery to production-ready files. Brand-to-Market, with the website, runs 6 to 8.</p></details><details><summary>What do we get at the end?</summary><p>A logo system, colour and type tokens, a brand guidelines PDF, production specs for paper, foils and finishes, social templates and every source file. You own all of it.</p></details><details><summary>What does it cost?</summary><p>Fixed-scope sprints starting at ₹4,75,000. SaaS and platform work is quoted by scope. No hourly meter, no retainer creep.</p></details><details><summary>Can you refresh a brand we already have?</summary><p>Yes. We audit first, keep what’s earning its place and redesign what isn’t.</p></details><details><summary>Do you build the website too?</summary><p>Yes. Identity, packaging and web under one roof (React, Shopify or Framer), so the brand holds together from shelf to screen.</p></details></div></div></section>
+<footer style="position:relative"><svg class="pen2" viewBox="0 0 250 340" aria-hidden="true"><use href="#penn"/></svg><div class="wrap">
+<p class="mono">/ Founders, start here</p><h2 class="d" style="margin-top:14px">Your shelf<br>is <span>waiting.</span></h2>
+<a class="btn" href="https://drawingsboard.com/brand-readiness">Start a project ↗</a>
+<div class="bar mono"><span>© 2026 The Drawing Board</span><span><a href="https://linkedin.com/company/thedrawingboard">LinkedIn</a> · <a href="https://twitter.com/thedrawingboard">X</a> · <a href="mailto:dandelionpa7@gmail.com">Email</a></span><span>Designed by people, proofed by Kern</span></div></div></footer>
+<script>
+(function(){var w=document.getElementById("w"),a=["brands","packaging","websites","launches"],i=0;
+if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+setInterval(function(){i=(i+1)%a.length;w.textContent=a[i]},1800)})();
+</script><script>
+(function(){
+if(!document.documentElement.classList.contains("js"))return;
+function sp(el){var n=0;(function walk(node){Array.prototype.slice.call(node.childNodes).forEach(function(c){
+if(c.nodeType===3){var f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(function(t){if(!t)return;if(/^\s+$/.test(t)){f.appendChild(document.createTextNode(" "));return}var w=document.createElement("span");w.className="w";var i=document.createElement("i");i.textContent=t;i.style.setProperty("--i",n++);w.appendChild(i);f.appendChild(w)});c.parentNode.replaceChild(f,c)}
+else if(c.nodeType===1&&c.tagName!=="BR"&&!c.classList.contains("w"))walk(c)})})(el)}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var t=e.target;t.classList.add("in");io.unobserve(t);if(t.classList.contains("rv"))setTimeout(function(){t.style.transitionDelay=""},1600)})},{threshold:.12,rootMargin:"0px 0px -6% 0px"});
+document.querySelectorAll(".hero h1,.head h2,.man p,.faq h2,.yel h2,footer h2").forEach(function(h){sp(h);io.observe(h)});
+[".hero .mono",".row p",".row .btn",".c",".svc a",".rg div","details",".head .btn",".mq"].forEach(function(sel){document.querySelectorAll(sel).forEach(function(el,i){el.classList.add("rv");el.style.transitionDelay=((i%4)*.09+.05)+"s";io.observe(el)})});
+var pen=document.querySelector(".pen"),bar=document.getElementById("bar"),tick=false;
+function f(){tick=false;var y=scrollY,m=document.documentElement.scrollHeight-innerHeight;bar.style.transform="scaleX("+(m>0?y/m:0)+")";if(pen)pen.style.setProperty("--py",Math.min(y*.18,160)+"px")}
+addEventListener("scroll",function(){if(!tick){tick=true;requestAnimationFrame(f)}},{passive:true});f();
+})();
+</script>
+</body>
+</html>
