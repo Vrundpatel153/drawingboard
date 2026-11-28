@@ -567,6 +567,12 @@ async function run() {
       schemas: []
     },
     {
+      route: '/pricing',
+      title: 'Pricing & Investment Guide | The Drawing Board',
+      description: 'Clear, transparent sprint pricing for brand identity (from ₹3,50,000 / $3,650), packaging design (from ₹3,75,000), web development (from ₹1,15,000), and SaaS branding.',
+      schemas: [buildFaqSchema(FAQ_BRANDING)]
+    },
+    {
       route: '/contact',
       title: 'Initiate a Project Sprint | The Drawing Board',
       description: 'Book a 15-minute discovery call or submit your project brief directly to The Drawing Board.',

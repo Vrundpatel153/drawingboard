@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>Pricing &amp; Investment Guide — The Drawing Board</title>
+  <meta name="description" content="Clear, transparent sprint pricing for brand identity (from ₹3,50,000), packaging design (from ₹3,75,000), web development (from ₹1,15,000), and SaaS branding."/>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;800&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+  <style>
+    :root{--o:#ff5500;--p:#fae3e2;--w:#fff;--k:#000;--ink:#191515;--line:#19151530;--accent:#c33e00}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--p);color:var(--ink);font:400 17px/1.45 'Bricolage Grotesque',Arial,sans-serif}
+    button,input,textarea,select{font:inherit}
+    button,a{cursor:pointer}
+    a{color:inherit;text-decoration:none}
+    button{color:inherit}
+    header{position:sticky;top:0;z-index:20;background:var(--p);border-bottom:1px solid var(--line);color:var(--ink)}
+    .nav{display:flex;justify-content:space-between;align-items:center;height:68px;gap:20px}
+    .wrap{max-width:1440px;margin:auto;padding:0 5vw}
+    .logo{font-size:25px;font-weight:800;letter-spacing:-.06em;color:var(--o)}
+    .navlinks{display:flex;gap:24px;align-items:center}
+    .navlinks a:hover{color:var(--o)}
+    .navlinks a.pill{color:#ffffff !important}
+    .progress{position:absolute;bottom:0;height:3px;background:var(--o);width:0}
+    .mono{font:11px 'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--ink)}
+    .hero{padding:70px 0 55px;text-align:center;overflow:hidden;background:var(--p)}
+    .hero h1{font-size:clamp(42px,12vw,170px);line-height:.82;letter-spacing:-.075em;margin:50px auto 30px;font-weight:800;position:relative;color:var(--o)}
+    .hero h1 span{display:block;animation:rise .85s both}
+    .hero h1 span+span{animation-delay:.13s}
+    @keyframes rise{from{transform:translateY(55px);opacity:0}to{transform:none;opacity:1}}
+    .tag{display:inline-block;background:black;color:white;border-radius:100px;padding:12px 22px;font-size:clamp(12px,1.5vw,20px);position:absolute;letter-spacing:0;font-weight:500}
+    .tag.a{top:22%;left:8%;transform:rotate(-8deg)}
+    .tag.b{bottom:12%;right:5%;transform:rotate(7deg)}
+    .hero p{max-width:640px;margin:25px auto;font-size:clamp(18px,2vw,24px);color:var(--ink)}
+    .pill{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--ink);border-radius:100px;padding:13px 25px;font-weight:600;background:var(--ink);color:white;gap:15px;transition:background .2s,border-color .2s}
+    .pill:hover{background:var(--accent);border-color:var(--accent)}
+    .art{width:min(480px,85%);margin:25px auto 0;display:block}
+    .art .coin{animation:bob 3s ease-in-out infinite;transform-origin:center}
+    @keyframes bob{50%{transform:translateY(-12px) rotate(4deg)}}
+    .marquee{background:var(--o);color:white;overflow:hidden;white-space:nowrap;padding:16px 0;border-block:1px solid var(--o);font-size:25px;font-weight:800}
+    .marquee div{display:inline-block;animation:mar 22s linear infinite}
+    @keyframes mar{to{transform:translateX(-50%)}}
+    .tabs{position:sticky;top:68px;z-index:15;background:var(--p);color:var(--ink);border-bottom:1px solid var(--line);padding:12px 5vw;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+    .tabs::-webkit-scrollbar{display:none}
+    .tabs button{flex-shrink:0;border:1px solid var(--line);background:transparent;border-radius:100px;padding:9px 17px;font-weight:600;font-size:15px;color:var(--ink);transition:all .2s}
+    .tabs button:hover{border-color:var(--ink)}
+    .tabs button[aria-selected=true]{background:var(--ink);border-color:var(--ink);color:white}
+    .section{padding:80px 0;scroll-margin-top:145px;background:var(--p)}
+    .section.white{background:#fff}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:start}
+    h2{font-size:clamp(40px,6.5vw,94px);line-height:.9;letter-spacing:-.065em;margin:15px 0 25px;color:var(--o);font-weight:800}
+    h3{color:var(--ink);font-size:clamp(24px,3vw,38px);font-weight:700;letter-spacing:-.04em;margin:12px 0}
+    .price{font-size:clamp(42px,6vw,88px);font-weight:800;letter-spacing:-.07em;line-height:1;color:var(--o);overflow-wrap:anywhere;margin:10px 0}
+    .rule{border-top:1px solid var(--line);padding-top:18px;margin-top:24px;color:var(--ink);line-height:1.5}
+    .intro{font-size:clamp(18px,2vw,23px);line-height:1.5;max-width:650px;color:var(--ink)}
+    .pricebox{border-top:1px solid var(--ink);padding:24px 0;position:relative}
+    .process{display:grid;grid-template-columns:1fr 1fr;gap:5vw}
+    .pin{position:sticky;top:165px;align-self:start;background:var(--ink);color:white;min-height:330px;display:flex;flex-direction:column;justify-content:space-between;padding:30px;border-radius:4px;overflow:hidden}
+    .pin h3{color:white;margin:10px 0}
+    .pin .mono{color:#fae3e2}
+    .pin svg{width:100%;height:150px}
+    .chapter{min-height:260px;padding:28px 0;border-top:1px solid var(--line)}
+    .chapter ul{list-style:none;padding:0;color:var(--ink)}
+    .chapter li{padding:10px 0;border-bottom:1px solid var(--line);font-size:17px;line-height:1.5}
+    .chapter li:before{content:'↗';color:var(--accent);margin-right:12px;font-weight:700}
+    .terms{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+    .terms article{border-top:1px solid var(--line);padding:20px 0}
+    .terms h3{font-weight:700}
+    .terms p,.faq p{color:var(--ink);line-height:1.5}
+    .faq details{border-top:1px solid var(--line);padding:20px 0}
+    .faq summary{cursor:pointer;font-size:20px;font-weight:800;color:var(--ink);list-style:none;display:flex;justify-content:space-between;align-items:center}
+    .faq summary::-webkit-details-marker{display:none}
+    .faq summary::after{content:'+';font-size:24px;color:var(--o)}
+    .faq details[open] summary::after{content:'−'}
+    .faq p{max-width:750px;margin-top:12px}
+    .formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    label{display:block;font-size:14px;font-weight:500;color:var(--ink)}
+    input,textarea,select{width:100%;border:1px solid var(--line);background:#ffffff40;color:var(--ink);padding:12px;border-radius:0;margin-top:6px}
+    input::placeholder,textarea::placeholder{color:var(--ink);opacity:.65}
+    select option{color:black;background:white}
+    textarea{min-height:110px}
+    .full{grid-column:1/-1}
+    footer{border-top:1px solid var(--line);padding:30px 0;background:var(--p)}
+    .menu{display:none}
+    button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid black;outline-offset:3px}
+    .growth-card{border-top:1px solid var(--line);padding:22px 0}
+    .growth-card small{display:inline-block;background:var(--ink);color:white;padding:6px 12px;border-radius:100px;font-size:11px;letter-spacing:.05em}
+    .growth-card .amount{color:var(--o);font-size:clamp(32px,4vw,60px);line-height:1.02;font-weight:800;letter-spacing:-.055em;margin:20px 0 5px}
+    .growth-card .unit{font-weight:600;margin:0 0 12px}
+    .growth-card p{font-size:17px;line-height:1.5;margin:8px 0}
+    .growth-note{font-size:14px;color:var(--ink);line-height:1.5}
+    @media(max-width:768px){
+      .wrap{padding-inline:6vw}
+      .nav{height:60px}
+      .logo{font-size:19px}
+      .tabs{top:60px;padding:10px 6vw}
+      .tabs button{font-size:13px;padding:8px 13px}
+      .navlinks{display:none;position:absolute;top:60px;left:0;right:0;background:var(--p);border-bottom:1px solid var(--line);padding:20px 6vw;flex-direction:column}
+      .navlinks.open{display:flex}
+      .menu{display:block;background:transparent;border:1px solid var(--ink);border-radius:8px;padding:6px 12px;color:var(--ink)}
+      .section{padding:45px 0}
+      .section h2{font-size:clamp(38px,10vw,60px);margin:12px 0 18px}
+      .split,.process,.terms,.formgrid{grid-template-columns:1fr}
+      .pin{position:relative;top:auto;min-height:110px;padding:18px}
+      .pin svg{display:none}
+      .chapter{min-height:0;padding:22px 0}
+      .hero h1{letter-spacing:-.065em}
+      .tag.a{left:0;top:15%}
+      .tag.b{right:0;bottom:0}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="/">THE DRAWING BOARD.</a>
+      <button aria-expanded="false" class="menu">Menu</button>
+      <nav class="navlinks">
+        <a href="/">Home</a>
+        <a href="/work">Work</a>
+        <a href="/services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#enquire" class="mono" style="color:var(--o);font-weight:700">Start a project ↗</a>
+      </nav>
+    </div>
+    <div class="progress"></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="mono">Independent strategy &amp; design studio / Investment guide</div>
+        <h1>
+          <span>GOOD DESIGN.</span>
+          <span>CLEAR</span>
+          <span>INVESTMENT.</span>
+          <b class="tag a">No guesswork.</b>
+          <b class="tag b">Good thinking included.</b>
+        </h1>
+        <p>Know what goes in. Know what comes out. Distinctive design begins with a clear understanding of what we're building together.</p>
+        <a class="pill" href="#pricing">Explore our pricing ↓</a>
+        <svg aria-hidden="true" class="art" viewBox="0 0 480 210">
+          <g fill="none" stroke="var(--o)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+            <path d="M30 170Q95 85 145 155L195 185M450 170Q385 85 335 155L285 185"></path>
+            <rect height="135" rx="8" transform="rotate(-7 240 100)" width="180" x="150" y="35"></rect>
+            <path d="M170 75l130 -16M176 99l95 -12M180 123l120 -15"></path>
+            <path d="M55 50l18 18m-18 0l18 -18M405 35v30m-15 -15h30"></path>
+          </g>
+          <g class="coin">
+            <circle cx="335" cy="130" fill="#fae3e2" r="43" stroke="#191515" stroke-width="3"></circle>
+            <text fill="#ff5500" font-size="48" font-weight="800" text-anchor="middle" x="335" y="146">₹</text>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <div class="marquee">
+      <div>GOOD THINKING INCLUDED • NO GUESSWORK • BUILT TO BE CHOSEN • GOOD THINKING INCLUDED • NO GUESSWORK • BUILT TO BE CHOSEN • </div>
+    </div>
+
+    <div id="pricing" style="scroll-margin-top:68px"></div>
+    <nav aria-label="Services" class="tabs" role="tablist"></nav>
+
+    <section class="section" id="investment">
+      <div class="wrap split">
+        <div>
+          <div class="mono" id="service"></div>
+          <h2 id="headline"></h2>
+          <p class="intro" id="description"></p>
+        </div>
+        <div class="pricebox">
+          <div class="mono">Starting investment / INR</div>
+          <div class="price" id="price"></div>
+          <p id="duration" style="font-weight:600;margin:8px 0"></p>
+          <p class="rule" id="scope"></p>
+          <div style="margin-top:24px">
+            <a class="pill" href="#enquire">Discuss this project ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background:var(--p)">
+      <div class="wrap">
+        <div class="mono">01 / The deliverables</div>
+        <h2>What goes<br/>into it.</h2>
+        <div class="process">
+          <aside class="pin">
+            <div>
+              <div class="mono" id="step">01 / Discovery &amp; strategy</div>
+              <h3 id="stepTitle">Think first.</h3>
+            </div>
+            <svg aria-hidden="true" viewBox="0 0 250 140">
+              <g fill="none" stroke="#fae3e2" stroke-width="3">
+                <circle cx="125" cy="70" r="48"></circle>
+                <ellipse cx="125" cy="70" rx="110" ry="25"></ellipse>
+                <ellipse cx="125" cy="70" rx="110" ry="25" transform="rotate(55 125 70)"></ellipse>
+                <ellipse cx="125" cy="70" rx="110" ry="25" transform="rotate(-55 125 70)"></ellipse>
+              </g>
+            </svg>
+          </aside>
+          <div id="chapters"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section white">
+      <div class="wrap">
+        <div class="mono">02 / The commercial details</div>
+        <h2>Nothing left<br/>to guess.</h2>
+        <div class="terms">
+          <article>
+            <h3>50 / 50.</h3>
+            <p>Proposed project payment structure: 50% to begin, 50% before final handover. Monthly retainers are billed separately.</p>
+          </article>
+          <article>
+            <h3>Clear scope.</h3>
+            <p>Deliverable quantities, revision rounds and timelines are agreed in writing before we begin.</p>
+          </article>
+          <article>
+            <h3>Yours to use.</h3>
+            <p>Final approved assets are handed over after full payment, subject to agreed licensing and 100% intellectual property ownership.</p>
+          </article>
+          <article>
+            <h3>No hidden extras.</h3>
+            <p>Taxes if applicable, printing, hosting, licences, media spend and third-party costs are separate unless expressly included.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq" style="background:var(--p)">
+      <div class="wrap">
+        <div class="mono">03 / Good questions</div>
+        <h2>Before we begin.</h2>
+        <details>
+          <summary>Is the starting price the final price?</summary>
+          <p>It is the starting investment for the agreed base engagement. Additional deliverables, extra SKU adaptations, and technical complexity are quoted transparently before work begins.</p>
+        </details>
+        <details>
+          <summary>Can I combine services?</summary>
+          <p>Yes. Our most popular engagement is the Brand-to-Market system, combining strategic identity, master packaging, and custom web development under one unified proposal.</p>
+        </details>
+        <details>
+          <summary>How many revisions are included?</summary>
+          <p>Structured revision milestones are built into every sprint phase. Approval gates are clearly defined in your written proposal to ensure precision without endless cycles.</p>
+        </details>
+        <details>
+          <summary>Do you work internationally?</summary>
+          <p>Yes. We regularly partner with brands across the US, UK, UAE, Europe, and India. International engagements receive a tailored proposal quoted in USD or GBP.</p>
+        </details>
+        <details>
+          <summary>When can we start?</summary>
+          <p>We limit active engagements to 2–3 client sprints at any given time to preserve senior creative focus. Availability and kick-off dates are confirmed during our initial discovery call.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="enquire">
+      <div class="wrap split">
+        <div>
+          <div class="mono">04 / Let's get to work</div>
+          <h2>Worth<br/>choosing.</h2>
+          <p class="intro">Tell us what you're building. We'll discuss the right scope, investment and next steps.</p>
+        </div>
+        <form id="form">
+          <div class="formgrid">
+            <label>Name<input name="name" placeholder="Your name" required=""/></label>
+            <label>Email<input name="email" placeholder="you@brand.com" required="" type="email"/></label>
+            <label class="full">Service<select id="select" name="service"></select></label>
+            <label class="full">Project budget
+              <select name="budget" required="">
+                <option value="">Select your budget</option>
+                <option>Below ₹3,50,000</option>
+                <option>₹3,50,000 – ₹4,00,000</option>
+                <option>₹4,50,000 – ₹5,75,000</option>
+                <option>₹5,75,000 – ₹6,00,000</option>
+                <option>₹6,00,000+</option>
+                <option>I need guidance / Custom scope</option>
+              </select>
+            </label>
+            <label class="full">Tell us about your project
+              <textarea name="brief" placeholder="What are you building? Tell us about your timeline, category, and objectives." required=""></textarea>
+            </label>
+            <label class="full" style="display:flex;align-items:center;gap:8px;cursor:pointer">
+              <input required="" style="width:auto;margin:0" type="checkbox"/>
+              <span>I understand the selected service's starting investment or custom scope.</span>
+            </label>
+            <button class="pill full" type="submit" style="width:100%">Prepare my enquiry ↗</button>
+          </div>
+          <p id="status" role="status" style="margin-top:16px;font-weight:600;color:var(--o)"></p>
+          <textarea aria-label="Prepared enquiry" hidden="" id="output" readonly="" rows="7" style="margin-top:12px;background:#fff;border:1px solid var(--line);font-family:monospace;font-size:13px;width:100%"></textarea>
+          <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap">
+            <button class="pill" hidden="" id="copy" type="button">Copy enquiry ↗</button>
+            <button class="pill" hidden="" id="whatsapp" type="button" style="background:#25D366;border-color:#25D366">Send via WhatsApp ↗</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap nav">
+      <span class="logo" style="font-size:18px">THE DRAWING BOARD.</span>
+      <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="font-weight:600">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    const data = [
+      ['Brand Identity', '₹3,50,000', 'Be chosen. Not compared.', 'A distinctive brand built on strategic clarity, not decoration. Full positioning, visual identity system, master packaging direction, and brand guidelines.', '4–6 weeks sprint', 'One comprehensive brand identity system; applications, master packaging direction, and quantities agreed in the proposal.', [
+        ['Discovery & strategy', 'Founder workshop & brand questionnaire', 'Market positioning & competitive whitespace audit', 'Audience definition & customer journey', 'Core brand narrative & verbal messaging framework'],
+        ['Visual identity', 'Primary, secondary & monogram logo architecture', 'Typographic scale & font pairing curation', 'Color system, ratios & contrast tokens', 'Graphic language, patterns & art direction', 'Agreed collateral & brand application concepts'],
+        ['Brand handover', 'Comprehensive digital brand guidelines (PDF & Web)', 'Stationery, presentation & social launch direction', '100% production-ready vector assets (AI, SVG, EPS, PNG)', 'Complete intellectual property & copyright ownership']
+      ]],
+      ['Brand + Packaging + Web', '₹4,75,000', 'Shelf to screen. One coherent system.', 'The complete Brand-to-Market system: strategic identity, master structural packaging with up to 5 SKU adaptations, and a custom high-performance digital storefront or web experience.', '6–8 weeks sprint', 'Unified brand identity, structural packaging system, and custom website design & development.', [
+        ['Brand strategy & identity', 'Market positioning & strategic narrative workshop', 'Complete mathematical logomark system & monograms', 'Typographic scale & tokenized color architecture', 'Comprehensive brand guidelines manual'],
+        ['Packaging design & dielines', 'Master structural packaging architecture', 'Up to 5 SKU adaptations across your product range', 'Front & back labeling information hierarchy', 'Print-ready dielines & manufacturer production handover'],
+        ['Digital storefront & web build', 'Custom responsive UI/UX design (desktop + mobile)', 'Headless Shopify or custom React frontend development', 'Sub-second page speed & technical SEO schemas', 'Full deployment, analytics & CMS handover']
+      ]],
+      ['Packaging Design', '₹3,75,000', 'Make the shelf yours.', 'Packaging that makes your product recognisable, desirable and easy to navigate on retail shelves and memorable during unboxing.', '4–6 weeks sprint', 'One packaging system; formats and SKU count agreed before commencement.', [
+        ['Packaging strategy', 'Category & shelf landscape analysis', 'Competitor structural & visual whitespace research', 'Packaging hierarchy & front-of-pack communication'],
+        ['Design & development', 'Primary master packaging design & dielines', 'Secondary packaging where scoped', 'Multi-SKU variant system & label extensions', '3D photorealistic studio product visualisations'],
+        ['Production handover', 'Print-ready prepress artwork on approved dielines', 'Material recommendations (paper stocks, foils, embossing)', 'Printer handover coordination & sample reviews']
+      ]],
+      ['Web Development', '₹1,15,000', 'Beyond the screenshot.', 'High-speed digital platforms engineered around your brand and business objectives — sub-second performance, editorial typography, and high conversion.', '4–6 weeks sprint', 'Page count, platform and integrations agreed in the proposal.', [
+        ['Digital strategy', 'Discovery & business objective mapping', 'Information architecture & sitemap planning', 'User journeys & wireframe prototype flows'],
+        ['Design & development', 'Custom responsive UI/UX across all breakpoints', 'Agreed CMS or Shopify implementation', 'Custom micro-interactions, animations & states'],
+        ['Launch & speed optimization', 'Technical SEO & JSON-LD structured schemas', 'Analytics setup & conversion tracking', 'Sub-second page speed testing & deployment', 'Website handover & CMS training']
+      ]],
+      ['SaaS Branding', '₹4,75,000', 'One brand. One product.', 'A connected identity and product experience for technology businesses — system-grade visual identity and tokenized software surfaces.', '6–8 weeks sprint', 'Priority screens and product flows agreed in advance; engineering separate unless scoped.', [
+        ['Brand foundation', 'Product discovery & competitive positioning audit', 'Positioning narrative & messaging framework', 'Visual identity, mark architecture & design tokens'],
+        ['Product experience', 'Core user workflows & key application screens', 'Comprehensive tokenized Figma design system', 'Interactive prototype for user testing'],
+        ['Handover & tokens', 'Figma component library with auto-layout & states', 'Design token documentation (JSON/CSS variables)', 'Engineering handover calls & brand guidelines']
+      ]],
+      ['App Design & Development', 'Custom quote', 'Make complexity simple.', 'Intuitive digital products and mobile applications built around verified user workflows and high-converting micro-interactions.', 'Scope dependent', 'Engineering stack, target platforms and screen counts quoted after technical discovery.', [
+        ['Product discovery', 'Technical requirements & platform selection', 'User journeys & interactive wireframes', 'Information architecture & database schema planning'],
+        ['Interface design', 'High-fidelity iOS & Android native UI screens', 'Micro-interactions, haptics & transition choreography', 'Clickable interactive prototype'],
+        ['Development scope', 'React Native / Flutter or native mobile engineering', 'API integration, authentication & state handling', 'App Store & Google Play deployment']
+      ]],
+      ['Spatial Branding', 'Custom quote', 'Brands you can step into.', 'Connected commercial environments, retail stores, cafes and hospitality destinations that immerse customers in your brand story.', 'Scope dependent', 'Design and execution coordination only as agreed; construction and vendor costs separate.', [
+        ['Brand experience', 'Spatial brand discovery & physical touchpoint mapping', 'Customer journey mapping from facade to checkout', 'Conceptual design direction & spatial mood boards'],
+        ['Interior & environmental design', 'Spatial planning, zoning & circulation flows', 'Materials and furniture direction & finish schedules', '3D photorealistic architectural concept visualisation', 'Signage, wayfinding & environmental graphics'],
+        ['Execution coordination', 'Comprehensive design documentation', 'Vendor and contractor briefing coordination', 'Implementation reviews & quality sign-offs']
+      ]],
+      ['Performance Marketing', '₹45,000–55,000 / mo or 15%', 'You grow. We grow.', 'Two growth partnerships, based on your total monthly brand revenue.', 'Monthly engagement', 'Up to ₹4 lakh revenue: ₹45,000–55,000 monthly retainer. Above ₹4 lakh and up to ₹50 lakh: 15% of total monthly revenue. Above ₹50 lakh: discuss scope. Media spend separate; revenue definition and reporting agreed before commencement.', [
+        ['Campaign strategy', 'Audience segmentation & creative angle research', 'Full-funnel campaign planning (Prospecting, Retargeting)', 'High-converting ad creative direction & copy frameworks'],
+        ['Management & optimization', 'Meta Ads & Google Ads daily account management', 'Creative iteration & multi-variant A/B testing', 'Conversion rate optimization & landing page alignment'],
+        ['Reporting & insights', 'Real-time performance monitoring dashboard', 'Weekly spend pacing & blended ROAS reviews', 'Monthly strategic growth review & scale recommendations']
+      ]]
+    ];
+
+    const $ = s => document.querySelector(s);
+    let active = 0, chapterObserver;
+
+    function render(i) {
+      active = i;
+      const d = data[i];
+      document.querySelectorAll('.tabs button').forEach((b, j) => {
+        b.setAttribute('aria-selected', j === i);
+        b.tabIndex = j === i ? 0 : -1;
+      });
+      ['service', 'price', 'headline', 'description', 'duration', 'scope'].forEach((k, j) => {
+        const el = $('#' + k);
+        if (el) el.textContent = d[j];
+      });
+      $('#select').value = d[0];
+
+      let models = document.getElementById('growth-models');
+      if (!models) {
+        models = document.createElement('div');
+        models.id = 'growth-models';
+        models.style.cssText = 'margin:24px 0;display:grid;gap:12px';
+        $('#scope').after(models);
+      }
+      models.hidden = i !== 7;
+      models.style.display = i === 7 ? 'grid' : 'none';
+      $('#price').hidden = i === 7;
+      $('#scope').hidden = i === 7;
+      $('.pricebox > .mono').textContent = i === 7 ? 'Growth partnerships / INR' : 'Starting investment / INR';
+
+      models.innerHTML = i === 7 ? `
+        <article class="growth-card">
+          <small>01 / EMERGING BRANDS</small>
+          <div class="amount">₹45,000–55,000</div>
+          <p class="unit">Monthly retainer</p>
+          <p>For brands generating up to ₹4 lakh in monthly revenue.</p>
+        </article>
+        <article class="growth-card">
+          <small>02 / SCALING BRANDS</small>
+          <div class="amount">15%</div>
+          <p class="unit">Of total monthly revenue</p>
+          <p>For brands generating above ₹4 lakh and up to ₹50 lakh per month.</p>
+        </article>
+        <p class="growth-note">Media spend is separate. Revenue above ₹50 lakh is quoted individually. Revenue definition and reporting are agreed before commencement.</p>
+      ` : '';
+
+      $('#chapters').innerHTML = d[6].map((g, j) => `
+        <article class="chapter" data-step="${j}">
+          <div class="mono">0${j+1} / DELIVERABLES</div>
+          <h3>${g[0]}</h3>
+          <ul>${g.slice(1).map(x => `<li>${x}</li>`).join('')}</ul>
+        </article>
+      `).join('');
+
+      if (chapterObserver) chapterObserver.disconnect();
+      function step(j) {
+        $('#step').textContent = `0${j+1} / ${d[6][j][0]}`;
+        $('#stepTitle').textContent = ['Think first.', 'Make it distinct.', 'Make it yours.'][j] || 'Deliver.';
+      }
+      step(0);
+      chapterObserver = new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) step(+e.target.dataset.step);
+      }), { rootMargin: '-20% 0px -40% 0px' });
+      document.querySelectorAll('.chapter').forEach(e => chapterObserver.observe(e));
+    }
+
+    data.forEach((d, i) => {
+      let b = document.createElement('button');
+      b.textContent = d[0];
+      b.setAttribute('role', 'tab');
+      b.onclick = () => {
+        render(i);
+        $('#investment').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+      b.onkeydown = e => {
+        if (['ArrowLeft', 'ArrowRight'].includes(e.key)) {
+          e.preventDefault();
+          let n = (i + (e.key === 'ArrowRight' ? 1 : -1) + data.length) % data.length;
+          render(n);
+          $('.tabs').children[n].focus();
+        }
+      };
+      $('.tabs').append(b);
+      $('#select').add(new Option(d[0], d[0]));
+    });
+
+    $('#select').onchange = e => render(data.findIndex(d => d[0] === e.target.value));
+    render(0);
+
+    addEventListener('scroll', () => {
+      const maxScroll = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+      $('.progress').style.width = (100 * scrollY / maxScroll) + '%';
+    }, { passive: true });
+
+    $('.menu').onclick = () => {
+      let open = $('.navlinks').classList.toggle('open');
+      $('.menu').setAttribute('aria-expanded', open);
+    };
+
+    $('#form').onsubmit = e => {
+      e.preventDefault();
+      let f = new FormData(e.target);
+      const text = `Project enquiry — The Drawing Board\n${[...f].map(([k,v]) => k + ': ' + v).join('\n')}\nStarting investment: ${data[active][1]}`;
+      $('#output').value = text;
+      $('#output').hidden = false;
+      $('#copy').hidden = false;
+      $('#whatsapp').hidden = false;
+      $('#status').textContent = 'Your enquiry brief is ready.';
+    };
+
+    $('#copy').onclick = async () => {
+      try {
+        await navigator.clipboard.writeText($('#output').value);
+        $('#status').textContent = 'Copied to clipboard! ↗';
+      } catch {
+        $('#output').select();
+        $('#status').textContent = 'Select and copy the brief manually.';
+      }
+    };
+
+    $('#whatsapp').onclick = () => {
+      const encoded = encodeURIComponent($('#output').value);
+      window.open('https://wa.me/919998818818?text=' + encoded, '_blank');
+    };
+  </script>
+</body>
+</html>

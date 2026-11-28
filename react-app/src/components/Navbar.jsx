@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { to: '/work', label: 'Work' },
   { to: '/spatial-work', label: 'Spatial Work' },
   { to: '/services', label: 'Services' },
+  { to: '/pricing', label: 'Pricing' },
   { to: '/insights', label: 'Insights' },
   { to: '/contact', label: 'Contact' },
   { to: '/get-quote', label: 'Get Quote' },

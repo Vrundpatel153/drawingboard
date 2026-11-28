@@ -24,6 +24,7 @@ export default function Footer() {
             <Link to="/studio">Studio</Link>
             <Link to="/work">Work</Link>
             <Link to="/services">Services</Link>
+            <Link to="/pricing">Pricing</Link>
             <Link to="/get-quote">Get Quote</Link>
             <Link to="/insights">Insights</Link>
             <Link to="/contact">Contact</Link>

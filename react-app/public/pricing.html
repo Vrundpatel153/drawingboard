@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>Pricing &amp; Investment Guide — The Drawing Board</title>
+  <meta name="description" content="Transparent, fixed-scope sprint pricing for brand identity, packaging design, high-code web development, and SaaS design systems. No hidden fees or retainer creep."/>
+  <link rel="canonical" href="https://drawingsboard.com/pricing"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --o: #ff5500;
+      --p: #fae3e2;
+      --w: #ffffff;
+      --k: #000000;
+      --ink: #191515;
+      --line: #19151525;
+      --accent: #c33e00;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--p);
+      color: var(--ink);
+      font: 400 17px/1.5 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    button, input, textarea, select { font: inherit; }
+    button, a { cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; border: none; background: transparent; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--p);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .wrap { max-width: 1440px; margin: auto; padding: 0 5vw; }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 68px;
+      gap: 20px;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      color: var(--o);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .navlinks {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .navlinks a {
+      font-weight: 600;
+      font-size: 15px;
+      transition: color 0.2s;
+    }
+    .navlinks a.pill {
+      color: #ffffff !important;
+    }
+    .navlinks a:hover { color: var(--o); }
+    .navlinks a.pill { color: #ffffff !important; }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .currency-toggle {
+      display: inline-flex;
+      background: #ffffff60;
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      padding: 3px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .currency-toggle button {
+      padding: 5px 11px;
+      border-radius: 100px;
+      transition: all 0.2s;
+      color: var(--ink);
+    }
+    .currency-toggle button.active {
+      background: var(--ink);
+      color: var(--w);
+    }
+    .progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: var(--o);
+      width: 0%;
+      transition: width 0.08s ease-out;
+    }
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ink);
+      opacity: 0.85;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 70px 0 55px;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: clamp(42px, 11vw, 150px);
+      line-height: 0.86;
+      letter-spacing: -0.07em;
+      margin: 40px auto 30px;
+      font-weight: 800;
+      color: var(--o);
+      position: relative;
+    }
+    .hero h1 span {
+      display: block;
+      animation: rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .hero h1 span:nth-child(2) { animation-delay: 0.12s; }
+    .hero h1 span:nth-child(3) { animation-delay: 0.22s; }
+    @keyframes rise {
+      from { transform: translateY(45px); opacity: 0; }
+      to { transform: none; opacity: 1; }
+    }
+    .tag {
+      display: inline-block;
+      background: var(--ink);
+      color: white;
+      border-radius: 100px;
+      padding: 10px 18px;
+      font-size: clamp(11px, 1.3vw, 16px);
+      position: absolute;
+      letter-spacing: 0;
+      font-weight: 500;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    .tag.a { top: 20%; left: 6%; transform: rotate(-8deg); }
+    .tag.b { bottom: 12%; right: 4%; transform: rotate(7deg); }
+    .hero p {
+      max-width: 640px;
+      margin: 25px auto;
+      font-size: clamp(18px, 2.2vw, 24px);
+      color: var(--ink);
+      line-height: 1.45;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--ink);
+      border-radius: 100px;
+      padding: 13px 28px;
+      font-weight: 600;
+      font-size: 15px;
+      background: var(--ink);
+      color: white;
+      gap: 12px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .pill:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .art {
+      width: min(480px, 85%);
+      margin: 35px auto 0;
+      display: block;
+    }
+    .art .coin {
+      animation: bob 3s ease-in-out infinite;
+      transform-origin: 335px 130px;
+      transition: transform 0.4s ease;
+    }
+    @keyframes bob {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(4deg); }
+    }
+    .coin-text {
+      font-size: 46px;
+      font-weight: 800;
+      fill: var(--o);
+      transition: opacity 0.2s;
+    }
+
+    /* Marquee */
+    .marquee {
+      background: var(--o);
+      color: white;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 16px 0;
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .marquee div {
+      display: inline-block;
+      animation: mar 26s linear infinite;
+    }
+    @keyframes mar {
+      to { transform: translateX(-50%); }
+    }
+
+    /* Sticky Tabs */
+    .tabs {
+      position: sticky;
+      top: 68px;
+      z-index: 40;
+      background: var(--p);
+      border-bottom: 1px solid var(--line);
+      padding: 12px 5vw;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tabs button {
+      flex-shrink: 0;
+      border: 1px solid var(--line);
+      background: transparent;
+      border-radius: 100px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .tabs button:hover {
+      border-color: var(--ink);
+    }
+    .tabs button[aria-selected="true"] {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: white;
+    }
+
+    /* Sections */
+    .section {
+      padding: 85px 0;
+      scroll-margin-top: 140px;
+      border-top: 1px solid var(--line);
+    }
+    .section:first-of-type { border-top: none; }
+    .blush { background: var(--p); }
+    .white { background: #ffffff; }
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6vw;
+      align-items: start;
+    }
+    h2 {
+      font-size: clamp(38px, 6.5vw, 92px);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+      margin: 15px 0 25px;
+      color: var(--o);
+      font-weight: 800;
+    }
+    h3 {
+      font-size: clamp(24px, 3.2vw, 36px);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin: 12px 0;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .intro {
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.5;
+      color: var(--ink);
+      max-width: 620px;
+    }
+    .pricebox {
+      border-top: 1px solid var(--ink);
+      padding: 24px 0;
+      position: relative;
+    }
+    .price {
+      font-size: clamp(40px, 6.2vw, 88px);
+      font-weight: 800;
+      letter-spacing: -0.07em;
+      line-height: 1;
+      color: var(--o);
+      margin: 16px 0 12px;
+      overflow-wrap: anywhere;
+    }
+    .duration {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .duration::before {
+      content: '⏱';
+      font-size: 14px;
+    }
+    .rule {
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+      margin-top: 24px;
+      margin-bottom: 28px;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--ink);
+    }
+
+    /* Growth Cards */
+    .growth-card {
+      border-top: 1px solid var(--line);
+      padding: 22px 0;
+    }
+    .growth-card small {
+      display: inline-block;
+      background: var(--ink);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 100px;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .growth-card .amount {
+      color: var(--o);
+      font-size: clamp(32px, 4.2vw, 56px);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -0.055em;
+      margin: 16px 0 4px;
+    }
+    .growth-card .unit {
+      font-weight: 600;
+      font-size: 16px;
+      margin: 0 0 10px;
+      color: var(--ink);
+    }
+    .growth-card p {
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--ink);
+      margin: 8px 0;
+    }
+    .growth-note {
+      font-size: 14px;
+      color: var(--ink);
+      opacity: 0.8;
+      line-height: 1.5;
+      margin-top: 12px;
+    }
+
+    /* Process / Deliverables */
+    .process {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5vw;
+      margin-top: 20px;
+    }
+    .pin {
+      position: sticky;
+      top: 165px;
+      align-self: start;
+      background: var(--ink);
+      color: white;
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 30px;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.12);
+    }
+    .pin .mono { color: white; opacity: 0.8; }
+    .pin h3 { color: white; margin: 8px 0; }
+    .pin svg {
+      width: 100%;
+      height: 150px;
+      margin-top: auto;
+    }
+    .chapter {
+      min-height: 260px;
+      padding: 28px 0;
+      border-top: 1px solid var(--line);
+    }
+    .chapter:first-of-type { border-top: none; }
+    .chapter ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 16px;
+    }
+    .chapter li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 17px;
+      line-height: 1.5;
+      color: var(--ink);
+      display: flex;
+      align-items: baseline;
+    }
+    .chapter li:before {
+      content: '↗';
+      color: var(--accent);
+      margin-right: 14px;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    /* Commercial Details */
+    .terms {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      margin-top: 20px;
+    }
+    .terms article {
+      border-top: 1px solid var(--line);
+      padding: 24px 0;
+    }
+    .terms h3 { font-size: 28px; margin-bottom: 10px; }
+    .terms p {
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    /* FAQ */
+    .faq details {
+      border-top: 1px solid var(--line);
+      padding: 22px 0;
+      transition: background 0.2s;
+    }
+    .faq summary {
+      cursor: pointer;
+      font-size: clamp(19px, 2.2vw, 24px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: '+';
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--o);
+      transition: transform 0.2s ease;
+    }
+    .faq details[open] summary::after {
+      content: '−';
+      transform: rotate(180deg);
+    }
+    .faq p {
+      max-width: 800px;
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.6;
+      margin-top: 14px;
+    }
+
+    /* Enquiry Form */
+    .formgrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.4);
+      color: var(--ink);
+      padding: 13px 16px;
+      border-radius: 4px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--ink);
+      background: #ffffff;
+    }
+    input::placeholder, textarea::placeholder {
+      color: var(--ink);
+      opacity: 0.55;
+    }
+    select option { color: var(--ink); background: #ffffff; }
+    textarea { min-height: 120px; resize: vertical; }
+    .full { grid-column: 1 / -1; }
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      user-select: none;
+    }
+    .checkbox-label input[type="checkbox"] {
+      width: auto;
+      margin: 0;
+      accent-color: var(--o);
+      cursor: pointer;
+    }
+
+    .form-status {
+      margin-top: 16px;
+      font-size: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--ink);
+    }
+    .form-output-box {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .form-output-box textarea {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      min-height: 130px;
+      background: #ffffff;
+    }
+    .output-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Reveal */
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+    .js .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 35px 0;
+      background: var(--p);
+    }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .footer-links a:hover { color: var(--o); }
+
+    /* Mobile */
+    .menu { display: none; }
+    @media (max-width: 820px) {
+      .navlinks {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: var(--p);
+        border-bottom: 1px solid var(--line);
+        padding: 24px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+      }
+      .navlinks.open { display: flex; }
+      .menu {
+        display: block;
+        border: 1px solid var(--line);
+        border-radius: 100px;
+        padding: 7px 15px;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .logo { font-size: 20px; }
+      .hero { padding-top: 40px; }
+      .hero h1 { margin: 35px 0 20px; font-size: clamp(38px, 11vw, 75px); }
+      .tag { padding: 7px 12px; font-size: 11px; }
+      .tag.a { left: 0; top: 12%; }
+      .tag.b { right: 0; bottom: 0; }
+      .split, .process, .terms, .formgrid { grid-template-columns: 1fr; }
+      .section { padding: 50px 0; }
+      .pin {
+        position: relative;
+        top: auto;
+        min-height: 110px;
+        padding: 20px;
+      }
+      .pin svg { display: none; }
+      .pin h3 { font-size: 24px; }
+      .chapter { min-height: 0; padding: 22px 0; }
+      .pricebox { padding: 20px 0; }
+      .full { grid-column: auto; }
+      .tabs { top: 68px; padding: 10px 5vw; }
+      .tabs button { font-size: 13px; padding: 7px 13px; }
+      .growth-card .amount { font-size: clamp(30px, 8vw, 42px); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="/">THE DRAWING BOARD.</a>
+      <div class="nav-actions">
+        <div class="currency-toggle" role="group" aria-label="Currency selector">
+          <button type="button" id="curr-inr" class="active" onclick="setCurrency('INR')">INR ₹</button>
+          <button type="button" id="curr-usd" onclick="setCurrency('USD')">USD $</button>
+        </div>
+        <button class="menu" aria-expanded="false" onclick="toggleMenu()">Menu</button>
+      </div>
+      <nav class="navlinks" id="navlinks">
+        <a href="/">Home</a>
+        <a href="/work">Work</a>
+        <a href="/services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="/brand-readiness">Brand Readiness</a>
+        <a href="#enquire" class="pill" style="padding: 9px 18px; font-size: 13px;">Start a project ↗</a>
+      </nav>
+    </div>
+    <div class="progress" id="progress"></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="mono">Independent strategy &amp; design studio / Investment guide</div>
+        <h1>
+          <span>GOOD DESIGN.</span>
+          <span>CLEAR</span>
+          <span>INVESTMENT.</span>
+          <b class="tag a">No guesswork.</b>
+          <b class="tag b">Good thinking included.</b>
+        </h1>
+        <p>Know what goes in. Know what comes out. Distinctive design begins with a clear understanding of what we're building together.</p>
+        <a class="pill" href="#pricing">Explore our pricing ↓</a>
+
+        <svg aria-hidden="true" class="art" viewBox="0 0 480 210">
+          <g fill="none" stroke="var(--o)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+            <path d="M30 170Q95 85 145 155L195 185M450 170Q385 85 335 155L285 185"></path>
+            <rect height="135" rx="8" transform="rotate(-7 240 100)" width="180" x="150" y="35"></rect>
+            <path d="M170 75l130 -16M176 99l95 -12M180 123l120 -15"></path>
+            <path d="M55 50l18 18m-18 0l18 -18M405 35v30m-15 -15h30"></path>
+          </g>
+          <g class="coin" id="heroCoin">
+            <circle cx="335" cy="130" fill="#fae3e2" r="43" stroke="var(--ink)" stroke-width="3"></circle>
+            <text class="coin-text" id="coinSymbol" text-anchor="middle" x="335" y="145">₹</text>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <div class="marquee">
+      <div>GOOD THINKING INCLUDED • NO GUESSWORK • BUILT TO BE CHOSEN • FIXED SCOPE TRANSPARENCY • GOOD THINKING INCLUDED • NO GUESSWORK • BUILT TO BE CHOSEN • FIXED SCOPE TRANSPARENCY • </div>
+    </div>
+
+    <div id="pricing" style="scroll-margin-top:68px"></div>
+    <nav aria-label="Services" class="tabs" id="tabs" role="tablist"></nav>
+
+    <!-- Investment Split Section -->
+    <section class="section" id="investment">
+      <div class="wrap split">
+        <div>
+          <div class="mono" id="serviceEyebrow"></div>
+          <h2 id="headline"></h2>
+          <p class="intro" id="description"></p>
+        </div>
+        <div class="pricebox">
+          <div class="mono" id="priceLabel">Starting investment / INR</div>
+          <div class="price" id="price"></div>
+          <div class="duration" id="duration"></div>
+          <div id="growth-models" style="margin:20px 0; display:none; gap:12px;"></div>
+          <p class="rule" id="scope"></p>
+          <a class="pill" href="#enquire">Discuss this project ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 Deliverables -->
+    <section class="section blush">
+      <div class="wrap">
+        <div class="mono">01 / The deliverables</div>
+        <h2 class="reveal">What goes<br/>into it.</h2>
+        <div class="process">
+          <aside class="pin">
+            <div class="mono" id="step">01 / Discovery &amp; strategy</div>
+            <h3 id="stepTitle">Think first.</h3>
+            <svg aria-hidden="true" viewBox="0 0 250 140">
+              <g fill="none" stroke="#fae3e2" stroke-width="3">
+                <circle cx="125" cy="70" r="48"></circle>
+                <ellipse cx="125" cy="70" rx="110" ry="25"></ellipse>
+                <ellipse cx="125" cy="70" rx="110" ry="25" transform="rotate(55 125 70)"></ellipse>
+                <ellipse cx="125" cy="70" rx="110" ry="25" transform="rotate(-55 125 70)"></ellipse>
+              </g>
+            </svg>
+          </aside>
+          <div id="chapters"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 Commercial Details -->
+    <section class="section white">
+      <div class="wrap">
+        <div class="mono">02 / The commercial details</div>
+        <h2 class="reveal">Nothing left<br/>to guess.</h2>
+        <div class="terms">
+          <article class="reveal">
+            <h3>50 / 50.</h3>
+            <p>Proposed project payment structure: 50% to begin, 50% before final production-ready handover. Retainers and growth partnerships are billed on a monthly cycle.</p>
+          </article>
+          <article class="reveal">
+            <h3>Clear scope.</h3>
+            <p>Deliverable quantities, review milestones, and delivery sprint schedules are agreed in writing before commencement. No retainer creep or surprise hourly billing.</p>
+          </article>
+          <article class="reveal">
+            <h3>Yours to own.</h3>
+            <p>You receive 100% intellectual property ownership and full vector AI, SVG, EPS, and PDF source files upon project completion and final payment.</p>
+          </article>
+          <article class="reveal">
+            <h3>No hidden extras.</h3>
+            <p>Taxes if applicable, third-party printing, packaging fabrication, domain hosting, font licences, and ad spend are separate unless expressly scoped.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 Good Questions FAQ -->
+    <section class="section blush faq">
+      <div class="wrap">
+        <div class="mono">03 / Good questions</div>
+        <h2 class="reveal">Before we begin.</h2>
+        <details>
+          <summary>Is the starting price the final price?</summary>
+          <p>It is the transparent starting investment for the agreed base engagement sprint. Additional deliverables, extra SKU adaptations, or complex features are clearly quoted before work begins.</p>
+        </details>
+        <details>
+          <summary>Can I combine services into a connected sprint?</summary>
+          <p>Yes. Our flagship <b>Brand-to-Market Suite (₹4,75,000 / $4,960)</b> unifies strategic brand identity, master packaging with SKU adaptations, and custom responsive web design &amp; development into one cohesive engagement.</p>
+        </details>
+        <details>
+          <summary>How many revisions and concepts are included?</summary>
+          <p>Each sprint includes structured collaborative milestones. We explore distinct creative routes in Phase 1, followed by refined development rounds and final artwork polish. All review rounds are specified in your proposal.</p>
+        </details>
+        <details>
+          <summary>Do you work with international clients?</summary>
+          <p>Yes. Over 40% of our clients operate across the US, UK, UAE, Europe, and Australia. We work smoothly across timezones with tailored proposals in USD, GBP, or EUR and clear digital review cadences.</p>
+        </details>
+        <details>
+          <summary>When can we start?</summary>
+          <p>To maintain senior creative leadership and rigorous quality, we limit intake to 2–3 active client sprints per cycle. We confirm availability and project timelines during our initial discovery call.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- 04 Enquiry Form -->
+    <section class="section" id="enquire">
+      <div class="wrap split">
+        <div>
+          <div class="mono">04 / Let's get to work</div>
+          <h2 class="reveal">Worth<br/>choosing.</h2>
+          <p class="intro">Tell us what you're building. We'll review your project details and discuss the right scope, investment, and schedule within 24 hours.</p>
+        </div>
+        <form id="form">
+          <div class="formgrid">
+            <label>Name
+              <input name="name" id="form-name" placeholder="Your name" required/>
+            </label>
+            <label>Email
+              <input name="email" id="form-email" placeholder="you@brand.com" required type="email"/>
+            </label>
+            <label class="full">Service
+              <select id="select" name="service"></select>
+            </label>
+            <label class="full">Project budget
+              <select name="budget" id="budgetSelect" required>
+                <option value="">Select your budget</option>
+              </select>
+            </label>
+            <label class="full">Tell us about your project
+              <textarea name="brief" id="form-brief" placeholder="What are you building? Share your timeline, current stage, and objectives." required></textarea>
+            </label>
+            <label class="full checkbox-label">
+              <input required type="checkbox"/> I understand the selected service's starting investment and sprint scope.
+            </label>
+            <button class="pill full" type="submit">Prepare my enquiry ↗</button>
+          </div>
+          <p class="form-status" id="status" role="status"></p>
+          <div class="form-output-box" id="outputBox" style="display:none;">
+            <textarea aria-label="Prepared enquiry" id="output" readonly></textarea>
+            <div class="output-actions">
+              <button class="pill" id="copy" type="button" style="padding: 10px 20px; font-size: 13px;">Copy enquiry brief</button>
+              <a class="pill" id="whatsappLink" href="#" target="_blank" rel="noopener" style="padding: 10px 20px; font-size: 13px; background: #25D366; border-color: #25D366;">Send via WhatsApp ↗</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-content">
+      <span class="logo">THE DRAWING BOARD.</span>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/work">Work</a>
+        <a href="/services">Services</a>
+        <a href="/brand-readiness">Brand Readiness</a>
+        <a href="#">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Real studio services & pricing architecture
+    const servicesData = [
+      {
+        name: 'Brand Identity',
+        eyebrow: '01 // Brand Identity & Strategy',
+        priceINR: '₹3,50,000',
+        priceUSD: '$3,650',
+        headline: 'Be chosen. Not compared.',
+        description: 'A distinctive brand built on strategic clarity, not decoration. Complete market positioning, mathematical marks, typography hierarchy, and brand guidelines.',
+        duration: '4–6 weeks sprint',
+        scope: 'One comprehensive brand identity system; positioning, master logomarks, typography, color tokens, and vector file handover.',
+        chapters: [
+          ['Discovery & strategy', 'Founder workshop & vision alignment', 'Market & competitor whitespace research', 'Audience definition & customer profiling', 'Positioning & brand narrative framework'],
+          ['Visual identity', 'Primary & secondary mathematical logomarks', 'Monogram, wordmark & responsive lockups', 'Typography scale & art direction', 'Color system, token ratios & accessibility guidelines'],
+          ['Brand handover', 'Comprehensive digital brand guidelines (PDF/Web)', 'Stationery, packaging direction & social visual system', '100% vector production source files (AI, SVG, PDF, EPS)']
+        ]
+      },
+      {
+        name: 'Brand + Packaging + Web',
+        eyebrow: '02 // Brand-to-Market Suite',
+        priceINR: '₹4,75,000',
+        priceUSD: '$4,960',
+        headline: 'One connected brand experience from shelf to screen.',
+        description: 'Our flagship end-to-end sprint: complete brand strategy and identity, master packaging system with up to 5 SKU adaptations, and a custom high-performance digital web experience.',
+        duration: '6–8 weeks sprint',
+        scope: 'Complete brand architecture, master packaging with up to 5 SKU adaptations, and custom responsive web platform design & development.',
+        chapters: [
+          ['Strategy & identity', 'Full market positioning & competitive audit', 'Primary, secondary & monogram marks', 'Typographic system & brand guidelines book'],
+          ['Structural packaging', 'Master packaging concept & shelf hierarchy', 'Up to 5 SKU adaptations on approved dielines', 'Print-ready vector artwork & finish specs', 'Manufacturer prepress coordination'],
+          ['Digital web platform', 'Custom responsive UI/UX architecture', 'Headless Shopify or React/Next.js frontend build', 'Sub-second speed optimization & technical SEO', 'Deployment, domain configuration & handover']
+        ]
+      },
+      {
+        name: 'Packaging Design',
+        eyebrow: '03 // Structural Packaging & Print',
+        priceINR: '₹3,75,000',
+        priceUSD: '$3,920',
+        headline: 'Make the shelf yours.',
+        description: 'Packaging engineered to command retail shelves and unboxing moments. Making your product recognisable, desirable, and easy to navigate.',
+        duration: '4–6 weeks sprint',
+        scope: 'One master packaging system; structural concept, up to 5 SKU adaptations, and print-ready production files.',
+        chapters: [
+          ['Packaging strategy', 'Category & retail shelf whitespace analysis', 'Competitor packaging audit', 'Information hierarchy & compliance mapping'],
+          ['Design & prototyping', 'Primary packaging design direction', 'Secondary packaging & unboxing sleeve design', 'Variant system & flavor/shade differentiation', '3D photorealistic studio product renders'],
+          ['Production handover', '100% print-ready vector dieline artwork', 'Substrate, foil, embossing & finish specifications', 'Direct manufacturer printer handover coordination']
+        ]
+      },
+      {
+        name: 'Web Development',
+        eyebrow: '04 // Frontend & High-Code',
+        priceINR: '₹1,15,000',
+        priceUSD: '$1,250',
+        headline: 'Beyond the screenshot.',
+        description: 'A custom digital experience engineered for sub-second speeds, flawless responsiveness, and high conversion without template bloat.',
+        duration: '4–6 weeks sprint',
+        scope: 'Custom responsive frontend; page count, CMS / Shopify integration, and technical scope agreed in proposal.',
+        chapters: [
+          ['Digital strategy', 'Information architecture & sitemap', 'Wireframing & user journey mapping', 'Conversion architecture & UX design'],
+          ['Design & engineering', 'Bespoke responsive UI/UX across all breakpoints', 'Headless Shopify, React/Vite, or Framer build', 'Interactive motion & micro-interactions'],
+          ['Launch & optimization', 'Sub-second Core Web Vitals optimization', 'Technical SEO, OpenGraph & JSON-LD schemas', 'Analytics (GA4, GTM) & deployment']
+        ]
+      },
+      {
+        name: 'SaaS Branding',
+        eyebrow: '05 // SaaS Branding & UI/UX',
+        priceINR: '₹4,75,000',
+        priceUSD: '$4,960',
+        headline: 'One brand. One product.',
+        description: 'System-grade visual identity and tokenized Figma component libraries for B2B software, fintech, and venture-backed SaaS platforms.',
+        duration: '6–8 weeks sprint',
+        scope: 'Core brand identity, master design tokens, marketing site foundation, and key product workflow surfaces.',
+        chapters: [
+          ['Brand foundation', 'Product discovery & positioning audit', 'Software category whitespace definition', 'Visual identity & brand tokens'],
+          ['Product experience', 'User journeys & multi-device interface flows', 'Priority interface screens & dashboards', 'Tokenized Figma design system & components'],
+          ['Developer handover', 'Component state documentation & specs', 'CSS/JSON variable export & tokens', 'Interactive prototype for engineering handoff']
+        ]
+      },
+      {
+        name: 'App Design & Development',
+        eyebrow: '06 // Mobile & Digital Products',
+        priceINR: 'Custom quote',
+        priceUSD: 'Custom quote',
+        headline: 'Make complexity simple.',
+        description: 'Intuitive digital products and native mobile applications engineered around verified user journeys and commercial performance.',
+        duration: 'Scope dependent',
+        scope: 'Engineering tech stack, iOS/Android platforms, and screen counts quoted following discovery audit.',
+        chapters: [
+          ['Product discovery', 'Technical feasibility & requirements audit', 'User personas & flow architecture', 'Information architecture & wireframes'],
+          ['Interface engineering', 'High-fidelity UI systems for iOS & Android', 'Interactive mobile prototype', 'Design tokens & motion specifications'],
+          ['Development scope', 'Component specifications & API integrations', 'Agreed engineering and cross-device testing requirements']
+        ]
+      },
+      {
+        name: 'Spatial Branding',
+        eyebrow: '07 // Environments & Spaces',
+        priceINR: 'Custom quote',
+        priceUSD: 'Custom quote',
+        headline: 'Brands you can step into.',
+        description: 'Translating brand identity into physical rooms, environmental graphics, material palettes, and connected commercial experiences.',
+        duration: 'Scope dependent',
+        scope: 'Commercial space planning, architectural graphic direction, and vendor coordination; construction costs separate.',
+        chapters: [
+          ['Spatial brand strategy', 'Site audit & customer journey mapping', 'Spatial brand principles & zoning', 'Concept moodboards & narrative'],
+          ['Interior & environmental design', 'Architectural space planning & circulation', 'Material palette, textures & lighting direction', '3D photorealistic architectural renders', 'Signage, wayfinding & environmental graphics'],
+          ['Execution coordination', 'Detailed graphic specifications & dielines', 'Vendor & contractor collaboration guidelines', 'Implementation quality reviews']
+        ]
+      },
+      {
+        name: 'Performance Marketing',
+        eyebrow: '08 // Growth Partnerships',
+        priceINR: '₹45,000–55,000 / mo or 15%',
+        priceUSD: '$550–$680 / mo or 15%',
+        headline: 'You grow. We grow.',
+        description: 'Two performance growth models engineered around total monthly brand revenue, aligning our incentives directly with your scale.',
+        duration: 'Monthly engagement',
+        scope: 'Meta Ads management, creative testing, CRO, and analytics. Media spend separate; revenue reporting agreed in advance.',
+        chapters: [
+          ['Campaign strategy', 'Audience segmentation & competitor research', 'Funnel planning & ad angle strategy', 'Creative direction & offer engineering'],
+          ['Growth management', 'Full-funnel Meta Ads campaign execution', 'Continuous creative A/B testing', 'Landing page conversion rate optimization'],
+          ['Reporting & iteration', 'Weekly performance tracking & attribution', 'Monthly executive growth review', 'Strategic scaling recommendations']
+        ]
+      }
+    ];
+
+    const budgetOptions = {
+      INR: [
+        'Below ₹3,50,000',
+        '₹3,50,000 – ₹4,00,000',
+        '₹4,50,000 – ₹5,75,000',
+        '₹5,75,000 – ₹6,00,000',
+        '₹6,00,000+',
+        'I need guidance / Custom scope'
+      ],
+      USD: [
+        'Below $3,650',
+        '$3,650 – $4,200',
+        '$4,700 – $6,00,000',
+        '$6,000 – $6,300',
+        '$6,300+',
+        'I need guidance / Custom scope'
+      ]
+    };
+
+    let activeServiceIndex = 0;
+    let currentCurrency = 'INR';
+    let chapterObserver = null;
+
+    document.documentElement.classList.add('js');
+
+    // Scroll reveal observer
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    function observeElements() {
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    }
+
+    function updateBudgetDropdown() {
+      const budgetSelect = document.getElementById('budgetSelect');
+      const currentVal = budgetSelect.value;
+      budgetSelect.innerHTML = '<option value="">Select your budget</option>';
+      budgetOptions[currentCurrency].forEach(opt => {
+        const option = new Option(opt, opt);
+        budgetSelect.add(option);
+      });
+    }
+
+    function setCurrency(currency) {
+      currentCurrency = currency;
+      document.getElementById('curr-inr').classList.toggle('active', currency === 'INR');
+      document.getElementById('curr-usd').classList.toggle('active', currency === 'USD');
+      
+      const coinSymbol = document.getElementById('coinSymbol');
+      coinSymbol.textContent = currency === 'INR' ? '₹' : '$';
+
+      updateBudgetDropdown();
+      renderService(activeServiceIndex);
+    }
+
+    function renderService(index) {
+      activeServiceIndex = index;
+      const d = servicesData[index];
+
+      // Update Tabs active state
+      document.querySelectorAll('.tabs button').forEach((btn, j) => {
+        btn.setAttribute('aria-selected', j === index);
+        btn.tabIndex = j === index ? 0 : -1;
+      });
+
+      // Update Investment Box
+      document.getElementById('serviceEyebrow').textContent = d.eyebrow;
+      document.getElementById('headline').textContent = d.headline;
+      document.getElementById('description').textContent = d.description;
+      document.getElementById('duration').textContent = d.duration;
+      document.getElementById('scope').textContent = d.scope;
+      document.getElementById('select').value = d.name;
+
+      const isGrowth = index === 7;
+      const priceLabel = document.getElementById('priceLabel');
+      const priceEl = document.getElementById('price');
+      const scopeEl = document.getElementById('scope');
+      const growthModelsEl = document.getElementById('growth-models');
+
+      priceLabel.textContent = isGrowth ? `Growth partnerships / ${currentCurrency}` : `Starting investment / ${currentCurrency}`;
+
+      if (isGrowth) {
+        priceEl.style.display = 'none';
+        scopeEl.style.display = 'none';
+        growthModelsEl.style.display = 'grid';
+
+        if (currentCurrency === 'INR') {
+          growthModelsEl.innerHTML = `
+            <article class="growth-card">
+              <small>01 / EMERGING BRANDS</small>
+              <div class="amount">₹45,000–55,000</div>
+              <p class="unit">Monthly retainer</p>
+              <p>For brands generating up to ₹4 lakh in monthly revenue.</p>
+            </article>
+            <article class="growth-card">
+              <small>02 / SCALING BRANDS</small>
+              <div class="amount">15%</div>
+              <p class="unit">Of total monthly revenue</p>
+              <p>For brands generating above ₹4 lakh and up to ₹50 lakh per month.</p>
+            </article>
+            <p class="growth-note">Media spend is separate. Revenue above ₹50 lakh is quoted individually. Revenue definition and reporting are agreed before commencement.</p>
+          `;
+        } else {
+          growthModelsEl.innerHTML = `
+            <article class="growth-card">
+              <small>01 / EMERGING BRANDS</small>
+              <div class="amount">$550–$680</div>
+              <p class="unit">Monthly retainer</p>
+              <p>For brands generating up to $4,800 in monthly revenue.</p>
+            </article>
+            <article class="growth-card">
+              <small>02 / SCALING BRANDS</small>
+              <div class="amount">15%</div>
+              <p class="unit">Of total monthly revenue</p>
+              <p>For brands generating above $4,800 and up to $60,000 per month.</p>
+            </article>
+            <p class="growth-note">Media spend is separate. Revenue above $60,000 is quoted individually. Revenue definition and reporting are agreed before commencement.</p>
+          `;
+        }
+      } else {
+        priceEl.style.display = 'block';
+        scopeEl.style.display = 'block';
+        growthModelsEl.style.display = 'none';
+        priceEl.textContent = currentCurrency === 'INR' ? d.priceINR : d.priceUSD;
+      }
+
+      // Render Deliverables Chapters
+      const chaptersContainer = document.getElementById('chapters');
+      chaptersContainer.innerHTML = d.chapters.map((group, j) => `
+        <article class="chapter reveal" data-step="${j}">
+          <div class="mono">0${j+1} / DELIVERABLES</div>
+          <h3>${group[0]}</h3>
+          <ul>
+            ${group.slice(1).map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </article>
+      `).join('');
+
+      // Setup pinned step indicator observer
+      if (chapterObserver) chapterObserver.disconnect();
+
+      function updatePinnedStep(stepIdx) {
+        if (!d.chapters[stepIdx]) return;
+        document.getElementById('step').textContent = `0${stepIdx + 1} / ${d.chapters[stepIdx][0]}`;
+        const stepTitles = ['Think first.', 'Make it distinct.', 'Make it yours.'];
+        document.getElementById('stepTitle').textContent = stepTitles[stepIdx] || d.chapters[stepIdx][0];
+      }
+
+      updatePinnedStep(0);
+
+      chapterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            updatePinnedStep(parseInt(e.target.dataset.step, 10));
+          }
+        });
+      }, { rootMargin: '-25% 0px -40% 0px' });
+
+      document.querySelectorAll('.chapter').forEach(el => chapterObserver.observe(el));
+      observeElements();
+    }
+
+    // Initialize tabs & select
+    const tabsContainer = document.getElementById('tabs');
+    const serviceSelect = document.getElementById('select');
+
+    servicesData.forEach((s, i) => {
+      const btn = document.createElement('button');
+      btn.textContent = s.name;
+      btn.setAttribute('role', 'tab');
+      btn.onclick = () => {
+        renderService(i);
+        document.getElementById('investment').scrollIntoView({
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+          block: 'start'
+        });
+      };
+      btn.onkeydown = (e) => {
+        if (['ArrowLeft', 'ArrowRight'].includes(e.key)) {
+          e.preventDefault();
+          const next = (i + (e.key === 'ArrowRight' ? 1 : -1) + servicesData.length) % servicesData.length;
+          renderService(next);
+          tabsContainer.children[next].focus();
+        }
+      };
+      tabsContainer.appendChild(btn);
+      serviceSelect.add(new Option(s.name, s.name));
+    });
+
+    serviceSelect.onchange = (e) => {
+      const idx = servicesData.findIndex(s => s.name === e.target.value);
+      if (idx !== -1) renderService(idx);
+    };
+
+    updateBudgetDropdown();
+    renderService(0);
+
+    // Header scroll progress
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      document.getElementById('progress').style.width = (100 * scrolled / maxScroll) + '%';
+    }, { passive: true });
+
+    // Mobile menu toggle
+    function toggleMenu() {
+      const nav = document.getElementById('navlinks');
+      const open = nav.classList.toggle('open');
+      document.querySelector('.menu').setAttribute('aria-expanded', open);
+    }
+
+    // Form Handling
+    const form = document.getElementById('form');
+    form.onsubmit = (e) => {
+      e.preventDefault();
+      const currentService = servicesData[activeServiceIndex];
+      const name = document.getElementById('form-name').value;
+      const email = document.getElementById('form-email').value;
+      const budget = document.getElementById('budgetSelect').value;
+      const brief = document.getElementById('form-brief').value;
+
+      const activePrice = currentCurrency === 'INR' ? currentService.priceINR : currentService.priceUSD;
+
+      const enquiryText = `Project enquiry — The Drawing Board\n\nName: ${name}\nEmail: ${email}\nSelected Service: ${currentService.name} (${activePrice})\nProject Budget: ${budget}\nBrief: ${brief}\n\nGenerated via drawingsboard.com/pricing`;
+
+      const output = document.getElementById('output');
+      output.value = enquiryText;
+
+      document.getElementById('outputBox').style.display = 'flex';
+      document.getElementById('status').textContent = 'Your brief has been prepared below. You can copy it or send it directly via WhatsApp.';
+
+      // WhatsApp link setup
+      const waNumber = '919998818818';
+      const waMsg = encodeURIComponent(`Hi The Drawing Board team,\n\nI just prepared a project brief on your pricing page:\n\n*Name:* ${name}\n*Service:* ${currentService.name} (${activePrice})\n*Budget:* ${budget}\n*Brief:* ${brief}`);
+      document.getElementById('whatsappLink').href = `https://wa.me/${waNumber}?text=${waMsg}`;
+    };
+
+    // Copy to clipboard
+    document.getElementById('copy').onclick = async () => {
+      const output = document.getElementById('output');
+      try {
+        await navigator.clipboard.writeText(output.value);
+        document.getElementById('status').textContent = 'Copied to clipboard! You can paste this in an email to hello@drawingsboard.com';
+      } catch (err) {
+        output.select();
+        document.getElementById('status').textContent = 'Please select and copy the text manually.';
+      }
+    };
+  </script>
+</body>
+</html>

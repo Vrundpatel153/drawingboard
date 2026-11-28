@@ -1,0 +1,853 @@
+.pricing-page-root {
+  --o: #ff5500;
+  --p: #fae3e2;
+  --w: #ffffff;
+  --k: #000000;
+  --ink: #191515;
+  --line: #19151525;
+  --accent: #c33e00;
+
+  background: var(--p);
+  color: var(--ink);
+  font-family: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 17px;
+  line-height: 1.5;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.pricing-page-root * {
+  box-sizing: border-box;
+}
+
+.pricing-page-root .wrap {
+  max-width: 1440px;
+  margin: auto;
+  padding: 0 5vw;
+}
+
+/* Nav */
+.pricing-page-root header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--p);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.pricing-page-root .nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 68px;
+  gap: 20px;
+}
+
+.pricing-page-root .logo {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  color: var(--o);
+  text-decoration: none;
+}
+
+.pricing-page-root .navlinks {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.pricing-page-root .navlinks a {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.pricing-page-root .navlinks a.pill {
+  color: #ffffff !important;
+}
+
+.pricing-page-root .navlinks a:hover {
+  color: var(--o);
+}
+
+.pricing-page-root .nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pricing-page-root .currency-toggle {
+  display: inline-flex;
+  background: #ffffff60;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  padding: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.pricing-page-root .currency-toggle button {
+  padding: 5px 11px;
+  border-radius: 100px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--ink);
+  transition: all 0.2s;
+}
+
+.pricing-page-root .currency-toggle button.active {
+  background: var(--ink);
+  color: var(--w);
+}
+
+.pricing-page-root .progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: var(--o);
+  transition: width 0.08s ease-out;
+}
+
+.pricing-page-root .mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+  opacity: 0.85;
+}
+
+/* Hero */
+.pricing-page-root .hero {
+  padding: 70px 0 55px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.pricing-page-root .hero h1 {
+  font-size: clamp(42px, 11vw, 150px);
+  line-height: 0.86;
+  letter-spacing: -0.07em;
+  margin: 40px auto 30px;
+  font-weight: 800;
+  color: var(--o);
+  position: relative;
+}
+
+.pricing-page-root .hero h1 span {
+  display: block;
+  animation: tdbrise 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.pricing-page-root .hero h1 span:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.pricing-page-root .hero h1 span:nth-child(3) {
+  animation-delay: 0.22s;
+}
+
+@keyframes tdbrise {
+  from {
+    transform: translateY(45px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.pricing-page-root .tag {
+  display: inline-block;
+  background: var(--ink);
+  color: white;
+  border-radius: 100px;
+  padding: 10px 18px;
+  font-size: clamp(11px, 1.3vw, 16px);
+  position: absolute;
+  letter-spacing: 0;
+  font-weight: 500;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.pricing-page-root .tag.a {
+  top: 20%;
+  left: 6%;
+  transform: rotate(-8deg);
+}
+
+.pricing-page-root .tag.b {
+  bottom: 12%;
+  right: 4%;
+  transform: rotate(7deg);
+}
+
+.pricing-page-root .hero p {
+  max-width: 640px;
+  margin: 25px auto;
+  font-size: clamp(18px, 2.2vw, 24px);
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.pricing-page-root .pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ink);
+  border-radius: 100px;
+  padding: 13px 28px;
+  font-weight: 600;
+  font-size: 15px;
+  background: var(--ink);
+  color: white;
+  text-decoration: none;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pricing-page-root .pill:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.pricing-page-root .art {
+  width: min(480px, 85%);
+  margin: 35px auto 0;
+  display: block;
+}
+
+.pricing-page-root .art .coin {
+  animation: tdbbob 3s ease-in-out infinite;
+  transform-origin: 335px 130px;
+}
+
+@keyframes tdbbob {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(4deg);
+  }
+}
+
+.pricing-page-root .coin-text {
+  font-size: 46px;
+  font-weight: 800;
+  fill: var(--o);
+}
+
+/* Marquee */
+.pricing-page-root .marquee {
+  background: var(--o);
+  color: white;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 16px 0;
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.pricing-page-root .marquee div {
+  display: inline-block;
+  animation: tdbmar 26s linear infinite;
+}
+
+@keyframes tdbmar {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Sticky Tabs */
+.pricing-page-root .tabs {
+  position: sticky;
+  top: 68px;
+  z-index: 40;
+  background: var(--p);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 5vw;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pricing-page-root .tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.pricing-page-root .tabs button {
+  flex-shrink: 0;
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: 100px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.pricing-page-root .tabs button:hover {
+  border-color: var(--ink);
+}
+
+.pricing-page-root .tabs button[aria-selected="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: white;
+}
+
+/* Sections */
+.pricing-page-root .section {
+  padding: 85px 0;
+  scroll-margin-top: 140px;
+  border-top: 1px solid var(--line);
+}
+
+.pricing-page-root .section:first-of-type {
+  border-top: none;
+}
+
+.pricing-page-root .blush {
+  background: var(--p);
+}
+
+.pricing-page-root .white {
+  background: #ffffff;
+}
+
+.pricing-page-root .split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6vw;
+  align-items: start;
+}
+
+.pricing-page-root h2 {
+  font-size: clamp(38px, 6.5vw, 92px);
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+  margin: 15px 0 25px;
+  color: var(--o);
+  font-weight: 800;
+}
+
+.pricing-page-root h3 {
+  font-size: clamp(24px, 3.2vw, 36px);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin: 12px 0;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.pricing-page-root .intro {
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 620px;
+}
+
+.pricing-page-root .pricebox {
+  border-top: 1px solid var(--ink);
+  padding: 24px 0;
+  position: relative;
+}
+
+.pricing-page-root .price {
+  font-size: clamp(40px, 6.2vw, 88px);
+  font-weight: 800;
+  letter-spacing: -0.07em;
+  line-height: 1;
+  color: var(--o);
+  margin: 16px 0 12px;
+  overflow-wrap: anywhere;
+}
+
+.pricing-page-root .duration {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pricing-page-root .duration::before {
+  content: '⏱';
+  font-size: 14px;
+}
+
+.pricing-page-root .rule {
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+  margin-top: 24px;
+  margin-bottom: 28px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* Growth Cards */
+.pricing-page-root .growth-card {
+  border-top: 1px solid var(--line);
+  padding: 22px 0;
+}
+
+.pricing-page-root .growth-card small {
+  display: inline-block;
+  background: var(--ink);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.pricing-page-root .growth-card .amount {
+  color: var(--o);
+  font-size: clamp(32px, 4.2vw, 56px);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  margin: 16px 0 4px;
+}
+
+.pricing-page-root .growth-card .unit {
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+
+.pricing-page-root .growth-card p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 8px 0;
+}
+
+.pricing-page-root .growth-note {
+  font-size: 14px;
+  color: var(--ink);
+  opacity: 0.8;
+  line-height: 1.5;
+  margin-top: 12px;
+}
+
+/* Process / Deliverables */
+.pricing-page-root .process {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5vw;
+  margin-top: 20px;
+}
+
+.pricing-page-root .pin {
+  position: sticky;
+  top: 165px;
+  align-self: start;
+  background: var(--ink);
+  color: white;
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+}
+
+.pricing-page-root .pin .mono {
+  color: white;
+  opacity: 0.8;
+}
+
+.pricing-page-root .pin h3 {
+  color: white;
+  margin: 8px 0;
+}
+
+.pricing-page-root .pin svg {
+  width: 100%;
+  height: 150px;
+  margin-top: auto;
+}
+
+.pricing-page-root .chapter {
+  min-height: 260px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+}
+
+.pricing-page-root .chapter:first-of-type {
+  border-top: none;
+}
+
+.pricing-page-root .chapter ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 16px;
+}
+
+.pricing-page-root .chapter li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink);
+  display: flex;
+  align-items: baseline;
+}
+
+.pricing-page-root .chapter li:before {
+  content: '↗';
+  color: var(--accent);
+  margin-right: 14px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* Commercial Details */
+.pricing-page-root .terms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  margin-top: 20px;
+}
+
+.pricing-page-root .terms article {
+  border-top: 1px solid var(--line);
+  padding: 24px 0;
+}
+
+.pricing-page-root .terms h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.pricing-page-root .terms p {
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+/* FAQ */
+.pricing-page-root .faq details {
+  border-top: 1px solid var(--line);
+  padding: 22px 0;
+  transition: background 0.2s;
+}
+
+.pricing-page-root .faq summary {
+  cursor: pointer;
+  font-size: clamp(19px, 2.2vw, 24px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.pricing-page-root .faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.pricing-page-root .faq summary::after {
+  content: '+';
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--o);
+  transition: transform 0.2s ease;
+}
+
+.pricing-page-root .faq details[open] summary::after {
+  content: '−';
+  transform: rotate(180deg);
+}
+
+.pricing-page-root .faq p {
+  max-width: 800px;
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.6;
+  margin-top: 14px;
+}
+
+/* Enquiry Form */
+.pricing-page-root .formgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.pricing-page-root label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.pricing-page-root input,
+.pricing-page-root textarea,
+.pricing-page-root select {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.4);
+  color: var(--ink);
+  padding: 13px 16px;
+  border-radius: 4px;
+  font-size: 15px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.pricing-page-root input:focus,
+.pricing-page-root textarea:focus,
+.pricing-page-root select:focus {
+  outline: none;
+  border-color: var(--ink);
+  background: #ffffff;
+}
+
+.pricing-page-root input::placeholder,
+.pricing-page-root textarea::placeholder {
+  color: var(--ink);
+  opacity: 0.55;
+}
+
+.pricing-page-root select option {
+  color: var(--ink);
+  background: #ffffff;
+}
+
+.pricing-page-root textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.pricing-page-root .full {
+  grid-column: 1 / -1;
+}
+
+.pricing-page-root .checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none;
+}
+
+.pricing-page-root .checkbox-label input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+  accent-color: var(--o);
+  cursor: pointer;
+}
+
+.pricing-page-root .form-status {
+  margin-top: 16px;
+  font-size: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--ink);
+}
+
+.pricing-page-root .form-output-box {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pricing-page-root .form-output-box textarea {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  min-height: 130px;
+  background: #ffffff;
+}
+
+.pricing-page-root .output-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Footer */
+.pricing-page-root footer {
+  border-top: 1px solid var(--line);
+  padding: 35px 0;
+  background: var(--p);
+}
+
+.pricing-page-root .footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.pricing-page-root .footer-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pricing-page-root .footer-links a {
+  text-decoration: none;
+  color: var(--ink);
+  transition: color 0.2s;
+}
+
+.pricing-page-root .footer-links a:hover {
+  color: var(--o);
+}
+
+.pricing-page-root .menu {
+  display: none;
+}
+
+@media (max-width: 820px) {
+  .pricing-page-root .navlinks {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--p);
+    border-bottom: 1px solid var(--line);
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  .pricing-page-root .navlinks.open {
+    display: flex;
+  }
+
+  .pricing-page-root .menu {
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 7px 15px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .pricing-page-root .logo {
+    font-size: 20px;
+  }
+
+  .pricing-page-root .hero {
+    padding-top: 40px;
+  }
+
+  .pricing-page-root .hero h1 {
+    margin: 35px 0 20px;
+    font-size: clamp(38px, 11vw, 75px);
+  }
+
+  .pricing-page-root .tag {
+    padding: 7px 12px;
+    font-size: 11px;
+  }
+
+  .pricing-page-root .tag.a {
+    left: 0;
+    top: 12%;
+  }
+
+  .pricing-page-root .tag.b {
+    right: 0;
+    bottom: 0;
+  }
+
+  .pricing-page-root .split,
+  .pricing-page-root .process,
+  .pricing-page-root .terms,
+  .pricing-page-root .formgrid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-page-root .section {
+    padding: 50px 0;
+  }
+
+  .pricing-page-root .pin {
+    position: relative;
+    top: auto;
+    min-height: 110px;
+    padding: 20px;
+  }
+
+  .pricing-page-root .pin svg {
+    display: none;
+  }
+
+  .pricing-page-root .pin h3 {
+    font-size: 24px;
+  }
+
+  .pricing-page-root .chapter {
+    min-height: 0;
+    padding: 22px 0;
+  }
+
+  .pricing-page-root .pricebox {
+    padding: 20px 0;
+  }
+
+  .pricing-page-root .full {
+    grid-column: auto;
+  }
+
+  .pricing-page-root .tabs {
+    top: 68px;
+    padding: 10px 5vw;
+  }
+
+  .pricing-page-root .tabs button {
+    font-size: 13px;
+    padding: 7px 13px;
+  }
+
+  .pricing-page-root .growth-card .amount {
+    font-size: clamp(30px, 8vw, 42px);
+  }
+}
