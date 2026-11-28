@@ -304,19 +304,19 @@ export default function PricingPage() {
               </div>
 
               {/* V17 Spirograph Hero Art */}
-              <svg aria-hidden="true" className="art" viewBox="0 0 320 145">
+              <svg aria-hidden="true" className="art" viewBox="0 0 320 250">
                 <g fill="none" stroke="#2B2675" strokeWidth="1.5">
-                  <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(0.0 160 72)"></ellipse>
-                  <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(22.5 160 72)"></ellipse>
-                  <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(45.0 160 72)"></ellipse>
-                  <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(67.5 160 72)"></ellipse>
-                  <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(90.0 160 72)"></ellipse>
-                  <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(112.5 160 72)"></ellipse>
-                  <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(135.0 160 72)"></ellipse>
-                  <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(157.5 160 72)"></ellipse>
+                  <ellipse cx="160" cy="125" rx="115" ry="32" transform="rotate(0.0 160 125)"></ellipse>
+                  <ellipse cx="160" cy="125" rx="115" ry="32" transform="rotate(22.5 160 125)"></ellipse>
+                  <ellipse cx="160" cy="125" rx="115" ry="32" transform="rotate(45.0 160 125)"></ellipse>
+                  <ellipse cx="160" cy="125" rx="115" ry="32" transform="rotate(67.5 160 125)"></ellipse>
+                  <ellipse cx="160" cy="125" rx="115" ry="32" transform="rotate(90.0 160 125)"></ellipse>
+                  <ellipse cx="160" cy="125" rx="115" ry="32" transform="rotate(112.5 160 125)"></ellipse>
+                  <ellipse cx="160" cy="125" rx="115" ry="32" transform="rotate(135.0 160 125)"></ellipse>
+                  <ellipse cx="160" cy="125" rx="115" ry="32" transform="rotate(157.5 160 125)"></ellipse>
                 </g>
-                <circle cx="160" cy="72" fill="#D1D84E" r="34" stroke="#2B2675"></circle>
-                <text fill="#2B2675" fontSize="44" fontWeight="800" textAnchor="middle" x="160" y="87">
+                <circle cx="160" cy="125" fill="#D1D84E" r="34" stroke="#2B2675"></circle>
+                <text fill="#2B2675" fontSize="44" fontWeight="800" textAnchor="middle" x="160" y="140">
                   {currency === 'INR' ? '₹' : '$'}
                 </text>
               </svg>
