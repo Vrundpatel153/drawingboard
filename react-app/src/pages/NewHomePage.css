@@ -384,11 +384,11 @@
 
 .newhome-root .hero-art svg {
   width: 100%;
-  max-height: 200px;
+  max-height: 240px;
 }
 
 .newhome-root .orbit {
-  transform-origin: 160px 90px;
+  transform-origin: 160px 130px;
   animation: nh-turn 24s linear infinite;
 }
 
@@ -612,11 +612,16 @@
   background: transparent;
   border: 1px solid var(--ink);
   border-radius: 6px;
-  padding: 4px 10px;
+  padding: 5px 12px;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   color: var(--ink);
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.2;
   transition: all 0.2s;
 }
 
@@ -1148,12 +1153,28 @@
 
 /* Responsive Breakpoints */
 @media (max-width: 820px) {
+  .newhome-root nav .wrap {
+    height: 56px;
+    min-height: 56px;
+  }
+
+  .newhome-root .logo {
+    font-size: clamp(16px, 4.5vw, 20px);
+    white-space: nowrap;
+  }
+
+  .newhome-root .nav-actions .btn {
+    display: none;
+  }
+
   .newhome-root .links {
     display: none;
   }
 
   .newhome-root .menu-btn {
     display: block;
+    padding: 6px 12px;
+    font-size: 11px;
   }
 
   .newhome-root .grid {

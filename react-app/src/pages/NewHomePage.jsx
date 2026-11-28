@@ -397,17 +397,17 @@ export default function NewHomePage() {
               Distinctive design.<br />
               <b style={{ color: 'var(--ink)' }}>Real-world impact.</b>
             </p>
-            <svg aria-label="Original abstract drawing of ideas coming together" role="img" viewBox="0 0 320 180">
+            <svg aria-label="Original abstract drawing of ideas coming together" role="img" viewBox="0 0 320 260">
               <g fill="none" stroke="#2B2675" strokeWidth="2">
-                <circle cx="160" cy="90" r="65"></circle>
+                <circle cx="160" cy="130" r="65"></circle>
                 <g className="orbit">
-                  <ellipse cx="160" cy="90" rx="125" ry="40"></ellipse>
-                  <ellipse cx="160" cy="90" rx="125" ry="40" transform="rotate(60 160 90)"></ellipse>
-                  <ellipse cx="160" cy="90" rx="125" ry="40" transform="rotate(120 160 90)"></ellipse>
-                  <circle cx="285" cy="90" fill="#D1D84E" r="9"></circle>
+                  <ellipse cx="160" cy="130" rx="125" ry="40"></ellipse>
+                  <ellipse cx="160" cy="130" rx="125" ry="40" transform="rotate(60 160 130)"></ellipse>
+                  <ellipse cx="160" cy="130" rx="125" ry="40" transform="rotate(120 160 130)"></ellipse>
+                  <circle cx="285" cy="130" fill="#D1D84E" r="9"></circle>
                 </g>
               </g>
-              <path d="M160 55v70M125 90h70M135 65l50 50M185 65l-50 50" stroke="#2B2675" strokeLinecap="round" strokeWidth="10"></path>
+              <path d="M160 95v70M125 130h70M135 105l50 50M185 105l-50 50" stroke="#2B2675" strokeLinecap="round" strokeWidth="10"></path>
             </svg>
           </div>
         </div>
