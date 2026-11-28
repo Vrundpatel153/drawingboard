@@ -12,13 +12,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --o: #ff5500;
-      --p: #fae3e2;
+      --o: #2B2675;
+      --p: #FCFAEF;
       --w: #ffffff;
-      --k: #000000;
-      --ink: #191515;
-      --line: #19151525;
-      --accent: #c33e00;
+      --k: #2B2675;
+      --ink: #2B2675;
+      --line: #2B267530;
+      --accent: #2B2675;
+      --lime: #D1D84E;
+      --lavender: #A99BF7;
+      --orange: #EB903D;
+      --vista: #FCFAEF;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -26,7 +30,7 @@
       margin: 0;
       background: var(--p);
       color: var(--ink);
-      font: 400 17px/1.5 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
+      font: 400 17px/1.45 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
@@ -56,7 +60,7 @@
       font-size: 24px;
       font-weight: 800;
       letter-spacing: -0.06em;
-      color: var(--o);
+      color: var(--ink);
       display: flex;
       align-items: center;
       gap: 8px;
@@ -69,13 +73,10 @@
     .navlinks a {
       font-weight: 600;
       font-size: 15px;
-      transition: color 0.2s;
+      color: var(--ink);
+      transition: opacity 0.2s;
     }
-    .navlinks a.pill {
-      color: #ffffff !important;
-    }
-    .navlinks a:hover { color: var(--o); }
-    .navlinks a.pill { color: #ffffff !important; }
+    .navlinks a:hover { opacity: 0.7; }
     .nav-actions {
       display: flex;
       align-items: center;
@@ -83,9 +84,9 @@
     }
     .currency-toggle {
       display: inline-flex;
-      background: #ffffff60;
+      background: #ffffff80;
       border: 1px solid var(--line);
-      border-radius: 100px;
+      border-radius: 6px;
       padding: 3px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
@@ -94,20 +95,20 @@
     }
     .currency-toggle button {
       padding: 5px 11px;
-      border-radius: 100px;
+      border-radius: 4px;
       transition: all 0.2s;
       color: var(--ink);
     }
     .currency-toggle button.active {
       background: var(--ink);
-      color: var(--w);
+      color: var(--p);
     }
     .progress {
       position: absolute;
       bottom: 0;
       left: 0;
       height: 3px;
-      background: var(--o);
+      background: var(--orange);
       width: 0%;
       transition: width 0.08s ease-out;
     }
@@ -120,97 +121,85 @@
       opacity: 0.85;
     }
 
-    /* Hero */
+    /* V17 Left-aligned Hero */
     .hero {
-      padding: 70px 0 55px;
-      text-align: center;
+      text-align: left;
+      padding: 52px 0 35px;
       overflow: hidden;
-      position: relative;
+      background: var(--p);
+    }
+    .hero .wrap {
+      max-width: 1120px;
+      margin: auto;
     }
     .hero h1 {
-      font-size: clamp(42px, 11vw, 150px);
-      line-height: 0.86;
-      letter-spacing: -0.07em;
-      margin: 40px auto 30px;
-      font-weight: 800;
-      color: var(--o);
       position: relative;
+      text-align: left;
+      font-family: 'Bricolage Grotesque', Arial, sans-serif;
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -0.065em;
+      font-size: clamp(48px, 10vw, 130px);
+      margin: 26px 0;
+      color: var(--ink);
     }
     .hero h1 span {
       display: block;
-      animation: rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
-    .hero h1 span:nth-child(2) { animation-delay: 0.12s; }
-    .hero h1 span:nth-child(3) { animation-delay: 0.22s; }
-    @keyframes rise {
-      from { transform: translateY(45px); opacity: 0; }
-      to { transform: none; opacity: 1; }
+    .hero h1 span:nth-child(2) {
+      font-size: 1.45em;
     }
-    .tag {
-      display: inline-block;
-      background: var(--ink);
-      color: white;
-      border-radius: 100px;
-      padding: 10px 18px;
-      font-size: clamp(11px, 1.3vw, 16px);
-      position: absolute;
-      letter-spacing: 0;
-      font-weight: 500;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    }
-    .tag.a { top: 20%; left: 6%; transform: rotate(-8deg); }
-    .tag.b { bottom: 12%; right: 4%; transform: rotate(7deg); }
     .hero p {
-      max-width: 640px;
-      margin: 25px auto;
-      font-size: clamp(18px, 2.2vw, 24px);
-      color: var(--ink);
+      margin: 20px 0 28px;
+      max-width: 580px;
+      text-align: left;
+      font-size: clamp(18px, 2vw, 24px);
       line-height: 1.45;
+      color: var(--ink);
     }
     .pill {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       border: 1px solid var(--ink);
-      border-radius: 100px;
-      padding: 13px 28px;
-      font-weight: 600;
+      border-radius: 6px;
+      padding: 12px 26px;
+      font-weight: 700;
       font-size: 15px;
-      background: var(--ink);
-      color: white;
+      background: var(--lime);
+      color: var(--ink);
       gap: 12px;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .pill:hover {
-      background: var(--accent);
-      border-color: var(--accent);
+      background: var(--ink);
+      color: var(--p);
+      border-color: var(--ink);
       transform: translateY(-2px);
     }
+    .navlinks a.pill {
+      background: var(--lime);
+      color: var(--ink) !important;
+      padding: 9px 18px;
+      font-size: 13px;
+    }
+    .navlinks a.pill:hover {
+      background: var(--ink);
+      color: var(--p) !important;
+    }
+
+    /* V17 Spirograph Hero Art */
     .art {
-      width: min(480px, 85%);
-      margin: 35px auto 0;
       display: block;
-    }
-    .art .coin {
-      animation: bob 3s ease-in-out infinite;
-      transform-origin: 335px 130px;
-      transition: transform 0.4s ease;
-    }
-    @keyframes bob {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(4deg); }
-    }
-    .coin-text {
-      font-size: 46px;
-      font-weight: 800;
-      fill: var(--o);
-      transition: opacity 0.2s;
+      width: min(100%, 340px);
+      height: auto;
+      margin: 20px 0 0;
     }
 
     /* Marquee */
     .marquee {
-      background: var(--o);
-      color: white;
+      background: var(--ink);
+      color: var(--p);
       overflow: hidden;
       white-space: nowrap;
       padding: 16px 0;
@@ -245,7 +234,7 @@
       flex-shrink: 0;
       border: 1px solid var(--line);
       background: transparent;
-      border-radius: 100px;
+      border-radius: 6px;
       padding: 8px 16px;
       font-size: 14px;
       font-weight: 600;
@@ -254,23 +243,23 @@
       white-space: nowrap;
     }
     .tabs button:hover {
+      background: #ffffff90;
       border-color: var(--ink);
     }
     .tabs button[aria-selected="true"] {
       background: var(--ink);
       border-color: var(--ink);
-      color: white;
+      color: var(--p);
     }
 
     /* Sections */
     .section {
-      padding: 85px 0;
+      padding: 80px 0;
       scroll-margin-top: 140px;
+      background: var(--p);
       border-top: 1px solid var(--line);
     }
     .section:first-of-type { border-top: none; }
-    .blush { background: var(--p); }
-    .white { background: #ffffff; }
     .split {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -282,7 +271,7 @@
       line-height: 0.92;
       letter-spacing: -0.06em;
       margin: 15px 0 25px;
-      color: var(--o);
+      color: var(--ink);
       font-weight: 800;
     }
     h3 {
@@ -309,7 +298,7 @@
       font-weight: 800;
       letter-spacing: -0.07em;
       line-height: 1;
-      color: var(--o);
+      color: var(--ink);
       margin: 16px 0 12px;
       overflow-wrap: anywhere;
     }
@@ -344,15 +333,15 @@
     .growth-card small {
       display: inline-block;
       background: var(--ink);
-      color: white;
+      color: var(--p);
       padding: 5px 12px;
-      border-radius: 100px;
+      border-radius: 4px;
       font-size: 11px;
       letter-spacing: 0.06em;
       font-family: 'JetBrains Mono', monospace;
     }
     .growth-card .amount {
-      color: var(--o);
+      color: var(--ink);
       font-size: clamp(32px, 4.2vw, 56px);
       line-height: 1.05;
       font-weight: 800;
@@ -379,58 +368,77 @@
       margin-top: 12px;
     }
 
-    /* Process / Deliverables */
-    .process {
+    /* V17 Deep Blue Deliverables (#deliverables-v17) */
+    #deliverables-v17 {
+      background: #2B2675 !important;
+      color: #FCFAEF !important;
+      border-top: none;
+    }
+    #deliverables-v17 h2,
+    #deliverables-v17 .chapter h3,
+    #deliverables-v17 .chapter li,
+    #deliverables-v17 p {
+      color: #FCFAEF !important;
+      opacity: 1 !important;
+    }
+    #deliverables-v17 .mono,
+    #deliverables-v17 #stepTitle {
+      color: #A99BF7 !important;
+      opacity: 1 !important;
+    }
+    #deliverables-v17 .process {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 5vw;
       margin-top: 20px;
     }
-    .pin {
+    #deliverables-v17 .pin {
       position: sticky;
       top: 165px;
       align-self: start;
-      background: var(--ink);
-      color: white;
+      background: transparent !important;
+      border: 1px solid #A99BF780 !important;
+      color: #A99BF7;
       min-height: 330px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       padding: 30px;
-      border-radius: 6px;
+      border-radius: 4px;
       overflow: hidden;
-      box-shadow: 0 12px 36px rgba(0,0,0,0.12);
     }
-    .pin .mono { color: white; opacity: 0.8; }
-    .pin h3 { color: white; margin: 8px 0; }
-    .pin svg {
+    #deliverables-v17 .pin .mono { color: #A99BF7 !important; }
+    #deliverables-v17 .pin h3 { color: #A99BF7 !important; margin: 8px 0; }
+    #deliverables-v17 .pin svg {
       width: 100%;
       height: 150px;
       margin-top: auto;
     }
-    .chapter {
+    #deliverables-v17 .pin svg [stroke] {
+      stroke: #A99BF7 !important;
+    }
+    #deliverables-v17 .chapter {
       min-height: 260px;
       padding: 28px 0;
-      border-top: 1px solid var(--line);
+      border-top: 1px solid #A99BF740;
     }
-    .chapter:first-of-type { border-top: none; }
-    .chapter ul {
+    #deliverables-v17 .chapter:first-of-type { border-top: none; }
+    #deliverables-v17 .chapter ul {
       list-style: none;
       padding: 0;
       margin-top: 16px;
     }
-    .chapter li {
+    #deliverables-v17 .chapter li {
       padding: 12px 0;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid #A99BF730;
       font-size: 17px;
       line-height: 1.5;
-      color: var(--ink);
       display: flex;
       align-items: baseline;
     }
-    .chapter li:before {
+    #deliverables-v17 .chapter li:before {
       content: '↗';
-      color: var(--accent);
+      color: #D1D84E !important;
       margin-right: 14px;
       font-weight: 700;
       font-size: 16px;
@@ -458,7 +466,6 @@
     .faq details {
       border-top: 1px solid var(--line);
       padding: 22px 0;
-      transition: background 0.2s;
     }
     .faq summary {
       cursor: pointer;
@@ -477,7 +484,7 @@
       content: '+';
       font-size: 26px;
       font-weight: 400;
-      color: var(--o);
+      color: var(--ink);
       transition: transform 0.2s ease;
     }
     .faq details[open] summary::after {
@@ -507,8 +514,8 @@
     }
     input, textarea, select {
       width: 100%;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid var(--ink);
+      background: rgba(255, 255, 255, 0.7);
       color: var(--ink);
       padding: 13px 16px;
       border-radius: 4px;
@@ -537,7 +544,7 @@
     .checkbox-label input[type="checkbox"] {
       width: auto;
       margin: 0;
-      accent-color: var(--o);
+      accent-color: var(--ink);
       cursor: pointer;
     }
 
@@ -565,21 +572,6 @@
       flex-wrap: wrap;
     }
 
-    /* Reveal */
-    .reveal {
-      opacity: 1;
-      transform: none;
-      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .js .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-    }
-    .js .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
     /* Footer */
     footer {
       border-top: 1px solid var(--line);
@@ -600,7 +592,7 @@
       font-size: 14px;
       font-weight: 600;
     }
-    .footer-links a:hover { color: var(--o); }
+    .footer-links a:hover { opacity: 0.7; }
 
     /* Mobile */
     .menu { display: none; }
@@ -617,35 +609,34 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 18px;
-        box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+        box-shadow: 0 16px 32px rgba(43, 38, 117, 0.08);
       }
       .navlinks.open { display: flex; }
       .menu {
         display: block;
         border: 1px solid var(--line);
-        border-radius: 100px;
+        border-radius: 4px;
         padding: 7px 15px;
         font-size: 13px;
         font-weight: 700;
         color: var(--ink);
       }
       .logo { font-size: 20px; }
-      .hero { padding-top: 40px; }
-      .hero h1 { margin: 35px 0 20px; font-size: clamp(38px, 11vw, 75px); }
-      .tag { padding: 7px 12px; font-size: 11px; }
-      .tag.a { left: 0; top: 12%; }
-      .tag.b { right: 0; bottom: 0; }
+      .hero { padding: 36px 0 20px; }
+      .hero h1 { font-size: clamp(34px, 10.5vw, 72px); margin: 20px 0; }
+      .hero p { font-size: 17px; }
       .split, .process, .terms, .formgrid { grid-template-columns: 1fr; }
-      .section { padding: 50px 0; }
-      .pin {
+      .section { padding: 48px 0; }
+      #deliverables-v17 { padding: 48px 0; }
+      #deliverables-v17 .pin {
         position: relative;
         top: auto;
         min-height: 110px;
         padding: 20px;
       }
-      .pin svg { display: none; }
-      .pin h3 { font-size: 24px; }
-      .chapter { min-height: 0; padding: 22px 0; }
+      #deliverables-v17 .pin svg { display: none; }
+      #deliverables-v17 .pin h3 { font-size: 24px; }
+      #deliverables-v17 .chapter { min-height: 0; padding: 22px 0; }
       .pricebox { padding: 20px 0; }
       .full { grid-column: auto; }
       .tabs { top: 68px; padding: 10px 5vw; }
@@ -671,7 +662,7 @@
         <a href="/services">Services</a>
         <a href="#pricing">Pricing</a>
         <a href="/brand-readiness">Brand Readiness</a>
-        <a href="#enquire" class="pill" style="padding: 9px 18px; font-size: 13px;">Start a project ↗</a>
+        <a href="#enquire" class="pill">Start a project ↗</a>
       </nav>
     </div>
     <div class="progress" id="progress"></div>
@@ -685,23 +676,24 @@
           <span>GOOD DESIGN.</span>
           <span>CLEAR</span>
           <span>INVESTMENT.</span>
-          <b class="tag a">No guesswork.</b>
-          <b class="tag b">Good thinking included.</b>
         </h1>
-        <p>Know what goes in. Know what comes out. Distinctive design begins with a clear understanding of what we're building together.</p>
+        <p>Thoughtfully considered engagements. Clearly defined deliverables. Good thinking included.</p>
         <a class="pill" href="#pricing">Explore our pricing ↓</a>
 
-        <svg aria-hidden="true" class="art" viewBox="0 0 480 210">
-          <g fill="none" stroke="var(--o)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
-            <path d="M30 170Q95 85 145 155L195 185M450 170Q385 85 335 155L285 185"></path>
-            <rect height="135" rx="8" transform="rotate(-7 240 100)" width="180" x="150" y="35"></rect>
-            <path d="M170 75l130 -16M176 99l95 -12M180 123l120 -15"></path>
-            <path d="M55 50l18 18m-18 0l18 -18M405 35v30m-15 -15h30"></path>
+        <!-- V17 Spirograph Art -->
+        <svg aria-hidden="true" class="art" viewBox="0 0 320 145">
+          <g fill="none" stroke="#2B2675" stroke-width="1.5">
+            <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(0.0 160 72)"></ellipse>
+            <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(22.5 160 72)"></ellipse>
+            <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(45.0 160 72)"></ellipse>
+            <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(67.5 160 72)"></ellipse>
+            <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(90.0 160 72)"></ellipse>
+            <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(112.5 160 72)"></ellipse>
+            <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(135.0 160 72)"></ellipse>
+            <ellipse cx="160" cy="72" rx="115" ry="32" transform="rotate(157.5 160 72)"></ellipse>
           </g>
-          <g class="coin" id="heroCoin">
-            <circle cx="335" cy="130" fill="#fae3e2" r="43" stroke="var(--ink)" stroke-width="3"></circle>
-            <text class="coin-text" id="coinSymbol" text-anchor="middle" x="335" y="145">₹</text>
-          </g>
+          <circle cx="160" cy="72" fill="#D1D84E" r="34" stroke="#2B2675"></circle>
+          <text id="coinSymbol" fill="#2B2675" font-size="44" font-weight="800" text-anchor="middle" x="160" y="87">₹</text>
         </svg>
       </div>
     </section>
@@ -732,17 +724,17 @@
       </div>
     </section>
 
-    <!-- 01 Deliverables -->
-    <section class="section blush">
+    <!-- 01 Deliverables (V17 Deep Blue Full-bleed) -->
+    <section class="section blush" id="deliverables-v17">
       <div class="wrap">
         <div class="mono">01 / The deliverables</div>
-        <h2 class="reveal">What goes<br/>into it.</h2>
+        <h2>What goes<br/>into it.</h2>
         <div class="process">
           <aside class="pin">
             <div class="mono" id="step">01 / Discovery &amp; strategy</div>
             <h3 id="stepTitle">Think first.</h3>
             <svg aria-hidden="true" viewBox="0 0 250 140">
-              <g fill="none" stroke="#fae3e2" stroke-width="3">
+              <g fill="none" stroke="#A99BF7" stroke-width="2.5">
                 <circle cx="125" cy="70" r="48"></circle>
                 <ellipse cx="125" cy="70" rx="110" ry="25"></ellipse>
                 <ellipse cx="125" cy="70" rx="110" ry="25" transform="rotate(55 125 70)"></ellipse>
@@ -756,24 +748,24 @@
     </section>
 
     <!-- 02 Commercial Details -->
-    <section class="section white">
+    <section class="section">
       <div class="wrap">
         <div class="mono">02 / The commercial details</div>
-        <h2 class="reveal">Nothing left<br/>to guess.</h2>
+        <h2>Nothing left<br/>to guess.</h2>
         <div class="terms">
-          <article class="reveal">
+          <article>
             <h3>50 / 50.</h3>
             <p>Proposed project payment structure: 50% to begin, 50% before final production-ready handover. Retainers and growth partnerships are billed on a monthly cycle.</p>
           </article>
-          <article class="reveal">
+          <article>
             <h3>Clear scope.</h3>
             <p>Deliverable quantities, review milestones, and delivery sprint schedules are agreed in writing before commencement. No retainer creep or surprise hourly billing.</p>
           </article>
-          <article class="reveal">
+          <article>
             <h3>Yours to own.</h3>
             <p>You receive 100% intellectual property ownership and full vector AI, SVG, EPS, and PDF source files upon project completion and final payment.</p>
           </article>
-          <article class="reveal">
+          <article>
             <h3>No hidden extras.</h3>
             <p>Taxes if applicable, third-party printing, packaging fabrication, domain hosting, font licences, and ad spend are separate unless expressly scoped.</p>
           </article>
@@ -782,10 +774,10 @@
     </section>
 
     <!-- 03 Good Questions FAQ -->
-    <section class="section blush faq">
+    <section class="section faq">
       <div class="wrap">
         <div class="mono">03 / Good questions</div>
-        <h2 class="reveal">Before we begin.</h2>
+        <h2>Before we begin.</h2>
         <details>
           <summary>Is the starting price the final price?</summary>
           <p>It is the transparent starting investment for the agreed base engagement sprint. Additional deliverables, extra SKU adaptations, or complex features are clearly quoted before work begins.</p>
@@ -814,7 +806,7 @@
       <div class="wrap split">
         <div>
           <div class="mono">04 / Let's get to work</div>
-          <h2 class="reveal">Worth<br/>choosing.</h2>
+          <h2>Worth<br/>choosing.</h2>
           <p class="intro">Tell us what you're building. We'll review your project details and discuss the right scope, investment, and schedule within 24 hours.</p>
         </div>
         <form id="form">
@@ -846,7 +838,7 @@
             <textarea aria-label="Prepared enquiry" id="output" readonly></textarea>
             <div class="output-actions">
               <button class="pill" id="copy" type="button" style="padding: 10px 20px; font-size: 13px;">Copy enquiry brief</button>
-              <a class="pill" id="whatsappLink" href="#" target="_blank" rel="noopener" style="padding: 10px 20px; font-size: 13px; background: #25D366; border-color: #25D366;">Send via WhatsApp ↗</a>
+              <a class="pill" id="whatsappLink" href="#" target="_blank" rel="noopener" style="padding: 10px 20px; font-size: 13px; background: #25D366; border-color: #25D366; color: white;">Send via WhatsApp ↗</a>
             </div>
           </div>
         </form>
@@ -1004,7 +996,7 @@
       USD: [
         'Below $3,650',
         '$3,650 – $4,200',
-        '$4,700 – $6,00,000',
+        '$4,700 – $6,000',
         '$6,000 – $6,300',
         '$6,300+',
         'I need guidance / Custom scope'
@@ -1015,29 +1007,11 @@
     let currentCurrency = 'INR';
     let chapterObserver = null;
 
-    document.documentElement.classList.add('js');
-
-    // Scroll reveal observer
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          revealObserver.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-
-    function observeElements() {
-      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-    }
-
     function updateBudgetDropdown() {
       const budgetSelect = document.getElementById('budgetSelect');
-      const currentVal = budgetSelect.value;
       budgetSelect.innerHTML = '<option value="">Select your budget</option>';
       budgetOptions[currentCurrency].forEach(opt => {
-        const option = new Option(opt, opt);
-        budgetSelect.add(option);
+        budgetSelect.add(new Option(opt, opt));
       });
     }
 
@@ -1127,9 +1101,9 @@
       // Render Deliverables Chapters
       const chaptersContainer = document.getElementById('chapters');
       chaptersContainer.innerHTML = d.chapters.map((group, j) => `
-        <article class="chapter reveal" data-step="${j}">
-          <div class="mono">0${j+1} / DELIVERABLES</div>
-          <h3>${group[0]}</h3>
+        <article class="chapter" data-step="${j}">
+          <div class="mono" style="color:#A99BF7!important;">0${j+1} / DELIVERABLES</div>
+          <h3 style="color:#FCFAEF!important;">${group[0]}</h3>
           <ul>
             ${group.slice(1).map(item => `<li>${item}</li>`).join('')}
           </ul>
@@ -1156,8 +1130,7 @@
         });
       }, { rootMargin: '-25% 0px -40% 0px' });
 
-      document.querySelectorAll('.chapter').forEach(el => chapterObserver.observe(el));
-      observeElements();
+      document.querySelectorAll('#deliverables-v17 .chapter').forEach(el => chapterObserver.observe(el));
     }
 
     // Initialize tabs & select
